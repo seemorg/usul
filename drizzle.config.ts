@@ -6,7 +6,7 @@ export default {
   schema: "./src/server/db/schema.ts",
   driver: "mysql2",
   dbCredentials: {
-    // @ts-ignore
+    // @ts-expect-error we're not using a db for now
     uri: env.DATABASE_URL,
   },
 } satisfies Config;

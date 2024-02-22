@@ -1,4 +1,4 @@
-import { Block, TypedBlock } from "@openiti/markdown-parser";
+import type { Block, TypedBlock } from "@openiti/markdown-parser";
 import React from "react";
 
 export default function RenderBlock({

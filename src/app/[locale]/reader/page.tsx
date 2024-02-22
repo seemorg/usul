@@ -13,6 +13,7 @@ export default async function ReaderPage() {
         return (
           <div key={pageIdx} className="flex flex-col gap-5 rounded py-14">
             {page.blocks.map((block, blockIndex) => (
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               <RenderBlock key={blockIndex} block={block as any} />
             ))}
 
