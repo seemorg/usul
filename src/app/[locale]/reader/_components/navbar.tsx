@@ -6,7 +6,7 @@ import { SunIcon, MoonIcon, LanguageIcon } from "@heroicons/react/24/outline";
 
 export default function ReaderNavbar() {
   return (
-    <header className="relative flex h-20 items-center justify-between bg-primary px-10 text-white lg:gap-8 xl:grid xl:grid-cols-12 xl:px-20">
+    <header className="relative flex h-20 items-center justify-between bg-primary px-10 text-white lg:fixed lg:right-0 lg:top-0 lg:z-30 lg:w-full lg:gap-8 lg:px-4 lg:pl-10 xl:grid xl:grid-cols-12">
       <div className="xl:col-span-2">
         <Link href="/">
           <Logo className="-mt-1 h-12 w-auto" />

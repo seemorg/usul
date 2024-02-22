@@ -4,7 +4,7 @@ import data from "~/data.json";
 export default function ReaderSidebar() {
   return (
     <div
-      className="font-amiri top-0 hidden h-screen w-[18rem] bg-slate-50 shadow-inner lg:sticky lg:flex lg:flex-none lg:flex-col xl:w-[21rem]"
+      className="font-amiri top-0 hidden h-screen w-[18rem] bg-slate-50 shadow-inner lg:sticky lg:flex lg:flex-none lg:flex-col lg:pt-20 xl:w-[21rem]"
       dir="rtl"
     >
       <div className="absolute bottom-0 right-0 top-0 w-px bg-slate-300" />

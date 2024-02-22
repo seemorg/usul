@@ -27,7 +27,7 @@ export default function ReaderLayout({
       <main className="relative flex min-h-screen w-full">
         <div className="relative w-full">
           <Container className="w-full">
-            <div className="min-w-0 flex-auto px-4 py-10 lg:pl-0 lg:pr-8 xl:px-16">
+            <div className="min-w-0 flex-auto px-4 py-10 lg:pl-0 lg:pr-8 lg:pt-20 xl:px-16">
               <article>{children}</article>
 
               {/* <dl className="flex pt-6 mt-12 border-t border-slate-200">

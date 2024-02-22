@@ -6,7 +6,7 @@ export default async function ReaderPage() {
 
   return (
     <div
-      className="font-amiri flex min-h-screen flex-col divide-y-2 divide-gray-200 bg-white text-lg text-black"
+      className="font-amiri flex min-h-screen flex-col divide-y-2 divide-gray-200 bg-white text-xl text-black"
       dir="rtl"
     >
       {pages.map((page, pageIdx) => {
@@ -17,7 +17,7 @@ export default async function ReaderPage() {
               <RenderBlock key={blockIndex} block={block as any} />
             ))}
 
-            <p className="mt-10 text-sm text-gray-400">
+            <p className="mt-10 text-center text-sm text-gray-400">
               {page.page?.page ? `page ${page.page.page}` : "unknown page"}
             </p>
           </div>
