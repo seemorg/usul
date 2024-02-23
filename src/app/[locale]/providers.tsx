@@ -3,6 +3,7 @@
 import { usePathname } from "@/navigation";
 import config from "~/i18n.config";
 import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 function Providers({
   children,
@@ -33,11 +34,9 @@ function Providers({
     {} as Record<string, string>,
   ) as AbstractIntlMessages;
 
-  console.log(messagesInNamespace);
-
   return (
     <NextIntlClientProvider messages={messagesInNamespace} locale={locale}>
-      {children}
+      <TooltipProvider>{children}</TooltipProvider>
     </NextIntlClientProvider>
   );
 }

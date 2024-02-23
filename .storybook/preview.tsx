@@ -1,14 +1,11 @@
 import type { Preview } from "@storybook/react";
 import React from "react";
-import { cn } from "../src/lib/utils";
-import { getFontsClassnames } from "../src/lib/fonts";
 
 import "../src/styles/globals.css";
+import "./storybook.css";
 
 const Wrapper = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className={cn("font-sans", getFontsClassnames())}>{children}</div>
-  );
+  return <div className="font-sans">{children}</div>;
 };
 
 const preview: Preview = {
@@ -19,6 +16,15 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      exclude: [
+        "asChild",
+        "onLayout",
+        "tagName",
+        "keyboardResizeBy",
+        "id",
+        "autoSaveId",
+        "storage",
+      ],
     },
   },
   decorators: [

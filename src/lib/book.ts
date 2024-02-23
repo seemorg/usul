@@ -3,6 +3,7 @@ import {
   type Block,
   parseMarkdown,
 } from "@openiti/markdown-parser";
+import data from "~/data.json";
 import { cache } from "react";
 
 export const fetchBook = cache(async () => {
@@ -38,5 +39,5 @@ export const fetchBook = cache(async () => {
     pages.push({ page: null, blocks: [...currentPage] });
   }
 
-  return pages;
+  return { pages, book: data.book, author: data.author };
 });

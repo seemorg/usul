@@ -1,12 +1,47 @@
+"use client";
+
 import { Logo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/20/solid";
 import { SunIcon, MoonIcon, LanguageIcon } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 
 export default function ReaderNavbar() {
+  const [show, setShow] = useState(true);
+
+  useEffect(() => {
+    let oldValue = 0;
+    let newValue = 0;
+
+    const handleScroll = () => {
+      // Get the new Value
+      newValue = window.scrollY;
+
+      //Subtract the two and conclude
+      if (newValue <= 100) setShow(true);
+      else if (oldValue - newValue < 0) setShow(false);
+      else if (oldValue - newValue > 0 && window.scrollY > 120) setShow(true);
+
+      // Update the old value
+      oldValue = newValue;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <header className="relative flex h-20 items-center justify-between bg-primary px-10 text-white lg:fixed lg:right-0 lg:top-0 lg:z-30 lg:w-full lg:gap-8 lg:px-4 lg:pl-10 xl:grid xl:grid-cols-12">
+    <header
+      className={cn(
+        "relative flex h-20 items-center justify-between bg-primary px-10 text-white transition lg:fixed lg:right-0 lg:top-0 lg:z-30 lg:w-full lg:gap-8 lg:px-4 lg:pl-10 xl:grid xl:grid-cols-12",
+        show
+          ? "pointer-events-auto translate-y-0 opacity-100"
+          : "pointer-events-none -translate-y-10 opacity-0",
+      )}
+    >
       <div className="xl:col-span-2">
         <Link href="/">
           <Logo className="-mt-1 h-12 w-auto" />

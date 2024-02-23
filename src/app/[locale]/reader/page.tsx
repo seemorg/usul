@@ -2,11 +2,11 @@ import RenderBlock from "@/components/render-markdown";
 import { fetchBook } from "@/lib/book";
 
 export default async function ReaderPage() {
-  const pages = await fetchBook();
+  const { pages } = await fetchBook();
 
   return (
     <div
-      className="font-amiri flex min-h-screen flex-col divide-y-2 divide-gray-200 bg-white text-xl text-black"
+      className="flex min-h-screen flex-col divide-y-2 divide-gray-200 bg-white font-amiri text-xl text-black"
       dir="rtl"
     >
       {pages.map((page, pageIdx) => {
