@@ -13,7 +13,6 @@ import {
 } from "@heroicons/react/24/outline";
 import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
-import { fetchBook } from "@/lib/book";
 
 const ComingSoonAlert = () => (
   <SidebarContainer>
@@ -52,11 +51,7 @@ const tabs = [
   },
 ];
 
-export default function ReaderSidebar({
-  data,
-}: {
-  data: Awaited<ReturnType<typeof fetchBook>>;
-}) {
+export default function ReaderSidebar() {
   return (
     <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 pt-24 shadow-inner">
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
@@ -84,7 +79,7 @@ export default function ReaderSidebar({
         <div className="mt-6" dir="rtl">
           {tabs.map((tab) => (
             <TabsContent value={tab.id} key={tab.id}>
-              <tab.content data={data} />
+              <tab.content />
             </TabsContent>
           ))}
         </div>
