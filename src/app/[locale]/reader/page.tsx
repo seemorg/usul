@@ -1,6 +1,9 @@
 import RenderBlock from "@/components/render-markdown";
 import { fetchBook } from "@/lib/book";
 
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-cache";
+
 export default async function ReaderPage() {
   const { pages } = await fetchBook();
 
