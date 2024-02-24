@@ -13,6 +13,9 @@ import {
 } from "@heroicons/react/24/outline";
 import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
+import { ThemeToggle } from "../navbar/theme-toggle";
+import { LanguageIcon } from "@heroicons/react/24/outline";
+import { Button } from "@/components/ui/button";
 
 const ComingSoonAlert = () => (
   <SidebarContainer>
@@ -53,11 +56,19 @@ const tabs = [
 
 export default function ReaderSidebar() {
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 pt-24 shadow-inner">
+    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 shadow-inner">
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
-      <Tabs defaultValue="content">
+      <SidebarContainer className="flex h-20 items-center justify-end gap-3 px-4">
+        <ThemeToggle />
+
+        <Button size="icon" variant="ghost">
+          <LanguageIcon className="h-6 w-6" />
+        </Button>
+      </SidebarContainer>
+
+      <Tabs defaultValue="content" className="mt-4">
         <SidebarContainer>
           <TabsList className="h-10 w-full font-sans">
             {tabs.map((tab) => (

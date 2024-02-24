@@ -18,6 +18,12 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
 
+/**
+ *
+ * Todos:
+ * - Highlight the search results
+ */
+
 export default function SearchBar() {
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
@@ -29,9 +35,8 @@ export default function SearchBar() {
     queryKey: ["search", debouncedValue],
     queryFn: ({ queryKey }) => {
       const [, query] = queryKey;
-      if (!query || query.length < 1) return null;
 
-      return searchBooks(query, { limit: 5 });
+      return searchBooks(query ?? "", { limit: 5 });
     },
   });
 
@@ -73,7 +78,10 @@ export default function SearchBar() {
         className={cn(
           "relative overflow-visible",
           showList && "rounded-b-none",
+          // focusedState.value &&
+          //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
         )}
+        loop
       >
         <CommandInput
           placeholder="Search for a book or author... (⌘ + K)"
@@ -91,10 +99,7 @@ export default function SearchBar() {
               <span className="text-xs">⌘</span>K
             </kbd> */}
 
-            <Button
-              variant="ghost"
-              className="font-semibold text-primary hover:text-primary"
-            >
+            <Button variant="ghost" className="text-primary hover:text-primary">
               Advanced Search
             </Button>
           </p>
@@ -120,15 +125,15 @@ export default function SearchBar() {
               )}
 
               <div className="flex items-center gap-1 text-xs text-gray-500">
-                <p>Book</p>
+                <p>Text</p>
+                <span>•</span>
+
+                {result.document.author.primaryLatinName && (
+                  <p>{result.document.author.primaryLatinName}</p>
+                )}
                 <span>•</span>
                 {result.document.primaryLatinName && (
                   <p>{result.document.primaryLatinName}</p>
-                )}
-
-                <span>•</span>
-                {result.document.author.primaryLatinName && (
-                  <p>{result.document.author.primaryLatinName}</p>
                 )}
               </div>
             </CommandItem>
