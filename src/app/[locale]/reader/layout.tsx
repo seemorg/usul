@@ -2,8 +2,9 @@ import Container from "@/components/ui/container";
 import ReaderSidebar from "./_components/sidebar";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
 import { cookies } from "next/headers";
+import { fetchBook } from "@/lib/book";
 
-export default function ReaderLayout({
+export default async function ReaderLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ export default function ReaderLayout({
     <div>
       <main className="relative flex min-h-screen w-full">
         <SidebarResizer
-          sidebar={<ReaderSidebar />}
+          sidebar={<ReaderSidebar data={await fetchBook()} />}
           defaultLayout={defaultLayout}
           defaultCollapsed={defaultCollapsed?.collapsed}
         >

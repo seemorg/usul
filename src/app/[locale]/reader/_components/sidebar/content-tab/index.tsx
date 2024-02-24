@@ -76,9 +76,11 @@ const fakeChapters = [
   },
 ];
 
-export default async function ContentTab() {
-  const { book, author } = await fetchBook();
-
+export default function ContentTab({
+  data: { book, author },
+}: {
+  data: Awaited<ReturnType<typeof fetchBook>>;
+}) {
   return (
     <>
       <SidebarContainer>
