@@ -20,7 +20,11 @@ export default function LocaleLayout({
   const messages = useMessages();
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+    <html
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      suppressHydrationWarning
+    >
       <body className={cn("font-sans", getFontsClassnames())}>
         <Providers locale={locale} messages={messages}>
           {children}

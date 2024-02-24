@@ -4,10 +4,11 @@ import { Logo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import { MagnifyingGlassIcon, Bars3Icon } from "@heroicons/react/20/solid";
+import { Bars3Icon } from "@heroicons/react/20/solid";
 import { LanguageIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
-import { ThemeToggle } from "./navbar/theme-toggle";
+import { ThemeToggle } from "./theme-toggle";
+import SearchBar from "./search";
 
 interface ReaderNavbarProps {
   contentContainerRef: React.RefObject<HTMLDivElement>;
@@ -40,12 +41,14 @@ export default function ReaderNavbar({
     container?.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => container?.removeEventListener("scroll", handleScroll);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <header
       className={cn(
-        "fixed right-0 top-0 z-30 flex h-20 w-full items-center justify-between gap-8 bg-primary px-4 text-white transition lg:pl-10 xl:grid xl:grid-cols-12",
+        "fixed right-0 top-0 z-30 flex h-20 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:pl-10 xl:grid xl:grid-cols-12",
         show
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none -translate-y-10 opacity-0",
@@ -57,30 +60,8 @@ export default function ReaderNavbar({
         </Link>
       </div>
 
-      <div className="min-w-0 flex-1 md:px-8 xl:col-span-8">
-        <div className="flex items-center px-6 py-4 md:mx-auto md:max-w-3xl lg:mx-0 lg:max-w-none xl:px-0">
-          <div className="w-full">
-            <label htmlFor="search" className="sr-only">
-              Search
-            </label>
-            <div className="relative">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                <MagnifyingGlassIcon
-                  className="h-5 w-5 text-gray-400"
-                  aria-hidden="true"
-                />
-              </div>
-              <input
-                id="search"
-                name="search"
-                className="block w-full rounded-md border-0 bg-white py-2 pl-10 pr-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary sm:text-sm sm:leading-6"
-                placeholder="Search"
-                type="search"
-                autoComplete="off"
-              />
-            </div>
-          </div>
-        </div>
+      <div className="flex min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:max-w-none xl:col-span-8 xl:px-0">
+        <SearchBar />
       </div>
 
       <div className="flex items-center lg:hidden">

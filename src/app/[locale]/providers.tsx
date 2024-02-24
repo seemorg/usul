@@ -5,6 +5,9 @@ import config from "~/i18n.config";
 import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function Providers({
   children,
@@ -43,7 +46,9 @@ function Providers({
         enableSystem
         disableTransitionOnChange
       >
-        <TooltipProvider>{children}</TooltipProvider>
+        <QueryClientProvider client={queryClient}>
+          <TooltipProvider>{children}</TooltipProvider>
+        </QueryClientProvider>
       </NextThemesProvider>
     </NextIntlClientProvider>
   );

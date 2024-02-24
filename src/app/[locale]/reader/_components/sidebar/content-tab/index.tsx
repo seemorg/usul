@@ -140,6 +140,26 @@ export default async function ContentTab() {
                   {book.versions.length} versions
                 </p> */}
         </div>
+
+        <div className="mt-5 flex flex-row-reverse items-center justify-between gap-4">
+          <Label htmlFor="version-selector">Version</Label>
+          <Select defaultValue={book.versions[0]}>
+            <SelectTrigger
+              className="w-full max-w-[200px] [&>span]:max-w-[90%] [&>span]:overflow-ellipsis"
+              id="version-selector"
+            >
+              <SelectValue placeholder="Select a version" />
+            </SelectTrigger>
+
+            <SelectContent>
+              {book.versions.map((version, idx) => (
+                <SelectItem key={idx} value={version}>
+                  {version}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       </SidebarContainer>
 
       <Separator className="my-4" />
@@ -194,27 +214,7 @@ export default async function ContentTab() {
       <Separator className="my-4" />
 
       <SidebarContainer>
-        <div className="flex flex-row-reverse items-center justify-between gap-4">
-          <Label htmlFor="version-selector">Version</Label>
-          <Select defaultValue={book.versions[0]}>
-            <SelectTrigger
-              className="w-full max-w-[200px] [&>span]:max-w-[90%] [&>span]:overflow-ellipsis"
-              id="version-selector"
-            >
-              <SelectValue placeholder="Select a version" />
-            </SelectTrigger>
-
-            <SelectContent>
-              {book.versions.map((version, idx) => (
-                <SelectItem key={idx} value={version}>
-                  {version}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="mt-5 flex justify-end">
+        <div className="flex justify-end">
           <Popover>
             <PopoverTrigger asChild>
               <Button
