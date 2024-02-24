@@ -39,8 +39,8 @@ function Providers({
     <NextIntlClientProvider messages={messagesInNamespace} locale={locale}>
       <NextThemesProvider
         attribute="class"
-        // defaultTheme="system"
-        // enableSystem
+        defaultTheme="light"
+        enableSystem
         disableTransitionOnChange
       >
         <TooltipProvider>{children}</TooltipProvider>
