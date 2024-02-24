@@ -51,7 +51,7 @@ const tabs = [
   },
 ];
 
-export default async function ReaderSidebar() {
+export default function ReaderSidebar() {
   return (
     <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 pt-24 shadow-inner">
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
