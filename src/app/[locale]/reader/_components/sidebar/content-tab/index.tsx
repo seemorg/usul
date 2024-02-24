@@ -141,11 +141,13 @@ export default async function ContentTab() {
                 </p> */}
         </div>
 
-        <div className="mt-5 flex flex-row-reverse items-center justify-between gap-4">
-          <Label htmlFor="version-selector">Version</Label>
+        <div className="flex w-full flex-row-reverse items-center justify-between gap-4 pb-2 pt-6">
+          <Label htmlFor="version-selector" className="font-normal">
+            Version
+          </Label>
           <Select defaultValue={book.versions[0]}>
             <SelectTrigger
-              className="w-full max-w-[200px] [&>span]:max-w-[90%] [&>span]:overflow-ellipsis"
+              className="w-[300px] max-w-full overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
               id="version-selector"
             >
               <SelectValue placeholder="Select a version" />
@@ -167,7 +169,7 @@ export default async function ContentTab() {
       <SidebarContainer>
         <Accordion type="single" collapsible>
           <AccordionItem value="info" className="border-none">
-            <AccordionTrigger className="flex-row-reverse">
+            <AccordionTrigger className="flex-row-reverse py-3 font-normal">
               More Info
             </AccordionTrigger>
 
@@ -219,7 +221,7 @@ export default async function ContentTab() {
             <PopoverTrigger asChild>
               <Button
                 variant="ghost"
-                className="px-0 text-primary hover:text-primary"
+                className="px-0 font-normal text-primary hover:text-primary"
               >
                 Page Navigator
               </Button>

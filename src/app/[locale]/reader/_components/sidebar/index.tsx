@@ -16,6 +16,7 @@ import SidebarContainer from "./sidebar-container";
 import { ThemeToggle } from "../navbar/theme-toggle";
 import { LanguageIcon } from "@heroicons/react/24/outline";
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/Icons";
 
 const ComingSoonAlert = () => (
   <SidebarContainer>
@@ -60,12 +61,11 @@ export default function ReaderSidebar() {
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
-      <SidebarContainer className="flex h-20 items-center justify-end gap-3 px-4">
-        <ThemeToggle />
-
-        <Button size="icon" variant="ghost">
-          <LanguageIcon className="h-6 w-6" />
-        </Button>
+      <SidebarContainer className="flex h-20 flex-shrink-0 items-center justify-center gap-3">
+        <div className="flex items-center gap-3 text-gray-400">
+          <Logo className="-mt-1 h-10 w-auto" />
+          <h1 className="text-lg font-bold">Seemore Foundation</h1>
+        </div>
       </SidebarContainer>
 
       <Tabs defaultValue="content" className="mt-4">
