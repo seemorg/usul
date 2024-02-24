@@ -37,3 +37,21 @@ export const Basic: Story = {
     </div>
   ),
 };
+
+export const Primary: Story = {
+  render: (args) => (
+    <div className="flex min-h-[250px] items-center justify-center">
+      <TooltipProvider>
+        <Tooltip {...args}>
+          <TooltipTrigger asChild>
+            <Button>Hover</Button>
+          </TooltipTrigger>
+
+          <TooltipContent variant="primary">
+            The React Framework – created and maintained by @vercel.
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    </div>
+  ),
+};

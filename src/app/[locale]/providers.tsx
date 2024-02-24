@@ -4,6 +4,7 @@ import { usePathname } from "@/navigation";
 import config from "~/i18n.config";
 import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 function Providers({
   children,
@@ -36,7 +37,14 @@ function Providers({
 
   return (
     <NextIntlClientProvider messages={messagesInNamespace} locale={locale}>
-      <TooltipProvider>{children}</TooltipProvider>
+      <NextThemesProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <TooltipProvider>{children}</TooltipProvider>
+      </NextThemesProvider>
     </NextIntlClientProvider>
   );
 }

@@ -1,36 +1,36 @@
 import Container from "@/components/ui/container";
 import ReaderSidebar from "./_components/sidebar";
-import ReaderNavbar from "./_components/navbar";
+import SidebarResizer from "./_components/sidebar/sidebar-resizer";
+import { cookies } from "next/headers";
 
 export default function ReaderLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // return (
-  //   <div>
-  //     <ReaderNavbar />
+  const cookieStore = cookies();
+  const layout = cookieStore.get("react-resizable-panels:layout");
+  const collapsed = cookieStore.get("react-resizable-panels:collapsed");
 
-  //     <div className="mt-20 flex items-start gap-10">
-  //       <main className="w-full flex-[2]">
-  //         <Container>{children}</Container>
-  //       </main>
+  const defaultLayout = layout
+    ? (JSON.parse(layout.value) as number[])
+    : undefined;
+  const defaultCollapsed = collapsed
+    ? (JSON.parse(collapsed.value) as { collapsed: boolean })
+    : undefined;
 
-  //       <ReaderSidebar />
-  //     </div>
-  //   </div>
-  // );
   return (
     <div>
-      <ReaderNavbar />
-
       <main className="relative flex min-h-screen w-full">
-        <div className="relative w-full">
-          <Container className="w-full">
-            <div className="min-w-0 flex-auto px-4 py-10 lg:pl-0 lg:pr-8 lg:pt-20 xl:px-16">
-              <article>{children}</article>
+        <SidebarResizer
+          sidebar={<ReaderSidebar />}
+          defaultLayout={defaultLayout}
+          defaultCollapsed={defaultCollapsed?.collapsed}
+        >
+          <Container className="w-full min-w-0 flex-auto py-10 pt-20 lg:pl-0 lg:pr-8 xl:px-16">
+            <article>{children}</article>
 
-              {/* <dl className="flex pt-6 mt-12 border-t border-slate-200">
+            {/* <dl className="flex pt-6 mt-12 border-t border-slate-200">
                 {previousPage && (
                   <div>
                     <dt className="text-sm font-medium font-display text-secondary">
@@ -63,12 +63,9 @@ export default function ReaderLayout({
                   </div>
                 )}
               </dl> */}
-            </div>
           </Container>
           {/* <Footer /> */}
-        </div>
-
-        <ReaderSidebar />
+        </SidebarResizer>
       </main>
     </div>
   );
