@@ -52,7 +52,7 @@ const tabs = [
   },
 ];
 
-export default function ReaderSidebar() {
+export default function ReaderSidebar({ bookId }: { bookId: string }) {
   return (
     <SidebarWrapper>
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
@@ -80,7 +80,7 @@ export default function ReaderSidebar() {
         <div className="mt-6" dir="rtl">
           {tabs.map((tab) => (
             <TabsContent value={tab.id} key={tab.id}>
-              <tab.content />
+              <tab.content bookId={bookId} />
             </TabsContent>
           ))}
         </div>

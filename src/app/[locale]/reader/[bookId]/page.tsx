@@ -1,8 +1,20 @@
 import RenderBlock from "@/components/render-markdown";
 import { fetchBook } from "@/lib/book";
+import { notFound } from "next/navigation";
 
-export default async function ReaderPage() {
-  const { pages } = await fetchBook();
+export default async function ReaderPage({
+  params: { bookId },
+}: {
+  params: {
+    bookId: string;
+  };
+}) {
+  let pages: Awaited<ReturnType<typeof fetchBook>>["pages"] = [];
+  try {
+    pages = (await fetchBook(bookId)).pages;
+  } catch (e) {
+    notFound();
+  }
 
   return (
     <div

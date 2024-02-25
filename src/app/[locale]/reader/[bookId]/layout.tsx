@@ -5,8 +5,12 @@ import { cookies } from "next/headers";
 
 export default function ReaderLayout({
   children,
+  params: { bookId },
 }: {
   children: React.ReactNode;
+  params: {
+    bookId: string;
+  };
 }) {
   const cookieStore = cookies();
   const layout = cookieStore.get("react-resizable-panels:layout");
@@ -23,7 +27,7 @@ export default function ReaderLayout({
     <div>
       <main className="relative flex min-h-screen w-full">
         <SidebarResizer
-          sidebar={<ReaderSidebar />}
+          sidebar={<ReaderSidebar bookId={bookId} />}
           defaultLayout={defaultLayout}
           defaultCollapsed={defaultCollapsed?.collapsed}
         >

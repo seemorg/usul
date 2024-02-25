@@ -3,12 +3,28 @@ import {
   type Block,
   parseMarkdown,
 } from "@openiti/markdown-parser";
-import data from "~/data.json";
 import { cache } from "react";
+import { db } from "@/server/db";
 
-export const fetchBook = cache(async () => {
+export const fetchBook = cache(async (id: string) => {
+  const record = await db.query.book.findFirst({
+    where: (book, { eq }) => eq(book.id, id.replaceAll("_", ".")),
+    with: {
+      author: true,
+    },
+  });
+
+  if (!record) {
+    throw new Error("Book not found");
+  }
+
+  const firstVersion = record.versionIds[0];
+  if (!firstVersion) {
+    return { pages: [], book: record };
+  }
+
   const response = await fetch(
-    "https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/0728IbnTaymiyya/0728IbnTaymiyya.Tawba/0728IbnTaymiyya.Tawba.JK000903-ara1",
+    `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${firstVersion}`,
   );
   const text = await response.text();
 
@@ -39,5 +55,5 @@ export const fetchBook = cache(async () => {
     pages.push({ page: null, blocks: [...currentPage] });
   }
 
-  return { pages, book: data.book, author: data.author };
+  return { pages, book: record };
 });

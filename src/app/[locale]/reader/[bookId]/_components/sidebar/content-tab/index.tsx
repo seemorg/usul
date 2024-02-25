@@ -30,6 +30,7 @@ import { cn } from "@/lib/utils";
 import { fetchBook } from "@/lib/book";
 import { Label } from "@/components/ui/label";
 import SidebarContainer from "../sidebar-container";
+import { notFound } from "next/navigation";
 
 const breadcrumbs = [
   "كتب الأخلاق والسلوك",
@@ -76,8 +77,17 @@ const fakeChapters = [
   },
 ];
 
-export default async function ContentTab() {
-  const { book, author } = await fetchBook();
+export default async function ContentTab({ bookId }: { bookId: string }) {
+  let result: Awaited<ReturnType<typeof fetchBook>>;
+
+  try {
+    result = await fetchBook(bookId);
+  } catch (e) {
+    notFound();
+  }
+
+  const book = result.book;
+  const author = book.author;
 
   return (
     <>
@@ -106,21 +116,23 @@ export default async function ContentTab() {
         </nav>
 
         <h2 className="mt-6 flex gap-2 text-4xl font-bold">
-          {book.title_ar[0]}
+          {book.primaryArabicName}
         </h2>
 
         <div className="mt-6 flex items-center">
           <HoverCard>
             <HoverCardTrigger asChild>
-              <p className="text-sm text-gray-700">{author.author_ar[0]}</p>
+              <p className="text-sm text-gray-700">
+                {author.primaryArabicName}
+              </p>
             </HoverCardTrigger>
 
             <HoverCardContent>
               <p className="text-sm text-gray-500">
-                {author.author_ar.slice(1).join(", ")}
+                {author.otherArabicNames.join(", ")}
               </p>
               <p className="mt-5 text-sm text-gray-500">
-                {author.author_lat.join(", ")}
+                {author.otherLatinNames.join(", ")}
               </p>
 
               {/* <p>{author.date} AH</p>
@@ -131,7 +143,7 @@ export default async function ContentTab() {
           <span className="mx-3 text-gray-400">•</span>
 
           <p className="text-sm text-gray-700" dir="ltr">
-            {Number(author.date)} AH
+            {author.year} AH
           </p>
 
           {/* <span className="mx-3 text-gray-400">•</span>
@@ -145,7 +157,8 @@ export default async function ContentTab() {
           <Label htmlFor="version-selector" className="font-normal">
             Version
           </Label>
-          <Select defaultValue={book.versions[0]}>
+
+          <Select defaultValue={book.versionIds[0]}>
             <SelectTrigger
               className="w-[300px] max-w-full overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
               id="version-selector"
@@ -154,7 +167,7 @@ export default async function ContentTab() {
             </SelectTrigger>
 
             <SelectContent>
-              {book.versions.map((version, idx) => (
+              {book.versionIds.map((version, idx) => (
                 <SelectItem key={idx} value={version}>
                   {version}
                 </SelectItem>
@@ -179,14 +192,14 @@ export default async function ContentTab() {
 
                 <div className="mt-3 space-y-3 text-sm text-gray-600">
                   <p>
-                    {book.title_ar.length > 1
-                      ? book.title_ar.slice(1).join(", ")
+                    {book.otherArabicNames.length > 0
+                      ? book.otherArabicNames.join(", ")
                       : "-"}
                   </p>
 
                   <p>
-                    {book.title_lat.length > 0
-                      ? book.title_lat.join(", ")
+                    {book.otherLatinNames.length > 0
+                      ? book.otherLatinNames.join(", ")
                       : "-"}
                   </p>
                 </div>
@@ -196,7 +209,7 @@ export default async function ContentTab() {
                 <p className="font-semibold">Tags:</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-3">
-                  {book.genre_tags.map((tag) => (
+                  {book.genreTags.map((tag) => (
                     <Badge
                       key={tag}
                       shape="pill"
