@@ -4,11 +4,10 @@ import "@/styles/globals.css";
 import Providers from "./providers";
 import { useMessages } from "next-intl";
 import { getFontsClassnames } from "@/lib/fonts";
+import { getMetadata, getViewport } from "@/lib/seo";
 
-export const metadata = {
-  title: "The Platform",
-  icons: [{ rel: "icon", url: "/favicon.ico" }],
-};
+export const metadata = getMetadata();
+export const viewport = getViewport();
 
 export default function LocaleLayout({
   children,
