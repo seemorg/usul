@@ -17,8 +17,6 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
 /**
  *
  * Todos:
- * - Highlight the search results
- * - header animations
  * - support author search
  * - sidebar snapping
  */
@@ -111,31 +109,67 @@ export default function SearchBar() {
         >
           <CommandEmpty>No results found.</CommandEmpty>
 
-          {hits.map((result) => (
-            <CommandItem
-              value={result.document.id}
-              key={result.document.id}
-              className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
-              onSelect={() => onItemSelect(result.document.id)}
-            >
-              {result.document.primaryArabicName && (
-                <p className="text-base">{result.document.primaryArabicName}</p>
-              )}
+          {hits.map((result) => {
+            const primaryArabicName = result.highlight.primaryArabicName
+              ? result.highlight.primaryArabicName.snippet
+              : result.document.primaryArabicName;
+            const primaryLatinName = result.highlight.primaryLatinName
+              ? result.highlight.primaryLatinName.snippet
+              : result.document.primaryLatinName;
 
-              <div className="flex items-center gap-1 text-xs text-gray-500">
-                <p>Text</p>
-                <span>•</span>
+            const authorPrimaryLatinName = result.highlight.author
+              ?.primaryLatinName
+              ? result.highlight.author.primaryLatinName.snippet
+              : result.document.author.primaryLatinName;
+            const authorPrimaryArabicName = result.highlight.author
+              ?.primaryArabicName
+              ? result.highlight.author.primaryArabicName.snippet
+              : result.document.author.primaryArabicName;
 
-                {result.document.author.primaryLatinName && (
-                  <p>{result.document.author.primaryLatinName}</p>
+            // use latin name if available, otherwise use arabic name
+            const authorName =
+              authorPrimaryLatinName || authorPrimaryArabicName;
+
+            const documentName = primaryArabicName || primaryLatinName;
+            const documentSecondaryName =
+              documentName === primaryLatinName ? null : primaryLatinName;
+
+            return (
+              <CommandItem
+                value={result.document.id}
+                key={result.document.id}
+                className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
+                onSelect={() => onItemSelect(result.document.id)}
+              >
+                {documentName && (
+                  <p
+                    className="text-base"
+                    dangerouslySetInnerHTML={{ __html: documentName }}
+                  />
                 )}
-                <span>•</span>
-                {result.document.primaryLatinName && (
-                  <p>{result.document.primaryLatinName}</p>
-                )}
-              </div>
-            </CommandItem>
-          ))}
+
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <p>Text</p>
+
+                  <span>•</span>
+
+                  {authorName && (
+                    <p dangerouslySetInnerHTML={{ __html: authorName }} />
+                  )}
+
+                  {authorName && documentSecondaryName && <span>•</span>}
+
+                  {documentSecondaryName && (
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: documentSecondaryName,
+                      }}
+                    />
+                  )}
+                </div>
+              </CommandItem>
+            );
+          })}
 
           {(data?.results?.found ?? 0) > 5 && (
             <CommandItem
