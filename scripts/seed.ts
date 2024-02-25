@@ -75,7 +75,7 @@ const chunkSize = 5;
 // DROP ALL DATA in the version table
 await db.delete(version).execute();
 
-let versionBatchIdx = 1;
+let versionBatchIdx = 0;
 let versionsToSync: {
   id: string;
   bookId: string;
@@ -83,6 +83,7 @@ let versionsToSync: {
   metadata: ParseResult["metadata"];
 }[] = [];
 for (const bookEntry of allBooks) {
+  versionBatchIdx++;
   console.log(
     `[VERSIONS] Processing book ${versionBatchIdx} / ${allBooks.length}`,
   );
@@ -121,32 +122,18 @@ for (const bookEntry of allBooks) {
       console.log("[VERSIONS] FLUSHED BATCH");
       versionsToSync = [];
     } catch (e) {
-      console.log("[VERSIONS] Failed to insert batch, retrying in 20s...");
+      console.log(
+        "[VERSIONS] Failed to insert batch, inserting every value on its own...",
+      );
       console.error(e);
 
-      let success = false;
-      let retries = 0;
-      while (!success && retries < 3) {
-        retries++;
-        await sleep(20000);
-
+      for (const versionToSync of versionToSyncChunk) {
         try {
-          await db.insert(version).values(versionsToSync);
-          console.log("[VERSIONS] RETRY SUCCESSFUL");
-          success = true;
+          await db.insert(version).values(versionToSync);
         } catch (e) {
-          console.log("[VERSIONS] RETRY FAILED");
           console.error(e);
         }
       }
-
-      // if we still failed after 3 retries, we'll exit the script
-      if (!success) {
-        console.log("[VERSIONS] FAILED AFTER 3 RETRIES, EXITING");
-        process.exit(1);
-      }
     }
   }
-
-  versionBatchIdx++;
 }
