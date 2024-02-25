@@ -2,15 +2,15 @@ import { db } from "@/server/db";
 import { getBooksData, getParsedBookVersions } from "../fetchers";
 import { version } from "@/server/db/schema";
 import { chunk } from "../utils";
-import { sql } from "drizzle-orm";
+// import { sql } from "drizzle-orm";
 
 const CHUNK_SIZE = 5;
 
 const allBooks = await getBooksData();
 
 // DROP ALL DATA in the version table
-await db.execute(sql`DELETE * FROM version`);
-console.log("[VERSIONS] Deleted all data from the version table");
+// await db.execute(sql`DELETE * FROM version`);
+// console.log("[VERSIONS] Deleted all data from the version table");
 
 let versionBatchIdx = 0;
 let versionsToSync: {
