@@ -71,7 +71,7 @@ const allBooks = await getBooksData();
 // }
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
+const chunkSize = 5;
 // DROP ALL DATA in the version table
 await db.delete(version).execute();
 
@@ -84,7 +84,7 @@ let versionsToSync: {
 }[] = [];
 for (const bookEntry of allBooks) {
   console.log(
-    `[VERSIONS] Seeding batch ${versionBatchIdx} / ${allBooks.length}`,
+    `[VERSIONS] Processing book ${versionBatchIdx} / ${allBooks.length}`,
   );
 
   const parsedBookVersions =
@@ -107,14 +107,17 @@ for (const bookEntry of allBooks) {
     blocks: version.content,
   }));
 
-  const toSyncNow = parsed.length > 60 ? parsed.slice(0, 60) : parsed;
-  const toSyncNext = parsed.length > 60 ? parsed.slice(60) : [];
+  versionsToSync.push(...parsed);
 
-  versionsToSync.push(...toSyncNow);
+  if (versionsToSync.length < chunkSize) {
+    continue;
+  }
 
-  if (versionsToSync.length >= 60) {
+  const chunks = chunk(versionsToSync, chunkSize) as (typeof versionsToSync)[];
+
+  for (const versionToSyncChunk of chunks) {
     try {
-      await db.insert(version).values(versionsToSync);
+      await db.insert(version).values(versionToSyncChunk);
       console.log("[VERSIONS] FLUSHED BATCH");
       versionsToSync = [];
     } catch (e) {
@@ -143,10 +146,6 @@ for (const bookEntry of allBooks) {
         process.exit(1);
       }
     }
-  }
-
-  if (toSyncNext.length > 0) {
-    versionsToSync.push(...toSyncNext);
   }
 
   versionBatchIdx++;
