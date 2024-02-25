@@ -21,7 +21,7 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
  * - sidebar snapping
  */
 
-export default function SearchBar() {
+export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
@@ -84,6 +84,7 @@ export default function SearchBar() {
           value={value}
           onValueChange={setValue}
           ref={inputRef}
+          autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
           onBlur={focusedState.setFalse}
           isLoading={isPending}
