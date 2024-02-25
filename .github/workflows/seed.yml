@@ -1,0 +1,26 @@
+name: Seed DB
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SKIP_ENV_VALIDATION: true # Skip environment validation
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+jobs:
+  seed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./tooling/github/setup
+
+      - name: Run Seed Script
+        run: pnpm run db:seed:ci
