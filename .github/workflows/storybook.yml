@@ -21,6 +21,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
+env:
+  SKIP_ENV_VALIDATION: true # Skip environment validation
+
 jobs:
   # Single deploy job since we're just deploying
   deploy:
