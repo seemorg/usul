@@ -23,4 +23,4 @@ jobs:
         uses: ./tooling/github/setup
 
       - name: Run Seed Script
-        run: pnpm run db:seed:ci
+        run: pnpm run db:seed:versions
