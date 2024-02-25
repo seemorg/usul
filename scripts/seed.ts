@@ -6,6 +6,7 @@ import {
 } from "./fetchers";
 import { author, book, version } from "@/server/db/schema";
 import { chunk } from "./utils";
+import type { ParseResult } from "@openiti/markdown-parser";
 
 // const allAuthors = await getAuthorsData();
 // const chunkedAuthors = chunk(allAuthors, 100) as (typeof allAuthors)[];
@@ -73,6 +74,12 @@ const allBooks = await getBooksData();
 await db.delete(version).execute();
 
 let versionBatchIdx = 1;
+let versionsToSync: {
+  id: string;
+  bookId: string;
+  blocks: ParseResult["content"];
+  metadata: ParseResult["metadata"];
+}[] = [];
 for (const bookEntry of allBooks) {
   console.log(
     `[VERSIONS] Seeding batch ${versionBatchIdx} / ${allBooks.length}`,
@@ -91,20 +98,20 @@ for (const bookEntry of allBooks) {
     continue;
   }
 
-  const finalVersions = parsedBookVersions.map((version, idx) => ({
-    id: bookEntry.versionIds[idx]!,
-    bookId: bookEntry.id,
-    content: version,
-  }));
-
-  await db.insert(version).values(
-    finalVersions.map((versionEntry) => ({
-      id: versionEntry.id,
-      bookId: versionEntry.bookId,
-      metadata: versionEntry.content.metadata,
-      blocks: versionEntry.content.content,
+  versionsToSync.push(
+    ...parsedBookVersions.map((version, idx) => ({
+      id: bookEntry.versionIds[idx]!,
+      bookId: bookEntry.id,
+      metadata: version.metadata,
+      blocks: version.content,
     })),
   );
+
+  if (versionsToSync.length >= 100) {
+    await db.insert(version).values(versionsToSync);
+    console.log("[VERSIONS] FLUSHED BATCH");
+    versionsToSync = [];
+  }
 
   versionBatchIdx++;
 }
