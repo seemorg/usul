@@ -100,16 +100,19 @@ for (const bookEntry of allBooks) {
     continue;
   }
 
-  versionsToSync.push(
-    ...parsedBookVersions.map((version, idx) => ({
-      id: bookEntry.versionIds[idx]!,
-      bookId: bookEntry.id,
-      metadata: version.metadata,
-      blocks: version.content,
-    })),
-  );
+  const parsed = parsedBookVersions.map((version, idx) => ({
+    id: bookEntry.versionIds[idx]!,
+    bookId: bookEntry.id,
+    metadata: version.metadata,
+    blocks: version.content,
+  }));
 
-  if (versionsToSync.length >= 200) {
+  const toSyncNow = parsed.length > 60 ? parsed.slice(0, 60) : parsed;
+  const toSyncNext = parsed.length > 60 ? parsed.slice(60) : [];
+
+  versionsToSync.push(...toSyncNow);
+
+  if (versionsToSync.length >= 60) {
     try {
       await db.insert(version).values(versionsToSync);
       console.log("[VERSIONS] FLUSHED BATCH");
@@ -140,6 +143,10 @@ for (const bookEntry of allBooks) {
         process.exit(1);
       }
     }
+  }
+
+  if (toSyncNext.length > 0) {
+    versionsToSync.push(...toSyncNext);
   }
 
   versionBatchIdx++;
