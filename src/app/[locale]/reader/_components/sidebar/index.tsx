@@ -13,10 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
-import { ThemeToggle } from "../navbar/theme-toggle";
-import { LanguageIcon } from "@heroicons/react/24/outline";
-import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/Icons";
+import SidebarWrapper from "./wrapper";
 
 const ComingSoonAlert = () => (
   <SidebarContainer>
@@ -57,18 +54,11 @@ const tabs = [
 
 export default function ReaderSidebar() {
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 shadow-inner">
+    <SidebarWrapper>
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-slate-300" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
-      <SidebarContainer className="flex h-20 flex-shrink-0 items-center justify-center gap-3">
-        <div className="flex items-center gap-3 text-gray-400">
-          <Logo className="-mt-1 h-10 w-auto" />
-          <h1 className="text-lg font-bold">Seemore Foundation</h1>
-        </div>
-      </SidebarContainer>
-
-      <Tabs defaultValue="content" className="mt-4">
+      <Tabs defaultValue="content">
         <SidebarContainer>
           <TabsList className="h-10 w-full font-sans">
             {tabs.map((tab) => (
@@ -95,6 +85,6 @@ export default function ReaderSidebar() {
           ))}
         </div>
       </Tabs>
-    </div>
+    </SidebarWrapper>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -8,13 +7,10 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandLoading,
 } from "@/components/ui/command";
 import { searchBooks } from "@/lib/search";
 import { cn } from "@/lib/utils";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
 
@@ -22,6 +18,9 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
  *
  * Todos:
  * - Highlight the search results
+ * - header animations
+ * - support author search
+ * - sidebar snapping
  */
 
 export default function SearchBar() {
@@ -29,9 +28,8 @@ export default function SearchBar() {
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const { push } = useRouter();
 
-  const { isPending, error, data } = useQuery({
+  const { isPending, data } = useQuery({
     queryKey: ["search", debouncedValue],
     queryFn: ({ queryKey }) => {
       const [, query] = queryKey;
@@ -84,7 +82,7 @@ export default function SearchBar() {
         loop
       >
         <CommandInput
-          placeholder="Search for a book or author... (⌘ + K)"
+          placeholder="Search for a text... (⌘ + K)"
           value={value}
           onValueChange={setValue}
           ref={inputRef}
