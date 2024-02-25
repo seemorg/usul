@@ -168,7 +168,7 @@ export const getParsedBookVersions = async (
       );
       const text = await response.text();
 
-      return parseMarkdown(text);
+      return text;
     }),
   );
 
