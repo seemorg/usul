@@ -70,6 +70,8 @@ const allBooks = await getBooksData();
 //   bookBatchIdx++;
 // }
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 // DROP ALL DATA in the version table
 await db.delete(version).execute();
 
@@ -107,10 +109,37 @@ for (const bookEntry of allBooks) {
     })),
   );
 
-  if (versionsToSync.length >= 100) {
-    await db.insert(version).values(versionsToSync);
-    console.log("[VERSIONS] FLUSHED BATCH");
-    versionsToSync = [];
+  if (versionsToSync.length >= 200) {
+    try {
+      await db.insert(version).values(versionsToSync);
+      console.log("[VERSIONS] FLUSHED BATCH");
+      versionsToSync = [];
+    } catch (e) {
+      console.log("[VERSIONS] Failed to insert batch, retrying in 20s...");
+      console.error(e);
+
+      let success = false;
+      let retries = 0;
+      while (!success && retries < 3) {
+        retries++;
+        await sleep(20000);
+
+        try {
+          await db.insert(version).values(versionsToSync);
+          console.log("[VERSIONS] RETRY SUCCESSFUL");
+          success = true;
+        } catch (e) {
+          console.log("[VERSIONS] RETRY FAILED");
+          console.error(e);
+        }
+      }
+
+      // if we still failed after 3 retries, we'll exit the script
+      if (!success) {
+        console.log("[VERSIONS] FAILED AFTER 3 RETRIES, EXITING");
+        process.exit(1);
+      }
+    }
   }
 
   versionBatchIdx++;
