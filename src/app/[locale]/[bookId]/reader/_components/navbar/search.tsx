@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/command";
 import { searchBooks } from "@/lib/search";
 import { cn } from "@/lib/utils";
+import { useRouter } from "@/navigation";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
@@ -26,6 +27,7 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { replace } = useRouter();
 
   const { isPending, data } = useQuery({
     queryKey: ["search", debouncedValue],
@@ -52,16 +54,14 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
 
   const onItemSelect = (id?: string) => {
     if (id) {
-      // push(`/reader/${id}`);
-      console.log(id);
+      replace(`/${id.replaceAll(".", "-")}/reader`);
     } else {
       console.log(id);
-
       // push(`/search?q=${debouncedValue}`);
     }
   };
 
-  const showList = focusedState.value && data && value;
+  const showList = data && value && focusedState.value;
 
   return (
     <div className="w-full">
@@ -74,10 +74,19 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
         className={cn(
           "relative overflow-visible",
           showList && "rounded-b-none",
+
           // focusedState.value &&
           //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
         )}
         loop
+        onKeyDown={(e) => {
+          // Escape goes to previous page
+          // Backspace goes to previous page when search is empty
+          if (e.key === "Escape") {
+            e.preventDefault();
+            inputRef.current?.blur();
+          }
+        }}
       >
         <CommandInput
           placeholder="Search for a text... (⌘ + K)"

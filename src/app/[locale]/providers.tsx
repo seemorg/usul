@@ -6,6 +6,7 @@ import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import AppProgressBar from "@/components/app-progressbar";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,13 @@ function Providers({
 
   return (
     <NextIntlClientProvider messages={messagesInNamespace} locale={locale}>
+      <AppProgressBar
+        height="4px"
+        color="#fff"
+        options={{ showSpinner: false }}
+        shallowRouting
+      />
+
       <NextThemesProvider
         attribute="class"
         defaultTheme="light"

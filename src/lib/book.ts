@@ -6,26 +6,31 @@ import {
 import { cache } from "react";
 import { db } from "@/server/db";
 
-export const fetchBook = cache(async (id: string) => {
+export const fetchBook = cache(async (id: string, versionId?: string) => {
   const record = await db.query.book.findFirst({
-    where: (book, { eq }) => eq(book.id, id.replaceAll("_", ".")),
+    where: (book, { eq }) => eq(book.id, id.replaceAll("-", ".")),
     with: {
       author: true,
     },
   });
 
-  if (!record) {
+  if (!record || (versionId && !record.versionIds.includes(versionId))) {
     throw new Error("Book not found");
   }
 
-  const firstVersion = record.versionIds[0];
-  if (!firstVersion) {
+  const version = versionId ?? record.versionIds[0];
+  if (!version) {
     return { pages: [], book: record };
   }
 
   const response = await fetch(
-    `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${firstVersion}`,
+    `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}`,
   );
+
+  if (!response.ok || response.status >= 300) {
+    throw new Error("Book not found");
+  }
+
   const text = await response.text();
 
   const final = parseMarkdown(text);

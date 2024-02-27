@@ -18,19 +18,14 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { fetchBook } from "@/lib/book";
 import { Label } from "@/components/ui/label";
 import SidebarContainer from "../sidebar-container";
 import { notFound } from "next/navigation";
+import VersionSelector from "./version-selector";
 
 const breadcrumbs = [
   "كتب الأخلاق والسلوك",
@@ -158,22 +153,7 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
             Version
           </Label>
 
-          <Select defaultValue={book.versionIds[0]}>
-            <SelectTrigger
-              className="w-[300px] max-w-full overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
-              id="version-selector"
-            >
-              <SelectValue placeholder="Select a version" />
-            </SelectTrigger>
-
-            <SelectContent>
-              {book.versionIds.map((version, idx) => (
-                <SelectItem key={idx} value={version}>
-                  {version}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <VersionSelector versionIds={book.versionIds} />
         </div>
       </SidebarContainer>
 
