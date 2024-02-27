@@ -48,7 +48,10 @@ export default function SidebarResizer({
 
   return (
     <>
-      <ReaderNavbar contentContainerRef={containerRef} />
+      <ReaderNavbar
+        contentContainerRef={containerRef}
+        sidebarContent={sidebar}
+      />
 
       <ResizablePanelGroup
         direction="horizontal"
