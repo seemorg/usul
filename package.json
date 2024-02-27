@@ -6,9 +6,6 @@
   "scripts": {
     "build": "next build",
     "db:push": "drizzle-kit push:mysql",
-    "db:drop": "drizzle-kit drop",
-    "db:seed": "dotenv npx tsx ./scripts/seed.ts",
-    "db:seed:versions": "npx tsx ./scripts/seed/version.ts",
     "db:seed:authors": "npx tsx ./scripts/seed/author.ts",
     "db:seed:books": "npx tsx ./scripts/seed/book.ts",
     "dev": "next dev",
