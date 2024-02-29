@@ -123,15 +123,15 @@ export default function GenresFilter({
     >
       <Input
         placeholder="Search for a genre"
-        className="font-inter"
+        className="border border-gray-300 bg-white shadow-none"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
 
-      <div className="font-inter mt-3 max-h-[300px] w-full space-y-3 overflow-y-scroll sm:max-h-none sm:overflow-y-auto">
+      <div className="mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll text-sm sm:max-h-none sm:overflow-y-auto">
         {matchedGenres.items.map((genre) => {
           return (
-            <div key={genre} className="flex items-center gap-2">
+            <div key={genre} className="flex cursor-pointer items-center gap-2">
               <Checkbox
                 id={genre}
                 checked={selectedGenres.includes(genre)}

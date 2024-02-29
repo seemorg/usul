@@ -37,8 +37,10 @@ export function OtherNames({ names }: { names: string[] }) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <Button variant="ghost" size="icon">
-            <ChevronDownIcon className="h-4 w-4" />
+          <Button variant="link" className="px-0">
+            {/* <ChevronDownIcon className="h-4 w-4" /> */} {names[0]}
+            {names.length > 1 &&
+              `, and ${names.length - 1} other name${names.length > 2 ? "s" : ""}`}
           </Button>
         </DialogTrigger>
 

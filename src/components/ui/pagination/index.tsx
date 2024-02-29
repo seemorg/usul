@@ -9,7 +9,7 @@ import {
 
 import { cn } from "@/lib/utils";
 import { type ButtonProps, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (

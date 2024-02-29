@@ -1,6 +1,7 @@
 import type { searchBooks } from "@/lib/search";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
+import { cn } from "@/lib/utils";
 
 const BookSearchResult = ({
   result,
@@ -225,19 +226,70 @@ const BookSearchResult = ({
   //   />
   // );
 
+  const title = primaryArabicName ?? primaryLatinName;
+
+  // const allBgs = [
+  //   "bg-primary-foreground",
+  //   "bg-blue-200",
+  //   "bg-green-200",
+  //   "bg-yellow-200",
+  //   "bg-red-200",
+  // ];
+
+  // const allBorders = [
+  //   "border-primary",
+  //   "border-blue-700",
+  //   "border-green-700",
+  //   "border-yellow-700",
+  //   "border-red-700",
+  // ];
+
+  // const allTexts = [
+  //   "text-primary",
+  //   "text-blue-700",
+  //   "text-green-700",
+  //   "text-yellow-700",
+  //   "text-red-700",
+  // ];
+
+  // const idx = Math.floor(Math.random() * allBgs.length);
+
+  // const bg = allBgs[idx];
+  // const border = allBorders[idx];
+  // const text = allTexts[idx];
+
+  const bg = "bg-gray-200";
+  const border = "";
+  const text = "text-gray-700";
+
   return (
     <Link href={navigation.books.reader(document.id)}>
-      <div className="flex h-[370px] flex-col items-center justify-center gap-6 rounded-md border-l-8 border-primary bg-primary-foreground p-8 text-primary">
+      <div
+        className={cn(
+          "flex h-[350px] flex-col items-center justify-center gap-6 rounded-md border-l-8 p-8",
+          bg,
+          border,
+          text,
+        )}
+      >
         <h3 className="text-center text-2xl font-semibold">
           {/* {primaryLatinName ?? primaryArabicName} */}
-          {primaryArabicName ?? primaryLatinName}
+          {title.length > 50 ? `${title.slice(0, 50)}...` : title}
         </h3>
+
         <p>
           {document.author.primaryArabicName ??
             document.author.primaryLatinName}
         </p>
       </div>
-      <p className="mt-2">{primaryLatinName ?? primaryArabicName}</p>
+      <div className="mt-2 text-right">
+        <p className="mt-2 text-right text-lg font-semibold">
+          {primaryArabicName ?? primaryLatinName}
+        </p>
+        {primaryLatinName && primaryArabicName && (
+          <p className="mt-2">{primaryLatinName}</p>
+        )}
+      </div>
     </Link>
   );
 };

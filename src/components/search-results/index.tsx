@@ -30,6 +30,7 @@ interface SearchResultsProps<T extends object & { id: string }> {
   currentSort: string;
   currentQuery: string;
   filters?: React.ReactNode;
+  placeholder?: string;
 }
 
 export default function SearchResults<T extends object & { id: string }>({
@@ -41,6 +42,7 @@ export default function SearchResults<T extends object & { id: string }>({
   filters,
   currentQuery,
   currentSort,
+  placeholder,
 }: SearchResultsProps<T>) {
   const hasResults = response.hits?.length ?? 0 > 0;
 
@@ -54,11 +56,14 @@ export default function SearchResults<T extends object & { id: string }>({
         <div className="flex flex-col gap-5">{filters}</div>
       </div>
 
-      <div className="col-span-4 sm:col-span-3">
+      <div className="col-span-4 sm:col-span-3 sm:pl-1">
         <div className="relative w-full">
           <div className="flex items-center justify-between gap-6">
             <div className="w-full flex-1">
-              <SearchBar defaultValue={currentQuery} />
+              <SearchBar
+                defaultValue={currentQuery}
+                placeholder={placeholder}
+              />
             </div>
 
             <div className="flex gap-2">
@@ -97,10 +102,10 @@ export default function SearchResults<T extends object & { id: string }>({
           </p> */}
         </div>
 
-        <div className="mt-5">
+        <div className="mt-8">
           {/* <div className="mt-5 flex flex-col gap-4"> */}
           {hasResults ? (
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-3 gap-8">
               {response.hits!.map((result) => (
                 <React.Fragment key={result.document.id}>
                   {renderResult(result)}

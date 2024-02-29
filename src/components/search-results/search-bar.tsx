@@ -23,7 +23,9 @@ const getQueryUrlParams = (query: string) => {
 export default function SearchBar({
   disabled,
   defaultValue,
+  placeholder,
 }: {
+  placeholder?: string;
   disabled?: boolean;
   defaultValue?: string;
 }) {
@@ -57,7 +59,7 @@ export default function SearchBar({
 
       <Input
         type="text"
-        placeholder="Search within results..."
+        placeholder={placeholder}
         className="h-10 w-full pl-8"
         autoComplete="off"
         disabled={disabled}
@@ -66,7 +68,9 @@ export default function SearchBar({
       />
 
       {isPending && (
-        <Spinner className="absolute right-3 top-1/2 h-3 w-3 -translate-y-1/2" />
+        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+          <Spinner className="h-3 w-3" />
+        </div>
       )}
     </div>
   );

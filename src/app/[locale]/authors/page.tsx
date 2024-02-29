@@ -2,7 +2,7 @@ import { Logo } from "@/components/Icons";
 import Container from "@/components/ui/container";
 import { navigation } from "@/lib/urls";
 import { db } from "@/server/db";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { cache } from "react";
 
 const cachedFindAllAuthors = cache(() => db.query.author.findMany());

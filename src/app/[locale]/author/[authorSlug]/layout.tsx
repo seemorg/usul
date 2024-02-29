@@ -10,7 +10,7 @@ export default function AuthorLayout({
     <div>
       <Navbar sidebarContent={null} />
 
-      <main className="flex min-h-screen w-full bg-background pb-24 pt-44">
+      <main className="flex min-h-screen w-full bg-background pb-24 pt-36">
         <Container>{children}</Container>
       </main>
     </div>

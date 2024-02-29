@@ -40,24 +40,32 @@ async function AuthorPage({
 
   return (
     <div>
-      <h1 className="text-7xl font-bold">{primaryName}</h1>
+      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
       {secondaryName && (
-        <h2 className="mt-5 text-5xl font-medium">{secondaryName}</h2>
+        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+          {secondaryName}
+        </h2>
       )}
 
-      <div className="mt-16 flex w-full items-center gap-10">
+      <div className="mt-14 flex w-full items-center">
         <p>{author.year} AH</p>
 
-        <div className="flex items-center gap-2">
-          <p>Also known as</p>
+        <span className="mx-3 text-muted-foreground">•</span>
+
+        <p>{author.numberOfBooks} Texts</p>
+
+        <span className="mx-3 text-muted-foreground">•</span>
+
+        <div className="flex items-center">
+          <p>Also known as &nbsp;</p>
 
           <OtherNames
-            names={author.otherArabicNames.concat(author.otherLatinNames)}
+            names={author.otherLatinNames.concat(author.otherArabicNames)}
           />
         </div>
       </div>
 
-      <div className="mt-10 text-lg">
+      <div className="mt-6 text-lg">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, eligendi
         iure accusamus sapiente laborum fugiat alias omnis quas excepturi vero
         laboriosam et sunt officia nulla repellat dolores illo aliquam ad
@@ -70,13 +78,14 @@ async function AuthorPage({
         inventore reiciendis minima adipisci.
       </div>
 
-      <div className="mt-10">
+      <div className="mt-16">
         <SearchResults
           response={results.results}
           pagination={results.pagination}
           renderResult={(result) => <BookSearchResult result={result} />}
           emptyMessage="No books found"
           sorts={booksSorts as any}
+          placeholder={`Search within ${primaryName}...`}
           currentSort={sort}
           currentQuery={q}
           filters={
