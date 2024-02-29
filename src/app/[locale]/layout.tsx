@@ -24,7 +24,12 @@ export default function LocaleLayout({
       dir={locale === "ar" ? "rtl" : "ltr"}
       suppressHydrationWarning
     >
-      <body className={cn("font-sans", getFontsClassnames())}>
+      <body
+        className={cn(
+          "relative min-h-screen w-full font-sans",
+          getFontsClassnames(),
+        )}
+      >
         <Providers locale={locale} messages={messages}>
           {children}
         </Providers>

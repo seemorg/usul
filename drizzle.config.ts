@@ -8,4 +8,6 @@ export default {
   dbCredentials: {
     uri: env.DATABASE_URL,
   },
+  strict: true,
+  verbose: true,
 } satisfies Config;

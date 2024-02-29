@@ -1,12 +1,5 @@
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
 import {
   HoverCard,
   HoverCardContent,
@@ -26,6 +19,8 @@ import { Label } from "@/components/ui/label";
 import SidebarContainer from "../sidebar-container";
 import { notFound } from "next/navigation";
 import VersionSelector from "./version-selector";
+import PageNavigator from "./page-navigator";
+import ChaptersList from "./chapters-section";
 
 const breadcrumbs = [
   "كتب الأخلاق والسلوك",
@@ -33,44 +28,44 @@ const breadcrumbs = [
   "التزكية والسلوك",
 ];
 
-const fakeChapters = [
-  {
-    title: "المقدمه",
-    page: 228,
-  },
-  {
-    title: "الفصل الأول",
-    page: 230,
-  },
-  {
-    title: "الفصل الثاني",
-    page: 253,
-  },
-  {
-    title: "الفصل الثالث",
-    page: 270,
-  },
-  {
-    title: "الفصل الرابع",
-    page: 300,
-  },
-  {
-    title: "الفصل الخامس",
-    page: 320,
-  },
-  {
-    title: "الفصل السادس",
-    page: 340,
-  },
-  {
-    title: "الفصل السابع",
-    page: 360,
-  },
-  {
-    title: "الفصل الثامن",
-    page: 380,
-  },
-];
+// const fakeChapters = [
+//   {
+//     title: "المقدمه",
+//     page: 228,
+//   },
+//   {
+//     title: "الفصل الأول",
+//     page: 230,
+//   },
+//   {
+//     title: "الفصل الثاني",
+//     page: 253,
+//   },
+//   {
+//     title: "الفصل الثالث",
+//     page: 270,
+//   },
+//   {
+//     title: "الفصل الرابع",
+//     page: 300,
+//   },
+//   {
+//     title: "الفصل الخامس",
+//     page: 320,
+//   },
+//   {
+//     title: "الفصل السادس",
+//     page: 340,
+//   },
+//   {
+//     title: "الفصل السابع",
+//     page: 360,
+//   },
+//   {
+//     title: "الفصل الثامن",
+//     page: 380,
+//   },
+// ];
 
 export default async function ContentTab({ bookId }: { bookId: string }) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
@@ -84,10 +79,17 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
   const book = result.book;
   const author = book.author;
 
+  const firstPage = result.pages[0]?.page?.page ?? 0;
+  const lastPage = result.pages[result.pages.length - 1]?.page?.page ?? 0;
+  const pagesRange = {
+    start: typeof firstPage === "number" ? firstPage : 0,
+    end: typeof lastPage === "number" ? lastPage : 0,
+  };
+
   return (
     <>
       <SidebarContainer>
-        <nav className="flex" aria-label="Breadcrumb" dir="rtl">
+        {/* <nav className="flex" aria-label="Breadcrumb" dir="rtl">
           <ol role="list" className="flex flex-wrap items-center gap-y-2">
             {breadcrumbs.map((b, idx) => (
               <li key={idx}>
@@ -108,9 +110,9 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
               </li>
             ))}
           </ol>
-        </nav>
-
-        <h2 className="mt-6 flex gap-2 text-4xl font-bold">
+        </nav> */}
+        {/* mt-6  */}
+        <h2 className="flex gap-2 text-4xl font-bold">
           {book.primaryArabicName}
         </h2>
 
@@ -208,55 +210,14 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
 
       <Separator className="my-4" />
 
-      <SidebarContainer>
-        <div className="flex justify-end">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant="ghost"
-                className="px-0 font-normal text-primary hover:text-primary"
-              >
-                Page Navigator
-              </Button>
-            </PopoverTrigger>
+      <SidebarContainer className="flex flex-col gap-3">
+        {result.headers.length > 0 && (
+          <div className="flex justify-end">
+            <PageNavigator range={pagesRange} />
+          </div>
+        )}
 
-            <PopoverContent className="w-80 max-w-full py-5">
-              <h4 className="font-medium leading-none">Jump to page</h4>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Enter a page number between 228 - 380
-              </p>
-
-              <div className="mt-4 grid gap-2">
-                <div className="grid grid-cols-3 items-center gap-2">
-                  <Input
-                    id="pageNumber"
-                    type="number"
-                    placeholder="Page number"
-                    className="col-span-2 h-8"
-                  />
-                  <Button>Go</Button>
-                </div>
-              </div>
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div className="mt-3 flex w-full flex-col gap-3">
-          {fakeChapters.map((chapter, idx) => (
-            <Button
-              key={idx}
-              variant="link"
-              className={cn(
-                "w-full justify-between gap-3 px-0 text-lg font-normal hover:no-underline",
-                idx !== 0 && "text-black hover:text-gray-600",
-              )}
-            >
-              {chapter.title}
-
-              <span className="text-xs">{chapter.page}</span>
-            </Button>
-          ))}
-        </div>
+        <ChaptersList pagesRange={pagesRange} headers={result.headers} />
       </SidebarContainer>
 
       <div className="h-16" />

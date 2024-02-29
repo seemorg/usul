@@ -9,8 +9,9 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { searchBooks } from "@/lib/search";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import { useRouter } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
@@ -27,7 +28,8 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { replace } = useRouter();
+  const parentRef = useRef<HTMLDivElement>(null);
+  const { replace, push } = useRouter();
 
   const { isPending, data } = useQuery({
     queryKey: ["search", debouncedValue],
@@ -52,12 +54,29 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  useEffect(() => {
+    // if the input is not focused, and the user clicks outside of the parent element, close the list
+    const click = (e: MouseEvent) => {
+      if (
+        focusedState.value &&
+        parentRef.current &&
+        !parentRef.current.contains(e.target as Node) &&
+        !inputRef.current?.contains(e.target as Node)
+      ) {
+        focusedState.setFalse();
+      }
+    };
+
+    document.addEventListener("click", click);
+    return () => document.removeEventListener("click", click);
+  }, [focusedState.value, focusedState.setFalse]);
+
+  // this function handles keyboard navigation and selection
   const onItemSelect = (id?: string) => {
     if (id) {
-      replace(`/${id.replaceAll(".", "-")}/reader`);
+      replace(navigation.books.reader(id));
     } else {
-      console.log(id);
-      // push(`/search?q=${debouncedValue}`);
+      push(`/search?q=${debouncedValue}`);
     }
   };
 
@@ -80,13 +99,13 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
         )}
         loop
         onKeyDown={(e) => {
-          // Escape goes to previous page
-          // Backspace goes to previous page when search is empty
+          // When the user presses the escape key, blur the input
           if (e.key === "Escape") {
             e.preventDefault();
             inputRef.current?.blur();
           }
         }}
+        ref={parentRef}
       >
         <CommandInput
           placeholder="Search for a text... (⌘ + K)"
@@ -95,7 +114,6 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
           ref={inputRef}
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
-          onBlur={focusedState.setFalse}
           isLoading={isPending}
         />
 
@@ -148,35 +166,39 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
               <CommandItem
                 value={result.document.id}
                 key={result.document.id}
-                className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
                 onSelect={() => onItemSelect(result.document.id)}
               >
-                {documentName && (
-                  <p
-                    className="text-base"
-                    dangerouslySetInnerHTML={{ __html: documentName }}
-                  />
-                )}
-
-                <div className="flex items-center gap-1 text-xs text-gray-500">
-                  <p>Text</p>
-
-                  <span>•</span>
-
-                  {authorName && (
-                    <p dangerouslySetInnerHTML={{ __html: authorName }} />
-                  )}
-
-                  {authorName && documentSecondaryName && <span>•</span>}
-
-                  {documentSecondaryName && (
+                <Link
+                  className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
+                  href={navigation.books.reader(result.document.id)}
+                >
+                  {documentName && (
                     <p
-                      dangerouslySetInnerHTML={{
-                        __html: documentSecondaryName,
-                      }}
+                      className="text-base"
+                      dangerouslySetInnerHTML={{ __html: documentName }}
                     />
                   )}
-                </div>
+
+                  <div className="flex items-center gap-1 text-xs text-gray-500">
+                    <p>Text</p>
+
+                    <span>•</span>
+
+                    {authorName && (
+                      <p dangerouslySetInnerHTML={{ __html: authorName }} />
+                    )}
+
+                    {authorName && documentSecondaryName && <span>•</span>}
+
+                    {documentSecondaryName && (
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: documentSecondaryName,
+                        }}
+                      />
+                    )}
+                  </div>
+                </Link>
               </CommandItem>
             );
           })}
@@ -184,12 +206,16 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
           {(data?.results?.found ?? 0) > 5 && (
             <CommandItem
               value={`more:${debouncedValue}`}
-              className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
               onSelect={() => onItemSelect()}
             >
-              <p className="text-primary">
-                See all results ({data?.results?.found})
-              </p>
+              <Link
+                href={`/search?q=${debouncedValue}`}
+                className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
+              >
+                <p className="text-primary">
+                  See all results ({data?.results?.found})
+                </p>
+              </Link>
             </CommandItem>
           )}
         </CommandList>

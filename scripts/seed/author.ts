@@ -1,7 +1,7 @@
 import { db } from "@/server/db";
 import { author } from "@/server/db/schema";
 import { getAuthorsData, getBooksData } from "../fetchers";
-import { chunk } from "../utils";
+import { chunk, slugifyId } from "../utils";
 
 const allAuthors = await getAuthorsData();
 const chunkedAuthors = chunk(allAuthors, 100) as (typeof allAuthors)[];
@@ -20,6 +20,27 @@ const authorIdToNumberOfBooks = allBooks.reduce(
   {} as Record<string, number>,
 );
 
+const shouldReset =
+  process.argv.includes("--reset") || process.argv.includes('"--reset"');
+if (shouldReset) {
+  console.log("[AUTHORS] Resetting authors table");
+  await db.delete(author);
+}
+
+const slugs = new Set<string>();
+const createUniqueSlug = (id: string) => {
+  let number = 0;
+  while (true) {
+    const slug = number === 0 ? slugifyId(id) : `${slugifyId(id)}-${number}`;
+    if (!slugs.has(slug)) {
+      slugs.add(slug);
+      return slug;
+    }
+
+    number++;
+  }
+};
+
 let authorBatchIdx = 1;
 for (const authors of chunkedAuthors) {
   console.log(
@@ -29,6 +50,7 @@ for (const authors of chunkedAuthors) {
   await db.insert(author).values(
     authors.map((authorEntry) => ({
       id: authorEntry.id,
+      slug: createUniqueSlug(authorEntry.id),
       primaryArabicName: authorEntry.primaryArabicName,
       otherArabicNames: authorEntry.otherArabicNames,
       primaryLatinName: authorEntry.primaryLatinName,

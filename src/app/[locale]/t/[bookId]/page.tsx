@@ -1,4 +1,4 @@
-import { fetchBook } from "@/lib/book";
+import { fetchBook } from "@/server/services/books";
 import type { ReaderSearchParams } from "@/types/reader-search-params";
 import { notFound } from "next/navigation";
 import ReaderContent from "./_components/reader-content";

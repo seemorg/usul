@@ -128,7 +128,8 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
     prioritize_token_position: true,
     limit,
     page,
-    ...(options?.sortBy && { sort_by: options.sortBy }),
+    ...(options?.sortBy &&
+      options.sortBy !== "relevance" && { sort_by: options.sortBy }),
     ...(filters.length > 0 && { filter_by: filters.join(" && ") }),
   })) as SearchResponse<BookDocument>;
 

@@ -5,8 +5,8 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { useRef, useState } from "react";
-import ReaderNavbar from "../navbar";
+import React, { useRef, useState } from "react";
+import Navbar from "../../../../../_components/navbar";
 import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
@@ -25,7 +25,7 @@ export default function SidebarResizer({
   defaultCollapsed?: boolean;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
-  const containerRef = useRef<HTMLDivElement>(null);
+
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
   const onLayout = (sizes: number[]) => {
@@ -48,10 +48,7 @@ export default function SidebarResizer({
 
   return (
     <>
-      <ReaderNavbar
-        contentContainerRef={containerRef}
-        sidebarContent={sidebar}
-      />
+      <Navbar sidebarContent={sidebar} />
 
       <ResizablePanelGroup
         direction="horizontal"
@@ -59,13 +56,7 @@ export default function SidebarResizer({
         className="relative h-full w-full"
       >
         <ResizablePanel defaultSize={defaultLayout[0]} minSize={55}>
-          <div
-            className="relative h-screen w-full overflow-y-auto"
-            dir="rtl"
-            ref={containerRef}
-          >
-            {children}
-          </div>
+          {children}
         </ResizablePanel>
 
         <ResizableHandle withHandle className="hidden lg:flex" />

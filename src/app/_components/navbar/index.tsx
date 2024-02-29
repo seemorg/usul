@@ -10,29 +10,29 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 import { LanguageIcon } from "@heroicons/react/24/outline";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import SearchBar from "./search";
 import { useNavbarStore } from "@/stores/navbar";
+import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 
 interface ReaderNavbarProps {
-  contentContainerRef: React.RefObject<HTMLDivElement>;
   sidebarContent: React.ReactNode;
 }
 
-export default function ReaderNavbar({
-  contentContainerRef,
-  sidebarContent,
-}: ReaderNavbarProps) {
+export default function Navbar({ sidebarContent }: ReaderNavbarProps) {
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const containerEl = useReaderScroller();
 
   useEffect(() => {
     let oldValue = 0;
     let newValue = 0;
 
-    const container = contentContainerRef.current;
+    const container = containerEl?.element;
+
+    if (!container) return;
 
     const handleScroll = () => {
       // Get the new Value
@@ -52,7 +52,7 @@ export default function ReaderNavbar({
     return () => container?.removeEventListener("scroll", handleScroll);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [containerEl]);
 
   return (
     <>

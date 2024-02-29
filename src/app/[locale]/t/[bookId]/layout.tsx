@@ -1,7 +1,7 @@
-import Container from "@/components/ui/container";
 import ReaderSidebar from "./_components/sidebar";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
 import { cookies } from "next/headers";
+import ReaderContextProviders from "./_components/context";
 
 export default function ReaderLayout({
   children,
@@ -24,17 +24,16 @@ export default function ReaderLayout({
     : undefined;
 
   return (
-    <div>
-      <main className="relative flex min-h-screen w-full">
-        <SidebarResizer
-          sidebar={<ReaderSidebar bookId={bookId} />}
-          defaultLayout={defaultLayout}
-          defaultCollapsed={defaultCollapsed?.collapsed}
-        >
-          <Container className="w-full min-w-0 flex-auto py-10 pt-20 lg:pl-0 lg:pr-8 xl:px-16">
-            <article>{children}</article>
+    <ReaderContextProviders>
+      <SidebarResizer
+        sidebar={<ReaderSidebar bookId={bookId} />}
+        defaultLayout={defaultLayout}
+        defaultCollapsed={defaultCollapsed?.collapsed}
+      >
+        {/* <Container className="w-full min-w-0 flex-auto py-10 pt-20 lg:pl-0 lg:pr-8 xl:px-16"> */}
+        <article>{children}</article>
 
-            {/* <dl className="flex pt-6 mt-12 border-t border-slate-200">
+        {/* <dl className="flex pt-6 mt-12 border-t border-slate-200">
                 {previousPage && (
                   <div>
                     <dt className="text-sm font-medium font-display text-secondary">
@@ -67,10 +66,9 @@ export default function ReaderLayout({
                   </div>
                 )}
               </dl> */}
-          </Container>
-          {/* <Footer /> */}
-        </SidebarResizer>
-      </main>
-    </div>
+        {/* </Container> */}
+        {/* <Footer /> */}
+      </SidebarResizer>
+    </ReaderContextProviders>
   );
 }

@@ -262,3 +262,17 @@ export const chunk = (arr: any[], size: number) => {
 export const dedupeStrings = (names: string[]) => {
   return Array.from(new Set(names.map((n) => n.trim())));
 };
+
+/**
+ * A function to slugify an id.
+ *
+ * Example:
+ * - 0001AbuTalibCabdManaf -> abu-talib-cabd-manaf
+ *
+ * @param {string} id
+ * @returns {string}
+ */
+export const slugifyId = (id: string): string => {
+  const noLeadingNumbers = id.replace(/^\d+/, "");
+  return noLeadingNumbers.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+};
