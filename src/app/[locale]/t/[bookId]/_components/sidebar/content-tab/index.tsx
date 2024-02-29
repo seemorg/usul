@@ -13,8 +13,7 @@ import {
 } from "@/components/ui/accordion";
 
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
-import { fetchBook } from "@/lib/book";
+import { fetchBook } from "@/server/services/books";
 import { Label } from "@/components/ui/label";
 import SidebarContainer from "../sidebar-container";
 import { notFound } from "next/navigation";
