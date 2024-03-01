@@ -31,16 +31,17 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
   const parentRef = useRef<HTMLDivElement>(null);
   const { replace, push } = useRouter();
 
-  const { isPending, data } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["search", debouncedValue],
     queryFn: ({ queryKey }) => {
       const [, query] = queryKey;
 
       return searchBooks(query ?? "", { limit: 5 });
     },
+    enabled: !!debouncedValue,
   });
 
-  const hits = data?.results?.hits ?? [];
+  const hits = value ? data?.results?.hits ?? [] : [];
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -69,6 +70,8 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
 
     document.addEventListener("click", click);
     return () => document.removeEventListener("click", click);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusedState.value, focusedState.setFalse]);
 
   // this function handles keyboard navigation and selection
@@ -80,7 +83,8 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
     }
   };
 
-  const showList = data && value && focusedState.value;
+  const showList = focusedState.value;
+  const showSeeMore = (data?.results?.found ?? 0) > 5 && hits.length > 0;
 
   return (
     <div className="w-full">
@@ -114,7 +118,7 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
           ref={inputRef}
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
-          isLoading={isPending}
+          isLoading={isLoading}
         />
 
         <div className="absolute inset-y-0 right-0 flex items-center">
@@ -135,7 +139,13 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
             showList ? "opacity-100" : "pointer-events-none opacity-0",
           )}
         >
-          <CommandEmpty>No results found.</CommandEmpty>
+          {value && hits.length === 0 && !isLoading && (
+            <CommandEmpty>No results found.</CommandEmpty>
+          )}
+
+          {!value && (
+            <p className="py-6 text-center text-sm">Start typing...</p>
+          )}
 
           {hits.map((result) => {
             const primaryArabicName = result.highlight.primaryArabicName
@@ -163,149 +173,78 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
               documentName === primaryLatinName ? null : primaryLatinName;
 
             return (
-              <CommandItem
-                value={result.document.id}
+              <SearchItem
                 key={result.document.id}
+                value={result.document.id}
                 onSelect={() => onItemSelect(result.document.id)}
+                href={navigation.books.reader(result.document.id)}
               >
-                <Link
-                  className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
-                  href={navigation.books.reader(result.document.id)}
-                >
-                  {documentName && (
-                    <p
-                      className="text-base"
-                      dangerouslySetInnerHTML={{ __html: documentName }}
-                    />
+                {documentName && (
+                  <p
+                    className="text-base"
+                    dangerouslySetInnerHTML={{ __html: documentName }}
+                  />
+                )}
+
+                <div className="flex items-center gap-1 text-xs text-gray-500">
+                  <p>Text</p>
+
+                  <span>•</span>
+
+                  {authorName && (
+                    <p dangerouslySetInnerHTML={{ __html: authorName }} />
                   )}
 
-                  <div className="flex items-center gap-1 text-xs text-gray-500">
-                    <p>Text</p>
+                  {authorName && documentSecondaryName && <span>•</span>}
 
-                    <span>•</span>
-
-                    {authorName && (
-                      <p dangerouslySetInnerHTML={{ __html: authorName }} />
-                    )}
-
-                    {authorName && documentSecondaryName && <span>•</span>}
-
-                    {documentSecondaryName && (
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: documentSecondaryName,
-                        }}
-                      />
-                    )}
-                  </div>
-                </Link>
-              </CommandItem>
+                  {documentSecondaryName && (
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: documentSecondaryName,
+                      }}
+                    />
+                  )}
+                </div>
+              </SearchItem>
             );
           })}
 
-          {(data?.results?.found ?? 0) > 5 && (
-            <CommandItem
+          {showSeeMore && (
+            <SearchItem
               value={`more:${debouncedValue}`}
               onSelect={() => onItemSelect()}
+              href={`/search?q=${debouncedValue}`}
             >
-              <Link
-                href={`/search?q=${debouncedValue}`}
-                className="flex flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
-              >
-                <p className="text-primary">
-                  See all results ({data?.results?.found})
-                </p>
-              </Link>
-            </CommandItem>
+              <p className="text-primary">
+                See all results ({data?.results?.found})
+              </p>
+            </SearchItem>
           )}
         </CommandList>
       </Command>
-
-      {/* <div className="relative w-full">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-          <MagnifyingGlassIcon
-            className="h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-        </div>
-        <input
-          id="search"
-          name="search"
-          className="block w-full rounded-md border-0 bg-white py-2 pl-10 pr-3 text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary sm:text-sm sm:leading-6"
-          placeholder="Search"
-          type="text"
-          autoComplete="off"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
-          onFocus={focusedState.setTrue}
-          onBlur={focusedState.setFalse}
-          ref={inputRef}
-        />
-
-        {isPending && (
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-            <Spinner className="h-5 w-5" />
-          </div>
-        )}
-
-        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-          <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
-            Press{" "}
-            <kbd className="inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-              <span className="text-xs">⌘</span>K
-            </kbd>
-          </p>
-        </div>
-
-        {focusedState.value && data && value && (
-          <div className="absolute bottom-0 left-0 z-10 flex w-full translate-y-full flex-col divide-y divide-gray-200 rounded rounded-t-none border border-t-0 border-gray-200 bg-white text-sm text-black shadow">
-            {hits.length > 0 ? (
-              hits.map((result) => (
-                <Link
-                  href={`/reader/${result.document.id}`}
-                  key={result.document.id}
-                  className="flex flex-col gap-3 px-4 py-3 hover:bg-gray-50"
-                >
-                  {result.document.primaryArabicName && (
-                    <p className="text-base">
-                      {result.document.primaryArabicName}
-                    </p>
-                  )}
-
-                  <div className="flex items-center gap-1 text-xs text-gray-500">
-                    <p>Book</p>
-                    <span>•</span>
-                    {result.document.primaryLatinName && (
-                      <p>{result.document.primaryLatinName}</p>
-                    )}
-
-                    <span>•</span>
-                    {result.document.author.primaryLatinName && (
-                      <p>{result.document.author.primaryLatinName}</p>
-                    )}
-                  </div>
-                </Link>
-              ))
-            ) : (
-              <div className="px-4 py-5">No results found</div>
-            )}
-
-            {data.results.found > 5 && (
-              <div className="py-3">
-                <Button
-                  variant="link"
-                  asChild
-                  className="flex justify-start px-4 py-0 text-sm"
-                >
-                  <Link href={`/search?q=${value}`}>
-                    See all results ({data.results.found})
-                  </Link>
-                </Button>
-              </div>
-            )}
-          </div>
-        )}
-      </div> */}
     </div>
+  );
+}
+
+function SearchItem({
+  value,
+  onSelect,
+  href,
+  children,
+}: {
+  value: string;
+  href: string;
+  onSelect: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <CommandItem value={value} onSelect={onSelect} className="px-0 py-0">
+      <Link
+        href={href}
+        className="flex h-full w-full flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
+      >
+        {children}
+      </Link>
+    </CommandItem>
   );
 }

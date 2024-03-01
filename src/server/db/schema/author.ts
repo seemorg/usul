@@ -24,6 +24,7 @@ export const author = createTable(
       .default([])
       .notNull(),
     numberOfBooks: int("number_of_books").default(0).notNull(),
+    bio: text("bio"),
   },
   (table) => {
     return {

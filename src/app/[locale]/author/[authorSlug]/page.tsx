@@ -65,18 +65,11 @@ async function AuthorPage({
         </div>
       </div>
 
-      <div className="mt-6 text-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, eligendi
-        iure accusamus sapiente laborum fugiat alias omnis quas excepturi vero
-        laboriosam et sunt officia nulla repellat dolores illo aliquam ad
-        mollitia incidunt corrupti veritatis tenetur esse? Perspiciatis, odit
-        corrupti soluta laborum molestias adipisci. Explicabo commodi
-        dignissimos maxime, obcaecati quisquam necessitatibus, animi,
-        voluptatibus reiciendis eos molestias hic eaque voluptatum atque dolorem
-        quasi tenetur deleniti. Aliquid minus, blanditiis architecto autem sit
-        vitae tempore incidunt, quaerat optio distinctio qui, earum eaque
-        inventore reiciendis minima adipisci.
-      </div>
+      {author.bio && (
+        <div className="mt-6 text-lg">
+          <p>{author.bio}</p>
+        </div>
+      )}
 
       <div className="mt-16">
         <SearchResults

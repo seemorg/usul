@@ -2,9 +2,14 @@ import { db } from "@/server/db";
 import { author } from "@/server/db/schema";
 import { getAuthorsData, getBooksData } from "../fetchers";
 import { chunk, slugifyId } from "../utils";
+import authorBios from "../../data/author-bios.json";
 
 const allAuthors = await getAuthorsData();
 const chunkedAuthors = chunk(allAuthors, 100) as (typeof allAuthors)[];
+
+const getAuthorBio = (id: string) => {
+  return (authorBios as Record<string, { bio: string }>)[id]?.bio ?? undefined;
+};
 
 const allBooks = await getBooksData();
 const authorIdToNumberOfBooks = allBooks.reduce(
@@ -51,6 +56,9 @@ for (const authors of chunkedAuthors) {
     authors.map((authorEntry) => ({
       id: authorEntry.id,
       slug: createUniqueSlug(authorEntry.id),
+      ...(getAuthorBio(authorEntry.id)
+        ? { bio: getAuthorBio(authorEntry.id) }
+        : {}),
       primaryArabicName: authorEntry.primaryArabicName,
       otherArabicNames: authorEntry.otherArabicNames,
       primaryLatinName: authorEntry.primaryLatinName,
