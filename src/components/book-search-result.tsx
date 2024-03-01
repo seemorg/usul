@@ -263,7 +263,7 @@ const BookSearchResult = ({
   const text = "text-gray-700";
 
   return (
-    <Link href={navigation.books.reader(document.id)}>
+    <Link href={navigation.books.reader(document.id)} prefetch={false}>
       <div
         className={cn(
           "flex h-[350px] flex-col items-center justify-center gap-6 rounded-md border-l-8 p-8",
