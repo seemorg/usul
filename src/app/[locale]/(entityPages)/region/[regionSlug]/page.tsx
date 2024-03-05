@@ -90,7 +90,7 @@ async function RegionPage({
                 currentAuthors={authors}
                 selectedAuthorsResponse={results.selectedAuthors}
                 filters={{
-                  region: region.region.slug,
+                  regions: [region.region.slug],
                 }}
               />
 
