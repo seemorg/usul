@@ -65,7 +65,7 @@ export const findAllGenresWithBooksCount = cache(
     }
 
     if (yearRange) {
-      return await db
+      return (await db
         .select({
           genreId: genre.id,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
@@ -78,11 +78,11 @@ export const findAllGenresWithBooksCount = cache(
         .where(
           and(gte(author.year, yearRange[0]), lt(author.year, yearRange[1])),
         )
-        .groupBy(genre.id);
+        .groupBy(genre.id)) as { genreId: string; booksCount: number }[];
     }
 
     if (regionCode) {
-      return await db
+      return (await db
         .select({
           genreId: genresToBooks.genreId,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
@@ -96,7 +96,10 @@ export const findAllGenresWithBooksCount = cache(
         )
         .leftJoin(location, eq(locationsToAuthors.locationId, location.id))
         .where(eq(location.regionCode, regionCode))
-        .groupBy(genresToBooks.genreId);
+        .groupBy(genresToBooks.genreId)) as {
+        genreId: string;
+        booksCount: number;
+      }[];
     }
 
     return await q;
