@@ -7,14 +7,13 @@ import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Fuse from "fuse.js";
 import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
-import type { findAllGenresWithBooksCount } from "@/server/services/genres";
 import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
 
 const DEBOUNCE_DELAY = 300;
 
 interface GenresFilterProps {
   currentGenres: string[];
-  genres: Awaited<ReturnType<typeof findAllGenresWithBooksCount>>;
+  genres: { genreId: string; booksCount: number }[];
 }
 
 const getGenresFilterUrlParams = (

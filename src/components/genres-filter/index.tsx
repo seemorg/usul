@@ -7,7 +7,9 @@ type Props = Omit<ComponentProps<typeof _GenresFilter>, "genres"> & {
 };
 
 export default async function GenresFilter(props: Props) {
-  const genres = await findAllGenresWithBooksCount(props.filters);
+  const genres = (await findAllGenresWithBooksCount(props.filters)).filter(
+    (g) => !!g.genreId,
+  );
 
-  return <_GenresFilter {...props} genres={genres} />;
+  return <_GenresFilter {...props} genres={genres as any} />;
 }
