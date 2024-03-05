@@ -13,7 +13,6 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import YearFilterSkeleton from "@/components/year-filter-skeleton";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
-import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -28,7 +27,9 @@ export const generateMetadata = async ({
   const region = await findRegionBySlug(regionSlug);
   if (!region) return;
 
-  return getMetadata({ title: region.region.code });
+  return {
+    title: region.region.code,
+  };
 };
 
 type RegionPageProps = InferPagePropsType<RouteType>;
