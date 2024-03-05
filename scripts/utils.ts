@@ -272,7 +272,20 @@ export const dedupeStrings = (names: string[]) => {
  * @param {string} id
  * @returns {string}
  */
-export const slugifyId = (id: string): string => {
-  const noLeadingNumbers = id.replace(/^\d+/, "");
-  return noLeadingNumbers.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+export const slugifyId = (
+  id: string,
+  removeLeadingNumbers: boolean = true,
+): string => {
+  const noLeadingNumbers = removeLeadingNumbers ? id.replace(/^\d+/, "") : id;
+  return noLeadingNumbers
+    .replaceAll(" ", "-")
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
+};
+
+export const toTitleCase = (str: string) => {
+  return str.replace(
+    /\w\S*/g,
+    (txt) => txt.charAt(0).toUpperCase() + txt.slice(1).toLowerCase(),
+  );
 };

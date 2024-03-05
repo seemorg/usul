@@ -20,6 +20,8 @@ import { notFound } from "next/navigation";
 import VersionSelector from "./version-selector";
 import PageNavigator from "./page-navigator";
 import ChaptersList from "./chapters-section";
+import { Link } from "@/navigation";
+import { navigation } from "@/lib/urls";
 
 const breadcrumbs = [
   "كتب الأخلاق والسلوك",
@@ -115,30 +117,24 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
           {book.primaryArabicName}
         </h2>
 
-        <div className="mt-6 flex items-center">
+        <div className="mt-6 flex items-center text-accent-foreground">
           <HoverCard>
             <HoverCardTrigger asChild>
-              <p className="text-sm text-gray-700">
-                {author.primaryArabicName}
-              </p>
+              <p className="text-sm">{author.primaryArabicName}</p>
             </HoverCardTrigger>
 
-            <HoverCardContent>
-              <p className="text-sm text-gray-500">
-                {author.otherArabicNames.join(", ")}
-              </p>
-              <p className="mt-5 text-sm text-gray-500">
+            <HoverCardContent className="text-muted-foreground">
+              <p className="text-sm">{author.otherArabicNames.join(", ")}</p>
+
+              <p className="mt-5 text-sm">
                 {author.otherLatinNames.join(", ")}
               </p>
-
-              {/* <p>{author.date} AH</p>
-                    <p>{author.books.length} Books</p> */}
             </HoverCardContent>
           </HoverCard>
 
-          <span className="mx-3 text-gray-400">•</span>
+          <span className="mx-3 text-muted-foreground">•</span>
 
-          <p className="text-sm text-gray-700" dir="ltr">
+          <p className="text-sm" dir="ltr">
             {author.year} AH
           </p>
 
@@ -171,7 +167,7 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
               <div>
                 <p className="font-semibold">Other titles:</p>
 
-                <div className="mt-3 space-y-3 text-sm text-gray-600">
+                <div className="mt-3 space-y-3 text-sm text-muted-foreground">
                   <p>
                     {book.otherArabicNames.length > 0
                       ? book.otherArabicNames.join(", ")
@@ -190,15 +186,19 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
                 <p className="font-semibold">Tags:</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-3">
-                  {book.genreTags.map((tag) => (
-                    <Badge
-                      key={tag}
-                      shape="pill"
-                      variant="secondary"
-                      className="font-normal"
+                  {book.genres.map(({ genre }) => (
+                    <Link
+                      key={genre.id}
+                      href={navigation.genres.bySlug(genre.slug)}
                     >
-                      {tag}
-                    </Badge>
+                      <Badge
+                        shape="pill"
+                        variant="secondary"
+                        className="font-normal"
+                      >
+                        {genre.name}
+                      </Badge>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -135,7 +135,7 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
 
         <CommandList
           className={cn(
-            "absolute inset-x-0 bottom-0 flex max-h-[auto] w-full translate-y-full flex-col divide-y-2 divide-gray-500 overflow-hidden rounded-md rounded-t-none border border-gray-200 bg-white text-sm text-black shadow",
+            "absolute inset-x-0 bottom-0 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
             showList ? "opacity-100" : "pointer-events-none opacity-0",
           )}
         >
@@ -186,7 +186,7 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
                   />
                 )}
 
-                <div className="flex items-center gap-1 text-xs text-gray-500">
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <p>Text</p>
 
                   <span>•</span>
@@ -241,7 +241,7 @@ function SearchItem({
     <CommandItem value={value} onSelect={onSelect} className="px-0 py-0">
       <Link
         href={href}
-        className="flex h-full w-full flex-col items-start gap-3 px-4 py-3 hover:bg-gray-50"
+        className="flex h-full w-full flex-col items-start gap-3 px-4 py-3 hover:bg-accent"
       >
         {children}
       </Link>

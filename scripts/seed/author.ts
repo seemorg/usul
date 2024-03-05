@@ -1,5 +1,5 @@
 import { db } from "@/server/db";
-import { author } from "@/server/db/schema";
+import { author, locationsToAuthors } from "@/server/db/schema";
 import { getAuthorsData, getBooksData } from "../fetchers";
 import { chunk, slugifyId } from "../utils";
 import authorBios from "../../data/author-bios.json";
@@ -30,6 +30,7 @@ const shouldReset =
 if (shouldReset) {
   console.log("[AUTHORS] Resetting authors table");
   await db.delete(author);
+  await db.delete(locationsToAuthors);
 }
 
 const slugs = new Set<string>();
@@ -64,10 +65,23 @@ for (const authors of chunkedAuthors) {
       primaryLatinName: authorEntry.primaryLatinName,
       otherLatinNames: authorEntry.otherLatinNames,
       year: authorEntry.year,
-      relatedGeographies: authorEntry.geographies,
       numberOfBooks: authorIdToNumberOfBooks[authorEntry.id] ?? 0,
+      // relatedGeographies: authorEntry.geographies,
     })),
   );
+
+  const locationEntries = authors.flatMap((authorEntry) => {
+    return [
+      ...new Set(authorEntry.geographies.map((g) => g.toLowerCase())),
+    ].map((geography) => ({
+      locationId: geography,
+      authorId: authorEntry.id,
+    }));
+  });
+
+  if (locationEntries.length > 0) {
+    await db.insert(locationsToAuthors).values(locationEntries);
+  }
 
   authorBatchIdx++;
 }

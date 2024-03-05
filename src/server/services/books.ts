@@ -10,6 +10,11 @@ export const fetchBook = cache(async (id: string, versionId?: string) => {
     where: (book, { eq }) => eq(book.id, id.replaceAll("-", ".")),
     with: {
       author: true,
+      genres: {
+        with: {
+          genre: true,
+        },
+      },
     },
   });
 

@@ -1,7 +1,7 @@
 import { int, json, text, varchar, uniqueIndex } from "drizzle-orm/mysql-core";
 import { createTable } from "./utils";
 import { relations } from "drizzle-orm";
-import { book } from ".";
+import { book, locationsToAuthors } from ".";
 
 export const author = createTable(
   "author",
@@ -19,10 +19,10 @@ export const author = createTable(
       .default([])
       .notNull(),
     year: int("year").notNull(), // year in hijri
-    relatedGeographies: json("related_geographies")
-      .$type<string[]>()
-      .default([])
-      .notNull(),
+    // relatedGeographies: json("related_geographies")
+    //   .$type<string[]>()
+    //   .default([])
+    //   .notNull(),
     numberOfBooks: int("number_of_books").default(0).notNull(),
     bio: text("bio"),
   },
@@ -35,4 +35,5 @@ export const author = createTable(
 
 export const authorRelations = relations(author, ({ many }) => ({
   books: many(book),
+  locations: many(locationsToAuthors),
 }));

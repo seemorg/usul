@@ -16,7 +16,7 @@ export default function ReaderContent({
 
   return (
     <Virtuoso
-      className="!h-screen w-full overflow-y-auto bg-white text-xl text-black"
+      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground"
       totalCount={pages.length}
       initialItemCount={Math.min(pages.length, 5)}
       overscan={5}
@@ -36,7 +36,7 @@ export default function ReaderContent({
           <div
             {...props}
             ref={ref}
-            className="w-full min-w-0 flex-auto divide-y-2 divide-gray-200 lg:!pl-0 lg:!pr-8 xl:!px-16"
+            className="w-full min-w-0 flex-auto divide-y-2 divide-border lg:!pl-0 lg:!pr-8 xl:!px-16"
           />
         )),
       }}
@@ -50,7 +50,7 @@ export default function ReaderContent({
               <RenderBlock key={blockIndex} block={block as any} />
             ))}
 
-            <p className="mt-10 text-center text-sm text-gray-400">
+            <p className="mt-10 text-center text-sm text-muted-foreground">
               {page ? `page ${page.page}` : "unknown page"}
             </p>
           </div>

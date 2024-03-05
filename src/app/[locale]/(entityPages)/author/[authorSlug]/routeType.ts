@@ -7,7 +7,7 @@ const defaultSort: (typeof sorts)[number] = "relevance";
 
 export const Route = {
   routeParams: z.object({
-    authorSlug: z.string(),
+    authorSlug: z.string().catch(""),
   }),
   searchParams: z.object({
     q: z.string().default(""),

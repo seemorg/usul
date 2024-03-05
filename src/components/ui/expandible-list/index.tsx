@@ -18,35 +18,58 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useMediaQuery } from "usehooks-ts";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { useState } from "react";
 
-export function OtherNames({ names }: { names: string[] }) {
+interface ExpandibleListProps {
+  items: string[];
+  maxItems?: number; // items to show in the trigger
+  noun?: {
+    singular: string;
+    plural: string;
+  };
+}
+
+export function ExpandibleList({
+  items,
+  maxItems = 1,
+  noun = {
+    singular: "item",
+    plural: "items",
+  },
+}: ExpandibleListProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const namesList = (
     <ul className="mt-5 flex flex-col gap-4">
-      {names.map((name, index) => (
+      {items.map((name, index) => (
         <li key={index}>- {name}</li>
       ))}
     </ul>
   );
 
+  const getSeeMoreText = () => {
+    const count = items.length - maxItems;
+
+    return `, and ${count} other ${count > 1 ? noun.plural : noun.singular}`;
+  };
+
+  const trigger = (
+    <Button variant="link" className="px-0">
+      {items.slice(0, maxItems).join(", ")}
+
+      {items.length > maxItems ? getSeeMoreText() : null}
+    </Button>
+  );
+
   if (isDesktop) {
     return (
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button variant="link" className="px-0">
-            {/* <ChevronDownIcon className="h-4 w-4" /> */} {names[0]}
-            {names.length > 1 &&
-              `, and ${names.length - 1} other name${names.length > 2 ? "s" : ""}`}
-          </Button>
-        </DialogTrigger>
+        <DialogTrigger asChild>{trigger}</DialogTrigger>
 
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Also known as</DialogTitle>
+            <DialogTitle>Other {noun.plural}</DialogTitle>
           </DialogHeader>
 
           {namesList}
@@ -57,15 +80,11 @@ export function OtherNames({ names }: { names: string[] }) {
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
-      <DrawerTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <ChevronDownIcon className="h-4 w-4" />
-        </Button>
-      </DrawerTrigger>
+      <DrawerTrigger asChild>{trigger}</DrawerTrigger>
 
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Also known as</DrawerTitle>
+          <DrawerTitle>Other {noun.plural}</DrawerTitle>
         </DrawerHeader>
 
         <div className="px-4">{namesList}</div>

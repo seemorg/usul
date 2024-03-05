@@ -2,23 +2,31 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-// import { getGenresFilterUrlParams } from "@/lib/url";
 import { usePathname, useRouter } from "@/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
-// import genres from "~/data/distinct-genres.json";
 import Fuse from "fuse.js";
 import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
+import type { findAllGenresWithBooksCount } from "@/server/services/genres";
+import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
 
 const DEBOUNCE_DELAY = 300;
 
 interface GenresFilterProps {
-  allGenres: string[];
   currentGenres: string[];
+  genres: Awaited<ReturnType<typeof findAllGenresWithBooksCount>>;
 }
 
-const getGenresFilterUrlParams = (genres: string[]) => {
-  const params = new URLSearchParams();
+const getGenresFilterUrlParams = (
+  genres: string[],
+  searchParams: ReadonlyURLSearchParams,
+) => {
+  const params = new URLSearchParams(searchParams);
+
+  // make sure to reset pagination state
+  if (params.has("page")) {
+    params.delete("page");
+  }
 
   if (genres.length > 0) {
     params.set("genres", genres.join(","));
@@ -29,9 +37,9 @@ const getGenresFilterUrlParams = (genres: string[]) => {
   return params;
 };
 
-export default function GenresFilter({
-  allGenres,
+export default function _GenresFilter({
   currentGenres,
+  genres,
 }: GenresFilterProps) {
   const [selectedGenres, setSelectedGenres] = useState<string[]>(currentGenres);
 
@@ -39,17 +47,18 @@ export default function GenresFilter({
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const pathname = usePathname();
   const { replace } = useRouter();
+  const searchParams = useSearchParams();
   const [size, setSize] = useState(10);
 
   const index = useMemo(() => {
     return new Fuse(
-      allGenres.map((g) => ({ name: g })),
+      genres.map((g) => ({ genreId: g.genreId })),
       {
-        keys: ["name"],
+        keys: ["genreId"],
         threshold: 0.3,
       },
     );
-  }, [allGenres]);
+  }, [genres]);
 
   const [value, setValue] = useState("");
 
@@ -66,7 +75,7 @@ export default function GenresFilter({
     }
     setSelectedGenres(newSelectedGenres);
 
-    const params = getGenresFilterUrlParams(newSelectedGenres);
+    const params = getGenresFilterUrlParams(newSelectedGenres, searchParams);
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -85,28 +94,35 @@ export default function GenresFilter({
   const matchedGenres = useMemo(() => {
     const q = value.trim();
     const selectedGenresSet = new Set(selectedGenres);
+    const selectedGenresArray = selectedGenres.map((g) => ({ genreId: g }));
 
     if (!q) {
-      const items = selectedGenres.concat(
-        allGenres.slice(0, size).filter((g) => !selectedGenresSet.has(g)),
+      const items = selectedGenresArray.concat(
+        genres.slice(0, size).filter((g) => !selectedGenresSet.has(g.genreId)),
       );
 
       return {
         items,
-        hasMore: allGenres.length > size,
+        hasMore: genres.length > size,
       };
     }
 
-    const matches = index.search(q, { limit: size }).map((r) => r.item.name);
-    const items = selectedGenres.concat(
-      matches.filter((g) => !selectedGenresSet.has(g)),
+    const matches = index.search(q, { limit: size }).map((r) => r.item);
+    const items = selectedGenresArray.concat(
+      matches.filter((g) => !selectedGenresSet.has(g.genreId)),
     );
 
     return {
       items,
       hasMore: matches.length === size,
     };
-  }, [allGenres, value, index, size, selectedGenres]);
+  }, [value, index, size, selectedGenres, genres]);
+
+  const genreIdToBooksCount = useMemo(() => {
+    return Object.fromEntries(
+      genres.map((item) => [item.genreId, item.booksCount]),
+    );
+  }, [genres]);
 
   return (
     <FilterContainer
@@ -116,35 +132,55 @@ export default function GenresFilter({
         selectedGenres.length > 0
           ? {
               pathname,
-              query: getGenresFilterUrlParams([]).toString(),
+              query: getGenresFilterUrlParams([], searchParams).toString(),
             }
           : undefined
       }
     >
       <Input
         placeholder="Search for a genre"
-        className="border border-gray-300 bg-white shadow-none"
+        className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
 
       <div className="mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll text-sm sm:max-h-none sm:overflow-y-auto">
         {matchedGenres.items.map((genre) => {
+          const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
+          const title = `${genre} (${count})`;
+
           return (
-            <div key={genre} className="flex cursor-pointer items-center gap-2">
+            <div
+              key={genre.genreId}
+              className="flex cursor-pointer items-center gap-2"
+            >
               <Checkbox
-                id={genre}
-                checked={selectedGenres.includes(genre)}
-                onCheckedChange={() => handleChange(genre)}
+                id={genre.genreId}
+                checked={selectedGenres.includes(genre.genreId)}
+                onCheckedChange={() => handleChange(genre.genreId)}
                 className="h-4 w-4"
               />
 
-              <label
+              {/* <label
                 htmlFor={genre}
                 className="line-clamp-1 min-w-0 max-w-[70%] break-words text-sm"
-                title={genre}
+                title={title}
               >
-                {genre}
+                {title}
+              </label> */}
+
+              <label
+                htmlFor={genre.genreId}
+                className="flex w-full items-center justify-between text-sm"
+                title={title}
+              >
+                <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
+                  {genre.genreId}
+                </span>
+
+                <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
+                  {count}
+                </span>
               </label>
             </div>
           );

@@ -263,7 +263,11 @@ const BookSearchResult = ({
   const text = "text-gray-700";
 
   return (
-    <Link href={navigation.books.reader(document.id)} prefetch={false}>
+    <Link
+      href={navigation.books.reader(document.id)}
+      prefetch={false}
+      className="mx-auto w-full max-w-[250px]"
+    >
       <div
         className={cn(
           "flex h-[350px] flex-col items-center justify-center gap-6 rounded-md border-l-8 p-8",
@@ -283,7 +287,7 @@ const BookSearchResult = ({
         </p>
       </div>
       <div className="mt-2 text-right">
-        <p className="mt-2 text-right text-lg font-semibold">
+        <p className="mt-2 text-lg font-semibold">
           {primaryArabicName ?? primaryLatinName}
         </p>
         {primaryLatinName && primaryArabicName && (

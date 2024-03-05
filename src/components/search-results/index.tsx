@@ -105,7 +105,7 @@ export default function SearchResults<T extends object & { id: string }>({
         <div className="mt-8">
           {/* <div className="mt-5 flex flex-col gap-4"> */}
           {hasResults ? (
-            <div className="grid grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {response.hits!.map((result) => (
                 <React.Fragment key={result.document.id}>
                   {renderResult(result)}

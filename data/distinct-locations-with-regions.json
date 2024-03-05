@@ -1,0 +1,3118 @@
+[
+  {
+    "location": "born@JaziratArab_RE",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Yaman_RE",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "born@Iraq_RE",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@Sham_RE",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@Misr_RE",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@JaziratArab_RE_Auto",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Iraq_RE_Auto",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@Fars_RE",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@MADINA_396E244N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@KUFA_443E320N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@MAKKA_398E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Khurasan_RE",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@BALKH_668E367N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@BASRA_477E304N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "died@BASRA_477E304N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@Yaman_RE",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "resided@SANA_442E153N_S",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "visited@BASRA_477E304N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@HIJAZ_390E235N_R",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@Sham_RE",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@Khurasan_RE",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@MAKKA_398E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Khurasan_RE_Auto",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@UMAN_564E238N_R",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Misr_RE_Auto",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@SHIRAZ_525E296N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@MARW_621E376N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@Aqur_RE",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@MAWSIL_431E363N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@QAHIRA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@Khuzistan_RE",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@AHWAZ_486E313N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@RAQQA_390E359N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@GHAZZA_344E314N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@ASQALAN_345E316N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@MINA_399E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "died@FUSTAT_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@MAKKA_398E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "resided@BadiyatArab_RE",
+    "region": {
+      "code": "Badiyat al-Arab",
+      "slug": "badiyat-al-arab"
+    }
+  },
+  {
+    "location": "resided@MADINA_396E244N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "resided@BAGHDAD_443E333N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@NAJRAN_442E175N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "resided@FUSTAT_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@RAQQA_390E359N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@SANA_442E153N_S",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "born@Sham_RE_Auto",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@Misr_RE",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "died@Iraq_RE",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@Iraq_RE",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@Jibal_RE",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "died@BAGHDAD_443E333N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@JASIM_360E329N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@Sham_RE",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@DIMASHQ_363E335N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@ANBAR_437E333N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "died@KUFA_443E320N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@RUSAFA_463E317N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@KUFA_443E320N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@JaziratArab_RE",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@Andalus_RE",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@Maghrib_RE",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@QAYRAWAN_101E357N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@BAGHDAD_443E333N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@SAMARRA_438E342N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@KUFA_443E320N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@WASIT_463E321N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@MADINA_396E244N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@SANA_442E153N_S",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "visited@Aqur_RE",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "resided@BASRA_477E304N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@Sind_RE_Auto",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "resided@Sham_RE",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@Kirman_RE",
+    "region": {
+      "code": "Kirman",
+      "slug": "kirman"
+    }
+  },
+  {
+    "location": "born@Sijistan_RE",
+    "region": {
+      "code": "Sijistan",
+      "slug": "sijistan"
+    }
+  },
+  {
+    "location": "born@Mawarannahr_RE_Auto",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@Andalus_RE_Auto",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@Mawarannahr_RE",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@BUKHARA_644E398N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@Jibal_RE_Auto",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@Daylam_RE_Auto",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "died@Maghrib_RE",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@Jibal_RE",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@RAYY_515E356N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "died@Aqur_RE",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "died@MAWSIL_431E363N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@KHUTTAL_697E379N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@KHURASAN_RE",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@MAKKA_398E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@BAGHDAD_443E333N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "died@WASIT_463E321N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@QAZWIN_500E362N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@NAZWA_575E228N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@FASA_536E289N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "died@JaziratArab_RE",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@RABADHA_413E246N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@DIMASHQ_363E335N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@HIMS_367E347N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@ANTAKIYYA_361E361N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@MANBIJ_379E365N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "visited@HALAB_371E361N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@SAMARRA_438E342N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@Iraq_RE",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@TIRMIDH_673E372N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@Sijistan_RE_Auto",
+    "region": {
+      "code": "Sijistan",
+      "slug": "sijistan"
+    }
+  },
+  {
+    "location": "born@Maghrib_RE_Auto",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@Kirman_RE_Auto",
+    "region": {
+      "code": "Kirman",
+      "slug": "kirman"
+    }
+  },
+  {
+    "location": "died@RAQQA_390E359N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "resided@Aqur_RE",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "resided@RAQQA_390E359N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@Khuzistan_RE_Auto",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@TUSTAR_488E320N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@Yaman_RE_Auto",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "died@ISBAHAN_516E326N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "died@Jibal_RE",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@HARRAN_390E368N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "visited@Hind_RE"
+  },
+  {
+    "location": "visited@Misr_RE",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@Maghrib_RE",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@Aqur_RE_Auto",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@SAMARRA_438E342N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@DIMASHQ_363E335N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@ISBAHAN_516E326N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@Rihab_RE",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "born@BARDHAA_472E404N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "born@SARAQUSA_009W416N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@NASA_582E378N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@NASA_711E404N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@NAYRIZ_542E292N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@RAYY_515E356N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@AMUL_524E364N_S",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "born@Daylam_RE",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "resided@AMUL_524E364N_S",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "resided@WASIT_463E321N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@RAMLA_348E319N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@ASQALAN_345E316N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@Mawarannahr_RE",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@SAMARQAND_670E396N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@BALIS_380E360N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@NAYSABUR_587E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@RAYY_515E356N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@Khurasan_RE",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@DIMASHQ_363E335N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@Khurasan_RE",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@BALKH_668E367N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@SAMARQAND_670E396N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@BAYHAQ_576E360N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@TUS_594E364N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@ISKANDARIYYA_299E311N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@ISBAHAN_516E326N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@HADITHA_433E360N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "visited@AYLA_349E295N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@QARMASIN_470E343N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@QAZWIN_500E362N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@HAMADHAN_485E347N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@NAHRAWAN_445E334N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@ATRABULUS_358E344N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@TABARIYYA_355E327N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@BAYTMAQDIS_352E317N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@GHAZZA_344E314N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@BAYRUT_355E339N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@HULWAN_312E298N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@FARAMA_325E310N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@JARJARAYA_453E327N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@QURTUBA_047W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@Andalus_RE",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@QURTUBA_047W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@QUMM_509E346N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@QUMM_509E346N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@NAYSABUR_587E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@Fars_RE_Auto",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@KARKH_438E342N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@FUSTAT_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "died@QAHIRA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@USWAN_329E241N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@QULZUM_325E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@MAWSIL_431E363N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@NIHAWAND_483E342N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@FARAB_682E427N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@BUKHARA_644E398N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@Misr_RE",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@ISBAHAN_516E326N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@JUNDAYSABUR_485E322N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@ISTAKHR_529E299N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "resided@Maghrib_RE",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@BUST_643E313N_S",
+    "region": {
+      "code": "Sijistan",
+      "slug": "sijistan"
+    }
+  },
+  {
+    "location": "resided@Fars_RE_Auto",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "died@ISBAHAN_516E326N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@RAMLA_348E319N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@RAMHURMUZ_496E312N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@AKKA_350E329N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@ISBAHAN_516E326N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@Andalus_RE",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@QURTUBA_047W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@HALAB_371E361N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@AHWAZ_486E313N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "visited@DASKARA_449E339N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "visited@KUTHARABBA_446E327N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@ISHBILIYYA_059W374N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@TAKRIT_436E345N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@JURJAN_549E373N_R",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "born@HARA_621E343N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@HARA_621E343N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@HARA_621E343N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@HAMADHAN_485E347N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "resided@Iraq_RE_Auto",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@ABHAR_492E361N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@MALATIN_383E383N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@BUKHARA_644E398N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@HAMMA_081E340N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "visited@RAYY_515E356N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@NAYSABUR_587E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@SAMARQAND_670E396N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "visited@BALKH_668E367N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@ASTARABADH_544E367N_S",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "born@ASKARMUKRAM_488E316N_S",
+    "region": {
+      "code": "Khuzistan",
+      "slug": "khuzistan"
+    }
+  },
+  {
+    "location": "born@KHUWARIZM_599E416N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@SIRAF_523E276N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "resided@QAHIRA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@NAFZAWA_092E336N_R",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "died@QAYRAWAN_101E357N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@QAYRAWAN_101E357N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@UKBARA_442E338N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@BAYTMAQDIS_352E317N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@TINNIS_322E312N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@LIBIRA_036W372N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@ASADABADH_481E348N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@TIHAMA_425E175N_R",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@HALAB_371E361N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@QASTALLA_038W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@WASIT_463E321N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "died@NAYSABUR_587E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@SHAHRAZUR_460E352N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@DAYLAMAN_505E366N_R",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "resided@JURJAN_549E373N_R",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "resided@ASFARAYIN_574E369N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@JURJANIYYA_592E424N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@GHAZNA_684E335N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@JURJAN_549E373N_R",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "visited@Siqiliyya_RE",
+    "region": {
+      "code": "Sicile",
+      "slug": "sicile"
+    }
+  },
+  {
+    "location": "visited@Andalus_RE",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@GHUNDIJAN_512E292N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@JUWAYN_616E317N_S",
+    "region": {
+      "code": "Sijistan",
+      "slug": "sijistan"
+    }
+  },
+  {
+    "location": "born@KATH_607E417N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@MAARRANUMAN_366E356N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@KARDIZ_691E336N_S",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "died@BALANSIYYA_004W394N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@BALANSIYYA_004W394N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@LURQA_017W376N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@NAYSABUR_587E361N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@LABLA_066W373N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@MARIYYA_025W368N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@ISHBILIYYA_059W374N_R",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@LABLA_066W373N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@SHATIBA_005W389N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@BAYHAQ_576E360N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@BAYHAQ_576E360N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@TUS_594E364N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@MURSIYA_011W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@DANIYA_001E388N_S",
+    "region": null
+  },
+  {
+    "location": "resided@MURSIYA_011W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@DANIYA_001E388N_S",
+    "region": null
+  },
+  {
+    "location": "born@ISBAHAN_516E326N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@TUS_594E364N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "died@NAJAF_443E319N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "resided@NAJAF_443E319N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@SUGHD_659E394N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "died@SHATIBA_005W389N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@LISHBUNA_091W387N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@SHANTARIN_087W392N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@ISHBILIYYA_059W374N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@BATALYUS_069W388N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@MASILA_045E356N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@SUR_352E332N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@ISBAHAN_516E326N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@DINAWAR_474E346N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@BAKHARZ_603E350N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@Barqa_RE",
+    "region": {
+      "code": "Barqa",
+      "slug": "barqa"
+    }
+  },
+  {
+    "location": "born@AJDABIYYA_202E304N_S",
+    "region": {
+      "code": "Barqa",
+      "slug": "barqa"
+    }
+  },
+  {
+    "location": "born@BATALYUS_069W388N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@MARIYYA_025W368N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@BATALYUS_069W388N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@BAJA_078W380N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@JaziratArab_RE",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "resided@SARAQUSA_009W416N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@URYULAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@MAYURQAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "visited@MAWSIL_431E363N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@MARIYYA_025W368N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@BAZDA_654E390N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "died@FARGHANA_720E403N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@UZJAND_733E408N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@FARGHANA_720E403N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@ISHBILIYYA_059W374N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@JIBAL_RE",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@Rihab_RE_Auto",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "born@BAGHSHUR_625E356N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@Siqiliyya_RE",
+    "region": {
+      "code": "Sicile",
+      "slug": "sicile"
+    }
+  },
+  {
+    "location": "born@MAYSAN_474E314N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@TURTUSHA_006E407N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@SARAQUSA_152E370N_S",
+    "region": {
+      "code": "Sicile",
+      "slug": "sicile"
+    }
+  },
+  {
+    "location": "born@ZAMAKHSHAR_597E422N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@SABTA_053W358N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@TABRISH_500E347N_R",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "born@TABARISTAN_526E363N_R",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "died@SABZAWAR_576E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@NUQAN_595E362N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "resided@SABZAWAR_576E361N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@JANAD_441E136N_R",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "died@Yaman_RE",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "resided@JANAD_441E136N_R",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "visited@BAYHAQ_576E360N_R",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@MARW_621E376N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@HARA_621E343N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "born@RAWANDXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@ISKANDARIYYA_299E311N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "died@SANA_442E153N_S",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "died@ISHBILIYYA_059W374N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@SABTA_053W358N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@RAHBAMALIKIBNTAWQ_404E349N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "died@RAHBAMALIKIBNTAWQ_404E349N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@MALIQA_044W367N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@BAJAYA_050E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@WADIYASH_031W373N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@SHAYZAR_365E352N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@HALAB_371E361N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@KASAN_716E412N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@KASAN_716E412N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@Rum_RE"
+  },
+  {
+    "location": "born@SARIYA_531E365N_S",
+    "region": {
+      "code": "Daylam",
+      "slug": "daylam"
+    }
+  },
+  {
+    "location": "born@SHATIBA_005W389N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@BALANSIYYA_004W394N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@TABARIYYA_355E327N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@MAYYAFARIQIN_410E381N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@UZJAND_733E408N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@MARGHINAN_717E405N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "died@SAMARQAND_670E396N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@QASHAN_515E339N_S",
+    "region": {
+      "code": "Jibal",
+      "slug": "jibal"
+    }
+  },
+  {
+    "location": "visited@QAHIRA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@GHARNATA_035W372N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@KHUWARIZM_599E416N_R",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "visited@MARAGHA_462E373N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "visited@SARAKHS_611E365N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@Sind_RE",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "born@JAZIRAIBNUMAR_421E372N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "resided@JAZIRAIBNUMAR_421E372N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@ISKANDARIYYA_299E311N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@BALANSIYYA_004W394N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "died@BUKHARA_644E398N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "resided@MARGHINAN_717E405N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "born@ISTANBULXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@Rum_RE"
+  },
+  {
+    "location": "resided@MARW_621E376N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@AMID_402E379N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "visited@TABRIZ_463E380N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "visited@MARWRUDH_633E355N_S",
+    "region": {
+      "code": "Khurasan",
+      "slug": "khurasan"
+    }
+  },
+  {
+    "location": "visited@JURJANIYYA_592E424N_S",
+    "region": {
+      "code": "Transoxiana",
+      "slug": "transoxiana"
+    }
+  },
+  {
+    "location": "visited@QAYSXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@TUNIS_101E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@FAS_050W340N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@MALATIN_383E383N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "resided@QUNIYAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@SIWASXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@AQSARAYXXXYYY",
+    "region": null
+  },
+  {
+    "location": "visited@QURTUBA_047W379N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "resided@IRBIL_440E361N_S",
+    "region": null
+  },
+  {
+    "location": "resided@BAYTMAQDIS_352E317N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@Sind_RE",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "visited@IRBIL_440E361N_S",
+    "region": null
+  },
+  {
+    "location": "visited@HARRAN_390E368N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@MADAIN_445E330N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@QAHIRA_312E301N_S",
+    "region": null
+  },
+  {
+    "location": "died@QAHIRA_312E301N_S",
+    "region": null
+  },
+  {
+    "location": "resided@QAHIRA_312E301N_S",
+    "region": null
+  },
+  {
+    "location": "visited@FAYYUM_306E294N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@Rum_RE"
+  },
+  {
+    "location": "born@JAYYAN_038W377N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "born@NAWA_360E328N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@NAWA_360E328N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@NAWA_360E328N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@SANHAJA_055W352N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@HAMA_367E351N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@HAMA_367E351N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@KARAK_356E311N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@YANBU_381E241N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@DIMYAT_317E314N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@ATRABULUS_131E328N_S",
+    "region": {
+      "code": "Barqa",
+      "slug": "barqa"
+    }
+  },
+  {
+    "location": "resided@MARAGHA_462E373N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "resided@KARAK_356E311N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@ISKANDARIYYA_299E311N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@HILLAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@HILLAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@HILLAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@SULTANIYYAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@MARAGHA_462E373N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "resided@TABRIZ_463E380N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "resided@HAMA_367E351N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@BILBAYS_315E304N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@BALABAKK_361E340N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@HAMA_367E351N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@ZAYLAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@GHARNATA_035W372N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@MARIYYA_025W368N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@MALIQA_044W367N_S",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@JAZIRAKHADRA_054W361N_R",
+    "region": {
+      "code": "Andalus",
+      "slug": "andalus"
+    }
+  },
+  {
+    "location": "visited@BAJAYA_050E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "visited@TUNIS_101E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "visited@DIMYAT_317E314N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@JIZA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@QUS_327E259N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@YANBU_381E241N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@MINA_399E213N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "visited@SABTA_053W358N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@MAYYAFARIQIN_410E381N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "visited@NABULUS_352E322N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@JABALNAFUSA_113E318N_O",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@SAFADXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@SAFADXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@RAHBAMALIKIBNTAWQ_404E349N_S",
+    "region": {
+      "code": "Aqur",
+      "slug": "aqur"
+    }
+  },
+  {
+    "location": "born@BUSRA_364E325N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@TANJA_058W357N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@ERZURUMXXXYYY",
+    "region": null
+  },
+  {
+    "location": "visited@ATRABULUS_131E328N_S",
+    "region": {
+      "code": "Barqa",
+      "slug": "barqa"
+    }
+  },
+  {
+    "location": "born@TUNIS_101E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@TILIMSAN_013W348N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@JAZIRA_312E300N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "visited@BAYTLAHM_351E317N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "born@KAZARUN_516E296N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "born@BANHAASAL_311E304N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "died@Hind_RE"
+  },
+  {
+    "location": "resided@BALABAKK_361E340N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@Yaman_RE",
+    "region": {
+      "code": "Yemen",
+      "slug": "yemen"
+    }
+  },
+  {
+    "location": "born@AYNTABXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@AYNTABXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@JAZAIRXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@TUNIS_101E367N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "resided@JAZAIRXXXYYY",
+    "region": null
+  },
+  {
+    "location": "visited@BURSAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@MADINA_396E244N_S",
+    "region": {
+      "code": "Jazirat al-Arab",
+      "slug": "jazirat-al-arab"
+    }
+  },
+  {
+    "location": "born@HAWFSHARQI_315E305N_R",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "born@BIQA_359E338N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "resided@BIQA_359E338N_S",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@ATRABULUS_131E328N_S",
+    "region": {
+      "code": "Barqa",
+      "slug": "barqa"
+    }
+  },
+  {
+    "location": "born@JABALJALIL_363E348N_O",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "died@ISTANBULXXXYYY",
+    "region": null
+  },
+  {
+    "location": "died@Rum_RE"
+  },
+  {
+    "location": "resided@JABALJALIL_363E348N_O",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@ISTANBULXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@BURHANPURXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@Hind_RE"
+  },
+  {
+    "location": "resided@BURHANPURXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@MULTAN_714E301N_S",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "resided@AHMADABADXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@DAQAHLA_316E312N_S",
+    "region": {
+      "code": "Egypt",
+      "slug": "egypt"
+    }
+  },
+  {
+    "location": "resided@ISTANBULXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@BURSAXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@JIBZIXXXYYY",
+    "region": null
+  },
+  {
+    "location": "resided@RUMILIXXXYYY",
+    "region": null
+  },
+  {
+    "location": "born@ARDABIL_483E382N_S",
+    "region": {
+      "code": "Rihab",
+      "slug": "rihab"
+    }
+  },
+  {
+    "location": "visited@SHIRAZ_525E296N_S",
+    "region": {
+      "code": "Faris",
+      "slug": "faris"
+    }
+  },
+  {
+    "location": "visited@JABALJALIL_363E348N_O",
+    "region": {
+      "code": "Sham",
+      "slug": "sham"
+    }
+  },
+  {
+    "location": "visited@KARBALA_440E326N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  },
+  {
+    "location": "born@TILIMSAN_013W348N_S",
+    "region": {
+      "code": "Maghrib",
+      "slug": "maghrib"
+    }
+  },
+  {
+    "location": "born@QANNAWJ_800E271N_S",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "born@QANNAWJ_800E271N_R",
+    "region": {
+      "code": "Sind",
+      "slug": "sind"
+    }
+  },
+  {
+    "location": "born@NAJAF_443E319N_S",
+    "region": {
+      "code": "Iraq",
+      "slug": "iraq"
+    }
+  }
+]

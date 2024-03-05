@@ -1,7 +1,8 @@
-import Link, { type LinkProps } from "next/link";
+import { type LinkProps } from "next/link";
 import { Button } from "../ui/button";
 import Spinner from "../ui/spinner";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { Link } from "@/navigation";
 
 interface FilterContainerProps {
   title: string;
@@ -19,7 +20,7 @@ export default function FilterContainer({
   children,
 }: FilterContainerProps) {
   return (
-    <div className="relative rounded-md p-4 sm:border sm:border-input sm:bg-gray-50">
+    <div className="relative rounded-md p-4 dark:bg-accent sm:border sm:border-input sm:bg-gray-50">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold">
           <span className="flex items-center">

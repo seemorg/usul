@@ -38,7 +38,7 @@ export default function ChaptersList({
           variant="link"
           className={cn(
             "w-full items-center justify-between gap-5 px-0 text-lg font-normal hover:no-underline",
-            idx !== 0 && "text-black hover:text-gray-600",
+            idx !== 0 && "text-foreground hover:text-foreground/75",
           )}
           onClick={() => {
             if (chapter.page && typeof chapter.page.page === "number") {

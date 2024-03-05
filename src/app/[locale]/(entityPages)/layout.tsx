@@ -1,7 +1,7 @@
 import Navbar from "@/app/_components/navbar";
 import Container from "@/components/ui/container";
 
-export default function AuthorLayout({
+export default function EntityPageLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -10,7 +10,7 @@ export default function AuthorLayout({
     <div>
       <Navbar sidebarContent={null} />
 
-      <main className="flex min-h-screen w-full bg-background pb-24 pt-36">
+      <main className="flex min-h-screen w-full bg-background pb-24 pt-28 sm:pt-36">
         <Container>{children}</Container>
       </main>
     </div>

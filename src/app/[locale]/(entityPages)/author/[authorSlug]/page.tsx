@@ -7,8 +7,11 @@ import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts } from "@/lib/urls";
-import { OtherNames } from "@/app/_components/other-names";
+import { booksSorts, navigation } from "@/lib/urls";
+import { ExpandibleList } from "@/components/ui/expandible-list";
+import TruncatedText from "@/components/ui/truncated-text";
+import { Button } from "@/components/ui/button";
+import { Link } from "@/navigation";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -47,8 +50,30 @@ async function AuthorPage({
         </h2>
       )}
 
-      <div className="mt-14 flex w-full items-center">
-        <p>{author.year} AH</p>
+      <div className="mt-14 flex w-full flex-wrap items-center">
+        <Button variant="link" asChild className="p-0">
+          <Link href={navigation.centuries.byYear(author.year)}>
+            {author.year} AH
+          </Link>
+        </Button>
+
+        <span className="mx-3 text-muted-foreground">•</span>
+
+        <div className="flex items-center">
+          <p className="capitalize">Lived: &nbsp;</p>
+
+          <ExpandibleList
+            items={
+              author.locations
+                .filter((l) => l.location.regionCode)
+                .map((l) => l.location.regionCode) as string[]
+            }
+            noun={{
+              singular: "location",
+              plural: "locations",
+            }}
+          />
+        </div>
 
         <span className="mx-3 text-muted-foreground">•</span>
 
@@ -59,16 +84,18 @@ async function AuthorPage({
         <div className="flex items-center">
           <p>Also known as &nbsp;</p>
 
-          <OtherNames
-            names={author.otherLatinNames.concat(author.otherArabicNames)}
+          <ExpandibleList
+            items={author.otherLatinNames.concat(author.otherArabicNames)}
+            noun={{
+              singular: "name",
+              plural: "names",
+            }}
           />
         </div>
       </div>
 
       {author.bio && (
-        <div className="mt-6 text-lg">
-          <p>{author.bio}</p>
-        </div>
+        <TruncatedText className="mt-6 text-lg">{author.bio}</TruncatedText>
       )}
 
       <div className="mt-16">
@@ -82,7 +109,12 @@ async function AuthorPage({
           currentSort={sort}
           currentQuery={q}
           filters={
-            <GenresFilter allGenres={author.genreTags} currentGenres={genres} />
+            <GenresFilter
+              currentGenres={genres}
+              filters={{
+                authorId: author.id,
+              }}
+            />
           }
         />
       </div>
