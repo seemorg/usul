@@ -22,6 +22,7 @@ import PageNavigator from "./page-navigator";
 import ChaptersList from "./chapters-section";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
+import { Button } from "@/components/ui/button";
 
 const breadcrumbs = [
   "كتب الأخلاق والسلوك",
@@ -120,7 +121,14 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
         <div className="mt-6 flex items-center text-accent-foreground">
           <HoverCard>
             <HoverCardTrigger asChild>
-              <p className="text-sm">{author.primaryArabicName}</p>
+              <p>
+                <Link
+                  href={navigation.authors.bySlug(author.slug)}
+                  className="text-sm hover:underline"
+                >
+                  {author.primaryArabicName}
+                </Link>
+              </p>
             </HoverCardTrigger>
 
             <HoverCardContent className="text-muted-foreground">
@@ -134,9 +142,11 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
 
           <span className="mx-3 text-muted-foreground">•</span>
 
-          <p className="text-sm" dir="ltr">
-            {author.year} AH
-          </p>
+          <Button variant="link" className="p-0 text-sm" dir="ltr" asChild>
+            <Link href={navigation.centuries.byYear(author.year)}>
+              {author.year} AH
+            </Link>
+          </Button>
 
           {/* <span className="mx-3 text-gray-400">•</span>
 
