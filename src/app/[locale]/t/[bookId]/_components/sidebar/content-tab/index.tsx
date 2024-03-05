@@ -193,7 +193,7 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
               </div>
 
               <div>
-                <p className="font-semibold">Tags:</p>
+                <p className="font-semibold">Genres:</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   {book.genres.map(({ genre }) => (

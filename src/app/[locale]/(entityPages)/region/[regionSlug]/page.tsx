@@ -54,6 +54,7 @@ async function RegionPage({
       regions: [region.region.slug],
       yearRange: year,
       genres,
+      authors,
     },
   });
 

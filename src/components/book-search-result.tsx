@@ -266,11 +266,11 @@ const BookSearchResult = ({
     <Link
       href={navigation.books.reader(document.id)}
       prefetch={false}
-      className="mx-auto w-full max-w-[250px]"
+      className="mx-auto block h-full w-4/5 md:w-full"
     >
       <div
         className={cn(
-          "flex h-[350px] flex-col items-center justify-center gap-6 rounded-md border-l-8 p-8",
+          "flex aspect-[320/440] w-full flex-col items-center justify-center gap-6 rounded-md border-l-8 p-8",
           bg,
           border,
           text,

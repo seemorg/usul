@@ -2,54 +2,80 @@
 
 import { useState } from "react";
 import { Button } from "../button";
+import { cn } from "@/lib/utils";
 
 type TruncatedTextProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
   "children"
 > & {
   children: string;
-  maxLength?: number;
+  maxLength?:
+    | number
+    | {
+        desktop: number;
+        mobile: number;
+      };
 };
 
 export default function TruncatedText({
   children,
-  maxLength = 500, // 200 on mobile
+  maxLength: _maxLength = { desktop: 500, mobile: 200 },
   ...props
 }: TruncatedTextProps) {
   const [open, setOpen] = useState(false);
 
-  const showSeeMore = children.length > maxLength && !open;
-  const showSeeLess = children.length > maxLength && open;
+  const maxLengthDesktop =
+    typeof _maxLength === "number" ? _maxLength : _maxLength.desktop;
+  const maxLengthMobile =
+    typeof _maxLength === "number" ? null : _maxLength.mobile;
 
-  const truncatedText = open
-    ? children
-    : children.length > maxLength
-      ? `${children.slice(0, maxLength)}...`
-      : children;
+  const renderTruncatedText = (maxLength: number, className?: string) => {
+    const showSeeMore = children.length > maxLength && !open;
+    const showSeeLess = children.length > maxLength && open;
+    const truncatedText = open
+      ? children
+      : children.length > maxLength
+        ? `${children.slice(0, maxLength)}...`
+        : children;
+
+    return (
+      <div className={className}>
+        {truncatedText}
+
+        {showSeeMore && (
+          <TruncatedTextButton onClick={() => setOpen(true)}>
+            See more
+          </TruncatedTextButton>
+        )}
+
+        {showSeeLess && (
+          <TruncatedTextButton onClick={() => setOpen(false)}>
+            See less
+          </TruncatedTextButton>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div {...props}>
-      {truncatedText}
-
-      {showSeeMore && (
-        <Button
-          variant="link"
-          onClick={() => setOpen(true)}
-          className="ml-2 px-0 py-0 text-lg font-normal"
-        >
-          See more
-        </Button>
+      {renderTruncatedText(
+        maxLengthDesktop,
+        cn(maxLengthMobile !== null && "hidden sm:block"),
       )}
 
-      {showSeeLess && (
-        <Button
-          variant="link"
-          onClick={() => setOpen(false)}
-          className="ml-2 px-0 py-0 text-lg"
-        >
-          See less
-        </Button>
-      )}
+      {maxLengthMobile !== null &&
+        renderTruncatedText(maxLengthMobile, "sm:hidden")}
     </div>
   );
 }
+
+const TruncatedTextButton = (props: React.ComponentProps<typeof Button>) => {
+  return (
+    <Button
+      variant="link"
+      className="ml-2 px-0 py-0 text-lg font-normal"
+      {...props}
+    />
+  );
+};

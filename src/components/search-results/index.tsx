@@ -46,6 +46,8 @@ export default function SearchResults<T extends object & { id: string }>({
 }: SearchResultsProps<T>) {
   const hasResults = response.hits?.length ?? 0 > 0;
 
+  const Sorts = () => <SearchSort sorts={sorts} currentSort={currentSort} />;
+
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
       <div className="hidden w-full sm:block">
@@ -58,7 +60,7 @@ export default function SearchResults<T extends object & { id: string }>({
 
       <div className="col-span-4 sm:col-span-3 sm:pl-1">
         <div className="relative w-full">
-          <div className="flex items-center justify-between gap-6">
+          <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
               <SearchBar
                 defaultValue={currentQuery}
@@ -67,13 +69,14 @@ export default function SearchResults<T extends object & { id: string }>({
             </div>
 
             <div className="flex gap-2">
-              <div>
-                <SearchSort sorts={sorts} currentSort={currentSort} />
+              <div className="hidden sm:block">
+                <Sorts />
               </div>
+
               <div className="col-span-4 sm:hidden">
                 <Drawer>
                   <DrawerTrigger asChild>
-                    <Button variant="outline" size="icon">
+                    <Button variant="outline" size="icon" className="h-10 w-10">
                       <AdjustmentsHorizontalIcon className="h-5 w-5" />
                     </Button>
                   </DrawerTrigger>
@@ -86,10 +89,14 @@ export default function SearchResults<T extends object & { id: string }>({
                       {filters}
                     </div>
 
-                    <DrawerFooter>
+                    <DrawerFooter className="flex-row">
                       <DrawerClose asChild>
-                        <Button variant="outline">Close</Button>
+                        <Button variant="outline" className="flex-1">
+                          Close
+                        </Button>
                       </DrawerClose>
+
+                      <Sorts />
                     </DrawerFooter>
                   </DrawerContent>
                 </Drawer>

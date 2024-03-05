@@ -22,6 +22,7 @@ import { useState } from "react";
 
 interface ExpandibleListProps {
   items: string[];
+  triggerItems?: string[];
   maxItems?: number; // items to show in the trigger
   noun?: {
     singular: string;
@@ -36,6 +37,7 @@ export function ExpandibleList({
     singular: "item",
     plural: "items",
   },
+  triggerItems,
 }: ExpandibleListProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
@@ -56,7 +58,7 @@ export function ExpandibleList({
 
   const trigger = (
     <Button variant="link" className="px-0">
-      {items.slice(0, maxItems).join(", ")}
+      {(triggerItems ?? items).slice(0, maxItems).join(", ")}
 
       {items.length > maxItems ? getSeeMoreText() : null}
     </Button>
