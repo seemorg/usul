@@ -12,11 +12,23 @@ import dynamic from "next/dynamic";
 import YearFilterSkeleton from "@/components/year-filter-skeleton";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import RegionsFilter from "@/components/regions-filter";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
   loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
 });
+
+export const generateMetadata = async ({
+  params: { genreSlug },
+}: {
+  params: { genreSlug: string };
+}) => {
+  const genre = await findGenreBySlug(genreSlug);
+  if (!genre) return;
+
+  return getMetadata({ title: genre.genre.name });
+};
 
 type GenrePageProps = InferPagePropsType<RouteType>;
 

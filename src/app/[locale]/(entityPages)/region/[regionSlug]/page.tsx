@@ -13,11 +13,23 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import YearFilterSkeleton from "@/components/year-filter-skeleton";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
   loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
 });
+
+export const generateMetadata = async ({
+  params: { regionSlug },
+}: {
+  params: { regionSlug: string };
+}) => {
+  const region = await findRegionBySlug(regionSlug);
+  if (!region) return;
+
+  return getMetadata({ title: region.region.code });
+};
 
 type RegionPageProps = InferPagePropsType<RouteType>;
 

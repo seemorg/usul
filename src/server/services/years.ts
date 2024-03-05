@@ -31,16 +31,5 @@ export const findYearRangeBySlug = cache((slug: string | number) => {
     return;
   }
 
-  if (typeof slug === "number") {
-    return allRanges.find((r) => r.centuryNumber === slug);
-  }
-
-  // from-to
-  const [from, to] = slug.split("-").map(Number);
-
-  if (!from || !to || isNaN(from) || isNaN(to)) {
-    return;
-  }
-
-  return allRanges.find((r) => r.yearFrom === from && r.yearTo === to);
+  return allRanges.find((r) => r.centuryNumber === Number(slug));
 });

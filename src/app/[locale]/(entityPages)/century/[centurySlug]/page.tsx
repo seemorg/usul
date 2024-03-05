@@ -12,8 +12,22 @@ import { getNumberWithOrdinal } from "@/lib/number";
 import RegionsFilter from "@/components/regions-filter";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
+import { getMetadata } from "@/lib/seo";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
+
+export const generateMetadata = async ({
+  params: { centurySlug },
+}: {
+  params: { centurySlug: string };
+}) => {
+  const yearRange = findYearRangeBySlug(centurySlug);
+  if (!yearRange) return;
+
+  return getMetadata({
+    title: `${getNumberWithOrdinal(yearRange.centuryNumber)} Century AH`,
+  });
+};
 
 async function CenturyPage({
   routeParams: { centurySlug },
@@ -61,7 +75,7 @@ async function CenturyPage({
         </TruncatedText>
       )}
 
-      <div className="mt-16">
+      <div className="mt-10 sm:mt-16">
         <SearchResults
           response={results.results}
           pagination={results.pagination}

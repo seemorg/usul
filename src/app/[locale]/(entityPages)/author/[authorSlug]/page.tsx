@@ -12,8 +12,22 @@ import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
+import { getMetadata } from "@/lib/seo";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
+
+export const generateMetadata = async ({
+  params: { authorSlug },
+}: {
+  params: { authorSlug: string };
+}) => {
+  const author = await findAuthorBySlug(authorSlug);
+  if (!author) return;
+
+  return getMetadata({
+    title: author.primaryLatinName ?? author.primaryArabicName ?? undefined,
+  });
+};
 
 async function AuthorPage({
   routeParams: { authorSlug },
