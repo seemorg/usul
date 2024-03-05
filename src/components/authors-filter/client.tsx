@@ -2,7 +2,7 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { searchAuthors } from "@/lib/search";
@@ -10,6 +10,7 @@ import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
+import { usePathname, useRouter } from "@/navigation";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
