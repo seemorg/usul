@@ -64,12 +64,12 @@ async function CenturyPage({
         </h2>
       )}
 
-      <div className="mt-14 flex w-full items-center">
+      <div className="mt-9 flex w-full items-center sm:mt-14">
         <p>{results.results.found} Texts</p>
       </div>
 
       {yearRange.description && (
-        <TruncatedText className="mt-6 text-lg">
+        <TruncatedText className="mt-7 text-lg">
           {yearRange.description}
         </TruncatedText>
       )}

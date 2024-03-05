@@ -69,7 +69,7 @@ async function GenrePage({
         </h2>
       )}
 
-      <div className="mt-14 flex w-full items-center">
+      <div className="mt-9 flex w-full items-center sm:mt-14">
         <p>{genre.count} Texts</p>
       </div>
 
@@ -79,7 +79,7 @@ async function GenrePage({
         </div>
       )} */}
 
-      <div className="mt-16">
+      <div className="mt-10 sm:mt-16">
         <SearchResults
           response={results.results}
           pagination={results.pagination}

@@ -33,11 +33,8 @@ export const findRegionBySlug = cache(async (slug: string) => {
   }
 
   const results = await db
-    .select({
-      subLocationsCount: countDistinct(location.id),
-    })
-    .from(locationsToAuthors)
-    .leftJoin(location, eq(locationsToAuthors.locationId, location.id))
+    .select()
+    .from(location)
     .where(
       or(
         ...["died", "born", "visited", "resided"].map((type) => {
@@ -47,12 +44,11 @@ export const findRegionBySlug = cache(async (slug: string) => {
           );
         }),
       ),
-    )
-    .groupBy(location.regionCode);
+    );
 
   return {
     region,
-    subLocationsCount: results[0]?.subLocationsCount ?? 0,
+    subLocations: results,
   };
 });
 

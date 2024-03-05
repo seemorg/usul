@@ -16,10 +16,11 @@ const uriToRegionData = mappings.reduce(
     acc[place.properties.cornuData.cornu_URI] = {
       code: place.properties.cornuData.region_code,
       slug: slugify(place.properties.cornuData.region_code, { lower: true }),
+      city: place.properties.cornuData.toponym_buckwalter ?? null,
     };
     return acc;
   },
-  {} as Record<string, { code: string; slug: string }>,
+  {} as Record<string, { code: string; slug: string; city: string }>,
 );
 
 const regionUriToCode = Object.keys(regions).reduce(
@@ -63,6 +64,8 @@ fs.writeFileSync(
 const distinctRegions = newLocationsMap.reduce(
   (acc, { region }) => {
     if (region) {
+      // @ts-ignore
+      region.city = undefined;
       acc[region.slug] = region;
     }
     return acc;

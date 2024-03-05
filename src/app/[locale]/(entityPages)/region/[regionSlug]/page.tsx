@@ -13,6 +13,7 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import YearFilterSkeleton from "@/components/year-filter-skeleton";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
+import { ExpandibleList } from "@/components/ui/expandible-list";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -61,6 +62,8 @@ async function RegionPage({
   const primaryName = region.region.code;
   const secondaryName = region.region.nameArabic;
 
+  const cities = [...new Set(region.subLocations.map((l) => l.cityCode))];
+
   return (
     <div>
       <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
@@ -70,20 +73,36 @@ async function RegionPage({
         </h2>
       )}
 
-      <div className="mt-14 flex w-full items-center">
-        <p>{results.results.found} Texts</p>
+      <div className="mt-9 flex w-full flex-wrap items-center gap-3 gap-y-1 sm:mt-14">
+        <div className="flex items-center">
+          <p>{results.results.found} Texts</p>
+          <span className="ml-3 text-muted-foreground">•</span>
+        </div>
 
-        <span className="mx-3 text-muted-foreground">•</span>
-        <p>Includes ({region.subLocationsCount} Locations)</p>
+        <div className="flex items-center">
+          <div className="flex items-center">
+            <p className="capitalize">Includes &nbsp;</p>
+
+            <ExpandibleList
+              items={cities as string[]}
+              noun={{
+                singular: "location",
+                plural: "locations",
+              }}
+            />
+          </div>
+
+          {/* <span className="ml-3 text-muted-foreground">•</span> */}
+        </div>
       </div>
 
       {region.region.overview && (
-        <TruncatedText className="mt-6 text-lg">
+        <TruncatedText className="mt-7 text-lg">
           {region.region.overview}
         </TruncatedText>
       )}
 
-      <div className="mt-16">
+      <div className="mt-10 sm:mt-16">
         <SearchResults
           response={results.results}
           pagination={results.pagination}

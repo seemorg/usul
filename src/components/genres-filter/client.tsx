@@ -13,7 +13,7 @@ const DEBOUNCE_DELAY = 300;
 
 interface GenresFilterProps {
   currentGenres: string[];
-  genres: { genreId: string; booksCount: number }[];
+  genres: { genreId: string; genreName: string; booksCount: number }[];
 }
 
 const getGenresFilterUrlParams = (
@@ -49,9 +49,17 @@ export default function _GenresFilter({
   const searchParams = useSearchParams();
   const [size, setSize] = useState(10);
 
+  const genreIdToGenreName = useMemo(() => {
+    return Object.fromEntries(genres.map((item) => [item.genreId, item]));
+  }, [genres]);
+
   const index = useMemo(() => {
     return new Fuse(
-      genres.map((g) => ({ genreId: g.genreId })),
+      genres.map((g) => ({
+        genreId: g.genreId,
+        genreName: g.genreName,
+        booksCount: g.booksCount,
+      })),
       {
         keys: ["genreId"],
         threshold: 0.3,
@@ -93,7 +101,9 @@ export default function _GenresFilter({
   const matchedGenres = useMemo(() => {
     const q = value.trim();
     const selectedGenresSet = new Set(selectedGenres);
-    const selectedGenresArray = selectedGenres.map((g) => ({ genreId: g }));
+    const selectedGenresArray = selectedGenres
+      .map((g) => genreIdToGenreName[g])
+      .filter(Boolean) as typeof genres;
 
     if (!q) {
       const items = selectedGenresArray.concat(
@@ -115,7 +125,7 @@ export default function _GenresFilter({
       items,
       hasMore: matches.length === size,
     };
-  }, [value, index, size, selectedGenres, genres]);
+  }, [value, index, size, selectedGenres, genreIdToGenreName, genres]);
 
   const genreIdToBooksCount = useMemo(() => {
     return Object.fromEntries(
@@ -145,8 +155,9 @@ export default function _GenresFilter({
 
       <div className="mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll text-sm sm:max-h-none sm:overflow-y-auto">
         {matchedGenres.items.map((genre) => {
-          const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
-          const title = `${genre} (${count})`;
+          // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
+
+          const title = `${genre.genreName} (${genre.booksCount})`;
 
           return (
             <div
@@ -174,11 +185,11 @@ export default function _GenresFilter({
                 title={title}
               >
                 <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {genre.genreId}
+                  {genre.genreName}
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {count}
+                  {genre.booksCount}
                 </span>
               </label>
             </div>

@@ -58,9 +58,27 @@ async function AuthorPage({
   const locations = author.locations
     .filter((l) => !!l.location.regionCode)
     .sort((a, b) => {
-      // give higher priority to the location with the type "lived"
-      if (a.location.type === "resided") return -1;
-      if (b.location.type === "resided") return 1;
+      // sort should be:
+      // 1. born
+      // 2. resided
+      // 3. visited
+      // 4. died
+
+      const aType = a.location.type;
+      const bType = b.location.type;
+
+      if (aType === "born") return -1;
+      if (bType === "born") return 1;
+
+      if (aType === "died") return 1;
+      if (bType === "died") return -1;
+
+      if (aType === "resided") return -1;
+      if (bType === "resided") return 1;
+
+      if (aType === "visited") return -1;
+      if (bType === "visited") return 1;
+
       return 0;
     });
 
@@ -73,9 +91,9 @@ async function AuthorPage({
         </h2>
       )}
 
-      <div className="mt-14 flex w-full flex-wrap items-center gap-3">
+      <div className="mt-9 flex w-full flex-wrap items-center gap-3 gap-y-1 sm:mt-14">
         <div className="flex items-center">
-          <Button variant="link" asChild className="p-0">
+          <Button variant="link" asChild className="h-auto p-0">
             <Link href={navigation.centuries.byYear(author.year)}>
               {author.year} AH
             </Link>
@@ -96,7 +114,7 @@ async function AuthorPage({
                 items={
                   locations.map(
                     (l) =>
-                      `${toTitleCase(l.location.type)}: ${l.location.regionCode}`,
+                      `${l.location.regionCode} (${toTitleCase(l.location.type)})`,
                   ) as string[]
                 }
                 noun={{
@@ -130,10 +148,10 @@ async function AuthorPage({
       </div>
 
       {author.bio && (
-        <TruncatedText className="mt-6 text-lg">{author.bio}</TruncatedText>
+        <TruncatedText className="mt-7 text-lg">{author.bio}</TruncatedText>
       )}
 
-      <div className="mt-16">
+      <div className="mt-10 sm:mt-16">
         <SearchResults
           response={results.results}
           pagination={results.pagination}

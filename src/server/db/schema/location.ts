@@ -11,6 +11,7 @@ export const location = createTable(
     name: text("name").notNull(),
     type: varchar("type", { length: 100 }).notNull(), // visited, resided, born, died
     regionCode: text("region_code"),
+    cityCode: text("city_code"),
   },
   (table) => {
     return {

@@ -57,7 +57,7 @@ export function ExpandibleList({
   };
 
   const trigger = (
-    <Button variant="link" className="px-0">
+    <Button variant="link" className="h-auto p-0">
       {(triggerItems ?? items).slice(0, maxItems).join(", ")}
 
       {items.length > maxItems ? getSeeMoreText() : null}
@@ -71,10 +71,10 @@ export function ExpandibleList({
 
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Other {noun.plural}</DialogTitle>
+            <DialogTitle className="capitalize">{noun.plural}</DialogTitle>
           </DialogHeader>
 
-          {namesList}
+          <div className="max-h-[400px] overflow-y-auto">{namesList}</div>
         </DialogContent>
       </Dialog>
     );
@@ -89,7 +89,7 @@ export function ExpandibleList({
           <DrawerTitle>Other {noun.plural}</DrawerTitle>
         </DrawerHeader>
 
-        <div className="px-4">{namesList}</div>
+        <div className="max-h-[400px] overflow-y-auto px-4">{namesList}</div>
 
         <DrawerFooter className="mt-5">
           <DrawerClose asChild>

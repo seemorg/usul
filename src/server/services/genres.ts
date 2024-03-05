@@ -52,6 +52,7 @@ export const findAllGenresWithBooksCount = cache(
       return await db
         .select({
           genreId: genre.id,
+          genreName: genre.name,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
         })
         .from(book)
@@ -69,6 +70,7 @@ export const findAllGenresWithBooksCount = cache(
       return (await db
         .select({
           genreId: genresToBooks.genreId,
+          genreName: genre.name,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
         })
         .from(book)
@@ -79,9 +81,11 @@ export const findAllGenresWithBooksCount = cache(
           eq(book.authorId, locationsToAuthors.authorId),
         )
         .leftJoin(location, eq(locationsToAuthors.locationId, location.id))
+        .leftJoin(genre, eq(genresToBooks.genreId, genre.id))
         .where(eq(location.regionCode, regionCode))
         .groupBy(genresToBooks.genreId)) as {
         genreId: string;
+        genreName: string;
         booksCount: number;
       }[];
     }
@@ -90,21 +94,25 @@ export const findAllGenresWithBooksCount = cache(
       return await db
         .select({
           genreId: genresToBooks.genreId,
+          genreName: genre.name,
           booksCount: sql<number>`${countDistinct(genresToBooks.bookId)} as booksCount`,
         })
         .from(genresToBooks)
         .orderBy(desc(sql`booksCount`))
         .groupBy(genresToBooks.genreId)
         .leftJoin(book, eq(genresToBooks.bookId, book.id))
+        .leftJoin(genre, eq(genresToBooks.genreId, genre.id))
         .where(eq(book.authorId, authorId));
     }
 
     return await db
       .select({
         genreId: genresToBooks.genreId,
+        genreName: genre.name,
         booksCount: sql<number>`${countDistinct(genresToBooks.bookId)} as booksCount`,
       })
       .from(genresToBooks)
+      .leftJoin(genre, eq(genresToBooks.genreId, genre.id))
       .orderBy(desc(sql`booksCount`))
       .groupBy(genresToBooks.genreId);
   },

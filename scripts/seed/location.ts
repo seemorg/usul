@@ -34,7 +34,7 @@ const locationToRegionData = locationsWithRegions.reduce(
     acc[entry.location.toLowerCase()] = entry.region ?? null;
     return acc;
   },
-  {} as Record<string, { code: string } | null>,
+  {} as Record<string, { code: string; city: string } | null>,
 );
 
 const slugs = new Set<string>();
@@ -83,13 +83,15 @@ for (const locations of chunkedLocations) {
 
     return (locationsToTypes[location] ?? []).map((type) => {
       const id = `${type}@${location}`;
+      const regionData = locationToRegionData[id.toLowerCase()];
 
       return {
         id,
         slug: slug,
         name: name,
         type,
-        regionCode: locationToRegionData[id.toLowerCase()]?.code ?? null,
+        regionCode: regionData?.code ?? null,
+        cityCode: regionData?.city ?? null,
       };
     });
   });
@@ -101,6 +103,7 @@ for (const locations of chunkedLocations) {
       name: locationEntry.name,
       type: locationEntry.type,
       ...(locationEntry.regionCode && { regionCode: locationEntry.regionCode }),
+      ...(locationEntry.cityCode && { cityCode: locationEntry.cityCode }),
     })),
   );
 

@@ -60,6 +60,10 @@ export default function SearchResults<T extends object & { id: string }>({
 
       <div className="col-span-4 sm:col-span-3 sm:pl-1">
         <div className="relative w-full">
+          {/* <div className="mb-2 flex justify-end sm:hidden">
+            <Sorts />
+          </div> */}
+
           <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
               <SearchBar
@@ -69,7 +73,7 @@ export default function SearchResults<T extends object & { id: string }>({
             </div>
 
             <div className="flex gap-2">
-              <div className="hidden sm:block">
+              <div>
                 <Sorts />
               </div>
 
@@ -89,14 +93,12 @@ export default function SearchResults<T extends object & { id: string }>({
                       {filters}
                     </div>
 
-                    <DrawerFooter className="flex-row">
+                    <DrawerFooter>
                       <DrawerClose asChild>
                         <Button variant="outline" className="flex-1">
                           Close
                         </Button>
                       </DrawerClose>
-
-                      <Sorts />
                     </DrawerFooter>
                   </DrawerContent>
                 </Drawer>
@@ -112,7 +114,7 @@ export default function SearchResults<T extends object & { id: string }>({
         <div className="mt-8">
           {/* <div className="mt-5 flex flex-col gap-4"> */}
           {hasResults ? (
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-y-5 sm:gap-5 md:gap-8 lg:grid-cols-3">
               {response.hits!.map((result) => (
                 <React.Fragment key={result.document.id}>
                   {renderResult(result)}
