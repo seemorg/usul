@@ -74,7 +74,7 @@ const TruncatedTextButton = (props: React.ComponentProps<typeof Button>) => {
   return (
     <Button
       variant="link"
-      className="ml-2 px-0 py-0 text-lg font-normal"
+      className="ml-2 h-auto px-0 py-0 text-lg font-normal"
       {...props}
     />
   );
