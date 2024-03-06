@@ -9,7 +9,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useState, useTransition } from "react";
-import Spinner from "../ui/spinner";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
 
 export default function SearchSort({
