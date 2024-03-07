@@ -31,8 +31,8 @@ export const findAllYearRanges = cache(async () => {
   return years;
 });
 
-export const findYearRangeBySlug = cache((slug: string | number) => {
-  const allRanges = findAllYearRanges();
+export const findYearRangeBySlug = cache(async (slug: string | number) => {
+  const allRanges = await findAllYearRanges();
 
   if (!slug) {
     return;

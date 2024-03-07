@@ -20,7 +20,7 @@ export const generateMetadata = async ({
 }: {
   params: { centurySlug: string };
 }) => {
-  const yearRange = findYearRangeBySlug(centurySlug);
+  const yearRange = await findYearRangeBySlug(centurySlug);
   if (!yearRange) return;
 
   return {
@@ -32,7 +32,7 @@ async function CenturyPage({
   routeParams: { centurySlug },
   searchParams,
 }: CenturyPageProps) {
-  const yearRange = findYearRangeBySlug(centurySlug);
+  const yearRange = await findYearRangeBySlug(centurySlug);
 
   if (!yearRange) {
     notFound();
@@ -65,7 +65,7 @@ async function CenturyPage({
       )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
-        <p>{results.results.found} Texts</p>
+        <p>{yearRange.totalBooks} Texts</p>
       </div>
 
       {yearRange.description && (
