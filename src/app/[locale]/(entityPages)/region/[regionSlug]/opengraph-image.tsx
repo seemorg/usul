@@ -56,7 +56,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {region.region.code}
+          {region.region.name}
         </h1>
 
         <p
