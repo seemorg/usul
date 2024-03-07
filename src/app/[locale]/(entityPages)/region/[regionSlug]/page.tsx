@@ -29,7 +29,7 @@ export const generateMetadata = async ({
   if (!region) return;
 
   return {
-    title: region.region.code,
+    title: region.region.name,
   };
 };
 
@@ -59,10 +59,10 @@ async function RegionPage({
     },
   });
 
-  const primaryName = region.region.code;
-  const secondaryName = region.region.nameArabic;
+  const primaryName = region.region.name;
+  const secondaryName = region.region.arabicName;
 
-  const cities = [...new Set(region.subLocations.map((l) => l.cityCode))];
+  const cities = [...new Set(region.subLocations.map((l) => l.city))];
 
   return (
     <div>
@@ -130,7 +130,7 @@ async function RegionPage({
               <GenresFilter
                 currentGenres={genres}
                 filters={{
-                  regionCode: region.region.code,
+                  regionId: region.region.id,
                 }}
               />
             </>

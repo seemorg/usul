@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
@@ -12,7 +13,8 @@ import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
-import { toTitleCase } from "~/scripts/utils";
+import { toTitleCase } from "@/lib/string";
+import DottedList from "@/components/ui/dotted-list";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -56,7 +58,7 @@ async function AuthorPage({
     primaryName === author.primaryLatinName ? author.primaryArabicName : null;
 
   const locations = author.locations
-    .filter((l) => !!l.location.regionCode)
+    .filter((l) => !!l.location.region)
     .sort((a, b) => {
       // sort should be:
       // 1. born
@@ -91,30 +93,26 @@ async function AuthorPage({
         </h2>
       )}
 
-      <div className="mt-9 flex w-full flex-wrap items-center gap-3 gap-y-1 sm:mt-14">
-        <div className="flex items-center">
+      <DottedList
+        className="mt-9 sm:mt-14"
+        items={[
           <Button variant="link" asChild className="h-auto p-0">
             <Link href={navigation.centuries.byYear(author.year)}>
               {author.year} AH
             </Link>
-          </Button>
-
-          <span className="ml-3 text-muted-foreground">•</span>
-        </div>
-
-        {locations.length > 0 && (
-          <div className="flex items-center">
-            <div className="flex items-center">
+          </Button>,
+          locations.length > 0 && (
+            <>
               <p className="capitalize">Lived: &nbsp;</p>
 
               <ExpandibleList
                 triggerItems={
-                  locations.map((l) => l.location.regionCode) as string[]
+                  locations.map((l) => l.location.region?.name) as string[]
                 }
                 items={
                   locations.map(
                     (l) =>
-                      `${l.location.regionCode} (${toTitleCase(l.location.type)})`,
+                      `${l.location.region?.name} (${toTitleCase(l.location.type)})`,
                   ) as string[]
                 }
                 noun={{
@@ -122,30 +120,22 @@ async function AuthorPage({
                   plural: "locations",
                 }}
               />
-            </div>
+            </>
+          ),
+          <p>{author.numberOfBooks} Texts</p>,
+          <>
+            <p>Also known as &nbsp;</p>
 
-            <span className="ml-3 text-muted-foreground">•</span>
-          </div>
-        )}
-
-        <div className="flex items-center">
-          <p>{author.numberOfBooks} Texts</p>
-
-          <span className="ml-3 text-muted-foreground">•</span>
-        </div>
-
-        <div className="flex items-center">
-          <p>Also known as &nbsp;</p>
-
-          <ExpandibleList
-            items={author.otherLatinNames.concat(author.otherArabicNames)}
-            noun={{
-              singular: "name",
-              plural: "names",
-            }}
-          />
-        </div>
-      </div>
+            <ExpandibleList
+              items={author.otherLatinNames.concat(author.otherArabicNames)}
+              noun={{
+                singular: "name",
+                plural: "names",
+              }}
+            />
+          </>,
+        ]}
+      />
 
       {author.bio && (
         <TruncatedText className="mt-7 text-lg">{author.bio}</TruncatedText>

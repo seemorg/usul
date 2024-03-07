@@ -2,6 +2,7 @@ import type { AuthorDocument } from "./author";
 
 export type BookDocument = {
   id: string;
+  slug: string;
   authorId: string;
   primaryArabicName: string;
   otherArabicNames: string[];

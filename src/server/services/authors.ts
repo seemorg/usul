@@ -2,8 +2,8 @@
 
 import { db } from "../db";
 import { cache } from "react";
-import { book } from "../db/schema";
-import { countDistinct } from "drizzle-orm";
+import { author, book } from "../db/schema";
+import { count, countDistinct } from "drizzle-orm";
 
 export const findAuthorBySlug = cache(async (slug: string) => {
   const author = await db.query.author.findFirst({
@@ -12,7 +12,11 @@ export const findAuthorBySlug = cache(async (slug: string) => {
     with: {
       locations: {
         with: {
-          location: true,
+          location: {
+            with: {
+              region: true,
+            },
+          },
         },
       },
     },
@@ -27,7 +31,7 @@ export const findAuthorBySlug = cache(async (slug: string) => {
     (l, i, arr) =>
       arr.findIndex(
         (l2) =>
-          l2.location.regionCode === l.location.regionCode &&
+          l2.location.regionId === l.location.regionId &&
           l2.location.type === l.location.type,
       ) === i,
   );
@@ -45,4 +49,14 @@ export const findAllAuthorIdsWithBooksCount = cache(async () => {
     .groupBy(book.authorId);
 
   return all;
+});
+
+export const countAllAuthors = cache(async () => {
+  const result = await db
+    .select({
+      count: count(author.id),
+    })
+    .from(author);
+
+  return result[0]?.count ?? 0;
 });

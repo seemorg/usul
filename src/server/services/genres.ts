@@ -42,17 +42,18 @@ export const findAllGenresWithBooksCount = cache(
   async ({
     yearRange,
     authorId,
-    regionCode,
+    regionId,
   }: {
     yearRange?: [number, number];
     authorId?: string;
-    regionCode?: string;
+    regionId?: string;
   } = {}) => {
     if (yearRange) {
       return await db
         .select({
           genreId: genre.id,
           genreName: genre.name,
+          genreSlug: genre.slug,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
         })
         .from(book)
@@ -66,11 +67,12 @@ export const findAllGenresWithBooksCount = cache(
         .groupBy(genre.id);
     }
 
-    if (regionCode) {
+    if (regionId) {
       return (await db
         .select({
           genreId: genresToBooks.genreId,
           genreName: genre.name,
+          genreSlug: genre.slug,
           booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
         })
         .from(book)
@@ -82,7 +84,7 @@ export const findAllGenresWithBooksCount = cache(
         )
         .leftJoin(location, eq(locationsToAuthors.locationId, location.id))
         .leftJoin(genre, eq(genresToBooks.genreId, genre.id))
-        .where(eq(location.regionCode, regionCode))
+        .where(eq(location.regionId, regionId))
         .groupBy(genresToBooks.genreId)) as {
         genreId: string;
         genreName: string;
@@ -95,6 +97,7 @@ export const findAllGenresWithBooksCount = cache(
         .select({
           genreId: genresToBooks.genreId,
           genreName: genre.name,
+          genreSlug: genre.slug,
           booksCount: sql<number>`${countDistinct(genresToBooks.bookId)} as booksCount`,
         })
         .from(genresToBooks)
@@ -109,6 +112,7 @@ export const findAllGenresWithBooksCount = cache(
       .select({
         genreId: genresToBooks.genreId,
         genreName: genre.name,
+        genreSlug: genre.slug,
         booksCount: sql<number>`${countDistinct(genresToBooks.bookId)} as booksCount`,
       })
       .from(genresToBooks)
@@ -117,3 +121,13 @@ export const findAllGenresWithBooksCount = cache(
       .groupBy(genresToBooks.genreId);
   },
 );
+
+export const countAllGenres = cache(async () => {
+  const result = await db
+    .select({
+      count: count(genre.id),
+    })
+    .from(genre);
+
+  return result[0]?.count ?? 0;
+});

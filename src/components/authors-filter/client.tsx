@@ -72,6 +72,10 @@ export default function _AuthorsFilter({
     setSelectedAuthors(currentAuthors);
   }, [currentAuthors]);
 
+  useEffect(() => {
+    setPageToResponse({ 1: initialAuthorsResponse });
+  }, [initialAuthorsResponse]);
+
   const fetchAuthors = async (
     q: string,
     p: number,

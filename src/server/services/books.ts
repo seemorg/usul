@@ -4,10 +4,12 @@ import { type Block, parseMarkdown } from "@openiti/markdown-parser";
 import { cache } from "react";
 import slugify from "slugify";
 import { db } from "@/server/db";
+import { book } from "../db/schema";
+import { count } from "drizzle-orm";
 
 export const fetchBook = cache(async (id: string, versionId?: string) => {
   const record = await db.query.book.findFirst({
-    where: (book, { eq }) => eq(book.id, id.replaceAll("-", ".")),
+    where: (book, { eq }) => eq(book.slug, id),
     with: {
       author: true,
       genres: {
@@ -129,3 +131,13 @@ function generateHeaderId(content: string, prevSlugs: Set<string>) {
 
   return `${id}-${i}`;
 }
+
+export const countAllBooks = cache(async () => {
+  const result = await db
+    .select({
+      count: count(book.id),
+    })
+    .from(book);
+
+  return result[0]?.count ?? 0;
+});

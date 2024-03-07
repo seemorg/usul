@@ -264,7 +264,7 @@ const BookSearchResult = ({
 
   return (
     <Link
-      href={navigation.books.reader(document.id)}
+      href={navigation.books.reader(document.slug)}
       prefetch={false}
       className="mx-auto block h-full w-4/5 md:w-full"
     >

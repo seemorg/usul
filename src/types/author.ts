@@ -2,6 +2,7 @@ import type { BookDocument } from "./book";
 
 export type AuthorDocument = {
   id: string;
+  slug: string;
   year: number;
   primaryArabicName?: string;
   otherArabicNames: string[];
@@ -9,5 +10,6 @@ export type AuthorDocument = {
   otherLatinNames: string[];
   _nameVariations: string[];
   geographies: string[];
+  booksCount: number;
   books: BookDocument[];
 };

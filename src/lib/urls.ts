@@ -1,6 +1,6 @@
 export const navigation = {
   books: {
-    reader: (bookId: string) => `/t/${bookId.replaceAll(".", "-")}`,
+    reader: (bookId: string) => `/t/${bookId}`,
   },
   authors: {
     all: () => "/authors",

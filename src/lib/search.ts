@@ -2,38 +2,15 @@
 
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
-import type { Pagination } from "@/types/pagination";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import { makeMultiSearchRequest, makeSearchRequest } from "./typesense";
+import { type SearchOptions, makePagination } from "@/server/typesense/utils";
 
 const AUTHORS_INDEX = "authors";
 const TITLES_INDEX = "books";
 
 const DEFAULT_AUTHORS_PER_PAGE = 5;
 const DEFAULT_BOOKS_PER_PAGE = 20;
-
-const makePagination = (
-  totalRecords: number,
-  currentPage: number,
-  perPage: number,
-): Pagination => {
-  const totalPages = Math.ceil(totalRecords / perPage);
-
-  return {
-    totalRecords,
-    totalPages,
-    currentPage,
-    hasPrev: currentPage > 1,
-    hasNext: currentPage < totalPages,
-  };
-};
-
-interface SearchOptions {
-  limit?: number;
-  page?: number;
-  sortBy?: string;
-  filters?: Record<string, string | number | string[] | number[] | null>;
-}
 
 const authorsQueryWeights = {
   2: ["primaryArabicName", "primaryLatinName"],
