@@ -4,7 +4,6 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import type { searchRegions } from "@/server/typesense/region";
 import DottedList from "./ui/dotted-list";
-import { ExpandibleList } from "./ui/expandible-list";
 
 export default function RegionSearchResult({
   result,
@@ -39,35 +38,24 @@ export default function RegionSearchResult({
           )}
 
           <DottedList
-            className="mt-3"
+            className="mt-3 text-muted-foreground"
             items={[
               primaryLatinName && (
                 <h2
-                  className={cn(
-                    primaryArabicName
-                      ? "text-lg text-muted-foreground"
-                      : "text-xl text-foreground",
-                  )}
+                  className={cn(primaryArabicName ? "text-lg" : "text-xl")}
                   dangerouslySetInnerHTML={{
                     __html: primaryLatinName,
                   }}
                 />
               ),
-              <p>{totalBooks} Texts</p>,
-              <div className="flex items-center">
-                <p>Includes &nbsp;</p>
 
-                <ExpandibleList
-                  items={subLocations}
-                  noun={{
-                    singular: "location",
-                    plural: "locations",
-                  }}
-                />
-              </div>,
+              subLocations.length > 0 && (
+                <p>Includes {subLocations.length} locations</p>
+              ),
             ]}
           />
         </div>
+        <p>{totalBooks} Texts</p>
       </div>
     </Link>
   );

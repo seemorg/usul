@@ -26,10 +26,7 @@ async function GenresPage({ searchParams }: PageProps) {
   ]);
 
   return (
-    <RootEntityPage
-      title="Genres"
-      description={`Search over ${totalGenres} genres`}
-    >
+    <RootEntityPage title="Genres" description={`Search ${totalGenres} genres`}>
       <SearchResults
         response={results.results}
         pagination={results.pagination}

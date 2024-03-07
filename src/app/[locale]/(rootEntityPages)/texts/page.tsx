@@ -38,10 +38,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
   ]);
 
   return (
-    <RootEntityPage
-      title="Texts"
-      description={`Search over ${totalBooks} texts`}
-    >
+    <RootEntityPage title="Texts" description={`Search ${totalBooks} texts`}>
       <SearchResults
         response={results.results}
         pagination={results.pagination}

@@ -9,6 +9,8 @@ export default function DottedList({
   className,
   ...props
 }: DottedListProps) {
+  const filteredItems = items.filter((item) => item); // remove null or undefined items
+
   return (
     <div
       className={cn(
@@ -17,11 +19,11 @@ export default function DottedList({
       )}
       {...props}
     >
-      {items.map((item, idx) => (
+      {filteredItems.map((item, idx) => (
         <div className="flex items-center" key={idx}>
           {item}
 
-          {items.length !== idx + 1 && (
+          {filteredItems.length !== idx + 1 && (
             <span className="ml-3 text-muted-foreground">•</span>
           )}
         </div>

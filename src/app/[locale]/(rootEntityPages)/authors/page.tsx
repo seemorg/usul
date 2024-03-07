@@ -41,7 +41,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title="Authors"
-      description={`Search over ${totalAuthors} authors`}
+      description={`Search ${totalAuthors} authors`}
     >
       <SearchResults
         response={results.results}

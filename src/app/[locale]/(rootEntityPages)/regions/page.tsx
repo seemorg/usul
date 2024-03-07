@@ -28,7 +28,7 @@ async function RegionsPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title="Regions"
-      description={`Search over ${totalRegions} regions`}
+      description={`Search ${totalRegions} regions`}
     >
       <SearchResults
         response={results.results}

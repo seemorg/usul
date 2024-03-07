@@ -50,7 +50,7 @@ async function CenturiesPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title="Centuries"
-      description={`Search over ${centuries.length} centuries`}
+      description={`Search ${centuries.length} centuries`}
     >
       <SearchResults
         response={
