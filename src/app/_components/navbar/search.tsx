@@ -176,8 +176,8 @@ export default function SearchBar({ autoFocus }: { autoFocus?: boolean }) {
               <SearchItem
                 key={result.document.id}
                 value={result.document.id}
-                onSelect={() => onItemSelect(result.document.id)}
-                href={navigation.books.reader(result.document.id)}
+                onSelect={() => onItemSelect(result.document.slug)}
+                href={navigation.books.reader(result.document.slug)}
               >
                 {documentName && (
                   <p

@@ -24,7 +24,7 @@ export default async function HomePage() {
             <Link
               prefetch={false}
               key={book.id}
-              href={navigation.books.reader(book.id)}
+              href={navigation.books.reader(book.slug)}
             >
               <h2 className="text-xl font-semibold">
                 {book.primaryArabicName ?? book.primaryLatinName}
