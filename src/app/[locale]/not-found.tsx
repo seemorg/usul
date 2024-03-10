@@ -5,7 +5,7 @@ import { Link } from "@/navigation";
 export default function NotFound() {
   return (
     <div>
-      <Navbar sidebarContent={null} />
+      <Navbar />
 
       <div className="flex h-screen w-full items-center justify-center bg-background">
         <div className="flex flex-col justify-center gap-10">

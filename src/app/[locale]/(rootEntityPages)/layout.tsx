@@ -7,7 +7,7 @@ export default function RootEntityPageLayout({
 }) {
   return (
     <div>
-      <Navbar sidebarContent={null} />
+      <Navbar />
 
       <main className="flex min-h-screen w-full flex-col bg-background pb-24">
         {children}

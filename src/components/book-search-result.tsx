@@ -25,10 +25,10 @@ const BookSearchResult = ({
     >
       <div
         className={cn(
-          "relative flex aspect-[160/256] w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-200 p-8 text-gray-700",
+          "relative flex aspect-[1600/2300] w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-200 p-8 text-gray-700",
         )}
       >
-        {document.author.slug === "ghazali" ? (
+        {document?.author?.slug === "ghazali" ? (
           <Image
             src={`/covers/${document.author.slug}/${document.slug}.png`}
             alt={title}
@@ -44,8 +44,8 @@ const BookSearchResult = ({
             </h3>
 
             <p>
-              {document.author.primaryArabicName ??
-                document.author.primaryLatinName}
+              {document.author?.primaryArabicName ??
+                document.author?.primaryLatinName}
             </p>
           </>
         )}

@@ -15,12 +15,17 @@ import { ThemeToggle } from "./theme-toggle";
 import SearchBar from "./search";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
+import HomepageNavigationMenu from "./navigation-menu";
 
 interface ReaderNavbarProps {
-  sidebarContent: React.ReactNode;
+  sidebarContent?: React.ReactNode;
+  isHomepage?: boolean;
 }
 
-export default function Navbar({ sidebarContent }: ReaderNavbarProps) {
+export default function Navbar({
+  isHomepage,
+  sidebarContent,
+}: ReaderNavbarProps) {
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -70,9 +75,15 @@ export default function Navbar({ sidebarContent }: ReaderNavbarProps) {
           </Link>
         </div>
 
-        <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-8 xl:px-0">
-          <SearchBar />
-        </div>
+        {isHomepage ? (
+          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none lg:justify-center xl:col-span-8 xl:px-0">
+            <HomepageNavigationMenu />
+          </div>
+        ) : (
+          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-8 xl:px-0">
+            <SearchBar />
+          </div>
+        )}
 
         <div className="flex items-center gap-3 lg:hidden">
           {/* Mobile menu button */}

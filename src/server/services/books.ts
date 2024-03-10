@@ -141,3 +141,11 @@ export const countAllBooks = cache(async () => {
 
   return result[0]?.count ?? 0;
 });
+
+export const getPopularBooks = cache(async () => {
+  const result = await db.query.book.findMany({
+    limit: 10,
+  });
+
+  return result;
+});
