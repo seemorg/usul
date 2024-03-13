@@ -1,5 +1,5 @@
-import { gregorianYearToHijriYear } from "@/lib/date";
 import { yearsSorts } from "@/lib/urls";
+import { yearRangeSchema } from "@/validation/year-range";
 import { type DynamicRoute } from "next-typesafe-url";
 import { z } from "zod";
 
@@ -13,11 +13,6 @@ export const sorts = [
 
 const sortsValues = sorts.map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts";
-
-const defaultYear = [1, gregorianYearToHijriYear(new Date().getFullYear())] as [
-  number,
-  number,
-];
 
 export const Route = {
   searchParams: z.object({
@@ -38,24 +33,7 @@ export const Route = {
           raw: v,
         };
       }),
-    year: z
-      .string()
-      .transform((v) => {
-        const [from, to] = v.split("-");
-        if (from === undefined || to === undefined) return defaultYear;
-
-        const fromNum = parseInt(from);
-        const toNum = parseInt(to);
-
-        if (isNaN(fromNum) || isNaN(toNum)) return defaultYear;
-
-        if (fromNum > toNum) return defaultYear;
-
-        if (fromNum < 1 || toNum < 1) return defaultYear;
-
-        return [fromNum, toNum] as [number, number];
-      })
-      .catch(defaultYear),
+    year: yearRangeSchema,
     regions: z
       .string()
       .transform((v) => v.split(","))

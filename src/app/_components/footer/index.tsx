@@ -15,10 +15,10 @@ const navigation = {
     { name: "Develop", href: "#" },
     { name: "Feedback", href: "#" },
   ],
-  about: [
-    { name: "About the project", href: "#" },
-    { name: "Who we are", href: "#" },
-  ],
+  // about: [
+  //   { name: "About the project", href: "#" },
+  //   { name: "Who we are", href: "#" },
+  // ],
   social: [
     {
       name: "Facebook",
@@ -96,7 +96,7 @@ export default function Footer() {
       </h2>
 
       <Container className="pb-8 pt-16 sm:pt-24">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+        <div className="xl:flex xl:justify-between xl:gap-8">
           <div className="space-y-8">
             <Logo className="h-12 w-auto" />
 
@@ -118,64 +118,66 @@ export default function Footer() {
               ))}
             </div>
           </div>
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Tools
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.tools.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Explore
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.explore.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div className="mt-16 flex flex-col gap-12 sm:grid sm:grid-cols-2 sm:gap-8 md:grid-cols-3 xl:mt-0">
+            {/* <div className="md:grid md:grid-cols-2 md:gap-8"> */}
+
+            <div className="w-fit xl:mx-auto">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                Explore
+              </h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {navigation.explore.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Contribute
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.contribute.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
+            <div className="w-fit xl:mx-auto">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                Contribute
+              </h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {navigation.contribute.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="w-fit xl:mx-auto">
+              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+                Tools
+              </h3>
+              <ul role="list" className="mt-6 space-y-4">
+                {navigation.tools.map((item) => (
+                  <li key={item.name}>
+                    <a
+                      href={item.href}
+                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+                    >
+                      {item.name}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* <div className="mt-10 md:mt-0">
                 <h3 className="text-sm font-semibold leading-6 text-gray-900">
                   About
                 </h3>
@@ -191,10 +193,9 @@ export default function Footer() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            </div>
-          </div>
+              </div> */}
         </div>
+        {/* </div> */}
 
         <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-500">

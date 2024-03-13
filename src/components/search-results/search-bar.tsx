@@ -5,20 +5,9 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useRef, useState, useTransition } from "react";
 import { Input } from "../ui/input";
 import { usePathname, useRouter } from "@/navigation";
+import { useSearchParams } from "next/navigation";
 
 const DEBOUNCE_DELAY = 300;
-
-const getQueryUrlParams = (query: string) => {
-  const params = new URLSearchParams();
-
-  if (query) {
-    params.set("q", query);
-  } else {
-    params.delete("q");
-  }
-
-  return params;
-};
 
 export default function SearchBar({
   disabled,
@@ -31,13 +20,30 @@ export default function SearchBar({
 }) {
   const { replace } = useRouter();
   const pathname = usePathname();
+  const params = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const [value, setValue] = useState(defaultValue);
 
+  const getQueryUrlParams = (query: string) => {
+    const newParams = new URLSearchParams();
+
+    if (query) {
+      newParams.set("q", query);
+    } else {
+      newParams.delete("q");
+    }
+
+    if (params.has("view")) {
+      newParams.set("view", params.get("view")!);
+    }
+
+    return newParams;
+  };
+
   function handleSearch(term: string) {
     setValue(term);
-    const params = getQueryUrlParams(term);
+    const newParams = getQueryUrlParams(term);
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -45,7 +51,7 @@ export default function SearchBar({
 
     const newTimeout = setTimeout(() => {
       startTransition(() => {
-        replace(`${pathname}?${params.toString()}`, { scroll: false });
+        replace(`${pathname}?${newParams.toString()}`, { scroll: false });
       });
     }, DEBOUNCE_DELAY);
 

@@ -86,7 +86,7 @@ export default function SearchBar({
   const showSeeMore = (data?.results?.found ?? 0) > 5 && hits.length > 0;
 
   return (
-    <div className={cn("w-full")}>
+    <div className={cn("z-50 w-full")}>
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -95,8 +95,8 @@ export default function SearchBar({
         shouldFilter={false}
         className={cn(
           "relative overflow-visible",
+          size === "lg" && "rounded-[30px] [&_svg]:!h-6 [&_svg]:!w-6",
           showList && "rounded-b-none",
-          size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6",
           // focusedState.value &&
           //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
         )}
@@ -121,7 +121,7 @@ export default function SearchBar({
           className={cn(size === "lg" && "h-14 py-4 text-base")}
         />
 
-        <div className="absolute inset-y-0 right-0 flex items-center">
+        <div className="absolute inset-y-0 right-2 flex items-center">
           <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
             {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">⌘</span>K
@@ -135,7 +135,7 @@ export default function SearchBar({
 
         <CommandList
           className={cn(
-            "absolute inset-x-0 bottom-1 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
+            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
             showList ? "opacity-100" : "pointer-events-none opacity-0",
           )}
         >

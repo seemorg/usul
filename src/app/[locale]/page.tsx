@@ -25,7 +25,9 @@ export default async function HomePage() {
           </p>
 
           <div className="mt-10 w-full">
-            <SearchBar size="lg" />
+            <div className="mx-auto max-w-4xl">
+              <SearchBar size="lg" />
+            </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
               <span>Try:</span>

@@ -10,6 +10,16 @@ const withNextIntl = createNextIntlPlugin();
 
 /** @type {import("next").NextConfig} */
 const config = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.digitalseem.org",
+        port: "",
+        pathname: "/covers/*",
+      },
+    ],
+  },
   redirects: async () => {
     return [
       {

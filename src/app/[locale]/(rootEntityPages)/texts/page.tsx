@@ -20,7 +20,7 @@ export const metadata = {
 };
 
 async function TextsPage({ searchParams }: TextsPageProps) {
-  const { q, sort, page, genres, authors, regions, year } = searchParams;
+  const { q, sort, page, genres, authors, regions, year, view } = searchParams;
 
   const [results, totalBooks] = await Promise.all([
     searchBooks(q, {
@@ -48,6 +48,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         placeholder={`Search within Texts...`}
         currentSort={sort}
         currentQuery={q}
+        view={view}
         filters={
           <>
             <YearFilter

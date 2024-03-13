@@ -16,6 +16,8 @@ import { Button } from "../ui/button";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./search-bar";
 import { cn } from "@/lib/utils";
+import ViewSwitcher from "./view-switcher";
+import type { View } from "@/validation/view";
 
 interface SearchResultsProps<T extends object & { id: string }> {
   response: SearchResponse<T>;
@@ -33,6 +35,7 @@ interface SearchResultsProps<T extends object & { id: string }> {
   filters?: React.ReactNode;
   placeholder?: string;
   itemsContainerClassName?: string;
+  view?: View;
 }
 
 export default function SearchResults<T extends object & { id: string }>({
@@ -46,10 +49,9 @@ export default function SearchResults<T extends object & { id: string }>({
   currentSort,
   placeholder,
   itemsContainerClassName,
+  view,
 }: SearchResultsProps<T>) {
   const hasResults = response.hits?.length ?? 0 > 0;
-
-  const Sorts = () => <SearchSort sorts={sorts} currentSort={currentSort} />;
 
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
@@ -79,7 +81,11 @@ export default function SearchResults<T extends object & { id: string }>({
 
             <div className="flex gap-2">
               <div>
-                <Sorts />
+                <SearchSort sorts={sorts} currentSort={currentSort} />
+              </div>
+
+              <div>
+                <ViewSwitcher />
               </div>
 
               {filters && (
@@ -127,7 +133,9 @@ export default function SearchResults<T extends object & { id: string }>({
           {hasResults ? (
             <div
               className={cn(
-                "grid grid-cols-2 gap-y-5 sm:gap-5 md:gap-8 lg:grid-cols-3",
+                !view || view === "grid"
+                  ? "grid grid-cols-2 gap-y-5 sm:gap-5 md:gap-8 lg:grid-cols-3"
+                  : "flex flex-col",
                 itemsContainerClassName,
               )}
             >
