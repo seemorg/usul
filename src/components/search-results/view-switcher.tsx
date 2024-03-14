@@ -11,7 +11,7 @@ export default function ViewSwitcher() {
   const { replace } = useRouter();
 
   const _view = params.get("view");
-  const view = _view ? (_view === "grid" ? "grid" : "list") : "grid";
+  const view = _view ? (_view === "grid" ? "grid" : "list") : "list";
 
   const toggleView = () => {
     const newView = view === "grid" ? "list" : "grid";

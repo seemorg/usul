@@ -42,7 +42,9 @@ async function TextsPage({ searchParams }: TextsPageProps) {
       <SearchResults
         response={results.results}
         pagination={results.pagination}
-        renderResult={(result) => <BookSearchResult result={result} />}
+        renderResult={(result) => (
+          <BookSearchResult result={result} view={view} />
+        )}
         emptyMessage="No books found"
         sorts={booksSorts as any}
         placeholder={`Search within Texts...`}

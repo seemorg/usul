@@ -95,7 +95,7 @@ export default function SearchBar({
         shouldFilter={false}
         className={cn(
           "relative overflow-visible",
-          size === "lg" && "rounded-[30px] [&_svg]:!h-6 [&_svg]:!w-6",
+          size === "lg" && "rounded-[10px] [&_svg]:!h-6 [&_svg]:!w-6",
           showList && "rounded-b-none",
           // focusedState.value &&
           //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
@@ -137,6 +137,7 @@ export default function SearchBar({
           className={cn(
             "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
             showList ? "opacity-100" : "pointer-events-none opacity-0",
+            size === 'lg' && 'rounded-[10px] rounded-t-none'
           )}
         >
           {value && hits.length === 0 && !isLoading && (

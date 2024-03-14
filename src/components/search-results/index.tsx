@@ -133,7 +133,7 @@ export default function SearchResults<T extends object & { id: string }>({
           {hasResults ? (
             <div
               className={cn(
-                !view || view === "grid"
+                view === "grid"
                   ? "grid grid-cols-2 gap-y-5 sm:gap-5 md:gap-8 lg:grid-cols-3"
                   : "flex flex-col",
                 itemsContainerClassName,

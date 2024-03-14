@@ -6,25 +6,30 @@ import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { useActiveView } from "@/hooks/useActiveView";
 import InfoDialog from "./info-dialog";
 import DottedList from "../ui/dotted-list";
+import type { View } from "@/validation/view";
 
 const BookSearchResult = ({
   result,
+  view,
 }: {
+  view?: View;
   result: NonNullable<
     Awaited<ReturnType<typeof searchBooks>>["results"]["hits"]
   >[number];
 }) => {
-  const view = useActiveView();
-  const { document } = result;
+  const { document, highlight } = result;
 
   const { primaryArabicName, primaryLatinName, author } = document;
 
-  const title = primaryArabicName ?? primaryLatinName;
+  const title = highlight?.primaryArabicName?.snippet
+    ? highlight?.primaryArabicName.snippet
+    : primaryArabicName ?? primaryLatinName;
   const secondaryTitle =
-    primaryArabicName && primaryLatinName ? primaryLatinName : null;
+    primaryArabicName && primaryLatinName
+      ? highlight?.primaryLatinName?.snippet ?? primaryLatinName
+      : null;
 
   const authorName = author?.primaryArabicName ?? author?.primaryLatinName;
   const authorSecondaryName =
@@ -53,11 +58,16 @@ const BookSearchResult = ({
             />
           </div>
           <div className="mt-2 text-right">
-            <p className="mt-2 text-lg font-semibold">
-              {primaryArabicName ?? primaryLatinName}
-            </p>
-            {primaryLatinName && primaryArabicName && (
-              <p className="mt-2">{primaryLatinName}</p>
+            <p
+              className="mt-2 text-lg font-semibold"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
+
+            {secondaryTitle && (
+              <p
+                className="mt-2"
+                dangerouslySetInnerHTML={{ __html: secondaryTitle }}
+              />
             )}
           </div>
         </Link>
@@ -72,11 +82,17 @@ const BookSearchResult = ({
       className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary"
     >
       <div className="flex-1 text-xl">
-        <h3 className="text-lg font-semibold">{title}</h3>
+        <h3
+          className="text-lg font-semibold"
+          dangerouslySetInnerHTML={{ __html: title }}
+        />
+
         <DottedList
           className="mt-2 text-xs text-muted-foreground"
           items={[
-            secondaryTitle && <p>{secondaryTitle}</p>,
+            secondaryTitle && (
+              <p dangerouslySetInnerHTML={{ __html: secondaryTitle }} />
+            ),
             <p>{authorName}</p>,
             authorSecondaryName && <p>{authorSecondaryName}</p>,
           ]}

@@ -37,13 +37,13 @@ async function GenrePage({
   routeParams: { genreSlug },
   searchParams,
 }: GenrePageProps) {
-  const genre = await findGenreBySlug(genreSlug);
+  const genre = await findGenreBySlug(decodeURIComponent(genreSlug));
 
   if (!genre) {
     notFound();
   }
 
-  const { q, sort, page, authors, regions, year } = searchParams;
+  const { q, sort, page, authors, regions, year, view } = searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -83,11 +83,14 @@ async function GenrePage({
         <SearchResults
           response={results.results}
           pagination={results.pagination}
-          renderResult={(result) => <BookSearchResult result={result} />}
+          renderResult={(result) => (
+            <BookSearchResult result={result} view={view} />
+          )}
           emptyMessage="No books found"
           sorts={booksSorts as any}
           placeholder={`Search within ${primaryName}...`}
           currentSort={sort}
+          view={view}
           currentQuery={q}
           filters={
             <>

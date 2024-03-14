@@ -8,6 +8,17 @@ import { getPopularBooks } from "@/server/services/books";
 import BookSearchResult from "@/components/book-search-result";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Footer from "../_components/footer";
+import { collections } from "@/lib/collections";
+import Image from "next/image";
+import { navigation } from "@/lib/urls";
+
+const searchExamples = [
+  "الأشباه والنظائر",
+  "Al Risala",
+  "Ibn Al-Jawzi",
+  "Iraq",
+  "Fiqh",
+];
 
 export default async function HomePage() {
   const texts = await getPopularBooks();
@@ -16,37 +27,30 @@ export default async function HomePage() {
     <>
       <Navbar isHomepage />
 
-      <div className="flex h-[500px] w-full items-center justify-center bg-primary pt-16 text-white sm:pt-28">
+      <div className="flex h-[500px] w-full bg-primary pt-32 text-white">
         <Container className="flex flex-col items-center">
-          <h1 className="text-6xl font-bold sm:text-7xl">Digital Seem</h1>
+          <h1 className="text-6xl font-bold sm:text-6xl">Digital Seem</h1>
 
           <p className="mt-5 text-lg text-secondary">
             World's largest Islamic library
           </p>
 
-          <div className="mt-10 w-full">
-            <div className="mx-auto max-w-4xl">
+          <div className="mt-[4.5rem] w-full">
+            <div className="mx-auto max-w-[52rem]">
               <SearchBar size="lg" />
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
               <span>Try:</span>
 
-              <a className="font-medium text-primary-foreground underline">
-                Ibn Al-Jawzi
-              </a>
-              <a className="font-medium text-primary-foreground underline">
-                Ibn Taymiyyah
-              </a>
-              <a className="font-medium text-primary-foreground underline">
-                Al-Ashbah wa al-Naza'ir
-              </a>
-              <a className="font-medium text-primary-foreground underline">
-                Iraq
-              </a>
-              <a className="font-medium text-primary-foreground underline">
-                Fiqh
-              </a>
+              {searchExamples.map((e) => (
+                <a
+                  key={e}
+                  className="font-medium text-primary-foreground underline"
+                >
+                  {e}
+                </a>
+              ))}
             </div>
           </div>
         </Container>
@@ -62,12 +66,24 @@ export default async function HomePage() {
 
           <ScrollArea className="mt-10 w-full whitespace-nowrap">
             <div className="flex gap-7 pb-10">
-              {new Array(10).fill(0).map((_, i) => (
-                <div key={i} className="flex flex-col">
-                  <div className="block h-44 w-44 rounded-md bg-gray-200" />
+              {collections.map((collection) => (
+                <Link
+                  href={navigation.genres.bySlug(collection.genre)}
+                  key={collection.genre}
+                  className="flex flex-col"
+                >
+                  <div className="relative block h-44 w-44 overflow-hidden rounded-md bg-gray-200">
+                    <Image
+                      src={collection.image}
+                      alt={collection.name}
+                      width={500}
+                      height={500}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
 
-                  <p className="mt-2 text-lg font-medium">Collection Name</p>
-                </div>
+                  <p className="mt-2 text-lg font-medium">{collection.name}</p>
+                </Link>
               ))}
             </div>
 
@@ -86,7 +102,33 @@ export default async function HomePage() {
             <div className="flex gap-0 pb-10 sm:gap-7">
               {texts.map((text) => (
                 <div key={text.id} className="w-[200px] flex-1">
-                  <BookSearchResult result={{ document: text } as any} />
+                  <BookSearchResult
+                    result={{ document: text } as any}
+                    view="grid"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </div>
+
+        <div>
+          <Link href="/texts">
+            <h2 className="flex items-center gap-2 text-3xl font-bold">
+              Islamic Law <ChevronRightIcon className="h-8 w-8" />
+            </h2>
+          </Link>
+
+          <ScrollArea className="mt-10 w-full whitespace-nowrap">
+            <div className="flex gap-0 pb-10 sm:gap-7">
+              {texts.map((text) => (
+                <div key={text.id} className="w-[200px] flex-1">
+                  <BookSearchResult
+                    result={{ document: text } as any}
+                    view="grid"
+                  />
                 </div>
               ))}
             </div>
@@ -97,27 +139,6 @@ export default async function HomePage() {
       </Container>
 
       <Footer />
-      {/* <footer className="bg-muted">
-        <Container className="py-10">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-lg font-medium">Digital Seem</p>
-
-              <p className="mt-2 text-sm text-muted-foreground">
-                World's largest Islamic library
-              </p>
-            </div>
-
-            <div>
-              <p className="text-lg font-medium">Contact</p>
-
-              <p className="mt-2 text-sm text-muted-foreground">
-                <a href="mailto:admin@digitalseem.org">Email</a>
-              </p>
-            </div>
-          </div>
-        </Container>
-      </footer> */}
     </>
   );
 }

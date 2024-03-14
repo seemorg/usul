@@ -35,13 +35,13 @@ async function AuthorPage({
   routeParams: { authorSlug },
   searchParams,
 }: AuthorPageProps) {
-  const author = await findAuthorBySlug(authorSlug);
+  const author = await findAuthorBySlug(decodeURIComponent(authorSlug));
 
   if (!author) {
     notFound();
   }
 
-  const { q, sort, page, genres } = searchParams;
+  const { q, sort, page, genres, view } = searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -145,12 +145,15 @@ async function AuthorPage({
         <SearchResults
           response={results.results}
           pagination={results.pagination}
-          renderResult={(result) => <BookSearchResult result={result} />}
+          renderResult={(result) => (
+            <BookSearchResult result={result} view={view} />
+          )}
           emptyMessage="No books found"
           sorts={booksSorts as any}
           placeholder={`Search within ${primaryName}...`}
           currentSort={sort}
           currentQuery={q}
+          view={view}
           filters={
             <GenresFilter
               currentGenres={genres}

@@ -45,7 +45,7 @@ async function RegionPage({
     notFound();
   }
 
-  const { q, sort, page, year, authors, genres } = searchParams;
+  const { q, sort, page, year, authors, genres, view } = searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -106,12 +106,15 @@ async function RegionPage({
         <SearchResults
           response={results.results}
           pagination={results.pagination}
-          renderResult={(result) => <BookSearchResult result={result} />}
+          renderResult={(result) => (
+            <BookSearchResult result={result} view={view} />
+          )}
           emptyMessage="No books found"
           sorts={yearsSorts as any}
           placeholder={`Search within ${primaryName}...`}
           currentSort={sort.raw}
           currentQuery={q}
+          view={view}
           filters={
             <>
               <YearFilter

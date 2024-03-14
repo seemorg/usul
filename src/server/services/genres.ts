@@ -17,6 +17,8 @@ export const findAllGenres = cache(async () => {
 });
 
 export const findGenreBySlug = cache(async (slug: string) => {
+  console.log(slug);
+
   const genreRecord = await db.query.genre.findFirst({
     where: (genre, { eq }) => eq(genre.slug, slug),
   });

@@ -1,4 +1,5 @@
 import { yearsSorts } from "@/lib/urls";
+import { viewSchema } from "@/validation/view";
 import { yearRangeSchema } from "@/validation/year-range";
 import { type DynamicRoute } from "next-typesafe-url";
 import { z } from "zod";
@@ -13,6 +14,7 @@ export const Route = {
   searchParams: z.object({
     q: z.string().default(""),
     page: z.number().min(1).catch(1),
+    view: viewSchema,
     sort: z
       .enum(sorts as any)
       .default(defaultSort)

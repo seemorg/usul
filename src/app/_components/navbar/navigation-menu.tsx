@@ -1,3 +1,4 @@
+import { Logo } from "@/components/Icons";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,26 +10,27 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
+import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import React from "react";
 
 const components: { title: string; href: string; description: string }[] = [
   {
-    title: "Top Texts",
+    title: "Texts",
     href: "/texts",
     description: "Explore the most popular texts",
   },
   {
-    title: "Top Authors",
+    title: "Authors",
     href: "/authors",
     description: "Explore the most popular authors",
   },
   {
-    title: "Top Regions",
+    title: "Regions",
     href: "/regions",
     description: "Explore the most popular regions",
   },
   {
-    title: "Top Genres",
+    title: "Genres",
     href: "/genres",
     description: "Explore the most popular genres",
   },
@@ -49,11 +51,11 @@ const contributeComponents: {
     href: "/contribute/report-mistake",
     description: "Report a mistake in a text",
   },
-  {
-    title: "Develop",
-    href: "/contribute/develop",
-    description: "Contribute to the development of the platform",
-  },
+  // {
+  //   title: "Develop",
+  //   href: "/contribute/develop",
+  //   description: "Contribute to the development of the platform",
+  // },
   {
     title: "Feedback",
     href: "/contribute/feedback",
@@ -76,8 +78,11 @@ export default function HomepageNavigationMenu() {
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3 min-h-[250px]">
                 <NavigationMenuLink className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
-                  {/* <Icons.logo className="h-6 w-6" /> */}
-                  <div className="mb-2 mt-4 text-lg font-medium">Seemore</div>
+                  <EnvelopeIcon className="h-6 w-6" />
+
+                  <div className="mb-2 mt-4 text-lg font-medium">
+                    Get Notified
+                  </div>
                   <p className="text-sm leading-tight text-muted-foreground">
                     Stay tuned for the upcoming tools, utilizing cutting-edge AI
                     technologies.
@@ -87,6 +92,14 @@ export default function HomepageNavigationMenu() {
 
               <ListItem href="/search" title="Advanced Search">
                 Search for texts, authors, regions, and genres
+              </ListItem>
+
+              <ListItem href="/search" title="Text Explorer">
+                Lorem ipsum dolor sit amet consectetur.
+              </ListItem>
+
+              <ListItem href="/search" title="Author Explorer">
+                Lorem ipsum dolor sit amet consectetur.
               </ListItem>
             </ul>
           </NavigationMenuContent>
@@ -112,7 +125,23 @@ export default function HomepageNavigationMenu() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>Contribute</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              <li className="row-span-3 min-h-[250px]">
+                <NavigationMenuLink asChild>
+                  <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md" href="https://digitalseem.org" target="_blank">
+                    <Logo className="h-auto w-6" />
+
+                    <div className="mb-2 mt-4 text-lg font-medium">
+                      About Seemore
+                    </div>
+                    <p className="text-sm leading-tight text-muted-foreground">
+                      Stay tuned for the upcoming tools, utilizing cutting-edge
+                      AI technologies.
+                    </p>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+
               {contributeComponents.map((component) => (
                 <ListItem
                   key={component.title}
@@ -126,13 +155,13 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
+        {/* <NavigationMenuItem>
           <NavigationMenuLink asChild>
             <Link href="/about" className={navigationMenuTriggerStyle()}>
               About
             </Link>
           </NavigationMenuLink>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );
