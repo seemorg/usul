@@ -1,5 +1,7 @@
 import { Logo } from "@/components/Icons";
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import { Input } from "@/components/ui/input";
 
 const navigation = {
   tools: [
@@ -94,35 +96,46 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-muted" aria-labelledby="footer-heading">
+    <footer aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
 
-      <Container className="pb-8 pt-16 sm:pt-24">
-        <div className="xl:flex xl:justify-between xl:gap-8">
-          <div className="max-w-[450px]">
-            <Logo className="h-12 w-auto" />
+      <Container className="pb-8 pt-0">
+        <div className="border-t border-gray-900/10 pt-12 xl:flex xl:justify-between xl:gap-8">
+          <div className="max-w-[400px]">
+            {/* <Logo className="-mt-5 h-12 w-auto" /> */}
 
-            <p className="mt-8 text-sm font-medium leading-6 text-gray-600">
-              Transforming the world of Islamic Texts through the power of
-              technology.
+            <p className="font-bold leading-6 text-gray-600">
+              Read, study, and learn The Noble Quran.
             </p>
 
-            <p className="mt-3 text-xs text-gray-500">
-              For centuries, Islamic Law has been a cornerstone of legal,
-              social, and ethical guidance across diverse communities around the
-              globe. However, the vast repositories of knowledge within the
-              tradition have remained inaccessible due to the physical
-              limitations of texts and the scattered nature of resources.
+            <p className="mt-3 text-sm leading-6 text-gray-500">
+              Quran.com is a Sadaqah Jariyah. We hope to make it easy for
+              everyone to read, study, and learn The Noble Quran. The Noble
+              Quran has many names including Al-Quran Al-Kareem, Al-Ketab,
+              Al-Furqan, Al-Maw'itha, Al-Thikr, and Al-Noor.
             </p>
+
+            <div className="mt-5">
+              <form className="mt-6 sm:flex sm:max-w-md">
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <Input placeholder="Email address" />
+
+                <div className="mt-4 sm:ml-4 sm:mt-0 sm:flex-shrink-0">
+                  <Button variant="default">Subscribe</Button>
+                </div>
+              </form>
+            </div>
           </div>
 
           <div className="mt-16 flex flex-col gap-12 sm:grid sm:grid-cols-2 sm:gap-8 md:grid-cols-3 xl:mt-0">
             {/* <div className="md:grid md:grid-cols-2 md:gap-8"> */}
 
             <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+              <h3 className="text-sm font-bold leading-6 text-gray-900">
                 Tools
               </h3>
               <ul role="list" className="mt-6 space-y-4">
@@ -140,7 +153,7 @@ export default function Footer() {
             </div>
 
             <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+              <h3 className="text-sm font-bold leading-6 text-gray-900">
                 Explore
               </h3>
               <ul role="list" className="mt-6 space-y-4">
@@ -158,7 +171,7 @@ export default function Footer() {
             </div>
 
             <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-semibold leading-6 text-gray-900">
+              <h3 className="text-sm font-bold leading-6 text-gray-900">
                 Contribute
               </h3>
               <ul role="list" className="mt-6 space-y-4">
@@ -196,7 +209,7 @@ export default function Footer() {
         </div>
         {/* </div> */}
 
-        <div className="mt-16 flex w-full items-center justify-between border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
+        <div className="mt-16 flex w-full items-center justify-between pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-500">
             &copy; {new Date().getFullYear()} Seemorg Foundation. All rights
             reserved.

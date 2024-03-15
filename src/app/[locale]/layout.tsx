@@ -22,11 +22,12 @@ export default function LocaleLayout({
     <html
       lang={locale}
       dir={locale === "ar" ? "rtl" : "ltr"}
+      className="bg-primary"
       suppressHydrationWarning
     >
       <body
         className={cn(
-          "relative min-h-screen w-full font-sans",
+          "relative min-h-screen w-full bg-white font-sans",
           getFontsClassnames(),
         )}
       >

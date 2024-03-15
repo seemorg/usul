@@ -5,7 +5,7 @@ import SearchBar from "../_components/navbar/search";
 import { Link } from "@/navigation";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import BookSearchResult from "@/components/book-search-result";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 import Footer from "../_components/footer";
 import { collections } from "@/data/collections";
 import Image from "next/image";
@@ -14,6 +14,7 @@ import {
   fetchPopularBooks,
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
+import { Button } from "@/components/ui/button";
 
 const searchExamples = [
   "الأشباه والنظائر",
@@ -22,6 +23,40 @@ const searchExamples = [
   "Iraq",
   "Fiqh",
 ];
+
+const SectionHeader = ({ title, href }: { title: string; href: string }) => (
+  <div className="flex items-center justify-between">
+    <Link href={href}>
+      <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
+        {title}{" "}
+        <ChevronRightIcon className="mt-[3px] h-6 w-6 text-gray-400 transition group-hover:text-primary" />
+      </h2>
+    </Link>
+
+    <div className="flex items-center">
+      <Button size="icon" variant="ghost" disabled>
+        <ChevronLeftIcon className="h-5 w-5" />
+      </Button>
+      <Button size="icon" variant="ghost">
+        <ChevronRightIcon className="h-5 w-5" />
+      </Button>
+    </div>
+  </div>
+);
+
+const Nav = () => (
+  <>
+    {/* <div className="pointer-events-none absolute bottom-[75px] left-0 top-0 z-50 flex w-[40px]  items-center justify-center bg-black/50 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <ChevronLeftIcon className="h-6 w-6 text-white" />
+    </div> */}
+
+    {/* <div className="pointer-events-none absolute bottom-[75px] right-0 top-0 z-50 flex w-[40px]  items-center justify-center bg-black/50 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100">
+      <ChevronRightIcon className="h-6 w-6 text-white" />
+    </div> */}
+
+    {/* <div className="pointer-events-none absolute bottom-[75px] right-0 top-0 z-50 flex w-[40px]  items-center justify-center bg-white/10 backdrop-blur-md" /> */}
+  </>
+);
 
 export default async function HomePage() {
   const [popularBooks, popularIslamicLawBooks] = await Promise.all([
@@ -62,23 +97,20 @@ export default async function HomePage() {
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-32 bg-background py-32">
+      <Container className="flex flex-col gap-12 bg-background py-24">
         <div>
-          <Link href="/collections">
-            <h2 className="flex items-center gap-2 text-3xl font-bold">
-              Collections <ChevronRightIcon className="h-8 w-8" />
-            </h2>
-          </Link>
+          <SectionHeader title="Collections" href="/collections" />
 
-          <ScrollArea className="mt-10 w-full whitespace-nowrap">
-            <div className="flex gap-7 pb-10">
+          <ScrollArea className="group relative mt-10 w-full whitespace-nowrap">
+            <Nav />
+            <div className="flex gap-5 pb-10">
               {collections.map((collection) => (
                 <Link
                   href={navigation.genres.bySlug(collection.genre)}
                   key={collection.genre}
                   className="flex flex-col"
                 >
-                  <div className="relative block h-44 w-44 overflow-hidden rounded-md bg-gray-200">
+                  <div className="relative block h-[180px] w-[180px] overflow-hidden rounded-md bg-gray-200">
                     <Image
                       src={collection.image}
                       alt={collection.name}
@@ -98,16 +130,14 @@ export default async function HomePage() {
         </div>
 
         <div>
-          <Link href="/texts">
-            <h2 className="flex items-center gap-2 text-3xl font-bold">
-              Popular Texts <ChevronRightIcon className="h-8 w-8" />
-            </h2>
-          </Link>
+          <SectionHeader title="Popular texts" href="/texts" />
 
-          <ScrollArea className="mt-10 w-full whitespace-nowrap">
-            <div className="flex gap-0 pb-10 sm:gap-7">
+          <ScrollArea className="relative mt-10 w-full whitespace-nowrap">
+            <Nav />
+
+            <div className="flex gap-0 pb-10 sm:gap-5">
               {popularBooks.map((text) => (
-                <div key={text.id} className="w-[200px] flex-1">
+                <div key={text.id} className="w-[180px] flex-1">
                   <BookSearchResult
                     result={{ document: text } as any}
                     view="grid"
@@ -121,16 +151,35 @@ export default async function HomePage() {
         </div>
 
         <div>
-          <Link href="/texts">
-            <h2 className="flex items-center gap-2 text-3xl font-bold">
-              Islamic Law <ChevronRightIcon className="h-8 w-8" />
-            </h2>
-          </Link>
+          <SectionHeader title="Islamic Law" href="/collections" />
 
-          <ScrollArea className="mt-10 w-full whitespace-nowrap">
-            <div className="flex gap-0 pb-10 sm:gap-7">
+          <ScrollArea className="relative mt-10 w-full whitespace-nowrap">
+            <Nav />
+
+            <div className="flex gap-0 pb-10 sm:gap-5">
               {popularIslamicLawBooks.map((text) => (
-                <div key={text.id} className="w-[200px] flex-1">
+                <div key={text.id} className="w-[180px] flex-1">
+                  <BookSearchResult
+                    result={{ document: text } as any}
+                    view="grid"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </div>
+
+        <div>
+          <SectionHeader title="Islamic History" href="/collections" />
+
+          <ScrollArea className="relative mt-10 w-full whitespace-nowrap">
+            <Nav />
+
+            <div className="flex gap-0 pb-10 sm:gap-5">
+              {popularIslamicLawBooks.map((text) => (
+                <div key={text.id} className="w-[180px] flex-1">
                   <BookSearchResult
                     result={{ document: text } as any}
                     view="grid"

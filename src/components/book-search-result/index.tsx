@@ -59,7 +59,7 @@ const BookSearchResult = ({
           </div>
           <div className="mt-2">
             <p
-              className="mt-2 text-lg font-semibold"
+              className="mt-2 text-wrap text-lg font-semibold"
               dir="rtl"
               dangerouslySetInnerHTML={{ __html: title }}
               title={title}
@@ -67,7 +67,7 @@ const BookSearchResult = ({
 
             {secondaryTitle && (
               <p
-                className="mt-2 text-right"
+                className="mt-2 text-wrap text-right"
                 dangerouslySetInnerHTML={{ __html: secondaryTitle }}
                 title={secondaryTitle}
               />
