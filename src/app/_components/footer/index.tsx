@@ -114,6 +114,7 @@ export default function Footer() {
               Quran.com is a Sadaqah Jariyah. We hope to make it easy for
               everyone to read, study, and learn The Noble Quran. The Noble
               Quran has many names including Al-Quran Al-Kareem, Al-Ketab,
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               Al-Furqan, Al-Maw'itha, Al-Thikr, and Al-Noor.
             </p>
 
