@@ -29,12 +29,18 @@ export const fetchBook = cache(async (id: string, versionId?: string) => {
     return { pages: [], headers: [], book: record };
   }
 
-  const response = await fetch(
+  let response = await fetch(
     `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}`,
   );
 
   if (!response.ok || response.status >= 300) {
-    throw new Error("Book not found");
+    response = await fetch(
+      `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}.completed`,
+    );
+
+    if (!response.ok || response.status >= 300) {
+      throw new Error("Book not found");
+    }
   }
 
   const text = await response.text();

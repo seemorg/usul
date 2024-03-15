@@ -4,13 +4,16 @@ import Navbar from "../_components/navbar";
 import SearchBar from "../_components/navbar/search";
 import { Link } from "@/navigation";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { getPopularBooks } from "@/server/services/books";
 import BookSearchResult from "@/components/book-search-result";
 import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import Footer from "../_components/footer";
-import { collections } from "@/lib/collections";
+import { collections } from "@/data/collections";
 import Image from "next/image";
 import { navigation } from "@/lib/urls";
+import {
+  fetchPopularBooks,
+  fetchPopularIslamicLawBooks,
+} from "@/data/popular-books";
 
 const searchExamples = [
   "الأشباه والنظائر",
@@ -21,7 +24,10 @@ const searchExamples = [
 ];
 
 export default async function HomePage() {
-  const texts = await getPopularBooks();
+  const [popularBooks, popularIslamicLawBooks] = await Promise.all([
+    fetchPopularBooks(),
+    fetchPopularIslamicLawBooks(),
+  ]);
 
   return (
     <>
@@ -100,7 +106,7 @@ export default async function HomePage() {
 
           <ScrollArea className="mt-10 w-full whitespace-nowrap">
             <div className="flex gap-0 pb-10 sm:gap-7">
-              {texts.map((text) => (
+              {popularBooks.map((text) => (
                 <div key={text.id} className="w-[200px] flex-1">
                   <BookSearchResult
                     result={{ document: text } as any}
@@ -123,7 +129,7 @@ export default async function HomePage() {
 
           <ScrollArea className="mt-10 w-full whitespace-nowrap">
             <div className="flex gap-0 pb-10 sm:gap-7">
-              {texts.map((text) => (
+              {popularIslamicLawBooks.map((text) => (
                 <div key={text.id} className="w-[200px] flex-1">
                   <BookSearchResult
                     result={{ document: text } as any}
