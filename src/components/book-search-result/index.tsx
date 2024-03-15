@@ -39,7 +39,7 @@ const BookSearchResult = ({
 
   if (view === "grid") {
     return (
-      <div className="group relative mx-auto block h-full w-4/5 md:w-full">
+      <div className="group relative mx-auto block h-full w-full">
         <InfoDialog result={result} />
 
         <Link href={navigation.books.reader(document.slug)} prefetch={false}>

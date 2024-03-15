@@ -118,7 +118,7 @@ export default function SearchBar({
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
           isLoading={isLoading}
-          className={cn(size === "lg" && "h-14 py-4 text-base")}
+          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
         />
 
         <div className="absolute inset-y-0 right-2 flex items-center">
@@ -137,7 +137,7 @@ export default function SearchBar({
           className={cn(
             "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
             showList ? "opacity-100" : "pointer-events-none opacity-0",
-            size === 'lg' && 'rounded-[10px] rounded-t-none'
+            size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
           {value && hits.length === 0 && !isLoading && (
