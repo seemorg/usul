@@ -5,10 +5,10 @@ import type { searchBooks } from "@/lib/search";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import InfoDialog from "./info-dialog";
 import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
+import { CloudflareImage } from "../cloudflare-image";
 
 const BookSearchResult = ({
   result,
@@ -48,7 +48,7 @@ const BookSearchResult = ({
               "relative flex aspect-[1600/2300] w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-200 p-8 text-gray-700",
             )}
           >
-            <Image
+            <CloudflareImage
               src={`https://assets.digitalseem.org/covers/${document.slug}.png`}
               alt={title}
               width={320}
@@ -57,6 +57,7 @@ const BookSearchResult = ({
               placeholder="empty"
             />
           </div>
+
           <div className="mt-2">
             <p
               className="mt-2 text-wrap text-lg font-semibold"

@@ -5,6 +5,7 @@ import type { fetchBook } from "@/server/services/books";
 import { Virtuoso } from "react-virtuoso";
 import React from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "./context";
+import Footer from "@/app/_components/footer";
 
 export default function ReaderContent({
   pages,
@@ -30,13 +31,17 @@ export default function ReaderContent({
       ref={virtuosoRef}
       components={{
         Header: (props) => <div {...props} className="h-20 w-full" />,
-        Footer: (props) => <div {...props} className="h-10 w-full" />,
+        Footer: (props) => (
+          <div className="mx-auto mt-10 w-full max-w-[90%]" {...props}>
+            <Footer />
+          </div>
+        ),
         // eslint-disable-next-line react/display-name
         List: React.forwardRef((props, ref) => (
           <div
             {...props}
             ref={ref}
-            className="w-full min-w-0 flex-auto divide-y-2 divide-border lg:!pl-0 lg:!pr-8 xl:!px-16"
+            className="mx-auto w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16"
           />
         )),
       }}
@@ -44,7 +49,7 @@ export default function ReaderContent({
         const { blocks, page } = pages[index]!;
 
         return (
-          <div className="flex flex-col gap-5 pb-5 pt-14">
+          <div className="flex flex-col gap-8 pb-5 pt-14">
             {blocks.map((block, blockIndex) => (
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               <RenderBlock key={blockIndex} block={block as any} />

@@ -122,6 +122,9 @@ dependencies:
   slugify:
     specifier: ^1.6.6
     version: 1.6.6
+  swiper:
+    specifier: ^11.0.7
+    version: 11.0.7
   tailwind-merge:
     specifier: ^2.2.1
     version: 2.2.1
@@ -12113,6 +12116,11 @@ packages:
       '@swc/counter': 0.1.3
       webpack: 5.90.3(@swc/core@1.4.2)(esbuild@0.18.20)
     dev: true
+
+  /swiper@11.0.7:
+    resolution: {integrity: sha512-cDfglW1B6uSmB6eB6pNmzDTNLmZtu5bWWa1vak0RU7fOI9qHjMzl7gVBvYSl34b0RU2N11HxxETJqQ5LeqI1cA==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
 
   /synchronous-promise@2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}

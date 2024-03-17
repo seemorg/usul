@@ -9,13 +9,14 @@ import {
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import { LanguageIcon } from "@heroicons/react/24/outline";
+
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import SearchBar from "./search";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import HomepageNavigationMenu from "./navigation-menu";
+import LocaleSwitcher from "./locale-switcher";
 
 interface ReaderNavbarProps {
   sidebarContent?: React.ReactNode;
@@ -120,9 +121,7 @@ export default function Navbar({
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
           <ThemeToggle />
 
-          <Button size="icon" variant="ghost">
-            <LanguageIcon className="h-6 w-6" />
-          </Button>
+          <LocaleSwitcher />
         </div>
       </header>
 

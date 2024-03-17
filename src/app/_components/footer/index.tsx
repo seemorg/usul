@@ -1,24 +1,27 @@
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
+import { getLocaleDirection } from "@/lib/locale";
+import { useLocale } from "next-intl";
+import type { AppLocale } from "~/i18n.config";
 
 const navigation = {
   tools: [
-    { name: "Advanced Search", href: "#" },
-    { name: "Text Explorer", href: "#" },
-    { name: "Author Explorer", href: "#" },
+    { label: "Advanced Search", href: "#" },
+    { label: "Text Explorer", href: "#" },
+    { label: "Author Explorer", href: "#" },
   ],
   explore: [
-    { name: "Texts", href: "#" },
-    { name: "Authors", href: "#" },
-    { name: "Regions", href: "#" },
-    { name: "Genres", href: "#" },
+    { label: "Texts", href: "#" },
+    { label: "Authors", href: "#" },
+    { label: "Regions", href: "#" },
+    { label: "Genres", href: "#" },
   ],
   contribute: [
-    { name: "Add Text", href: "#" },
-    { name: "Report Mistake", href: "#" },
-    { name: "Develop", href: "#" },
-    { name: "Feedback", href: "#" },
+    { label: "Add Text", href: "#" },
+    { label: "Report Mistake", href: "#" },
+    { label: "Develop", href: "#" },
+    { label: "Feedback", href: "#" },
   ],
   // about: [
   //   { name: "About the project", href: "#" },
@@ -45,21 +48,48 @@ const navigation = {
   }[],
 };
 
+const FooterRow = ({
+  title,
+  items,
+}: {
+  title: string;
+  items: { href: string; label: string }[];
+}) => (
+  <div className="w-fit xl:mx-auto">
+    <h3 className="text-sm font-bold leading-6 text-foreground">{title}</h3>
+
+    <ul role="list" className="mt-6 space-y-4">
+      {items.map((item) => (
+        <li key={item.label}>
+          <a
+            href={item.href}
+            className="text-sm leading-6 text-muted-foreground hover:text-secondary-foreground"
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 export default function Footer() {
+  const locale = useLocale() as AppLocale;
+
   return (
-    <footer aria-labelledby="footer-heading">
+    <footer aria-labelledby="footer-heading" dir={getLocaleDirection(locale)}>
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
 
       <Container className="pb-8 pt-0">
-        <div className="border-t border-gray-900/10 pt-12 xl:flex xl:justify-between xl:gap-8">
+        <div className="border-t border-border pt-12 xl:flex xl:justify-between xl:gap-8">
           <div className="max-w-[400px]">
-            <p className="font-bold leading-6 text-gray-600">
+            <p className="font-bold leading-6 text-foreground">
               Read, study, and learn The Noble Quran.
             </p>
 
-            <p className="mt-3 text-sm leading-6 text-gray-500">
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">
               Quran.com is a Sadaqah Jariyah. We hope to make it easy for
               everyone to read, study, and learn The Noble Quran. The Noble
               Quran has many names including Al-Quran Al-Kareem, Al-Ketab,
@@ -68,13 +98,13 @@ export default function Footer() {
             </p>
 
             <div className="mt-5">
-              <form className="flex sm:max-w-md">
+              <form className="flex gap-4 sm:max-w-md">
                 <label htmlFor="email-address" className="sr-only">
                   Email address
                 </label>
                 <Input placeholder="Email address" />
 
-                <div className="ml-4 flex-shrink-0">
+                <div className="flex-shrink-0">
                   <Button variant="default">Subscribe</Button>
                 </div>
               </form>
@@ -82,59 +112,9 @@ export default function Footer() {
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
-            <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-bold leading-6 text-gray-900">
-                Tools
-              </h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {navigation.tools.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-bold leading-6 text-gray-900">
-                Explore
-              </h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {navigation.explore.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="w-fit xl:mx-auto">
-              <h3 className="text-sm font-bold leading-6 text-gray-900">
-                Contribute
-              </h3>
-              <ul role="list" className="mt-6 space-y-4">
-                {navigation.contribute.map((item) => (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      {item.name}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <FooterRow title="Tools" items={navigation.tools} />
+            <FooterRow title="Explore" items={navigation.explore} />
+            <FooterRow title="Contribute" items={navigation.contribute} />
           </div>
 
           {/* <div className="mt-10 md:mt-0">

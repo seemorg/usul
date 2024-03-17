@@ -57,6 +57,7 @@
     "react-resizable-panels": "^2.0.9",
     "react-virtuoso": "^4.7.1",
     "slugify": "^1.6.6",
+    "swiper": "^11.0.7",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "typesense": "^1.7.2",

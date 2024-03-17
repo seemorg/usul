@@ -13,6 +13,7 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
 import { useQuery } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
 
@@ -23,6 +24,7 @@ export default function SearchBar({
   autoFocus?: boolean;
   size?: "sm" | "lg";
 }) {
+  const t = useTranslations("common");
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
@@ -111,7 +113,7 @@ export default function SearchBar({
         ref={parentRef}
       >
         <CommandInput
-          placeholder="Search for a text... (⌘ + K)"
+          placeholder={`${t("search-bar.placeholder")}... (⌘ + K)`}
           value={value}
           onValueChange={setValue}
           ref={inputRef}
@@ -121,14 +123,14 @@ export default function SearchBar({
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
         />
 
-        <div className="absolute inset-y-0 right-2 flex items-center">
+        <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
           <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
             {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">⌘</span>K
             </kbd> */}
 
             <Button variant="ghost" className="text-primary hover:text-primary">
-              Advanced Search
+              {t("advanced-search")}
             </Button>
           </p>
         </div>
@@ -141,11 +143,13 @@ export default function SearchBar({
           )}
         >
           {value && hits.length === 0 && !isLoading && (
-            <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty> {t("search-bar.no-results")}</CommandEmpty>
           )}
 
           {!value && (
-            <p className="py-6 text-center text-sm">Start typing...</p>
+            <p className="py-6 text-center text-sm">
+              {t("search-bar.start-typing")}
+            </p>
           )}
 
           {hits.map((result) => {
@@ -188,7 +192,7 @@ export default function SearchBar({
                 )}
 
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <p>Text</p>
+                  <p>{t("text")}</p>
 
                   <span>•</span>
 
@@ -217,7 +221,9 @@ export default function SearchBar({
               href={`/search?q=${debouncedValue}`}
             >
               <p className="text-primary">
-                See all results ({data?.results?.found})
+                {t("search-bar.all-results", {
+                  results: data?.results?.found ?? 0,
+                })}
               </p>
             </SearchItem>
           )}

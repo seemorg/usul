@@ -44,11 +44,11 @@ const CommandInput = React.forwardRef<
     isLoading?: boolean;
   }
 >(({ className, isLoading, ...props }, ref) => (
-  <div className="flex items-center px-3" cmdk-input-wrapper="">
+  <div className="flex items-center gap-2 px-3" cmdk-input-wrapper="">
     {isLoading ? (
-      <Spinner className="mr-2 h-4 w-4 shrink-0" />
+      <Spinner className="h-4 w-4 shrink-0" />
     ) : (
-      <MagnifyingGlassIcon className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
     )}
 
     <CommandPrimitive.Input

@@ -1,1 +1,28 @@
-{}
+{
+  "advanced-search": "Advanced Search",
+  "text": "Text",
+  "email-address": "Email Address",
+  "search-bar": {
+    "placeholder": "Search for a text",
+    "start-typing": "Start typing...",
+    "no-results": "No results found",
+    "all-results": "See all results ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Tools",
+      "advanced-search": {
+        "title": "Advanced Search",
+        "description": "Search for a text using advanced criteria"
+      },
+      "text-explorer": {
+        "title": "Advanced Search",
+        "description": "Search for a text using advanced criteria"
+      },
+      "author-explorer": {
+        "title": "Advanced Search",
+        "description": "Search for a text using advanced criteria"
+      }
+    }
+  }
+}

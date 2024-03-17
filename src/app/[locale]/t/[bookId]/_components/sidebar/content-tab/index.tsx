@@ -122,21 +122,20 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
           <HoverCard>
             <HoverCardTrigger asChild>
               <p>
-                <Link
-                  href={navigation.authors.bySlug(author.slug)}
-                  className="text-sm hover:underline"
-                >
-                  {author.primaryArabicName}
-                </Link>
+                <Button variant="link" asChild className="px-0 text-base">
+                  <Link href={navigation.authors.bySlug(author.slug)}>
+                    {author.primaryArabicName}
+                  </Link>
+                </Button>
               </p>
             </HoverCardTrigger>
 
-            <HoverCardContent className="text-muted-foreground">
-              <p className="text-sm">{author.otherArabicNames.join(", ")}</p>
-
-              <p className="mt-5 text-sm">
-                {author.otherLatinNames.join(", ")}
-              </p>
+            <HoverCardContent
+              className=" w-full max-w-[400px] text-muted-foreground"
+              avoidCollisions
+              side="left"
+            >
+              <p className="line-clamp-4 text-ellipsis text-sm">{author.bio}</p>
             </HoverCardContent>
           </HoverCard>
 

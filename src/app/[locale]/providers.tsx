@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "@/navigation";
-import config from "~/i18n.config";
+import config, { type AppLocale, resolveLocaleToFullCode } from "~/i18n.config";
 import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
@@ -38,16 +38,21 @@ function Providers({
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       acc = {
         ...acc,
-        ...(messages as Record<string, Record<string, string>>)[namespace],
+        [namespace]:
+          (messages as Record<string, Record<string, string>>)[namespace] ?? {},
       };
 
       return acc;
     },
-    {} as Record<string, string>,
+    {} as Record<string, Record<string, string>>,
   ) as AbstractIntlMessages;
 
   return (
-    <NextIntlClientProvider messages={messagesInNamespace} locale={locale}>
+    <NextIntlClientProvider
+      messages={messagesInNamespace}
+      locale={resolveLocaleToFullCode(locale as AppLocale)}
+      timeZone="UTC"
+    >
       <AppProgressBar
         height="4px"
         color="#fff"
