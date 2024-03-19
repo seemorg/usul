@@ -25,6 +25,7 @@ export default function SearchBar({
   size?: "sm" | "lg";
 }) {
   const t = useTranslations("common");
+  const entitiesT = useTranslations("entities");
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
   const [debouncedValue] = useDebounceValue(value, 300);
@@ -192,7 +193,7 @@ export default function SearchBar({
                 )}
 
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <p>{t("text")}</p>
+                  <p>{entitiesT("text")}</p>
 
                   <span>•</span>
 

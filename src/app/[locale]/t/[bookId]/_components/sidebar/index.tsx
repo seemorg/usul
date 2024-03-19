@@ -14,49 +14,67 @@ import {
 import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import { getLocale, getTranslations } from "next-intl/server";
+import { getLocaleDirection } from "@/lib/locale";
 
-const ComingSoonAlert = () => (
-  <SidebarContainer>
-    <Alert dir="ltr" className="bg-transparent font-sans">
-      <AlertTitle>Coming soon</AlertTitle>
-      <AlertDescription>This feature is not available yet.</AlertDescription>
-    </Alert>
-  </SidebarContainer>
-);
+const ComingSoonAlert = async () => {
+  const t = await getTranslations("reader");
+  const locale = await getLocale();
+
+  return (
+    <SidebarContainer>
+      <Alert
+        dir={getLocaleDirection(locale as any)}
+        className="bg-transparent font-sans"
+      >
+        <AlertTitle>{t("coming-soon.title")}</AlertTitle>
+        <AlertDescription>{t("coming-soon.message")}</AlertDescription>
+      </Alert>
+    </SidebarContainer>
+  );
+};
 
 const tabs = [
   {
     id: "notes",
-    label: "Notes",
+    label: "notes",
     icon: PencilSquareIcon,
     content: ComingSoonAlert,
   },
   {
     id: "bookmarks",
-    label: "Bookmarks",
+    label: "bookmarks",
     icon: StarIcon,
     content: ComingSoonAlert,
   },
   {
     id: "search",
-    label: "Search",
+    label: "search",
     icon: MagnifyingGlassIcon,
     content: ComingSoonAlert,
   },
 
   {
     id: "content",
-    label: "Content",
+    label: "content",
     icon: ListBulletIcon,
     content: ContentTab,
   },
-];
+] satisfies {
+  label: NamespaceTranslations<"reader">;
+  id: string;
+  icon: any;
+  content: any;
+}[];
 
-export default function ReaderSidebar({ bookId }: { bookId: string }) {
+export default async function ReaderSidebar({ bookId }: { bookId: string }) {
+  const t = await getTranslations("reader");
+
   return (
     <SidebarWrapper>
-      <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
+      <div className="absolute bottom-0 top-0 z-0 w-px bg-border ltr:left-0 rtl:right-0" />
+      <div className="pointer-events-none absolute inset-y-0 w-[50vw] max-w-full ltr:left-0 rtl:right-0" />
 
       <Tabs defaultValue="content">
         <SidebarContainer>
@@ -70,14 +88,14 @@ export default function ReaderSidebar({ bookId }: { bookId: string }) {
                 </TabsTrigger>
 
                 <TooltipContent side="bottom" sideOffset={10}>
-                  {tab.label}
+                  {t(tab.label)}
                 </TooltipContent>
               </Tooltip>
             ))}
           </TabsList>
         </SidebarContainer>
 
-        <div className="mt-6" dir="rtl">
+        <div className="mt-6">
           {tabs.map((tab) => (
             <TabsContent value={tab.id} key={tab.id}>
               <tab.content bookId={bookId} />

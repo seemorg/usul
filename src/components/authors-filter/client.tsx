@@ -11,6 +11,7 @@ import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { usePathname, useRouter } from "@/navigation";
+import { useFormatter, useTranslations } from "next-intl";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -49,6 +50,8 @@ export default function _AuthorsFilter({
   booksCount,
   filters,
 }: AuthorsFilterProps) {
+  const t = useTranslations();
+  const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =
     useState<string[]>(currentAuthors);
 
@@ -175,7 +178,7 @@ export default function _AuthorsFilter({
 
   return (
     <FilterContainer
-      title="Author"
+      title={t("entities.author")}
       isLoading={isPending || loading}
       clearFilterHref={
         selectedAuthors.length > 0
@@ -187,7 +190,7 @@ export default function _AuthorsFilter({
       }
     >
       <Input
-        placeholder="Search for an author"
+        placeholder={t("entities.search-for", { entity: t("entities.author") })}
         className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={handleInputChange}
@@ -198,7 +201,11 @@ export default function _AuthorsFilter({
           const author = item.document;
           const authorId = author.id;
 
-          const title = `${author.primaryLatinName ?? author.primaryArabicName} (${authorIdToBooksCount[authorId]})`;
+          const booksCount = formatter.number(
+            authorIdToBooksCount[authorId] ?? 0,
+          );
+
+          const title = `${author.primaryLatinName ?? author.primaryArabicName} (${booksCount})`;
 
           return (
             <div key={authorId} className="flex items-center gap-2">
@@ -208,14 +215,6 @@ export default function _AuthorsFilter({
                 onCheckedChange={() => handleChange(authorId)}
                 className="h-4 w-4"
               />
-
-              {/* <label
-                htmlFor={authorId}
-                className="line-clamp-1 min-w-0 max-w-[70%] break-words text-sm"
-                title={title}
-              >
-                {title}
-              </label> */}
 
               <label
                 htmlFor={authorId}
@@ -227,7 +226,7 @@ export default function _AuthorsFilter({
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {authorIdToBooksCount[authorId]}
+                  {booksCount}
                 </span>
               </label>
             </div>
@@ -236,7 +235,7 @@ export default function _AuthorsFilter({
 
         {data.hasMore && (
           <Button onClick={handleLoadMore} variant="link">
-            Show more
+            {t("common.load-more")}
           </Button>
         )}
       </div>

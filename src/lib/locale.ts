@@ -2,7 +2,7 @@ import type { AppLocale } from "~/i18n.config";
 
 const localeToFullName: Record<AppLocale, string> = {
   en: "English",
-  ar: "العربية",
+  "ar-SA": "العربية",
 };
 
 export const getLocaleFullName = (locale: AppLocale) => {
@@ -10,5 +10,9 @@ export const getLocaleFullName = (locale: AppLocale) => {
 };
 
 export const getLocaleDirection = (locale: AppLocale) => {
-  return locale === "ar" ? "rtl" : "ltr";
+  if (locale === "ar-SA") {
+    return "rtl";
+  }
+
+  return "ltr";
 };

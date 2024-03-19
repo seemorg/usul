@@ -11,6 +11,8 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { gregorianYearToHijriYear, hijriYearToGregorianYear } from "@/lib/date";
 import { usePathname, useRouter } from "@/navigation";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, useTransition } from "react";
 import { useLocalStorage } from "usehooks-ts";
 
@@ -32,13 +34,20 @@ const getYearFilterUrlParams = (from: number, to: number) => {
 const yearFormats = [
   {
     value: "AH",
-    description: "Year in Hijri calendar",
+    title: "year-format.ah.title",
+    description: "year-format.ah.description",
   },
   {
     value: "AD",
-    description: "Year in Gregorian calendar",
+    title: "year-format.ad.title",
+    description: "year-format.ad.description",
   },
-] as const;
+] satisfies {
+  value: "AH" | "AD";
+  title: NamespaceTranslations<"common">;
+  description: NamespaceTranslations<"common">;
+}[];
+
 type YearFormat = (typeof yearFormats)[number]["value"];
 
 const parseYearsInFormat = (
@@ -57,6 +66,8 @@ export interface YearFilterProps {
 
 export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
   const [format, setFormat] = useLocalStorage<YearFormat>("year-format", "AH");
+  const t = useTranslations();
+
   const [value, setValue] = useState(() =>
     parseYearsInFormat(defaultRange, format),
   );
@@ -149,7 +160,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
 
   return (
     <FilterContainer
-      title="Year"
+      title={t("entities.year")}
       isLoading={isPending}
       titleChildren={
         <Select value={format} onValueChange={handleYearFormatChange}>
@@ -163,9 +174,9 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
                 value={format.value}
                 className="py-2"
               >
-                <p>{format.value}</p>
+                <p>{t(`common.${format.title}`)}</p>
                 <p className="font-inter mt-1 text-xs text-gray-400">
-                  {format.description}
+                  {t(`common.${format.description}`)}
                 </p>
               </SelectItem>
             ))}
@@ -187,7 +198,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
 
         <div className="font-inter mt-4 flex justify-between gap-1">
           <Input
-            placeholder="From"
+            placeholder={t("common.from")}
             type="number"
             value={from}
             onChange={(e) => handleInputChange(e, "from")}
@@ -196,7 +207,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
           />
 
           <Input
-            placeholder="To"
+            placeholder={t("common.to")}
             type="number"
             value={to}
             onChange={(e) => handleInputChange(e, "to")}

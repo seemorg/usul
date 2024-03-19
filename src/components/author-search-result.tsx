@@ -4,20 +4,18 @@ import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import DottedList from "./ui/dotted-list";
+import { getTranslations } from "next-intl/server";
 
-const AuthorSearchResult = ({
+const AuthorSearchResult = async ({
   result,
 }: {
   result: NonNullable<
     Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"]
   >[number];
 }) => {
-  const { document, highlight } = result;
-  // const { primaryArabicName, primaryLatinName } = document;
+  const t = await getTranslations();
 
-  // if (!primaryArabicName && !primaryLatinName) {
-  //   return null;
-  // }
+  const { document, highlight } = result;
 
   const primaryArabicName = highlight?.primaryArabicName?.snippet
     ? highlight.primaryArabicName.snippet
@@ -54,12 +52,14 @@ const AuthorSearchResult = ({
                   }}
                 />
               ),
-              <p>{document.booksCount} Texts</p>,
+              <p>{t("entities.x-texts", { count: document.booksCount })}</p>,
             ]}
           />
         </div>
 
-        <div className="text-center">{document.year} AH</div>
+        <div className="text-center">
+          {t("common.year-format.ah.value", { year: document.year })}
+        </div>
       </div>
     </Link>
   );

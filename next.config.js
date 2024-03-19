@@ -13,6 +13,12 @@ const config = {
   redirects: async () => {
     return [
       {
+        // Redirects from /ar/:path* to /ar-SA/:path*
+        source: "/ar/:path*",
+        destination: "/ar-SA/:path*",
+        permanent: true,
+      },
+      {
         // Redirects from /regions/:region to /region/:region
         source: "/regions/:region",
         destination: "/region/:region",

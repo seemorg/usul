@@ -2,31 +2,34 @@ import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
 import { getLocaleDirection } from "@/lib/locale";
-import { useLocale } from "next-intl";
+import { Link } from "@/navigation";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import { useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
+
+type NavItem = {
+  label: NamespaceTranslations<"common">;
+  href: string;
+};
 
 const navigation = {
   tools: [
-    { label: "Advanced Search", href: "#" },
-    { label: "Text Explorer", href: "#" },
-    { label: "Author Explorer", href: "#" },
-  ],
+    { label: "navigation.tools.advanced-search.title", href: "#" },
+    { label: "navigation.tools.text-explorer.title", href: "#" },
+    { label: "navigation.tools.author-explorer.title", href: "#" },
+  ] satisfies NavItem[],
   explore: [
-    { label: "Texts", href: "#" },
-    { label: "Authors", href: "#" },
-    { label: "Regions", href: "#" },
-    { label: "Genres", href: "#" },
-  ],
+    { label: "navigation.explore.texts.title", href: "#" },
+    { label: "navigation.explore.authors.title", href: "#" },
+    { label: "navigation.explore.regions.title", href: "#" },
+    { label: "navigation.explore.genres.title", href: "#" },
+  ] satisfies NavItem[],
   contribute: [
-    { label: "Add Text", href: "#" },
-    { label: "Report Mistake", href: "#" },
-    { label: "Develop", href: "#" },
-    { label: "Feedback", href: "#" },
-  ],
-  // about: [
-  //   { name: "About the project", href: "#" },
-  //   { name: "Who we are", href: "#" },
-  // ],
+    { label: "navigation.contribute.add-text.title", href: "#" },
+    { label: "navigation.contribute.report-mistake.title", href: "#" },
+    { label: "navigation.contribute.develop.title", href: "#" },
+    { label: "navigation.contribute.feedback.title", href: "#" },
+  ] satisfies NavItem[],
   social: [
     {
       name: "GitHub",
@@ -48,33 +51,32 @@ const navigation = {
   }[],
 };
 
-const FooterRow = ({
-  title,
-  items,
-}: {
-  title: string;
-  items: { href: string; label: string }[];
-}) => (
-  <div className="w-fit xl:mx-auto">
-    <h3 className="text-sm font-bold leading-6 text-foreground">{title}</h3>
+const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
+  const t = useTranslations("common");
 
-    <ul role="list" className="mt-6 space-y-4">
-      {items.map((item) => (
-        <li key={item.label}>
-          <a
-            href={item.href}
-            className="text-sm leading-6 text-muted-foreground hover:text-secondary-foreground"
-          >
-            {item.label}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+  return (
+    <div className="w-fit xl:mx-auto">
+      <h3 className="text-sm font-bold leading-6 text-foreground">{title}</h3>
+
+      <ul role="list" className="mt-6 space-y-4">
+        {items.map((item) => (
+          <li key={item.label}>
+            <Link
+              href={item.href}
+              className="text-sm leading-6 text-muted-foreground hover:text-secondary-foreground"
+            >
+              {t(item.label)}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default function Footer() {
   const locale = useLocale() as AppLocale;
+  const t = useTranslations("common");
 
   return (
     <footer aria-labelledby="footer-heading" dir={getLocaleDirection(locale)}>
@@ -86,61 +88,50 @@ export default function Footer() {
         <div className="border-t border-border pt-12 xl:flex xl:justify-between xl:gap-8">
           <div className="max-w-[400px]">
             <p className="font-bold leading-6 text-foreground">
-              Read, study, and learn The Noble Quran.
+              {t("footer.headline")}
             </p>
 
             <p className="mt-3 text-sm leading-6 text-muted-foreground">
-              Quran.com is a Sadaqah Jariyah. We hope to make it easy for
-              everyone to read, study, and learn The Noble Quran. The Noble
-              Quran has many names including Al-Quran Al-Kareem, Al-Ketab,
-              {/* eslint-disable-next-line react/no-unescaped-entities */}
-              Al-Furqan, Al-Maw'itha, Al-Thikr, and Al-Noor.
+              {t("footer.description")}
             </p>
 
             <div className="mt-5">
               <form className="flex gap-4 sm:max-w-md">
                 <label htmlFor="email-address" className="sr-only">
-                  Email address
+                  {t("footer.email-address")}
                 </label>
-                <Input placeholder="Email address" />
+
+                <Input placeholder={t("footer.email-address")} />
 
                 <div className="flex-shrink-0">
-                  <Button variant="default">Subscribe</Button>
+                  <Button variant="default"> {t("footer.subscribe")}</Button>
                 </div>
               </form>
             </div>
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
-            <FooterRow title="Tools" items={navigation.tools} />
-            <FooterRow title="Explore" items={navigation.explore} />
-            <FooterRow title="Contribute" items={navigation.contribute} />
+            <FooterRow
+              title={t("navigation.tools.title")}
+              items={navigation.tools}
+            />
+            <FooterRow
+              title={t("navigation.explore.title")}
+              items={navigation.explore}
+            />
+            <FooterRow
+              title={t("navigation.contribute.title")}
+              items={navigation.contribute}
+            />
           </div>
-
-          {/* <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  About
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  {navigation.about.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                      >
-                        {item.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div> */}
         </div>
-        {/* </div> */}
 
         <div className="mt-16 flex w-full items-center justify-between pt-8 sm:mt-20 lg:mt-24">
           <p className="text-xs leading-5 text-gray-500">
-            &copy; {new Date().getFullYear()} Seemorg Foundation. All rights
-            reserved.
+            &copy;{" "}
+            {t("footer.copyright", {
+              year: new Date().getFullYear(),
+            })}
           </p>
 
           <div className="flex space-x-6">

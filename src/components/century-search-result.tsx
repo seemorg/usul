@@ -2,15 +2,16 @@
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import type { findAllYearRanges } from "@/server/services/years";
-import { getNumberWithOrdinal } from "@/lib/number";
 import DottedList from "./ui/dotted-list";
+import { getFormatter, getTranslations } from "next-intl/server";
 
-export default function CenturySearchResult({
+export default async function CenturySearchResult({
   result,
 }: {
   result: Awaited<ReturnType<typeof findAllYearRanges>>[number];
 }) {
-  const primaryTitle = `${getNumberWithOrdinal(result.centuryNumber)} Century`;
+  const t = await getTranslations();
+  const formatter = await getFormatter();
 
   return (
     <Link
@@ -20,21 +21,27 @@ export default function CenturySearchResult({
     >
       <div className="flex items-center justify-between">
         <div className="max-w-[70%] flex-1">
-          {primaryTitle && (
-            <h2 className="text-xl text-foreground">{primaryTitle}</h2>
-          )}
+          <h2 className="text-xl text-foreground">
+            {t("entities.ordinal-century", {
+              count: result.centuryNumber,
+            })}
+          </h2>
 
           <DottedList
             className="mt-3 text-muted-foreground"
             items={[
               <p className="text-lg">
-                {result.yearFrom} - {result.yearTo} AH
+                {formatter.number(result.yearFrom, { useGrouping: false })} -{" "}
+                {formatter.number(result.yearTo, { useGrouping: false })}{" "}
+                {t("common.year-format.ah.title")}
               </p>,
             ]}
           />
         </div>
 
-        <div className="flex-1 text-end">{result.totalBooks} Texts</div>
+        <div className="flex-1 text-end">
+          {t("entities.x-texts", { count: result.totalBooks })}
+        </div>
       </div>
     </Link>
   );

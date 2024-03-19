@@ -12,15 +12,19 @@ import YearFilter from "@/components/year-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { countAllBooks } from "@/server/services/books";
 import RootEntityPage from "../root-entity-page";
+import { getTranslations } from "next-intl/server";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
-export const metadata = {
-  title: "All Texts",
-};
+export async function generateMetadata() {
+  return {
+    title: (await getTranslations("entities"))("texts"),
+  };
+}
 
 async function TextsPage({ searchParams }: TextsPageProps) {
   const { q, sort, page, genres, authors, regions, year, view } = searchParams;
+  const t = await getTranslations("entities");
 
   const [results, totalBooks] = await Promise.all([
     searchBooks(q, {
@@ -38,16 +42,24 @@ async function TextsPage({ searchParams }: TextsPageProps) {
   ]);
 
   return (
-    <RootEntityPage title="Texts" description={`Search ${totalBooks} texts`}>
+    <RootEntityPage
+      title={t("texts")}
+      description={t("search-x", {
+        count: totalBooks,
+        entity: t("texts"),
+      })}
+    >
       <SearchResults
         response={results.results}
         pagination={results.pagination}
         renderResult={(result) => (
           <BookSearchResult result={result} view={view} />
         )}
-        emptyMessage="No books found"
+        emptyMessage={t("no-entity", { entity: t("texts") })}
+        placeholder={t("search-within", {
+          entity: t("texts"),
+        })}
         sorts={booksSorts as any}
-        placeholder={`Search within Texts...`}
         currentSort={sort}
         currentQuery={q}
         view={view}

@@ -9,9 +9,10 @@ import { booksSorts } from "@/lib/urls";
 import { findGenreBySlug } from "@/server/services/genres";
 import AuthorsFilter from "@/components/authors-filter";
 import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter-skeleton";
+import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import RegionsFilter from "@/components/regions-filter";
+import { getTranslations } from "next-intl/server";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -43,6 +44,8 @@ async function GenrePage({
     notFound();
   }
 
+  const t = await getTranslations("entities");
+
   const { q, sort, page, authors, regions, year, view } = searchParams;
 
   const results = await searchBooks(q, {
@@ -70,7 +73,7 @@ async function GenrePage({
       )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
-        <p>{genre.count} Texts</p>
+        <p>{t("x-texts", { count: genre.count })}</p>
       </div>
 
       {/* {author.bio && (
@@ -86,9 +89,11 @@ async function GenrePage({
           renderResult={(result) => (
             <BookSearchResult result={result} view={view} />
           )}
-          emptyMessage="No books found"
+          emptyMessage={t("no-entity", { entity: t("texts") })}
+          placeholder={t("search-within", {
+            entity: primaryName,
+          })}
           sorts={booksSorts as any}
-          placeholder={`Search within ${primaryName}...`}
           currentSort={sort}
           view={view}
           currentQuery={q}

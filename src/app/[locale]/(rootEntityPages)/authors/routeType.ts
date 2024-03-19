@@ -1,4 +1,5 @@
 import { yearsSorts } from "@/lib/urls";
+import type { Sort } from "@/types/sort";
 import { yearRangeSchema } from "@/validation/year-range";
 import { type DynamicRoute } from "next-typesafe-url";
 import { z } from "zod";
@@ -6,10 +7,10 @@ import { z } from "zod";
 export const sorts = [
   ...yearsSorts,
   {
-    label: "No. of Texts",
+    label: "sorts.no-of-texts",
     value: "texts",
   },
-] as const;
+] as const satisfies Sort[];
 
 const sortsValues = sorts.map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts";

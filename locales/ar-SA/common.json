@@ -1,0 +1,122 @@
+{
+  "advanced-search": "بحث متقدم",
+  "load-more": "تحميل المزيد",
+  "pagination": {
+    "previous": "السابقة",
+    "next": "التالي",
+    "page-x": "صفحة {page, number, nogroup}",
+    "page-unknown": "صفحة غير معروفة"
+  },
+  "year-format": {
+    "ah": {
+      "title": "ه",
+      "description": "صيغة السنة الهجرية",
+      "value": "{year, number, nogroup} ه"
+    },
+    "ad": {
+      "title": "م",
+      "description": "صيغة السنة الميلادية",
+      "value": "{year, number, nogroup} م"
+    }
+  },
+  "sorts": {
+    "placeholder": "الترتيب حسب",
+    "relevance": "الصلة",
+    "chronological": "الترتيب الزمني",
+    "no-of-texts": "عدد النصوص",
+    "no-of-authors": "عدد المؤلفين",
+    "year-asc": "السنة (تصاعدي)",
+    "year-desc": "السنة (تنازلي)"
+  },
+  "theme": {
+    "light": "فاتح",
+    "dark": "داكن",
+    "auto": "تلقائي"
+  },
+  "from": "من",
+  "to": "الى",
+  "search-bar": {
+    "placeholder": "ابحث عن نص",
+    "start-typing": "ابدأ بالكتابة...",
+    "no-results": "لم يتم العثور على نتائج",
+    "all-results": "شاهد جميع النتائج ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "أدوات",
+      "get-notified": {
+        "title": "احصل على الإشعارات",
+        "description": "استقر على تهذيب الأدوات القادمة، باستخدام أحدث تكنولوجيات الذكاء الاصطناعي."
+      },
+      "advanced-search": {
+        "title": "بحث متقدم",
+        "description": "ابحث عن النصوص، والمؤلفين، والمناطق، والأنواع"
+      },
+      "text-explorer": {
+        "title": "مستكشف النصوص",
+        "description": "ابحث عن نص باستخدام معايير متقدمة"
+      },
+      "author-explorer": {
+        "title": "مستكشف المؤلفين",
+        "description": "ابحث عن نص باستخدام معايير متقدمة"
+      }
+    },
+    "explore": {
+      "title": "استكشف",
+      "texts": {
+        "title": "النصوص",
+        "description": "استكشف النصوص الأكثر شعبية"
+      },
+      "authors": {
+        "title": "المؤلفون",
+        "description": "استكشاف المؤلفين الأكثر شعبية"
+      },
+      "regions": {
+        "title": "المناطق",
+        "description": "استكشاف المناطق الأكثر شعبية"
+      },
+      "genres": {
+        "title": "الأنواع",
+        "description": "استكشاف أكثر الأنواع شعبية"
+      }
+    },
+    "contribute": {
+      "title": "ساهم",
+      "about": {
+        "title": "حول سيمور",
+        "description": "استقر على تهذيب الأدوات القادمة، باستخدام أحدث تكنولوجيات الذكاء الاصطناعي."
+      },
+      "add-text": {
+        "title": "أضف نصًا",
+        "description": "إضافة نص جديد إلى المكتبة"
+      },
+      "develop": {
+        "title": "تطوير",
+        "description": "ساعدنا في تطوير أدوات جديدة من خلال مساهمات مفتوحة المصدر"
+      },
+      "report-mistake": {
+        "title": "الإبلاغ عن خطأ",
+        "description": "الإبلاغ عن خطأ في النصوص"
+      },
+      "feedback": {
+        "title": "ملاحظات",
+        "description": "أرسل لنا ملاحظاتك"
+      }
+    }
+  },
+  "footer": {
+    "headline": "اقرأ ودراسة وتعلم القرآن الكريم.",
+    "description": "Quran.com هو صداقة جاريه. نأمل أن نجعل من السهل على الجميع القراءة والدراسة وتعلم القرآن الكريم وللقرآن النبيل أسماء عديدة من بينها القرآن الكريم، والكتاب، والفرقان، والمويث، والثكر، والنور.",
+    "email-address": "البريد الأكتروني",
+    "subscribe": "إشترِك",
+    "copyright": "{year, number, nogroup} مؤسسة سيمورج. جميع الحقوق محفوظة."
+  },
+  "lost": "يبدو وكأنك فقدت",
+  "go-back-home": "العودة إلى الرئيسية",
+  "arabic-names": "الأسماء العربية",
+  "latin-names": "الأسماء اللاتينية",
+  "author-arabic-names": "أسماء المؤلف العربية",
+  "author-latin-names": "أسماء المؤلف اللاتينية",
+  "author-bio": "أسماء المؤلف اللاتينية",
+  "author-regions": "مناطق المؤلف"
+}

@@ -5,6 +5,7 @@ import { useReaderVirtuoso } from "../../context";
 import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useFormatter } from "next-intl";
 
 export default function ChaptersList({
   headers,
@@ -14,6 +15,7 @@ export default function ChaptersList({
   pagesRange: { start: number; end: number };
 }) {
   const virtuosoRef = useReaderVirtuoso();
+  const formatter = useFormatter();
 
   const handleNavigate = (pageNumber: number) => {
     virtuosoRef.current?.scrollToIndex({
@@ -24,7 +26,7 @@ export default function ChaptersList({
 
   if (headers.length === 0) {
     return (
-      <div dir="ltr" className="mt-5">
+      <div className="mt-5">
         <PageNavigator range={pagesRange} popover={false} />
       </div>
     );
@@ -46,11 +48,20 @@ export default function ChaptersList({
             }
           }}
         >
-          <p className="block min-w-0 flex-wrap text-wrap text-start leading-5">
+          {chapter.page && (
+            <span className="text-xs">
+              {typeof chapter.page.page === "number"
+                ? formatter.number(chapter.page.page)
+                : chapter.page.page}
+            </span>
+          )}
+
+          <p
+            className="block min-w-0 flex-wrap text-wrap text-start leading-5"
+            dir="rtl"
+          >
             {chapter.content}
           </p>
-
-          {chapter.page && <span className="text-xs">{chapter.page.page}</span>}
         </Button>
       ))}
     </div>

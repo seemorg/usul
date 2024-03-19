@@ -1,0 +1,21 @@
+{
+  "notes": "الملاحظات",
+  "bookmarks": "العلامات",
+  "search": "البحث",
+  "content": "المحتوى",
+  "coming-soon": {
+    "title": "قريباً",
+    "message": "الخاصية غير متاحة بعد."
+  },
+  "page-navigator": {
+    "name": "تصفح الصفحات",
+    "title": "انتقل إلى صفحة",
+    "description": "أدخل رقم الصفحة بين {start, number} - {end, number}",
+    "input-placeholder": "رقم الصفحة",
+    "go": "اذهب"
+  },
+  "version": "النسخة",
+  "select-version": "اختيار النسخة",
+  "other-titles": "عناوين أخرى",
+  "more-info": "المزيد من المعلومات"
+}

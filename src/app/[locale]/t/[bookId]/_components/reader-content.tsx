@@ -6,6 +6,7 @@ import { Virtuoso } from "react-virtuoso";
 import React from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "./context";
 import Footer from "@/app/_components/footer";
+import { useTranslations } from "next-intl";
 
 export default function ReaderContent({
   pages,
@@ -14,6 +15,7 @@ export default function ReaderContent({
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
+  const t = useTranslations("common");
 
   return (
     <Virtuoso
@@ -56,7 +58,11 @@ export default function ReaderContent({
             ))}
 
             <p className="mt-10 text-center text-sm text-muted-foreground">
-              {page ? `page ${page.page}` : "unknown page"}
+              {page
+                ? typeof page.page === "number"
+                  ? t("pagination.page-x", { page: page.page })
+                  : page.page
+                : t("pagination.page-unknown")}
             </p>
           </div>
         );

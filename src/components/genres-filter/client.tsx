@@ -8,6 +8,7 @@ import Fuse from "fuse.js";
 import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
 import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
+import { useFormatter, useTranslations } from "next-intl";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -40,6 +41,8 @@ export default function _GenresFilter({
   currentGenres,
   genres,
 }: GenresFilterProps) {
+  const t = useTranslations();
+  const formatter = useFormatter();
   const [selectedGenres, setSelectedGenres] = useState<string[]>(currentGenres);
 
   const [isPending, startTransition] = useTransition();
@@ -127,15 +130,15 @@ export default function _GenresFilter({
     };
   }, [value, index, size, selectedGenres, genreIdToGenreName, genres]);
 
-  const genreIdToBooksCount = useMemo(() => {
-    return Object.fromEntries(
-      genres.map((item) => [item.genreId, item.booksCount]),
-    );
-  }, [genres]);
+  // const genreIdToBooksCount = useMemo(() => {
+  //   return Object.fromEntries(
+  //     genres.map((item) => [item.genreId, item.booksCount]),
+  //   );
+  // }, [genres]);
 
   return (
     <FilterContainer
-      title="Genres"
+      title={t("entities.genres")}
       isLoading={isPending}
       clearFilterHref={
         selectedGenres.length > 0
@@ -147,7 +150,7 @@ export default function _GenresFilter({
       }
     >
       <Input
-        placeholder="Search for a genre"
+        placeholder={t("entities.search-for", { entity: t("entities.genre") })}
         className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -156,8 +159,9 @@ export default function _GenresFilter({
       <div className="mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll text-sm sm:max-h-none sm:overflow-y-auto">
         {matchedGenres.items.map((genre) => {
           // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
+          const booksCount = formatter.number(genre.booksCount);
 
-          const title = `${genre.genreName} (${genre.booksCount})`;
+          const title = `${genre.genreName} (${booksCount})`;
 
           return (
             <div
@@ -171,14 +175,6 @@ export default function _GenresFilter({
                 className="h-4 w-4"
               />
 
-              {/* <label
-                htmlFor={genre}
-                className="line-clamp-1 min-w-0 max-w-[70%] break-words text-sm"
-                title={title}
-              >
-                {title}
-              </label> */}
-
               <label
                 htmlFor={genre.genreId}
                 className="flex w-full items-center justify-between text-sm"
@@ -189,7 +185,7 @@ export default function _GenresFilter({
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {genre.booksCount}
+                  {booksCount}
                 </span>
               </label>
             </div>
@@ -198,7 +194,7 @@ export default function _GenresFilter({
 
         {matchedGenres.hasMore && (
           <Button onClick={() => setSize((s) => s + 10)} variant="link">
-            Show more
+            {t("common.load-more")}
           </Button>
         )}
       </div>

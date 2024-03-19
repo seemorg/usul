@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
 import { usePathname, useRouter } from "@/navigation";
 import { type ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
+import { useFormatter, useTranslations } from "next-intl";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -39,6 +40,8 @@ export default function _RegionsFilter({
   currentRegions,
   regions,
 }: RegionsFilterProps) {
+  const t = useTranslations();
+  const formatter = useFormatter();
   const [selectedRegions, setSelectedRegions] =
     useState<string[]>(currentRegions);
 
@@ -143,7 +146,7 @@ export default function _RegionsFilter({
 
   return (
     <FilterContainer
-      title="Regions"
+      title={t("entities.regions")}
       isLoading={isPending}
       clearFilterHref={
         selectedRegions.length > 0
@@ -155,7 +158,7 @@ export default function _RegionsFilter({
       }
     >
       <Input
-        placeholder="Search for a region"
+        placeholder={t("entities.search-for", { entity: t("entities.region") })}
         className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -164,6 +167,9 @@ export default function _RegionsFilter({
       {/* make font weight normal */}
       <div className="font-inter mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll sm:max-h-none sm:overflow-y-auto">
         {matchedRegions.items.map((region) => {
+          const booksCount = formatter.number(region.count);
+          const title = `${region.name} (${booksCount})`;
+
           return (
             <div key={region.slug} className="flex items-center gap-2">
               <Checkbox
@@ -176,14 +182,14 @@ export default function _RegionsFilter({
               <label
                 htmlFor={region.slug}
                 className="flex w-full items-center justify-between text-sm"
-                title={region.name}
+                title={title}
               >
                 <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
                   {region.name}
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {region.count}
+                  {booksCount}
                 </span>
               </label>
             </div>
@@ -197,7 +203,7 @@ export default function _RegionsFilter({
               setSize((prev) => prev + 10);
             }}
           >
-            Show more
+            {t("common.load-more")}
           </Button>
         )}
       </div>

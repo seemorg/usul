@@ -18,6 +18,7 @@ import SearchBar from "./search-bar";
 import { cn } from "@/lib/utils";
 import ViewSwitcher from "./view-switcher";
 import type { View } from "@/validation/view";
+import type { Sort } from "@/types/sort";
 
 interface SearchResultsProps<T extends object & { id: string }> {
   response: SearchResponse<T>;
@@ -26,10 +27,7 @@ interface SearchResultsProps<T extends object & { id: string }> {
   ) => JSX.Element;
   pagination?: Pagination;
   emptyMessage?: string;
-  sorts: {
-    label: string;
-    value: string;
-  }[];
+  sorts: Sort[];
   currentSort: string;
   currentQuery: string;
   filters?: React.ReactNode;
@@ -65,7 +63,12 @@ export default function SearchResults<T extends object & { id: string }>({
         </div>
       )}
 
-      <div className={cn("col-span-4", filters ? "sm:col-span-3 sm:pl-1" : "")}>
+      <div
+        className={cn(
+          "col-span-4",
+          filters ? "sm:col-span-3 ltr:sm:pl-1 rtl:sm:pr-1" : "",
+        )}
+      >
         <div className="relative w-full">
           {/* <div className="mb-2 flex justify-end sm:hidden">
             <Sorts />

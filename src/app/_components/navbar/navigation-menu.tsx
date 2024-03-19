@@ -6,74 +6,89 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
-import { Link } from "@/navigation";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { useTranslations } from "next-intl";
 import React from "react";
 
-const components: { title: string; href: string; description: string }[] = [
+type NavItem = {
+  href: string;
+  title: NamespaceTranslations<"common">;
+  description: NamespaceTranslations<"common">;
+};
+
+const toolsItems: NavItem[] = [
   {
-    title: "Texts",
-    href: "/texts",
-    description: "Explore the most popular texts",
+    href: "/search",
+    title: "navigation.tools.advanced-search.title",
+    description: "navigation.tools.advanced-search.description",
   },
   {
-    title: "Authors",
-    href: "/authors",
-    description: "Explore the most popular authors",
+    href: "/text-explorer",
+    title: "navigation.tools.text-explorer.title",
+    description: "navigation.tools.text-explorer.description",
   },
   {
-    title: "Regions",
-    href: "/regions",
-    description: "Explore the most popular regions",
-  },
-  {
-    title: "Genres",
-    href: "/genres",
-    description: "Explore the most popular genres",
+    href: "/author-explorer",
+    title: "navigation.tools.author-explorer.title",
+    description: "navigation.tools.author-explorer.description",
   },
 ];
 
-const contributeComponents: {
-  title: string;
-  href: string;
-  description: string;
-}[] = [
+const exploreItems: NavItem[] = [
   {
-    title: "Add Text",
+    href: "/texts",
+    title: "navigation.explore.texts.title",
+    description: "navigation.explore.texts.description",
+  },
+  {
+    href: "/authors",
+    title: "navigation.explore.authors.title",
+    description: "navigation.explore.authors.description",
+  },
+  {
+    href: "/regions",
+    title: "navigation.explore.regions.title",
+    description: "navigation.explore.regions.description",
+  },
+  {
+    href: "/genres",
+    title: "navigation.explore.genres.title",
+    description: "navigation.explore.genres.description",
+  },
+];
+
+const contributeItems: NavItem[] = [
+  {
     href: "/contribute/add-text",
-    description: "Add a new text to the library",
+    title: "navigation.contribute.add-text.title",
+    description: "navigation.contribute.add-text.description",
   },
   {
-    title: "Report Mistake",
     href: "/contribute/report-mistake",
-    description: "Report a mistake in a text",
+    title: "navigation.contribute.report-mistake.title",
+    description: "navigation.contribute.report-mistake.description",
   },
-  // {
-  //   title: "Develop",
-  //   href: "/contribute/develop",
-  //   description: "Contribute to the development of the platform",
-  // },
   {
-    title: "Feedback",
     href: "/contribute/feedback",
-    description: "Send us your feedback",
+    title: "navigation.contribute.feedback.title",
+    description: "navigation.contribute.feedback.description",
   },
 ];
 
 export default function HomepageNavigationMenu() {
+  const t = useTranslations("common");
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Tools</NavigationMenuTrigger>
-          {/* <NavigationMenuContent>
-            <ul className="flex flex-col gap-3 p-4 md:w-[300px]">
-             
-            </ul>
-          </NavigationMenuContent> */}
+          <NavigationMenuTrigger>
+            {t("navigation.tools.title")}
+          </NavigationMenuTrigger>
+
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3 min-h-[250px]">
@@ -81,41 +96,21 @@ export default function HomepageNavigationMenu() {
                   <EnvelopeIcon className="h-6 w-6" />
 
                   <div className="mb-2 mt-4 text-lg font-medium">
-                    Get Notified
+                    {t("navigation.tools.get-notified.title")}
                   </div>
                   <p className="text-sm leading-tight text-muted-foreground">
-                    Stay tuned for the upcoming tools, utilizing cutting-edge AI
-                    technologies.
+                    {t("navigation.tools.get-notified.description")}
                   </p>
                 </NavigationMenuLink>
               </li>
 
-              <ListItem href="/search" title="Advanced Search">
-                Search for texts, authors, regions, and genres
-              </ListItem>
-
-              <ListItem href="/search" title="Text Explorer">
-                Lorem ipsum dolor sit amet consectetur.
-              </ListItem>
-
-              <ListItem href="/search" title="Author Explorer">
-                Lorem ipsum dolor sit amet consectetur.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Explore</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {components.map((component) => (
+              {toolsItems.map((item) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={item.href}
+                  href={item.href}
+                  title={t(item.title)}
                 >
-                  {component.description}
+                  {t(item.description)}
                 </ListItem>
               ))}
             </ul>
@@ -123,45 +118,63 @@ export default function HomepageNavigationMenu() {
         </NavigationMenuItem>
 
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Contribute</NavigationMenuTrigger>
+          <NavigationMenuTrigger>
+            {t("navigation.explore.title")}
+          </NavigationMenuTrigger>
+
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+              {exploreItems.map((item) => (
+                <ListItem
+                  key={item.href}
+                  title={t(item.title)}
+                  href={item.href}
+                >
+                  {t(item.description)}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>
+            {t("navigation.contribute.title")}
+          </NavigationMenuTrigger>
+
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
               <li className="row-span-3 min-h-[250px]">
                 <NavigationMenuLink asChild>
-                  <a className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md" href="https://digitalseem.org" target="_blank">
+                  <a
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                    href="https://digitalseem.org"
+                    target="_blank"
+                  >
                     <Logo className="h-auto w-6" />
 
                     <div className="mb-2 mt-4 text-lg font-medium">
-                      About Seemore
+                      {t("navigation.contribute.about.title")}
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
-                      Stay tuned for the upcoming tools, utilizing cutting-edge
-                      AI technologies.
+                      {t("navigation.contribute.about.description")}
                     </p>
                   </a>
                 </NavigationMenuLink>
               </li>
 
-              {contributeComponents.map((component) => (
+              {contributeItems.map((item) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={item.title}
+                  title={t(item.title)}
+                  href={item.href}
                 >
-                  {component.description}
+                  {t(item.description)}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-
-        {/* <NavigationMenuItem>
-          <NavigationMenuLink asChild>
-            <Link href="/about" className={navigationMenuTriggerStyle()}>
-              About
-            </Link>
-          </NavigationMenuLink>
-        </NavigationMenuItem> */}
       </NavigationMenuList>
     </NavigationMenu>
   );

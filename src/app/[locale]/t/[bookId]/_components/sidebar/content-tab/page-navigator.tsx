@@ -8,6 +8,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useReaderVirtuoso } from "../../context";
+import { useTranslations } from "next-intl";
 
 export default function PageNavigator({
   popover = true,
@@ -17,6 +18,7 @@ export default function PageNavigator({
   range: { start: number; end: number };
 }) {
   const virtuosoRef = useReaderVirtuoso();
+  const t = useTranslations("reader.page-navigator");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,9 +42,9 @@ export default function PageNavigator({
 
   const Content = (
     <>
-      <h4 className="font-medium leading-none">Jump to page</h4>
+      <h4 className="font-medium leading-none">{t("title")}</h4>
       <p className="mt-2 text-sm text-muted-foreground">
-        Enter a page number between {range.start} - {range.end}
+        {t("description", { start: range.start, end: range.end })}
       </p>
 
       <div className="mt-4 grid gap-2">
@@ -54,11 +56,11 @@ export default function PageNavigator({
             id="pageNumber"
             name="pageNumber"
             type="number"
-            placeholder="Page number"
+            placeholder={t("input-placeholder")}
             className="col-span-2 h-9"
           />
 
-          <Button>Go</Button>
+          <Button>{t("go")}</Button>
         </form>
       </div>
     </>
@@ -75,7 +77,7 @@ export default function PageNavigator({
           variant="ghost"
           className="px-0 font-normal text-primary hover:text-primary"
         >
-          Page Navigator
+          {t("name")}
         </Button>
       </PopoverTrigger>
 

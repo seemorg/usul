@@ -1,10 +1,7 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
-import config, {
-  locales,
-  type AppLocale,
-  resolveLocaleToFullCode,
-} from "i18n.config";
+import config, { locales, type AppLocale } from "i18n.config";
+import type { IntlConfig } from "next-intl";
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
@@ -27,8 +24,21 @@ export default getRequestConfig(async ({ locale }) => {
   ).reduce((acc, val) => ({ ...acc, ...val }), {});
 
   return {
-    locale: resolveLocaleToFullCode(locale as AppLocale),
-    timeZone: "UTC",
     messages,
+    locale,
+    ...getSharedConfig(),
   };
 });
+
+export const getSharedConfig = (): Omit<IntlConfig, "locale"> => {
+  return {
+    timeZone: "UTC",
+    formats: {
+      number: {
+        nogroup: {
+          useGrouping: false,
+        },
+      },
+    },
+  };
+};

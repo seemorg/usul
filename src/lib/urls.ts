@@ -1,3 +1,5 @@
+import { Sort } from "@/types/sort";
+
 export const navigation = {
   books: {
     reader: (bookId: string) => `/t/${bookId}`,
@@ -23,45 +25,22 @@ export const navigation = {
 
 export const booksSorts = [
   {
-    label: "Relevance",
+    label: "sorts.relevance",
     value: "relevance",
   },
-] as const;
-
-export const authorsSorts = [
-  {
-    label: "Relevance",
-    value: "relevance",
-  },
-  {
-    label: "Year (ASC)",
-    value: "year-asc",
-  },
-  {
-    label: "Year (DESC)",
-    value: "year-desc",
-  },
-  {
-    label: "No. of books (ASC)",
-    value: "books-asc",
-  },
-  {
-    label: "No. of books (DESC)",
-    value: "books-desc",
-  },
-] as const;
+] as const satisfies Sort[];
 
 export const yearsSorts = [
   {
-    label: "Relevance",
+    label: "sorts.relevance",
     value: "relevance",
   },
   {
-    label: "Year (ASC)",
+    label: "sorts.year-asc",
     value: "year-asc",
   },
   {
-    label: "Year (DESC)",
+    label: "sorts.year-desc",
     value: "year-desc",
   },
-] as const;
+] as const satisfies Sort[];

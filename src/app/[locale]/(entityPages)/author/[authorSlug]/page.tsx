@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { toTitleCase } from "@/lib/string";
 import DottedList from "@/components/ui/dotted-list";
+import { getTranslations } from "next-intl/server";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -36,6 +37,7 @@ async function AuthorPage({
   searchParams,
 }: AuthorPageProps) {
   const author = await findAuthorBySlug(decodeURIComponent(authorSlug));
+  const t = await getTranslations();
 
   if (!author) {
     notFound();
@@ -98,7 +100,7 @@ async function AuthorPage({
         items={[
           <Button variant="link" asChild className="h-auto p-0">
             <Link href={navigation.centuries.byYear(author.year)}>
-              {author.year} AH
+              {t("common.year-format.ah.value", { year: author.year })}
             </Link>
           </Button>,
           locations.length > 0 && (
@@ -116,21 +118,21 @@ async function AuthorPage({
                   ) as string[]
                 }
                 noun={{
-                  singular: "location",
-                  plural: "locations",
+                  singular: t("entities.location"),
+                  plural: t("entities.locations"),
                 }}
               />
             </>
           ),
-          <p>{author.numberOfBooks} Texts</p>,
+          <p>{t("entities.x-texts", { count: author.numberOfBooks })}</p>,
           <>
             <p>Also known as &nbsp;</p>
 
             <ExpandibleList
               items={author.otherLatinNames.concat(author.otherArabicNames)}
               noun={{
-                singular: "name",
-                plural: "names",
+                singular: t("entities.name"),
+                plural: t("entities.names"),
               }}
             />
           </>,
@@ -148,9 +150,13 @@ async function AuthorPage({
           renderResult={(result) => (
             <BookSearchResult result={result} view={view} />
           )}
-          emptyMessage="No books found"
+          emptyMessage={t("entities.no-entity", {
+            entity: t("entities.texts"),
+          })}
+          placeholder={t("entities.search-within", {
+            entity: primaryName,
+          })}
           sorts={booksSorts as any}
-          placeholder={`Search within ${primaryName}...`}
           currentSort={sort}
           currentQuery={q}
           view={view}

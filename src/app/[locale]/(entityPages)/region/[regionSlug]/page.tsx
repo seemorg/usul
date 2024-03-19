@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { searchBooks } from "@/lib/search";
 import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -10,10 +11,12 @@ import BookSearchResult from "@/components/book-search-result";
 import AuthorsFilter from "@/components/authors-filter";
 import dynamic from "next/dynamic";
 import { gregorianYearToHijriYear } from "@/lib/date";
-import YearFilterSkeleton from "@/components/year-filter-skeleton";
+import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { ExpandibleList } from "@/components/ui/expandible-list";
+import { getTranslations } from "next-intl/server";
+import DottedList from "@/components/ui/dotted-list";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -45,6 +48,8 @@ async function RegionPage({
     notFound();
   }
 
+  const t = await getTranslations();
+
   const { q, sort, page, year, authors, genres, view } = searchParams;
 
   const results = await searchBooks(q, {
@@ -73,28 +78,23 @@ async function RegionPage({
         </h2>
       )}
 
-      <div className="mt-9 flex w-full flex-wrap items-center gap-3 gap-y-1 sm:mt-14">
-        <div className="flex items-center">
-          <p>{results.results.found} Texts</p>
-          <span className="ml-3 text-muted-foreground">•</span>
-        </div>
-
-        <div className="flex items-center">
+      <DottedList
+        className="mt-9 sm:mt-14"
+        items={[
+          <p>{t("entities.x-texts", { count: results.results.found })}</p>,
           <div className="flex items-center">
             <p className="capitalize">Includes &nbsp;</p>
 
             <ExpandibleList
               items={cities as string[]}
               noun={{
-                singular: "location",
-                plural: "locations",
+                singular: t("entities.location"),
+                plural: t("entities.locations"),
               }}
             />
-          </div>
-
-          {/* <span className="ml-3 text-muted-foreground">•</span> */}
-        </div>
-      </div>
+          </div>,
+        ]}
+      />
 
       {region.region.overview && (
         <TruncatedText className="mt-7 text-lg">
@@ -109,9 +109,13 @@ async function RegionPage({
           renderResult={(result) => (
             <BookSearchResult result={result} view={view} />
           )}
-          emptyMessage="No books found"
+          emptyMessage={t("entities.no-entity", {
+            entity: t("entities.texts"),
+          })}
+          placeholder={t("entities.search-within", {
+            entity: primaryName,
+          })}
           sorts={yearsSorts as any}
-          placeholder={`Search within ${primaryName}...`}
           currentSort={sort.raw}
           currentQuery={q}
           view={view}

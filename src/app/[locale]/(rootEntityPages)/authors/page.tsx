@@ -3,13 +3,14 @@ import { Route, sorts, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter-skeleton";
+import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import { searchAuthors } from "@/lib/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import { countAllAuthors } from "@/server/services/authors";
 import RootEntityPage from "../root-entity-page";
+import { getTranslations } from "next-intl/server";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -18,12 +19,15 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export const metadata = {
-  title: "All Authors",
-};
+export async function generateMetadata() {
+  return {
+    title: (await getTranslations("entities"))("authors"),
+  };
+}
 
 async function AuthorsPage({ searchParams }: PageProps) {
   const { q, sort, page, year, regions } = searchParams;
+  const t = await getTranslations("entities");
 
   const [results, totalAuthors] = await Promise.all([
     searchAuthors(q, {
@@ -40,16 +44,21 @@ async function AuthorsPage({ searchParams }: PageProps) {
 
   return (
     <RootEntityPage
-      title="Authors"
-      description={`Search ${totalAuthors} authors`}
+      title={t("authors")}
+      description={t("search-x", {
+        count: totalAuthors,
+        entity: t("authors"),
+      })}
     >
       <SearchResults
         response={results.results}
         pagination={results.pagination}
         renderResult={(result) => <AuthorSearchResult result={result} />}
-        emptyMessage="No books found"
+        emptyMessage={t("no-entity", { entity: t("authors") })}
+        placeholder={t("search-within", {
+          entity: t("authors"),
+        })}
         sorts={sorts as any}
-        placeholder={`Search within Authors...`}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentSort={sort.raw}
         currentQuery={q}

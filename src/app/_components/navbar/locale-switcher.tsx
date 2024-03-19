@@ -23,6 +23,8 @@ export default function LocaleSwitcher() {
   const params = useSearchParams();
 
   const setLocale = (locale: string) => {
+    if (selectedLocale === locale) return;
+
     startTransition(() => {
       router.replace(`${pathname}?${params.toString()}`, { locale });
     });

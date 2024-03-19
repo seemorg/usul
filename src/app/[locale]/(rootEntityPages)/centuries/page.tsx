@@ -6,17 +6,21 @@ import Fuse from "fuse.js";
 import SearchResults from "@/components/search-results";
 import CenturySearchResult from "@/components/century-search-result";
 import RootEntityPage from "../root-entity-page";
-import { getNumberWithOrdinal } from "@/lib/number";
+import { getTranslations } from "next-intl/server";
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export const metadata = {
-  title: "All Centuries",
-};
+export async function generateMetadata() {
+  return {
+    title: (await getTranslations("entities"))("centuries"),
+  };
+}
 
 async function CenturiesPage({ searchParams }: PageProps) {
   const { q, sort } = searchParams;
   const qString = String(q);
+
+  const t = await getTranslations("entities");
   const centuries = await findAllYearRanges();
 
   const matches =
@@ -24,7 +28,7 @@ async function CenturiesPage({ searchParams }: PageProps) {
       ? new Fuse(
           centuries.map((c) => ({
             ...c,
-            _name: `${getNumberWithOrdinal(c.centuryNumber)} century`,
+            _name: t("ordinal-century", { count: c.centuryNumber }),
           })),
           {
             keys: ["_name"],
@@ -49,8 +53,11 @@ async function CenturiesPage({ searchParams }: PageProps) {
 
   return (
     <RootEntityPage
-      title="Centuries"
-      description={`Search ${centuries.length} centuries`}
+      title={t("centuries")}
+      description={t("search-x", {
+        count: centuries.length,
+        entity: t("centuries"),
+      })}
     >
       <SearchResults
         response={
@@ -71,10 +78,12 @@ async function CenturiesPage({ searchParams }: PageProps) {
         renderResult={(result) => (
           <CenturySearchResult result={result.document as any} />
         )}
-        emptyMessage="No centuries found"
+        emptyMessage={t("no-entity", { entity: t("centuries") })}
         sorts={sorts as any}
         currentSort={sort.raw}
-        placeholder={`Search within Centuries...`}
+        placeholder={t("search-within", {
+          entity: t("centuries"),
+        })}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={qString}
       />

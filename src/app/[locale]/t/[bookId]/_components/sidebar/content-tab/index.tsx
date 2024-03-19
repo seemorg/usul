@@ -1,4 +1,5 @@
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
+/* eslint-disable react/jsx-key */
+// import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Badge } from "@/components/ui/badge";
 import {
   HoverCard,
@@ -23,12 +24,15 @@ import ChaptersList from "./chapters-section";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { Button } from "@/components/ui/button";
+import { getLocale, getTranslations } from "next-intl/server";
+import DottedList from "@/components/ui/dotted-list";
+import { getLocaleDirection } from "@/lib/locale";
 
-const breadcrumbs = [
-  "كتب الأخلاق والسلوك",
-  "مجموعة ابن تيمية",
-  "التزكية والسلوك",
-];
+// const breadcrumbs = [
+//   "كتب الأخلاق والسلوك",
+//   "مجموعة ابن تيمية",
+//   "التزكية والسلوك",
+// ];
 
 // const fakeChapters = [
 //   {
@@ -78,6 +82,10 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
     notFound();
   }
 
+  const t = await getTranslations();
+  const locale = await getLocale();
+  const direction = getLocaleDirection(locale as any);
+
   const book = result.book;
   const author = book.author;
 
@@ -114,49 +122,48 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
           </ol>
         </nav> */}
         {/* mt-6  */}
-        <h2 className="flex gap-2 text-4xl font-bold">
+        <h2 className="flex gap-2 text-4xl font-bold" dir="rtl">
           {book.primaryArabicName}
         </h2>
 
-        <div className="mt-6 flex items-center text-accent-foreground">
-          <HoverCard>
-            <HoverCardTrigger asChild>
-              <p>
-                <Button variant="link" asChild className="px-0 text-base">
-                  <Link href={navigation.authors.bySlug(author.slug)}>
-                    {author.primaryArabicName}
-                  </Link>
-                </Button>
-              </p>
-            </HoverCardTrigger>
+        <DottedList
+          className="mt-6 ltr:justify-end"
+          items={[
+            <Button variant="link" className="p-0 text-sm" asChild>
+              <Link
+                href={navigation.centuries.byYear(author.year)}
+                dir={direction}
+              >
+                {t("common.year-format.ah.value", { year: author.year })}
+              </Link>
+            </Button>,
+            <HoverCard>
+              <HoverCardTrigger asChild>
+                <p dir="rtl">
+                  <Button variant="link" asChild className="px-0 text-base">
+                    <Link href={navigation.authors.bySlug(author.slug)}>
+                      {author.primaryArabicName}
+                    </Link>
+                  </Button>
+                </p>
+              </HoverCardTrigger>
 
-            <HoverCardContent
-              className=" w-full max-w-[400px] text-muted-foreground"
-              avoidCollisions
-              side="left"
-            >
-              <p className="line-clamp-4 text-ellipsis text-sm">{author.bio}</p>
-            </HoverCardContent>
-          </HoverCard>
+              <HoverCardContent
+                className=" w-full max-w-[400px] text-muted-foreground"
+                avoidCollisions
+                side="left"
+              >
+                <p className="line-clamp-4 text-ellipsis text-sm">
+                  {author.bio}
+                </p>
+              </HoverCardContent>
+            </HoverCard>,
+          ]}
+        />
 
-          <span className="mx-3 text-muted-foreground">•</span>
-
-          <Button variant="link" className="p-0 text-sm" dir="ltr" asChild>
-            <Link href={navigation.centuries.byYear(author.year)}>
-              {author.year} AH
-            </Link>
-          </Button>
-
-          {/* <span className="mx-3 text-gray-400">•</span>
-
-                <p className="text-sm text-gray-700" dir="ltr">
-                  {book.versions.length} versions
-                </p> */}
-        </div>
-
-        <div className="flex w-full flex-row-reverse items-center justify-between gap-4 pb-2 pt-6">
+        <div className="flex w-full items-center justify-between gap-4 pb-2 pt-6">
           <Label htmlFor="version-selector" className="font-normal">
-            Version
+            {t("reader.version")}
           </Label>
 
           <VersionSelector versionIds={book.versionIds} />
@@ -168,13 +175,13 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
       <SidebarContainer>
         <Accordion type="single" collapsible>
           <AccordionItem value="info" className="border-none">
-            <AccordionTrigger className="flex-row-reverse py-3 font-normal">
-              More Info
+            <AccordionTrigger className="py-3 font-normal">
+              {t("reader.more-info")}
             </AccordionTrigger>
 
-            <AccordionContent dir="ltr" className="flex flex-col gap-5">
+            <AccordionContent className="flex flex-col gap-5">
               <div>
-                <p className="font-semibold">Other titles:</p>
+                <p className="font-semibold">{t("reader.other-titles")}:</p>
 
                 <div className="mt-3 space-y-3 text-sm text-muted-foreground">
                   <p>
@@ -192,7 +199,7 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
               </div>
 
               <div>
-                <p className="font-semibold">Genres:</p>
+                <p className="font-semibold">{t("entities.genres")}:</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-3">
                   {book.genres.map(({ genre }) => (
@@ -220,7 +227,7 @@ export default async function ContentTab({ bookId }: { bookId: string }) {
 
       <SidebarContainer className="flex flex-col gap-3">
         {result.headers.length > 0 && (
-          <div className="flex justify-end">
+          <div className="w-full">
             <PageNavigator range={pagesRange} />
           </div>
         )}

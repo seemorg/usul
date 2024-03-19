@@ -1,12 +1,13 @@
-export const locales = ["en", "ar"] as const;
+export const locales = ["en", "ar-SA"] as const;
 export const defaultLocale = "en" as const;
 
 const config = {
-  namespaces: ["common", "home"] as const,
+  namespaces: ["common", "home", "entities", "reader"] as const,
   localePrefix: "as-needed" as const,
   namespacedRoutes: {
-    "*": ["common"],
+    "*": ["common", "entities"],
     "/": ["home"],
+    "/t/*": ["reader"],
   },
 };
 

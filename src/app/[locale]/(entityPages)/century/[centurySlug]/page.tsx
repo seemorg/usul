@@ -8,10 +8,10 @@ import { yearsSorts } from "@/lib/urls";
 import BookSearchResult from "@/components/book-search-result";
 import { findYearRangeBySlug } from "@/server/services/years";
 import AuthorsFilter from "@/components/authors-filter";
-import { getNumberWithOrdinal } from "@/lib/number";
 import RegionsFilter from "@/components/regions-filter";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
+import { getTranslations } from "next-intl/server";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
@@ -23,8 +23,10 @@ export const generateMetadata = async ({
   const yearRange = await findYearRangeBySlug(centurySlug);
   if (!yearRange) return;
 
+  const t = await getTranslations();
+
   return {
-    title: `${getNumberWithOrdinal(yearRange.centuryNumber)} Century AH`,
+    title: `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`,
   };
 };
 
@@ -37,6 +39,8 @@ async function CenturyPage({
   if (!yearRange) {
     notFound();
   }
+
+  const t = await getTranslations();
 
   const { q, sort, page, authors, regions, genres, view } = searchParams;
 
@@ -52,12 +56,13 @@ async function CenturyPage({
     },
   });
 
-  const primaryName = `${getNumberWithOrdinal(yearRange.centuryNumber)} Century AH`;
+  const primaryName = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
   const secondaryName = null;
 
   return (
     <div>
       <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+
       {secondaryName && (
         <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
           {secondaryName}
@@ -65,7 +70,7 @@ async function CenturyPage({
       )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
-        <p>{yearRange.totalBooks} Texts</p>
+        <p>{t("entities.x-texts", { count: yearRange.totalBooks })}</p>
       </div>
 
       {yearRange.description && (
@@ -81,9 +86,13 @@ async function CenturyPage({
           renderResult={(result) => (
             <BookSearchResult result={result} view={view} />
           )}
-          emptyMessage="No books found"
+          emptyMessage={t("entities.no-entity", {
+            entity: t("entities.texts"),
+          })}
+          placeholder={t("entities.search-within", {
+            entity: primaryName,
+          })}
           sorts={yearsSorts as any}
-          placeholder={`Search within ${primaryName}...`}
           currentSort={sort.raw}
           currentQuery={q}
           view={view}

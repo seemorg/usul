@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { navigation } from "@/lib/urls";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { Skeleton } from "../ui/skeleton";
+import { useTranslations } from "next-intl";
 
 const order: Record<string, number> = {
   born: 1,
@@ -27,6 +28,7 @@ export default function InfoDialog({
 }) {
   const { document } = result;
   const [open, setOpen] = useState(false);
+  const t = useTranslations();
 
   const shouldFetch = !document.author && open;
 
@@ -93,7 +95,7 @@ export default function InfoDialog({
       <Button
         variant="ghost"
         size="icon"
-        className="pointer-events-none absolute right-3 top-3 z-10 bg-white/70 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100"
+        className="pointer-events-none absolute top-3 z-10 bg-white/70 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
         onClick={() => setOpen(true)}
       >
         <InformationCircleIcon className="h-5 w-5" />
@@ -103,7 +105,9 @@ export default function InfoDialog({
         <DialogContent className="max-w-4xl">
           <div className="flex flex-col gap-10">
             <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">Arabic Names:</h3>
+              <h3 className="text-2xl font-bold">
+                {t("common.arabic-names")}:
+              </h3>
               {isLoading ? (
                 <div>
                   <Skeleton className="h-8 w-40 max-w-full" />
@@ -126,7 +130,7 @@ export default function InfoDialog({
             </div>
 
             <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">Latin Names:</h3>
+              <h3 className="text-2xl font-bold">{t("common.latin-names")}:</h3>
 
               {isLoading ? (
                 <div>
@@ -150,7 +154,7 @@ export default function InfoDialog({
             </div>
 
             <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">Year:</h3>
+              <h3 className="text-2xl font-bold">{t("entities.year")}:</h3>
               {isLoading ? (
                 <div>
                   <Skeleton className="h-8 w-28 max-w-full" />
@@ -164,7 +168,7 @@ export default function InfoDialog({
                     asChild
                   >
                     <Link href={navigation.centuries.byYear(author.year)}>
-                      {author.year} AH
+                      {t("common.year-format.ah.value", { year: author.year })}
                     </Link>
                   </Button>
                 </div>
@@ -173,7 +177,9 @@ export default function InfoDialog({
 
             <div className="flex flex-col gap-10">
               <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">Author Arabic Names:</h3>
+                <h3 className="text-2xl font-bold">
+                  {t("common.author-arabic-names")}:
+                </h3>
                 {isLoading ? (
                   <div>
                     <Skeleton className="h-8 w-40 max-w-full" />
@@ -205,7 +211,9 @@ export default function InfoDialog({
               </div>
 
               <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">Author Latin Names:</h3>
+                <h3 className="text-2xl font-bold">
+                  {t("common.author-latin-names")}:
+                </h3>
                 {isLoading ? (
                   <div>
                     <Skeleton className="h-8 w-40 max-w-full" />
@@ -237,7 +245,9 @@ export default function InfoDialog({
               </div>
 
               <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">Author Bio:</h3>
+                <h3 className="text-2xl font-bold">
+                  {t("common.author-bio")}:
+                </h3>
                 {isLoading ? (
                   <div className="flex flex-col gap-2">
                     <Skeleton className="h-2.5 w-full" />
@@ -256,7 +266,9 @@ export default function InfoDialog({
               </div>
 
               <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">Author Regions:</h3>
+                <h3 className="text-2xl font-bold">
+                  {t("common.author-regions")}:
+                </h3>
                 {isLoading ? (
                   <div className="flex flex-col gap-2">
                     <Skeleton className="h-3 w-40 max-w-full" />

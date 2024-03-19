@@ -64,7 +64,7 @@ export default function Navbar({
     <>
       <header
         className={cn(
-          "fixed right-0 top-0 z-30 flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:pl-10 xl:grid xl:grid-cols-12",
+          "fixed inset-x-0 top-0 z-30 flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -126,13 +126,13 @@ export default function Navbar({
       </header>
 
       {isMenuOpen && (
-        <div className="fixed left-0 right-0 top-0 z-[10] pt-10 lg:hidden">
+        <div className="fixed inset-x-0 top-0 z-[10] pt-10 lg:hidden">
           {sidebarContent}
         </div>
       )}
 
       {isSearchOpen && (
-        <div className="fixed bottom-0 left-0 right-0 top-0 z-[10] h-screen bg-gray-50 pt-20 lg:hidden">
+        <div className="fixed inset-0 z-[10] h-screen bg-gray-50 pt-20 lg:hidden">
           <SearchBar autoFocus />
         </div>
       )}

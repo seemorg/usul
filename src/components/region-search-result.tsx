@@ -4,14 +4,17 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import type { searchRegions } from "@/server/typesense/region";
 import DottedList from "./ui/dotted-list";
+import { getTranslations } from "next-intl/server";
 
-export default function RegionSearchResult({
+export default async function RegionSearchResult({
   result,
 }: {
   result: NonNullable<
     Awaited<ReturnType<typeof searchRegions>>["results"]["hits"]
   >[number];
 }) {
+  const t = await getTranslations();
+
   const region = result.document;
 
   const primaryArabicName = region.arabicName;
@@ -55,7 +58,8 @@ export default function RegionSearchResult({
             ]}
           />
         </div>
-        <p>{totalBooks} Texts</p>
+
+        <p>{t("entities.x-texts", { count: totalBooks })}</p>
       </div>
     </Link>
   );

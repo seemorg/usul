@@ -6,15 +6,20 @@ import SearchResults from "@/components/search-results";
 import GenreSearchResult from "@/components/genre-search-result";
 import { searchGenres } from "@/server/typesense/genre";
 import RootEntityPage from "../root-entity-page";
+import { getTranslations } from "next-intl/server";
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export const metadata = {
-  title: "All Genres",
-};
+export async function generateMetadata() {
+  return {
+    title: (await getTranslations("entities"))("genres"),
+  };
+}
 
 async function GenresPage({ searchParams }: PageProps) {
   const { q, sort, page } = searchParams;
+
+  const t = await getTranslations("entities");
 
   const [results, totalGenres] = await Promise.all([
     searchGenres(q, {
@@ -26,15 +31,23 @@ async function GenresPage({ searchParams }: PageProps) {
   ]);
 
   return (
-    <RootEntityPage title="Genres" description={`Search ${totalGenres} genres`}>
+    <RootEntityPage
+      title={t("genres")}
+      description={t("search-x", {
+        count: totalGenres,
+        entity: t("genres"),
+      })}
+    >
       <SearchResults
         response={results.results}
         pagination={results.pagination}
         renderResult={(result) => <GenreSearchResult result={result} />}
-        emptyMessage="No genres found"
+        emptyMessage={t("no-entity", { entity: t("genres") })}
+        placeholder={t("search-within", {
+          entity: t("genres"),
+        })}
         sorts={sorts as any}
         currentSort={sort.raw}
-        placeholder={`Search within Genres...`}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={q}
       />

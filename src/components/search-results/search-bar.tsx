@@ -61,12 +61,12 @@ export default function SearchBar({
 
   return (
     <div className="relative w-full text-black">
-      <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-3 w-3 -translate-y-1/2" />
+      <MagnifyingGlassIcon className="absolute top-1/2 h-3 w-3 -translate-y-1/2 ltr:left-3 rtl:right-3" />
 
       <Input
         type="text"
         placeholder={placeholder}
-        className="h-10 w-full pl-8"
+        className="h-10 w-full pl-8 rtl:pr-8"
         autoComplete="off"
         disabled={disabled}
         value={value}
@@ -74,7 +74,7 @@ export default function SearchBar({
       />
 
       {isPending && (
-        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+        <div className="absolute top-1/2 -translate-y-1/2 ltr:right-3 rtl:left-3">
           <Spinner className="h-3 w-3" />
         </div>
       )}

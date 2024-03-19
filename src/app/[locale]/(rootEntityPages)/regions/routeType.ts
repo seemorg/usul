@@ -1,16 +1,17 @@
+import type { Sort } from "@/types/sort";
 import { type DynamicRoute } from "next-typesafe-url";
 import { z } from "zod";
 
 export const sorts = [
   {
-    label: "No. of Texts",
+    label: "sorts.no-of-texts",
     value: "texts",
   },
   {
-    label: "No. of Authors",
+    label: "sorts.no-of-authors",
     value: "authors",
   },
-] as const;
+] as const satisfies Sort[];
 
 const sortsValues = sorts.map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts";

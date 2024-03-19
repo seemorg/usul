@@ -15,15 +15,29 @@ import {
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
 const searchExamples = [
-  "الأشباه والنظائر",
-  "Al Risala",
-  "Ibn Al-Jawzi",
-  "Iraq",
-  "Fiqh",
+  {
+    title: "الأشباه والنظائر",
+    href: navigation.books.reader("ashbah-1"),
+  },
+  {
+    title: "Al Risala",
+    href: navigation.books.reader("risala"),
+  },
+  {
+    title: "Ibn Al-Jawzi",
+    href: navigation.authors.bySlug("ibn-jawzi"),
+  },
+  {
+    title: "Iraq",
+    href: navigation.regions.bySlug("iraq"),
+  },
+  {
+    title: "Fiqh",
+    href: navigation.genres.bySlug("fiqh"),
+  },
 ];
 
 export default async function HomePage() {
@@ -53,12 +67,13 @@ export default async function HomePage() {
               <span>{t("try")}</span>
 
               {searchExamples.map((e) => (
-                <a
-                  key={e}
+                <Link
+                  key={e.href}
+                  href={e.href}
                   className="font-medium text-primary-foreground underline"
                 >
-                  {e}
-                </a>
+                  {e.title}
+                </Link>
               ))}
             </div>
           </div>

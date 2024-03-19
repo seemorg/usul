@@ -9,6 +9,7 @@ import InfoDialog from "./info-dialog";
 import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
 import { CloudflareImage } from "../cloudflare-image";
+import { useTranslations } from "next-intl";
 
 const BookSearchResult = ({
   result,
@@ -19,6 +20,7 @@ const BookSearchResult = ({
     Awaited<ReturnType<typeof searchBooks>>["results"]["hits"]
   >[number];
 }) => {
+  const t = useTranslations();
   const { document, highlight } = result;
 
   const { primaryArabicName, primaryLatinName, author } = document;
@@ -103,7 +105,7 @@ const BookSearchResult = ({
         />
       </div>
 
-      <p>{document.year} AH</p>
+      <p>{t("common.year-format.ah.value", { year: document.year })}</p>
     </Link>
   );
 };

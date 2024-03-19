@@ -24,7 +24,7 @@ export default function DottedList({
           {item}
 
           {filteredItems.length !== idx + 1 && (
-            <span className="ml-3 text-muted-foreground">•</span>
+            <span className="text-muted-foreground ltr:ml-3 rtl:mr-3">•</span>
           )}
         </div>
       ))}

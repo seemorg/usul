@@ -10,17 +10,17 @@ import {
 } from "../ui/select";
 import { useState, useTransition } from "react";
 import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
+import type { Sort } from "@/types/sort";
+import { useTranslations } from "next-intl";
 
 export default function SearchSort({
   sorts,
   currentSort,
 }: {
-  sorts: {
-    label: string;
-    value: string;
-  }[];
+  sorts: Sort[];
   currentSort: string;
 }) {
+  const t = useTranslations("common");
   const { replace } = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -43,6 +43,8 @@ export default function SearchSort({
     });
   }
 
+  const currentSortLabel = sorts.find((s) => s.value === currentSort)?.label;
+
   return (
     <Select value={value} onValueChange={handleSortChange} disabled={isPending}>
       <SelectTrigger
@@ -51,10 +53,10 @@ export default function SearchSort({
         isLoading={isPending}
       >
         <div className="hidden sm:block">
-          {currentSort ? (
-            sorts.find((s) => s.value === currentSort)?.label
+          {currentSortLabel ? (
+            t(currentSortLabel)
           ) : (
-            <SelectValue placeholder="Sort By" />
+            <SelectValue placeholder={t("sorts.placeholder")} />
           )}
         </div>
 
@@ -64,7 +66,7 @@ export default function SearchSort({
       <SelectContent>
         {sorts.map((sort) => (
           <SelectItem key={sort.value} value={sort.value}>
-            {sort.label}
+            {t(sort.label)}
           </SelectItem>
         ))}
       </SelectContent>

@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/navigation";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 
@@ -36,6 +37,7 @@ export default function VersionSelector({
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const { replace } = useRouter();
+  const t = useTranslations("reader");
 
   const [selectedVersion, setSelectedVersion] = useState(() => {
     const versionInUrl = params.get("version");
@@ -83,7 +85,7 @@ export default function VersionSelector({
         {selectedVersion ? (
           versionIdToName(selectedVersion)
         ) : (
-          <SelectValue placeholder="Select a version" />
+          <SelectValue placeholder={t("select-version")} />
         )}
       </SelectTrigger>
 

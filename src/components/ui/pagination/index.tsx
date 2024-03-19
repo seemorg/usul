@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import { type ButtonProps, buttonVariants } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { useSearchParams } from "next/navigation";
+import { useFormatter, useTranslations } from "next-intl";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -74,11 +75,11 @@ const PaginationPrevious = ({
   <PaginationLink
     aria-label="Go to previous page"
     size="default"
-    className={cn("gap-1 pl-2.5", className)}
+    className={cn("gap-1 ltr:pl-2.5 rtl:pr-2.5", className)}
     {...props}
   >
-    <ChevronLeftIcon className="h-4 w-4" />
-    <span>Previous</span>
+    <ChevronLeftIcon className="h-4 w-4 rtl:rotate-180" />
+    <span>{useTranslations("common")("pagination.previous")}</span>
   </PaginationLink>
 );
 PaginationPrevious.displayName = "PaginationPrevious";
@@ -90,11 +91,11 @@ const PaginationNext = ({
   <PaginationLink
     aria-label="Go to next page"
     size="default"
-    className={cn("gap-1 pr-2.5", className)}
+    className={cn("gap-1 ltr:pr-2.5 rtl:pl-2.5", className)}
     {...props}
   >
-    <span>Next</span>
-    <ChevronRightIcon className="h-4 w-4" />
+    <span>{useTranslations("common")("pagination.next")}</span>
+    <ChevronRightIcon className="h-4 w-4 rtl:rotate-180" />
   </PaginationLink>
 );
 PaginationNext.displayName = "PaginationNext";
@@ -122,6 +123,7 @@ const Paginator = ({
   currentPage: number;
 }) => {
   const params = useSearchParams();
+  const formatter = useFormatter();
 
   const hasPrevious = currentPage > 1;
   const hasNext = currentPage < totalPages;
@@ -170,7 +172,7 @@ const Paginator = ({
                       href={makePageLink(1)}
                       isActive={1 === currentPage}
                     >
-                      1
+                      {formatter.number(1)}
                     </PaginationLink>
                   </PaginationItem>{" "}
                   <PaginationEllipsis />
@@ -186,7 +188,7 @@ const Paginator = ({
                     href={makePageLink(totalPages)}
                     isActive={totalPages === currentPage}
                   >
-                    {totalPages}
+                    {formatter.number(totalPages)}
                   </PaginationLink>
                 </PaginationItem>
               </React.Fragment>
@@ -199,7 +201,7 @@ const Paginator = ({
                 href={makePageLink(page)}
                 isActive={page === currentPage}
               >
-                {page}
+                {formatter.number(page)}
               </PaginationLink>
             </PaginationItem>
           );
