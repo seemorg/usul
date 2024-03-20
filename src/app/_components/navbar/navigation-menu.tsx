@@ -8,6 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
@@ -29,31 +30,33 @@ const toolsItems: NavItem[] = [
   {
     title: "navigation.tools.text-explorer.title",
     description: "navigation.tools.text-explorer.description",
+    href: navigation.books.all(),
   },
   {
     title: "navigation.tools.author-explorer.title",
     description: "navigation.tools.author-explorer.description",
+    href: navigation.authors.all(),
   },
 ];
 
 const exploreItems: NavItem[] = [
   {
-    href: "/texts",
+    href: navigation.books.all(),
     title: "navigation.explore.texts.title",
     description: "navigation.explore.texts.description",
   },
   {
-    href: "/authors",
+    href: navigation.authors.all(),
     title: "navigation.explore.authors.title",
     description: "navigation.explore.authors.description",
   },
   {
-    href: "/regions",
+    href: navigation.regions.all(),
     title: "navigation.explore.regions.title",
     description: "navigation.explore.regions.description",
   },
   {
-    href: "/genres",
+    href: navigation.genres.all(),
     title: "navigation.explore.genres.title",
     description: "navigation.explore.genres.description",
   },

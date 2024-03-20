@@ -3,6 +3,7 @@ import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
 import { getLocaleDirection } from "@/lib/locale/client";
 import { navigation as urls } from "@/lib/urls";
+import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
@@ -16,8 +17,11 @@ type NavItem = {
 const navigation = {
   tools: [
     { label: "navigation.tools.advanced-search.title" },
-    { label: "navigation.tools.text-explorer.title" },
-    { label: "navigation.tools.author-explorer.title" },
+    { label: "navigation.tools.text-explorer.title", href: urls.books.all() },
+    {
+      label: "navigation.tools.author-explorer.title",
+      href: urls.authors.all(),
+    },
   ] satisfies NavItem[],
   explore: [
     { label: "navigation.explore.texts.title", href: urls.books.all() },
@@ -74,7 +78,11 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
           } else {
             link = (
               <ComingSoonModal
-                trigger={<p className={linkClassName}>{t(item.label)}</p>}
+                trigger={
+                  <p className={cn(linkClassName, "cursor-pointer")}>
+                    {t(item.label)}
+                  </p>
+                }
               />
             );
           }
