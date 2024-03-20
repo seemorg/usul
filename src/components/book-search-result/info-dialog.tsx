@@ -12,7 +12,8 @@ import { useQuery } from "@tanstack/react-query";
 import { navigation } from "@/lib/urls";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { Skeleton } from "../ui/skeleton";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import type { AppLocale } from "~/i18n.config";
 
 const order: Record<string, number> = {
   born: 1,
@@ -28,9 +29,10 @@ export default function InfoDialog({
 }) {
   const { document } = result;
   const [open, setOpen] = useState(false);
+  const locale = useLocale() as AppLocale;
   const t = useTranslations();
 
-  const shouldFetch = !document.author && open;
+  const shouldFetch = open;
 
   const { data: author = document.author, isFetching } = useQuery({
     queryKey: ["author", document.authorId] as const,
@@ -65,28 +67,24 @@ export default function InfoDialog({
         .filter((l) => !!l.location.region)
         .map(({ location }) => {
           const region = location.region!;
+          const typeKey = `common.${location.type}` as any;
+          const localizedType = t(typeKey);
+
           return {
             id: location.id,
-            type: location.type,
+            type: localizedType === typeKey ? location.type : localizedType,
             slug: region.slug,
-            name: region.name,
+            name:
+              locale === "ar-SA"
+                ? region.arabicName ?? region.name
+                : region.name,
           };
         })
         .sort((a, b) => order[a.type]! - order[b.type]!);
     }
 
-    if ("regions" in author) {
-      return author.regions
-        .map((region) => {
-          const [type = "", slug = ""] = region.split("@");
-
-          return { id: region, type, slug, name: slug.replaceAll("-", " ") };
-        })
-        .sort((a, b) => order[a.type]! - order[b.type]!);
-    }
-
     return [];
-  }, [author]);
+  }, [author, locale, t]);
 
   const isLoading = isFetching || !author;
 
