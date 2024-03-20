@@ -17,19 +17,19 @@ export default function RenderBlock({
   }
 
   if (block.type === "title" || block.type === "header-1") {
-    return <h1 className="text-5xl font-bold">{block.content}</h1>;
+    return <h1 className="text-3xl font-bold">{block.content}</h1>;
   }
 
   if (block.type === "header-2") {
-    return <h2 className="text-4xl font-bold">{block.content}</h2>;
+    return <h2 className="text-2xl font-bold">{block.content}</h2>;
   }
 
   if (block.type === "header-3") {
-    return <h3 className="text-3xl font-semibold">{block.content}</h3>;
+    return <h3 className="text-xl font-semibold">{block.content}</h3>;
   }
 
   if (block.type === "header-4") {
-    return <h4 className="text-2xl font-semibold">{block.content}</h4>;
+    return <h4 className="text-xl font-semibold">{block.content}</h4>;
   }
 
   if (block.type === "header-5") {
@@ -44,5 +44,5 @@ export default function RenderBlock({
     );
   }
 
-  return <p>{block.content}</p>;
+  return <p className="text-2xl leading-[1.8]">{block.content}</p>;
 }

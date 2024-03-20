@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Advanced Search",
+  "load-more": "Load More",
+  "clear-all": "Clear all",
+  "pagination": {
+    "previous": "Previous",
+    "next": "Next",
+    "page-x": "Page {page, number, nogroup}",
+    "page-unknown": "Unknown page"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Year in Hijri format",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Year in Gregorian format",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Sort by",
+    "relevance": "Relevance",
+    "chronological": "Chronological",
+    "no-of-texts": "No. of Texts",
+    "no-of-authors": "No. of Authors",
+    "year-asc": "Year (Asc)",
+    "year-desc": "Year (Desc)"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "auto": "Auto"
+  },
+  "from": "From",
+  "to": "To",
+  "search-bar": {
+    "placeholder": "Search for a text",
+    "start-typing": "Start typing...",
+    "no-results": "No results found",
+    "all-results": "See all results ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Tools",
+      "get-notified": {
+        "title": "Get Notified",
+        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
+      },
+      "advanced-search": {
+        "title": "Advanced Search",
+        "description": "Search for texts, authors, regions, and genres"
+      },
+      "text-explorer": {
+        "title": "Text Explorer",
+        "description": "Search for a text using advanced criteria"
+      },
+      "author-explorer": {
+        "title": "Author Explorer",
+        "description": "Search for a text using advanced criteria"
+      }
+    },
+    "explore": {
+      "title": "Explore",
+      "texts": {
+        "title": "Texts",
+        "description": "Explore the most popular texts"
+      },
+      "authors": {
+        "title": "Authors",
+        "description": "Explore the most popular authors"
+      },
+      "regions": {
+        "title": "Regions",
+        "description": "Explore the most popular regions"
+      },
+      "genres": {
+        "title": "Genres",
+        "description": "Explore the most popular genres"
+      }
+    },
+    "contribute": {
+      "title": "Contribute",
+      "about": {
+        "title": "About Seemore",
+        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
+      },
+      "add-text": {
+        "title": "Add Text",
+        "description": "Add a new text to the library"
+      },
+      "develop": {
+        "title": "Develop",
+        "description": "Help us develop new tools through open-source contributions"
+      },
+      "report-mistake": {
+        "title": "Report Mistake",
+        "description": "Report a mistake in a text"
+      },
+      "feedback": {
+        "title": "Feedback",
+        "description": "Send us your feedback"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Digital Seem - the world's largest Islamic library",
+    "description": "Digitalseem.org serves over 8,000 Islamic texts from the OpenITI corpus. Our goal is to make it easy to read, search, and research classical texts. Subscribe below to receive monthly updates on our work.",
+    "email-address": "Email Address",
+    "subscribe": "Subscribe",
+    "copyright": "{year, number, nogroup} Seemorg Foundation. All rights reserved."
+  },
+  "lost": "Looks like you're lost",
+  "go-back-home": "Go back home",
+  "arabic-names": "Arabic names",
+  "latin-names": "Latin names",
+  "author-arabic-names": "Author Arabic names",
+  "author-latin-names": "Author Latin names",
+  "author-bio": "Author Latin names",
+  "author-regions": "Author regions",
+  "lived": "Lived",
+  "died": "Died",
+  "born": "Born",
+  "resided": "Resided",
+  "visited": "Visited",
+  "aka": "Also known as",
+  "views": {
+    "switch-to-list": "Switch to list view",
+    "switch-to-grid": "Switch to grid view"
+  },
+  "see-more": "See more",
+  "see-less": "See less",
+  "includes": "Includes",
+  "coming-soon": {
+    "title": "Coming Soon",
+    "message": "This feature is not yet available. Subscribe to our newsletter and get notified when it's ready.",
+    "success": "Thank you!",
+    "error": "Something went wrong. Please try again later."
+  }
+}

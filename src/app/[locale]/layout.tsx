@@ -1,10 +1,18 @@
 import { cn } from "@/lib/utils";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+
 import "@/styles/globals.css";
+
 import Providers from "./providers";
 import { useMessages } from "next-intl";
 import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
+import { getLocaleDirection } from "@/lib/locale/client";
+import type { AppLocale } from "~/i18n.config";
 
 export const metadata = getMetadata();
 export const viewport = getViewport();
@@ -21,10 +29,16 @@ export default function LocaleLayout({
   return (
     <html
       lang={locale}
-      dir={locale === "ar" ? "rtl" : "ltr"}
+      dir={getLocaleDirection(locale as AppLocale)}
+      className="bg-primary"
       suppressHydrationWarning
     >
-      <body className={cn("font-sans", getFontsClassnames())}>
+      <body
+        className={cn(
+          "relative min-h-screen w-full bg-background font-sans",
+          getFontsClassnames(),
+        )}
+      >
         <Providers locale={locale} messages={messages}>
           {children}
         </Providers>

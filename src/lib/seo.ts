@@ -29,7 +29,10 @@ export const getMetadata = ({
     : config.title;
 
   return {
-    title,
+    title: {
+      template: "%s | Seemore",
+      default: "Library",
+    },
     description,
     metadataBase: new URL(config.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],

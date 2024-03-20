@@ -15,9 +15,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-amiri)", "var(--font-sans)", ...fontFamily.sans],
-        abhaya: ["var(--font-abhaya)", ...fontFamily.serif],
-        // amiri: ["var(--font-amiri)", ...fontFamily.serif],
+        sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
+        amiri: ["var(--font-amiri)", ...fontFamily.serif],
       },
       colors: {
         border: "hsl(var(--border))",

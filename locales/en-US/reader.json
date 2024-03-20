@@ -1,0 +1,21 @@
+{
+  "notes": "Notes",
+  "bookmarks": "Bookmarks",
+  "search": "Search",
+  "content": "Content",
+  "coming-soon": {
+    "title": "Coming Soon",
+    "message": "This feature is not available yet."
+  },
+  "page-navigator": {
+    "name": "Page Navigator",
+    "title": "Jump to page",
+    "description": "Enter a page number between {start, number} - {end, number}",
+    "input-placeholder": "Page number",
+    "go": "Go"
+  },
+  "version": "Version",
+  "select-version": "Select a version",
+  "other-titles": "Other titles",
+  "more-info": "More Info"
+}
