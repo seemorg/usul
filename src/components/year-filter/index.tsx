@@ -14,7 +14,7 @@ import { usePathname, useRouter } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useLocalStorage } from "usehooks-ts";
+import { useIsClient, useLocalStorage } from "usehooks-ts";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -130,7 +130,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
     const newValue = [...value];
 
     const inputValue = parseInt(e.target.value);
-    if (inputValue < min || inputValue > max) return;
+    if (isNaN(inputValue) || inputValue < min || inputValue > max) return;
 
     newValue[pos === "from" ? 0 : 1] = inputValue;
 
@@ -158,6 +158,8 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
     }
   };
 
+  const activeFormat = yearFormats.find((f) => f.value === format);
+
   return (
     <FilterContainer
       title={t("entities.year")}
@@ -165,8 +167,11 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
       titleChildren={
         <Select value={format} onValueChange={handleYearFormatChange}>
           <SelectTrigger className="h-auto w-auto gap-2 rounded-full border-none bg-transparent px-0 py-1 text-xs shadow-none">
-            {format}
+            {!useIsClient() || !activeFormat ? null : (
+              <p>{t(`common.${activeFormat.title}`)}</p>
+            )}
           </SelectTrigger>
+
           <SelectContent className="max-w-[200px]" side="bottom" align="end">
             {yearFormats.map((format) => (
               <SelectItem
@@ -207,9 +212,9 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
           />
 
           <Input
+            value={to}
             placeholder={t("common.to")}
             type="number"
-            value={to}
             onChange={(e) => handleInputChange(e, "to")}
             disabled={isPending}
             className="max-w-[80px] border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"

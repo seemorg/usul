@@ -5,19 +5,26 @@ import { Button } from "../ui/button";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/navigation";
 
+const defaultView = "list";
+
 export default function ViewSwitcher() {
   const params = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
 
   const _view = params.get("view");
-  const view = _view ? (_view === "grid" ? "grid" : "list") : "list";
+  const view = _view ? (_view === "grid" ? "grid" : "list") : defaultView;
 
   const toggleView = () => {
     const newView = view === "grid" ? "list" : "grid";
 
     const newUrlParams = new URLSearchParams(params);
-    newUrlParams.set("view", newView);
+
+    if (newView === defaultView) {
+      newUrlParams.delete("view");
+    } else {
+      newUrlParams.set("view", newView);
+    }
 
     replace(`${pathname}?${newUrlParams.toString()}`);
   };

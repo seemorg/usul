@@ -126,18 +126,15 @@ export const findAllRegionsWithBooksCount = cache(
       }
     }
 
-    const results: {
-      name: string;
-      slug: string;
+    const results: ({
       count: number;
-    }[] = [];
+    } & (typeof region)["$inferSelect"])[] = [];
 
     (await q).forEach((r: any) => {
       if (!r.region) return;
 
       results.push({
-        name: r.region.name as string,
-        slug: r.region.slug,
+        ...r.region,
         count: r.booksCount ?? r.authorsCount,
       });
     });

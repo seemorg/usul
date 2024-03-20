@@ -27,6 +27,7 @@ export default function middleware(request: NextRequest) {
       ),
       request.nextUrl.origin,
     );
+    mappedURL.search = request.nextUrl.search;
     modifiedRequest = new NextRequest(mappedURL, request as Request);
   } else {
     if (pathLocale) {
@@ -43,6 +44,7 @@ export default function middleware(request: NextRequest) {
           ),
           request.url,
         );
+        mappedURL.search = request.nextUrl.search;
 
         return NextResponse.redirect(mappedURL, {
           status: 302,

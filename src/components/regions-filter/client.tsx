@@ -8,7 +8,9 @@ import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
 import { usePathname, useRouter } from "@/navigation";
 import { type ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
+import type { findAllRegionsWithBooksCount } from "@/server/services/regions";
+import type { AppLocale } from "~/i18n.config";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -33,7 +35,7 @@ const getRegionFilterUrlParams = (
 
 interface RegionsFilterProps {
   currentRegions: string[];
-  regions: { name: string; slug: string; count: number }[];
+  regions: Awaited<ReturnType<typeof findAllRegionsWithBooksCount>>;
 }
 
 export default function _RegionsFilter({
@@ -42,6 +44,8 @@ export default function _RegionsFilter({
 }: RegionsFilterProps) {
   const t = useTranslations();
   const formatter = useFormatter();
+  const locale = useLocale() as AppLocale;
+
   const [selectedRegions, setSelectedRegions] =
     useState<string[]>(currentRegions);
 
@@ -59,18 +63,10 @@ export default function _RegionsFilter({
   }, [regions]);
 
   const index = useMemo(() => {
-    return new Fuse(
-      Object.values(regions).map((r) => ({
-        name: r.name,
-        slug: r.slug,
-        count: r.count,
-      })),
-      {
-        keys: ["name"],
-        threshold: 0.3,
-        includeScore: true,
-      },
-    );
+    return new Fuse(regions, {
+      keys: ["name", "arabicName", "currentName"],
+      threshold: 0.3,
+    });
   }, [regions]);
 
   const [value, setValue] = useState("");
@@ -168,7 +164,10 @@ export default function _RegionsFilter({
       <div className="font-inter mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll sm:max-h-none sm:overflow-y-auto">
         {matchedRegions.items.map((region) => {
           const booksCount = formatter.number(region.count);
-          const title = `${region.name} (${booksCount})`;
+
+          const name =
+            locale === "ar-SA" ? region.arabicName ?? region.name : region.name;
+          const title = `${name} (${booksCount})`;
 
           return (
             <div key={region.slug} className="flex items-center gap-2">
@@ -185,7 +184,7 @@ export default function _RegionsFilter({
                 title={title}
               >
                 <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {region.name}
+                  {name}
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
