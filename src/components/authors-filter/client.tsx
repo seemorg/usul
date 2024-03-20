@@ -11,7 +11,8 @@ import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { usePathname, useRouter } from "@/navigation";
-import { useFormatter, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
+import type { AppLocale } from "~/i18n.config";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -51,6 +52,7 @@ export default function _AuthorsFilter({
   filters,
 }: AuthorsFilterProps) {
   const t = useTranslations();
+  const locale = useLocale() as AppLocale;
   const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =
     useState<string[]>(currentAuthors);
@@ -205,7 +207,14 @@ export default function _AuthorsFilter({
             authorIdToBooksCount[authorId] ?? 0,
           );
 
-          const title = `${author.primaryLatinName ?? author.primaryArabicName} (${booksCount})`;
+          const name =
+            (locale === "ar-SA"
+              ? author.primaryArabicName
+              : author.primaryLatinName) ??
+            author.primaryLatinName ??
+            author.primaryArabicName;
+
+          const title = `${name} (${booksCount})`;
 
           return (
             <div key={authorId} className="flex items-center gap-2">
@@ -222,7 +231,7 @@ export default function _AuthorsFilter({
                 title={title}
               >
                 <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {author.primaryLatinName ?? author.primaryArabicName}
+                  {name}
                 </span>
 
                 <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
