@@ -45,17 +45,13 @@ const BookSearchResult = ({
         <InfoDialog result={result} />
 
         <Link href={navigation.books.reader(document.slug)} prefetch={false}>
-          <div
-            className={cn(
-              "relative flex aspect-[1600/2300] w-full flex-col items-center justify-center gap-6 rounded-md bg-gray-200 p-8 text-gray-700",
-            )}
-          >
+          <div className={cn("overflow-hidden rounded-md bg-gray-200")}>
             <CloudflareImage
               src={`https://assets.digitalseem.org/covers/${document.slug}.png`}
               alt={title}
               width={320}
               height={460}
-              className="absolute inset-0 h-full w-full rounded-md object-cover"
+              className="aspect-[1600/2300] w-full object-cover"
               placeholder="empty"
             />
           </div>

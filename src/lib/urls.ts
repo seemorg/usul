@@ -1,7 +1,8 @@
-import { Sort } from "@/types/sort";
+import type { Sort } from "@/types/sort";
 
 export const navigation = {
   books: {
+    all: () => "/texts",
     reader: (bookId: string) => `/t/${bookId}`,
   },
   authors: {

@@ -1,4 +1,5 @@
 import { Logo } from "@/components/Icons";
+import ComingSoonModal from "@/components/coming-soon-modal";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,24 +16,21 @@ import { useTranslations } from "next-intl";
 import React from "react";
 
 type NavItem = {
-  href: string;
+  href?: string;
   title: NamespaceTranslations<"common">;
   description: NamespaceTranslations<"common">;
 };
 
 const toolsItems: NavItem[] = [
   {
-    href: "/search",
     title: "navigation.tools.advanced-search.title",
     description: "navigation.tools.advanced-search.description",
   },
   {
-    href: "/text-explorer",
     title: "navigation.tools.text-explorer.title",
     description: "navigation.tools.text-explorer.description",
   },
   {
-    href: "/author-explorer",
     title: "navigation.tools.author-explorer.title",
     description: "navigation.tools.author-explorer.description",
   },
@@ -63,17 +61,14 @@ const exploreItems: NavItem[] = [
 
 const contributeItems: NavItem[] = [
   {
-    href: "/contribute/add-text",
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",
   },
   {
-    href: "/contribute/report-mistake",
     title: "navigation.contribute.report-mistake.title",
     description: "navigation.contribute.report-mistake.description",
   },
   {
-    href: "/contribute/feedback",
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
   },
@@ -81,9 +76,34 @@ const contributeItems: NavItem[] = [
 
 export default function HomepageNavigationMenu() {
   const t = useTranslations("common");
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+  const renderItem = (item: NavItem) => {
+    if (item.href) {
+      return (
+        <ListItem key={item.href} href={item.href} title={t(item.title)}>
+          {t(item.description)}
+        </ListItem>
+      );
+    }
+
+    return (
+      <ListItem
+        key={item.href}
+        href={item.href}
+        title={t(item.title)}
+        onClick={() => setIsModalOpen(true)}
+        className="cursor-pointer"
+      >
+        {t(item.description)}
+      </ListItem>
+    );
+  };
 
   return (
     <NavigationMenu>
+      <ComingSoonModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
@@ -92,7 +112,10 @@ export default function HomepageNavigationMenu() {
 
           <NavigationMenuContent>
             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-              <li className="row-span-3 min-h-[250px]">
+              <li
+                className="row-span-3 min-h-[250px] cursor-pointer"
+                onClick={() => setIsModalOpen(true)}
+              >
                 <NavigationMenuLink className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md">
                   <EnvelopeIcon className="h-6 w-6" />
 
@@ -105,15 +128,7 @@ export default function HomepageNavigationMenu() {
                 </NavigationMenuLink>
               </li>
 
-              {toolsItems.map((item) => (
-                <ListItem
-                  key={item.href}
-                  href={item.href}
-                  title={t(item.title)}
-                >
-                  {t(item.description)}
-                </ListItem>
-              ))}
+              {toolsItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -125,15 +140,7 @@ export default function HomepageNavigationMenu() {
 
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {exploreItems.map((item) => (
-                <ListItem
-                  key={item.href}
-                  title={t(item.title)}
-                  href={item.href}
-                >
-                  {t(item.description)}
-                </ListItem>
-              ))}
+              {exploreItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -164,15 +171,7 @@ export default function HomepageNavigationMenu() {
                 </NavigationMenuLink>
               </li>
 
-              {contributeItems.map((item) => (
-                <ListItem
-                  key={item.title}
-                  title={t(item.title)}
-                  href={item.href}
-                >
-                  {t(item.description)}
-                </ListItem>
-              ))}
+              {contributeItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -183,12 +182,17 @@ export default function HomepageNavigationMenu() {
 
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
-  React.ComponentPropsWithoutRef<typeof Link>
+  Omit<React.ComponentPropsWithoutRef<typeof Link>, "href"> & {
+    href?: string;
+  }
 >(({ className, title, children, ...props }, ref) => {
+  const Comp = props.href ? Link : "p";
+
   return (
     <li>
       <NavigationMenuLink asChild>
-        <Link
+        <Comp
+          // @ts-ignore
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
@@ -200,7 +204,7 @@ const ListItem = React.forwardRef<
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
             {children}
           </p>
-        </Link>
+        </Comp>
       </NavigationMenuLink>
     </li>
   );

@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
+import ComingSoonModal from "@/components/coming-soon-modal";
+import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
-import { Input } from "@/components/ui/input";
 import { getLocaleDirection } from "@/lib/locale/client";
+import { navigation as urls } from "@/lib/urls";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
@@ -9,26 +10,26 @@ import type { AppLocale } from "~/i18n.config";
 
 type NavItem = {
   label: NamespaceTranslations<"common">;
-  href: string;
+  href?: string;
 };
 
 const navigation = {
   tools: [
-    { label: "navigation.tools.advanced-search.title", href: "#" },
-    { label: "navigation.tools.text-explorer.title", href: "#" },
-    { label: "navigation.tools.author-explorer.title", href: "#" },
+    { label: "navigation.tools.advanced-search.title" },
+    { label: "navigation.tools.text-explorer.title" },
+    { label: "navigation.tools.author-explorer.title" },
   ] satisfies NavItem[],
   explore: [
-    { label: "navigation.explore.texts.title", href: "#" },
-    { label: "navigation.explore.authors.title", href: "#" },
-    { label: "navigation.explore.regions.title", href: "#" },
-    { label: "navigation.explore.genres.title", href: "#" },
+    { label: "navigation.explore.texts.title", href: urls.books.all() },
+    { label: "navigation.explore.authors.title", href: urls.authors.all() },
+    { label: "navigation.explore.regions.title", href: urls.regions.all() },
+    { label: "navigation.explore.genres.title", href: urls.genres.all() },
   ] satisfies NavItem[],
   contribute: [
-    { label: "navigation.contribute.add-text.title", href: "#" },
-    { label: "navigation.contribute.report-mistake.title", href: "#" },
-    { label: "navigation.contribute.develop.title", href: "#" },
-    { label: "navigation.contribute.feedback.title", href: "#" },
+    { label: "navigation.contribute.add-text.title" },
+    { label: "navigation.contribute.report-mistake.title" },
+    { label: "navigation.contribute.develop.title" },
+    { label: "navigation.contribute.feedback.title" },
   ] satisfies NavItem[],
   social: [
     {
@@ -59,16 +60,27 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
       <h3 className="text-sm font-bold leading-6 text-foreground">{title}</h3>
 
       <ul role="list" className="mt-6 space-y-4">
-        {items.map((item) => (
-          <li key={item.label}>
-            <Link
-              href={item.href}
-              className="text-sm leading-6 text-muted-foreground hover:text-secondary-foreground"
-            >
-              {t(item.label)}
-            </Link>
-          </li>
-        ))}
+        {items.map((item) => {
+          const linkClassName =
+            "text-sm leading-6 text-muted-foreground hover:text-secondary-foreground";
+
+          let link;
+          if (item.href) {
+            link = (
+              <Link href={item.href} className={linkClassName}>
+                {t(item.label)}
+              </Link>
+            );
+          } else {
+            link = (
+              <ComingSoonModal
+                trigger={<p className={linkClassName}>{t(item.label)}</p>}
+              />
+            );
+          }
+
+          return <li key={item.label}>{link}</li>;
+        })}
       </ul>
     </div>
   );
@@ -96,17 +108,7 @@ export default function Footer() {
             </p>
 
             <div className="mt-5">
-              <form className="flex gap-4 sm:max-w-md">
-                <label htmlFor="email-address" className="sr-only">
-                  {t("footer.email-address")}
-                </label>
-
-                <Input placeholder={t("footer.email-address")} />
-
-                <div className="flex-shrink-0">
-                  <Button variant="default"> {t("footer.subscribe")}</Button>
-                </div>
-              </form>
+              <NewsletterForm />
             </div>
           </div>
 

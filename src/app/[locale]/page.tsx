@@ -84,7 +84,6 @@ export default async function HomePage() {
         <div>
           <HomepageSection
             title={t("sections.collections")}
-            href="/collections"
             items={collections.map((collection) => (
               <Link
                 href={navigation.genres.bySlug(collection.genre)}
@@ -124,7 +123,6 @@ export default async function HomePage() {
         <div>
           <HomepageSection
             title={t("sections.islamic-law")}
-            href="/collections"
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
                 result={{ document: text } as any}
@@ -137,7 +135,6 @@ export default async function HomePage() {
         <div>
           <HomepageSection
             title={t("sections.islamic-history")}
-            href="/collections"
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
                 result={{ document: text } as any}

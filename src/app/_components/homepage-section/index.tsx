@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 import Swiper from "swiper";
 import { Navigation } from "swiper/modules";
+import ComingSoonModal from "@/components/coming-soon-modal";
 
 const HomepageSection = ({
   title,
@@ -14,7 +15,7 @@ const HomepageSection = ({
   items,
 }: {
   title: string;
-  href: string;
+  href?: string;
   items: React.ReactNode[];
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -31,21 +32,20 @@ const HomepageSection = ({
       direction: "horizontal",
       freeMode: true,
       // watchSlidesProgress: true,
-      // slidesPerView: "auto",
+      slidesPerView: "auto",
       // slidesPerGroupSkip: 1,
-
-      watchOverflow: true,
-      breakpoints: {
-        320: {
-          slidesPerView: 2.2,
-        },
-        640: {
-          slidesPerView: 3.5,
-        },
-        768: {
-          slidesPerView: "auto",
-        },
-      },
+      // watchOverflow: true,
+      // breakpoints: {
+      //   320: {
+      //     slidesPerView: 2.2,
+      //   },
+      //   640: {
+      //     slidesPerView: 3.5,
+      //   },
+      //   768: {
+      //     slidesPerView: "auto",
+      //   },
+      // },
       on: {
         slideChange: (e) => {
           console.log({
@@ -70,15 +70,21 @@ const HomepageSection = ({
     swiper.current?.slideNext();
   };
 
+  const sectionTitle = (
+    <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
+      {title}{" "}
+      <ChevronRightIcon className="mt-[3px] h-6 w-6 text-gray-400 transition group-hover:text-primary rtl:rotate-180" />
+    </h2>
+  );
+
   return (
     <>
       <div className="flex items-center justify-between">
-        <Link href={href}>
-          <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
-            {title}{" "}
-            <ChevronRightIcon className="mt-[3px] h-6 w-6 text-gray-400 transition group-hover:text-primary rtl:rotate-180" />
-          </h2>
-        </Link>
+        {href ? (
+          <Link href={href}>{sectionTitle}</Link>
+        ) : (
+          <ComingSoonModal trigger={sectionTitle} />
+        )}
 
         <div className="flex items-center">
           <Button

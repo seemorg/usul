@@ -132,5 +132,11 @@
   },
   "see-more": "See more",
   "see-less": "See less",
-  "includes": "Includes"
+  "includes": "Includes",
+  "coming-soon": {
+    "title": "Coming Soon",
+    "message": "This feature is not yet available. Subscribe to our newsletter and get notified when it's ready.",
+    "success": "Thank you!",
+    "error": "Something went wrong. Please try again later."
+  }
 }
