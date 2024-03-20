@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/drawer";
 import { useMediaQuery } from "usehooks-ts";
 import { useState } from "react";
+import { useFormatter } from "next-intl";
 
 interface ExpandibleListProps {
   items: string[];
@@ -41,6 +42,7 @@ export function ExpandibleList({
 }: ExpandibleListProps) {
   const [open, setOpen] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  const formatter = useFormatter();
 
   const namesList = (
     <ul className="mt-5 flex flex-col gap-4">
@@ -50,17 +52,28 @@ export function ExpandibleList({
     </ul>
   );
 
-  const getSeeMoreText = () => {
+  const getTriggerText = () => {
     const count = items.length - maxItems;
+    const itemsToShow = (triggerItems ?? items).slice(0, maxItems);
 
-    return `, and ${count} other ${count > 1 ? noun.plural : noun.singular}`;
+    if (items.length <= maxItems) {
+      return formatter.list(itemsToShow);
+    }
+
+    return formatter.list(
+      [
+        ...itemsToShow,
+        ` ${formatter.number(count)} ${(count === 1 ? noun.singular : noun.plural).toLowerCase()}`,
+      ],
+      {
+        type: "conjunction",
+      },
+    );
   };
 
   const trigger = (
     <Button variant="link" className="h-auto p-0">
-      {(triggerItems ?? items).slice(0, maxItems).join(", ")}
-
-      {items.length > maxItems ? getSeeMoreText() : null}
+      {getTriggerText()}
     </Button>
   );
 

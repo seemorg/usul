@@ -1,6 +1,7 @@
 {
   "advanced-search": "Advanced Search",
   "load-more": "Load More",
+  "clear-all": "Clear all",
   "pagination": {
     "previous": "Previous",
     "next": "Next",
@@ -118,5 +119,17 @@
   "author-arabic-names": "Author Arabic names",
   "author-latin-names": "Author Latin names",
   "author-bio": "Author Latin names",
-  "author-regions": "Author regions"
+  "author-regions": "Author regions",
+  "lived": "Lived",
+  "died": "Died",
+  "born": "Born",
+  "resided": "Resided",
+  "visited": "Visited",
+  "aka": "Also known as",
+  "views": {
+    "switch-to-list": "Switch to list view",
+    "switch-to-grid": "Switch to grid view"
+  },
+  "see-more": "See more",
+  "see-less": "See less"
 }

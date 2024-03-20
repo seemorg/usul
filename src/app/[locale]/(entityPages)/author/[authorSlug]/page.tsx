@@ -15,7 +15,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { toTitleCase } from "@/lib/string";
 import DottedList from "@/components/ui/dotted-list";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { AppLocale } from "~/i18n.config";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -38,6 +39,7 @@ async function AuthorPage({
 }: AuthorPageProps) {
   const author = await findAuthorBySlug(decodeURIComponent(authorSlug));
   const t = await getTranslations();
+  const locale = (await getLocale()) as AppLocale;
 
   if (!author) {
     notFound();
@@ -86,6 +88,26 @@ async function AuthorPage({
       return 0;
     });
 
+  const localizedLocations = locations.map((l) => {
+    const region = l.location.region!;
+    if (locale === "ar-SA" && region.arabicName) {
+      return region.arabicName;
+    }
+
+    return region.name;
+  }) as string[];
+
+  const localizedLocationItems = locations.map((l) => {
+    const region = l.location.region!;
+    const name =
+      locale === "ar-SA" ? region.arabicName ?? region.name : region.name;
+
+    const key = `common.${l.location.type}` as any;
+    const localizedType = t(key);
+
+    return `${name} (${localizedType === key ? l.location.type : localizedType})`;
+  });
+
   return (
     <div>
       <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
@@ -105,18 +127,11 @@ async function AuthorPage({
           </Button>,
           locations.length > 0 && (
             <>
-              <p className="capitalize">Lived: &nbsp;</p>
+              <p className="capitalize">{t("common.lived")}: &nbsp;</p>
 
               <ExpandibleList
-                triggerItems={
-                  locations.map((l) => l.location.region?.name) as string[]
-                }
-                items={
-                  locations.map(
-                    (l) =>
-                      `${l.location.region?.name} (${toTitleCase(l.location.type)})`,
-                  ) as string[]
-                }
+                triggerItems={localizedLocations}
+                items={localizedLocationItems}
                 noun={{
                   singular: t("entities.location"),
                   plural: t("entities.locations"),
@@ -126,7 +141,7 @@ async function AuthorPage({
           ),
           <p>{t("entities.x-texts", { count: author.numberOfBooks })}</p>,
           <>
-            <p>Also known as &nbsp;</p>
+            <p>{t("common.aka")} &nbsp;</p>
 
             <ExpandibleList
               items={author.otherLatinNames.concat(author.otherArabicNames)}

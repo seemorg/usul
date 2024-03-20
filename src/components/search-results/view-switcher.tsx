@@ -4,6 +4,7 @@ import { LayoutGridIcon, Rows3Icon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/navigation";
+import { useTranslations } from "next-intl";
 
 const defaultView = "list";
 
@@ -11,6 +12,7 @@ export default function ViewSwitcher() {
   const params = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
+  const t = useTranslations("common.views");
 
   const _view = params.get("view");
   const view = _view ? (_view === "grid" ? "grid" : "list") : defaultView;
@@ -35,7 +37,7 @@ export default function ViewSwitcher() {
       size="icon"
       className="h-10 w-10"
       onClick={toggleView}
-      tooltip={`Switch to ${view === "list" ? "grid" : "list"} view`}
+      tooltip={t(view === "list" ? "switch-to-grid" : "switch-to-list")}
       tooltipProps={{ side: "bottom" }}
     >
       {view === "list" ? (

@@ -1,6 +1,7 @@
 {
   "advanced-search": "بحث متقدم",
   "load-more": "تحميل المزيد",
+  "clear-all": "مسح الكل",
   "pagination": {
     "previous": "السابقة",
     "next": "التالي",
@@ -118,5 +119,17 @@
   "author-arabic-names": "أسماء المؤلف العربية",
   "author-latin-names": "أسماء المؤلف اللاتينية",
   "author-bio": "أسماء المؤلف اللاتينية",
-  "author-regions": "مناطق المؤلف"
+  "author-regions": "مناطق المؤلف",
+  "lived": "عاش",
+  "died": "توفي",
+  "born": "ولد",
+  "resided": "مقيم",
+  "visited": "زيارة",
+  "aka": "يعرف أيضا",
+  "views": {
+    "switch-to-list": "التبديل إلى عرض القائمة",
+    "switch-to-grid": "التبديل الى عرض الخلايا"
+  },
+  "see-more": "عرض المزيد",
+  "see-less": "عرض أقل"
 }

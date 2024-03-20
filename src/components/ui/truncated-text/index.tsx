@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "../button";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 type TruncatedTextProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,
@@ -23,6 +24,7 @@ export default function TruncatedText({
   ...props
 }: TruncatedTextProps) {
   const [open, setOpen] = useState(false);
+  const t = useTranslations("common");
 
   const maxLengthDesktop =
     typeof _maxLength === "number" ? _maxLength : _maxLength.desktop;
@@ -44,13 +46,13 @@ export default function TruncatedText({
 
         {showSeeMore && (
           <TruncatedTextButton onClick={() => setOpen(true)}>
-            See more
+            {t("see-more")}
           </TruncatedTextButton>
         )}
 
         {showSeeLess && (
           <TruncatedTextButton onClick={() => setOpen(false)}>
-            See less
+            {t("see-less")}
           </TruncatedTextButton>
         )}
       </div>
