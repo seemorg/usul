@@ -5,26 +5,13 @@
 await import("./src/env.js");
 
 import createNextIntlPlugin from "next-intl/plugin";
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils.js";
-import { locales } from "./i18n.config.js";
 
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import("next").NextConfig} */
 const config = {
   redirects: async () => {
-    const localesPaths = locales.map((locale) => {
-      const pathLocale = supportedBcp47LocaleToPathLocale(locale);
-
-      return {
-        source: `/${locale}/:path*`,
-        destination: `/${pathLocale}/:path*`,
-        permanent: true,
-      };
-    });
-
     return [
-      ...localesPaths,
       {
         // Redirects from /regions/:region to /region/:region
         source: "/regions/:region",
