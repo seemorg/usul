@@ -20,7 +20,8 @@ export const Link = ({
   return (
     <result.Link
       {...props}
-      {...(!locale && currentLocale === defaultLocale
+      {...((!locale && currentLocale === defaultLocale) ||
+      locale === defaultLocale
         ? {}
         : {
             locale: supportedBcp47LocaleToPathLocale(bcp47Locale as AppLocale),
