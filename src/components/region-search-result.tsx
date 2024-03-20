@@ -53,7 +53,10 @@ export default async function RegionSearchResult({
               ),
 
               subLocations.length > 0 && (
-                <p>Includes {subLocations.length} locations</p>
+                <p>
+                  {t("common.includes")}{" "}
+                  {t("entities.x-locations", { count: subLocations.length })}
+                </p>
               ),
             ]}
           />

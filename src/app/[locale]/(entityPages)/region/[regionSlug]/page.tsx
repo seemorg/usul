@@ -83,7 +83,7 @@ async function RegionPage({
         items={[
           <p>{t("entities.x-texts", { count: results.results.found })}</p>,
           <div className="flex items-center">
-            <p className="capitalize">Includes &nbsp;</p>
+            <p className="capitalize">{t("common.includes")} &nbsp;</p>
 
             <ExpandibleList
               items={cities as string[]}
