@@ -1,5 +1,5 @@
-export const locales = ["en", "ar-SA"] as const;
-export const defaultLocale = "en" as const;
+export const locales = ["en-US", "ar-SA"] as const;
+export const defaultLocale = "en-US" as const;
 
 const config = {
   namespaces: ["common", "home", "entities", "reader"] as const,
@@ -14,8 +14,3 @@ const config = {
 export default config;
 
 export type AppLocale = (typeof locales)[number];
-
-export const resolveLocaleToFullCode = (locale: AppLocale) => {
-  // return locale === "ar" ? "ar-SA" : locale;
-  return locale;
-};

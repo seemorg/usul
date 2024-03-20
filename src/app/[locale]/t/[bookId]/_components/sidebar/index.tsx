@@ -15,8 +15,9 @@ import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
-import { getLocale, getTranslations } from "next-intl/server";
-import { getLocaleDirection } from "@/lib/locale";
+import { getTranslations } from "next-intl/server";
+import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocale } from "@/lib/locale/server";
 
 const ComingSoonAlert = async () => {
   const t = await getTranslations("reader");
@@ -25,7 +26,7 @@ const ComingSoonAlert = async () => {
   return (
     <SidebarContainer>
       <Alert
-        dir={getLocaleDirection(locale as any)}
+        dir={getLocaleDirection(locale)}
         className="bg-transparent font-sans"
       >
         <AlertTitle>{t("coming-soon.title")}</AlertTitle>

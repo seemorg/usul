@@ -9,43 +9,33 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { locales } from "~/i18n.config";
-import { usePathname, useRouter } from "@/navigation";
-import { useTransition } from "react";
+import { Link, usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
+import { getLocaleFullName } from "@/lib/locale/client";
 import { useLocale } from "next-intl";
-import { getLocaleFullName } from "@/lib/locale";
 
 export default function LocaleSwitcher() {
   const selectedLocale = useLocale();
-  const [isPending, startTransition] = useTransition();
-  const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
 
-  const setLocale = (locale: string) => {
-    if (selectedLocale === locale) return;
-
-    startTransition(() => {
-      router.replace(`${pathname}?${params.toString()}`, { locale });
-    });
-  };
+  const currentUrl = `${pathname}${params.size > 0 ? `?` + params.toString() : ""}`;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="ghost" disabled={isPending}>
+        <Button size="icon" variant="ghost">
           <LanguageIcon className="h-6 w-6" />
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end" defaultValue={selectedLocale}>
+      <DropdownMenuContent align="end">
         {locales.map((locale) => (
-          <DropdownMenuCheckboxItem
-            key={locale}
-            onClick={() => setLocale(locale)}
-          >
-            {getLocaleFullName(locale)}
-          </DropdownMenuCheckboxItem>
+          <Link href={currentUrl} key={locale} locale={locale as any}>
+            <DropdownMenuCheckboxItem checked={selectedLocale === locale}>
+              {getLocaleFullName(locale)}
+            </DropdownMenuCheckboxItem>
+          </Link>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>

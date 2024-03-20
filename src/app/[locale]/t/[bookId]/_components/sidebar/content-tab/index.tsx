@@ -24,9 +24,10 @@ import ChaptersList from "./chapters-section";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { Button } from "@/components/ui/button";
-import { getLocale, getTranslations } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
-import { getLocaleDirection } from "@/lib/locale";
+import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocale } from "@/lib/locale/server";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",

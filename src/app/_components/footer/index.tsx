@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { Input } from "@/components/ui/input";
-import { getLocaleDirection } from "@/lib/locale";
+import { getLocaleDirection } from "@/lib/locale/client";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";

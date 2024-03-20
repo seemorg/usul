@@ -1,7 +1,7 @@
 import type { AppLocale } from "~/i18n.config";
 
 const localeToFullName: Record<AppLocale, string> = {
-  en: "English",
+  "en-US": "English",
   "ar-SA": "العربية",
 };
 

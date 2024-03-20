@@ -1,28 +1,22 @@
-import { Abhaya_Libre, Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Amiri } from "next/font/google";
 import localFont from "next/font/local";
 
 const inter = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
-  // weight: ["400", "700"],
 });
 
-const abhaya = Abhaya_Libre({
-  subsets: ["latin"],
-  variable: "--font-abhaya",
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const amiri = localFont({
+const amiri = Amiri({
   variable: "--font-amiri",
+  weight: ["400", "700"],
+  subsets: ["arabic", "latin"],
+});
+
+const rubik = localFont({
+  variable: "--font-rubik",
   src: [
     {
-      path: "../fonts/amiri/Amiri-Regular.ttf",
-      weight: "400",
-    },
-    {
-      path: "../fonts/amiri/Amiri-Bold.ttf",
-      weight: "700",
+      path: "../fonts/rubik/rubik-variable-font.ttf",
     },
   ],
   adjustFontFallback: false,
@@ -35,4 +29,4 @@ const amiri = localFont({
 });
 
 export const getFontsClassnames = () =>
-  [inter.variable, abhaya.variable, amiri.variable].join(" ");
+  [inter.variable, rubik.variable, amiri.variable].join(" ");

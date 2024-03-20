@@ -62,6 +62,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "typesense": "^1.7.2",
+    "use-intl": "^3.9.5",
     "usehooks-ts": "^2.15.1",
     "vaul": "^0.9.0",
     "zod": "^3.22.4",

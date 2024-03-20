@@ -137,6 +137,9 @@ dependencies:
   typesense:
     specifier: ^1.7.2
     version: 1.7.2(@babel/runtime@7.24.0)
+  use-intl:
+    specifier: ^3.9.5
+    version: 3.9.5(react@18.2.0)
   usehooks-ts:
     specifier: ^2.15.1
     version: 2.15.1(react@18.2.0)
@@ -10022,7 +10025,7 @@ packages:
       negotiator: 0.6.3
       next: 14.1.0(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
-      use-intl: 3.9.0(react@18.2.0)
+      use-intl: 3.9.5(react@18.2.0)
     dev: false
 
   /next-themes@0.2.1(next@14.1.0)(react-dom@18.2.0)(react@18.2.0):
@@ -12724,8 +12727,8 @@ packages:
       react: 18.2.0
       tslib: 2.6.2
 
-  /use-intl@3.9.0(react@18.2.0):
-    resolution: {integrity: sha512-EGqov8+X7gNnFJZ1szfJQ1Mfgrftb481PHBahxBgmnsPFGHbAhnw472y85vHb0Zc+c9eAacGxhzESJbFvUB5Hw==}
+  /use-intl@3.9.5(react@18.2.0):
+    resolution: {integrity: sha512-1g+f/pKEeXqOXrd+QBvwnIN5kzM56PHsorbVWzNvlnGk2fo/eRwuuT/S0jTuzKLRW4uNybpHvRs6U06rP31iKw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:

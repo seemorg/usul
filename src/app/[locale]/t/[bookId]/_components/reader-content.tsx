@@ -51,13 +51,13 @@ export default function ReaderContent({
         const { blocks, page } = pages[index]!;
 
         return (
-          <div className="flex flex-col gap-8 pb-5 pt-14">
+          <div className="font-amiri flex flex-col gap-8 pb-5 pt-14">
             {blocks.map((block, blockIndex) => (
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               <RenderBlock key={blockIndex} block={block as any} />
             ))}
 
-            <p className="mt-10 text-center text-sm text-muted-foreground">
+            <p className="mt-10 text-center font-sans text-sm text-muted-foreground">
               {page
                 ? typeof page.page === "number"
                   ? t("pagination.page-x", { page: page.page })

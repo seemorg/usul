@@ -25,13 +25,13 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages,
-    locale,
-    ...getSharedConfig(),
+    ...getSharedConfig(locale),
   };
 });
 
-export const getSharedConfig = (): Omit<IntlConfig, "locale"> => {
+export const getSharedConfig = (locale: string): IntlConfig => {
   return {
+    locale: locale as AppLocale,
     timeZone: "UTC",
     formats: {
       number: {

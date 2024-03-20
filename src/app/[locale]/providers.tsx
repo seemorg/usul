@@ -8,7 +8,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AppProgressBar from "@/components/app-progressbar";
 import { DirectionProvider } from "@radix-ui/react-direction";
-import { getLocaleDirection } from "@/lib/locale";
+import { getLocaleDirection } from "@/lib/locale/client";
 import { getSharedConfig } from "@/i18n";
 import { useMemo } from "react";
 
@@ -70,8 +70,7 @@ function Providers({
   return (
     <NextIntlClientProvider
       messages={messagesInNamespace}
-      locale={locale}
-      {...getSharedConfig()}
+      {...getSharedConfig(locale)}
     >
       <DirectionProvider dir={dir}>
         <AppProgressBar
