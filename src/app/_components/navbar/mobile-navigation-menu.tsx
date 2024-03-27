@@ -1,0 +1,106 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { useState } from "react";
+import {
+  type NavItem,
+  toolsItems,
+  exploreItems,
+  contributeItems,
+} from "./links";
+import { Link } from "@/navigation";
+import ComingSoonModal from "@/components/coming-soon-modal";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import Container from "@/components/ui/container";
+import { cn } from "@/lib/utils";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const groups: {
+  title: NamespaceTranslations<"common">;
+  items: NavItem[];
+}[] = [
+  {
+    title: "navigation.tools.title",
+    items: toolsItems,
+  },
+  {
+    title: "navigation.explore.title",
+    items: exploreItems,
+  },
+  {
+    title: "navigation.contribute.title",
+    items: contributeItems,
+  },
+];
+
+export default function MobileNavigationMenu() {
+  const t = useTranslations("common");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const renderItem = (item: NavItem, idx: number) => {
+    const className = "py-1";
+
+    if (item.href) {
+      return (
+        <Link
+          key={idx}
+          href={item.href}
+          title={t(item.title)}
+          className={className}
+        >
+          - {t(item.description)}
+        </Link>
+      );
+    }
+
+    return (
+      <button
+        key={idx}
+        title={t(item.title)}
+        onClick={() => setIsModalOpen(true)}
+        className={cn("cursor-pointer ltr:text-left rtl:text-right", className)}
+      >
+        - {t(item.description)}
+      </button>
+    );
+  };
+
+  return (
+    <Container className="py-24">
+      <ComingSoonModal open={isModalOpen} onOpenChange={setIsModalOpen} />
+
+      <Accordion className="w-full" type="multiple">
+        {groups.map((group) => (
+          <AccordionItem value={group.title} key={group.title}>
+            <AccordionTrigger className="font-semibold">
+              {t(group.title)}
+            </AccordionTrigger>
+
+            <AccordionContent>
+              <ul className="flex flex-col gap-3 text-muted-foreground">
+                {group.items.map(renderItem)}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
+
+      {/* <div className="flex flex-col gap-10">
+        {groups.map((group) => (
+          <div key={group.title}>
+            <h2 className="text-xs font-semibold">{t(group.title)}</h2>
+
+            <ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground ltr:ml-3 rtl:mr-3">
+              {group.items.map(renderItem)}
+            </ul>
+          </div>
+        ))}
+      </div> */}
+    </Container>
+  );
+}

@@ -2,7 +2,7 @@
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/lib/search";
+import { searchBooks } from "@/server/typesense/book";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -13,10 +13,10 @@ import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
-import { toTitleCase } from "@/lib/string";
+// import { toTitleCase } from "@/lib/string";
 import DottedList from "@/components/ui/dotted-list";
 import { getLocale, getTranslations } from "next-intl/server";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 

@@ -15,7 +15,9 @@ export default function RootEntityPage({
         <Container className="flex flex-col items-center">
           <h1 className="text-6xl font-bold sm:text-7xl">{title}</h1>
           {description && (
-            <p className="mt-5 text-lg text-secondary">{description}</p>
+            <p className="mt-5 text-lg text-secondary dark:text-gray-300">
+              {description}
+            </p>
           )}
         </Container>
       </div>

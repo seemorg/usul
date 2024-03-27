@@ -93,7 +93,7 @@ export default function InfoDialog({
       <Button
         variant="ghost"
         size="icon"
-        className="pointer-events-none absolute top-3 z-10 bg-white/70 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
+        className="pointer-events-none absolute top-3 z-10 bg-background/80 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
         onClick={() => setOpen(true)}
       >
         <InformationCircleIcon className="h-5 w-5" />

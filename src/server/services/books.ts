@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 
 import { type Block, parseMarkdown } from "@openiti/markdown-parser";
 import { cache } from "react";

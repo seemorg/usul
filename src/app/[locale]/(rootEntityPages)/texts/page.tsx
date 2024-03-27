@@ -1,18 +1,24 @@
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/lib/search";
+import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { booksSorts } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
-import YearFilter from "@/components/year-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { countAllBooks } from "@/server/services/books";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
+import YearFilterSkeleton from "@/components/year-filter/skeleton";
+import dynamic from "next/dynamic";
+
+const YearFilter = dynamic(() => import("@/components/year-filter"), {
+  ssr: false,
+  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
+});
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 

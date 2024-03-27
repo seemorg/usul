@@ -17,7 +17,7 @@ export default function CollapsedSidebar({
   };
 
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col items-center justify-center bg-slate-50 shadow-inner dark:bg-slate-700">
+    <div className="sticky top-0 flex h-screen flex-none flex-col items-center justify-center bg-slate-50 shadow-inner dark:bg-card">
       <div className="absolute bottom-0 top-0 z-0 w-px bg-border ltr:left-0 rtl:right-0" />
       <div className="pointer-events-none absolute inset-y-0 w-[50vw] max-w-full ltr:left-0 rtl:right-0" />
 

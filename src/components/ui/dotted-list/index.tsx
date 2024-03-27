@@ -2,11 +2,13 @@ import { cn } from "@/lib/utils";
 
 interface DottedListProps extends React.HTMLAttributes<HTMLDivElement> {
   items: React.ReactNode[];
+  dotClassName?: string;
 }
 
 export default function DottedList({
   items,
   className,
+  dotClassName,
   ...props
 }: DottedListProps) {
   const filteredItems = items.filter((item) => item); // remove null or undefined items
@@ -24,7 +26,14 @@ export default function DottedList({
           {item}
 
           {filteredItems.length !== idx + 1 && (
-            <span className="text-muted-foreground ltr:ml-3 rtl:mr-3">•</span>
+            <span
+              className={cn(
+                "text-muted-foreground ltr:ml-3 rtl:mr-3",
+                dotClassName,
+              )}
+            >
+              •
+            </span>
           )}
         </div>
       ))}

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 
-import type { searchBooks } from "@/lib/search";
+import type { searchBooks } from "@/server/typesense/book";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
@@ -45,7 +45,7 @@ const BookSearchResult = ({
         <InfoDialog result={result} />
 
         <Link href={navigation.books.reader(document.slug)} prefetch={false}>
-          <div className={cn("overflow-hidden rounded-md bg-gray-200")}>
+          <div className={cn("overflow-hidden rounded-md bg-muted")}>
             <CloudflareImage
               src={`https://assets.digitalseem.org/covers/${document.slug}.png`}
               alt={title}
@@ -81,7 +81,7 @@ const BookSearchResult = ({
     <Link
       href={navigation.books.reader(document.slug)}
       prefetch={false}
-      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary"
+      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary dark:hover:bg-secondary/20"
     >
       <div className="flex-1 text-xl">
         <h3

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -8,7 +9,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { searchBooks } from "@/lib/search";
+import { searchAllCollections } from "@/server/typesense/global";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
@@ -16,6 +17,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
+import DottedList from "@/components/ui/dotted-list";
+import type { GlobalSearchDocument } from "@/types/global-search-document";
 
 export default function SearchBar({
   autoFocus,
@@ -38,7 +41,7 @@ export default function SearchBar({
     queryFn: ({ queryKey }) => {
       const [, query] = queryKey;
 
-      return searchBooks(query ?? "", { limit: 5 });
+      return searchAllCollections(query ?? "", { limit: 5 });
     },
     enabled: !!debouncedValue,
   });
@@ -50,6 +53,12 @@ export default function SearchBar({
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         inputRef.current?.focus();
+      }
+
+      // ESC key should blur the input
+      if (e.key === "Escape") {
+        inputRef.current?.blur();
+        focusedState.setFalse();
       }
     };
 
@@ -77,12 +86,38 @@ export default function SearchBar({
   }, [focusedState.value, focusedState.setFalse]);
 
   // this function handles keyboard navigation and selection
-  const onItemSelect = (id?: string) => {
-    if (id) {
-      replace(navigation.books.reader(id));
+  const onItemSelect = (href?: string) => {
+    if (href) {
+      replace(href);
     } else {
       push(`/search?q=${debouncedValue}`);
     }
+  };
+
+  const getLocalizedType = (type: GlobalSearchDocument["type"]) => {
+    if (type === "book") {
+      return entitiesT("text");
+    } else if (type === "author") {
+      return entitiesT("author");
+    } else if (type === "genre") {
+      return entitiesT("genre");
+    }
+
+    return null;
+  };
+
+  const getHref = (document: GlobalSearchDocument) => {
+    if (document.type === "book") {
+      return navigation.books.reader(document.slug);
+    } else if (document.type === "author") {
+      return navigation.authors.bySlug(document.slug);
+    } else if (document.type === "genre") {
+      return navigation.genres.bySlug(document.slug);
+    } else if (document.type === "region") {
+      return navigation.regions.bySlug(document.slug);
+    }
+
+    return null;
   };
 
   const showList = focusedState.value;
@@ -164,11 +199,11 @@ export default function SearchBar({
             const authorPrimaryLatinName = result.highlight.author
               ?.primaryLatinName
               ? result.highlight.author.primaryLatinName.snippet
-              : result.document.author.primaryLatinName;
+              : result.document.author?.primaryLatinName;
             const authorPrimaryArabicName = result.highlight.author
               ?.primaryArabicName
               ? result.highlight.author.primaryArabicName.snippet
-              : result.document.author.primaryArabicName;
+              : result.document.author?.primaryArabicName;
 
             // use latin name if available, otherwise use arabic name
             const authorName =
@@ -178,12 +213,16 @@ export default function SearchBar({
             const documentSecondaryName =
               documentName === primaryLatinName ? null : primaryLatinName;
 
+            const type = result.document.type;
+            const localizedType = getLocalizedType(type);
+            const href = getHref(result.document);
+
             return (
               <SearchItem
                 key={result.document.id}
                 value={result.document.id}
-                onSelect={() => onItemSelect(result.document.slug)}
-                href={navigation.books.reader(result.document.slug)}
+                onSelect={() => onItemSelect(href ?? undefined)}
+                href={href ?? ""}
               >
                 {documentName && (
                   <p
@@ -192,25 +231,27 @@ export default function SearchBar({
                   />
                 )}
 
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <p>{entitiesT("text")}</p>
-
-                  <span>•</span>
-
-                  {authorName && (
-                    <p dangerouslySetInnerHTML={{ __html: authorName }} />
-                  )}
-
-                  {authorName && documentSecondaryName && <span>•</span>}
-
-                  {documentSecondaryName && (
-                    <p
-                      dangerouslySetInnerHTML={{
-                        __html: documentSecondaryName,
-                      }}
-                    />
-                  )}
-                </div>
+                <DottedList
+                  className="gap-1 text-xs"
+                  dotClassName="ltr:ml-1 rtl:mr-1"
+                  items={[
+                    <p>{localizedType}</p>,
+                    authorName && (
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: authorName,
+                        }}
+                      />
+                    ),
+                    documentSecondaryName && (
+                      <p
+                        dangerouslySetInnerHTML={{
+                          __html: documentSecondaryName,
+                        }}
+                      />
+                    ),
+                  ]}
+                />
               </SearchItem>
             );
           })}

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import { searchBooks } from "@/lib/search";
+import { searchBooks } from "@/server/typesense/book";
 import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
