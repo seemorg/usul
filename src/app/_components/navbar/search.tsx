@@ -101,6 +101,8 @@ export default function SearchBar({
       return entitiesT("author");
     } else if (type === "genre") {
       return entitiesT("genre");
+    } else if (type === "region") {
+      return entitiesT("region");
     }
 
     return null;
