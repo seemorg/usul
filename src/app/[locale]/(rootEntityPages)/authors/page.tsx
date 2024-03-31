@@ -4,13 +4,13 @@ import type { InferPagePropsType } from "next-typesafe-url";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import dynamic from "next/dynamic";
 import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import { searchAuthors } from "@/lib/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import { countAllAuthors } from "@/server/services/authors";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
+import { searchAuthors } from "@/server/typesense/author";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,

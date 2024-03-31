@@ -1,11 +1,8 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import { searchAuthors } from "@/lib/search";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
@@ -13,6 +10,7 @@ import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { usePathname, useRouter } from "@/navigation";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
+import { searchAuthors } from "@/server/typesense/author";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -191,14 +189,13 @@ export default function _AuthorsFilter({
           : undefined
       }
     >
-      <Input
+      <FilterContainer.Input
         placeholder={t("entities.search-for", { entity: t("entities.author") })}
-        className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={handleInputChange}
       />
 
-      <div className="font-inter mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll sm:max-h-none sm:overflow-y-auto">
+      <FilterContainer.List className="font-inter mt-5">
         {data.items.map((item) => {
           const author = item.document;
           const authorId = author.id;
@@ -217,28 +214,16 @@ export default function _AuthorsFilter({
           const title = `${name} (${booksCount})`;
 
           return (
-            <div key={authorId} className="flex items-center gap-2">
-              <Checkbox
-                id={authorId}
-                checked={selectedAuthors.includes(authorId)}
-                onCheckedChange={() => handleChange(authorId)}
-                className="h-4 w-4"
-              />
-
-              <label
-                htmlFor={authorId}
-                className="flex w-full items-center justify-between text-sm"
-                title={title}
-              >
-                <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {name}
-                </span>
-
-                <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {booksCount}
-                </span>
-              </label>
-            </div>
+            <FilterContainer.Checkbox
+              key={authorId}
+              id={authorId}
+              checked={selectedAuthors.includes(authorId)}
+              onCheckedChange={() => handleChange(authorId)}
+              title={title}
+              count={booksCount}
+            >
+              {name}
+            </FilterContainer.Checkbox>
           );
         })}
 
@@ -247,7 +232,7 @@ export default function _AuthorsFilter({
             {t("common.load-more")}
           </Button>
         )}
-      </div>
+      </FilterContainer.List>
     </FilterContainer>
   );
 }

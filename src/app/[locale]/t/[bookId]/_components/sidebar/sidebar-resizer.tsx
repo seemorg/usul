@@ -48,7 +48,7 @@ export default function SidebarResizer({
 
   return (
     <>
-      <Navbar sidebarContent={sidebar} />
+      <Navbar mobileMenu={sidebar} />
 
       <ResizablePanelGroup
         direction="horizontal"

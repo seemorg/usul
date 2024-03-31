@@ -8,83 +8,26 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useTranslations } from "next-intl";
 import React from "react";
-
-type NavItem = {
-  href?: string;
-  title: NamespaceTranslations<"common">;
-  description: NamespaceTranslations<"common">;
-};
-
-const toolsItems: NavItem[] = [
-  {
-    title: "navigation.tools.advanced-search.title",
-    description: "navigation.tools.advanced-search.description",
-  },
-  {
-    title: "navigation.tools.text-explorer.title",
-    description: "navigation.tools.text-explorer.description",
-    href: navigation.books.all(),
-  },
-  {
-    title: "navigation.tools.author-explorer.title",
-    description: "navigation.tools.author-explorer.description",
-    href: navigation.authors.all(),
-  },
-];
-
-const exploreItems: NavItem[] = [
-  {
-    href: navigation.books.all(),
-    title: "navigation.explore.texts.title",
-    description: "navigation.explore.texts.description",
-  },
-  {
-    href: navigation.authors.all(),
-    title: "navigation.explore.authors.title",
-    description: "navigation.explore.authors.description",
-  },
-  {
-    href: navigation.regions.all(),
-    title: "navigation.explore.regions.title",
-    description: "navigation.explore.regions.description",
-  },
-  {
-    href: navigation.genres.all(),
-    title: "navigation.explore.genres.title",
-    description: "navigation.explore.genres.description",
-  },
-];
-
-const contributeItems: NavItem[] = [
-  {
-    title: "navigation.contribute.add-text.title",
-    description: "navigation.contribute.add-text.description",
-  },
-  {
-    title: "navigation.contribute.report-mistake.title",
-    description: "navigation.contribute.report-mistake.description",
-  },
-  {
-    title: "navigation.contribute.feedback.title",
-    description: "navigation.contribute.feedback.description",
-  },
-];
+import {
+  type NavItem,
+  toolsItems,
+  exploreItems,
+  contributeItems,
+} from "./links";
 
 export default function HomepageNavigationMenu() {
   const t = useTranslations("common");
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
-  const renderItem = (item: NavItem) => {
+  const renderItem = (item: NavItem, idx: number) => {
     if (item.href) {
       return (
-        <ListItem key={item.href} href={item.href} title={t(item.title)}>
+        <ListItem key={idx} href={item.href} title={t(item.title)}>
           {t(item.description)}
         </ListItem>
       );
@@ -92,7 +35,7 @@ export default function HomepageNavigationMenu() {
 
     return (
       <ListItem
-        key={item.href}
+        key={idx}
         href={item.href}
         title={t(item.title)}
         onClick={() => setIsModalOpen(true)}

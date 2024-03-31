@@ -60,7 +60,7 @@ export default function SearchBar({
   }
 
   return (
-    <div className="relative w-full text-black">
+    <div className="relative w-full text-foreground">
       <MagnifyingGlassIcon className="absolute top-1/2 h-3 w-3 -translate-y-1/2 ltr:left-3 rtl:right-3" />
 
       <Input

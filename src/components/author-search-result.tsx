@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-import type { searchAuthors } from "@/lib/search";
+import type { searchAuthors } from "@/server/typesense/author";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";

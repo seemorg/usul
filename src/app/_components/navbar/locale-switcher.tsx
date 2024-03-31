@@ -25,7 +25,7 @@ export default function LocaleSwitcher() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="ghost">
-          <LanguageIcon className="h-6 w-6" />
+          <LanguageIcon className="h-5 w-5 sm:h-6 sm:w-6" />
         </Button>
       </DropdownMenuTrigger>
 

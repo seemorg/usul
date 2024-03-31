@@ -1,7 +1,5 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Fuse from "fuse.js";
 import { Button } from "@/components/ui/button";
@@ -153,15 +151,14 @@ export default function _RegionsFilter({
           : undefined
       }
     >
-      <Input
+      <FilterContainer.Input
         placeholder={t("entities.search-for", { entity: t("entities.region") })}
-        className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
 
       {/* make font weight normal */}
-      <div className="font-inter mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll sm:max-h-none sm:overflow-y-auto">
+      <FilterContainer.List className="font-inter mt-5">
         {matchedRegions.items.map((region) => {
           const booksCount = formatter.number(region.count);
 
@@ -170,28 +167,16 @@ export default function _RegionsFilter({
           const title = `${name} (${booksCount})`;
 
           return (
-            <div key={region.slug} className="flex items-center gap-2">
-              <Checkbox
-                id={region.slug}
-                checked={selectedRegions.includes(region.slug)}
-                onCheckedChange={() => handleChange(region.slug)}
-                className="h-4 w-4"
-              />
-
-              <label
-                htmlFor={region.slug}
-                className="flex w-full items-center justify-between text-sm"
-                title={title}
-              >
-                <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {name}
-                </span>
-
-                <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {booksCount}
-                </span>
-              </label>
-            </div>
+            <FilterContainer.Checkbox
+              key={region.slug}
+              id={region.slug}
+              checked={selectedRegions.includes(region.slug)}
+              onCheckedChange={() => handleChange(region.slug)}
+              title={title}
+              count={booksCount}
+            >
+              {name}
+            </FilterContainer.Checkbox>
           );
         })}
 
@@ -205,7 +190,7 @@ export default function _RegionsFilter({
             {t("common.load-more")}
           </Button>
         )}
-      </div>
+      </FilterContainer.List>
     </FilterContainer>
   );
 }

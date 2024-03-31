@@ -1,13 +1,16 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
-import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
-import { useRef, useState } from "react";
-import { useIsomorphicLayoutEffect } from "usehooks-ts";
-import Swiper from "swiper";
-import { Navigation } from "swiper/modules";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import ComingSoonModal from "@/components/coming-soon-modal";
+
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const HomepageSection = ({
   title,
@@ -18,58 +21,6 @@ const HomepageSection = ({
   href?: string;
   items: React.ReactNode[];
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const swiper = useRef<Swiper>();
-
-  const [navigation, setNavigation] = useState({
-    hasPrev: false,
-    hasNext: true,
-  });
-
-  useIsomorphicLayoutEffect(() => {
-    swiper.current = new Swiper(containerRef.current!, {
-      modules: [Navigation],
-      direction: "horizontal",
-      freeMode: true,
-      // watchSlidesProgress: true,
-      slidesPerView: "auto",
-      // slidesPerGroupSkip: 1,
-      // watchOverflow: true,
-      // breakpoints: {
-      //   320: {
-      //     slidesPerView: 2.2,
-      //   },
-      //   640: {
-      //     slidesPerView: 3.5,
-      //   },
-      //   768: {
-      //     slidesPerView: "auto",
-      //   },
-      // },
-      on: {
-        slideChange: (e) => {
-          console.log({
-            activeIndex: e.activeIndex,
-            slides: e.slides.length,
-          });
-
-          setNavigation({
-            hasPrev: e.activeIndex !== 0,
-            hasNext: e.activeIndex !== e.slides.length - 2,
-          });
-        },
-      },
-    });
-  }, []);
-
-  const prev = () => {
-    swiper.current?.slidePrev();
-  };
-
-  const next = () => {
-    swiper.current?.slideNext();
-  };
-
   const sectionTitle = (
     <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
       {title}{" "}
@@ -78,7 +29,7 @@ const HomepageSection = ({
   );
 
   return (
-    <>
+    <Carousel className="relative w-full pb-10">
       <div className="flex items-center justify-between">
         {href ? (
           <Link href={href}>{sectionTitle}</Link>
@@ -87,23 +38,9 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center">
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={prev}
-            disabled={!navigation.hasPrev}
-          >
-            <ChevronLeftIcon className="h-5 w-5 rtl:rotate-180" />
-          </Button>
+          <CarouselPrevious />
 
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={next}
-            disabled={!navigation.hasNext}
-          >
-            <ChevronRightIcon className="h-5 w-5 rtl:rotate-180" />
-          </Button>
+          <CarouselNext />
         </div>
       </div>
 
@@ -113,21 +50,19 @@ const HomepageSection = ({
         <ScrollBar orientation="horizontal" />
       </ScrollArea> */}
 
-      <div ref={containerRef} className="swiper relative mt-10 w-full">
-        <div className="swiper-wrapper w-full pb-10">
-          {items.map((item, idx) => (
-            <div className="swiper-slide flex !w-auto flex-shrink-0" key={idx}>
-              <div className="w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]">
-                {item}
-              </div>
-              {idx !== items.length - 1 && (
-                <div className="w-3 flex-shrink-0 sm:w-5" />
-              )}
+      <CarouselContent className="mt-10">
+        {items.map((item, idx) => (
+          <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
+            <div className="w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]">
+              {item}
             </div>
-          ))}
-        </div>
-      </div>
-    </>
+            {idx !== items.length - 1 && (
+              <div className="w-3 flex-shrink-0 sm:w-5" />
+            )}
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
   );
 };
 

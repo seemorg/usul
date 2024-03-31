@@ -17,16 +17,18 @@ import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import HomepageNavigationMenu from "./navigation-menu";
 import LocaleSwitcher from "./locale-switcher";
+import MobileMenu from "./mobile-menu";
+import MobileNavigationMenu from "./mobile-navigation-menu";
 
-interface ReaderNavbarProps {
-  sidebarContent?: React.ReactNode;
+interface NavbarProps {
+  mobileMenu?: React.ReactNode;
   isHomepage?: boolean;
 }
 
 export default function Navbar({
   isHomepage,
-  sidebarContent,
-}: ReaderNavbarProps) {
+  mobileMenu: sidebarContent,
+}: NavbarProps) {
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -86,19 +88,24 @@ export default function Navbar({
           </div>
         )}
 
-        <div className="flex items-center gap-3 lg:hidden">
-          {/* Mobile menu button */}
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => {
-              setIsMenuOpen(false);
-              setIsSearchOpen(!isSearchOpen);
-            }}
-          >
-            <MagnifyingGlassIcon className="block h-6 w-6" />
-          </Button>
+        <div className="flex items-center gap-1 sm:gap-3 lg:hidden">
+          <ThemeToggle />
+          <LocaleSwitcher />
 
+          {!isHomepage && (
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsSearchOpen(!isSearchOpen);
+              }}
+            >
+              <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
+            </Button>
+          )}
+
+          {/* Mobile menu button */}
           <Button
             size="icon"
             variant="ghost"
@@ -108,33 +115,36 @@ export default function Navbar({
               setIsMenuOpen(!isMenuOpen);
             }}
           >
-            <span className="absolute -inset-0.5" />
             <span className="sr-only">Open menu</span>
+
             {isMenuOpen ? (
-              <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+              <XMarkIcon
+                className="block h-5 w-5 sm:h-6 sm:w-6"
+                aria-hidden="true"
+              />
             ) : (
-              <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+              <Bars3Icon
+                className="block h-5 w-5 sm:h-6 sm:w-6"
+                aria-hidden="true"
+              />
             )}
           </Button>
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
           <ThemeToggle />
-
           <LocaleSwitcher />
         </div>
       </header>
 
       {isMenuOpen && (
-        <div className="fixed inset-x-0 top-0 z-[10] pt-10 lg:hidden">
-          {sidebarContent}
-        </div>
+        <MobileMenu>{sidebarContent ?? <MobileNavigationMenu />}</MobileMenu>
       )}
 
       {isSearchOpen && (
-        <div className="fixed inset-0 z-[10] h-screen bg-gray-50 pt-20 lg:hidden">
+        <MobileMenu>
           <SearchBar autoFocus />
-        </div>
+        </MobileMenu>
       )}
     </>
   );

@@ -1,7 +1,5 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
 import { usePathname, useRouter } from "@/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import Fuse from "fuse.js";
@@ -149,14 +147,13 @@ export default function _GenresFilter({
           : undefined
       }
     >
-      <Input
+      <FilterContainer.Input
         placeholder={t("entities.search-for", { entity: t("entities.genre") })}
-        className="border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
 
-      <div className="mt-5 max-h-[300px] w-full space-y-3 overflow-y-scroll text-sm sm:max-h-none sm:overflow-y-auto">
+      <FilterContainer.List className="mt-5">
         {matchedGenres.items.map((genre) => {
           // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
           const booksCount = formatter.number(genre.booksCount);
@@ -164,31 +161,16 @@ export default function _GenresFilter({
           const title = `${genre.genreName} (${booksCount})`;
 
           return (
-            <div
+            <FilterContainer.Checkbox
               key={genre.genreId}
-              className="flex cursor-pointer items-center gap-2"
+              id={genre.genreId}
+              title={title}
+              count={booksCount}
+              checked={selectedGenres.includes(genre.genreId)}
+              onCheckedChange={() => handleChange(genre.genreId)}
             >
-              <Checkbox
-                id={genre.genreId}
-                checked={selectedGenres.includes(genre.genreId)}
-                onCheckedChange={() => handleChange(genre.genreId)}
-                className="h-4 w-4"
-              />
-
-              <label
-                htmlFor={genre.genreId}
-                className="flex w-full items-center justify-between text-sm"
-                title={title}
-              >
-                <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
-                  {genre.genreName}
-                </span>
-
-                <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600">
-                  {booksCount}
-                </span>
-              </label>
-            </div>
+              {genre.genreName}
+            </FilterContainer.Checkbox>
           );
         })}
 
@@ -197,7 +179,7 @@ export default function _GenresFilter({
             {t("common.load-more")}
           </Button>
         )}
-      </div>
+      </FilterContainer.List>
     </FilterContainer>
   );
 }
