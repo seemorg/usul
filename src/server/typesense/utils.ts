@@ -1,3 +1,4 @@
+import { removeDiacritics } from "@/lib/diacritics";
 import type { Pagination } from "@/types/pagination";
 
 export const makePagination = (
@@ -24,12 +25,14 @@ export interface SearchOptions {
 }
 
 export const prepareQuery = (q: string) => {
-  const final = [q];
+  const prepared = removeDiacritics(q)
+    .replace(/(al-)/gi, "")
+    .replace(/(al )/gi, "")
+    .replace(/(ال)/gi, "")
+    .replace(/-/gi, " ")
+    .replace(/[‏.»,!?;:"'،؛؟\-_(){}\[\]<>@#\$%\^&\*\+=/\\`~]/gi, "");
 
-  const queryWithoutAl = q.replace(/(al-)/gi, "");
-  if (queryWithoutAl !== q) final.push(queryWithoutAl);
-
-  return final.join(" || ");
+  return prepared;
 };
 
 export const weightsMapToQueryBy = (weightsMap: Record<number, string[]>) =>
