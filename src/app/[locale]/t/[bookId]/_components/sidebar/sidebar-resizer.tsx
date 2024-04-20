@@ -10,17 +10,61 @@ import Navbar from "../../../../../_components/navbar";
 import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { useTranslations } from "next-intl";
+import {
+  StarIcon,
+  DocumentMagnifyingGlassIcon,
+  ListBulletIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/outline";
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 
 const defaultSizes = [75, 25];
+
+const tabs = [
+  {
+    id: "notes",
+    label: "notes",
+    icon: PencilSquareIcon,
+  },
+  {
+    id: "bookmarks",
+    label: "bookmarks",
+    icon: StarIcon,
+  },
+  {
+    id: "search",
+    label: "search",
+    icon: DocumentMagnifyingGlassIcon,
+  },
+
+  {
+    id: "content",
+    label: "content",
+    icon: ListBulletIcon,
+  },
+] satisfies {
+  label: NamespaceTranslations<"reader">;
+  id: string;
+  icon: any;
+}[];
 
 export default function SidebarResizer({
   children,
   sidebar,
   defaultLayout = defaultSizes,
   defaultCollapsed = false,
+  secondNav,
 }: {
   children: React.ReactNode;
   sidebar: React.ReactNode;
+  secondNav?: React.ReactNode;
   defaultLayout?: number[];
   defaultCollapsed?: boolean;
 }) {
@@ -48,7 +92,7 @@ export default function SidebarResizer({
 
   return (
     <>
-      <Navbar mobileMenu={sidebar} />
+      <Navbar secondNav={secondNav} />
 
       <ResizablePanelGroup
         direction="horizontal"

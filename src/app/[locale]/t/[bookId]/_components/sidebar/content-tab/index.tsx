@@ -74,7 +74,11 @@ import { getLocale } from "@/lib/locale/server";
 //   },
 // ];
 
-export default async function ContentTab({ bookId }: { bookId: string }) {
+interface ContentTabProps {
+  bookId: string;
+}
+
+export default async function ContentTab({ bookId }: ContentTabProps) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
 
   try {
