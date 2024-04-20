@@ -28,7 +28,7 @@ export default function ReaderLayout({
     <ReaderContextProviders>
       <SidebarResizer
         secondNav={
-          <div className="flex w-full items-center justify-between bg-muted lg:hidden">
+          <div className="relative flex w-full items-center justify-between bg-slate-50 lg:hidden">
             {tabs.map((tab) => {
               return (
                 <MobileSidebarProvider

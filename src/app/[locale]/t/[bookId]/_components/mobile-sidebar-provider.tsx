@@ -30,7 +30,11 @@ export function MobileSidebarProvider({
     <MobileSidebarContext.Provider value={{ closeSidebar }}>
       <Sheet open={open.value} onOpenChange={open.setValue}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="icon" className="h-12 w-full flex-1">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-12 w-full flex-1 text-black"
+          >
             {icon}
           </Button>
         </SheetTrigger>
