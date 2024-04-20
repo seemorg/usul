@@ -80,7 +80,7 @@ export default async function HomePage() {
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-12 bg-background py-16 sm:py-24">
+      <Container className="flex flex-col gap-4 bg-background py-10 sm:gap-12 sm:py-24">
         <div>
           <HomepageSection
             title={t("sections.collections")}
