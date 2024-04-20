@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Búsqueda Avanzada",
+  "load-more": "Cargar Más",
+  "clear-all": "Borrar todo",
+  "pagination": {
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "page-x": "Página {page, number, nogroup}",
+    "page-unknown": "Página desconocida"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Año en formato Hijri",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Año en formato gregoriano",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Ordenar por",
+    "relevance": "Relevancia",
+    "chronological": "Cronológico",
+    "no-of-texts": "No. de Textos",
+    "no-of-authors": "No. de Autores",
+    "year-asc": "Año (Asc)",
+    "year-desc": "Año (Desc)"
+  },
+  "theme": {
+    "light": "Claro",
+    "dark": "Oscuro",
+    "auto": "Automático"
+  },
+  "from": "Desde",
+  "to": "Hasta",
+  "search-bar": {
+    "placeholder": "Buscar un texto",
+    "start-typing": "Comienza a escribir...",
+    "no-results": "No se encontraron resultados",
+    "all-results": "Ver todos los resultados ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Herramientas",
+      "get-notified": {
+        "title": "Recibir Notificaciones",
+        "description": "Manténgase al tanto de las próximas herramientas, utilizando tecnologías de IA de vanguardia."
+      },
+      "advanced-search": {
+        "title": "Búsqueda Avanzada",
+        "description": "Buscar textos, autores, regiones y géneros"
+      },
+      "text-explorer": {
+        "title": "Explorador de Textos",
+        "description": "Buscar un texto utilizando criterios avanzados"
+      },
+      "author-explorer": {
+        "title": "Explorador de Autores",
+        "description": "Buscar un texto utilizando criterios avanzados"
+      }
+    },
+    "explore": {
+      "title": "Explorar",
+      "texts": {
+        "title": "Textos",
+        "description": "Explora los textos más populares"
+      },
+      "authors": {
+        "title": "Autores",
+        "description": "Explora los autores más populares"
+      },
+      "regions": {
+        "title": "Regiones",
+        "description": "Explora las regiones más populares"
+      },
+      "genres": {
+        "title": "Géneros",
+        "description": "Explora los géneros más populares"
+      }
+    },
+    "contribute": {
+      "title": "Contribuir",
+      "about": {
+        "title": "Acerca de Seemore",
+        "description": "Manténgase al tanto de las próximas herramientas, utilizando tecnologías de IA de vanguardia."
+      },
+      "add-text": {
+        "title": "Añadir Texto",
+        "description": "Agregar un nuevo texto a la biblioteca"
+      },
+      "develop": {
+        "title": "Desarrollar",
+        "description": "Ayúdanos a desarrollar nuevas herramientas mediante contribuciones de código abierto"
+      },
+      "report-mistake": {
+        "title": "Reportar Error",
+        "description": "Reporta un error en un texto"
+      },
+      "feedback": {
+        "title": "Retroalimentación",
+        "description": "Envíanos tus comentarios"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Digital Seem - la biblioteca islámica más grande del mundo",
+    "description": "Digitalseem.org ofrece más de 8,000 textos islámicos del corpus OpenITI. Nuestro objetivo es facilitar la lectura, búsqueda e investigación de textos clásicos. Suscríbete a continuación para recibir actualizaciones mensuales sobre nuestro trabajo.",
+    "email-address": "Dirección de correo electrónico",
+    "subscribe": "Suscribirse",
+    "copyright": "{year, number, nogroup} Fundación Seemorg. Todos los derechos reservados."
+  },
+  "lost": "Parece que te has perdido",
+  "go-back-home": "Vuelve a casa",
+  "arabic-names": "Nombres árabes",
+  "latin-names": "Nombres latinos",
+  "author-arabic-names": "Nombres árabes del autor",
+  "author-latin-names": "Nombres latinos del autor",
+  "author-bio": "Nombres latinos del autor",
+  "author-regions": "Regiones del autor",
+  "lived": "Vivió",
+  "died": "Falleció",
+  "born": "Nacido",
+  "resided": "Residió",
+  "visited": "Visitado",
+  "aka": "También conocido como",
+  "views": {
+    "switch-to-list": "Cambiar a vista de lista",
+    "switch-to-grid": "Cambiar a vista de cuadrícula"
+  },
+  "see-more": "Ver más",
+  "see-less": "Ver menos",
+  "includes": "Incluye",
+  "coming-soon": {
+    "title": "Próximamente",
+    "message": "Esta función aún no está disponible. Suscríbete a nuestro boletín y te notificaremos cuando esté lista.",
+    "success": "¡Gracias!",
+    "error": "Algo salió mal. Por favor, intenta de nuevo más tarde."
+  }
+}

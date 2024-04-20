@@ -1,0 +1,21 @@
+{
+  "notes": "نوٹس",
+  "bookmarks": "بُک مارکس",
+  "search": "تلاش",
+  "content": "مواد",
+  "coming-soon": {
+    "title": "جلد آ رہا ہے",
+    "message": "یہ خصوصیت ابھی دستیاب نہیں ہے۔"
+  },
+  "page-navigator": {
+    "name": "صفحہ نیویگیٹر",
+    "title": "صفحہ پر جائیں",
+    "description": "{start, number} - {end, number} کے درمیان ایک صفحہ نمبر درج کریں",
+    "input-placeholder": "صفحہ نمبر",
+    "go": "جاؤ"
+  },
+  "version": "ورژن",
+  "select-version": "ایک ورژن منتخب کریں",
+  "other-titles": "دیگر عنوانات",
+  "more-info": "مزید معلومات"
+}

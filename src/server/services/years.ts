@@ -3,8 +3,6 @@
 import { cache } from "react";
 import descriptions from "~/data/centuries.json";
 import { db } from "../db";
-import { count, eq, sql } from "drizzle-orm";
-import { author, book } from "../db/schema";
 
 export const findAllYearRanges = cache(async () => {
   const counts = await countAllBooksByCentury();
@@ -24,7 +22,7 @@ export const findAllYearRanges = cache(async () => {
       yearTo: i + 100,
       centuryNumber: century,
       description: (descriptions as any)[String(century)]?.summary,
-      totalBooks: counts.find((c) => c.century === String(century))?.count || 0,
+      totalBooks: counts.find((c) => c.century === century)?.count || 0,
     });
   }
 
@@ -42,14 +40,14 @@ export const findYearRangeBySlug = cache(async (slug: string | number) => {
 });
 
 export const countAllBooksByCentury = cache(async () => {
-  const result = await db
-    .select({
-      count: count(book.id),
-      century: sql<string | null>`FLOOR(${author.year} / 100) + 1 AS century`,
-    })
-    .from(book)
-    .leftJoin(author, eq(book.authorId, author.id))
-    .groupBy(sql`century`);
+  const result = await db.$queryRaw<{ century: number; count: number }[]>`
+SELECT 
+FLOOR("Author"."year" / 100) + 1 AS "century", 
+COUNT("Book"."id")::int as count
+FROM "Book"
+LEFT JOIN "Author" ON "Book"."authorId" = "Author"."id"
+GROUP BY "century" 
+  `;
 
   return result;
 });

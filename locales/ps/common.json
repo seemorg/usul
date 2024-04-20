@@ -1,0 +1,142 @@
+{
+  "advanced-search": "لټون پرمختللی",
+  "load-more": "نور ولولې",
+  "clear-all": "ټول پاک کړئ",
+  "pagination": {
+    "previous": "مخکې",
+    "next": "بل",
+    "page-x": "مخ {page, number, nogroup}",
+    "page-unknown": "ناپیژندل شوی مخ"
+  },
+  "year-format": {
+    "ah": {
+      "title": "ه.ق",
+      "description": "کال په هجري فورماټ کې",
+      "value": "{year, number, nogroup} ه.ق"
+    },
+    "ad": {
+      "title": "م.ل",
+      "description": "کال په گريگوريان فورماټ کې",
+      "value": "{year, number, nogroup} م.ل"
+    }
+  },
+  "sorts": {
+    "placeholder": "د مرتبولو په جنسیت کې",
+    "relevance": "اړوند",
+    "chronological": "کره وخت",
+    "no-of-texts": "د متنونو شمېر",
+    "no-of-authors": "د لیکوالو شمېر",
+    "year-asc": "کال (سرليږی)",
+    "year-desc": "کال (کښته)"
+  },
+  "theme": {
+    "light": "روښانه",
+    "dark": "تیاره",
+    "auto": "اتومات"
+  },
+  "from": "له",
+  "to": "ته",
+  "search-bar": {
+    "placeholder": "د یوه متن پلټنه",
+    "start-typing": "تایپ کول پیل کړه...",
+    "no-results": "هیڅ نتیجه ونه موندل شوه",
+    "all-results": "ټولې نتایج وګورئ ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "آلات",
+      "get-notified": {
+        "title": "خبرتیا ورکول",
+        "description": "د راتلونکو آلاتو لپاره مو چمتو وساتئ، چې د پرمختیايي AI ټکنالوژیو کاروي."
+      },
+      "advanced-search": {
+        "title": "لټون پرمختللی",
+        "description": "د متنونو، لیکوالو، سیمو او ژانرونو لټون وکړئ"
+      },
+      "text-explorer": {
+        "title": "متن کاشف",
+        "description": "د پرمختللو معیارو په استفاده متن وپلټئ"
+      },
+      "author-explorer": {
+        "title": "لیکوال کاشف",
+        "description": "د پرمختللو معیارو په استفاده متن وپلټئ"
+      }
+    },
+    "explore": {
+      "title": "پوهیږه",
+      "texts": {
+        "title": "متنونه",
+        "description": "د مشهور متنونو کشف کول"
+      },
+      "authors": {
+        "title": "لیکوال",
+        "description": "د مشهور لیکوالو کشف کول"
+      },
+      "regions": {
+        "title": "سیمې",
+        "description": "د مشهورو سیمو کشف کول"
+      },
+      "genres": {
+        "title": "ژانري",
+        "description": "د مشهورو ژانرونو کشف کول"
+      }
+    },
+    "contribute": {
+      "title": "ونډه ورکول",
+      "about": {
+        "title": "د سیمور په اړه",
+        "description": "د راتلونکو آلاتو لپاره مو چمتو وساتئ، چې د پرمختیايي AI ټکنالوژیو کاروي."
+      },
+      "add-text": {
+        "title": "متن اضافه کول",
+        "description": "نوی متن په کتابتون کې اضافه کول"
+      },
+      "develop": {
+        "title": "وروسته کول",
+        "description": "موږ ته د خلاصه سرچینې له لارې د نوي آلاتو پرمختیا کې مرسته وکړئ"
+      },
+      "report-mistake": {
+        "title": "غلطي راپور ورکول",
+        "description": "په یوه متن کې غلطي راپور ورکړئ"
+      },
+      "feedback": {
+        "title": "تبصرې",
+        "description": "خپلې تبصرې را واستوئ"
+      }
+    }
+  },
+  "footer": {
+    "headline": "ډیجیټل سیم - نړۍ کې ترټولو لوی اسلامي کتابتون",
+    "description": "Digitalseem.org د OpenITI کورپس څخه د 8,000 اسلامي متنونو خدمت کوي. زموږ موخه دا ده چې د کلاسیکي متنونو لوستل، لټون، او څیړنه اسانه کړو. د موږ د کار پرمخ تللی معلوماتو ترلاسه کولو لپاره لاندې ثبت کړئ.",
+    "email-address": "برېښنالیک پته",
+    "subscribe": "اشتراک",
+    "copyright": "{year, number, nogroup} سیمرغ بنسټ. ټول حقونه خوندي دي."
+  },
+  "lost": "ښکاري لکه تاسو له لارې ورک شوي",
+  "go-back-home": "بیرته کور ته ورشئ",
+  "arabic-names": "عربي نومونه",
+  "latin-names": "لاتيني نومونه",
+  "author-arabic-names": "لیکوال عربي نومونه",
+  "author-latin-names": "لیکوال لاتیني نومونه",
+  "author-bio": "لیکوال لاتیني نومونه",
+  "author-regions": "لیکوال سیمې",
+  "lived": "ژوندی",
+  "died": "مړ",
+  "born": "زېږېدلی",
+  "resided": "اوسیدل",
+  "visited": "لیدل",
+  "aka": "همدارنگه پیژندل کیږي په توگه",
+  "views": {
+    "switch-to-list": "د لیست لید ته واړوئ",
+    "switch-to-grid": "د گرډ لید ته واړوئ"
+  },
+  "see-more": "نور وګورئ",
+  "see-less": "لږ وګورئ",
+  "includes": "پکې شامل دی",
+  "coming-soon": {
+    "title": "ژر به راشي",
+    "message": "دا ځانګړتیا لا دمخه شتون نلري. زموږ خبرپاڼې ته اشتراک وکړئ او کله چې دا چمتو شي نو خبر شئ.",
+    "success": "مننه!",
+    "error": "یوه ستونزه راپیدا شوه. بیا وروسته هڅه وکړئ."
+  }
+}

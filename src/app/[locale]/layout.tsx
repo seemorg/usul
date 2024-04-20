@@ -11,7 +11,7 @@ import Providers from "./providers";
 import { useMessages } from "next-intl";
 import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
 
 export const metadata = getMetadata();

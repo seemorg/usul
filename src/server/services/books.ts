@@ -1,22 +1,17 @@
 // "use server";
-
 import { type Block, parseMarkdown } from "@openiti/markdown-parser";
 import { cache } from "react";
 import slugify from "slugify";
-import { db } from "@/server/db";
-import { book } from "../db/schema";
-import { count } from "drizzle-orm";
+import { db } from "../db";
 
 export const fetchBook = cache(async (id: string, versionId?: string) => {
-  const record = await db.query.book.findFirst({
-    where: (book, { eq }) => eq(book.slug, id),
-    with: {
+  const record = await db.book.findFirst({
+    where: {
+      slug: id,
+    },
+    include: {
       author: true,
-      genres: {
-        with: {
-          genre: true,
-        },
-      },
+      genres: true,
     },
   });
 
@@ -145,18 +140,12 @@ function generateHeaderId(content: string, prevSlugs: Set<string>) {
 }
 
 export const countAllBooks = cache(async () => {
-  const result = await db
-    .select({
-      count: count(book.id),
-    })
-    .from(book);
-
-  return result[0]?.count ?? 0;
+  return await db.book.count();
 });
 
 export const getPopularBooks = cache(async () => {
-  const result = await db.query.book.findMany({
-    limit: 10,
+  const result = await db.book.findMany({
+    take: 10,
   });
 
   return result;

@@ -9,6 +9,7 @@ export type GlobalSearchDocument = {
   primaryLatinName?: string;
   otherLatinNames?: string[];
   _nameVariations?: string[];
+  _popularity?: number;
   author?: Omit<AuthorDocument, "books" | "booksCount" | "geographies">;
   year?: number;
   booksCount?: number;

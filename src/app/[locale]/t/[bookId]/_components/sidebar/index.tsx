@@ -16,7 +16,7 @@ import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { getTranslations } from "next-intl/server";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
 
 const ComingSoonAlert = async () => {

@@ -26,7 +26,7 @@ import { navigation } from "@/lib/urls";
 import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
 
 // const breadcrumbs = [

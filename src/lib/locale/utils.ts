@@ -1,13 +1,10 @@
-import type { AppLocale } from "~/i18n.config";
-
-// Map locales in the path to supported BCP-47 locale tags.  Ideally we'll
-// eventually migrate to this just being a passthrough, but we have a lot of
-// tags that are used in the URL that aren't BCP-47 compliant so we need this to
-// map between them.
-export const pathLocaleToSupportedBcp47LocaleMap = {
-  en: "en-US",
-  ar: "ar-SA",
-} as const satisfies Record<string, AppLocale>;
+import { useLocale } from "next-intl";
+import {
+  type AppLocale,
+  pathLocaleToSupportedBcp47LocaleMap,
+  localeToFullName,
+  localeToDirection,
+} from "~/i18n.config";
 
 export const PATH_LOCALES = Object.keys(
   pathLocaleToSupportedBcp47LocaleMap,
@@ -34,4 +31,17 @@ export const supportedBcp47LocaleToPathLocale = (
       `Expected to find ${bcp47Locale} in path locale to bcp47locale map but no such entry was found!`,
     );
   }
+};
+
+export const getLocaleFullName = (locale: AppLocale) => {
+  return localeToFullName[locale];
+};
+
+export const getLocaleDirection = (locale: AppLocale) => {
+  return localeToDirection[locale];
+};
+
+export const usePathLocale = (): PathLocale => {
+  const locale = useLocale() as AppLocale;
+  return supportedBcp47LocaleToPathLocale(locale);
 };

@@ -1,0 +1,21 @@
+{
+  "notes": "নোট",
+  "bookmarks": "বুকমার্কস",
+  "search": "অনুসন্ধান",
+  "content": "বিষয়বস্তু",
+  "coming-soon": {
+    "title": "শীঘ্রই আসছে",
+    "message": "এই বৈশিষ্ট্যটি এখনও উপলব্ধ নয়।"
+  },
+  "page-navigator": {
+    "name": "পাতা নেভিগেটর",
+    "title": "পাতায় যান",
+    "description": "{start, number} - {end, number} এর মধ্যে একটি পাতা সংখ্যা লিখুন",
+    "input-placeholder": "পাতা সংখ্যা",
+    "go": "যান"
+  },
+  "version": "সংস্করণ",
+  "select-version": "একটি সংস্করণ নির্বাচন করুন",
+  "other-titles": "অন্যান্য শিরোনাম",
+  "more-info": "আরও তথ্য"
+}

@@ -7,6 +7,7 @@ export type RegionDocument = {
 
   booksCount: number;
   authorsCount: number;
+  _popularity: number;
 
   subLocations: string[];
   subLocationsCount: number;

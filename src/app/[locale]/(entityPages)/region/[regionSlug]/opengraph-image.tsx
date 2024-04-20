@@ -1,4 +1,6 @@
 import { loadFileOnEdge } from "@/lib/edge";
+import { getPathLocale } from "@/lib/locale/server";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
@@ -34,11 +36,18 @@ export default async function Image({
     regionSlug: string;
   };
 }) {
+  const pathLocale = await getPathLocale();
   const region = await findRegionBySlug(regionSlug);
 
   if (!region) {
     notFound();
   }
+
+  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale)!;
+  const overview = getPrimaryLocalizedText(
+    region.overviewTranslations,
+    pathLocale,
+  )!;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -56,7 +65,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {region.region.name}
+          {name}
         </h1>
 
         <p
@@ -66,7 +75,7 @@ export default async function Image({
             marginTop: 50,
           }}
         >
-          {region.region.overview}
+          {overview}
         </p>
       </div>
     ),
