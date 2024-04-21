@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Raadin Horumarsan",
+  "load-more": "Ku Shub wax dheeraad ah",
+  "clear-all": "Nadiifi dhammaan",
+  "pagination": {
+    "previous": "Kii Hore",
+    "next": "Kan Xiga",
+    "page-x": "Bogga {page, number, nogroup}",
+    "page-unknown": "Bog aan la aqoon"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Sannadka qaabka Hijriyada",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Sannadka qaabka Gregorian",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Kala saar",
+    "relevance": "Ku habboon",
+    "chronological": "Taariikheed",
+    "no-of-texts": "No. Wargeysyada",
+    "no-of-authors": "No. Qorayaasha",
+    "year-asc": "Sannadka (Kor)",
+    "year-desc": "Sannadka (Hoos)"
+  },
+  "theme": {
+    "light": "Iftiin",
+    "dark": "Mugdi",
+    "auto": "Toos ah"
+  },
+  "from": "Laga bilaabo",
+  "to": "Ilaa",
+  "search-bar": {
+    "placeholder": "Raadi qoraal",
+    "start-typing": "Bilow qorista...",
+    "no-results": "Natiijooyin Lama Helin",
+    "all-results": "Eeg Dhammaan Natiijooyinka ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Qalab",
+      "get-notified": {
+        "title": "Hel Ogeysiis",
+        "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
+      },
+      "advanced-search": {
+        "title": "Raadin Horumarsan",
+        "description": "Raadi qoraallada, qorayaasha, gobollada, iyo noocyada"
+      },
+      "text-explorer": {
+        "title": "Baare Qoraal",
+        "description": "Raadi qoraal adoo adeegsanaya shuruudaha horumarsan"
+      },
+      "author-explorer": {
+        "title": "Baare Qoraa",
+        "description": "Raadi qoraal adoo adeegsanaya shuruudaha horumarsan"
+      }
+    },
+    "explore": {
+      "title": "Baadh",
+      "texts": {
+        "title": "Qoraallada",
+        "description": "Baadh qoraallada ugu caansan"
+      },
+      "authors": {
+        "title": "Qorayaasha",
+        "description": "Baadh qorayaasha ugu caansan"
+      },
+      "regions": {
+        "title": "Gobollada",
+        "description": "Baadh gobollada ugu caansan"
+      },
+      "genres": {
+        "title": "Noocyada",
+        "description": "Baadh noocyada ugu caansan"
+      }
+    },
+    "contribute": {
+      "title": "Ku Biiri",
+      "about": {
+        "title": "Ku saabsan Usul",
+        "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
+      },
+      "add-text": {
+        "title": "Ku Dar Qoraal",
+        "description": "Ku dar qoraal cusub maktabadda"
+      },
+      "develop": {
+        "title": "Hormari",
+        "description": "Naga caawi inaan hormarino qalabyo cusub iyada oo loo marayo ka qaybgalka il furan"
+      },
+      "report-mistake": {
+        "title": "Sheeg Khaladaad",
+        "description": "Sheeg khalad ku jira qoraal"
+      },
+      "feedback": {
+        "title": "Jawaabcelin",
+        "description": "Noo soo dir jawaabcelintaada"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Usul - maktabadda ugu weyn adduunka ee Islaamka",
+    "description": "Usul.ai waxay bixisaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda OpenITI corpus. Hadafkeenu waa inaan ka dhigno akhriska, raadinta, iyo cilmi baarista qoraalada dhaqameedka inay fududaato. Isdiiwaangeli hoos si aad u hesho cusbooneysiin bille ah oo ku saabsan shaqadeena.",
+    "email-address": "Cinwaanka Emailka",
+    "subscribe": "Isdiiwaangeli",
+    "copyright": "{year, number, nogroup} Seemorg Foundation. Dhammaan xuquuqaha waa la kaydiyay."
+  },
+  "lost": "Waxay u muuqataa inaad lumtay",
+  "go-back-home": "Ku noqo guriga",
+  "arabic-names": "Magacyada Carabiga",
+  "latin-names": "Magacyada Latin-ka",
+  "author-arabic-names": "Magacyada Qoraaga Carabiga",
+  "author-latin-names": "Magacyada Qoraaga Latin-ka",
+  "author-bio": "Magacyada Qoraaga Latin-ka",
+  "author-regions": "Gobollada Qoraaga",
+  "lived": "Noolaa",
+  "died": "Dhintay",
+  "born": "Dhashay",
+  "resided": "Deggenaa",
+  "visited": "Booqday",
+  "aka": "Sidoo kale loo yaqaan",
+  "views": {
+    "switch-to-list": "U beddel aragti liiska",
+    "switch-to-grid": "U beddel aragti shaxanka"
+  },
+  "see-more": "Eeg wax badan",
+  "see-less": "Eeg wax yar",
+  "includes": "Waxaa ka mid ah",
+  "coming-soon": {
+    "title": "Dhawaan Imaanaya",
+    "message": "Astaamahan imika lama heli karo. Isdiiwaangeli warsidaha aan leenahay oo hel ogeysiis markuu diyaar yahay.",
+    "success": "Mahadsanid!",
+    "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
+  }
+}

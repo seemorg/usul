@@ -1,0 +1,21 @@
+{
+  "notes": "یاداښتونه",
+  "bookmarks": "لانچینی",
+  "search": "لټون",
+  "content": "مندنه",
+  "coming-soon": {
+    "title": "ژر به راشي",
+    "message": "دا بڼه اوس مهال شتون نلري."
+  },
+  "page-navigator": {
+    "name": "پاڼه نیویګی",
+    "title": "په پاڼه ورځه",
+    "description": "د {start, number} څخه {end, number} ترمنځ یوه پاڼه ولیکئ",
+    "input-placeholder": "پاڼې شمېره",
+    "go": "لاړ شه"
+  },
+  "version": "نسخه",
+  "select-version": "یوه نسخه وټاکئ",
+  "other-titles": "نور عنوانونه",
+  "more-info": "نور معلومات"
+}

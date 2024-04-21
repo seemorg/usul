@@ -1,0 +1,21 @@
+{
+  "notes": "नोट्स",
+  "bookmarks": "बुकमार्क्स",
+  "search": "खोज",
+  "content": "सामग्री",
+  "coming-soon": {
+    "title": "जल्द आ रहा है",
+    "message": "यह सुविधा अभी उपलब्ध नहीं है।"
+  },
+  "page-navigator": {
+    "name": "पृष्ठ नेविगेटर",
+    "title": "पृष्ठ पर जाएँ",
+    "description": "{start, number} - {end, number} के बीच एक पृष्ठ संख्या दर्ज करें",
+    "input-placeholder": "पृष्ठ संख्या",
+    "go": "जाओ"
+  },
+  "version": "संस्करण",
+  "select-version": "एक संस्करण चुनें",
+  "other-titles": "अन्य शीर्षक",
+  "more-info": "और जानकारी"
+}

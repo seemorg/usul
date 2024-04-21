@@ -1,0 +1,21 @@
+{
+  "notes": "Nota",
+  "bookmarks": "Penanda Buku",
+  "search": "Carian",
+  "content": "Kandungan",
+  "coming-soon": {
+    "title": "Akan Datang",
+    "message": "Ciri ini belum tersedia."
+  },
+  "page-navigator": {
+    "name": "Navigator Halaman",
+    "title": "Lompat ke halaman",
+    "description": "Masukkan nombor halaman antara {start, number} - {end, number}",
+    "input-placeholder": "Nombor halaman",
+    "go": "Pergi"
+  },
+  "version": "Versi",
+  "select-version": "Pilih sebuah versi",
+  "other-titles": "Tajuk lain",
+  "more-info": "Maklumat Lanjut"
+}

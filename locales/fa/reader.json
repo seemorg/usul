@@ -1,0 +1,21 @@
+{
+  "notes": "یادداشت‌ها",
+  "bookmarks": "نشانک‌ها",
+  "search": "جستجو",
+  "content": "محتوا",
+  "coming-soon": {
+    "title": "به زودی",
+    "message": "این قابلیت هنوز در دسترس نیست."
+  },
+  "page-navigator": {
+    "name": "ناوبری صفحه",
+    "title": "پرش به صفحه",
+    "description": "شماره صفحه‌ای بین {start, number} - {end, number} وارد کنید",
+    "input-placeholder": "شماره صفحه",
+    "go": "برو"
+  },
+  "version": "نسخه",
+  "select-version": "انتخاب یک نسخه",
+  "other-titles": "عناوین دیگر",
+  "more-info": "اطلاعات بیشتر"
+}

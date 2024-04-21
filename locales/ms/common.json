@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Carian Lanjutan",
+  "load-more": "Muat Lebih",
+  "clear-all": "Kosongkan semua",
+  "pagination": {
+    "previous": "Sebelumnya",
+    "next": "Seterusnya",
+    "page-x": "Halaman {page, number, nogroup}",
+    "page-unknown": "Halaman tidak diketahui"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Tahun dalam format Hijri",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Tahun dalam format Gregorian",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Susun mengikut",
+    "relevance": "Relevan",
+    "chronological": "Kronologi",
+    "no-of-texts": "Bil. Teks",
+    "no-of-authors": "Bil. Pengarang",
+    "year-asc": "Tahun (Menaik)",
+    "year-desc": "Tahun (Menurun)"
+  },
+  "theme": {
+    "light": "Cahaya",
+    "dark": "Gelap",
+    "auto": "Auto"
+  },
+  "from": "Dari",
+  "to": "Ke",
+  "search-bar": {
+    "placeholder": "Cari teks",
+    "start-typing": "Mula menaip...",
+    "no-results": "Tiada hasil ditemui",
+    "all-results": "Lihat semua hasil ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Alat",
+      "get-notified": {
+        "title": "Dapatkan Notifikasi",
+        "description": "Nantikan alat-alat akan datang, yang menggunakan teknologi AI terkini."
+      },
+      "advanced-search": {
+        "title": "Carian Lanjutan",
+        "description": "Cari teks, pengarang, wilayah, dan genre"
+      },
+      "text-explorer": {
+        "title": "Pengeluar Teks",
+        "description": "Cari teks menggunakan kriteria lanjutan"
+      },
+      "author-explorer": {
+        "title": "Pengeluar Pengarang",
+        "description": "Cari teks menggunakan kriteria lanjutan"
+      }
+    },
+    "explore": {
+      "title": "Teroka",
+      "texts": {
+        "title": "Teks",
+        "description": "Teroka teks-teks yang paling popular"
+      },
+      "authors": {
+        "title": "Pengarang",
+        "description": "Teroka pengarang-pengarang yang paling popular"
+      },
+      "regions": {
+        "title": "Wilayah",
+        "description": "Teroka wilayah-wilayah yang paling popular"
+      },
+      "genres": {
+        "title": "Genre",
+        "description": "Teroka genre-genre yang paling popular"
+      }
+    },
+    "contribute": {
+      "title": "Sumbang",
+      "about": {
+        "title": "Mengenai Usul",
+        "description": "Nantikan alat-alat akan datang, yang menggunakan teknologi AI terkini."
+      },
+      "add-text": {
+        "title": "Tambah Teks",
+        "description": "Tambah teks baru ke perpustakaan"
+      },
+      "develop": {
+        "title": "Kembangkan",
+        "description": "Bantulah kami mengembangkan alat baru melalui sumbangan sumber terbuka"
+      },
+      "report-mistake": {
+        "title": "Laporkan Kesalahan",
+        "description": "Laporkan kesalahan dalam sebuah teks"
+      },
+      "feedback": {
+        "title": "Maklum Balas",
+        "description": "Hantarkan maklum balas anda kepada kami"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Usul - perpustakaan Islam terbesar di Dunia",
+    "description": "Usul.ai menyajikan lebih dari 8,000 teks Islam dari korpus OpenITI. Tujuan kami adalah untuk memudahkan membaca, mencari, dan meneliti teks-teks klasik. Langgan di bawah untuk menerima pembaruan bulanan tentang kerja kami.",
+    "email-address": "Alamat E-mel",
+    "subscribe": "Langgan",
+    "copyright": "{year, number, nogroup} Seemorg Foundation. Hak cipta terpelihara."
+  },
+  "lost": "Sepertinya anda tersesat",
+  "go-back-home": "Kembali ke halaman utama",
+  "arabic-names": "Nama-nama Arab",
+  "latin-names": "Nama-nama Latin",
+  "author-arabic-names": "Nama-nama Arab Pengarang",
+  "author-latin-names": "Nama-nama Latin Pengarang",
+  "author-bio": "Nama-nama Latin Pengarang",
+  "author-regions": "Wilayah Pengarang",
+  "lived": "Hidup",
+  "died": "Meninggal",
+  "born": "Lahir",
+  "resided": "Bertempat tinggal",
+  "visited": "Melawat",
+  "aka": "Juga dikenali sebagai",
+  "views": {
+    "switch-to-list": "Tukar ke paparan senarai",
+    "switch-to-grid": "Tukar ke paparan grid"
+  },
+  "see-more": "Lihat lebih",
+  "see-less": "Lihat kurang",
+  "includes": "Termasuk",
+  "coming-soon": {
+    "title": "Akan Datang",
+    "message": "Ciri ini belum tersedia. Langgan ke surat berita kami dan dapatkan notifikasi bila ia siap.",
+    "success": "Terima kasih!",
+    "error": "Ada yang salah. Sila cuba lagi nanti."
+  }
+}

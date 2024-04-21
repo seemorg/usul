@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Recherche Avancée",
+  "load-more": "Charger plus",
+  "clear-all": "Effacer tout",
+  "pagination": {
+    "previous": "Précédent",
+    "next": "Suivant",
+    "page-x": "Page {page, number, nogroup}",
+    "page-unknown": "Page inconnue"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Année au format Hijri",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Année au format Grégorien",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Trier par",
+    "relevance": "Pertinence",
+    "chronological": "Chronologique",
+    "no-of-texts": "Nb de textes",
+    "no-of-authors": "Nb d'auteurs",
+    "year-asc": "Année (Asc)",
+    "year-desc": "Année (Desc)"
+  },
+  "theme": {
+    "light": "Lumière",
+    "dark": "Sombre",
+    "auto": "Auto"
+  },
+  "from": "De",
+  "to": "À",
+  "search-bar": {
+    "placeholder": "Rechercher un texte",
+    "start-typing": "Commencez à taper...",
+    "no-results": "Aucun résultat trouvé",
+    "all-results": "Voir tous les résultats ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Outils",
+      "get-notified": {
+        "title": "Être Notifié",
+        "description": "Restez à l'écoute pour les prochains outils, utilisant les technologies d'IA de pointe."
+      },
+      "advanced-search": {
+        "title": "Recherche Avancée",
+        "description": "Recherchez des textes, auteurs, régions et genres"
+      },
+      "text-explorer": {
+        "title": "Explorateur de Textes",
+        "description": "Recherchez un texte en utilisant des critères avancés"
+      },
+      "author-explorer": {
+        "title": "Explorateur d'Auteurs",
+        "description": "Recherchez un texte en utilisant des critères avancés"
+      }
+    },
+    "explore": {
+      "title": "Explorer",
+      "texts": {
+        "title": "Textes",
+        "description": "Explorez les textes les plus populaires"
+      },
+      "authors": {
+        "title": "Auteurs",
+        "description": "Explorez les auteurs les plus populaires"
+      },
+      "regions": {
+        "title": "Régions",
+        "description": "Explorez les régions les plus populaires"
+      },
+      "genres": {
+        "title": "Genres",
+        "description": "Explorez les genres les plus populaires"
+      }
+    },
+    "contribute": {
+      "title": "Contribuer",
+      "about": {
+        "title": "À propos de Usul",
+        "description": "Restez à l'écoute pour les prochains outils, utilisant les technologies d'IA de pointe."
+      },
+      "add-text": {
+        "title": "Ajouter Texte",
+        "description": "Ajoutez un nouveau texte à la bibliothèque"
+      },
+      "develop": {
+        "title": "Développer",
+        "description": "Aidez-nous à développer de nouveaux outils grâce aux contributions open-source"
+      },
+      "report-mistake": {
+        "title": "Signaler une Erreur",
+        "description": "Signalez une erreur dans un texte"
+      },
+      "feedback": {
+        "title": "Retours",
+        "description": "Envoyez-nous vos retours"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Usul - la plus grande bibliothèque islamique du monde",
+    "description": "Usul.ai propose plus de 8 000 textes islamiques de l'OpenITI corpus. Notre objectif est de rendre la lecture, la recherche, et l'étude des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
+    "email-address": "Adresse Email",
+    "subscribe": "Abonnez-vous",
+    "copyright": "{year, number, nogroup} Fondation Seemorg. Tous droits réservés."
+  },
+  "lost": "On dirait que vous êtes perdus",
+  "go-back-home": "Retour à l'accueil",
+  "arabic-names": "Noms arabes",
+  "latin-names": "Noms latins",
+  "author-arabic-names": "Noms arabes des auteurs",
+  "author-latin-names": "Noms latins des auteurs",
+  "author-bio": "Noms latins des auteurs",
+  "author-regions": "Régions des auteurs",
+  "lived": "Vécu",
+  "died": "Décédé",
+  "born": "Né",
+  "resided": "Résidé",
+  "visited": "Visités",
+  "aka": "Aussi connu sous le nom de",
+  "views": {
+    "switch-to-list": "Passer à la vue liste",
+    "switch-to-grid": "Passer à la vue grille"
+  },
+  "see-more": "Voir plus",
+  "see-less": "Voir moins",
+  "includes": "Comprend",
+  "coming-soon": {
+    "title": "Bientôt disponible",
+    "message": "Cette fonctionnalité n'est pas encore disponible. Abonnez-vous à notre newsletter et soyez notifié lorsque c'est prêt.",
+    "success": "Merci !",
+    "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
+  }
+}
