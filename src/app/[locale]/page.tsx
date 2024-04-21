@@ -54,7 +54,7 @@ export default async function HomePage() {
 
       <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
         <Container className="flex flex-col items-center">
-          <h1 className="text-5xl font-bold sm:text-6xl">Digital Seem</h1>
+          <h1 className="text-5xl font-bold sm:text-6xl">Usul</h1>
 
           <p className="mt-5 text-lg">{t("headline")}</p>
 

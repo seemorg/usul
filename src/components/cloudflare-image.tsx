@@ -13,7 +13,7 @@ export const cloudflareImageLoader: ImageLoader = ({ src, width, quality }) => {
     props.push(`quality=${quality}`);
   }
 
-  return `https://digitalseem.org/cdn-cgi/image/${props.join(",")}/${src}`;
+  return `https://usul.ai/cdn-cgi/image/${props.join(",")}/${src}`;
 };
 
 export function CloudflareImage(props: Omit<ImageProps, "loader">) {

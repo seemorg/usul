@@ -47,7 +47,7 @@ const BookSearchResult = ({
         <Link href={navigation.books.reader(document.slug)} prefetch={false}>
           <div className={cn("overflow-hidden rounded-md bg-muted")}>
             <CloudflareImage
-              src={`https://assets.digitalseem.org/covers/${document.slug}.png`}
+              src={`https://assets.usul.ai/covers/${document.slug}.png`}
               alt={title}
               width={320}
               height={460}
