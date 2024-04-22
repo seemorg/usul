@@ -70,8 +70,8 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
         )}
       >
         <div className="xl:col-span-2">
-          <Link href="/">
-            <Logo className="-mt-1 h-[2.1rem] w-auto lg:h-12" />
+          <Link href="/" className="flex w-fit items-center gap-3">
+            <Logo className="h-5 w-auto" />
           </Link>
         </div>
 

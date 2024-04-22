@@ -49,7 +49,7 @@ export default async function Image({
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[100px] px-[100px]">
+      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[80px] px-[80px]">
         <h1
           style={{
             fontSize: 84,
@@ -63,7 +63,7 @@ export default async function Image({
           style={{
             fontSize: 38,
             fontFamily: "Family",
-            marginTop: 50,
+            marginTop: 40,
           }}
         >
           {region.region.overview}

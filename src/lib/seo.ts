@@ -31,7 +31,7 @@ export const getMetadata = ({
   return {
     title: {
       template: "%s | Usul",
-      default: "Library",
+      default: "Usul - the world's largest Islamic library",
     },
     description,
     metadataBase: new URL(config.url),
