@@ -16,6 +16,7 @@ import {
 import HomepageSection from "../_components/homepage-section";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { ArabicLogo } from "@/components/Icons";
 
 const searchExamples = [
   {
@@ -54,7 +55,8 @@ export default async function HomePage() {
 
       <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
         <Container className="flex flex-col items-center">
-          <h1 className="text-5xl font-bold sm:text-6xl">Digital Seem</h1>
+          {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
+          <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" />
 
           <p className="mt-5 text-lg">{t("headline")}</p>
 
@@ -80,7 +82,7 @@ export default async function HomePage() {
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-12 bg-background py-16 sm:py-24">
+      <Container className="flex flex-col gap-4 bg-background py-10 sm:gap-12 sm:py-24">
         <div>
           <HomepageSection
             title={t("sections.collections")}

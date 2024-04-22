@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/popover";
 import { useReaderVirtuoso } from "../../context";
 import { useTranslations } from "next-intl";
+import { useMobileSidebar } from "../../mobile-sidebar-provider";
 
 export default function PageNavigator({
   popover = true,
@@ -18,6 +19,7 @@ export default function PageNavigator({
   range: { start: number; end: number };
 }) {
   const virtuosoRef = useReaderVirtuoso();
+  const mobileSidebar = useMobileSidebar();
   const t = useTranslations("reader.page-navigator");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,6 +40,8 @@ export default function PageNavigator({
       index: pageNumber - range.start,
       align: "center",
     });
+
+    mobileSidebar.closeSidebar();
   };
 
   const Content = (

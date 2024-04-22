@@ -1,0 +1,142 @@
+{
+  "advanced-search": "جستجوی پیشرفته",
+  "load-more": "بارگذاری بیشتر",
+  "clear-all": "پاک کردن همه",
+  "pagination": {
+    "previous": "قبلی",
+    "next": "بعدی",
+    "page-x": "صفحه {page, number, nogroup}",
+    "page-unknown": "صفحه نامشخص"
+  },
+  "year-format": {
+    "ah": {
+      "title": "ه.ق",
+      "description": "سال به شکل هجری قمری",
+      "value": "{year, number, nogroup} ه.ق"
+    },
+    "ad": {
+      "title": "م",
+      "description": "سال به شکل میلادی",
+      "value": "{year, number, nogroup} م"
+    }
+  },
+  "sorts": {
+    "placeholder": "مرتب سازی بر اساس",
+    "relevance": "مرتبط",
+    "chronological": "ترتیب زمانی",
+    "no-of-texts": "تعداد متون",
+    "no-of-authors": "تعداد نویسندگان",
+    "year-asc": "سال (صعودی)",
+    "year-desc": "سال (نزولی)"
+  },
+  "theme": {
+    "light": "روشن",
+    "dark": "تیره",
+    "auto": "خودکار"
+  },
+  "from": "از",
+  "to": "تا",
+  "search-bar": {
+    "placeholder": "جستجو برای یک متن",
+    "start-typing": "شروع به تایپ کنید...",
+    "no-results": "نتیجه‌ای یافت نشد",
+    "all-results": "مشاهده همه نتایج ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "ابزارها",
+      "get-notified": {
+        "title": "اطلاع رسانی",
+        "description": "منتظر ابزارهای آتی با استفاده از فناوری‌های پیشرفته هوش مصنوعی بمانید."
+      },
+      "advanced-search": {
+        "title": "جستجوی پیشرفته",
+        "description": "جستجو برای متون، نویسندگان، مناطق، و ژانرها"
+      },
+      "text-explorer": {
+        "title": "کاوشگر متن",
+        "description": "جستجو برای یک متن با استفاده از معیارهای پیشرفته"
+      },
+      "author-explorer": {
+        "title": "کاوشگر نویسنده",
+        "description": "جستجو برای یک متن با استفاده از معیارهای پیشرفته"
+      }
+    },
+    "explore": {
+      "title": "کاوش",
+      "texts": {
+        "title": "متون",
+        "description": "کاوش در محبوب‌ترین متون"
+      },
+      "authors": {
+        "title": "نویسندگان",
+        "description": "کاوش در محبوب‌ترین نویسندگان"
+      },
+      "regions": {
+        "title": "مناطق",
+        "description": "کاوش در محبوب‌ترین مناطق"
+      },
+      "genres": {
+        "title": "ژانرها",
+        "description": "کاوش در محبوب‌ترین ژانرها"
+      }
+    },
+    "contribute": {
+      "title": "مشارکت",
+      "about": {
+        "title": "درباره Usul",
+        "description": "منتظر ابزارهای آتی با استفاده از فناوری‌های پیشرفته هوش مصنوعی بمانید."
+      },
+      "add-text": {
+        "title": "افزودن متن",
+        "description": "افزودن یک متن جدید به کتابخانه"
+      },
+      "develop": {
+        "title": "توسعه",
+        "description": "به ما در توسعه ابزارهای جدید از طریق مشارکت‌های منبع باز کمک کنید"
+      },
+      "report-mistake": {
+        "title": "گزارش خطا",
+        "description": "گزارش یک خطا در یک متن"
+      },
+      "feedback": {
+        "title": "بازخورد",
+        "description": "بازخورد خود را برای ما ارسال کنید"
+      }
+    }
+  },
+  "footer": {
+    "headline": "دیجیتال سیم - بزرگترین کتابخانه اسلامی جهان",
+    "description": "Usul.ai بیش از 8,000 متن اسلامی از مجموعه OpenITI را ارائه می دهد. هدف ما این است که خواندن، جستجو، و تحقیق در متون کلاسیک را آسان کنیم. برای دریافت اطلاعیه‌های ماهانه درباره کارهایمان، در زیر مشترک شوید.",
+    "email-address": "آدرس ایمیل",
+    "subscribe": "اشتراک",
+    "copyright": "{year, number, nogroup} بنیاد Usul.ai. همه حقوق محفوظ است."
+  },
+  "lost": "به نظر می‌رسد که گم شده‌اید",
+  "go-back-home": "بازگشت به خانه",
+  "arabic-names": "نام‌های عربی",
+  "latin-names": "نام‌های لاتین",
+  "author-arabic-names": "نام‌های عربی نویسندگان",
+  "author-latin-names": "نام‌های لاتین نویسندگان",
+  "author-bio": "نام‌های لاتین نویسندگان",
+  "author-regions": "مناطق نویسندگان",
+  "lived": "زندگی کرد",
+  "died": "درگذشت",
+  "born": "متولد",
+  "resided": "اقامت داشت",
+  "visited": "بازدید کرد",
+  "aka": "همچنین شناخته شده به عنوان",
+  "views": {
+    "switch-to-list": "تغییر به نمایش لیستی",
+    "switch-to-grid": "تغییر به نمایش گرید"
+  },
+  "see-more": "مشاهده بیشتر",
+  "see-less": "مشاهده کمتر",
+  "includes": "شامل می‌شود",
+  "coming-soon": {
+    "title": "به زودی",
+    "message": "این ویژگی هنوز در دسترس نیست. برای دریافت اعلان زمانی که آماده شد، عضو خبرنامه ما شوید.",
+    "success": "متشکریم!",
+    "error": "مشکلی پیش آمد. لطفا بعدا دوباره تلاش کنید."
+  }
+}

@@ -18,9 +18,11 @@ export default function SidebarResizer({
   sidebar,
   defaultLayout = defaultSizes,
   defaultCollapsed = false,
+  secondNav,
 }: {
   children: React.ReactNode;
   sidebar: React.ReactNode;
+  secondNav?: React.ReactNode;
   defaultLayout?: number[];
   defaultCollapsed?: boolean;
 }) {
@@ -48,7 +50,7 @@ export default function SidebarResizer({
 
   return (
     <>
-      <Navbar mobileMenu={sidebar} />
+      <Navbar secondNav={secondNav} />
 
       <ResizablePanelGroup
         direction="horizontal"

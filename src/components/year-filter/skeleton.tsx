@@ -13,7 +13,7 @@ export default async function YearFilterSkeleton({
   return (
     <FilterContainer
       title={t("entities.year")}
-      titleChildren={<span className="h-6 w-14 rounded-full bg-gray-200" />}
+      titleChildren={<span className="h-6 w-20 rounded-full bg-gray-200" />}
     >
       <div className="mt-4">
         <Slider

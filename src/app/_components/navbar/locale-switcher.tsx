@@ -11,7 +11,7 @@ import {
 import { locales } from "~/i18n.config";
 import { Link, usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
-import { getLocaleFullName } from "@/lib/locale/client";
+import { getLocaleFullName } from "@/lib/locale/utils";
 import { useLocale } from "next-intl";
 
 export default function LocaleSwitcher() {

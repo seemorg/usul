@@ -1,0 +1,21 @@
+{
+  "notes": "Qoraallo",
+  "bookmarks": "Xusuus-qoryo",
+  "search": "Raadi",
+  "content": "Mawduuc",
+  "coming-soon": {
+    "title": "Dhawaan Imaanaysa",
+    "message": "Astaantan hadda lama heli karo."
+  },
+  "page-navigator": {
+    "name": "Sawir-qaade Bogga",
+    "title": "U bood bogga",
+    "description": "Ku qor lambarka bogga inta u dhexeysa {start, number} - {end, number}",
+    "input-placeholder": "Lambarka Bogga",
+    "go": "Tag"
+  },
+  "version": "Nooca",
+  "select-version": "Dooro nooc",
+  "other-titles": "Cinwaano kale",
+  "more-info": "Macluumaad Dheeraad ah"
+}

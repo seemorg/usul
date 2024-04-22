@@ -6,6 +6,7 @@ import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useFormatter } from "next-intl";
+import { useMobileSidebar } from "../../mobile-sidebar-provider";
 
 export default function ChaptersList({
   headers,
@@ -16,12 +17,15 @@ export default function ChaptersList({
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const formatter = useFormatter();
+  const mobileSidebar = useMobileSidebar();
 
   const handleNavigate = (pageNumber: number) => {
     virtuosoRef.current?.scrollToIndex({
       index: pageNumber - pagesRange.start,
       align: "center",
     });
+
+    mobileSidebar.closeSidebar();
   };
 
   if (headers.length === 0) {

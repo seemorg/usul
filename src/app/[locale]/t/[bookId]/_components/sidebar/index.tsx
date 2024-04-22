@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/tooltip";
 import {
   StarIcon,
-  MagnifyingGlassIcon,
+  DocumentMagnifyingGlassIcon,
   ListBulletIcon,
   PencilSquareIcon,
 } from "@heroicons/react/24/outline";
@@ -16,7 +16,7 @@ import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { getTranslations } from "next-intl/server";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
 
 const ComingSoonAlert = async () => {
@@ -36,7 +36,7 @@ const ComingSoonAlert = async () => {
   );
 };
 
-const tabs = [
+export const tabs = [
   {
     id: "notes",
     label: "notes",
@@ -52,7 +52,7 @@ const tabs = [
   {
     id: "search",
     label: "search",
-    icon: MagnifyingGlassIcon,
+    icon: DocumentMagnifyingGlassIcon,
     content: ComingSoonAlert,
   },
 
@@ -78,7 +78,7 @@ export default async function ReaderSidebar({ bookId }: { bookId: string }) {
       <div className="pointer-events-none absolute inset-y-0 w-[50vw] max-w-full ltr:left-0 rtl:right-0" />
 
       <Tabs defaultValue="content">
-        <SidebarContainer>
+        <SidebarContainer className="hidden sm:block">
           <TabsList className="h-10 w-full font-sans">
             {tabs.map((tab) => (
               <Tooltip key={tab.id}>

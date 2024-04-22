@@ -1,0 +1,21 @@
+{
+  "notes": "Notas",
+  "bookmarks": "Marcadores",
+  "search": "Buscar",
+  "content": "Contenido",
+  "coming-soon": {
+    "title": "Próximamente",
+    "message": "Esta función aún no está disponible."
+  },
+  "page-navigator": {
+    "name": "Navegador de Páginas",
+    "title": "Saltar a la página",
+    "description": "Introduzca un número de página entre {start, number} - {end, number}",
+    "input-placeholder": "Número de página",
+    "go": "Ir"
+  },
+  "version": "Versión",
+  "select-version": "Seleccione una versión",
+  "other-titles": "Otros títulos",
+  "more-info": "Más Información"
+}

@@ -50,7 +50,7 @@ const HomepageSection = ({
         <ScrollBar orientation="horizontal" />
       </ScrollArea> */}
 
-      <CarouselContent className="mt-10">
+      <CarouselContent className="mt-5 sm:mt-10">
         {items.map((item, idx) => (
           <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
             <div className="w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]">

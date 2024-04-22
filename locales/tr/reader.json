@@ -1,0 +1,21 @@
+{
+  "notes": "Notlar",
+  "bookmarks": "Yer İşaretleri",
+  "search": "Arama",
+  "content": "İçerik",
+  "coming-soon": {
+    "title": "Yakında",
+    "message": "Bu özellik henüz kullanılamıyor."
+  },
+  "page-navigator": {
+    "name": "Sayfa Yönlendirici",
+    "title": "Sayfaya Git",
+    "description": "{start, number} - {end, number} arasında bir sayfa numarası girin",
+    "input-placeholder": "Sayfa numarası",
+    "go": "Git"
+  },
+  "version": "Versiyon",
+  "select-version": "Bir versiyon seçin",
+  "other-titles": "Diğer başlıklar",
+  "more-info": "Daha Fazla Bilgi"
+}

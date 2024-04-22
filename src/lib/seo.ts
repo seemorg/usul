@@ -1,9 +1,9 @@
 import { type Metadata, type Viewport } from "next";
 
 export const config = {
-  title: "Library | Seemore",
-  shortTitle: "Seemore",
-  siteName: "Seemore Library",
+  title: "Library | Usul",
+  shortTitle: "Usul",
+  siteName: "Usul",
   description: "Access thousands of Islamic texts in seconds.",
   themeColor: "#AA4A44",
   locale: "en_US",
@@ -11,9 +11,9 @@ export const config = {
     url: "/cover.png",
     width: 1500,
     height: 600,
-    alt: "Seemore Library Cover",
+    alt: "Usul Cover",
   },
-  url: "https://library.digitalseem.org",
+  url: "https://usul.ai",
 };
 
 export const getMetadata = ({
@@ -30,8 +30,8 @@ export const getMetadata = ({
 
   return {
     title: {
-      template: "%s | Seemore",
-      default: "Library",
+      template: "%s | Usul",
+      default: "Usul - the world's largest Islamic library",
     },
     description,
     metadataBase: new URL(config.url),

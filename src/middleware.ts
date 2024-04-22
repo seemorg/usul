@@ -61,7 +61,7 @@ export const config = {
   matcher: [
     "/",
 
-    "/(en|en-US|ar|ar-SA)/:path*",
+    "/(en|ar|bn|fr|hi|ha|ms|ps|fa|ru|so|es|tr|ur)/:path*",
 
     // Enable redirects that add missing locales
     // (e.g. `/pathnames` -> `/en/pathnames`)

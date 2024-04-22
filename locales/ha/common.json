@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Bincike Mai Zurfi",
+  "load-more": "Daukar Karin",
+  "clear-all": "Goge duk",
+  "pagination": {
+    "previous": "Na Baya",
+    "next": "Na Gaba",
+    "page-x": "Shafi {page, number, nogroup}",
+    "page-unknown": "Shafi da ba'a sani ba"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Shekara a Tsarin Hijri",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Shekara a Tsarin Gregorian",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Zaɓi Ta",
+    "relevance": "Dangantaka",
+    "chronological": "Chronological",
+    "no-of-texts": "Yawan Rubutu",
+    "no-of-authors": "Yawan Marubuta",
+    "year-asc": "Shekara (Tashi)",
+    "year-desc": "Shekara (Sauka)"
+  },
+  "theme": {
+    "light": "Haske",
+    "dark": "Baki",
+    "auto": "Atomatik"
+  },
+  "from": "Daga",
+  "to": "Zuwa",
+  "search-bar": {
+    "placeholder": "Nema don Rubutu",
+    "start-typing": "Fara Rubutawa...",
+    "no-results": "Babu sakamako",
+    "all-results": "Duba duk sakamakon ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Kayan Aiki",
+      "get-notified": {
+        "title": "Samun Sanarwa",
+        "description": "Kasance na jiran sababbin kayan aikin, wanda ke amfani da sabbin fasahohin AI."
+      },
+      "advanced-search": {
+        "title": "Bincike Mai Zurfi",
+        "description": "Bincike don rubutattun bayanai, marubuta, yankuna, da nau'o'in"
+      },
+      "text-explorer": {
+        "title": "Mai Binciken Rubutu",
+        "description": "Bincika rubutu ta amfani da ka’idoji masu zurfi"
+      },
+      "author-explorer": {
+        "title": "Mai Binciken Marubuci",
+        "description": "Bincika rubutu ta amfani da ka’idoji masu zurfi"
+      }
+    },
+    "explore": {
+      "title": "Binciko",
+      "texts": {
+        "title": "Rubutu",
+        "description": "Binciko rubutattun bayanai mafi shahara"
+      },
+      "authors": {
+        "title": "Marubuta",
+        "description": "Binciko marubutan da suka fi shahara"
+      },
+      "regions": {
+        "title": "Yankuna",
+        "description": "Binciko yankunan da suka fi shahara"
+      },
+      "genres": {
+        "title": "Nau'o'i",
+        "description": "Binciko nau'o'in da suka fi shahara"
+      }
+    },
+    "contribute": {
+      "title": "Gudumawa",
+      "about": {
+        "title": "Game da Usul",
+        "description": "Kasance na jiran sababbin kayan aikin, wanda ke amfani da sabbin fasahohin AI."
+      },
+      "add-text": {
+        "title": "Ƙara Rubutu",
+        "description": "Ƙara sabon rubutu zuwa ɗakin karatu"
+      },
+      "develop": {
+        "title": "Haɓaka",
+        "description": "Taimaka mana haɓaka sababbin kayan aiki ta hanyar gudummawar bude ido"
+      },
+      "report-mistake": {
+        "title": "Ruwaito Kuskure",
+        "description": "Ruwaito kuskuren cikin rubutu"
+      },
+      "feedback": {
+        "title": "Martani",
+        "description": "Aiko mana da martaninku"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Usul - babban ɗakin karatu na Musulunci mafi girma a duniya",
+    "description": "Usul.ai na ba da sama da rubutun Islama 8,000 daga OpenITI corpus. Manufarmu ita ce sauƙaƙe karatu, bincike, da binciken rubutun gargajiya. Yi rijista a ƙasa don samun sabuntawa na wata-wata akan aikinmu.",
+    "email-address": "Adireshin Imel",
+    "subscribe": "Yi rajista",
+    "copyright": "{year, number, nogroup} Gidauniyar Usul.ai. Dukkan hakkoki an kiyaye su."
+  },
+  "lost": "Yana kama da ka bata",
+  "go-back-home": "Koma gida",
+  "arabic-names": "Sunayen Larabci",
+  "latin-names": "Sunayen Latin",
+  "author-arabic-names": "Sunayen Marubuta Larabci",
+  "author-latin-names": "Sunayen Marubuta Latin",
+  "author-bio": "Sunayen Marubuta Latin",
+  "author-regions": "Yankunan Marubuta",
+  "lived": "Ya rayu",
+  "died": "Ya mutu",
+  "born": "An haife",
+  "resided": "Ya zauna",
+  "visited": "Ya ziyarta",
+  "aka": "An san shi da",
+  "views": {
+    "switch-to-list": "Canja zuwa kallo na jeri",
+    "switch-to-grid": "Canja zuwa kallo na raga"
+  },
+  "see-more": "Duba ƙari",
+  "see-less": "Duba ƙasa",
+  "includes": "Ya ƙunshi",
+  "coming-soon": {
+    "title": "Ana zuwa Ba da daɗewa ba",
+    "message": "Wannan fasalin ba shi da akwai tukuna. Yi rijista zuwa wasiƙarmu kuma an sanar da ku lokacin da yake shirye.",
+    "success": "Na gode!",
+    "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
+  }
+}

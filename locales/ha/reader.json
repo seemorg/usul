@@ -1,0 +1,21 @@
+{
+  "notes": "Bayanai",
+  "bookmarks": "Alamomin Shafi",
+  "search": "Bincike",
+  "content": "Abun ciki",
+  "coming-soon": {
+    "title": "Da zuwa",
+    "message": "Wannan fasalin ba ya samuwa tukuna."
+  },
+  "page-navigator": {
+    "name": "Mai Naviga Shafi",
+    "title": "Tsallaka zuwa shafi",
+    "description": "Shigar da lambar shafi tsakanin {start, number} - {end, number}",
+    "input-placeholder": "Lambar shafi",
+    "go": "Je"
+  },
+  "version": "Sigar",
+  "select-version": "Zabi wata siga",
+  "other-titles": "Sauran taken",
+  "more-info": "Ƙarin Bayani"
+}

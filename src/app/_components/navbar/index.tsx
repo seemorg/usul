@@ -10,7 +10,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import SearchBar from "./search";
 import { useNavbarStore } from "@/stores/navbar";
@@ -21,14 +21,11 @@ import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 
 interface NavbarProps {
-  mobileMenu?: React.ReactNode;
   isHomepage?: boolean;
+  secondNav?: React.ReactNode;
 }
 
-export default function Navbar({
-  isHomepage,
-  mobileMenu: sidebarContent,
-}: NavbarProps) {
+export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -66,15 +63,15 @@ export default function Navbar({
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-30 flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          "fixed inset-x-0 top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
         )}
       >
         <div className="xl:col-span-2">
-          <Link href="/">
-            <Logo className="-mt-1 h-[2.3rem] w-auto lg:h-12" />
+          <Link href="/" className="flex w-fit items-center gap-3">
+            <Logo className="h-5 w-auto" />
           </Link>
         </div>
 
@@ -92,18 +89,16 @@ export default function Navbar({
           <ThemeToggle />
           <LocaleSwitcher />
 
-          {!isHomepage && (
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => {
-                setIsMenuOpen(false);
-                setIsSearchOpen(!isSearchOpen);
-              }}
-            >
-              <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
-            </Button>
-          )}
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={() => {
+              setIsMenuOpen(false);
+              setIsSearchOpen(!isSearchOpen);
+            }}
+          >
+            <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
+          </Button>
 
           {/* Mobile menu button */}
           <Button
@@ -137,13 +132,30 @@ export default function Navbar({
         </div>
       </header>
 
+      {secondNav && (
+        <nav
+          className={cn(
+            "fixed inset-x-0 top-16 z-30 w-full transition",
+            showNavbar
+              ? "pointer-events-auto translate-y-0 opacity-100"
+              : "pointer-events-none -translate-y-10 opacity-0",
+          )}
+        >
+          {secondNav}
+        </nav>
+      )}
+
       {isMenuOpen && (
-        <MobileMenu>{sidebarContent ?? <MobileNavigationMenu />}</MobileMenu>
+        <MobileMenu>
+          <MobileNavigationMenu />
+        </MobileMenu>
       )}
 
       {isSearchOpen && (
         <MobileMenu>
-          <SearchBar autoFocus />
+          <div className="pt-24">
+            <SearchBar autoFocus />
+          </div>
         </MobileMenu>
       )}
     </>

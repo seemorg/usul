@@ -1,0 +1,142 @@
+{
+  "advanced-search": "Gelişmiş Arama",
+  "load-more": "Daha Fazla Yükle",
+  "clear-all": "Tümünü Temizle",
+  "pagination": {
+    "previous": "Önceki",
+    "next": "Sonraki",
+    "page-x": "Sayfa {page, number, nogroup}",
+    "page-unknown": "Bilinmeyen sayfa"
+  },
+  "year-format": {
+    "ah": {
+      "title": "AH",
+      "description": "Hicri formatında Yıl",
+      "value": "{year, number, nogroup} AH"
+    },
+    "ad": {
+      "title": "AD",
+      "description": "Miladi formatında Yıl",
+      "value": "{year, number, nogroup} AD"
+    }
+  },
+  "sorts": {
+    "placeholder": "Sırala",
+    "relevance": "İlgi Derecesine Göre",
+    "chronological": "Kronolojik",
+    "no-of-texts": "Metin Sayısı",
+    "no-of-authors": "Yazar Sayısı",
+    "year-asc": "Yıl (Artan)",
+    "year-desc": "Yıl (Azalan)"
+  },
+  "theme": {
+    "light": "Açık",
+    "dark": "Koyu",
+    "auto": "Otomatik"
+  },
+  "from": "Başlangıç",
+  "to": "Bitiş",
+  "search-bar": {
+    "placeholder": "Bir metin arayın",
+    "start-typing": "Yazmaya başlayın...",
+    "no-results": "Sonuç bulunamadı",
+    "all-results": "Tüm sonuçları gör ({results, number})"
+  },
+  "navigation": {
+    "tools": {
+      "title": "Araçlar",
+      "get-notified": {
+        "title": "Bildirim Al",
+        "description": "Yakında çıkacak araçlar için takipte kalın, bu araçlar son teknoloji AI teknolojilerini kullanıyor."
+      },
+      "advanced-search": {
+        "title": "Gelişmiş Arama",
+        "description": "Metinleri, yazarları, bölgeleri ve türleri arayın"
+      },
+      "text-explorer": {
+        "title": "Metin Gezgini",
+        "description": "Gelişmiş kriterleri kullanarak bir metin arayın"
+      },
+      "author-explorer": {
+        "title": "Yazar Gezgini",
+        "description": "Gelişmiş kriterleri kullanarak bir metin arayın"
+      }
+    },
+    "explore": {
+      "title": "Keşfet",
+      "texts": {
+        "title": "Metinler",
+        "description": "En popüler metinleri keşfedin"
+      },
+      "authors": {
+        "title": "Yazarlar",
+        "description": "En popüler yazarları keşfedin"
+      },
+      "regions": {
+        "title": "Bölgeler",
+        "description": "En popüler bölgeleri keşfedin"
+      },
+      "genres": {
+        "title": "Türler",
+        "description": "En popüler türleri keşfedin"
+      }
+    },
+    "contribute": {
+      "title": "Katkıda Bulun",
+      "about": {
+        "title": "Usul Hakkında",
+        "description": "Yakında çıkacak araçlar için takipte kalın, bu araçlar son teknoloji AI teknolojilerini kullanıyor."
+      },
+      "add-text": {
+        "title": "Metin Ekle",
+        "description": "Kütüphaneye yeni bir metin ekleyin"
+      },
+      "develop": {
+        "title": "Geliştir",
+        "description": "Açık kaynak katkıları aracılığıyla yeni araçlar geliştirmemize yardımcı olun"
+      },
+      "report-mistake": {
+        "title": "Hata Bildir",
+        "description": "Bir metinde hata bildirin"
+      },
+      "feedback": {
+        "title": "Geri Bildirim",
+        "description": "Bize geri bildiriminizi gönderin"
+      }
+    }
+  },
+  "footer": {
+    "headline": "Usul - Dünyanın en büyük İslami kütüphanesi",
+    "description": "Usul.ai, OpenITI korpusundan 8.000'den fazla İslami metin sunar. Amacımız, klasik metinleri okumayı, aramayı ve araştırmayı kolaylaştırmaktır. Çalışmalarımız hakkında aylık güncellemeler almak için aşağıya abone olun.",
+    "email-address": "E-posta Adresi",
+    "subscribe": "Abone Ol",
+    "copyright": "{year, number, nogroup} Usul.ai Vakfı. Tüm hakları saklıdır."
+  },
+  "lost": "Kaybolmuş gibi görünüyorsun",
+  "go-back-home": "Ana sayfaya dön",
+  "arabic-names": "Arap isimleri",
+  "latin-names": "Latin isimleri",
+  "author-arabic-names": "Yazar Arap isimleri",
+  "author-latin-names": "Yazar Latin isimleri",
+  "author-bio": "Yazar Latin isimleri",
+  "author-regions": "Yazar bölgeleri",
+  "lived": "Yaşadı",
+  "died": "Öldü",
+  "born": "Doğum",
+  "resided": "İkamet Etti",
+  "visited": "Ziyaret Etti",
+  "aka": "Ayrıca şu şekilde tanınır",
+  "views": {
+    "switch-to-list": "Liste görünümüne geç",
+    "switch-to-grid": "Izgara görünümüne geç"
+  },
+  "see-more": "Daha fazla göster",
+  "see-less": "Daha az göster",
+  "includes": "İçerir",
+  "coming-soon": {
+    "title": "Yakında",
+    "message": "Bu özellik henüz kullanılabilir değil. Hazır olduğunda bilgilendirilmek için bültenimize abone olun.",
+    "success": "Teşekkürler!",
+    "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
+  }
+}
