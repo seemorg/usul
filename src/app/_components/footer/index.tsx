@@ -1,7 +1,7 @@
 import ComingSoonModal from "@/components/coming-soon-modal";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import { navigation as urls } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";

@@ -8,7 +8,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AppProgressBar from "@/components/app-progressbar";
 import { DirectionProvider } from "@radix-ui/react-direction";
-import { getLocaleDirection } from "@/lib/locale/client";
+import { getLocaleDirection } from "@/lib/locale/utils";
 import { getSharedConfig } from "@/i18n";
 import { useMemo } from "react";
 
