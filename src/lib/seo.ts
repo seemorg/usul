@@ -1,10 +1,11 @@
 import { type Metadata, type Viewport } from "next";
 
 export const config = {
-  title: "Library | Usul",
+  title: "Usul - The Research tool for Islamic Texts",
   shortTitle: "Usul",
   siteName: "Usul",
-  description: "Access thousands of Islamic texts in seconds.",
+  description:
+    "Read, search, and research 8,000+ Islamic and classical texts in a few clicks",
   themeColor: "#AA4A44",
   locale: "en_US",
   image: {
@@ -31,7 +32,7 @@ export const getMetadata = ({
   return {
     title: {
       template: "%s | Usul",
-      default: "Usul - the world's largest Islamic library",
+      default: "Usul - The Research tool for Islamic Texts",
     },
     description,
     metadataBase: new URL(config.url),

@@ -1,19 +1,15 @@
+import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
 import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 
-// Route segment config
 export const runtime = "edge";
 
-// Image metadata
-export const alt = "About Acme";
-export const size = {
+const size = {
   width: 1280,
   height: 720,
 };
-
-export const contentType = "image/png";
 
 const fonts = {
   calSans: new URL(
@@ -25,6 +21,29 @@ const fonts = {
     import.meta.url,
   ),
 };
+
+export async function generateImageMetadata({
+  params: { regionSlug },
+}: {
+  params: {
+    regionSlug: string;
+  };
+}) {
+  const region = await findRegionBySlug(regionSlug);
+
+  if (!region) {
+    return [];
+  }
+
+  return [
+    {
+      id: "main",
+      alt: region.region.name,
+      contentType: "image/png",
+      size,
+    },
+  ];
+}
 
 // Image generation
 export default async function Image({
@@ -46,10 +65,18 @@ export default async function Image({
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
 
+  const overview = region.region.overview ?? "";
+  const trimmedOverview =
+    overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
+
   return new ImageResponse(
     (
-      // ImageResponse JSX element
-      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[80px] px-[80px]">
+      <div
+        tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-[80px]"
+        style={{
+          position: "relative",
+        }}
+      >
         <h1
           style={{
             fontSize: 84,
@@ -66,8 +93,25 @@ export default async function Image({
             marginTop: 40,
           }}
         >
-          {region.region.overview}
+          {trimmedOverview}
         </p>
+
+        <div
+          style={{
+            position: "absolute",
+            bottom: 50,
+            left: 80,
+            display: "flex",
+            alignItems: "flex-end",
+            gap: 20,
+          }}
+        >
+          {/* w:26 h:10 */}
+          <Logo style={{ height: 40, width: 104 }} />
+
+          {/* w:65 h:37 */}
+          <ArabicLogo style={{ height: 50, width: 88 }} />
+        </div>
       </div>
     ),
     {
