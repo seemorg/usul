@@ -4,7 +4,8 @@ export const config = {
   title: "Library | Usul",
   shortTitle: "Usul",
   siteName: "Usul",
-  description: "Access thousands of Islamic texts in seconds.",
+  description:
+    "Read, search, and research 8,000+ Islamic and classical texts in a few clicks",
   themeColor: "#AA4A44",
   locale: "en_US",
   image: {
