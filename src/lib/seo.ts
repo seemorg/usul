@@ -1,7 +1,7 @@
 import { type Metadata, type Viewport } from "next";
 
 export const config = {
-  title: "Library | Usul",
+  title: "Usul - The Research tool for Islamic Texts",
   shortTitle: "Usul",
   siteName: "Usul",
   description:
