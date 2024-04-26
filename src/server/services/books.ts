@@ -46,6 +46,8 @@ export const fetchBook = cache(async (id: string, versionId?: string) => {
 
       if (!response.ok || response.status >= 300) {
         log.error("book_not_found", { slug: id, versionId });
+        await log.flush();
+
         throw new Error("Book not found");
       }
     }
