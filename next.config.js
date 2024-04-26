@@ -5,6 +5,7 @@
 await import("./src/env.js");
 
 import createNextIntlPlugin from "next-intl/plugin";
+import { withAxiom } from "next-axiom";
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -40,4 +41,4 @@ const config = {
   },
 };
 
-export default withNextIntl(config);
+export default withNextIntl(withAxiom(config));

@@ -13,6 +13,9 @@ export const env = createEnv({
     RESEND_API_KEY: z.string().min(1),
   },
   client: {},
+  shared: {
+    NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
+  },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
     TYPESENSE_URL: process.env.TYPESENSE_URL,
@@ -20,6 +23,8 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT:
+      process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

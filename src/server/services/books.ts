@@ -6,6 +6,7 @@ import slugify from "slugify";
 import { db } from "@/server/db";
 import { book } from "../db/schema";
 import { count } from "drizzle-orm";
+import { log } from "next-axiom";
 
 export const fetchBook = cache(async (id: string, versionId?: string) => {
   const record = await db.query.book.findFirst({
@@ -44,6 +45,7 @@ export const fetchBook = cache(async (id: string, versionId?: string) => {
       );
 
       if (!response.ok || response.status >= 300) {
+        log.error("book_not_found", { slug: id, versionId });
         throw new Error("Book not found");
       }
     }
