@@ -29,6 +29,19 @@ export const popularIslamicLawBooks = [
   { slug: "muhalla-bi-athar" },
 ];
 
+export const popularIslamicHistoryBooks = [
+  { slug: "sira-nabawiyya" },
+  { slug: "sira" },
+  { slug: "zad-macad" },
+  { slug: "bidaya-1" },
+  { slug: "tarikh-5" },
+  { slug: "fadail-sahaba" },
+  { slug: "sira-1" },
+  { slug: "wafat" },
+  { slug: "jawamic-sira" },
+  { slug: "qisas-anbiya-1" },
+];
+
 export const fetchPopularBooks = async () => {
   return db.query.book.findMany({
     where: (book, { or, eq }) => {
@@ -42,6 +55,16 @@ export const fetchPopularIslamicLawBooks = async () => {
     where: (book, { or, eq }) => {
       return or(
         ...popularIslamicLawBooks.map(({ slug }) => eq(book.slug, slug)),
+      );
+    },
+  });
+};
+
+export const fetchPopularIslamicHistoryBooks = async () => {
+  return db.query.book.findMany({
+    where: (book, { or, eq }) => {
+      return or(
+        ...popularIslamicHistoryBooks.map(({ slug }) => eq(book.slug, slug)),
       );
     },
   });

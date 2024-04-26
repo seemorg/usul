@@ -1,5 +1,7 @@
 import { localesWithoutDefault, relativeUrl } from "@/lib/sitemap";
 import { navigation } from "@/lib/urls";
+import { db } from "@/server/db";
+import { findAllYearRanges } from "@/server/services/years";
 import type { MetadataRoute } from "next";
 
 const rootEntityPages = [
@@ -10,35 +12,60 @@ const rootEntityPages = [
   navigation.genres.all(),
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+const generateEntryFromUrl = (url: string) => ({
+  url: relativeUrl(url),
+  lastModified: new Date(),
+  alternates: {
+    languages: localesWithoutDefault.reduce(
+      (acc, locale) => {
+        acc[locale] = relativeUrl(`/${locale}${url === "/" ? "" : url}`);
+        return acc;
+      },
+      {} as Record<string, string>,
+    ),
+  },
+});
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const regions = await db.query.region.findMany({
+    columns: { slug: true },
+  });
+
+  const centuries = await findAllYearRanges();
+
+  const books = await db.query.book.findMany({
+    columns: { slug: true },
+  });
+
+  const authors = await db.query.author.findMany({
+    columns: { slug: true },
+  });
+
+  const genres = await db.query.genre.findMany({
+    columns: { slug: true },
+  });
+
   return [
-    {
-      // home page
-      url: relativeUrl("/"),
-      lastModified: new Date(),
-      alternates: {
-        languages: localesWithoutDefault.reduce(
-          (acc, locale) => {
-            acc[locale] = relativeUrl(`/${locale}`);
-            return acc;
-          },
-          {} as Record<string, string>,
-        ),
-      },
-    },
+    // home page
+    generateEntryFromUrl("/"),
     // root entities
-    ...rootEntityPages.map((entityUrl) => ({
-      url: relativeUrl(entityUrl),
-      lastModified: new Date(),
-      alternates: {
-        languages: localesWithoutDefault.reduce(
-          (acc, locale) => {
-            acc[locale] = relativeUrl(`/${locale}${entityUrl}`);
-            return acc;
-          },
-          {} as Record<string, string>,
-        ),
-      },
-    })),
+    ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
+    ...books.map((book) =>
+      generateEntryFromUrl(navigation.books.reader(book.slug)),
+    ),
+    ...authors.map((author) =>
+      generateEntryFromUrl(navigation.authors.bySlug(author.slug)),
+    ),
+    ...centuries.map((century) =>
+      generateEntryFromUrl(
+        navigation.centuries.byNumber(century.centuryNumber),
+      ),
+    ),
+    ...regions.map((region) =>
+      generateEntryFromUrl(navigation.regions.bySlug(region.slug)),
+    ),
+    ...genres.map((genre) =>
+      generateEntryFromUrl(navigation.genres.bySlug(genre.slug)),
+    ),
   ];
 }

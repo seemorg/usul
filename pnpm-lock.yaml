@@ -107,6 +107,9 @@ dependencies:
   next:
     specifier: ^14.2.2
     version: 14.2.2(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+  next-axiom:
+    specifier: ^1.1.1
+    version: 1.1.1(next@14.2.2)(react@18.2.0)
   next-intl:
     specifier: ^3.9.0
     version: 3.9.0(next@14.2.2)(react@18.2.0)
@@ -10571,6 +10574,19 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: true
 
+  /next-axiom@1.1.1(next@14.2.2)(react@18.2.0):
+    resolution: {integrity: sha512-0r/TJ+/zetD+uDc7B+2E7WpC86hEtQ1U+DuWYrP/JNmUz+ZdPFbrZgzOSqaZ6TwYbXP56VVlPfYwq1YsKHTHYQ==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      next: '>=13.4'
+      react: '>=18.0.0'
+    dependencies:
+      next: 14.2.2(@babel/core@7.23.9)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      remeda: 1.61.0
+      whatwg-fetch: 3.6.20
+    dev: false
+
   /next-intl@3.9.0(next@14.2.2)(react@18.2.0):
     resolution: {integrity: sha512-ZqaEipDR5ycwknZ7hMtT2qFrj+y0xrQy9IsvDlGdaXJeh5ld+PBtVrN+tmlYrmJ679vkE8c3yZ2HBr55jbnx1w==}
     peerDependencies:
@@ -12079,6 +12095,10 @@ packages:
       mdast-util-to-string: 1.1.0
       unist-util-visit: 2.0.3
     dev: true
+
+  /remeda@1.61.0:
+    resolution: {integrity: sha512-caKfSz9rDeSKBQQnlJnVW3mbVdFgxgGWQKq1XlFokqjf+hQD5gxutLGTTY2A/x24UxVyJe9gH5fAkFI63ULw4A==}
+    dev: false
 
   /renderkid@3.0.0:
     resolution: {integrity: sha512-q/7VIQA8lmM1hF+jn+sFSPWGlMkSAeNYcPLmDQx2zzuiDfaLrOmumR8iaUKlenFgh0XRPIUeSPlH3A+AW3Z5pg==}
@@ -13666,6 +13686,10 @@ packages:
       - esbuild
       - uglify-js
     dev: true
+
+  /whatwg-fetch@3.6.20:
+    resolution: {integrity: sha512-EqhiFU6daOA8kpjOWTL0olhVOF3i7OrFzSYiGsEMB8GcXS+RrzauAERX65xMeNWVqxA6HXH2m69Z9LaKKdisfg==}
+    dev: false
 
   /whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}

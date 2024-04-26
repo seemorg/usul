@@ -11,6 +11,7 @@ import { collections } from "@/data/collections";
 import { navigation } from "@/lib/urls";
 import {
   fetchPopularBooks,
+  fetchPopularIslamicHistoryBooks,
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
@@ -42,10 +43,12 @@ const searchExamples = [
 ];
 
 export default async function HomePage() {
-  const [popularBooks, popularIslamicLawBooks] = await Promise.all([
-    fetchPopularBooks(),
-    fetchPopularIslamicLawBooks(),
-  ]);
+  const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
+    await Promise.all([
+      fetchPopularBooks(),
+      fetchPopularIslamicLawBooks(),
+      fetchPopularIslamicHistoryBooks(),
+    ]);
 
   const t = await getTranslations("home");
 
@@ -137,7 +140,7 @@ export default async function HomePage() {
         <div>
           <HomepageSection
             title={t("sections.islamic-history")}
-            items={popularIslamicLawBooks.map((text) => (
+            items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
                 result={{ document: text } as any}
                 view="grid"

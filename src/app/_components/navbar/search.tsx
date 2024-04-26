@@ -19,6 +19,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
 import DottedList from "@/components/ui/dotted-list";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
+import ComingSoonModal from "@/components/coming-soon-modal";
 
 export default function SearchBar({
   autoFocus,
@@ -34,7 +35,8 @@ export default function SearchBar({
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
-  const { replace, push } = useRouter();
+  const { replace } = useRouter();
+  const isModalOpen = useBoolean(false);
 
   const { isLoading, data } = useQuery({
     queryKey: ["search", debouncedValue],
@@ -64,6 +66,7 @@ export default function SearchBar({
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -90,7 +93,8 @@ export default function SearchBar({
     if (href) {
       replace(href);
     } else {
-      push(`/search?q=${debouncedValue}`);
+      // push(`/search?q=${debouncedValue}`);
+      isModalOpen.setTrue();
     }
   };
 
@@ -127,6 +131,10 @@ export default function SearchBar({
 
   return (
     <div className={cn("z-50 w-full")}>
+      <ComingSoonModal
+        open={isModalOpen.value}
+        onOpenChange={isModalOpen.setValue}
+      />
       <label htmlFor="search" className="sr-only">
         Search
       </label>
@@ -167,7 +175,11 @@ export default function SearchBar({
               <span className="text-xs">⌘</span>K
             </kbd> */}
 
-            <Button variant="ghost" className="text-primary hover:text-primary">
+            <Button
+              variant="ghost"
+              className="text-primary hover:text-primary"
+              onClick={() => isModalOpen.setTrue()}
+            >
               {t("advanced-search")}
             </Button>
           </p>
@@ -259,17 +271,21 @@ export default function SearchBar({
           })}
 
           {showSeeMore && (
-            <SearchItem
-              value={`more:${debouncedValue}`}
-              onSelect={() => onItemSelect()}
-              href={`/search?q=${debouncedValue}`}
-            >
-              <p className="text-primary">
-                {t("search-bar.all-results", {
-                  results: data?.results?.found ?? 0,
-                })}
-              </p>
-            </SearchItem>
+            <ComingSoonModal
+              trigger={
+                <SearchItem
+                  value={`more:${debouncedValue}`}
+                  onSelect={() => onItemSelect()}
+                  // href={`/search?q=${debouncedValue}`}
+                >
+                  <p className="text-primary">
+                    {t("search-bar.all-results", {
+                      results: data?.results?.found ?? 0,
+                    })}
+                  </p>
+                </SearchItem>
+              }
+            />
           )}
         </CommandList>
       </Command>
@@ -284,18 +300,20 @@ function SearchItem({
   children,
 }: {
   value: string;
-  href: string;
+  href?: string;
   onSelect: () => void;
   children: React.ReactNode;
 }) {
+  const Comp = (href ? Link : "button") as any;
+
   return (
     <CommandItem value={value} onSelect={onSelect} className="px-0 py-0">
-      <Link
-        href={href}
+      <Comp
+        {...(href ? { href } : {})}
         className="flex h-full w-full flex-col items-start gap-3 px-4 py-3 hover:bg-accent"
       >
         {children}
-      </Link>
+      </Comp>
     </CommandItem>
   );
 }
