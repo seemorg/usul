@@ -15,9 +15,9 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { ArabicLogo } from "@/components/Icons";
+import { CloudflareImage } from "@/components/cloudflare-image";
 
 const searchExamples = [
   {
@@ -95,12 +95,13 @@ export default async function HomePage() {
                 key={collection.genre}
               >
                 <div className="relative block h-[140px] w-full overflow-hidden rounded-md bg-gray-200 sm:h-[160px] md:h-[180px]">
-                  <Image
-                    src={collection.image}
+                  <CloudflareImage
+                    src={`https://assets.usul.ai/collections${collection.image}`}
                     alt={collection.name}
                     width={500}
                     height={500}
                     className="absolute inset-0 h-full w-full object-cover"
+                    placeholder="empty"
                   />
                 </div>
 
