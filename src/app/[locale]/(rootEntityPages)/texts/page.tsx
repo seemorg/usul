@@ -14,6 +14,7 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import dynamic from "next/dynamic";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -23,9 +24,9 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 type TextsPageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("texts"),
-  };
+  });
 }
 
 async function TextsPage({ searchParams }: TextsPageProps) {

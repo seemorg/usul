@@ -1,6 +1,5 @@
 import ReaderSidebar, { tabs } from "./_components/sidebar";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
-import { cookies } from "next/headers";
 import ReaderContextProviders from "./_components/context";
 import { MobileSidebarProvider } from "./_components/mobile-sidebar-provider";
 
@@ -13,17 +12,6 @@ export default function ReaderLayout({
     bookId: string;
   };
 }) {
-  const cookieStore = cookies();
-  const layout = cookieStore.get("react-resizable-panels:layout");
-  const collapsed = cookieStore.get("react-resizable-panels:collapsed");
-
-  const defaultLayout = layout
-    ? (JSON.parse(layout.value) as number[])
-    : undefined;
-  const defaultCollapsed = collapsed
-    ? (JSON.parse(collapsed.value) as { collapsed: boolean })
-    : undefined;
-
   return (
     <ReaderContextProviders>
       <SidebarResizer
@@ -42,8 +30,6 @@ export default function ReaderLayout({
           </div>
         }
         sidebar={<ReaderSidebar bookId={bookId} />}
-        defaultLayout={defaultLayout}
-        defaultCollapsed={defaultCollapsed?.collapsed}
       >
         {/* <Container className="w-full min-w-0 flex-auto py-10 pt-20 lg:pl-0 lg:pr-8 xl:px-16"> */}
         <article>{children}</article>

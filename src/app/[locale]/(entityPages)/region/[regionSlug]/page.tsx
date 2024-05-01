@@ -17,6 +17,7 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -29,11 +30,14 @@ export const generateMetadata = async ({
   params: { regionSlug: string };
 }) => {
   const region = await findRegionBySlug(regionSlug);
-  if (!region) return;
+  const name = region?.region?.name;
 
-  return {
-    title: region.region.name,
-  };
+  if (!name) return {};
+
+  return getMetadata({
+    title: name,
+    description: region?.region?.overview ?? undefined,
+  });
 };
 
 type RegionPageProps = InferPagePropsType<RouteType>;

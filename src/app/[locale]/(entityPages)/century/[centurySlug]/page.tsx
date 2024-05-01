@@ -12,6 +12,7 @@ import RegionsFilter from "@/components/regions-filter";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { getTranslations } from "next-intl/server";
+import { getMetadata } from "@/lib/seo";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
@@ -24,10 +25,12 @@ export const generateMetadata = async ({
   if (!yearRange) return;
 
   const t = await getTranslations();
+  const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
 
-  return {
-    title: `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`,
-  };
+  return getMetadata({
+    title,
+    description: yearRange.description,
+  });
 };
 
 async function CenturyPage({

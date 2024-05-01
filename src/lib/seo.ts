@@ -20,20 +20,42 @@ export const config = {
 export const getMetadata = ({
   title: baseTitle,
   description = config.description,
+  all = false,
+  concatTitle = true,
 }: {
   title?: string;
   description?: string;
+  all?: boolean;
+  concatTitle?: boolean;
 } = {}): Metadata => {
   const images = [config.image];
   const title = baseTitle
-    ? `${baseTitle} | ${config.shortTitle}`
+    ? concatTitle
+      ? `${baseTitle} | ${config.shortTitle}`
+      : baseTitle
     : config.title;
 
+  if (!all) {
+    const newTitle = title !== config.title ? { title } : {};
+    const newDescription =
+      description !== config.description ? { description } : {};
+
+    return {
+      ...newTitle,
+      ...newDescription,
+      openGraph: {
+        ...newTitle,
+        ...newDescription,
+      },
+      twitter: {
+        ...newTitle,
+        ...newDescription,
+      },
+    };
+  }
+
   return {
-    title: {
-      template: "%s | Usul",
-      default: "Usul - The Research tool for Islamic Texts",
-    },
+    title,
     description,
     metadataBase: new URL(config.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],

@@ -17,7 +17,7 @@ export const locales = [
 export const defaultLocale = "en-US" as const;
 
 const config = {
-  namespaces: ["common", "home", "entities", "reader"] as const,
+  namespaces: ["common", "home", "entities", "reader", "meta"] as const,
   localePrefix: "as-needed" as const,
   namespacedRoutes: {
     "*": ["common", "entities"],

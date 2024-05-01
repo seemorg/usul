@@ -17,6 +17,7 @@ import { Link } from "@/navigation";
 import DottedList from "@/components/ui/dotted-list";
 import { getLocale, getTranslations } from "next-intl/server";
 import type { AppLocale } from "~/i18n.config";
+import { getMetadata } from "@/lib/seo";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -26,11 +27,21 @@ export const generateMetadata = async ({
   params: { authorSlug: string };
 }) => {
   const author = await findAuthorBySlug(authorSlug);
-  if (!author) return;
+  const name = author?.primaryLatinName ?? author?.primaryArabicName;
+  if (!author || !name) return;
+  const t = await getTranslations("meta");
 
-  return {
-    title: author.primaryLatinName ?? author.primaryArabicName ?? undefined,
-  };
+  return getMetadata({
+    concatTitle: false,
+    title: t("author-page.title", {
+      author: author?.primaryLatinName ?? "",
+    }),
+    description: `${t("author-page.description", {
+      author: author?.primaryLatinName ?? "",
+      authorArabic: author?.primaryArabicName ?? "",
+      books: author.numberOfBooks,
+    })}${author.bio ? ` ${author.bio}` : ""}`,
+  });
 };
 
 async function AuthorPage({

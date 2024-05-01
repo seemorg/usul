@@ -10,7 +10,9 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
 
-export const metadata = getMetadata();
+export const metadata = getMetadata({
+  all: true,
+});
 export const viewport = getViewport();
 
 export default function LocaleLayout({

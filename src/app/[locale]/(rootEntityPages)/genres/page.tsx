@@ -7,13 +7,14 @@ import GenreSearchResult from "@/components/genre-search-result";
 import { searchGenres } from "@/server/typesense/genre";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
+import { getMetadata } from "@/lib/seo";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("genres"),
-  };
+  });
 }
 
 async function GenresPage({ searchParams }: PageProps) {
