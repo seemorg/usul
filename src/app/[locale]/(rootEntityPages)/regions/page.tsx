@@ -7,13 +7,14 @@ import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { searchRegions } from "@/server/typesense/region";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
+import { getMetadata } from "@/lib/seo";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("regions"),
-  };
+  });
 }
 
 async function RegionsPage({ searchParams }: PageProps) {

@@ -12,7 +12,6 @@ import { Link } from "@/navigation";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import Container from "@/components/ui/container";
-import { cn } from "@/lib/utils";
 import {
   Accordion,
   AccordionContent,
@@ -45,45 +44,43 @@ export default function MobileNavigationMenu() {
   const renderItem = (item: NavItem, idx: number) => {
     const className = "py-1";
 
-    if (item.href) {
-      return (
-        <Link
-          key={idx}
-          href={item.href}
-          title={t(item.title)}
-          className={className}
-        >
-          - {t(item.description)}
-        </Link>
-      );
-    }
-
     return (
-      <button
+      <Link
         key={idx}
+        href={item.href!}
         title={t(item.title)}
-        onClick={() => setIsModalOpen(true)}
-        className={cn("cursor-pointer ltr:text-left rtl:text-right", className)}
+        className={className}
       >
-        - {t(item.description)}
-      </button>
+        {t(item.title)}
+      </Link>
     );
   };
+
+  const filteredGroups = groups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((i) => !!i.href),
+    }))
+    .filter((group) => group.items.length > 0);
 
   return (
     <Container className="py-24">
       <ComingSoonModal open={isModalOpen} onOpenChange={setIsModalOpen} />
 
-      <Accordion className="w-full" type="multiple">
-        {groups.map((group) => (
-          <AccordionItem value={group.title} key={group.title}>
+      <Accordion
+        className="w-full"
+        type="multiple"
+        defaultValue={filteredGroups.map((g) => g.title)}
+      >
+        {filteredGroups.map((group) => (
+          <AccordionItem value={group.title} key={group.title} defaultChecked>
             <AccordionTrigger className="font-semibold">
               {t(group.title)}
             </AccordionTrigger>
 
             <AccordionContent>
               <ul className="flex flex-col gap-3 text-muted-foreground">
-                {group.items.map(renderItem)}
+                {group.items.filter((i) => !!i.href).map(renderItem)}
               </ul>
             </AccordionContent>
           </AccordionItem>

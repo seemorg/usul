@@ -84,7 +84,7 @@
     "contribute": {
       "title": "Gudumawa",
       "about": {
-        "title": "Game da Seemore",
+        "title": "Game da Usul",
         "description": "Kasance na jiran sababbin kayan aikin, wanda ke amfani da sabbin fasahohin AI."
       },
       "add-text": {
@@ -106,11 +106,11 @@
     }
   },
   "footer": {
-    "headline": "Digital Seem - babban ɗakin karatu na Musulunci mafi girma a duniya",
-    "description": "Digitalseem.org na ba da sama da rubutun Islama 8,000 daga OpenITI corpus. Manufarmu ita ce sauƙaƙe karatu, bincike, da binciken rubutun gargajiya. Yi rijista a ƙasa don samun sabuntawa na wata-wata akan aikinmu.",
+    "headline": "Usul - babban ɗakin karatu na Musulunci mafi girma a duniya",
+    "description": "Usul.ai na ba da sama da rubutun Islama 8,000 daga OpenITI corpus. Manufarmu ita ce sauƙaƙe karatu, bincike, da binciken rubutun gargajiya. Yi rijista a ƙasa don samun sabuntawa na wata-wata akan aikinmu.",
     "email-address": "Adireshin Imel",
     "subscribe": "Yi rajista",
-    "copyright": "{year, number, nogroup} Gidauniyar Seemorg. Dukkan hakkoki an kiyaye su."
+    "copyright": "{year, number, nogroup} Gidauniyar Usul.ai. Dukkan hakkoki an kiyaye su."
   },
   "lost": "Yana kama da ka bata",
   "go-back-home": "Koma gida",

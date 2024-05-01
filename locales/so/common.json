@@ -84,7 +84,7 @@
     "contribute": {
       "title": "Ku Biiri",
       "about": {
-        "title": "Ku saabsan Seemore",
+        "title": "Ku saabsan Usul",
         "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
       },
       "add-text": {
@@ -106,11 +106,11 @@
     }
   },
   "footer": {
-    "headline": "Digital Seem - maktabadda ugu weyn adduunka ee Islaamka",
-    "description": "Digitalseem.org waxay bixisaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda OpenITI corpus. Hadafkeenu waa inaan ka dhigno akhriska, raadinta, iyo cilmi baarista qoraalada dhaqameedka inay fududaato. Isdiiwaangeli hoos si aad u hesho cusbooneysiin bille ah oo ku saabsan shaqadeena.",
+    "headline": "Usul - maktabadda ugu weyn adduunka ee Islaamka",
+    "description": "Usul.ai waxay bixisaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda OpenITI corpus. Hadafkeenu waa inaan ka dhigno akhriska, raadinta, iyo cilmi baarista qoraalada dhaqameedka inay fududaato. Isdiiwaangeli hoos si aad u hesho cusbooneysiin bille ah oo ku saabsan shaqadeena.",
     "email-address": "Cinwaanka Emailka",
     "subscribe": "Isdiiwaangeli",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. Dhammaan xuquuqaha waa la kaydiyay."
+    "copyright": "{year, number, nogroup} Usul.ai Foundation. Dhammaan xuquuqaha waa la kaydiyay."
   },
   "lost": "Waxay u muuqataa inaad lumtay",
   "go-back-home": "Ku noqo guriga",

@@ -1,10 +1,8 @@
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
-import { getPathLocale } from "@/lib/locale/server";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { findGenreBySlug } from "@/server/services/genres";
 
 export const runtime = "edge";
 
@@ -25,22 +23,17 @@ const fonts = {
 };
 
 export async function generateImageMetadata({
-  params: { regionSlug },
+  params: { genreSlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { genreSlug: string };
 }) {
-  const region = await findRegionBySlug(regionSlug);
-
-  if (!region) {
-    return [];
-  }
+  const genre = await findGenreBySlug(genreSlug);
+  if (!genre) return [];
 
   return [
     {
       id: "main",
-      alt: region.region.name,
+      alt: genre.genre.name,
       contentType: "image/png",
       size,
     },
@@ -49,33 +42,20 @@ export async function generateImageMetadata({
 
 // Image generation
 export default async function Image({
-  params: { regionSlug },
+  params: { genreSlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { genreSlug: string };
 }) {
-  const pathLocale = await getPathLocale();
-  const region = await findRegionBySlug(regionSlug);
-
-  if (!region) {
+  const genre = await findGenreBySlug(genreSlug);
+  if (!genre) {
     notFound();
   }
-
-  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale)!;
-  const overview = getPrimaryLocalizedText(
-    region.overviewTranslations,
-    pathLocale,
-  )!;
 
   // Font
   const [calSans, family] = await Promise.all([
     loadFileOnEdge.asArrayBuffer(fonts.calSans),
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
-
-  const trimmedOverview =
-    overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
 
   return new ImageResponse(
     (
@@ -91,10 +71,10 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {name}
+          {genre.genre.name}
         </h1>
 
-        <p
+        {/* <p
           style={{
             fontSize: 38,
             fontFamily: "Family",
@@ -102,7 +82,7 @@ export default async function Image({
           }}
         >
           {trimmedOverview}
-        </p>
+        </p> */}
 
         <div
           style={{

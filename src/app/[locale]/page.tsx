@@ -11,11 +11,13 @@ import { collections } from "@/data/collections";
 import { navigation } from "@/lib/urls";
 import {
   fetchPopularBooks,
+  fetchPopularIslamicHistoryBooks,
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
-import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { ArabicLogo } from "@/components/Icons";
+import { CloudflareImage } from "@/components/cloudflare-image";
 
 const searchExamples = [
   {
@@ -41,10 +43,12 @@ const searchExamples = [
 ];
 
 export default async function HomePage() {
-  const [popularBooks, popularIslamicLawBooks] = await Promise.all([
-    fetchPopularBooks(),
-    fetchPopularIslamicLawBooks(),
-  ]);
+  const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
+    await Promise.all([
+      fetchPopularBooks(),
+      fetchPopularIslamicLawBooks(),
+      fetchPopularIslamicHistoryBooks(),
+    ]);
 
   const t = await getTranslations("home");
 
@@ -54,7 +58,8 @@ export default async function HomePage() {
 
       <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
         <Container className="flex flex-col items-center">
-          <h1 className="text-5xl font-bold sm:text-6xl">Digital Seem</h1>
+          {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
+          <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" />
 
           <p className="mt-5 text-lg">{t("headline")}</p>
 
@@ -80,7 +85,7 @@ export default async function HomePage() {
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-12 bg-background py-16 sm:py-24">
+      <Container className="flex flex-col gap-4 bg-background py-10 sm:gap-12 sm:py-24">
         <div>
           <HomepageSection
             title={t("sections.collections")}
@@ -90,12 +95,13 @@ export default async function HomePage() {
                 key={collection.genre}
               >
                 <div className="relative block h-[140px] w-full overflow-hidden rounded-md bg-gray-200 sm:h-[160px] md:h-[180px]">
-                  <Image
-                    src={collection.image}
+                  <CloudflareImage
+                    src={`https://assets.usul.ai/collections${collection.image}`}
                     alt={collection.name}
                     width={500}
                     height={500}
                     className="absolute inset-0 h-full w-full object-cover"
+                    placeholder="empty"
                   />
                 </div>
 
@@ -135,7 +141,7 @@ export default async function HomePage() {
         <div>
           <HomepageSection
             title={t("sections.islamic-history")}
-            items={popularIslamicLawBooks.map((text) => (
+            items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
                 result={{ document: text } as any}
                 view="grid"

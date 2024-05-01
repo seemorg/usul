@@ -11,6 +11,7 @@ import { countAllAuthors } from "@/server/services/authors";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { searchAuthors } from "@/server/typesense/author";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -20,9 +21,9 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("authors"),
-  };
+  });
 }
 
 async function AuthorsPage({ searchParams }: PageProps) {

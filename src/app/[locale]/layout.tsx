@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
-
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import "@/styles/globals.css";
 
@@ -14,7 +10,9 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
 
-export const metadata = getMetadata();
+export const metadata = getMetadata({
+  all: true,
+});
 export const viewport = getViewport();
 
 export default function LocaleLayout({
@@ -42,6 +40,8 @@ export default function LocaleLayout({
         <Providers locale={locale} messages={messages}>
           {children}
         </Providers>
+
+        <GoogleAnalytics gaId="G-QX48J9BW3C" />
       </body>
     </html>
   );

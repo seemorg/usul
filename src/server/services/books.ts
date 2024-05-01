@@ -2,7 +2,8 @@
 import { type Block, parseMarkdown } from "@openiti/markdown-parser";
 import { cache } from "react";
 import slugify from "slugify";
-import { db } from "../db";
+import { db } from "@/server/db";
+import { log } from "next-axiom";
 
 export const fetchBook = cache(async (id: string, versionId?: string) => {
   const record = await db.book.findFirst({
@@ -39,6 +40,9 @@ export const fetchBook = cache(async (id: string, versionId?: string) => {
       );
 
       if (!response.ok || response.status >= 300) {
+        log.error("book_not_found", { slug: id, versionId });
+        await log.flush();
+
         throw new Error("Book not found");
       }
     }

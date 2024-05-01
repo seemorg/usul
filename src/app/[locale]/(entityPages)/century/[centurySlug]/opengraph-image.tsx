@@ -1,10 +1,9 @@
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
-import { getPathLocale } from "@/lib/locale/server";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { findYearRangeBySlug } from "@/server/services/years";
+import { getTranslations } from "next-intl/server";
 
 export const runtime = "edge";
 
@@ -25,22 +24,20 @@ const fonts = {
 };
 
 export async function generateImageMetadata({
-  params: { regionSlug },
+  params: { centurySlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { centurySlug: string };
 }) {
-  const region = await findRegionBySlug(regionSlug);
+  const yearRange = await findYearRangeBySlug(centurySlug);
+  if (!yearRange) return [];
 
-  if (!region) {
-    return [];
-  }
+  const t = await getTranslations();
+  const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
 
   return [
     {
       id: "main",
-      alt: region.region.name,
+      alt: title,
       contentType: "image/png",
       size,
     },
@@ -49,24 +46,17 @@ export async function generateImageMetadata({
 
 // Image generation
 export default async function Image({
-  params: { regionSlug },
+  params: { centurySlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { centurySlug: string };
 }) {
-  const pathLocale = await getPathLocale();
-  const region = await findRegionBySlug(regionSlug);
-
-  if (!region) {
+  const yearRange = await findYearRangeBySlug(centurySlug);
+  if (!yearRange) {
     notFound();
   }
 
-  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale)!;
-  const overview = getPrimaryLocalizedText(
-    region.overviewTranslations,
-    pathLocale,
-  )!;
+  const t = await getTranslations();
+  const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -74,6 +64,7 @@ export default async function Image({
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
 
+  const overview = yearRange.description ?? "";
   const trimmedOverview =
     overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
 
@@ -91,7 +82,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {name}
+          {title}
         </h1>
 
         <p

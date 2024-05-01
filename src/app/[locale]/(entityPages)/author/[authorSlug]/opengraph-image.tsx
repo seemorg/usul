@@ -1,10 +1,8 @@
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
-import { getPathLocale } from "@/lib/locale/server";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { findAuthorBySlug } from "@/server/services/authors";
 
 export const runtime = "edge";
 
@@ -25,22 +23,18 @@ const fonts = {
 };
 
 export async function generateImageMetadata({
-  params: { regionSlug },
+  params: { authorSlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { authorSlug: string };
 }) {
-  const region = await findRegionBySlug(regionSlug);
-
-  if (!region) {
-    return [];
-  }
+  const author = await findAuthorBySlug(authorSlug);
+  const name = author?.primaryLatinName ?? author?.primaryArabicName;
+  if (!name) return [];
 
   return [
     {
       id: "main",
-      alt: region.region.name,
+      alt: name,
       contentType: "image/png",
       size,
     },
@@ -49,24 +43,17 @@ export async function generateImageMetadata({
 
 // Image generation
 export default async function Image({
-  params: { regionSlug },
+  params: { authorSlug },
 }: {
-  params: {
-    regionSlug: string;
-  };
+  params: { authorSlug: string };
 }) {
-  const pathLocale = await getPathLocale();
-  const region = await findRegionBySlug(regionSlug);
+  const author = await findAuthorBySlug(authorSlug);
 
-  if (!region) {
+  if (!author) {
     notFound();
   }
 
-  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale)!;
-  const overview = getPrimaryLocalizedText(
-    region.overviewTranslations,
-    pathLocale,
-  )!;
+  const name = author?.primaryLatinName ?? author?.primaryArabicName;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -74,6 +61,7 @@ export default async function Image({
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
 
+  const overview = author.bio ?? "";
   const trimmedOverview =
     overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
 

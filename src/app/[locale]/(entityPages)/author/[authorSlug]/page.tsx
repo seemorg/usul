@@ -14,13 +14,14 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import DottedList from "@/components/ui/dotted-list";
-import { getTranslations } from "next-intl/server";
 import { getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { LocationType } from "@prisma/client";
+import { getTranslations } from "next-intl/server";
+import { getMetadata } from "@/lib/seo";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -33,9 +34,25 @@ export const generateMetadata = async ({
   const author = await findAuthorBySlug(authorSlug, pathLocale);
   if (!author) return;
 
-  return {
-    title: getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale),
-  };
+  const name = getPrimaryLocalizedText(
+    author.primaryNameTranslations,
+    pathLocale,
+  );
+
+  if (!author || !name) return;
+  const t = await getTranslations("meta");
+
+  return getMetadata({
+    concatTitle: false,
+    title: t("author-page.title", {
+      author: author?.primaryLatinName ?? "",
+    }),
+    description: `${t("author-page.description", {
+      author: author?.primaryLatinName ?? "",
+      authorArabic: author?.primaryArabicName ?? "",
+      books: author.numberOfBooks,
+    })}${author.bio ? ` ${author.bio}` : ""}`,
+  });
 };
 
 async function AuthorPage({

@@ -84,7 +84,7 @@
     "contribute": {
       "title": "Contribuer",
       "about": {
-        "title": "À propos de Seemore",
+        "title": "À propos de Usul",
         "description": "Restez à l'écoute pour les prochains outils, utilisant les technologies d'IA de pointe."
       },
       "add-text": {
@@ -106,11 +106,11 @@
     }
   },
   "footer": {
-    "headline": "Digital Seem - la plus grande bibliothèque islamique du monde",
-    "description": "Digitalseem.org propose plus de 8 000 textes islamiques de l'OpenITI corpus. Notre objectif est de rendre la lecture, la recherche, et l'étude des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
+    "headline": "Usul - la plus grande bibliothèque islamique du monde",
+    "description": "Usul.ai propose plus de 8 000 textes islamiques de l'OpenITI corpus. Notre objectif est de rendre la lecture, la recherche, et l'étude des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
     "email-address": "Adresse Email",
     "subscribe": "Abonnez-vous",
-    "copyright": "{year, number, nogroup} Fondation Seemorg. Tous droits réservés."
+    "copyright": "{year, number, nogroup} Fondation Usul.ai. Tous droits réservés."
   },
   "lost": "On dirait que vous êtes perdus",
   "go-back-home": "Retour à l'accueil",

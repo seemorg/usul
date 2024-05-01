@@ -5,11 +5,27 @@
 await import("./src/env.js");
 
 import createNextIntlPlugin from "next-intl/plugin";
+import { withAxiom } from "next-axiom";
 
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import("next").NextConfig} */
 const config = {
+  headers: async () => {
+    return [
+      {
+        // Cache sitemap
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value:
+              "public, max-age=60, s-maxage=600, stale-while-revalidate=14400, stale-if-error=14400",
+          },
+        ],
+      },
+    ];
+  },
   redirects: async () => {
     return [
       {
@@ -40,4 +56,4 @@ const config = {
   },
 };
 
-export default withNextIntl(config);
+export default withNextIntl(withAxiom(config));

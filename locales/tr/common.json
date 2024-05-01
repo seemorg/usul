@@ -84,7 +84,7 @@
     "contribute": {
       "title": "Katkıda Bulun",
       "about": {
-        "title": "Seemore Hakkında",
+        "title": "Usul Hakkında",
         "description": "Yakında çıkacak araçlar için takipte kalın, bu araçlar son teknoloji AI teknolojilerini kullanıyor."
       },
       "add-text": {
@@ -106,11 +106,11 @@
     }
   },
   "footer": {
-    "headline": "Digital Seem - Dünyanın en büyük İslami kütüphanesi",
-    "description": "Digitalseem.org, OpenITI korpusundan 8.000'den fazla İslami metin sunar. Amacımız, klasik metinleri okumayı, aramayı ve araştırmayı kolaylaştırmaktır. Çalışmalarımız hakkında aylık güncellemeler almak için aşağıya abone olun.",
+    "headline": "Usul - Dünyanın en büyük İslami kütüphanesi",
+    "description": "Usul.ai, OpenITI korpusundan 8.000'den fazla İslami metin sunar. Amacımız, klasik metinleri okumayı, aramayı ve araştırmayı kolaylaştırmaktır. Çalışmalarımız hakkında aylık güncellemeler almak için aşağıya abone olun.",
     "email-address": "E-posta Adresi",
     "subscribe": "Abone Ol",
-    "copyright": "{year, number, nogroup} Seemorg Vakfı. Tüm hakları saklıdır."
+    "copyright": "{year, number, nogroup} Usul.ai Vakfı. Tüm hakları saklıdır."
   },
   "lost": "Kaybolmuş gibi görünüyorsun",
   "go-back-home": "Ana sayfaya dön",

@@ -22,6 +22,7 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -34,14 +35,16 @@ export const generateMetadata = async ({
   params: { regionSlug: string };
 }) => {
   const pathLocale = await getPathLocale();
-  const region = await findRegionBySlug(regionSlug, pathLocale);
-  if (!region) return;
+
+  const region = await findRegionBySlug(regionSlug);
+  if (!region) return {};
 
   const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
 
-  return {
-    title: name,
-  };
+  return getMetadata({
+    title: name ?? undefined,
+    description: region?.region?.overview ?? undefined,
+  });
 };
 
 type RegionPageProps = InferPagePropsType<RouteType>;

@@ -47,7 +47,7 @@ const BookSearchResult = ({
         <Link href={navigation.books.reader(document.slug)} prefetch={false}>
           <div className={cn("overflow-hidden rounded-md bg-muted")}>
             <CloudflareImage
-              src={`https://assets.digitalseem.org/covers/${document.slug}.png`}
+              src={`https://assets.usul.ai/covers/${document.slug}.png`}
               alt={title}
               width={320}
               height={460}
@@ -81,7 +81,7 @@ const BookSearchResult = ({
     <Link
       href={navigation.books.reader(document.slug)}
       prefetch={false}
-      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary dark:hover:bg-secondary/20"
+      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary dark:hover:bg-secondary/20 sm:px-6"
     >
       <div className="flex-1 text-xl">
         <h3

@@ -2,19 +2,15 @@
 
 import FilterContainer from "@/components/search-results/filter-container";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
 import { Slider } from "@/components/ui/slider";
 import { gregorianYearToHijriYear, hijriYearToGregorianYear } from "@/lib/date";
+import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState, useTransition } from "react";
-import { useIsClient, useLocalStorage } from "usehooks-ts";
+import { useLocalStorage } from "usehooks-ts";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -165,28 +161,29 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
       title={t("entities.year")}
       isLoading={isPending}
       titleChildren={
-        <Select value={format} onValueChange={handleYearFormatChange}>
-          <SelectTrigger className="h-auto w-auto gap-2 rounded-full border-none bg-transparent px-0 py-1 text-xs shadow-none">
-            {!useIsClient() || !activeFormat ? null : (
-              <p>{t(`common.${activeFormat.title}`)}</p>
-            )}
-          </SelectTrigger>
+        <div className="flex items-center rounded-full bg-border">
+          {yearFormats.map((format) => (
+            <Tooltip key={format.value}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => handleYearFormatChange(format.value)}
+                  className={cn(
+                    "rounded-full px-3 py-1 text-xs font-medium",
+                    format.value === activeFormat?.value
+                      ? "bg-primary text-white"
+                      : "text-gray-500",
+                  )}
+                >
+                  {t(`common.${format.title}`)}
+                </button>
+              </TooltipTrigger>
 
-          <SelectContent className="max-w-[200px]" side="bottom" align="end">
-            {yearFormats.map((format) => (
-              <SelectItem
-                key={format.value}
-                value={format.value}
-                className="py-2"
-              >
-                <p>{t(`common.${format.title}`)}</p>
-                <p className="font-inter mt-1 text-xs text-gray-400">
-                  {t(`common.${format.description}`)}
-                </p>
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+              <TooltipContent>
+                <p>{t(`common.${format.description}`)}</p>
+              </TooltipContent>
+            </Tooltip>
+          ))}
+        </div>
       }
     >
       <div className="mt-4">
