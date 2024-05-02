@@ -1,4 +1,6 @@
+import { PathLocale } from "@/lib/locale/utils";
 import { db } from "@/server/db";
+import { getLocaleWhereClause } from "@/server/db/localization";
 
 export const popularBooks = [
   { slug: "sahih" },
@@ -42,32 +44,38 @@ export const popularIslamicHistoryBooks = [
   { slug: "qisas-anbiya-1" },
 ];
 
-export const fetchPopularBooks = async () => {
+const fetchBooksBySlugs = (slugs: string[], locale: PathLocale) => {
+  const localeWhere = getLocaleWhereClause(locale);
+
   return db.book.findMany({
     where: {
       slug: {
-        in: popularBooks.map(({ slug }) => slug),
+        in: slugs,
       },
+    },
+    include: {
+      primaryNameTranslations: localeWhere,
     },
   });
 };
 
-export const fetchPopularIslamicLawBooks = async () => {
-  return db.book.findMany({
-    where: {
-      slug: {
-        in: popularIslamicLawBooks.map(({ slug }) => slug),
-      },
-    },
-  });
+export const fetchPopularBooks = async (locale: PathLocale) => {
+  return fetchBooksBySlugs(
+    popularBooks.map((s) => s.slug),
+    locale,
+  );
 };
 
-export const fetchPopularIslamicHistoryBooks = async () => {
-  return db.book.findMany({
-    where: {
-      slug: {
-        in: popularIslamicHistoryBooks.map(({ slug }) => slug),
-      },
-    },
-  });
+export const fetchPopularIslamicLawBooks = async (locale: PathLocale) => {
+  return fetchBooksBySlugs(
+    popularIslamicLawBooks.map((b) => b.slug),
+    locale,
+  );
+};
+
+export const fetchPopularIslamicHistoryBooks = async (locale: PathLocale) => {
+  return fetchBooksBySlugs(
+    popularIslamicHistoryBooks.map((b) => b.slug),
+    locale,
+  );
 };

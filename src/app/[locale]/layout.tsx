@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 import "@/styles/globals.css";
 
@@ -10,9 +10,12 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
 
-export const metadata = getMetadata({
-  all: true,
-});
+export function generateMetadata() {
+  return getMetadata({
+    all: true,
+  });
+}
+
 export const viewport = getViewport();
 
 export default function LocaleLayout({
@@ -42,6 +45,7 @@ export default function LocaleLayout({
         </Providers>
 
         <GoogleAnalytics gaId="G-QX48J9BW3C" />
+        <GoogleTagManager gtmId="AW-16482232385" />
       </body>
     </html>
   );

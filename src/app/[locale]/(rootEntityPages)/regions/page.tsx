@@ -8,12 +8,14 @@ import { searchRegions } from "@/server/typesense/region";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
   return getMetadata({
     title: (await getTranslations("entities"))("regions"),
+    pagePath: navigation.regions.all(),
   });
 }
 

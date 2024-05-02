@@ -5,7 +5,7 @@ import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts } from "@/lib/urls";
+import { booksSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
@@ -26,6 +26,7 @@ type TextsPageProps = InferPagePropsType<RouteType>;
 export async function generateMetadata() {
   return getMetadata({
     title: (await getTranslations("entities"))("texts"),
+    pagePath: navigation.books.all(),
   });
 }
 

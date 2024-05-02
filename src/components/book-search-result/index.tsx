@@ -10,6 +10,11 @@ import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
 import { CloudflareImage } from "../cloudflare-image";
 import { useTranslations } from "next-intl";
+import { usePathLocale } from "@/lib/locale/utils";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 
 const BookSearchResult = ({
   result,
@@ -21,23 +26,20 @@ const BookSearchResult = ({
   >[number];
 }) => {
   const t = useTranslations();
-  const { document, highlight } = result;
+  const pathLocale = usePathLocale();
+  const { document } = result;
 
-  const { primaryArabicName, primaryLatinName, author } = document;
+  const { primaryNames, author } = document;
 
-  const title = highlight?.primaryArabicName?.snippet
-    ? highlight?.primaryArabicName.snippet
-    : primaryArabicName ?? primaryLatinName;
-  const secondaryTitle =
-    primaryArabicName && primaryLatinName
-      ? highlight?.primaryLatinName?.snippet ?? primaryLatinName
-      : null;
+  const title = getPrimaryLocalizedText(primaryNames, pathLocale) ?? "";
+  const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
-  const authorName = author?.primaryArabicName ?? author?.primaryLatinName;
-  const authorSecondaryName =
-    author?.primaryArabicName && author?.primaryLatinName
-      ? author?.primaryLatinName
-      : null;
+  const authorName = author?.primaryNames
+    ? getPrimaryLocalizedText(author.primaryNames, pathLocale)
+    : undefined;
+  const authorSecondaryName = author?.primaryNames
+    ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
+    : undefined;
 
   if (view === "grid") {
     return (

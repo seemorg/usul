@@ -1,4 +1,7 @@
+import { PATH_LOCALES } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
+import { relativeUrl } from "./sitemap";
+import { getLocale, getPathLocale } from "./locale/server";
 
 export const config = {
   title: "Usul - The Research tool for Islamic Texts",
@@ -7,7 +10,6 @@ export const config = {
   description:
     "Read, search, and research 8,000+ Islamic and classical texts in a few clicks",
   themeColor: "#AA4A44",
-  locale: "en_US",
   image: {
     url: "/cover.png",
     width: 1500,
@@ -17,17 +19,22 @@ export const config = {
   url: "https://usul.ai",
 };
 
-export const getMetadata = ({
+export const getMetadata = async ({
   title: baseTitle,
   description = config.description,
   all = false,
   concatTitle = true,
+  pagePath,
 }: {
   title?: string;
   description?: string;
   all?: boolean;
   concatTitle?: boolean;
-} = {}): Metadata => {
+  pagePath?: string;
+} = {}): Promise<Metadata> => {
+  const locale = await getLocale();
+  const pathLocale = await getPathLocale();
+
   const images = [config.image];
   const title = baseTitle
     ? concatTitle
@@ -40,16 +47,45 @@ export const getMetadata = ({
     const newDescription =
       description !== config.description ? { description } : {};
 
+    const canonical =
+      pagePath && pathLocale
+        ? pathLocale === "en"
+          ? pagePath
+          : `/${pathLocale}${pagePath}`
+        : undefined;
+
     return {
       ...newTitle,
       ...newDescription,
       openGraph: {
+        type: "website",
+        siteName: config.siteName,
+        url: "/",
+        locale,
         ...newTitle,
         ...newDescription,
       },
       twitter: {
+        card: "summary_large_image",
         ...newTitle,
         ...newDescription,
+      },
+      alternates: {
+        canonical,
+        languages: pagePath
+          ? {
+              ...PATH_LOCALES.reduce(
+                (acc, locale) => {
+                  acc[locale] = relativeUrl(
+                    `/${pathLocale}${pagePath === "/" ? "" : pagePath}`,
+                  );
+                  return acc;
+                },
+                {} as Record<string, string>,
+              ),
+              "x-default": relativeUrl(pagePath),
+            }
+          : {},
       },
     };
   }
@@ -62,9 +98,9 @@ export const getMetadata = ({
     openGraph: {
       type: "website",
       siteName: config.siteName,
-      locale: config.locale,
       url: "/",
       title,
+      locale,
       description,
       images,
     },

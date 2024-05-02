@@ -11,6 +11,8 @@ import { usePathname, useRouter } from "@/navigation";
 import { useFormatter, useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
 import { searchAuthors } from "@/server/typesense/author";
+import { usePathLocale } from "@/lib/locale/utils";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -51,6 +53,7 @@ export default function _AuthorsFilter({
 }: AuthorsFilterProps) {
   const t = useTranslations();
   const locale = useLocale() as AppLocale;
+  const pathLocale = usePathLocale();
   const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =
     useState<string[]>(currentAuthors);
@@ -204,12 +207,10 @@ export default function _AuthorsFilter({
             authorIdToBooksCount[authorId] ?? 0,
           );
 
-          const name =
-            (locale === "ar-SA"
-              ? author.primaryArabicName
-              : author.primaryLatinName) ??
-            author.primaryLatinName ??
-            author.primaryArabicName;
+          const name = getPrimaryLocalizedText(
+            item.document.primaryNames,
+            pathLocale,
+          );
 
           const title = `${name} (${booksCount})`;
 

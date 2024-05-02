@@ -7,13 +7,13 @@ const getLocalizedText = <
   locale: string,
 ): (T extends { text: string } ? string : string[]) | undefined => {
   if (locale) {
-    const record = entry.find((r) => r.locale === locale);
+    const record = entry?.find((r) => r.locale === locale);
     if (!record) return undefined;
 
     return ("text" in record ? record.text : record.texts) as any;
   }
 
-  if (entry.length <= 1) {
+  if (entry?.length <= 1) {
     const record = entry[0];
     if (!record) return undefined;
 
@@ -45,12 +45,11 @@ export const getSecondaryLocalizedText = <
   entry: T[],
   locale: PathLocale,
 ): (T extends { text: string } ? string : string[]) | undefined => {
-  const arabic = getLocalizedText(entry, "ar");
-
   if (locale === "ar") {
-    if (!arabic) return; // english is already used as a fallback, so no need to show secondary text
-    return getLocalizedText(entry, "en");
+    return;
   }
+
+  const arabic = getLocalizedText(entry, "ar");
 
   // languages other than arabic should show arabic as a secondary text
   return arabic;

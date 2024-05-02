@@ -20,6 +20,11 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
 import DottedList from "@/components/ui/dotted-list";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import ComingSoonModal from "@/components/coming-soon-modal";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
+import { usePathLocale } from "@/lib/locale/utils";
 
 export default function SearchBar({
   autoFocus,
@@ -32,6 +37,7 @@ export default function SearchBar({
   const entitiesT = useTranslations("entities");
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
+  const pathLocale = usePathLocale();
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -203,29 +209,46 @@ export default function SearchBar({
           )}
 
           {hits.map((result) => {
-            const primaryArabicName = result.highlight.primaryArabicName
-              ? result.highlight.primaryArabicName.snippet
-              : result.document.primaryArabicName;
-            const primaryLatinName = result.highlight.primaryLatinName
-              ? result.highlight.primaryLatinName.snippet
-              : result.document.primaryLatinName;
+            // const primaryArabicName = result.highlight.primaryArabicName
+            //   ? result.highlight.primaryArabicName.snippet
+            //   : result.document.primaryArabicName;
+            const primaryName = getPrimaryLocalizedText(
+              result.document.primaryNames,
+              pathLocale,
+            );
+            const secondaryName = getSecondaryLocalizedText(
+              result.document.primaryNames,
+              pathLocale,
+            );
 
-            const authorPrimaryLatinName = result.highlight.author
-              ?.primaryLatinName
-              ? result.highlight.author.primaryLatinName.snippet
-              : result.document.author?.primaryLatinName;
-            const authorPrimaryArabicName = result.highlight.author
-              ?.primaryArabicName
-              ? result.highlight.author.primaryArabicName.snippet
-              : result.document.author?.primaryArabicName;
+            const authorName = getPrimaryLocalizedText(
+              result.document.author?.primaryNames ?? [],
+              pathLocale,
+            );
+            // const primaryLatinName = result.highlight.primaryLatinName
+            //   ? result.highlight.primaryLatinName.snippet
+            //   : result.document.primaryLatinName;
+
+            // const authorPrimaryLatinName = result.highlight.author
+            //   ?.primaryLatinName
+            //   ? result.highlight.author.primaryLatinName.snippet
+            //   : result.document.author?.primaryLatinName;
+
+            // const authorPrimaryArabicName = result.highlight.author
+            //   ?.primaryNames
+            //   ? result.highlight.author.primaryNames.snippet
+            //   : getPrimaryLocalizedText(
+            //       result.document.author?.primaryNames ?? [],
+            //       "en",
+            //     );
 
             // use latin name if available, otherwise use arabic name
-            const authorName =
-              authorPrimaryLatinName || authorPrimaryArabicName;
+            // const authorName =
+            //   authorPrimaryLatinName || authorPrimaryArabicName;
 
-            const documentName = primaryArabicName || primaryLatinName;
-            const documentSecondaryName =
-              documentName === primaryLatinName ? null : primaryLatinName;
+            // const documentName = primaryArabicName || primaryLatinName;
+            // const documentSecondaryName =
+            //   documentName === primaryLatinName ? null : primaryLatinName;
 
             const type = result.document.type;
             const localizedType = getLocalizedType(type);
@@ -238,10 +261,10 @@ export default function SearchBar({
                 onSelect={() => onItemSelect(href ?? undefined)}
                 href={href ?? ""}
               >
-                {documentName && (
+                {primaryName && (
                   <p
                     className="text-base"
-                    dangerouslySetInnerHTML={{ __html: documentName }}
+                    dangerouslySetInnerHTML={{ __html: primaryName }}
                   />
                 )}
 
@@ -257,10 +280,10 @@ export default function SearchBar({
                         }}
                       />
                     ),
-                    documentSecondaryName && (
+                    secondaryName && (
                       <p
                         dangerouslySetInnerHTML={{
-                          __html: documentSecondaryName,
+                          __html: secondaryName,
                         }}
                       />
                     ),

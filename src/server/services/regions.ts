@@ -88,12 +88,9 @@ export const findAllRegionsWithBooksCount = cache(
         nameTranslations: localeWhere,
         overviewTranslations: localeWhere,
         currentNameTranslations: localeWhere,
-
         locations: {
           include: {
             cityNameTranslations: localeWhere,
-          },
-          select: {
             authors: {
               ...(yearRange && {
                 where: {
