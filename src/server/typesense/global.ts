@@ -20,9 +20,8 @@ export const searchAllCollections = async (
     prioritize_token_position: true,
     limit,
     page,
-    // ...(options?.sortBy &&
-    //   options.sortBy !== "relevance" && { sort_by: options.sortBy }),
-    sort_by: "_text_match(buckets: 10):desc,_popularity:desc",
+    ...(options?.sortBy &&
+      options.sortBy !== "relevance" && { sort_by: options.sortBy }),
   })) as SearchResponse<GlobalSearchDocument>;
 
   return {
