@@ -29,7 +29,7 @@ export const generateMetadata = async ({
   if (!genre) return;
 
   return getMetadata({
-    title: genre.genre.name,
+    title: genre.name,
   });
 };
 

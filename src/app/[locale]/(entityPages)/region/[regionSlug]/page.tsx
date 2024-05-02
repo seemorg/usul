@@ -40,10 +40,14 @@ export const generateMetadata = async ({
   if (!region) return {};
 
   const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
+  const overview = getPrimaryLocalizedText(
+    region.overviewTranslations,
+    pathLocale,
+  );
 
   return getMetadata({
     title: name ?? undefined,
-    description: region?.region?.overview ?? undefined,
+    description: overview ?? undefined,
   });
 };
 

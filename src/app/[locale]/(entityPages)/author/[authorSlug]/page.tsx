@@ -38,20 +38,27 @@ export const generateMetadata = async ({
     author.primaryNameTranslations,
     pathLocale,
   );
+  if (!name) return;
 
-  if (!author || !name) return;
+  const secondaryName = getSecondaryLocalizedText(
+    author.primaryNameTranslations,
+    pathLocale,
+  );
+
+  const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
+
   const t = await getTranslations("meta");
 
   return getMetadata({
     concatTitle: false,
     title: t("author-page.title", {
-      author: author?.primaryLatinName ?? "",
+      author: name,
     }),
     description: `${t("author-page.description", {
-      author: author?.primaryLatinName ?? "",
-      authorArabic: author?.primaryArabicName ?? "",
+      author: name ?? "",
+      authorArabic: secondaryName ?? "",
       books: author.numberOfBooks,
-    })}${author.bio ? ` ${author.bio}` : ""}`,
+    })}${bio ? ` ${bio}` : ""}`,
   });
 };
 
@@ -128,7 +135,7 @@ async function AuthorPage({
     const region = l.region!;
     const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
 
-    const key = `common.${l.type}` as any;
+    const key = `common.${l.type.toLowerCase()}` as any;
     const localizedType = t(key);
 
     return `${name} (${localizedType === key ? l.type : localizedType})`;

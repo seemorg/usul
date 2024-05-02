@@ -63,11 +63,11 @@ export const fetchPopularIslamicLawBooks = async () => {
 };
 
 export const fetchPopularIslamicHistoryBooks = async () => {
-  return db.query.book.findMany({
-    where: (book, { or, eq }) => {
-      return or(
-        ...popularIslamicHistoryBooks.map(({ slug }) => eq(book.slug, slug)),
-      );
+  return db.book.findMany({
+    where: {
+      slug: {
+        in: popularIslamicHistoryBooks.map(({ slug }) => slug),
+      },
     },
   });
 };

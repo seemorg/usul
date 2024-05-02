@@ -37,10 +37,12 @@ export async function generateImageMetadata({
     return [];
   }
 
+  const name = getPrimaryLocalizedText(region.nameTranslations, "en");
+
   return [
     {
       id: "main",
-      alt: region.region.name,
+      alt: name,
       contentType: "image/png",
       size,
     },
