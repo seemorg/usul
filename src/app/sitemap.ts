@@ -1,6 +1,6 @@
 import { localesWithoutDefault, relativeUrl } from "@/lib/sitemap";
 import { navigation } from "@/lib/urls";
-// import { db } from "@/server/db";
+import { db } from "@/server/db";
 import { findAllYearRanges } from "@/server/services/years";
 import type { MetadataRoute } from "next";
 
@@ -27,46 +27,45 @@ const generateEntryFromUrl = (url: string) => ({
 });
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // const regions = await db.region.findMany({
-  //   select: { slug: true },
-  // });
+  const regions = await db.region.findMany({
+    select: { slug: true },
+  });
 
-  // const centuries = await findAllYearRanges();
+  const centuries = await findAllYearRanges();
 
-  // const books = await db.book.findMany({
-  //   select: { slug: true },
-  // });
+  const books = await db.book.findMany({
+    select: { slug: true },
+  });
 
-  // const authors = await db.author.findMany({
-  //   select: { slug: true },
-  // });
+  const authors = await db.author.findMany({
+    select: { slug: true },
+  });
 
-  // const genres = await db.genre.findMany({
-  //   select: { slug: true },
-  // });
+  const genres = await db.genre.findMany({
+    select: { slug: true },
+  });
 
-  // return [
-  //   // home page
-  //   generateEntryFromUrl("/"),
-  //   // root entities
-  //   ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
-  //   ...books.map((book) =>
-  //     generateEntryFromUrl(navigation.books.reader(book.slug)),
-  //   ),
-  //   ...authors.map((author) =>
-  //     generateEntryFromUrl(navigation.authors.bySlug(author.slug)),
-  //   ),
-  //   ...centuries.map((century) =>
-  //     generateEntryFromUrl(
-  //       navigation.centuries.byNumber(century.centuryNumber),
-  //     ),
-  //   ),
-  //   ...regions.map((region) =>
-  //     generateEntryFromUrl(navigation.regions.bySlug(region.slug)),
-  //   ),
-  //   ...genres.map((genre) =>
-  //     generateEntryFromUrl(navigation.genres.bySlug(genre.slug)),
-  //   ),
-  // ];
-  return [];
+  return [
+    // home page
+    generateEntryFromUrl("/"),
+    // root entities
+    ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
+    ...books.map((book) =>
+      generateEntryFromUrl(navigation.books.reader(book.slug)),
+    ),
+    ...authors.map((author) =>
+      generateEntryFromUrl(navigation.authors.bySlug(author.slug)),
+    ),
+    ...centuries.map((century) =>
+      generateEntryFromUrl(
+        navigation.centuries.byNumber(century.centuryNumber),
+      ),
+    ),
+    ...regions.map((region) =>
+      generateEntryFromUrl(navigation.regions.bySlug(region.slug)),
+    ),
+    ...genres.map((genre) =>
+      generateEntryFromUrl(navigation.genres.bySlug(genre.slug)),
+    ),
+  ];
 }

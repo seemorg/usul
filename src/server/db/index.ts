@@ -12,6 +12,8 @@ if (env.NODE_ENV === "development" && env.DATABASE_URL.includes("localhost")) {
 } else {
   neonConfig.webSocketConstructor = ws;
 
+  console.log(env.DATABASE_URL);
+
   const pool = new Pool({ connectionString: env.DATABASE_URL });
   const adapter = new PrismaNeon(pool);
 
