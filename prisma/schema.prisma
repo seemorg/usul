@@ -1,0 +1,176 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_DIRECT_URL")
+}
+
+model Author {
+  id   String @id
+  slug String @unique
+
+  primaryNameTranslations AuthorPrimaryName[]
+  otherNameTranslations   AuthorOtherNames[]
+
+  year            Int
+  numberOfBooks   Int         @default(0)
+  bioTranslations AuthorBio[]
+
+  books     Book[]
+  locations Location[]
+}
+
+model AuthorBio {
+  locale String
+  text   String
+
+  authorId String
+  author   Author @relation(fields: [authorId], references: [id])
+
+  @@id([authorId, locale])
+}
+
+model AuthorPrimaryName {
+  locale String
+  text   String
+
+  authorId String
+  author   Author @relation(fields: [authorId], references: [id])
+
+  @@id([authorId, locale])
+}
+
+model AuthorOtherNames {
+  locale String
+  texts  String[]
+
+  authorId String
+  author   Author @relation(fields: [authorId], references: [id])
+
+  @@id([authorId, locale])
+}
+
+model Book {
+  id   String @id
+  slug String
+
+  primaryNameTranslations BookPrimaryName[]
+  otherNameTranslations   BookOtherNames[]
+
+  versionIds       String[]
+  numberOfVersions Int      @default(0)
+
+  genres Genre[]
+
+  author   Author @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  authorId String
+}
+
+model BookPrimaryName {
+  locale String
+  text   String
+
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  @@id([bookId, locale])
+}
+
+model BookOtherNames {
+  locale String
+  texts  String[]
+
+  bookId String
+  book   Book   @relation(fields: [bookId], references: [id])
+
+  @@id([bookId, locale])
+}
+
+model Genre {
+  id   String @id
+  slug String @unique
+  name String
+
+  numberOfBooks Int    @default(0)
+  books         Book[]
+}
+
+enum LocationType {
+  Died
+  Born
+  Visited
+  Resided
+}
+
+model Location {
+  id   String       @id
+  slug String
+  name String
+  type LocationType
+
+  cityNameTranslations LocationCityName[]
+
+  authors Author[]
+
+  region   Region? @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  regionId String?
+
+  @@unique([slug, type])
+}
+
+model LocationCityName {
+  locale String
+  text   String
+
+  locationId String
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@id([locationId, locale])
+}
+
+model Region {
+  id   String @id
+  slug String @unique
+
+  currentNameTranslations RegionCurrentName[]
+  nameTranslations        RegionName[]
+  overviewTranslations    RegionOverview[]
+
+  numberOfAuthors Int        @default(0)
+  numberOfBooks   Int        @default(0)
+  locations       Location[]
+}
+
+model RegionCurrentName {
+  locale String
+  text   String
+
+  regionId String
+  region   Region @relation(fields: [regionId], references: [id])
+
+  @@id([regionId, locale])
+}
+
+model RegionName {
+  locale String
+  text   String
+
+  regionId String
+  region   Region @relation(fields: [regionId], references: [id])
+
+  @@id([regionId, locale])
+}
+
+model RegionOverview {
+  locale String
+  text   String
+
+  regionId String
+  region   Region @relation(fields: [regionId], references: [id])
+
+  @@id([regionId, locale])
+}

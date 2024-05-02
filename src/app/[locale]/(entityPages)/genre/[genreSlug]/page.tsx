@@ -29,7 +29,7 @@ export const generateMetadata = async ({
   if (!genre) return;
 
   return getMetadata({
-    title: genre.genre.name,
+    title: genre.name,
   });
 };
 
@@ -54,14 +54,14 @@ async function GenrePage({
     page,
     sortBy: sort,
     filters: {
-      genres: [genre.genre.id],
+      genres: [genre.id],
       regions,
       authors,
       yearRange: year,
     },
   });
 
-  const primaryName = genre.genre.name;
+  const primaryName = genre.name;
   const secondaryName = null;
 
   return (
@@ -74,7 +74,7 @@ async function GenrePage({
       )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
-        <p>{t("x-texts", { count: genre.count })}</p>
+        <p>{t("x-texts", { count: genre.numberOfBooks })}</p>
       </div>
 
       {/* {author.bio && (
@@ -108,7 +108,7 @@ async function GenrePage({
               <RegionsFilter
                 currentRegions={regions}
                 filters={{
-                  genreId: genre.genre.id,
+                  genreId: genre.id,
                 }}
               />
 

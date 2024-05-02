@@ -1,5 +1,7 @@
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
+import { getPathLocale } from "@/lib/locale/server";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { findRegionBySlug } from "@/server/services/regions";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
@@ -35,10 +37,12 @@ export async function generateImageMetadata({
     return [];
   }
 
+  const name = getPrimaryLocalizedText(region.nameTranslations, "en");
+
   return [
     {
       id: "main",
-      alt: region.region.name,
+      alt: name,
       contentType: "image/png",
       size,
     },
@@ -53,11 +57,18 @@ export default async function Image({
     regionSlug: string;
   };
 }) {
+  const pathLocale = await getPathLocale();
   const region = await findRegionBySlug(regionSlug);
 
   if (!region) {
     notFound();
   }
+
+  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale)!;
+  const overview = getPrimaryLocalizedText(
+    region.overviewTranslations,
+    pathLocale,
+  )!;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -65,7 +76,6 @@ export default async function Image({
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
 
-  const overview = region.region.overview ?? "";
   const trimmedOverview =
     overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
 
@@ -83,7 +93,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {region.region.name}
+          {name}
         </h1>
 
         <p

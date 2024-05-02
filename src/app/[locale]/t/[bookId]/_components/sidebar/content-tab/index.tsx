@@ -27,7 +27,11 @@ import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import { getLocale } from "@/lib/locale/server";
+import { getLocale, getPathLocale } from "@/lib/locale/server";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -89,6 +93,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
 
   const t = await getTranslations();
   const locale = await getLocale();
+  const pathLocale = await getPathLocale();
   const direction = getLocaleDirection(locale as any);
 
   const book = result.book;
@@ -100,6 +105,21 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
     start: typeof firstPage === "number" ? firstPage : 0,
     end: typeof lastPage === "number" ? lastPage : 0,
   };
+
+  const primaryName = getPrimaryLocalizedText(
+    book.primaryNameTranslations,
+    pathLocale,
+  );
+  const authorName = getPrimaryLocalizedText(
+    author.primaryNameTranslations,
+    pathLocale,
+  );
+  const authorBio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
+
+  const primaryOtherNames =
+    getPrimaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
+  const secondaryOtherNames =
+    getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
 
   return (
     <>
@@ -128,7 +148,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
         </nav> */}
         {/* mt-6  */}
         <h2 className="flex gap-2 text-4xl font-bold" dir="rtl">
-          {book.primaryArabicName}
+          {primaryName}
         </h2>
 
         <DottedList
@@ -147,7 +167,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
                 <p dir="rtl">
                   <Button variant="link" asChild className="px-0 text-base">
                     <Link href={navigation.authors.bySlug(author.slug)}>
-                      {author.primaryArabicName}
+                      {authorName}
                     </Link>
                   </Button>
                 </p>
@@ -159,7 +179,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
                 side="left"
               >
                 <p className="line-clamp-4 text-ellipsis text-sm">
-                  {author.bio}
+                  {authorBio}
                 </p>
               </HoverCardContent>
             </HoverCard>,
@@ -190,14 +210,14 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
 
                 <div className="mt-3 space-y-3 text-sm text-muted-foreground">
                   <p>
-                    {book.otherArabicNames.length > 0
-                      ? book.otherArabicNames.join(", ")
+                    {primaryOtherNames.length > 0
+                      ? primaryOtherNames.join(", ")
                       : "-"}
                   </p>
 
                   <p>
-                    {book.otherLatinNames.length > 0
-                      ? book.otherLatinNames.join(", ")
+                    {secondaryOtherNames.length > 0
+                      ? secondaryOtherNames.join(", ")
                       : "-"}
                   </p>
                 </div>
@@ -207,7 +227,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
                 <p className="font-semibold">{t("entities.genres")}:</p>
 
                 <div className="mt-3 flex flex-wrap items-center gap-3">
-                  {book.genres.map(({ genre }) => (
+                  {book.genres.map((genre) => (
                     <Link
                       key={genre.id}
                       href={navigation.genres.bySlug(genre.slug)}

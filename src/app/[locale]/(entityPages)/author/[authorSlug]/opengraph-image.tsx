@@ -3,6 +3,8 @@ import { loadFileOnEdge } from "@/lib/edge";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { findAuthorBySlug } from "@/server/services/authors";
+import { getPathLocale } from "@/lib/locale/server";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 
 export const runtime = "edge";
 
@@ -27,8 +29,14 @@ export async function generateImageMetadata({
 }: {
   params: { authorSlug: string };
 }) {
-  const author = await findAuthorBySlug(authorSlug);
-  const name = author?.primaryLatinName ?? author?.primaryArabicName;
+  const pathLocale = await getPathLocale();
+  const author = await findAuthorBySlug(authorSlug, pathLocale);
+  if (!author) return [];
+
+  const name = getPrimaryLocalizedText(
+    author?.primaryNameTranslations,
+    pathLocale,
+  );
   if (!name) return [];
 
   return [
@@ -47,23 +55,26 @@ export default async function Image({
 }: {
   params: { authorSlug: string };
 }) {
-  const author = await findAuthorBySlug(authorSlug);
+  const pathLocale = await getPathLocale();
+  const author = await findAuthorBySlug(authorSlug, pathLocale);
 
   if (!author) {
     notFound();
   }
 
-  const name = author?.primaryLatinName ?? author?.primaryArabicName;
+  const name = getPrimaryLocalizedText(
+    author.primaryNameTranslations,
+    pathLocale,
+  );
+
+  const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale) ?? "";
+  const trimmedOverview = bio.length > 330 ? bio.slice(0, 330) + "..." : bio;
 
   // Font
   const [calSans, family] = await Promise.all([
     loadFileOnEdge.asArrayBuffer(fonts.calSans),
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
-
-  const overview = author.bio ?? "";
-  const trimmedOverview =
-    overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
 
   return new ImageResponse(
     (

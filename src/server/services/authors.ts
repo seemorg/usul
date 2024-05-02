@@ -1,62 +1,60 @@
 "use server";
 
+import type { PathLocale } from "@/lib/locale/utils";
 import { db } from "../db";
 import { cache } from "react";
-import { author, book } from "../db/schema";
-import { count, countDistinct } from "drizzle-orm";
+import { getLocaleWhereClause } from "../db/localization";
 
-export const findAuthorBySlug = cache(async (slug: string) => {
-  const author = await db.query.author.findFirst({
-    where: (author, { eq, or }) =>
-      or(eq(author.slug, slug), eq(author.id, slug)),
-    with: {
-      locations: {
-        with: {
-          location: {
-            with: {
-              region: true,
+export const findAuthorBySlug = cache(
+  async (slug: string, locale: PathLocale = "en") => {
+    const localeWhere = getLocaleWhereClause(locale);
+
+    const author = await db.author.findFirst({
+      where: {
+        OR: [{ slug }, { id: slug }],
+      },
+      include: {
+        locations: {
+          include: {
+            cityNameTranslations: localeWhere,
+            region: {
+              include: {
+                nameTranslations: localeWhere,
+              },
             },
           },
         },
+        primaryNameTranslations: localeWhere,
+        otherNameTranslations: localeWhere,
+        bioTranslations: localeWhere,
       },
-    },
-  });
+    });
 
-  if (!author) {
-    return;
-  }
+    if (!author) {
+      return;
+    }
 
-  // filter duplicate locations
-  const locations = author.locations.filter(
-    (l, i, arr) =>
-      arr.findIndex(
-        (l2) =>
-          l2.location.regionId === l.location.regionId &&
-          l2.location.type === l.location.type,
-      ) === i,
-  );
+    // filter duplicate locations
+    const locations = author.locations.filter(
+      (l, i, arr) =>
+        arr.findIndex(
+          (l2) => l2.regionId === l.regionId && l2.type === l.type,
+        ) === i,
+    );
 
-  return { ...author, locations };
-});
+    return { ...author, locations };
+  },
+);
 
 export const findAllAuthorIdsWithBooksCount = cache(async () => {
-  const all = await db
-    .select({
-      authorId: book.authorId,
-      booksCount: countDistinct(book.id),
-    })
-    .from(book)
-    .groupBy(book.authorId);
-
-  return all;
+  return await db.author.findMany({
+    select: {
+      id: true,
+      numberOfBooks: true,
+    },
+  });
 });
 
 export const countAllAuthors = cache(async () => {
-  const result = await db
-    .select({
-      count: count(author.id),
-    })
-    .from(author);
-
-  return result[0]?.count ?? 0;
+  return await db.author.count();
 });

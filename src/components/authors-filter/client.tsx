@@ -172,7 +172,7 @@ export default function _AuthorsFilter({
 
   const authorIdToBooksCount = useMemo(() => {
     return Object.fromEntries(
-      booksCount.map((item) => [item.authorId, item.booksCount]),
+      booksCount.map((item) => [item.id, item.numberOfBooks]),
     );
   }, [booksCount]);
 

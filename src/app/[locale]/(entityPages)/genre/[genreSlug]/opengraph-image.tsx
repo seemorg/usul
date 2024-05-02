@@ -33,7 +33,7 @@ export async function generateImageMetadata({
   return [
     {
       id: "main",
-      alt: genre.genre.name,
+      alt: genre.name,
       contentType: "image/png",
       size,
     },
@@ -71,7 +71,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {genre.genre.name}
+          {genre.name}
         </h1>
 
         {/* <p

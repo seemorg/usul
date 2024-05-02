@@ -43,29 +43,31 @@ export const popularIslamicHistoryBooks = [
 ];
 
 export const fetchPopularBooks = async () => {
-  return db.query.book.findMany({
-    where: (book, { or, eq }) => {
-      return or(...popularBooks.map(({ slug }) => eq(book.slug, slug)));
+  return db.book.findMany({
+    where: {
+      slug: {
+        in: popularBooks.map(({ slug }) => slug),
+      },
     },
   });
 };
 
 export const fetchPopularIslamicLawBooks = async () => {
-  return db.query.book.findMany({
-    where: (book, { or, eq }) => {
-      return or(
-        ...popularIslamicLawBooks.map(({ slug }) => eq(book.slug, slug)),
-      );
+  return db.book.findMany({
+    where: {
+      slug: {
+        in: popularIslamicLawBooks.map(({ slug }) => slug),
+      },
     },
   });
 };
 
 export const fetchPopularIslamicHistoryBooks = async () => {
-  return db.query.book.findMany({
-    where: (book, { or, eq }) => {
-      return or(
-        ...popularIslamicHistoryBooks.map(({ slug }) => eq(book.slug, slug)),
-      );
+  return db.book.findMany({
+    where: {
+      slug: {
+        in: popularIslamicHistoryBooks.map(({ slug }) => slug),
+      },
     },
   });
 };

@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
 import { usePathname, useRouter } from "@/navigation";
 import { type ReadonlyURLSearchParams, useSearchParams } from "next/navigation";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
+import { useFormatter, useTranslations } from "next-intl";
 import type { findAllRegionsWithBooksCount } from "@/server/services/regions";
-import type { AppLocale } from "~/i18n.config";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { usePathLocale } from "@/lib/locale/utils";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -42,7 +43,7 @@ export default function _RegionsFilter({
 }: RegionsFilterProps) {
   const t = useTranslations();
   const formatter = useFormatter();
-  const locale = useLocale() as AppLocale;
+  const pathLocale = usePathLocale();
 
   const [selectedRegions, setSelectedRegions] =
     useState<string[]>(currentRegions);
@@ -162,8 +163,10 @@ export default function _RegionsFilter({
         {matchedRegions.items.map((region) => {
           const booksCount = formatter.number(region.count);
 
-          const name =
-            locale === "ar-SA" ? region.arabicName ?? region.name : region.name;
+          const name = getPrimaryLocalizedText(
+            region.nameTranslations,
+            pathLocale,
+          );
           const title = `${name} (${booksCount})`;
 
           return (
