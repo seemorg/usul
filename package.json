@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
+    "build": "prisma generate && next build",
     "db:studio": "prisma studio",
     "dev": "next dev",
     "lint": "next lint",
