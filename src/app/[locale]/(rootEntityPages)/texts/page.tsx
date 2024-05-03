@@ -5,7 +5,7 @@ import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts } from "@/lib/urls";
+import { booksSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
@@ -14,6 +14,7 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import dynamic from "next/dynamic";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -23,9 +24,10 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 type TextsPageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("texts"),
-  };
+    pagePath: navigation.books.all(),
+  });
 }
 
 async function TextsPage({ searchParams }: TextsPageProps) {

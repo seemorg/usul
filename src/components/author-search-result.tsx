@@ -5,6 +5,11 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";
+import { getPathLocale } from "@/lib/locale/server";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 
 const AuthorSearchResult = async ({
   result,
@@ -14,15 +19,24 @@ const AuthorSearchResult = async ({
   >[number];
 }) => {
   const t = await getTranslations();
+  const pathLocale = await getPathLocale();
 
-  const { document, highlight } = result;
+  const { document } = result;
 
-  const primaryArabicName = highlight?.primaryArabicName?.snippet
-    ? highlight.primaryArabicName.snippet
-    : document.primaryArabicName;
-  const primaryLatinName = highlight?.primaryLatinName?.snippet
-    ? highlight.primaryLatinName.snippet
-    : document.primaryLatinName;
+  // const primaryArabicName = highlight?.primaryArabicName?.snippet
+  //   ? highlight.primaryArabicName.snippet
+  //   : document.primaryArabicName;
+  // const primaryLatinName = highlight?.primaryLatinName?.snippet
+  //   ? highlight.primaryLatinName.snippet
+  //   : document.primaryLatinName;
+  const primaryName = getPrimaryLocalizedText(
+    document.primaryNames,
+    pathLocale,
+  );
+  const secondaryName = getSecondaryLocalizedText(
+    document.primaryNames,
+    pathLocale,
+  );
 
   return (
     <Link
@@ -32,11 +46,11 @@ const AuthorSearchResult = async ({
     >
       <div className="flex items-center justify-between">
         <div className="max-w-[70%]">
-          {primaryArabicName && (
+          {primaryName && (
             <h2
               className="text-xl text-foreground"
               dangerouslySetInnerHTML={{
-                __html: primaryArabicName,
+                __html: primaryName,
               }}
             />
           )}
@@ -44,11 +58,11 @@ const AuthorSearchResult = async ({
           <DottedList
             className="mt-5 text-muted-foreground"
             items={[
-              primaryLatinName && (
+              secondaryName && (
                 <h2
-                  className={cn(primaryArabicName ? "text-lg" : "text-xl")}
+                  className={cn(primaryName ? "text-lg" : "text-xl")}
                   dangerouslySetInnerHTML={{
-                    __html: primaryLatinName,
+                    __html: secondaryName,
                   }}
                 />
               ),

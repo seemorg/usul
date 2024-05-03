@@ -17,6 +17,12 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
+import { getPathLocale } from "@/lib/locale/server";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
+import { getMetadata } from "@/lib/seo";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -28,12 +34,21 @@ export const generateMetadata = async ({
 }: {
   params: { regionSlug: string };
 }) => {
-  const region = await findRegionBySlug(regionSlug);
-  if (!region) return;
+  const pathLocale = await getPathLocale();
 
-  return {
-    title: region.region.name,
-  };
+  const region = await findRegionBySlug(regionSlug);
+  if (!region) return {};
+
+  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
+  const overview = getPrimaryLocalizedText(
+    region.overviewTranslations,
+    pathLocale,
+  );
+
+  return getMetadata({
+    title: name ?? undefined,
+    description: overview ?? undefined,
+  });
 };
 
 type RegionPageProps = InferPagePropsType<RouteType>;
@@ -42,7 +57,8 @@ async function RegionPage({
   routeParams: { regionSlug },
   searchParams,
 }: RegionPageProps) {
-  const region = await findRegionBySlug(regionSlug);
+  const pathLocale = await getPathLocale();
+  const region = await findRegionBySlug(regionSlug, pathLocale);
 
   if (!region) {
     notFound();
@@ -57,17 +73,36 @@ async function RegionPage({
     page,
     sortBy: sort.typesenseValue,
     filters: {
-      regions: [region.region.slug],
+      regions: [region.slug],
       yearRange: year,
       genres,
       authors,
     },
   });
 
-  const primaryName = region.region.name;
-  const secondaryName = region.region.arabicName;
+  const primaryName = getPrimaryLocalizedText(
+    region.nameTranslations,
+    pathLocale,
+  );
+  const secondaryName = getSecondaryLocalizedText(
+    region.nameTranslations,
+    pathLocale,
+  );
 
-  const cities = [...new Set(region.subLocations.map((l) => l.city))];
+  console.log(region.nameTranslations);
+
+  const overview = getPrimaryLocalizedText(
+    region.overviewTranslations,
+    pathLocale,
+  );
+
+  const cities = [
+    ...new Set(
+      region.locations
+        .map((l) => getPrimaryLocalizedText(l.cityNameTranslations, pathLocale))
+        .filter(Boolean),
+    ),
+  ];
 
   return (
     <div>
@@ -96,10 +131,8 @@ async function RegionPage({
         ]}
       />
 
-      {region.region.overview && (
-        <TruncatedText className="mt-7 text-lg">
-          {region.region.overview}
-        </TruncatedText>
+      {overview && (
+        <TruncatedText className="mt-7 text-lg">{overview}</TruncatedText>
       )}
 
       <div className="mt-10 sm:mt-16">
@@ -130,14 +163,14 @@ async function RegionPage({
                 currentAuthors={authors}
                 selectedAuthorsResponse={results.selectedAuthors}
                 filters={{
-                  regions: [region.region.slug],
+                  regions: [region.slug],
                 }}
               />
 
               <GenresFilter
                 currentGenres={genres}
                 filters={{
-                  regionId: region.region.id,
+                  regionId: region.id,
                 }}
               />
             </>

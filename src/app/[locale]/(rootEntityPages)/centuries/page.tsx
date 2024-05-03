@@ -7,13 +7,16 @@ import SearchResults from "@/components/search-results";
 import CenturySearchResult from "@/components/century-search-result";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
+import { getMetadata } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata() {
-  return {
+  return getMetadata({
     title: (await getTranslations("entities"))("centuries"),
-  };
+    pagePath: navigation.centuries.all(),
+  });
 }
 
 async function CenturiesPage({ searchParams }: PageProps) {

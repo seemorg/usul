@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/button";
 import FilterContainer from "@/components/search-results/filter-container";
 import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
 import { useFormatter, useTranslations } from "next-intl";
+import type { findAllGenresWithBooksCount } from "@/server/services/genres";
 
 const DEBOUNCE_DELAY = 300;
 
 interface GenresFilterProps {
   currentGenres: string[];
-  genres: { genreId: string; genreName: string; booksCount: number }[];
+  genres: Awaited<ReturnType<typeof findAllGenresWithBooksCount>>;
 }
 
 const getGenresFilterUrlParams = (
@@ -51,21 +52,14 @@ export default function _GenresFilter({
   const [size, setSize] = useState(10);
 
   const genreIdToGenreName = useMemo(() => {
-    return Object.fromEntries(genres.map((item) => [item.genreId, item]));
+    return Object.fromEntries(genres.map((item) => [item.id, item]));
   }, [genres]);
 
   const index = useMemo(() => {
-    return new Fuse(
-      genres.map((g) => ({
-        genreId: g.genreId,
-        genreName: g.genreName,
-        booksCount: g.booksCount,
-      })),
-      {
-        keys: ["genreId"],
-        threshold: 0.3,
-      },
-    );
+    return new Fuse(genres, {
+      keys: ["id", "name"],
+      threshold: 0.3,
+    });
   }, [genres]);
 
   const [value, setValue] = useState("");
@@ -108,7 +102,7 @@ export default function _GenresFilter({
 
     if (!q) {
       const items = selectedGenresArray.concat(
-        genres.slice(0, size).filter((g) => !selectedGenresSet.has(g.genreId)),
+        genres.slice(0, size).filter((g) => !selectedGenresSet.has(g.id)),
       );
 
       return {
@@ -119,7 +113,7 @@ export default function _GenresFilter({
 
     const matches = index.search(q, { limit: size }).map((r) => r.item);
     const items = selectedGenresArray.concat(
-      matches.filter((g) => !selectedGenresSet.has(g.genreId)),
+      matches.filter((g) => !selectedGenresSet.has(g.id)),
     );
 
     return {
@@ -156,20 +150,20 @@ export default function _GenresFilter({
       <FilterContainer.List className="mt-5">
         {matchedGenres.items.map((genre) => {
           // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
-          const booksCount = formatter.number(genre.booksCount);
+          const booksCount = formatter.number(genre._count.books);
 
-          const title = `${genre.genreName} (${booksCount})`;
+          const title = `${genre.name} (${booksCount})`;
 
           return (
             <FilterContainer.Checkbox
-              key={genre.genreId}
-              id={genre.genreId}
+              key={genre.id}
+              id={genre.id}
               title={title}
               count={booksCount}
-              checked={selectedGenres.includes(genre.genreId)}
-              onCheckedChange={() => handleChange(genre.genreId)}
+              checked={selectedGenres.includes(genre.id)}
+              onCheckedChange={() => handleChange(genre.id)}
             >
-              {genre.genreName}
+              {genre.name}
             </FilterContainer.Checkbox>
           );
         })}

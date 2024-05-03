@@ -12,8 +12,12 @@ import { useQuery } from "@tanstack/react-query";
 import { navigation } from "@/lib/urls";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { Skeleton } from "../ui/skeleton";
-import { useLocale, useTranslations } from "next-intl";
-import type { AppLocale } from "~/i18n.config";
+import { useTranslations } from "next-intl";
+import { usePathLocale } from "@/lib/locale/utils";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 
 const order: Record<string, number> = {
   born: 1,
@@ -29,62 +33,64 @@ export default function InfoDialog({
 }) {
   const { document } = result;
   const [open, setOpen] = useState(false);
-  const locale = useLocale() as AppLocale;
+  const pathLocale = usePathLocale();
   const t = useTranslations();
 
   const shouldFetch = open;
 
-  const { data: author = document.author, isFetching } = useQuery({
+  const { data: author, isFetching } = useQuery({
     queryKey: ["author", document.authorId] as const,
     queryFn: ({ queryKey }) => {
       const [, authorId] = queryKey;
-      return findAuthorBySlug(authorId);
+      return findAuthorBySlug(authorId, pathLocale);
     },
     enabled: shouldFetch,
   });
 
-  const {
-    primaryArabicName,
-    primaryLatinName,
-    otherArabicNames,
-    otherLatinNames,
-  } = document;
+  const primaryTitle = author?.primaryNameTranslations
+    ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
+  const secondaryTitle = author?.primaryNameTranslations
+    ? getSecondaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
 
-  const arabicTitle = primaryArabicName;
-  const latinTitle = primaryLatinName;
+  const authorPrimaryName = author
+    ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
+  const authorSecondaryName = author
+    ? getSecondaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
 
-  const authorArabicName = author?.primaryArabicName;
-  const authorLatinName = author?.primaryLatinName;
-
-  const authorOtherArabicNames = author?.otherArabicNames;
-  const authorOtherLatinNames = author?.otherLatinNames;
+  const authorOtherPrimaryNames = author
+    ? getPrimaryLocalizedText(author?.otherNameTranslations, pathLocale)
+    : null;
+  const authorOtherSecondaryNames = author
+    ? getSecondaryLocalizedText(author?.otherNameTranslations, pathLocale)
+    : null;
 
   const parsedRegions = useMemo(() => {
     if (!author) return [];
 
     if ("locations" in author) {
       return author.locations
-        .filter((l) => !!l.location.region)
-        .map(({ location }) => {
+        .filter((l) => !!l.region)
+        .map((location) => {
           const region = location.region!;
-          const typeKey = `common.${location.type}` as any;
+          const typeKey = `common.${location.type.toLowerCase()}` as any;
           const localizedType = t(typeKey);
 
           return {
             id: location.id,
             type: localizedType === typeKey ? location.type : localizedType,
             slug: region.slug,
-            name:
-              locale === "ar-SA"
-                ? region.arabicName ?? region.name
-                : region.name,
+            name: getPrimaryLocalizedText(region.nameTranslations, pathLocale),
           };
         })
         .sort((a, b) => order[a.type]! - order[b.type]!);
     }
 
     return [];
-  }, [author, locale, t]);
+  }, [author, pathLocale, t]);
 
   const isLoading = isFetching || !author;
 
@@ -114,12 +120,13 @@ export default function InfoDialog({
                 </div>
               ) : (
                 <div>
-                  <p className="text-xl">{arabicTitle}</p>
+                  <p className="text-xl">{primaryTitle}</p>
 
-                  {arabicTitle && (
+                  {primaryTitle && (
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {otherArabicNames.length > 0
-                        ? otherArabicNames.join(", ")
+                      {authorOtherPrimaryNames &&
+                      authorOtherPrimaryNames.length > 0
+                        ? authorOtherPrimaryNames.join(", ")
                         : "-"}
                     </p>
                   )}
@@ -138,12 +145,13 @@ export default function InfoDialog({
                 </div>
               ) : (
                 <div>
-                  <p className="text-xl">{latinTitle}</p>
+                  <p className="text-xl">{secondaryTitle}</p>
 
-                  {latinTitle && (
+                  {secondaryTitle && (
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {otherLatinNames.length > 0
-                        ? otherLatinNames.join(", ")
+                      {authorOtherSecondaryNames &&
+                      authorOtherSecondaryNames.length > 0
+                        ? authorOtherSecondaryNames.join(", ")
                         : "-"}
                     </p>
                   )}
@@ -186,24 +194,22 @@ export default function InfoDialog({
                   </div>
                 ) : (
                   <div>
-                    {authorArabicName ? (
+                    {authorPrimaryName ? (
                       <Link
                         href={navigation.authors.bySlug(author.slug)}
                         className="text-xl text-primary hover:underline"
                       >
-                        {authorArabicName}
+                        {authorPrimaryName}
                       </Link>
                     ) : (
                       <p className="text-sm text-muted-foreground">-</p>
                     )}
 
-                    {authorArabicName && (
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {authorOtherArabicNames.length > 0
-                          ? authorOtherArabicNames.join(", ")
-                          : "-"}
-                      </p>
-                    )}
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {(authorOtherPrimaryNames ?? []).length > 0
+                        ? authorOtherPrimaryNames!.join(", ")
+                        : "-"}
+                    </p>
                   </div>
                 )}
               </div>
@@ -220,24 +226,22 @@ export default function InfoDialog({
                   </div>
                 ) : (
                   <div>
-                    {authorLatinName ? (
+                    {authorSecondaryName ? (
                       <Link
                         href={navigation.authors.bySlug(author.slug)}
                         className="text-xl text-primary hover:underline"
                       >
-                        {authorLatinName}
+                        {authorSecondaryName}
                       </Link>
                     ) : (
                       <p className="text-sm text-muted-foreground">-</p>
                     )}
 
-                    {authorLatinName && (
-                      <p className="mt-2 text-sm text-muted-foreground">
-                        {authorOtherLatinNames.length > 0
-                          ? authorOtherLatinNames.join(", ")
-                          : "-"}
-                      </p>
-                    )}
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {(authorOtherSecondaryNames ?? []).length > 0
+                        ? authorOtherSecondaryNames!.join(", ")
+                        : "-"}
+                    </p>
                   </div>
                 )}
               </div>
@@ -258,7 +262,12 @@ export default function InfoDialog({
                   </div>
                 ) : (
                   <div>
-                    <p className="text-lg">{author.bio}</p>
+                    <p className="text-lg">
+                      {getPrimaryLocalizedText(
+                        author.bioTranslations,
+                        pathLocale,
+                      )}
+                    </p>
                   </div>
                 )}
               </div>

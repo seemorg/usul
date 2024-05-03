@@ -5,6 +5,11 @@ import { cn } from "@/lib/utils";
 import type { searchRegions } from "@/server/typesense/region";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";
+import { getPathLocale } from "@/lib/locale/server";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 
 export default async function RegionSearchResult({
   result,
@@ -14,11 +19,12 @@ export default async function RegionSearchResult({
   >[number];
 }) {
   const t = await getTranslations();
+  const pathLocale = await getPathLocale();
 
   const region = result.document;
 
-  const primaryArabicName = region.arabicName;
-  const primaryLatinName = region.name;
+  const primaryName = getPrimaryLocalizedText(region.names, pathLocale);
+  const secondaryName = getSecondaryLocalizedText(region.names, pathLocale);
 
   const totalBooks = region.booksCount;
   const subLocations = region.subLocations;
@@ -31,11 +37,11 @@ export default async function RegionSearchResult({
     >
       <div className="flex items-center justify-between">
         <div className="flex-1">
-          {primaryArabicName && (
+          {primaryName && (
             <h2
               className="text-xl text-foreground"
               dangerouslySetInnerHTML={{
-                __html: primaryArabicName,
+                __html: primaryName,
               }}
             />
           )}
@@ -43,11 +49,11 @@ export default async function RegionSearchResult({
           <DottedList
             className="mt-3 text-muted-foreground"
             items={[
-              primaryLatinName && (
+              secondaryName && (
                 <h2
-                  className={cn(primaryArabicName ? "text-lg" : "text-xl")}
+                  className={cn(primaryName ? "text-lg" : "text-xl")}
                   dangerouslySetInnerHTML={{
-                    __html: primaryLatinName,
+                    __html: secondaryName,
                   }}
                 />
               ),

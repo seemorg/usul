@@ -20,18 +20,26 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
 import DottedList from "@/components/ui/dotted-list";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import ComingSoonModal from "@/components/coming-soon-modal";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
+import { usePathLocale } from "@/lib/locale/utils";
 
 export default function SearchBar({
   autoFocus,
   size = "sm",
+  mobile,
 }: {
   autoFocus?: boolean;
   size?: "sm" | "lg";
+  mobile?: boolean;
 }) {
   const t = useTranslations("common");
   const entitiesT = useTranslations("entities");
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
+  const pathLocale = usePathLocale();
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -159,7 +167,7 @@ export default function SearchBar({
         ref={parentRef}
       >
         <CommandInput
-          placeholder={`${t("search-bar.placeholder")}... (⌘ + K)`}
+          placeholder={`${t("search-bar.placeholder")}...${mobile ? "" : " (⌘ + K)"}`}
           value={value}
           onValueChange={setValue}
           ref={inputRef}
@@ -187,8 +195,11 @@ export default function SearchBar({
 
         <CommandList
           className={cn(
-            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none border border-border bg-background text-sm text-foreground shadow",
-            showList ? "opacity-100" : "pointer-events-none opacity-0",
+            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-background text-sm text-foreground",
+            !mobile && "border border-border shadow",
+            showList || mobile
+              ? "opacity-100"
+              : "pointer-events-none opacity-0",
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
@@ -203,29 +214,46 @@ export default function SearchBar({
           )}
 
           {hits.map((result) => {
-            const primaryArabicName = result.highlight.primaryArabicName
-              ? result.highlight.primaryArabicName.snippet
-              : result.document.primaryArabicName;
-            const primaryLatinName = result.highlight.primaryLatinName
-              ? result.highlight.primaryLatinName.snippet
-              : result.document.primaryLatinName;
+            // const primaryArabicName = result.highlight.primaryArabicName
+            //   ? result.highlight.primaryArabicName.snippet
+            //   : result.document.primaryArabicName;
+            const primaryName = getPrimaryLocalizedText(
+              result.document.primaryNames,
+              pathLocale,
+            );
+            const secondaryName = getSecondaryLocalizedText(
+              result.document.primaryNames,
+              pathLocale,
+            );
 
-            const authorPrimaryLatinName = result.highlight.author
-              ?.primaryLatinName
-              ? result.highlight.author.primaryLatinName.snippet
-              : result.document.author?.primaryLatinName;
-            const authorPrimaryArabicName = result.highlight.author
-              ?.primaryArabicName
-              ? result.highlight.author.primaryArabicName.snippet
-              : result.document.author?.primaryArabicName;
+            const authorName = getPrimaryLocalizedText(
+              result.document.author?.primaryNames ?? [],
+              pathLocale,
+            );
+            // const primaryLatinName = result.highlight.primaryLatinName
+            //   ? result.highlight.primaryLatinName.snippet
+            //   : result.document.primaryLatinName;
+
+            // const authorPrimaryLatinName = result.highlight.author
+            //   ?.primaryLatinName
+            //   ? result.highlight.author.primaryLatinName.snippet
+            //   : result.document.author?.primaryLatinName;
+
+            // const authorPrimaryArabicName = result.highlight.author
+            //   ?.primaryNames
+            //   ? result.highlight.author.primaryNames.snippet
+            //   : getPrimaryLocalizedText(
+            //       result.document.author?.primaryNames ?? [],
+            //       "en",
+            //     );
 
             // use latin name if available, otherwise use arabic name
-            const authorName =
-              authorPrimaryLatinName || authorPrimaryArabicName;
+            // const authorName =
+            //   authorPrimaryLatinName || authorPrimaryArabicName;
 
-            const documentName = primaryArabicName || primaryLatinName;
-            const documentSecondaryName =
-              documentName === primaryLatinName ? null : primaryLatinName;
+            // const documentName = primaryArabicName || primaryLatinName;
+            // const documentSecondaryName =
+            //   documentName === primaryLatinName ? null : primaryLatinName;
 
             const type = result.document.type;
             const localizedType = getLocalizedType(type);
@@ -238,10 +266,10 @@ export default function SearchBar({
                 onSelect={() => onItemSelect(href ?? undefined)}
                 href={href ?? ""}
               >
-                {documentName && (
+                {primaryName && (
                   <p
                     className="text-base"
-                    dangerouslySetInnerHTML={{ __html: documentName }}
+                    dangerouslySetInnerHTML={{ __html: primaryName }}
                   />
                 )}
 
@@ -257,10 +285,10 @@ export default function SearchBar({
                         }}
                       />
                     ),
-                    documentSecondaryName && (
+                    secondaryName && (
                       <p
                         dangerouslySetInnerHTML={{
-                          __html: documentSecondaryName,
+                          __html: secondaryName,
                         }}
                       />
                     ),

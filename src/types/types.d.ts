@@ -5,4 +5,5 @@ declare interface IntlMessages {
   entities: typeof import("../../locales/en/entities.json");
   home: typeof import("../../locales/en/home.json");
   reader: typeof import("../../locales/en/reader.json");
+  meta: typeof import("../../locales/en/meta.json");
 }

@@ -8,6 +8,7 @@ import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
+  ArrowLeftIcon,
 } from "@heroicons/react/20/solid";
 
 import React, { useEffect, useState } from "react";
@@ -19,6 +20,7 @@ import HomepageNavigationMenu from "./navigation-menu";
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
+import { useTranslations } from "next-intl";
 
 interface NavbarProps {
   isHomepage?: boolean;
@@ -26,6 +28,7 @@ interface NavbarProps {
 }
 
 export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
+  const t = useTranslations();
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -152,9 +155,20 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
       )}
 
       {isSearchOpen && (
-        <MobileMenu>
-          <div className="pt-24">
-            <SearchBar autoFocus />
+        <MobileMenu className="z-[42] pt-10">
+          <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
+            <Button size="icon" variant="ghost">
+              <ArrowLeftIcon
+                className="block h-5 w-5 rtl:rotate-180"
+                onClick={() => setIsSearchOpen(false)}
+              />
+            </Button>
+
+            <h1 className="text-lg font-semibold">{t("common.search")}</h1>
+          </div>
+
+          <div className="mt-8">
+            <SearchBar autoFocus mobile />
           </div>
         </MobileMenu>
       )}

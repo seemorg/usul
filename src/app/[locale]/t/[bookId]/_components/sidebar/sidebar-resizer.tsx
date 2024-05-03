@@ -6,7 +6,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import React, { useRef, useState } from "react";
-import Navbar from "../../../../../_components/navbar";
+import Navbar from "@/app/_components/navbar";
 import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
@@ -16,36 +16,22 @@ const defaultSizes = [75, 25];
 export default function SidebarResizer({
   children,
   sidebar,
-  defaultLayout = defaultSizes,
-  defaultCollapsed = false,
   secondNav,
 }: {
   children: React.ReactNode;
   sidebar: React.ReactNode;
   secondNav?: React.ReactNode;
-  defaultLayout?: number[];
-  defaultCollapsed?: boolean;
 }) {
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
-  const onLayout = (sizes: number[]) => {
-    document.cookie = `react-resizable-panels:layout=${JSON.stringify(sizes)}`;
-  };
-
   const onCollapse = () => {
     setIsCollapsed(true);
-    document.cookie = `react-resizable-panels:collapsed=${JSON.stringify({
-      collapsed: true,
-    })}`;
   };
 
   const onExpand = () => {
     setIsCollapsed(false);
-    document.cookie = `react-resizable-panels:collapsed=${JSON.stringify({
-      collapsed: false,
-    })}`;
   };
 
   return (
@@ -54,10 +40,10 @@ export default function SidebarResizer({
 
       <ResizablePanelGroup
         direction="horizontal"
-        onLayout={onLayout}
+        autoSaveId="reader-sidebar"
         className="relative h-full w-full"
       >
-        <ResizablePanel defaultSize={defaultLayout[0]} minSize={55}>
+        <ResizablePanel defaultSize={defaultSizes[0]} minSize={55}>
           {children}
         </ResizablePanel>
 
@@ -66,7 +52,7 @@ export default function SidebarResizer({
         <ResizablePanel
           collapsible={true}
           id="sidebar-panel"
-          defaultSize={defaultLayout[1]}
+          defaultSize={defaultSizes[1]}
           ref={sidebarRef}
           collapsedSize={4}
           minSize={15}

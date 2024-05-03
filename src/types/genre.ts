@@ -3,4 +3,5 @@ export type GenreDocument = {
   slug: string;
   name: string;
   booksCount: number;
+  _popularity: number;
 };

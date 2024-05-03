@@ -18,6 +18,8 @@ import HomepageSection from "../_components/homepage-section";
 import { getTranslations } from "next-intl/server";
 import { ArabicLogo } from "@/components/Icons";
 import { CloudflareImage } from "@/components/cloudflare-image";
+import { getPathLocale } from "@/lib/locale/server";
+import { getMetadata } from "@/lib/seo";
 
 const searchExamples = [
   {
@@ -42,12 +44,16 @@ const searchExamples = [
   },
 ];
 
+export const generateMetadata = () => getMetadata({ pagePath: "/" });
+
 export default async function HomePage() {
+  const pathLocale = await getPathLocale();
+
   const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
     await Promise.all([
-      fetchPopularBooks(),
-      fetchPopularIslamicLawBooks(),
-      fetchPopularIslamicHistoryBooks(),
+      fetchPopularBooks(pathLocale),
+      fetchPopularIslamicLawBooks(pathLocale),
+      fetchPopularIslamicHistoryBooks(pathLocale),
     ]);
 
   const t = await getTranslations("home");
@@ -119,7 +125,14 @@ export default async function HomePage() {
             href="/texts"
             items={popularBooks.map((text) => (
               <BookSearchResult
-                result={{ document: text } as any}
+                result={
+                  {
+                    document: {
+                      ...text,
+                      primaryNames: text.primaryNameTranslations,
+                    },
+                  } as any
+                }
                 view="grid"
               />
             ))}
@@ -131,7 +144,14 @@ export default async function HomePage() {
             title={t("sections.islamic-law")}
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
-                result={{ document: text } as any}
+                result={
+                  {
+                    document: {
+                      ...text,
+                      primaryNames: text.primaryNameTranslations,
+                    },
+                  } as any
+                }
                 view="grid"
               />
             ))}
@@ -143,7 +163,14 @@ export default async function HomePage() {
             title={t("sections.islamic-history")}
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
-                result={{ document: text } as any}
+                result={
+                  {
+                    document: {
+                      ...text,
+                      primaryNames: text.primaryNameTranslations,
+                    },
+                  } as any
+                }
                 view="grid"
               />
             ))}

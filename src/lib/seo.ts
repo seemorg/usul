@@ -1,4 +1,7 @@
+import { PATH_LOCALES } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
+import { relativeUrl } from "./sitemap";
+import { getLocale, getPathLocale } from "./locale/server";
 
 export const config = {
   title: "Usul - The Research tool for Islamic Texts",
@@ -7,7 +10,6 @@ export const config = {
   description:
     "Read, search, and research 8,000+ Islamic and classical texts in a few clicks",
   themeColor: "#AA4A44",
-  locale: "en_US",
   image: {
     url: "/cover.png",
     width: 1500,
@@ -17,32 +19,88 @@ export const config = {
   url: "https://usul.ai",
 };
 
-export const getMetadata = ({
+export const getMetadata = async ({
   title: baseTitle,
   description = config.description,
+  all = false,
+  concatTitle = true,
+  pagePath,
 }: {
   title?: string;
   description?: string;
-} = {}): Metadata => {
+  all?: boolean;
+  concatTitle?: boolean;
+  pagePath?: string;
+} = {}): Promise<Metadata> => {
+  const locale = await getLocale();
+  const pathLocale = await getPathLocale();
+
   const images = [config.image];
   const title = baseTitle
-    ? `${baseTitle} | ${config.shortTitle}`
+    ? concatTitle
+      ? `${baseTitle} | ${config.shortTitle}`
+      : baseTitle
     : config.title;
 
+  if (!all) {
+    const newTitle = title !== config.title ? { title } : {};
+    const newDescription =
+      description !== config.description ? { description } : {};
+
+    const canonical =
+      pagePath && pathLocale
+        ? pathLocale === "en"
+          ? pagePath
+          : `/${pathLocale}${pagePath}`
+        : undefined;
+
+    return {
+      ...newTitle,
+      ...newDescription,
+      openGraph: {
+        type: "website",
+        siteName: config.siteName,
+        url: "/",
+        locale,
+        ...newTitle,
+        ...newDescription,
+      },
+      twitter: {
+        card: "summary_large_image",
+        ...newTitle,
+        ...newDescription,
+      },
+      alternates: {
+        canonical,
+        languages: pagePath
+          ? {
+              ...PATH_LOCALES.reduce(
+                (acc, locale) => {
+                  acc[locale] = relativeUrl(
+                    `/${pathLocale}${pagePath === "/" ? "" : pagePath}`,
+                  );
+                  return acc;
+                },
+                {} as Record<string, string>,
+              ),
+              "x-default": relativeUrl(pagePath),
+            }
+          : {},
+      },
+    };
+  }
+
   return {
-    title: {
-      template: "%s | Usul",
-      default: "Usul - The Research tool for Islamic Texts",
-    },
+    title,
     description,
     metadataBase: new URL(config.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],
     openGraph: {
       type: "website",
       siteName: config.siteName,
-      locale: config.locale,
       url: "/",
       title,
+      locale,
       description,
       images,
     },

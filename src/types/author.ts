@@ -1,15 +1,15 @@
 import type { BookDocument } from "./book";
+import type { LocalizedArrayEntry, LocalizedEntry } from "./localized-entry";
 
 export type AuthorDocument = {
   id: string;
   slug: string;
   year: number;
-  bio: string;
-  primaryArabicName?: string;
-  otherArabicNames: string[];
-  primaryLatinName?: string;
-  otherLatinNames: string[];
+  primaryNames: LocalizedEntry[];
+  otherNames: LocalizedArrayEntry[];
+  bios: LocalizedEntry[];
   _nameVariations: string[];
+  _popularity: number;
   regions: string[];
   geographies: string[];
   booksCount: number;

@@ -1,154 +1,144 @@
-// "use server";
+"use server";
 
 import { cache } from "react";
 import { db } from "../db";
-import {
-  author,
-  book,
-  genresToBooks,
-  location,
-  locationsToAuthors,
-  region,
-} from "../db/schema";
-import {
-  and,
-  count,
-  countDistinct,
-  desc,
-  eq,
-  gte,
-  lt,
-  or,
-  sql,
-} from "drizzle-orm";
+import { getLocaleWhereClause } from "../db/localization";
+import type { PathLocale } from "@/lib/locale/utils";
 
-export const findAllRegionsWithCounts = cache(async () => {
-  const all = await db
-    .select({
-      region: region,
-      booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
-      authorsCount: sql<number>`${countDistinct(locationsToAuthors.authorId)} as authorsCount`,
-    })
-    .from(location)
-    .leftJoin(region, eq(location.regionId, region.id))
-    .leftJoin(
-      locationsToAuthors,
-      eq(location.id, locationsToAuthors.locationId),
-    )
-    .leftJoin(book, eq(locationsToAuthors.authorId, book.authorId))
-    .groupBy(location.regionId);
+export const findAllRegionsWithCounts = cache(
+  async (locale: PathLocale = "en") => {
+    const localeWhere = getLocaleWhereClause(locale);
 
-  return all
-    .filter((r) => !!r.region)
-    .map(({ region, ...rest }) => ({ ...region, ...rest }));
-});
+    return await db.region.findMany({
+      include: {
+        nameTranslations: localeWhere,
+        overviewTranslations: localeWhere,
+        currentNameTranslations: localeWhere,
+      },
+    });
+  },
+);
 
-export const findRegionBySlug = cache(async (slug: string) => {
-  const region = await db.query.region.findFirst({
-    where: (r) => eq(r.slug, slug),
-  });
+export const findRegionBySlug = cache(
+  async (slug: string, locale: PathLocale = "en") => {
+    const localeWhere = getLocaleWhereClause(locale);
 
-  if (!region) {
-    return;
-  }
+    const region = await db.region.findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        locations: {
+          include: {
+            cityNameTranslations: localeWhere,
+          },
+        },
+        nameTranslations: localeWhere,
+        overviewTranslations: localeWhere,
+        currentNameTranslations: localeWhere,
+      },
+    });
 
-  const results = await db
-    .select()
-    .from(location)
-    .where(
-      or(
-        ...["died", "born", "visited", "resided"].map((type) => {
-          return and(eq(location.type, type), eq(location.regionId, region.id));
-        }),
-      ),
-    );
+    if (!region) {
+      return;
+    }
 
-  return {
-    region,
-    subLocations: results,
-  };
-});
+    return region;
+  },
+);
 
 export const findAllRegionsWithBooksCount = cache(
   async (
     {
       yearRange,
       genreId,
+      countType = "books",
     }: {
       yearRange?: [number, number];
       genreId?: string;
+      countType?: "books" | "authors";
     } = {},
-    countType: "books" | "authors" = "books",
+    locale: PathLocale = "en",
   ) => {
-    let q;
+    const localeWhere = getLocaleWhereClause(locale);
 
     if (countType === "authors") {
-      q = db
-        .select({
-          region: region,
-          authorsCount: sql<number>`${countDistinct(locationsToAuthors.authorId)} as authorsCount`,
-        })
-        .from(location)
-        .leftJoin(region, eq(location.regionId, region.id))
-        .leftJoin(
-          locationsToAuthors,
-          eq(location.id, locationsToAuthors.locationId),
-        )
-        .groupBy(location.regionId)
-        .orderBy(desc(sql`authorsCount`))
-        .$dynamic();
-    } else {
-      q = db
-        .select({
-          region: region,
-          booksCount: sql<number>`${countDistinct(book.id)} as booksCount`,
-        })
-        .from(locationsToAuthors)
-        .leftJoin(location, eq(locationsToAuthors.locationId, location.id))
-        .leftJoin(region, eq(location.regionId, region.id))
-        .leftJoin(book, eq(locationsToAuthors.authorId, book.authorId))
-        .groupBy(location.regionId)
-        .orderBy(desc(sql`booksCount`))
-        .$dynamic();
+      const data = await db.region.findMany({
+        orderBy: { numberOfAuthors: "desc" },
+        include: {
+          locations: {
+            include: {
+              cityNameTranslations: localeWhere,
+            },
+          },
+          nameTranslations: localeWhere,
+          overviewTranslations: localeWhere,
+          currentNameTranslations: localeWhere,
+        },
+      });
 
-      if (genreId) {
-        q = q
-          .leftJoin(genresToBooks, eq(genresToBooks.bookId, book.id))
-          .where(eq(genresToBooks.genreId, genreId));
-      }
-
-      if (yearRange) {
-        q = q
-          .leftJoin(author, eq(author.id, locationsToAuthors.authorId))
-          .where(
-            and(gte(author.year, yearRange[0]), lt(author.year, yearRange[1])),
-          );
-      }
+      return data.map((region) => ({
+        ...region,
+        count: region.numberOfAuthors,
+      }));
     }
 
-    const results: ({
-      count: number;
-    } & (typeof region)["$inferSelect"])[] = [];
-
-    (await q).forEach((r: any) => {
-      if (!r.region) return;
-
-      results.push({
-        ...r.region,
-        count: r.booksCount ?? r.authorsCount,
-      });
+    const data = await db.region.findMany({
+      include: {
+        nameTranslations: localeWhere,
+        overviewTranslations: localeWhere,
+        currentNameTranslations: localeWhere,
+        locations: {
+          include: {
+            cityNameTranslations: localeWhere,
+            authors: {
+              ...(yearRange && {
+                where: {
+                  year: {
+                    gte: yearRange[0],
+                    lt: yearRange[1],
+                  },
+                },
+              }),
+              include: {
+                _count: {
+                  select: {
+                    books: !genreId
+                      ? true
+                      : {
+                          where: {
+                            genres: {
+                              some: {
+                                id: genreId,
+                              },
+                            },
+                          },
+                        },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
     });
 
-    return results;
+    return data.map(({ locations, ...region }) => {
+      const totalBooks = locations.reduce(
+        (acc, loc) =>
+          acc +
+          loc.authors.reduce((acc2, author) => acc2 + author._count.books, 0),
+        0,
+      );
+
+      return {
+        ...region,
+        count: totalBooks,
+      };
+    });
   },
 );
 
 export const countAllRegions = cache(async () => {
-  const result = await db
-    .select({
-      count: count(region.id),
-    })
-    .from(region);
-
-  return result[0]?.count ?? 0;
+  return await db.region.count();
 });

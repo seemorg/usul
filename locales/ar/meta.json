@@ -1,0 +1,7 @@
+{
+  "author-page": {
+    "title": "{author} | كتبه و مؤلفاته",
+    "description-secondary": "اقرأ كتب {author}. {author}، المعروف أيضًا باسم {authorSecondary}، تأليف كتب {books}.",
+    "description": "اقرأ كتب {author}. {author} تأليف كتب {books}."
+  }
+}

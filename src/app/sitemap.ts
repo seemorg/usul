@@ -27,22 +27,22 @@ const generateEntryFromUrl = (url: string) => ({
 });
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const regions = await db.query.region.findMany({
-    columns: { slug: true },
+  const regions = await db.region.findMany({
+    select: { slug: true },
   });
 
   const centuries = await findAllYearRanges();
 
-  const books = await db.query.book.findMany({
-    columns: { slug: true },
+  const books = await db.book.findMany({
+    select: { slug: true },
   });
 
-  const authors = await db.query.author.findMany({
-    columns: { slug: true },
+  const authors = await db.author.findMany({
+    select: { slug: true },
   });
 
-  const genres = await db.query.genre.findMany({
-    columns: { slug: true },
+  const genres = await db.genre.findMany({
+    select: { slug: true },
   });
 
   return [

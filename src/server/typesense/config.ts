@@ -1,8 +1,8 @@
 import { weightsMapToQueryBy, weightsMapToQueryWeights } from "./utils";
 
 const authorQueryWeights = {
-  2: ["primaryArabicName", "primaryLatinName"],
-  1: ["_nameVariations", "otherArabicNames", "otherLatinNames"],
+  2: ["primaryNames.text"],
+  1: ["_nameVariations", "otherNames.texts"],
 };
 
 export const AUTHORS_COLLECTION = {
@@ -13,14 +13,10 @@ export const AUTHORS_COLLECTION = {
 };
 
 const booksQueryWeights = {
-  4: ["primaryArabicName", "primaryLatinName"],
-  3: ["_nameVariations", "otherArabicNames", "otherLatinNames"],
-  2: ["author.primaryArabicName", "author.primaryLatinName"],
-  1: [
-    "author._nameVariations",
-    "author.otherArabicNames",
-    "author.otherLatinNames",
-  ],
+  4: ["primaryNames.text"],
+  3: ["_nameVariations", "otherNames.texts"],
+  2: ["author.primaryNames.text"],
+  1: ["author._nameVariations", "author.otherNames.texts"],
 };
 
 export const BOOKS_COLLECTION = {
@@ -42,7 +38,7 @@ export const GENRES_COLLECTION = {
 };
 
 const regionsQueryWeights = {
-  2: ["name", "arabicName", "currentName"],
+  2: ["names.text", "currentNames.text"],
   1: ["subLocations"],
 };
 
@@ -54,14 +50,10 @@ export const REGIONS_COLLECTION = {
 };
 
 const globalSearchQueryWeights = {
-  4: ["primaryArabicName", "primaryLatinName"],
-  3: ["_nameVariations", "otherArabicNames", "otherLatinNames"],
-  2: ["author.primaryArabicName", "author.primaryLatinName"],
-  1: [
-    "author._nameVariations",
-    "author.otherArabicNames",
-    "author.otherLatinNames",
-  ],
+  4: ["primaryNames.text"],
+  3: ["_nameVariations", "otherNames.texts"],
+  2: ["author.primaryNames.text"],
+  1: ["author._nameVariations", "author.otherNames.texts"],
 };
 
 export const GLOBAL_SEARCH_COLLECTION = {
