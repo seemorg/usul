@@ -14,7 +14,6 @@ import {
 import ContentTab from "./content-tab";
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { getTranslations } from "next-intl/server";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
@@ -39,38 +38,38 @@ const ComingSoonAlert = async () => {
 export const tabs = [
   {
     id: "notes",
-    label: "notes",
+    label: "reader.notes",
     icon: PencilSquareIcon,
     content: ComingSoonAlert,
   },
   {
     id: "bookmarks",
-    label: "bookmarks",
+    label: "reader.bookmarks",
     icon: StarIcon,
     content: ComingSoonAlert,
   },
   {
     id: "search",
-    label: "search",
+    label: "common.search",
     icon: DocumentMagnifyingGlassIcon,
     content: ComingSoonAlert,
   },
 
   {
     id: "content",
-    label: "content",
+    label: "reader.content",
     icon: ListBulletIcon,
     content: ContentTab,
   },
 ] satisfies {
-  label: NamespaceTranslations<"reader">;
+  label: string;
   id: string;
   icon: any;
   content: any;
 }[];
 
 export default async function ReaderSidebar({ bookId }: { bookId: string }) {
-  const t = await getTranslations("reader");
+  const t = await getTranslations();
 
   return (
     <SidebarWrapper>
@@ -89,7 +88,7 @@ export default async function ReaderSidebar({ bookId }: { bookId: string }) {
                 </TabsTrigger>
 
                 <TooltipContent side="bottom" sideOffset={10}>
-                  {t(tab.label)}
+                  {t(tab.label as any)}
                 </TooltipContent>
               </Tooltip>
             ))}
