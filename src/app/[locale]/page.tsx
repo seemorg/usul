@@ -44,7 +44,7 @@ const searchExamples = [
   },
 ];
 
-export const meta = getMetadata({ pagePath: "/" });
+export const generateMetadata = () => getMetadata({ pagePath: "/" });
 
 export default async function HomePage() {
   const pathLocale = await getPathLocale();

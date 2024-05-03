@@ -54,11 +54,16 @@ export const generateMetadata = async ({
     title: t("author-page.title", {
       author: name,
     }),
-    description: `${t("author-page.description", {
-      author: name ?? "",
-      authorArabic: secondaryName ?? "",
-      books: author.numberOfBooks,
-    })}${bio ? ` ${bio}` : ""}`,
+    description: `${t(
+      secondaryName
+        ? "author-page.description-secondary"
+        : "author-page.description",
+      {
+        author: name ?? "",
+        books: author.numberOfBooks,
+        ...(secondaryName ? { secondaryName } : {}),
+      },
+    )}${bio ? ` ${bio}` : ""}`,
   });
 };
 
