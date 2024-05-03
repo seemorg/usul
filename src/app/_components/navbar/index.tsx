@@ -159,7 +159,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
             <Button size="icon" variant="ghost">
               <ArrowLeftIcon
-                className="block h-5 w-5"
+                className="block h-5 w-5 rtl:rotate-180"
                 onClick={() => setIsSearchOpen(false)}
               />
             </Button>
