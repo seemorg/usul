@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts } from "@/lib/urls";
+import { booksSorts, navigation } from "@/lib/urls";
 import { findGenreBySlug } from "@/server/services/genres";
 import AuthorsFilter from "@/components/authors-filter";
 import dynamic from "next/dynamic";
@@ -29,6 +29,8 @@ export const generateMetadata = async ({
   if (!genre) return;
 
   return getMetadata({
+    hasImage: true,
+    pagePath: navigation.genres.bySlug(genreSlug),
     title: genre.name,
   });
 };

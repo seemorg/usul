@@ -5,6 +5,7 @@ import ReaderContent from "./_components/reader-content";
 import { getMetadata } from "@/lib/seo";
 import { getPathLocale } from "@/lib/locale/server";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { navigation } from "@/lib/urls";
 
 export const generateMetadata = async ({
   params: { bookId },
@@ -25,6 +26,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     title: name,
+    pagePath: navigation.books.reader(bookId),
   });
 };
 
