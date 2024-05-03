@@ -76,7 +76,7 @@ export default function InfoDialog({
         .filter((l) => !!l.region)
         .map((location) => {
           const region = location.region!;
-          const typeKey = `common.${location.type}` as any;
+          const typeKey = `common.${location.type.toLowerCase()}` as any;
           const localizedType = t(typeKey);
 
           return {
