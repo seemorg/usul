@@ -25,17 +25,20 @@ export const getMetadata = async ({
   all = false,
   concatTitle = true,
   pagePath,
+  hasImage = false,
 }: {
   title?: string;
   description?: string;
   all?: boolean;
   concatTitle?: boolean;
   pagePath?: string;
+  hasImage?: boolean;
 } = {}): Promise<Metadata> => {
   const locale = await getLocale();
   const pathLocale = await getPathLocale();
 
   const images = [config.image];
+
   const title = baseTitle
     ? concatTitle
       ? `${baseTitle} | ${config.shortTitle}`
@@ -46,6 +49,7 @@ export const getMetadata = async ({
     const newTitle = title !== config.title ? { title } : {};
     const newDescription =
       description !== config.description ? { description } : {};
+    const newImages = hasImage ? {} : { images };
 
     const canonical =
       pagePath && pathLocale
@@ -64,11 +68,13 @@ export const getMetadata = async ({
         locale,
         ...newTitle,
         ...newDescription,
+        ...newImages,
       },
       twitter: {
         card: "summary_large_image",
         ...newTitle,
         ...newDescription,
+        ...newImages,
       },
       alternates: {
         canonical,

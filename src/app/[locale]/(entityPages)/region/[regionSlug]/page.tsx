@@ -6,7 +6,7 @@ import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { findRegionBySlug } from "@/server/services/regions";
 import SearchResults from "@/components/search-results";
-import { yearsSorts } from "@/lib/urls";
+import { navigation, yearsSorts } from "@/lib/urls";
 import BookSearchResult from "@/components/book-search-result";
 import AuthorsFilter from "@/components/authors-filter";
 import dynamic from "next/dynamic";
@@ -46,6 +46,8 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
+    hasImage: true,
+    pagePath: navigation.regions.bySlug(regionSlug),
     title: name ?? undefined,
     description: overview ?? undefined,
   });

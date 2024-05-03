@@ -51,6 +51,8 @@ export const generateMetadata = async ({
 
   return getMetadata({
     concatTitle: false,
+    hasImage: true,
+    pagePath: navigation.authors.bySlug(authorSlug),
     title: t("author-page.title", {
       author: name,
     }),

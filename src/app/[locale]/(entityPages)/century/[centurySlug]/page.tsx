@@ -4,7 +4,7 @@ import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import SearchResults from "@/components/search-results";
-import { yearsSorts } from "@/lib/urls";
+import { navigation, yearsSorts } from "@/lib/urls";
 import BookSearchResult from "@/components/book-search-result";
 import { findYearRangeBySlug } from "@/server/services/years";
 import AuthorsFilter from "@/components/authors-filter";
@@ -28,6 +28,8 @@ export const generateMetadata = async ({
   const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
 
   return getMetadata({
+    hasImage: true,
+    pagePath: navigation.centuries.byNumber(yearRange.centuryNumber),
     title,
     description: yearRange.description,
   });
