@@ -47,15 +47,12 @@ export default function InfoDialog({
     enabled: shouldFetch,
   });
 
-  const {
-    primaryArabicName,
-    primaryLatinName,
-    otherArabicNames,
-    otherLatinNames,
-  } = document;
-
-  const arabicTitle = primaryArabicName;
-  const latinTitle = primaryLatinName;
+  const primaryTitle = author?.primaryNameTranslations
+    ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
+  const secondaryTitle = author?.primaryNameTranslations
+    ? getSecondaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    : null;
 
   const authorPrimaryName = author
     ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
@@ -123,12 +120,13 @@ export default function InfoDialog({
                 </div>
               ) : (
                 <div>
-                  <p className="text-xl">{arabicTitle}</p>
+                  <p className="text-xl">{primaryTitle}</p>
 
-                  {arabicTitle && (
+                  {primaryTitle && (
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {otherArabicNames.length > 0
-                        ? otherArabicNames.join(", ")
+                      {authorOtherPrimaryNames &&
+                      authorOtherPrimaryNames.length > 0
+                        ? authorOtherPrimaryNames.join(", ")
                         : "-"}
                     </p>
                   )}
@@ -147,12 +145,13 @@ export default function InfoDialog({
                 </div>
               ) : (
                 <div>
-                  <p className="text-xl">{latinTitle}</p>
+                  <p className="text-xl">{secondaryTitle}</p>
 
-                  {latinTitle && (
+                  {secondaryTitle && (
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {otherLatinNames.length > 0
-                        ? otherLatinNames.join(", ")
+                      {authorOtherSecondaryNames &&
+                      authorOtherSecondaryNames.length > 0
+                        ? authorOtherSecondaryNames.join(", ")
                         : "-"}
                     </p>
                   )}
