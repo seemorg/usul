@@ -40,7 +40,7 @@ export const generateMetadata = async ({
   );
   if (!name) return;
 
-  const secondaryName = getSecondaryLocalizedText(
+  const authorSecondary = getSecondaryLocalizedText(
     author.primaryNameTranslations,
     pathLocale,
   );
@@ -57,13 +57,13 @@ export const generateMetadata = async ({
       author: name,
     }),
     description: `${t(
-      secondaryName
+      authorSecondary
         ? "author-page.description-secondary"
         : "author-page.description",
       {
         author: name ?? "",
         books: author.numberOfBooks,
-        ...(secondaryName ? { secondaryName } : {}),
+        ...(authorSecondary ? { authorSecondary } : {}),
       },
     )}${bio ? ` ${bio}` : ""}`,
   });

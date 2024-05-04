@@ -20,7 +20,7 @@ const config = {
   namespaces: ["common", "home", "entities", "reader", "meta"] as const,
   localePrefix: "as-needed" as const,
   namespacedRoutes: {
-    "*": ["common", "entities"],
+    "*": ["common", "entities", "meta"],
     "/": ["home"],
     "/t/*": ["reader"],
   },
