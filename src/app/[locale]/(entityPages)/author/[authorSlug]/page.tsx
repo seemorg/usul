@@ -49,6 +49,20 @@ export const generateMetadata = async ({
 
   const t = await getTranslations("meta");
 
+  const description = `${t(
+    authorSecondary
+      ? "author-page.description-secondary"
+      : "author-page.description",
+    {
+      author: name ?? "",
+      books: author.numberOfBooks,
+      ...(authorSecondary ? { authorSecondary } : {}),
+    },
+  )}${bio ? ` ${bio}` : ""}`;
+
+  const truncatedDescription =
+    description.length > 157 ? `${description.slice(0, 157)}...` : description;
+
   return getMetadata({
     concatTitle: false,
     hasImage: true,
@@ -56,16 +70,7 @@ export const generateMetadata = async ({
     title: t("author-page.title", {
       author: name,
     }),
-    description: `${t(
-      authorSecondary
-        ? "author-page.description-secondary"
-        : "author-page.description",
-      {
-        author: name ?? "",
-        books: author.numberOfBooks,
-        ...(authorSecondary ? { authorSecondary } : {}),
-      },
-    )}${bio ? ` ${bio}` : ""}`,
+    description: truncatedDescription,
   });
 };
 
