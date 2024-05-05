@@ -24,6 +24,16 @@ const config = {
           },
         ],
       },
+      {
+        // This sets the cache control header for all pages to 1 hour (3600 seconds)
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=604800", // 1 week
+          },
+        ],
+      },
     ];
   },
   redirects: async () => {
