@@ -8,11 +8,20 @@ import { useMessages } from "next-intl";
 import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import type { AppLocale } from "~/i18n.config";
+import { locales, type AppLocale } from "~/i18n.config";
+import type { LocalePageParams } from "@/types/localization";
+import { unstable_setRequestLocale } from "next-intl/server";
 
-export function generateMetadata() {
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params: { locale },
+}: LocalePageParams) {
   return getMetadata({
     all: true,
+    locale,
   });
 }
 
@@ -23,8 +32,8 @@ export default function LocaleLayout({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
-}) {
+} & LocalePageParams) {
+  unstable_setRequestLocale(locale);
   const messages = useMessages();
 
   return (

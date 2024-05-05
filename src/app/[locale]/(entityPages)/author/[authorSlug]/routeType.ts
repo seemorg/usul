@@ -1,3 +1,4 @@
+import { localeRouterProps } from "@/lib/locale/utils";
 import { booksSorts } from "@/lib/urls";
 import { viewSchema } from "@/validation/view";
 import { type DynamicRoute } from "next-typesafe-url";
@@ -9,6 +10,7 @@ const defaultSort: (typeof sorts)[number] = "relevance";
 export const Route = {
   routeParams: z.object({
     authorSlug: z.string().catch(""),
+    ...localeRouterProps,
   }),
   searchParams: z.object({
     q: z.string().default(""),
