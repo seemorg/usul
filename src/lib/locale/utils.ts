@@ -1,5 +1,4 @@
 import { useLocale } from "next-intl";
-import { z } from "zod";
 import {
   type AppLocale,
   pathLocaleToSupportedBcp47LocaleMap,
@@ -50,9 +49,4 @@ export const usePathLocale = (): PathLocale => {
 export const useDirection = (): "ltr" | "rtl" => {
   const locale = useLocale() as AppLocale;
   return getLocaleDirection(locale);
-};
-
-export const localeRouterProps = {
-  // locale: string as AppLocale
-  locale: z.string() as z.ZodType<AppLocale, z.ZodTypeDef>,
 };

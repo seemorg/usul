@@ -15,25 +15,39 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { ArabicLogo } from "@/components/Icons";
 import { CloudflareImage } from "@/components/cloudflare-image";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { searchExamples } from "@/data/search-examples";
-import type { LocalePageParams } from "@/types/localization";
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
-export function generateMetadata({ params: { locale } }: LocalePageParams) {
-  return getMetadata({ pagePath: "/", locale });
-}
+const searchExamples = [
+  {
+    title: "الأشباه والنظائر",
+    href: navigation.books.reader("ashbah-1"),
+  },
+  {
+    title: "Al Risala",
+    href: navigation.books.reader("risala"),
+  },
+  {
+    title: "Ibn Al-Jawzi",
+    href: navigation.authors.bySlug("ibn-jawzi"),
+  },
+  {
+    title: "Iraq",
+    href: navigation.regions.bySlug("iraq"),
+  },
+  {
+    title: "Fiqh",
+    href: navigation.genres.bySlug("fiqh"),
+  },
+];
 
-export default async function HomePage({
-  params: { locale },
-}: LocalePageParams) {
-  unstable_setRequestLocale(locale);
+export const generateMetadata = () => getMetadata({ pagePath: "/" });
 
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
-  const t = await getTranslations({ locale, namespace: "home" });
+export default async function HomePage() {
+  const pathLocale = await getPathLocale();
 
   const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
     await Promise.all([
@@ -42,12 +56,15 @@ export default async function HomePage({
       fetchPopularIslamicHistoryBooks(pathLocale),
     ]);
 
+  const t = await getTranslations("home");
+
   return (
     <>
       <Navbar isHomepage />
 
       <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
         <Container className="flex flex-col items-center">
+          {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
           <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" />
 
           <p className="mt-5 text-lg">{t("headline")}</p>

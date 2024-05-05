@@ -1,7 +1,7 @@
-import { PATH_LOCALES, supportedBcp47LocaleToPathLocale } from "./locale/utils";
+import { PATH_LOCALES } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
 import { relativeUrl } from "./sitemap";
-import type { AppLocale } from "~/i18n.config";
+import { getLocale, getPathLocale } from "./locale/server";
 
 export const config = {
   title: "Usul - The Research tool for Islamic Texts",
@@ -19,7 +19,7 @@ export const config = {
   url: "https://usul.ai",
 };
 
-export const getMetadata = ({
+export const getMetadata = async ({
   title: baseTitle,
   description = config.description,
   all = false,
@@ -28,7 +28,6 @@ export const getMetadata = ({
   hasImage = false,
   keywords,
   authors,
-  locale,
 }: {
   title?: string;
   description?: string;
@@ -38,9 +37,9 @@ export const getMetadata = ({
   hasImage?: boolean;
   keywords?: string[];
   authors?: Metadata["authors"];
-  locale: AppLocale;
-}): Metadata => {
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
+} = {}): Promise<Metadata> => {
+  const locale = await getLocale();
+  const pathLocale = await getPathLocale();
 
   const images = [config.image];
 

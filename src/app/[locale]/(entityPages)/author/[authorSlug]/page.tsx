@@ -14,24 +14,23 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import DottedList from "@/components/ui/dotted-list";
+import { getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { LocationType } from "@prisma/client";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import type { LocalePageParams } from "@/types/localization";
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { authorSlug, locale },
-}: LocalePageParams & {
+  params: { authorSlug },
+}: {
   params: { authorSlug: string };
 }) => {
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
+  const pathLocale = await getPathLocale();
   const author = await findAuthorBySlug(authorSlug, pathLocale);
   if (!author) return;
 
@@ -65,7 +64,6 @@ export const generateMetadata = async ({
     description.length > 157 ? `${description.slice(0, 157)}...` : description;
 
   return getMetadata({
-    locale,
     concatTitle: false,
     hasImage: true,
     pagePath: navigation.authors.bySlug(authorSlug),
@@ -81,17 +79,16 @@ export const generateMetadata = async ({
 };
 
 async function AuthorPage({
-  routeParams: { authorSlug, locale },
+  routeParams: { authorSlug },
   searchParams,
 }: AuthorPageProps) {
-  unstable_setRequestLocale(locale);
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
+  const pathLocale = await getPathLocale();
 
   const author = await findAuthorBySlug(
     decodeURIComponent(authorSlug),
     pathLocale,
   );
-  const t = await getTranslations({ locale });
+  const t = await getTranslations();
 
   if (!author) {
     notFound();
