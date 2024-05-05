@@ -89,7 +89,7 @@ export const getMetadata = async ({
               ...PATH_LOCALES.reduce(
                 (acc, locale) => {
                   acc[locale] = relativeUrl(
-                    `/${pathLocale}${pagePath === "/" ? "" : pagePath}`,
+                    `/${locale}${pagePath === "/" ? "" : pagePath}`,
                   );
                   return acc;
                 },
