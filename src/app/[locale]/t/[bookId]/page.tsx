@@ -6,15 +6,17 @@ import { getMetadata } from "@/lib/seo";
 import { getPathLocale } from "@/lib/locale/server";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { navigation } from "@/lib/urls";
+import type { LocalePageParams } from "@/types/localization";
+import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
 export const generateMetadata = async ({
-  params: { bookId },
-}: {
+  params: { bookId, locale },
+}: LocalePageParams & {
   params: {
     bookId: string;
   };
 }) => {
-  const pathLocale = await getPathLocale();
+  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
   const book = await fetchBook(bookId, pathLocale);
 
   if (!book) return {};
@@ -25,6 +27,7 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
+    locale,
     title: name,
     pagePath: navigation.books.reader(bookId),
     keywords: book.book.primaryNameTranslations
