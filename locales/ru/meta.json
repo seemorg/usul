@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | Книги и тексты",
+    "description-secondary": "Читайте книги {author}. {author}, также известные как {authorSecondary}, авторы книг {books}.",
+    "description": "Читайте книги {author}. {author} написал книги {books}."
+  }
+}

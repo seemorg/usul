@@ -1,10 +1,22 @@
 {
-  "headline": "دنیا کی سب سے بڑی اسلامی لائبریری",
+  "headline": "اسلامی متون کے لئے تحقیقی آلہ",
   "try": "کوشش کریں: ",
   "sections": {
     "collections": "مجموعہ",
     "popular-texts": "مقبول متون",
     "islamic-law": "اسلامی قانون",
     "islamic-history": "اسلامی تاریخ"
+  },
+  "collections": {
+    "quranic-sciences": "قرآنی علوم",
+    "hadith-sciences": "حدیث علوم",
+    "fiqh": "فقہ",
+    "islamic-theology": "اسلامی عقیدہ",
+    "islamic-history": "اسلامی تاریخ",
+    "islamic-ethics": "اسلامی اخلاق",
+    "islamic-philosophy": "اسلامی فلسفہ",
+    "islamic-finance": "اسلامی مالیات",
+    "literature": "ادب",
+    "medicine": "طب"
   }
 }

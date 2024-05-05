@@ -1,10 +1,22 @@
 {
-  "headline": "Dünya'nın En Büyük İslami Kütüphanesi",
+  "headline": "İslami Metinler için Araştırma Aracı",
   "try": "Deneyin: ",
   "sections": {
     "collections": "Koleksiyonlar",
     "popular-texts": "Popüler Metinler",
     "islamic-law": "İslam Hukuku",
     "islamic-history": "İslam Tarihi"
+  },
+  "collections": {
+    "quranic-sciences": "Kur'an İlimleri",
+    "hadith-sciences": "Hadis İlimleri",
+    "fiqh": "Fıkıh",
+    "islamic-theology": "İslam Teolojisi",
+    "islamic-history": "İslam Tarihi",
+    "islamic-ethics": "İslam Ahlakı",
+    "islamic-philosophy": "İslam Felsefesi",
+    "islamic-finance": "İslam Finans",
+    "literature": "Edebiyat",
+    "medicine": "Tıp"
   }
 }

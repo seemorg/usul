@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | کتابونه او متون",
+    "description-secondary": "د {author} کتابونه ولولئ. {author}، چې په نوم هم پېژندل شوی {authorSecondary}، {books} کتابونه لیکلي دي.",
+    "description": "د {author} کتابونه ولولئ. {author} {books} کتابونه لیکلي دي."
+  }
+}

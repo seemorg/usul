@@ -1,10 +1,22 @@
 {
-  "headline": "বিশ্বের সবচেয়ে বড় ইসলামিক গ্রন্থাগার",
+  "headline": "ইসলামিক টেক্সটের জন্য গবেষণা টুল",
   "try": "চেষ্টা করুন: ",
   "sections": {
     "collections": "সংগ্রহসমূহ",
     "popular-texts": "জনপ্রিয় টেক্সটসমূহ",
     "islamic-law": "ইসলামিক আইন",
     "islamic-history": "ইসলামিক ইতিহাস"
+  },
+  "collections": {
+    "quranic-sciences": "কুরআনিক বিজ্ঞান",
+    "hadith-sciences": "হাদিস বিজ্ঞান",
+    "fiqh": "ফিকহ",
+    "islamic-theology": "ইসলামিক থিওলজি",
+    "islamic-history": "ইসলামিক ইতিহাস",
+    "islamic-ethics": "ইসলামিক নৈতিকতা",
+    "islamic-philosophy": "ইসলামিক দর্শন",
+    "islamic-finance": "ইসলামিক ফাইন্যান্স",
+    "literature": "সাহিত্য",
+    "medicine": "চিকিৎসা"
   }
 }

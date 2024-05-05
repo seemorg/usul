@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | Buugaagta iyo Qoraallada",
+    "description-secondary": "Akhri buugaagta {author}. {author}, sidoo kale loo yaqaan {authorSecondary}, wuxuu qoray {books} buug.",
+    "description": "Akhri buugaagta {author}. {author} wuxuu qoray {books} buug."
+  }
+}

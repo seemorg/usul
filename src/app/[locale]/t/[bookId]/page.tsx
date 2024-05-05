@@ -27,6 +27,18 @@ export const generateMetadata = async ({
   return getMetadata({
     title: name,
     pagePath: navigation.books.reader(bookId),
+    keywords: book.book.primaryNameTranslations
+      .map((t) => t.text)
+      .concat(book.book.otherNameTranslations.flatMap((t) => t.texts)),
+    authors: [
+      {
+        name: getPrimaryLocalizedText(
+          book.book.author.primaryNameTranslations,
+          pathLocale,
+        ),
+        url: navigation.authors.bySlug(book.book.author.slug),
+      },
+    ],
   });
 };
 

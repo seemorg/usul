@@ -1,10 +1,22 @@
 {
-  "headline": "بزرگترین کتابخانه اسلامی جهان",
+  "headline": "ابزار تحقیق برای متون اسلامی",
   "try": "تلاش: ",
   "sections": {
     "collections": "مجموعه‌ها",
     "popular-texts": "متون محبوب",
     "islamic-law": "فقه اسلامی",
     "islamic-history": "تاریخ اسلام"
+  },
+  "collections": {
+    "quranic-sciences": "علوم قرآنی",
+    "hadith-sciences": "علوم حدیث",
+    "fiqh": "فقه",
+    "islamic-theology": "کلام اسلامی",
+    "islamic-history": "تاریخ اسلام",
+    "islamic-ethics": "اخلاق اسلامی",
+    "islamic-philosophy": "فلسفه اسلامی",
+    "islamic-finance": "تأمين مالی اسلامی",
+    "literature": "ادبیات",
+    "medicine": "پزشکی"
   }
 }

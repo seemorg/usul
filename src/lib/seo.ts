@@ -26,6 +26,8 @@ export const getMetadata = async ({
   concatTitle = true,
   pagePath,
   hasImage = false,
+  keywords,
+  authors,
 }: {
   title?: string;
   description?: string;
@@ -33,6 +35,8 @@ export const getMetadata = async ({
   concatTitle?: boolean;
   pagePath?: string;
   hasImage?: boolean;
+  keywords?: string[];
+  authors?: Metadata["authors"];
 } = {}): Promise<Metadata> => {
   const locale = await getLocale();
   const pathLocale = await getPathLocale();
@@ -61,6 +65,8 @@ export const getMetadata = async ({
     return {
       ...newTitle,
       ...newDescription,
+      keywords,
+      authors,
       openGraph: {
         type: "website",
         siteName: config.siteName,

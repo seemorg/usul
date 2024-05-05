@@ -1,8 +1,8 @@
 {
   "advanced-search": "Bincike Mai Zurfi",
   "load-more": "Daukar Karin",
-  "search": "Bincike",
   "clear-all": "Goge duk",
+  "search": "Bincike",
   "pagination": {
     "previous": "Na Baya",
     "next": "Na Gaba",
@@ -107,11 +107,11 @@
     }
   },
   "footer": {
-    "headline": "Usul - babban ɗakin karatu na Musulunci mafi girma a duniya",
-    "description": "Usul.ai na ba da sama da rubutun Islama 8,000 daga OpenITI corpus. Manufarmu ita ce sauƙaƙe karatu, bincike, da binciken rubutun gargajiya. Yi rijista a ƙasa don samun sabuntawa na wata-wata akan aikinmu.",
+    "headline": "Usul - Kayan Bincike don Rubutun Musulunci",
+    "description": "Usul.ai na hidima sama da rubutun Musulunci 8,000 daga korpus na OpenITI. Burinmu shine saukaka karatun rubuce-rubuce na asali, bincike, da bincike. Yi rajista a kasa don samun sabuntawa na wata-wata akan aikinmu.",
     "email-address": "Adireshin Imel",
     "subscribe": "Yi rajista",
-    "copyright": "{year, number, nogroup} Gidauniyar Usul.ai. Dukkan hakkoki an kiyaye su."
+    "copyright": "{year, number, nogroup} Gidauniyar Usul.ai. Dukkan hakkoki an tanadar."
   },
   "lost": "Yana kama da ka bata",
   "go-back-home": "Koma gida",

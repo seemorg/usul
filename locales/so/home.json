@@ -1,10 +1,22 @@
 {
-  "headline": "Maktabadda ugu weyn ee Islaamka ee Adduunka",
+  "headline": "Qalabka Cilmi-baarista ee Qoraallada Islaamka",
   "try": "Isku day: ",
   "sections": {
     "collections": "Ururinta",
     "popular-texts": "Qoraallada Caanka ah",
     "islamic-law": "Sharciga Islaamka",
     "islamic-history": "Taariikhda Islaamka"
+  },
+  "collections": {
+    "quranic-sciences": "Cilmiga Qur'aanka",
+    "hadith-sciences": "Cilmiga Xadiithka",
+    "fiqh": "Fiqh",
+    "islamic-theology": "Theology Islaami ah",
+    "islamic-history": "Taariikhda Islaamka",
+    "islamic-ethics": "Anshaxa Islaamka",
+    "islamic-philosophy": "Falsafada Islaamka",
+    "islamic-finance": "Maaliyadda Islaamka",
+    "literature": "Suugaanta",
+    "medicine": "Daawada"
   }
 }

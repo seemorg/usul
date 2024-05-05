@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | کتاب‌ها و متون",
+    "description-secondary": "کتاب‌های {author} را بخوانید. {author}، که همچنین با نام {authorSecondary} شناخته می‌شود، نویسنده {books} کتاب است.",
+    "description": "کتاب‌های {author} را بخوانید. {author} نویسنده {books} کتاب است."
+  }
+}

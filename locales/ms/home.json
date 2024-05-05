@@ -1,10 +1,22 @@
 {
-  "headline": "Perpustakaan Islam terbesar di Dunia",
+  "headline": "Alat Penyelidikan untuk Teks Islam",
   "try": "Cuba: ",
   "sections": {
     "collections": "Koleksi",
     "popular-texts": "Teks Popular",
     "islamic-law": "Undang-Undang Islam",
     "islamic-history": "Sejarah Islam"
+  },
+  "collections": {
+    "quranic-sciences": "Sains Qur'an",
+    "hadith-sciences": "Sains Hadith",
+    "fiqh": "Fiqh",
+    "islamic-theology": "Teologi Islam",
+    "islamic-history": "Sejarah Islam",
+    "islamic-ethics": "Etika Islam",
+    "islamic-philosophy": "Falsafah Islam",
+    "islamic-finance": "Kewangan Islam",
+    "literature": "Sastera",
+    "medicine": "Perubatan"
   }
 }

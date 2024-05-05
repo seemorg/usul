@@ -45,3 +45,8 @@ export const usePathLocale = (): PathLocale => {
   const locale = useLocale() as AppLocale;
   return supportedBcp47LocaleToPathLocale(locale);
 };
+
+export const useDirection = (): "ltr" | "rtl" => {
+  const locale = useLocale() as AppLocale;
+  return getLocaleDirection(locale);
+};

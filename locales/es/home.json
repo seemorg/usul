@@ -1,10 +1,22 @@
 {
-  "headline": "La biblioteca islámica más grande del mundo",
+  "headline": "La herramienta de investigación para textos islámicos",
   "try": "Intenta: ",
   "sections": {
     "collections": "Colecciones",
     "popular-texts": "Textos Populares",
     "islamic-law": "Derecho Islámico",
     "islamic-history": "Historia Islámica"
+  },
+  "collections": {
+    "quranic-sciences": "Ciencias Coránicas",
+    "hadith-sciences": "Ciencias del Hadiz",
+    "fiqh": "Fiqh",
+    "islamic-theology": "Teología Islámica",
+    "islamic-history": "Historia Islámica",
+    "islamic-ethics": "Ética Islámica",
+    "islamic-philosophy": "Filosofía Islámica",
+    "islamic-finance": "Finanzas Islámicas",
+    "literature": "Literatura",
+    "medicine": "Medicina"
   }
 }

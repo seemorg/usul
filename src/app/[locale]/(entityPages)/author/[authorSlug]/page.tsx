@@ -71,6 +71,10 @@ export const generateMetadata = async ({
       author: name,
     }),
     description: truncatedDescription,
+    keywords: author.primaryNameTranslations
+      .map((t) => t.text)
+      .concat(author.otherNameTranslations.flatMap((t) => t.texts)),
+    authors: [{}],
   });
 };
 

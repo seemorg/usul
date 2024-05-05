@@ -112,7 +112,7 @@ export default async function HomePage() {
                 </div>
 
                 <p className="mt-2 text-base font-medium sm:text-lg">
-                  {collection.name}
+                  {t(`collections.${collection.name}`)}
                 </p>
               </Link>
             ))}
