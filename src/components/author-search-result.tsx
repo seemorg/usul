@@ -5,21 +5,24 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";
-import { getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import type { AppLocale } from "~/i18n.config";
+import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
 const AuthorSearchResult = async ({
   result,
+  locale,
 }: {
   result: NonNullable<
     Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"]
   >[number];
+  locale: AppLocale;
 }) => {
-  const t = await getTranslations();
-  const pathLocale = await getPathLocale();
+  const t = await getTranslations({ locale });
+  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
 
   const { document } = result;
 
