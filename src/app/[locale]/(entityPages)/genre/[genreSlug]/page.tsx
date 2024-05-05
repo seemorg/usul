@@ -14,7 +14,6 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import RegionsFilter from "@/components/regions-filter";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import type { LocalePageParams } from "@/types/localization";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -22,15 +21,14 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { genreSlug, locale },
-}: LocalePageParams & {
+  params: { genreSlug },
+}: {
   params: { genreSlug: string };
 }) => {
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return;
 
   return getMetadata({
-    locale,
     hasImage: true,
     pagePath: navigation.genres.bySlug(genreSlug),
     title: genre.name,

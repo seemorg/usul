@@ -23,8 +23,6 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { getMetadata } from "@/lib/seo";
-import type { LocalePageParams } from "@/types/localization";
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -32,13 +30,13 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { regionSlug, locale },
-}: LocalePageParams & {
+  params: { regionSlug },
+}: {
   params: { regionSlug: string };
 }) => {
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
-  const region = await findRegionBySlug(regionSlug, pathLocale);
+  const pathLocale = await getPathLocale();
 
+  const region = await findRegionBySlug(regionSlug);
   if (!region) return {};
 
   const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
@@ -48,7 +46,6 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
-    locale,
     hasImage: true,
     pagePath: navigation.regions.bySlug(regionSlug),
     title: name ?? undefined,

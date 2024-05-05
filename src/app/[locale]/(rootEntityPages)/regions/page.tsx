@@ -9,15 +9,11 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { LocalePageParams } from "@/types/localization";
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata({
-  params: { locale },
-}: LocalePageParams) {
+export async function generateMetadata() {
   return getMetadata({
-    locale,
     title: (await getTranslations("entities"))("regions"),
     pagePath: navigation.regions.all(),
   });

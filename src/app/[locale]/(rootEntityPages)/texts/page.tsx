@@ -15,7 +15,6 @@ import { getTranslations } from "next-intl/server";
 import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import dynamic from "next/dynamic";
 import { getMetadata } from "@/lib/seo";
-import type { LocalePageParams } from "@/types/localization";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -24,11 +23,8 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata({
-  params: { locale },
-}: LocalePageParams) {
+export async function generateMetadata() {
   return getMetadata({
-    locale,
     title: (await getTranslations("entities"))("texts"),
     pagePath: navigation.books.all(),
   });

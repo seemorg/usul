@@ -13,7 +13,6 @@ import { getTranslations } from "next-intl/server";
 import { searchAuthors } from "@/server/typesense/author";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { LocalePageParams } from "@/types/localization";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -22,11 +21,8 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata({
-  params: { locale },
-}: LocalePageParams) {
+export async function generateMetadata() {
   return getMetadata({
-    locale,
     title: (await getTranslations("entities"))("authors"),
     pagePath: navigation.authors.all(),
   });
