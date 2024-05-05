@@ -1,4 +1,4 @@
-import type { PathLocale } from "@/lib/locale/utils";
+import { PathLocale } from "@/lib/locale/utils";
 import { db } from "@/server/db";
 import { getLocaleWhereClause } from "@/server/db/localization";
 

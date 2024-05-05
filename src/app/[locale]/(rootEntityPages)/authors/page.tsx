@@ -32,12 +32,9 @@ export async function generateMetadata({
   });
 }
 
-async function AuthorsPage({
-  searchParams,
-  routeParams: { locale },
-}: PageProps) {
+async function AuthorsPage({ searchParams }: PageProps) {
   const { q, sort, page, year, regions } = searchParams;
-  const t = await getTranslations({ locale, namespace: "entities" });
+  const t = await getTranslations("entities");
 
   const [results, totalAuthors] = await Promise.all([
     searchAuthors(q, {
@@ -63,9 +60,7 @@ async function AuthorsPage({
       <SearchResults
         response={results.results}
         pagination={results.pagination}
-        renderResult={(result) => (
-          <AuthorSearchResult locale={locale} result={result} />
-        )}
+        renderResult={(result) => <AuthorSearchResult result={result} />}
         emptyMessage={t("no-entity", { entity: t("authors") })}
         placeholder={t("search-within", {
           entity: t("authors"),

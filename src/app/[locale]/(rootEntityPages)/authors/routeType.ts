@@ -1,4 +1,3 @@
-import { localeRouterProps } from "@/lib/locale/utils";
 import { yearsSorts } from "@/lib/urls";
 import type { Sort } from "@/types/sort";
 import { yearRangeSchema } from "@/validation/year-range";
@@ -17,7 +16,6 @@ const sortsValues = sorts.map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts";
 
 export const Route = {
-  routeParams: z.object(localeRouterProps),
   searchParams: z.object({
     q: z.string().default(""),
     page: z.number().min(1).catch(1),
