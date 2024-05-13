@@ -7,6 +7,7 @@
     "previous": "Previous",
     "next": "Next",
     "page-x": "Page {page, number, nogroup}",
+    "vol-x": "Volume {volume, number, nogroup}",
     "page-unknown": "Unknown page"
   },
   "year-format": {

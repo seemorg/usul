@@ -6,6 +6,28 @@ import { db } from "@/server/db";
 import { log } from "next-axiom";
 import type { PathLocale } from "@/lib/locale/utils";
 import { getLocaleWhereClause } from "../db/localization";
+import type { TurathBookResponse } from "@/types/turath/book";
+
+const bookKeysMap = `
+meta id name type printed pdf_links info info_long version \
+author_id cat_id date_built author_page_start indexes volumes \
+headings print_pg_to_pg volume_bounds page_map page_headings non_author
+`
+  .trim()
+  .split(" ");
+
+const unObfuscateKeys = (s: string) =>
+  s.replace(
+    /"([ً-ٟ])":/g,
+    (m, m1) => `"${bookKeysMap[m1.charCodeAt(0) - 0x064b]}":`,
+  );
+
+const getTurathBookById = async (id: number | string) => {
+  const text = await (
+    await fetch(`https://files.turath.io/books-v3/${id}.json`)
+  ).text();
+  return JSON.parse(unObfuscateKeys(text)) as TurathBookResponse;
+};
 
 export const fetchBook = cache(
   async (id: string, locale: PathLocale = "en", versionId?: string) => {
@@ -31,6 +53,54 @@ export const fetchBook = cache(
 
     if (!record || (versionId && !record.versionIds.includes(versionId))) {
       throw new Error("Book not found");
+    }
+
+    if (record?.slug === "muwatta") {
+      const res = await getTurathBookById(16050);
+
+      const pageNumberToRealNumber = Object.entries(
+        res.indexes.print_pg_to_pg,
+      ).reduce(
+        (acc, curr) => {
+          const [realPage, page] = curr;
+          const v = Number(realPage.split(",")[1]);
+
+          if (!v || !page) return acc;
+
+          acc[page] = v;
+
+          return acc;
+        },
+        {} as Record<number, number>,
+      ) as Record<number, number>;
+
+      let lastPage: number;
+      res.indexes.headings = res.indexes.headings.map((h) => {
+        let page = pageNumberToRealNumber[h.page];
+
+        if (page) lastPage = page;
+        else page = lastPage;
+
+        return {
+          ...h,
+          page,
+        };
+      });
+
+      const pageToRenderIndex: Record<number, number> = {};
+
+      res.pages.forEach((cur, idx) => {
+        if (pageToRenderIndex[cur.page] === undefined) {
+          pageToRenderIndex[cur.page] = idx;
+        }
+      });
+
+      // fetch from turath
+      return {
+        turathResponse: res,
+        pageToRenderIndex,
+        book: record,
+      };
     }
 
     const version = versionId ?? record.versionIds[0];

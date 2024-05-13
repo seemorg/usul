@@ -42,6 +42,8 @@ export const generateMetadata = async ({
   });
 };
 
+type ResponseType = Awaited<ReturnType<typeof fetchBook>>;
+
 export default async function ReaderPage({
   params: { bookId },
   searchParams,
@@ -53,9 +55,15 @@ export default async function ReaderPage({
 }) {
   const pathLocale = await getPathLocale();
 
-  let pages: Awaited<ReturnType<typeof fetchBook>>["pages"] | null = null;
+  let pages:
+    | NonNullable<ResponseType["pages"]>
+    | NonNullable<ResponseType["turathResponse"]>["pages"]
+    | null = null;
   try {
-    pages = (await fetchBook(bookId, pathLocale, searchParams.version)).pages;
+    const response = await fetchBook(bookId, pathLocale, searchParams.version);
+    pages = response.turathResponse
+      ? response.turathResponse.pages
+      : response.pages;
   } catch (e) {}
 
   if (pages === null) {
