@@ -8,11 +8,12 @@ import { useReaderVirtuoso, useSetReaderScroller } from "./context";
 import Footer from "@/app/_components/footer";
 import { useTranslations } from "next-intl";
 
-export default function ReaderContent({
-  pages,
-}: {
-  pages: Awaited<ReturnType<typeof fetchBook>>["pages"];
-}) {
+type ResponseType = Awaited<ReturnType<typeof fetchBook>>;
+type Pages =
+  | NonNullable<ResponseType["pages"]>
+  | NonNullable<ResponseType["turathResponse"]>["pages"];
+
+export default function ReaderContent({ pages }: { pages: Pages }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
   const t = useTranslations("common");
@@ -48,10 +49,27 @@ export default function ReaderContent({
         )),
       }}
       itemContent={(index) => {
-        const { blocks, page } = pages[index]!;
+        const pageObj = pages[index]!;
+        const isTurath = "text" in pageObj;
+
+        if (isTurath) {
+          return (
+            <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
+              <div dangerouslySetInnerHTML={{ __html: pageObj.text }} />
+
+              <p className="mt-10 text-center font-sans text-sm text-muted-foreground">
+                {pageObj.page
+                  ? t("pagination.page-x", { page: pageObj.page })
+                  : t("pagination.page-unknown")}
+              </p>
+            </div>
+          );
+        }
+
+        const { blocks, page } = pageObj;
 
         return (
-          <div className="font-amiri flex flex-col gap-8 pb-5 pt-14">
+          <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
             {blocks.map((block, blockIndex) => (
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
               <RenderBlock key={blockIndex} block={block as any} />

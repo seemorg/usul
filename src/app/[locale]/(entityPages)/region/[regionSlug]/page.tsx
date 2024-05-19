@@ -91,8 +91,6 @@ async function RegionPage({
     pathLocale,
   );
 
-  console.log(region.nameTranslations);
-
   const overview = getPrimaryLocalizedText(
     region.overviewTranslations,
     pathLocale,

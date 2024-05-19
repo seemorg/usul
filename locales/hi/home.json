@@ -1,10 +1,22 @@
 {
-  "headline": "दुनिया की सबसे बड़ी इस्लामी पुस्तकालय",
+  "headline": "इस्लामी ग्रंथों के लिए अनुसंधान उपकरण",
   "try": "कोशिश करें: ",
   "sections": {
     "collections": "संग्रह",
     "popular-texts": "लोकप्रिय पाठ",
     "islamic-law": "इस्लामी कानून",
     "islamic-history": "इस्लामी इतिहास"
+  },
+  "collections": {
+    "quranic-sciences": "क़ुरआनिक विज्ञान",
+    "hadith-sciences": "हदीस विज्ञान",
+    "fiqh": "फिक़ह",
+    "islamic-theology": "इस्लामी धर्मशास्त्र",
+    "islamic-history": "इस्लामी इतिहास",
+    "islamic-ethics": "इस्लामी नैतिकता",
+    "islamic-philosophy": "इस्लामी दर्शन",
+    "islamic-finance": "इस्लामी वित्त",
+    "literature": "साहित्य",
+    "medicine": "चिकित्सा"
   }
 }

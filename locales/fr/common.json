@@ -1,8 +1,8 @@
 {
   "advanced-search": "Recherche Avancée",
   "load-more": "Charger plus",
-  "search": "Recherche",
   "clear-all": "Effacer tout",
+  "search": "Chercher",
   "pagination": {
     "previous": "Précédent",
     "next": "Suivant",
@@ -85,7 +85,7 @@
     "contribute": {
       "title": "Contribuer",
       "about": {
-        "title": "À propos de Usul",
+        "title": "À propos d'Usul",
         "description": "Restez à l'écoute pour les prochains outils, utilisant les technologies d'IA de pointe."
       },
       "add-text": {
@@ -107,8 +107,8 @@
     }
   },
   "footer": {
-    "headline": "Usul - la plus grande bibliothèque islamique du monde",
-    "description": "Usul.ai propose plus de 8 000 textes islamiques de l'OpenITI corpus. Notre objectif est de rendre la lecture, la recherche, et l'étude des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
+    "headline": "Usul - L'outil de recherche pour les textes islamiques",
+    "description": "Usul.ai sert plus de 8 000 textes islamiques du corpus OpenITI. Notre objectif est de faciliter la lecture, la recherche et la recherche de textes classiques. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
     "email-address": "Adresse Email",
     "subscribe": "Abonnez-vous",
     "copyright": "{year, number, nogroup} Fondation Usul.ai. Tous droits réservés."

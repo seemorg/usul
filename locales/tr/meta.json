@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | Kitaplar ve Metinler",
+    "description-secondary": "{author}'nin kitaplarını okuyun. {author}, ayrıca {authorSecondary} olarak da bilinir, {books} kitap yazmıştır.",
+    "description": "{author}'nin kitaplarını okuyun. {author} {books} kitap yazmıştır."
+  }
+}

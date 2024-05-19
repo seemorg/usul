@@ -1,10 +1,22 @@
 {
-  "headline": "Самая большая в мире исламская библиотека",
+  "headline": "Исследовательский инструмент для исламских текстов",
   "try": "Попробуйте: ",
   "sections": {
     "collections": "Коллекции",
     "popular-texts": "Популярные тексты",
     "islamic-law": "Исламское право",
     "islamic-history": "Исламская история"
+  },
+  "collections": {
+    "quranic-sciences": "Науки Корана",
+    "hadith-sciences": "Науки Хадисов",
+    "fiqh": "Фикх",
+    "islamic-theology": "Исламская теология",
+    "islamic-history": "Исламская история",
+    "islamic-ethics": "Исламская этика",
+    "islamic-philosophy": "Исламская философия",
+    "islamic-finance": "Исламские финансы",
+    "literature": "Литература",
+    "medicine": "Медицина"
   }
 }

@@ -1,8 +1,8 @@
 {
   "advanced-search": "Raadin Horumarsan",
   "load-more": "Ku Shub wax dheeraad ah",
-  "search": "Raadi",
   "clear-all": "Nadiifi dhammaan",
+  "search": "Raadi",
   "pagination": {
     "previous": "Kii Hore",
     "next": "Kan Xiga",
@@ -85,7 +85,7 @@
     "contribute": {
       "title": "Ku Biiri",
       "about": {
-        "title": "Ku saabsan Usul",
+        "title": "Ku Saabsan Usul",
         "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
       },
       "add-text": {
@@ -107,11 +107,11 @@
     }
   },
   "footer": {
-    "headline": "Usul - maktabadda ugu weyn adduunka ee Islaamka",
-    "description": "Usul.ai waxay bixisaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda OpenITI corpus. Hadafkeenu waa inaan ka dhigno akhriska, raadinta, iyo cilmi baarista qoraalada dhaqameedka inay fududaato. Isdiiwaangeli hoos si aad u hesho cusbooneysiin bille ah oo ku saabsan shaqadeena.",
+    "headline": "Usul - Qalabka Cilmi-baarista ee Qoraalada Islaamka",
+    "description": "Usul.ai waxa uu u adeegaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda corpus-ka OpenITI. Hadafkayagu waa inaan fududeyno akhrinta, raadinta, iyo cilmi-baarista qoraalada dhaqameed. Ku qor hoos si aad u hesho warbixinno bille ah oo ku saabsan shaqadayada.",
     "email-address": "Cinwaanka Emailka",
     "subscribe": "Isdiiwaangeli",
-    "copyright": "{year, number, nogroup} Usul.ai Foundation. Dhammaan xuquuqaha waa la kaydiyay."
+    "copyright": "{year, number, nogroup} Hay'adda Usul.ai. Dhammaan xuquuqaha waa la ilaaliyay."
   },
   "lost": "Waxay u muuqataa inaad lumtay",
   "go-back-home": "Ku noqo guriga",

@@ -1,7 +1,8 @@
-import { PATH_LOCALES } from "./locale/utils";
+import { PATH_LOCALES, supportedBcp47LocaleToPathLocale } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
 import { relativeUrl } from "./sitemap";
-import { getLocale, getPathLocale } from "./locale/server";
+// import { getLocale, getPathLocale } from "./locale/server";
+import type { AppLocale } from "~/i18n.config";
 
 export const config = {
   title: "Usul - The Research tool for Islamic Texts",
@@ -26,6 +27,9 @@ export const getMetadata = async ({
   concatTitle = true,
   pagePath,
   hasImage = false,
+  keywords,
+  authors,
+  locale,
 }: {
   title?: string;
   description?: string;
@@ -33,9 +37,14 @@ export const getMetadata = async ({
   concatTitle?: boolean;
   pagePath?: string;
   hasImage?: boolean;
+  keywords?: string[];
+  authors?: Metadata["authors"];
+  locale?: AppLocale;
 } = {}): Promise<Metadata> => {
-  const locale = await getLocale();
-  const pathLocale = await getPathLocale();
+  // const locale = await getLocale();
+  const pathLocale = locale
+    ? supportedBcp47LocaleToPathLocale(locale)
+    : undefined;
 
   const images = [config.image];
 
@@ -61,6 +70,8 @@ export const getMetadata = async ({
     return {
       ...newTitle,
       ...newDescription,
+      keywords,
+      authors,
       openGraph: {
         type: "website",
         siteName: config.siteName,
@@ -83,7 +94,7 @@ export const getMetadata = async ({
               ...PATH_LOCALES.reduce(
                 (acc, locale) => {
                   acc[locale] = relativeUrl(
-                    `/${pathLocale}${pagePath === "/" ? "" : pagePath}`,
+                    `/${locale}${pagePath === "/" ? "" : pagePath}`,
                   );
                   return acc;
                 },

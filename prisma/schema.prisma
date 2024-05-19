@@ -29,7 +29,7 @@ model AuthorBio {
   text   String
 
   authorId String
-  author   Author @relation(fields: [authorId], references: [id])
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([authorId, locale])
 }
@@ -39,7 +39,7 @@ model AuthorPrimaryName {
   text   String
 
   authorId String
-  author   Author @relation(fields: [authorId], references: [id])
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([authorId, locale])
 }
@@ -49,7 +49,7 @@ model AuthorOtherNames {
   texts  String[]
 
   authorId String
-  author   Author @relation(fields: [authorId], references: [id])
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([authorId, locale])
 }
@@ -61,12 +61,13 @@ model Book {
   primaryNameTranslations BookPrimaryName[]
   otherNameTranslations   BookOtherNames[]
 
-  versionIds       String[]
-  numberOfVersions Int      @default(0)
+  /// [BookVersion[]]
+  versions         Json[]
+  numberOfVersions Int    @default(0)
 
   genres Genre[]
 
-  author   Author @relation(fields: [authorId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   authorId String
 }
 
@@ -75,7 +76,7 @@ model BookPrimaryName {
   text   String
 
   bookId String
-  book   Book   @relation(fields: [bookId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([bookId, locale])
 }
@@ -85,7 +86,7 @@ model BookOtherNames {
   texts  String[]
 
   bookId String
-  book   Book   @relation(fields: [bookId], references: [id])
+  book   Book   @relation(fields: [bookId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([bookId, locale])
 }
@@ -127,7 +128,7 @@ model LocationCityName {
   text   String
 
   locationId String
-  location   Location @relation(fields: [locationId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([locationId, locale])
 }
@@ -150,7 +151,7 @@ model RegionCurrentName {
   text   String
 
   regionId String
-  region   Region @relation(fields: [regionId], references: [id])
+  region   Region @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([regionId, locale])
 }
@@ -160,7 +161,7 @@ model RegionName {
   text   String
 
   regionId String
-  region   Region @relation(fields: [regionId], references: [id])
+  region   Region @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([regionId, locale])
 }
@@ -170,7 +171,7 @@ model RegionOverview {
   text   String
 
   regionId String
-  region   Region @relation(fields: [regionId], references: [id])
+  region   Region @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([regionId, locale])
 }

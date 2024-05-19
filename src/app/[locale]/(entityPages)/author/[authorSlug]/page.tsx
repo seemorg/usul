@@ -40,7 +40,7 @@ export const generateMetadata = async ({
   );
   if (!name) return;
 
-  const secondaryName = getSecondaryLocalizedText(
+  const authorSecondary = getSecondaryLocalizedText(
     author.primaryNameTranslations,
     pathLocale,
   );
@@ -49,6 +49,20 @@ export const generateMetadata = async ({
 
   const t = await getTranslations("meta");
 
+  const description = `${t(
+    authorSecondary
+      ? "author-page.description-secondary"
+      : "author-page.description",
+    {
+      author: name ?? "",
+      books: author.numberOfBooks,
+      ...(authorSecondary ? { authorSecondary } : {}),
+    },
+  )}${bio ? ` ${bio}` : ""}`;
+
+  const truncatedDescription =
+    description.length > 157 ? `${description.slice(0, 157)}...` : description;
+
   return getMetadata({
     concatTitle: false,
     hasImage: true,
@@ -56,16 +70,11 @@ export const generateMetadata = async ({
     title: t("author-page.title", {
       author: name,
     }),
-    description: `${t(
-      secondaryName
-        ? "author-page.description-secondary"
-        : "author-page.description",
-      {
-        author: name ?? "",
-        books: author.numberOfBooks,
-        ...(secondaryName ? { secondaryName } : {}),
-      },
-    )}${bio ? ` ${bio}` : ""}`,
+    description: truncatedDescription,
+    keywords: author.primaryNameTranslations
+      .map((t) => t.text)
+      .concat(author.otherNameTranslations.flatMap((t) => t.texts)),
+    authors: [{}],
   });
 };
 

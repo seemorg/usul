@@ -32,6 +32,8 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import type { BookVersion } from "@/types";
+import type { ReaderSearchParams } from "@/types/reader-search-params";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -80,27 +82,39 @@ import {
 
 interface ContentTabProps {
   bookId: string;
+  searchParams: ReaderSearchParams;
 }
 
-export default async function ContentTab({ bookId }: ContentTabProps) {
+export default async function ContentTab({
+  bookId,
+  searchParams,
+}: ContentTabProps) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
+  const pathLocale = await getPathLocale();
 
   try {
-    result = await fetchBook(bookId);
+    result = await fetchBook(bookId, pathLocale, searchParams?.version);
   } catch (e) {
     notFound();
   }
 
   const t = await getTranslations();
   const locale = await getLocale();
-  const pathLocale = await getPathLocale();
+
   const direction = getLocaleDirection(locale as any);
 
   const book = result.book;
   const author = book.author;
 
-  const firstPage = result.pages[0]?.page?.page ?? 0;
-  const lastPage = result.pages[result.pages.length - 1]?.page?.page ?? 0;
+  const firstPage =
+    (result.turathResponse
+      ? result.turathResponse.pages?.[0]?.page
+      : result.pages[0]?.page?.page) ?? 0;
+  const lastPage =
+    (result.turathResponse
+      ? result.turathResponse.pages?.[result.turathResponse.pages.length - 1]
+          ?.page
+      : result.pages[result.pages.length - 1]?.page?.page) ?? 0;
   const pagesRange = {
     start: typeof firstPage === "number" ? firstPage : 0,
     end: typeof lastPage === "number" ? lastPage : 0,
@@ -120,6 +134,12 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
     getPrimaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
   const secondaryOtherNames =
     getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
+
+  const headings = result.turathResponse
+    ? result.turathResponse.indexes.headings
+    : result.headers;
+
+  const pageToIndex = result.pageToRenderIndex;
 
   return (
     <>
@@ -191,7 +211,7 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
             {t("reader.version")}
           </Label>
 
-          <VersionSelector versionIds={book.versionIds} />
+          <VersionSelector versions={book.versions as BookVersion[]} />
         </div>
       </SidebarContainer>
 
@@ -251,13 +271,20 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
       <Separator className="my-4" />
 
       <SidebarContainer className="flex flex-col gap-3">
-        {result.headers.length > 0 && (
+        {(result.turathResponse
+          ? result.turathResponse.indexes.headings
+          : result.headers
+        ).length > 0 && (
           <div className="w-full">
-            <PageNavigator range={pagesRange} />
+            <PageNavigator range={pagesRange} pageToIndex={pageToIndex} />
           </div>
         )}
 
-        <ChaptersList pagesRange={pagesRange} headers={result.headers} />
+        <ChaptersList
+          pagesRange={pagesRange}
+          headers={headings}
+          pageToIndex={pageToIndex}
+        />
       </SidebarContainer>
 
       <div className="h-16" />

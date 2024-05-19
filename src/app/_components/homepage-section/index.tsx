@@ -11,6 +11,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useDirection } from "@/lib/locale/utils";
 
 const HomepageSection = ({
   title,
@@ -21,6 +22,8 @@ const HomepageSection = ({
   href?: string;
   items: React.ReactNode[];
 }) => {
+  const dir = useDirection();
+
   const sectionTitle = (
     <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
       {title}{" "}
@@ -29,7 +32,7 @@ const HomepageSection = ({
   );
 
   return (
-    <Carousel className="relative w-full pb-10">
+    <Carousel className="relative w-full pb-10" opts={{ direction: dir }}>
       <div className="flex items-center justify-between">
         {href ? (
           <Link href={href}>{sectionTitle}</Link>

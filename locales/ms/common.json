@@ -1,8 +1,8 @@
 {
   "advanced-search": "Carian Lanjutan",
   "load-more": "Muat Lebih",
-  "search": "Carian",
   "clear-all": "Kosongkan semua",
+  "search": "Cari",
   "pagination": {
     "previous": "Sebelumnya",
     "next": "Seterusnya",
@@ -107,11 +107,11 @@
     }
   },
   "footer": {
-    "headline": "Usul - perpustakaan Islam terbesar di Dunia",
-    "description": "Usul.ai menyajikan lebih dari 8,000 teks Islam dari korpus OpenITI. Tujuan kami adalah untuk memudahkan membaca, mencari, dan meneliti teks-teks klasik. Langgan di bawah untuk menerima pembaruan bulanan tentang kerja kami.",
+    "headline": "Usul - Alat Penyelidikan untuk Teks Islam",
+    "description": "Usul.ai menyediakan lebih dari 8,000 teks Islam dari korpus OpenITI. Tujuan kami adalah untuk memudahkan membaca, mencari, dan meneliti teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
     "email-address": "Alamat E-mel",
     "subscribe": "Langgan",
-    "copyright": "{year, number, nogroup} Usul.ai Foundation. Hak cipta terpelihara."
+    "copyright": "{year, number, nogroup} Yayasan Usul.ai. Hak cipta terpelihara."
   },
   "lost": "Sepertinya anda tersesat",
   "go-back-home": "Kembali ke halaman utama",

@@ -1,10 +1,22 @@
 {
-  "headline": "نړۍ کې تر ټولو لوی اسلامي کتابتون",
+  "headline": "د اسلامي متونو لپاره څيړنیزه وسیله",
   "try": "هڅه وکړئ: ",
   "sections": {
     "collections": "ټولګي",
     "popular-texts": "مشهور متون",
     "islamic-law": "اسلامي قانون",
     "islamic-history": "اسلامي تاریخ"
+  },
+  "collections": {
+    "quranic-sciences": "قرآني علوم",
+    "hadith-sciences": "حدیث علوم",
+    "fiqh": "فقه",
+    "islamic-theology": "اسلامي عقیده",
+    "islamic-history": "اسلامي تاریخ",
+    "islamic-ethics": "اسلامي اخلاق",
+    "islamic-philosophy": "اسلامي فلسفه",
+    "islamic-finance": "اسلامي ماليه",
+    "literature": "ادبیات",
+    "medicine": "طب"
   }
 }

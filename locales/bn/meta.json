@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | বই এবং পাঠ্যপুস্তক",
+    "description-secondary": "{author} এর বই পড়ুন। {author}, যিনি {authorSecondary} নামেও পরিচিত, {books} বই রচনা করেছেন।",
+    "description": "{author} এর বই পড়ুন। {author} {books} বই রচনা করেছেন।"
+  }
+}

@@ -14,9 +14,11 @@ import { useMobileSidebar } from "../../mobile-sidebar-provider";
 export default function PageNavigator({
   popover = true,
   range,
+  pageToIndex,
 }: {
   popover?: boolean;
   range: { start: number; end: number };
+  pageToIndex?: Record<number, number>;
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -37,11 +39,13 @@ export default function PageNavigator({
 
     virtuosoRef.current?.scrollToIndex({
       // since range.start is our 0 index, we need to subtract it from the page number
-      index: pageNumber - range.start,
+      index: pageToIndex
+        ? pageToIndex[pageNumber] ?? pageNumber - range.start
+        : pageNumber - range.start,
       align: "center",
     });
 
-    mobileSidebar.closeSidebar();
+    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
   const Content = (

@@ -1,10 +1,22 @@
 {
-  "headline": "Mafi girman dakin karatu na Musulunci a duniya",
+  "headline": "Kayan aikin Bincike na Rubutun Musulunci",
   "try": "Gwada: ",
   "sections": {
     "collections": "Tattara",
     "popular-texts": "Rubuce-rubuce Masu Shahara",
     "islamic-law": "Shari'ar Musulunci",
     "islamic-history": "Tarihin Musulunci"
+  },
+  "collections": {
+    "quranic-sciences": "Kimiyar Alkur'ani",
+    "hadith-sciences": "Kimiyar Hadisi",
+    "fiqh": "Fiqh",
+    "islamic-theology": "Ilimin Tauhidi na Musulunci",
+    "islamic-history": "Tarihin Musulunci",
+    "islamic-ethics": "Dabi'un Musulunci",
+    "islamic-philosophy": "Falsafar Musulunci",
+    "islamic-finance": "Kudin Musulunci",
+    "literature": "Adabin zube",
+    "medicine": "Magani"
   }
 }

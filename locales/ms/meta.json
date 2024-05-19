@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | Buku dan Teks",
+    "description-secondary": "Baca buku-buku {author}. {author}, yang juga dikenali sebagai {authorSecondary}, telah mengarang {books} buku.",
+    "description": "Baca buku-buku {author}. {author} telah mengarang {books} buku."
+  }
+}

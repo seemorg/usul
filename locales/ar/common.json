@@ -11,14 +11,14 @@
   },
   "year-format": {
     "ah": {
-      "title": "هجري",
+      "title": "ه",
       "description": "صيغة السنة الهجرية",
-      "value": "{year, number, nogroup} هجري"
+      "value": "{year, number, nogroup} ه"
     },
     "ad": {
-      "title": "ميلادي",
+      "title": "م",
       "description": "صيغة السنة الميلادية",
-      "value": "{year, number, nogroup} ميلادي"
+      "value": "{year, number, nogroup} م"
     }
   },
   "sorts": {
@@ -108,10 +108,10 @@
   },
   "footer": {
     "headline": "أصول - أداة البحث للنصوص الإسلامية",
-    "description": "ويخدم Usul.ai أكثر من 8000 نص إسلامي من هيئة OpenITI. هدفنا هو جعل القراءة والبحث والبحث والبحث عن النصوص الكلاسيكية. اشترك أدناه لتلقي تحديثات شهرية عن أعمالنا.",
+    "description": "ويخدم أوسول.آي أكثر من 8000 نص إسلامي من هيئة OpenITI. هدفنا هو جعل القراءة والبحث والبحث والبحث عن النصوص الكلاسيكية. اشترك أدناه لتلقي تحديثات شهرية عن أعمالنا.",
     "email-address": "البريد الأكتروني",
     "subscribe": "إشترِك",
-    "copyright": "{year, number, nogroup} مؤسسة Usul.ai. جميع الحقوق محفوظة."
+    "copyright": "{year, number, nogroup} مؤسسة أوسول.آي. جميع الحقوق محفوظة."
   },
   "lost": "يبدو وكأنك فقدت",
   "go-back-home": "العودة إلى الرئيسية",
@@ -119,7 +119,7 @@
   "latin-names": "الأسماء اللاتينية",
   "author-arabic-names": "أسماء المؤلف العربية",
   "author-latin-names": "أسماء المؤلف اللاتينية",
-  "author-bio": "نبذة عن المؤلف",
+  "author-bio": "أسماء المؤلف اللاتينية",
   "author-regions": "مناطق المؤلف",
   "lived": "عاش",
   "died": "توفي",

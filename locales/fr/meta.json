@@ -1,1 +1,7 @@
-{}
+{
+  "author-page": {
+    "title": "{author} | Livres et textes",
+    "description-secondary": "Lisez les livres de {author}. {author}, également connu sous le nom de {authorSecondary}, auteur de livres {books}.",
+    "description": "Lisez les livres de {author}. {author} a écrit {books} livres."
+  }
+}

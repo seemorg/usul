@@ -15,11 +15,12 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { ArabicLogo } from "@/components/Icons";
 import { CloudflareImage } from "@/components/cloudflare-image";
-import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
+import { type AppLocale, locales } from "~/i18n.config";
+import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 
 const searchExamples = [
   {
@@ -44,10 +45,26 @@ const searchExamples = [
   },
 ];
 
-export const generateMetadata = () => getMetadata({ pagePath: "/" });
+export const generateMetadata = ({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) => getMetadata({ pagePath: "/", locale });
 
-export default async function HomePage() {
-  const pathLocale = await getPathLocale();
+export const dynamic = "force-static";
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export default async function HomePage({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) {
+  unstable_setRequestLocale(locale);
+
+  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
 
   const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
     await Promise.all([
@@ -56,7 +73,7 @@ export default async function HomePage() {
       fetchPopularIslamicHistoryBooks(pathLocale),
     ]);
 
-  const t = await getTranslations("home");
+  const t = await getTranslations({ locale, namespace: "home" });
 
   return (
     <>
@@ -112,7 +129,7 @@ export default async function HomePage() {
                 </div>
 
                 <p className="mt-2 text-base font-medium sm:text-lg">
-                  {collection.name}
+                  {t(`collections.${collection.name}`)}
                 </p>
               </Link>
             ))}
