@@ -53,9 +53,7 @@ export default function middleware(request: NextRequest) {
     }
   }
 
-  const res = localeMiddleware(modifiedRequest);
-  res.headers.set("Cache-Control", "public, max-age=3600, s-maxage=604800");
-  return res;
+  return localeMiddleware(modifiedRequest);
 }
 
 export const config = {
