@@ -32,6 +32,8 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import type { BookVersion } from "@/types";
+import type { ReaderSearchParams } from "@/types/reader-search-params";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -80,20 +82,25 @@ import {
 
 interface ContentTabProps {
   bookId: string;
+  searchParams: ReaderSearchParams;
 }
 
-export default async function ContentTab({ bookId }: ContentTabProps) {
+export default async function ContentTab({
+  bookId,
+  searchParams,
+}: ContentTabProps) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
+  const pathLocale = await getPathLocale();
 
   try {
-    result = await fetchBook(bookId);
+    result = await fetchBook(bookId, pathLocale, searchParams?.version);
   } catch (e) {
     notFound();
   }
 
   const t = await getTranslations();
   const locale = await getLocale();
-  const pathLocale = await getPathLocale();
+
   const direction = getLocaleDirection(locale as any);
 
   const book = result.book;
@@ -199,15 +206,13 @@ export default async function ContentTab({ bookId }: ContentTabProps) {
           ]}
         />
 
-        {!result.turathResponse && (
-          <div className="flex w-full items-center justify-between gap-4 pb-2 pt-6">
-            <Label htmlFor="version-selector" className="font-normal">
-              {t("reader.version")}
-            </Label>
+        <div className="flex w-full items-center justify-between gap-4 pb-2 pt-6">
+          <Label htmlFor="version-selector" className="font-normal">
+            {t("reader.version")}
+          </Label>
 
-            <VersionSelector versionIds={book.versionIds} />
-          </div>
-        )}
+          <VersionSelector versions={book.versions as BookVersion[]} />
+        </div>
       </SidebarContainer>
 
       <Separator className="my-4" />

@@ -17,6 +17,7 @@ import SidebarWrapper from "./wrapper";
 import { getTranslations } from "next-intl/server";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
+import type { ReaderSearchParams } from "@/types/reader-search-params";
 
 const ComingSoonAlert = async () => {
   const t = await getTranslations("reader");
@@ -68,7 +69,13 @@ export const tabs = [
   content: any;
 }[];
 
-export default async function ReaderSidebar({ bookId }: { bookId: string }) {
+export default async function ReaderSidebar({
+  bookId,
+  searchParams,
+}: {
+  bookId: string;
+  searchParams: ReaderSearchParams;
+}) {
   const t = await getTranslations();
 
   return (
@@ -98,7 +105,7 @@ export default async function ReaderSidebar({ bookId }: { bookId: string }) {
         <div className="mt-6">
           {tabs.map((tab) => (
             <TabsContent value={tab.id} key={tab.id}>
-              <tab.content bookId={bookId} />
+              <tab.content bookId={bookId} searchParams={searchParams} />
             </TabsContent>
           ))}
         </div>

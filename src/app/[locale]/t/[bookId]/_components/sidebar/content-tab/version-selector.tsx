@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/navigation";
+import type { BookVersion } from "@/types";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -29,9 +30,9 @@ const idToName: Record<string, string> = {
 };
 
 export default function VersionSelector({
-  versionIds,
+  versions,
 }: {
-  versionIds: string[];
+  versions: BookVersion[];
 }) {
   const params = useSearchParams();
   const pathname = usePathname();
@@ -42,18 +43,20 @@ export default function VersionSelector({
   const [selectedVersion, setSelectedVersion] = useState(() => {
     const versionInUrl = params.get("version");
 
-    if (versionInUrl && versionIds.includes(versionInUrl)) {
-      return versionInUrl;
-    }
+    const version = versionInUrl
+      ? versions.find((v) => v.value === versionInUrl)?.value ??
+        versions[0]?.value
+      : versions[0]?.value;
 
-    return versionIds[0];
+    return version;
   });
+  const selectedVersionObj = versions.find((v) => v.value === selectedVersion);
 
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
 
     const newUrl =
-      newVersion === versionIds[0]
+      newVersion === versions[0]?.value
         ? pathname
         : `${pathname}?version=${newVersion}`;
 
@@ -75,6 +78,14 @@ export default function VersionSelector({
     return name;
   };
 
+  const versionToName = (version: BookVersion) => {
+    if (version.source === "turath") {
+      return "Turath";
+    }
+
+    return versionIdToName(version.value);
+  };
+
   return (
     <Select value={selectedVersion} onValueChange={handleVersionChange}>
       <SelectTrigger
@@ -82,17 +93,17 @@ export default function VersionSelector({
         id="version-selector"
         isLoading={isPending}
       >
-        {selectedVersion ? (
-          versionIdToName(selectedVersion)
+        {selectedVersionObj ? (
+          versionToName(selectedVersionObj)
         ) : (
           <SelectValue placeholder={t("select-version")} />
         )}
       </SelectTrigger>
 
       <SelectContent>
-        {versionIds.map((version, idx) => (
-          <SelectItem key={idx} value={version}>
-            {versionIdToName(version)}
+        {versions.map((version, idx) => (
+          <SelectItem key={idx} value={version.value}>
+            {versionToName(version)}
           </SelectItem>
         ))}
       </SelectContent>

@@ -7,6 +7,7 @@ import { log } from "next-axiom";
 import type { PathLocale } from "@/lib/locale/utils";
 import { getLocaleWhereClause } from "../db/localization";
 import type { TurathBookResponse } from "@/types/turath/book";
+import type { BookVersion } from "@/types";
 
 const bookKeysMap = `
 meta id name type printed pdf_links info info_long version \
@@ -51,12 +52,21 @@ export const fetchBook = cache(
       },
     });
 
-    if (!record || (versionId && !record.versionIds.includes(versionId))) {
+    if (!record) {
       throw new Error("Book not found");
     }
 
-    if (record?.slug === "muwatta") {
-      const res = await getTurathBookById(16050);
+    const allVersions = record.versions as BookVersion[];
+    const version = versionId
+      ? allVersions.find((v) => v.value === versionId)
+      : (record.versions as BookVersion[])[0];
+
+    if (!version) {
+      throw new Error("Book not found");
+    }
+
+    if (version.source === "turath") {
+      const res = await getTurathBookById(version.value);
 
       const pageNumberToRealNumber = Object.entries(
         res.indexes.print_pg_to_pg,
@@ -103,24 +113,14 @@ export const fetchBook = cache(
       };
     }
 
-    const version = versionId ?? record.versionIds[0];
-    if (!version) {
-      return { pages: [], headers: [], book: record };
-    }
-
-    let response = await fetch(
-      `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}`,
-    );
+    const baseUrl = `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version.value}`;
+    let response = await fetch(baseUrl);
 
     if (!response.ok || response.status >= 300) {
-      response = await fetch(
-        `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}.completed`,
-      );
+      response = await fetch(`${baseUrl}.completed`);
 
       if (!response.ok || response.status >= 300) {
-        response = await fetch(
-          `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${record.author.id}/${record.id}/${version}.mARkdown`,
-        );
+        response = await fetch(`${baseUrl}.mARkdown`);
 
         if (!response.ok || response.status >= 300) {
           log.error("book_not_found", { slug: id, versionId });
