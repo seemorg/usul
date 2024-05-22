@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-key */
-// import { ChevronRightIcon } from "@heroicons/react/20/solid";
+
 import { Badge } from "@/components/ui/badge";
 import {
   HoverCard,
@@ -34,6 +34,7 @@ import {
 } from "@/server/db/localization";
 import type { BookVersion } from "@/types";
 import type { ReaderSearchParams } from "@/types/reader-search-params";
+import PdfButton from "./pdf-button";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -212,6 +213,13 @@ export default async function ContentTab({
           </Label>
 
           <VersionSelector versions={book.versions as BookVersion[]} />
+        </div>
+
+        <div className="w-full pb-2 pt-4">
+          <PdfButton
+            pdf={result.turathResponse?.meta.pdf_links}
+            slug={result.book.slug}
+          />
         </div>
       </SidebarContainer>
 

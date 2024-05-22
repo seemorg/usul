@@ -3,7 +3,7 @@
 import RenderBlock from "@/components/render-markdown";
 import type { fetchBook } from "@/server/services/books";
 import { Virtuoso } from "react-virtuoso";
-import React from "react";
+import React, { useCallback, type PropsWithChildren } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "./context";
 import Footer from "@/app/_components/footer";
 import { useTranslations } from "next-intl";
@@ -13,10 +13,61 @@ type Pages =
   | NonNullable<ResponseType["pages"]>
   | NonNullable<ResponseType["turathResponse"]>["pages"];
 
+const PageLabel = (props: PropsWithChildren) => (
+  <p
+    className="mt-10 text-center font-sans text-sm text-muted-foreground"
+    {...props}
+  />
+);
+
 export default function ReaderContent({ pages }: { pages: Pages }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
   const t = useTranslations("common");
+
+  const renderContent = useCallback(
+    (index: number) => {
+      const pageObj = pages[index]!;
+      const isTurath = "text" in pageObj;
+
+      if (isTurath) {
+        return (
+          <>
+            <div
+              dangerouslySetInnerHTML={{ __html: pageObj.text }}
+              className="text-2xl leading-[2.3]"
+            />
+
+            <PageLabel>
+              {pageObj.page
+                ? t("pagination.page-x", { page: pageObj.page })
+                : t("pagination.page-unknown")}
+            </PageLabel>
+          </>
+        );
+      }
+
+      const { blocks, page } = pageObj;
+
+      return (
+        <>
+          {blocks.map((block, blockIndex) => (
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+            <RenderBlock key={blockIndex} block={block as any} />
+          ))}
+
+          <PageLabel>
+            {page
+              ? typeof page.page === "number"
+                ? t("pagination.page-x", { page: page.page })
+                : page.page
+              : t("pagination.page-unknown")}
+          </PageLabel>
+        </>
+      );
+    },
+    [pages, t],
+  );
 
   return (
     <Virtuoso
@@ -48,43 +99,11 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
           />
         )),
       }}
-      itemContent={(index) => {
-        const pageObj = pages[index]!;
-        const isTurath = "text" in pageObj;
-
-        if (isTurath) {
-          return (
-            <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
-              <div dangerouslySetInnerHTML={{ __html: pageObj.text }} />
-
-              <p className="mt-10 text-center font-sans text-sm text-muted-foreground">
-                {pageObj.page
-                  ? t("pagination.page-x", { page: pageObj.page })
-                  : t("pagination.page-unknown")}
-              </p>
-            </div>
-          );
-        }
-
-        const { blocks, page } = pageObj;
-
-        return (
-          <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
-            {blocks.map((block, blockIndex) => (
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-              <RenderBlock key={blockIndex} block={block as any} />
-            ))}
-
-            <p className="mt-10 text-center font-sans text-sm text-muted-foreground">
-              {page
-                ? typeof page.page === "number"
-                  ? t("pagination.page-x", { page: page.page })
-                  : page.page
-                : t("pagination.page-unknown")}
-            </p>
-          </div>
-        );
-      }}
+      itemContent={(index) => (
+        <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
+          {renderContent(index)}
+        </div>
+      )}
     />
   );
 }

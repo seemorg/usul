@@ -44,5 +44,5 @@ export default function RenderBlock({
     );
   }
 
-  return <p className="text-2xl leading-[1.8]">{block.content}</p>;
+  return <p className="text-2xl leading-[2.3]">{block.content}</p>;
 }

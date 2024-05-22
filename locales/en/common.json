@@ -97,6 +97,9 @@
         "title": "Develop",
         "description": "Help us develop new tools through open-source contributions"
       },
+      "contact": {
+        "title": "Contact"
+      },
       "report-mistake": {
         "title": "Report Mistake",
         "description": "Report a mistake in a text"

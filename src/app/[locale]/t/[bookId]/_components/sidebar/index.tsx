@@ -80,8 +80,8 @@ export default async function ReaderSidebar({
 
   return (
     <SidebarWrapper>
-      <div className="absolute bottom-0 top-0 z-0 w-px bg-border ltr:left-0 rtl:right-0" />
-      <div className="pointer-events-none absolute inset-y-0 w-[50vw] max-w-full ltr:left-0 rtl:right-0" />
+      <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
       <Tabs defaultValue="content">
         <SidebarContainer className="hidden sm:block">

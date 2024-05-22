@@ -12,3 +12,7 @@ export function isSameURL(target: URL, current: URL) {
 
   return cleanTarget === cleanCurrent;
 }
+
+export function bytesToMB(bytes: number) {
+  return (bytes / 1024 / 1024).toFixed(1);
+}

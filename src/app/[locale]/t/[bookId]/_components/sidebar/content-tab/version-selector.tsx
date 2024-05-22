@@ -80,7 +80,7 @@ export default function VersionSelector({
 
   const versionToName = (version: BookVersion) => {
     if (version.source === "turath") {
-      return "Turath";
+      return "Shamela (Turath.io)";
     }
 
     return versionIdToName(version.value);

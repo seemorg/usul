@@ -18,6 +18,8 @@ export const config = {
     alt: "Usul Cover",
   },
   url: "https://usul.ai",
+  feedbackEmail: "feedback@usul.ai",
+  contactEmail: "contact@usul.ai",
 };
 
 export const getMetadata = async ({

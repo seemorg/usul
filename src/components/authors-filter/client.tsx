@@ -8,8 +8,7 @@ import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { usePathname, useRouter } from "@/navigation";
-import { useFormatter, useLocale, useTranslations } from "next-intl";
-import type { AppLocale } from "~/i18n.config";
+import { useFormatter, useTranslations } from "next-intl";
 import { searchAuthors } from "@/server/typesense/author";
 import { usePathLocale } from "@/lib/locale/utils";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
@@ -52,7 +51,6 @@ export default function _AuthorsFilter({
   filters,
 }: AuthorsFilterProps) {
   const t = useTranslations();
-  const locale = useLocale() as AppLocale;
   const pathLocale = usePathLocale();
   const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =

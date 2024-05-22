@@ -1,3 +1,4 @@
+import { config } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 
@@ -51,13 +52,16 @@ export const contributeItems: NavItem[] = [
   {
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",
+    href: `mailto:${config.feedbackEmail}`,
   },
   {
     title: "navigation.contribute.report-mistake.title",
     description: "navigation.contribute.report-mistake.description",
+    href: `mailto:${config.feedbackEmail}`,
   },
   {
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
+    href: `mailto:${config.feedbackEmail}`,
   },
 ];
