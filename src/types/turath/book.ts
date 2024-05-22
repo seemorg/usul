@@ -11,6 +11,10 @@ export interface TurathBookResponse {
     cat_id: number;
     date_built: number;
     author_page_start: number;
+    pdf_links?: {
+      files: string[];
+      size: number; // in bytes
+    };
   };
   indexes: {
     volumes: string[];

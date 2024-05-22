@@ -7,6 +7,7 @@
     "previous": "Sebelumnya",
     "next": "Seterusnya",
     "page-x": "Halaman {page, number, nogroup}",
+    "vol-x": "Jilid {volume, number, nogroup}",
     "page-unknown": "Halaman tidak diketahui"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "Kembangkan",
         "description": "Bantulah kami mengembangkan alat baru melalui sumbangan sumber terbuka"
+      },
+      "contact": {
+        "title": "Hubungi"
       },
       "report-mistake": {
         "title": "Laporkan Kesalahan",

@@ -10,6 +10,7 @@ import Navbar from "@/app/_components/navbar";
 import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
+import { useDirection } from "@/lib/locale/utils";
 
 const defaultSizes = [75, 25];
 
@@ -23,6 +24,7 @@ export default function SidebarResizer({
   secondNav?: React.ReactNode;
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const dir = useDirection();
 
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
@@ -34,40 +36,52 @@ export default function SidebarResizer({
     setIsCollapsed(false);
   };
 
+  const panels = [
+    <ResizablePanel key="reader" defaultSize={defaultSizes[0]} minSize={55}>
+      {children}
+    </ResizablePanel>,
+    <ResizableHandle key="handle" withHandle className="hidden lg:flex" />,
+    <ResizablePanel
+      key="sidebar"
+      collapsible={true}
+      id="sidebar-panel"
+      defaultSize={defaultSizes[1]}
+      ref={sidebarRef}
+      collapsedSize={4}
+      minSize={15}
+      maxSize={45}
+      onCollapse={onCollapse}
+      onExpand={onExpand}
+      className={cn(
+        "hidden lg:block",
+        isCollapsed && "min-w-[20px] transition-all duration-300 ease-in-out",
+      )}
+    >
+      {isCollapsed ? <CollapsedSidebar sidebarRef={sidebarRef} /> : sidebar}
+    </ResizablePanel>,
+  ];
+
   return (
     <>
       <Navbar secondNav={secondNav} />
 
-      <ResizablePanelGroup
-        direction="horizontal"
-        autoSaveId="reader-sidebar"
-        className="relative h-full w-full"
-      >
-        <ResizablePanel defaultSize={defaultSizes[0]} minSize={55}>
-          {children}
-        </ResizablePanel>
-
-        <ResizableHandle withHandle className="hidden lg:flex" />
-
-        <ResizablePanel
-          collapsible={true}
-          id="sidebar-panel"
-          defaultSize={defaultSizes[1]}
-          ref={sidebarRef}
-          collapsedSize={4}
-          minSize={15}
-          maxSize={45}
-          onCollapse={onCollapse}
-          onExpand={onExpand}
-          className={cn(
-            "hidden lg:block",
-            isCollapsed &&
-              "min-w-[20px] transition-all duration-300 ease-in-out",
-          )}
+      {dir === "ltr" ? (
+        <ResizablePanelGroup
+          direction="horizontal"
+          autoSaveId="reader-sidebar"
+          className="relative h-full w-full"
         >
-          {isCollapsed ? <CollapsedSidebar sidebarRef={sidebarRef} /> : sidebar}
-        </ResizablePanel>
-      </ResizablePanelGroup>
+          {panels}
+        </ResizablePanelGroup>
+      ) : (
+        <ResizablePanelGroup
+          direction="horizontal"
+          autoSaveId="reader-sidebar-rtl"
+          className="relative h-full w-full"
+        >
+          {panels.reverse()}
+        </ResizablePanelGroup>
+      )}
     </>
   );
 }

@@ -2,6 +2,7 @@ import ComingSoonModal from "@/components/coming-soon-modal";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
 import { getLocaleDirection } from "@/lib/locale/utils";
+import { config } from "@/lib/seo";
 import { navigation as urls } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -30,10 +31,22 @@ const navigation = {
     { label: "navigation.explore.genres.title", href: urls.genres.all() },
   ] satisfies NavItem[],
   contribute: [
-    { label: "navigation.contribute.add-text.title" },
-    { label: "navigation.contribute.report-mistake.title" },
-    { label: "navigation.contribute.develop.title" },
-    { label: "navigation.contribute.feedback.title" },
+    {
+      label: "navigation.contribute.add-text.title",
+      href: `mailto:${config.feedbackEmail}`,
+    },
+    {
+      label: "navigation.contribute.report-mistake.title",
+      href: `mailto:${config.feedbackEmail}`,
+    },
+    {
+      label: "navigation.contribute.feedback.title",
+      href: `mailto:${config.feedbackEmail}`,
+    },
+    {
+      label: "navigation.contribute.contact.title",
+      href: `mailto:${config.contactEmail}`,
+    },
   ] satisfies NavItem[],
   social: [
     {
@@ -71,7 +84,11 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
           let link;
           if (item.href) {
             link = (
-              <Link href={item.href} className={linkClassName}>
+              <Link
+                href={item.href}
+                className={linkClassName}
+                target={item.href.startsWith("mailto:") ? "_blank" : undefined}
+              >
                 {t(item.label)}
               </Link>
             );

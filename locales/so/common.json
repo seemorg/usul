@@ -7,6 +7,7 @@
     "previous": "Kii Hore",
     "next": "Kan Xiga",
     "page-x": "Bogga {page, number, nogroup}",
+    "vol-x": "Mugga {volume, number, nogroup}",
     "page-unknown": "Bog aan la aqoon"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "Hormari",
         "description": "Naga caawi inaan hormarino qalabyo cusub iyada oo loo marayo ka qaybgalka il furan"
+      },
+      "contact": {
+        "title": "Xiriir"
       },
       "report-mistake": {
         "title": "Sheeg Khaladaad",

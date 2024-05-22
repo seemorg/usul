@@ -27,7 +27,12 @@ export default function HomepageNavigationMenu() {
   const renderItem = (item: NavItem, idx: number) => {
     if (item.href) {
       return (
-        <ListItem key={idx} href={item.href} title={t(item.title)}>
+        <ListItem
+          key={idx}
+          href={item.href}
+          title={t(item.title)}
+          target={item.href.startsWith("mailto:") ? "_blank" : undefined}
+        >
           {t(item.description)}
         </ListItem>
       );

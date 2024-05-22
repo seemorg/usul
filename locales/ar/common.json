@@ -7,6 +7,7 @@
     "previous": "السابقة",
     "next": "التالي",
     "page-x": "صفحة {page, number, nogroup}",
+    "vol-x": "صفحة {volume, number, nogroup}",
     "page-unknown": "صفحة غير معروفة"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "تطوير",
         "description": "ساعدنا في تطوير أدوات جديدة من خلال مساهمات مفتوحة المصدر"
+      },
+      "contact": {
+        "title": "اتصال"
       },
       "report-mistake": {
         "title": "الإبلاغ عن خطأ",

@@ -7,6 +7,7 @@
     "previous": "Précédent",
     "next": "Suivant",
     "page-x": "Page {page, number, nogroup}",
+    "vol-x": "Volume {volume, number, nogroup}",
     "page-unknown": "Page inconnue"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "Développer",
         "description": "Aidez-nous à développer de nouveaux outils grâce aux contributions open-source"
+      },
+      "contact": {
+        "title": "Contact"
       },
       "report-mistake": {
         "title": "Signaler une Erreur",

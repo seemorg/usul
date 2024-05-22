@@ -59,9 +59,10 @@ export default function ChaptersList({
             key={idx}
             variant="link"
             className={cn(
-              "h-auto w-full items-center justify-between gap-5 px-0 text-lg font-normal hover:no-underline",
+              "h-auto w-full items-center justify-start gap-5 px-0 text-lg font-normal hover:no-underline",
               idx !== 0 && "text-foreground hover:text-foreground/75",
             )}
+            dir="rtl"
             onClick={() => {
               if (page && typeof page === "number") {
                 handleNavigate(page);

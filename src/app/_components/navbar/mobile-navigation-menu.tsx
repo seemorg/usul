@@ -49,6 +49,7 @@ export default function MobileNavigationMenu() {
         key={idx}
         href={item.href!}
         title={t(item.title)}
+        target={item.href!.startsWith("mailto:") ? "_blank" : undefined}
         className={className}
       >
         {t(item.title)}

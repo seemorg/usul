@@ -7,6 +7,7 @@
     "previous": "پچھلا",
     "next": "اگلا",
     "page-x": "صفحہ {page, number, nogroup}",
+    "vol-x": "حجم {volume, number, nogroup}",
     "page-unknown": "نامعلوم صفحہ"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "توسیع کریں",
         "description": "کھلے ذریعہ کے تعاون کے ذریعے نئے اوزار تیار کرنے میں ہماری مدد کریں"
+      },
+      "contact": {
+        "title": "رابطہ"
       },
       "report-mistake": {
         "title": "غلطی کی اطلاع دیں",

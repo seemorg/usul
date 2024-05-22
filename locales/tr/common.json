@@ -7,6 +7,7 @@
     "previous": "Önceki",
     "next": "Sonraki",
     "page-x": "Sayfa {page, number, nogroup}",
+    "vol-x": "Cilt {volume, number, nogroup}",
     "page-unknown": "Bilinmeyen sayfa"
   },
   "year-format": {
@@ -95,6 +96,9 @@
       "develop": {
         "title": "Geliştir",
         "description": "Açık kaynak katkıları aracılığıyla yeni araçlar geliştirmemize yardımcı olun"
+      },
+      "contact": {
+        "title": "İletişim"
       },
       "report-mistake": {
         "title": "Hata Bildir",
