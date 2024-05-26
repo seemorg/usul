@@ -18,6 +18,7 @@ import { getTranslations } from "next-intl/server";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { getLocale } from "@/lib/locale/server";
 import type { ReaderSearchParams } from "@/types/reader-search-params";
+import SearchTab from "./search-tab";
 
 const ComingSoonAlert = async () => {
   const t = await getTranslations("reader");
@@ -53,7 +54,7 @@ export const tabs = [
     id: "search",
     label: "common.search",
     icon: DocumentMagnifyingGlassIcon,
-    content: ComingSoonAlert,
+    content: SearchTab,
   },
 
   {
