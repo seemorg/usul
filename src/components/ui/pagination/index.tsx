@@ -118,9 +118,11 @@ PaginationEllipsis.displayName = "PaginationEllipsis";
 const Paginator = ({
   totalPages,
   currentPage,
+  showNextAndPrevious = true,
 }: {
   totalPages: number;
   currentPage: number;
+  showNextAndPrevious?: boolean;
 }) => {
   const params = useSearchParams();
   const formatter = useFormatter();
@@ -158,7 +160,7 @@ const Paginator = ({
   return (
     <Pagination>
       <PaginationContent>
-        {hasPrevious && (
+        {hasPrevious && showNextAndPrevious && (
           <PaginationPrevious href={makePageLink(currentPage - 1)} />
         )}
 
@@ -207,7 +209,9 @@ const Paginator = ({
           );
         })}
 
-        {hasNext && <PaginationNext href={makePageLink(currentPage + 1)} />}
+        {hasNext && showNextAndPrevious && (
+          <PaginationNext href={makePageLink(currentPage + 1)} />
+        )}
       </PaginationContent>
     </Pagination>
   );

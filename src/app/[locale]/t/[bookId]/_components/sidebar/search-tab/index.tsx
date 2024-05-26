@@ -9,10 +9,12 @@ import {
 } from "@/components/ui/tooltip";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import {
-  AdjustmentsHorizontalIcon,
-  ArrowsUpDownIcon,
-} from "@heroicons/react/24/solid";
+  ChevronDownIcon,
+  ArrowUpRightIcon,
+  SparklesIcon,
+} from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -25,6 +27,9 @@ import {
 } from "@/components/ui/select";
 import { Link } from "@/navigation";
 import Paginator from "@/components/ui/pagination";
+import { removeDiacritics } from "@/lib/diacritics";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 interface SearchTabProps {
   bookId: string;
@@ -44,13 +49,13 @@ const modes = [
 
 const SearchResult = () => {
   return (
-    <div className="border-b border-gray-500 pb-5 pt-10">
+    <div className="border-b border-gray-300 pb-5 pt-10">
       <p dir="rtl" className="font-amiri text-lg">
-        هَلْ تَسْتَطِيعُ أَنْ تُرِيَنِي كَيْفَ كَانَ رَسُولُ اللَّهِ ﷺ
+        {removeDiacritics(`هَلْ تَسْتَطِيعُ أَنْ تُرِيَنِي كَيْفَ كَانَ رَسُولُ اللَّهِ ﷺ
         يَتَوَضَّأُ، قَالَ عَبْدُ اللَّهِ بْنُ زَيْدٍ: نَعَمْ، فَدَعَا
         بِوَضُوءٍ، فَأَفْرَغَ عَلَى يَدَيْهِ فَغَسَلَ يَدَيْهِ مَرَّتَيْنِ،
         ثُمَّ مَضْمَضَ، ثُمَّ غَسَلَ وَجْهَهُ ثَلاثًا، ثُمَّ غَسَلَ يَدَيْهِ
-        إِلَى الْمِرْفَقَيْنِ مَرَّتَيْنِ، ثُمَّ مَسَحَ مِنْ مُقَدَّمِ...
+        إِلَى الْمِرْفَقَيْنِ مَرَّتَيْنِ، ثُمَّ مَسَحَ مِنْ مُقَدَّمِ...`)}
       </p>
 
       <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
@@ -84,7 +89,7 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
   return (
     <>
       <SidebarContainer>
-        <div className="mx-auto flex max-w-[13rem] items-center rounded-full bg-border">
+        {/* <div className="mx-auto flex max-w-[13rem] items-center rounded-full bg-border">
           {modes.map((mode) => (
             <Tooltip key={mode.name}>
               <TooltipTrigger asChild>
@@ -98,8 +103,6 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
                   )}
                 >
                   {mode.name}
-
-                  {/* <InformationCircleIcon className="h-4 w-4" /> */}
                 </button>
               </TooltipTrigger>
 
@@ -108,9 +111,9 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
               </TooltipContent>
             </Tooltip>
           ))}
-        </div>
+        </div> */}
 
-        <div className="mt-4 flex items-center gap-2">
+        <div className="mt-10 flex items-center gap-2">
           <Button
             variant="outline"
             size="icon"
@@ -122,20 +125,39 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
           <Input
             type="text"
             ref={inputRef}
-            placeholder="Enter your search query (⌘ + F)"
+            placeholder="Search for a term (⌘ + F)"
             className="h-10 w-full border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
           />
         </div>
+
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <div className="mt-4 flex items-center space-x-2">
+              <Switch id="is-ai" />
+              <Label htmlFor="is-ai" className="flex items-center gap-2">
+                <SparklesIcon className="h-4 w-4" /> AI Search
+              </Label>
+            </div>
+          </TooltipTrigger>
+
+          <TooltipContent side="bottom" align="start">
+            <p className="max-w-[200px]">
+              AI search is a feature that helps you find results based on your
+              search query.
+            </p>
+          </TooltipContent>
+        </Tooltip>
       </SidebarContainer>
 
-      <Separator className="my-8" />
+      <Separator className="my-10" />
 
       <SidebarContainer>
         <div className="flex items-center justify-between">
           <Select>
             <SelectTrigger
-              className="h-10 w-10 max-w-full justify-center bg-white p-0 sm:w-[140px] sm:justify-between sm:px-3 sm:py-2"
+              className="h-10 w-auto max-w-full justify-center gap-3 rounded-full border-none bg-transparent p-0 px-0 shadow-none sm:justify-between sm:py-2"
               showIconOnMobile={false}
+              icon={<ChevronDownIcon className="h-4 w-4 opacity-50" />}
               // isLoading={isPending}
             >
               <div className="hidden sm:block">
@@ -145,8 +167,6 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
                 <SelectValue placeholder={"Sort by"} />
                 {/* )} */}
               </div>
-
-              <ArrowsUpDownIcon className="h-4 w-4 sm:hidden" />
             </SelectTrigger>
 
             <SelectContent>
@@ -160,12 +180,15 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
             </SelectContent>
           </Select>
 
-          <Button variant="link" className="p-0" asChild>
-            <Link href="/search">View in Advanced Search</Link>
+          <Button variant="link" className="gap-2 p-0 text-sm" asChild>
+            <Link href="/search">
+              View in Advanced Search
+              <ArrowUpRightIcon className="h-4 w-4" />
+            </Link>
           </Button>
         </div>
 
-        <p className="mt-5">22 Result</p>
+        <p className="mt-5 text-sm text-gray-500">22 Results</p>
 
         <div className="flex flex-col">
           <SearchResult />
@@ -177,7 +200,11 @@ export default function SearchTab({ bookId, searchParams }: SearchTabProps) {
         </div>
 
         <div className="mt-14">
-          <Paginator totalPages={5} currentPage={2} />
+          <Paginator
+            totalPages={5}
+            currentPage={2}
+            showNextAndPrevious={false}
+          />
         </div>
       </SidebarContainer>
 
