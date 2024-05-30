@@ -10,12 +10,14 @@ import { useEffect, useRef, useState } from "react";
 import {
   AdjustmentsHorizontalIcon,
   XMarkIcon,
+  MagnifyingGlassIcon,
+  SparklesIcon,
 } from "@heroicons/react/24/solid";
 import {
   ChevronDownIcon,
   ArrowUpRightIcon,
-  MagnifyingGlassIcon,
   EllipsisHorizontalIcon,
+  ArrowsUpDownIcon,
 } from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,7 +25,9 @@ import { Separator } from "@/components/ui/separator";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -36,6 +40,13 @@ import { env } from "@/env";
 import Spinner from "@/components/ui/spinner";
 import { useReaderVirtuoso } from "../../context";
 import { useMobileSidebar } from "../../mobile-sidebar-provider";
+import { useMutation } from "@tanstack/react-query";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface SearchResult {
   chapter: string;
@@ -80,24 +91,53 @@ const SearchResult = ({
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
+  const content = removeDiacritics(result.pageContent).split(" ");
+  content[4] = `<span class="text-primary font-bold">${content[4]}</span>`;
+  content[5] = `<span class="text-primary font-bold">${content[5]}</span>`;
+  content[6] = `<span class="text-primary font-bold">${content[6]}</span>`;
+
   return (
     <div
-      className="border-b border-gray-600 px-8 py-4 pb-6 transition-colors hover:cursor-pointer hover:bg-gray-100"
+      className="border-t border-border px-8 pb-6 pt-3 transition-colors hover:cursor-pointer hover:bg-gray-100"
       onClick={handleNavigate}
     >
-      <div className="flex items-center text-xs text-gray-500">
-        <Button variant="ghost" size="icon" className="">
-          <EllipsisHorizontalIcon className="h-5 w-5" />
-        </Button>
+      <div className="flex items-center justify-between text-xs text-gray-500">
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            asChild
+            className="btn z-10 hover:bg-gray-200 data-[state=open]:bg-gray-200"
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <EllipsisHorizontalIcon className="h-5 w-5" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem>Share</DropdownMenuItem>
+            <DropdownMenuItem>Bookmark</DropdownMenuItem>
+            <DropdownMenuItem>Navigate</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <div className="flex gap-2">
+          <p>{result.chapter}</p>
+        </div>
       </div>
 
-      <p dir="rtl" className="font-amiri text-lg">
-        {removeDiacritics(result.pageContent)}
-      </p>
+      <p
+        dir="rtl"
+        className="mt-2 font-amiri text-lg"
+        dangerouslySetInnerHTML={{
+          __html: content.join(" "),
+        }}
+      />
 
       <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
         <p>Page {result.page}</p>
-        <p>{result.chapter}</p>
+        <span>{(result.score * 100).toFixed(0)}%</span>
       </div>
     </div>
   );
@@ -111,6 +151,21 @@ export default function SearchTab({
   pageToIndex?: Record<number, number>;
 }) {
   const [activeMode, setActiveMode] = useState(modes[0]?.name);
+  const [value, setValue] = useState("");
+  const { data, mutateAsync, isPending, error } = useMutation<
+    SearchResult[],
+    Error,
+    string
+  >({
+    mutationKey: ["search"],
+    mutationFn: async (q: string) => {
+      if (!q) return [];
+
+      return (await fetch(
+        `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${q}`,
+      ).then((res) => res.json())) as SearchResult[];
+    },
+  });
   const filtersOpen = useBoolean(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -132,68 +187,72 @@ export default function SearchTab({
   }, []);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [value, setValue] = useState("");
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [loading, setLoading] = useState(false);
 
-  const fetchResults = async (q: string) => {
-    setLoading(true);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
 
-    const results = await fetch(
-      `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${q}`,
-    ).then((res) => res.json());
-
-    setResults(results);
-    setLoading(false);
-  };
-
-  useEffect(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
-    if (value) {
-      timeoutRef.current = setTimeout(() => {
-        fetchResults(value);
-      }, 300);
-    } else {
-      setResults([]);
-      setLoading(false);
-    }
+    timeoutRef.current = setTimeout(() => {
+      mutateAsync(value);
+    }, 300);
+  };
 
+  useEffect(() => {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [value]);
+  }, []);
 
   const renderResults = () => {
     if (!value)
       return (
-        <div className="mt-20 flex flex-col items-center justify-center gap-5">
-          <MagnifyingGlassIcon className="h-6 w-6 text-gray-500" />
-          <p className="text-gray-500">Start typing to search</p>
+        // TODO: change fixed height
+        <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
+          <SparklesIcon className="h-auto w-8 text-gray-500" />
+
+          <p className="mt-5 font-semibold text-gray-700">Begin Your Search</p>
+
+          <p className="mt-2 text-sm text-gray-500">
+            AI Search finds the closest matches even if you don’t know the exact
+            phrase. If you know it use{" "}
+            <a className="underline" href="#">
+              keyword search
+            </a>{" "}
+            instead.
+          </p>
         </div>
       );
 
-    if (loading)
+    if (isPending || (!data && !error))
       return (
-        <div className="mt-20 flex items-center justify-center">
+        <div className="flex h-[71vh] items-center justify-center">
           <Spinner className="h-8 w-8" />
         </div>
       );
 
-    if (results.length === 0)
+    if (error) {
       return (
-        <div className="mt-20 flex flex-col items-center justify-center gap-5">
+        <div className="flex h-[71vh] items-center justify-center gap-5">
+          <p className="text-red-500">An error occurred</p>
+        </div>
+      );
+    }
+
+    if (!data || data?.length === 0)
+      return (
+        <div className="flex h-[71vh] flex-col items-center justify-center gap-5">
           <p className="text-gray-500">No results</p>
         </div>
       );
 
     return (
       <div className="flex flex-col">
-        {results.map((r, idx) => (
+        {data.map((r, idx) => (
           <SearchResult
             key={idx}
             result={r}
@@ -207,12 +266,15 @@ export default function SearchTab({
 
   return (
     <>
-      <Tabs defaultValue="keyword">
-        <SidebarContainer className="hidden sm:block">
-          <TabsList className="h-10 w-full font-sans">
+      <SidebarContainer className="hidden sm:block">
+        <Tabs defaultValue="keyword" className="-mt-6">
+          <TabsList className="h-10 w-full rounded-t-none font-sans">
             <Tooltip>
               <TabsTrigger value="keyword" className="w-full py-1.5" asChild>
-                <TooltipTrigger>Keyword</TooltipTrigger>
+                <TooltipTrigger>
+                  <MagnifyingGlassIcon className="mr-2 h-4 w-4" />
+                  Keyword
+                </TooltipTrigger>
               </TabsTrigger>
 
               <TooltipContent side="bottom" sideOffset={10}>
@@ -222,7 +284,10 @@ export default function SearchTab({
 
             <Tooltip>
               <TabsTrigger value="ai" className="w-full py-1.5" asChild>
-                <TooltipTrigger>AI</TooltipTrigger>
+                <TooltipTrigger>
+                  <SparklesIcon className="mr-2 h-4 w-4" />
+                  AI
+                </TooltipTrigger>
               </TabsTrigger>
 
               <TooltipContent side="bottom" sideOffset={10}>
@@ -230,8 +295,8 @@ export default function SearchTab({
               </TooltipContent>
             </Tooltip>
           </TabsList>
-        </SidebarContainer>
-      </Tabs>
+        </Tabs>
+      </SidebarContainer>
 
       <SidebarContainer>
         {/* <div className="mx-auto flex max-w-[13rem] items-center rounded-full bg-border">
@@ -258,7 +323,7 @@ export default function SearchTab({
           ))}
         </div> */}
 
-        <div className="mt-2 flex items-center gap-2">
+        <div className="mt-5 flex items-center gap-2">
           <Button
             variant="outline"
             size="icon"
@@ -272,14 +337,20 @@ export default function SearchTab({
             )}
           </Button>
 
-          <Input
-            type="text"
-            ref={inputRef}
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            placeholder="Search for a term (⌘ + F)"
-            className="h-10 w-full border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
-          />
+          <div className="relative w-full">
+            <Input
+              type="text"
+              ref={inputRef}
+              value={value}
+              onChange={handleChange}
+              placeholder="Search for a term (⌘ + F)"
+              className="h-10 w-full border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
+            />
+
+            {isPending && (
+              <Spinner className="absolute right-3 top-3 h-4 w-4" />
+            )}
+          </div>
         </div>
 
         {filtersOpen.value && (
@@ -342,18 +413,19 @@ export default function SearchTab({
         </Tooltip> */}
       </SidebarContainer>
 
-      <Separator className="my-8" />
+      {/* {!isPending && data && <Separator className="mb-4 mt-6" />} */}
 
-      {value && (
-        <SidebarContainer>
+      {!isPending && data && value && (
+        <SidebarContainer className="mb-4 mt-6">
           <div className="flex items-center justify-between">
-            <Select>
+            <Select defaultValue="match">
               <SelectTrigger
-                className="h-10 w-auto max-w-full justify-center gap-3 rounded-full border-none bg-transparent p-0 px-0 shadow-none sm:justify-between sm:py-2"
+                className="z-[2] -ml-2 h-10 w-auto max-w-full justify-center gap-2 border-none shadow-none transition-colors hover:bg-gray-100 data-[state=open]:bg-gray-100 sm:justify-between sm:py-2"
                 showIconOnMobile={false}
-                icon={<ChevronDownIcon className="h-4 w-4 opacity-50" />}
+                icon={<></>}
                 // isLoading={isPending}
               >
+                <ArrowsUpDownIcon className="h-4 w-4" />
                 <div className="hidden sm:block">
                   {/* {currentSortLabel ? (
             t(currentSortLabel)
@@ -369,15 +441,23 @@ export default function SearchTab({
             {t(sort.label)}
           </SelectItem>
         ))} */}
-                <SelectItem value="match">Best Match</SelectItem>
-                <SelectItem value={"order"}>Order</SelectItem>
+                <SelectGroup>
+                  <SelectLabel>Sort by</SelectLabel>
+                  <SelectItem value="match">Best Match</SelectItem>
+                  <SelectItem value="order">Order</SelectItem>
+                  {/* <SelectItem value="order">Order</SelectItem> */}
+                </SelectGroup>
               </SelectContent>
             </Select>
 
-            <Button variant="link" className="gap-2 p-0 text-sm" asChild>
+            <Button
+              variant="link"
+              className="flex items-center gap-1 p-0 text-xs"
+              asChild
+            >
               <Link href="/search">
                 View in Advanced Search
-                <ArrowUpRightIcon className="h-4 w-4" />
+                <ArrowUpRightIcon className="mt-[1px] h-3 w-3 align-middle" />
               </Link>
             </Button>
           </div>

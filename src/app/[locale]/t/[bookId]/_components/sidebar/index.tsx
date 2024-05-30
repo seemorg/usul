@@ -86,7 +86,7 @@ export default async function ReaderSidebar({
 
       <Tabs defaultValue="content">
         <SidebarContainer className="hidden sm:block">
-          <TabsList className="h-10 w-full font-sans">
+          <TabsList className="h-10 w-full rounded-b-none font-sans">
             {tabs.map((tab) => (
               <Tooltip key={tab.id}>
                 <TabsTrigger value={tab.id} className="w-full py-1.5" asChild>
