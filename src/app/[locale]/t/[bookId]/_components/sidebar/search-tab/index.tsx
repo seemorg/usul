@@ -37,5 +37,11 @@ export default async function _SearchTab({
   };
   const pageToIndex = result.pageToRenderIndex;
 
-  return <SearchTab pagesRange={pagesRange} pageToIndex={pageToIndex} />;
+  return (
+    <SearchTab
+      bookSlug={bookId}
+      pagesRange={pagesRange}
+      pageToIndex={pageToIndex}
+    />
+  );
 }

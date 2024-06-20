@@ -47,9 +47,10 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 
 interface SearchResult {
-  chapter: string;
+  chapters: string[];
   page: number;
   pageContent: string;
   score: number;
@@ -73,7 +74,7 @@ const SearchResult = ({
   pagesRange,
   pageToIndex,
 }: {
-  result: SearchResult;
+  result: SemanticSearchBookNode;
   pagesRange: { start: number; end: number };
   pageToIndex?: Record<number, number>;
 }) => {
@@ -83,18 +84,19 @@ const SearchResult = ({
   const handleNavigate = () => {
     virtuosoRef.current?.scrollToIndex({
       index: pageToIndex
-        ? pageToIndex[result.page] ?? result.page - pagesRange.start
-        : result.page - pagesRange.start,
+        ? pageToIndex[result.metadata.page] ??
+          result.metadata.page - pagesRange.start
+        : result.metadata.page - pagesRange.start,
       align: "center",
     });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
-  const content = removeDiacritics(result.pageContent).split(" ");
-  content[4] = `<span class="text-primary font-bold">${content[4]}</span>`;
-  content[5] = `<span class="text-primary font-bold">${content[5]}</span>`;
-  content[6] = `<span class="text-primary font-bold">${content[6]}</span>`;
+  const content = removeDiacritics(result.text).split(" ");
+  // content[4] = `<span class="text-primary font-bold">${content[4]}</span>`;
+  // content[5] = `<span class="text-primary font-bold">${content[5]}</span>`;
+  // content[6] = `<span class="text-primary font-bold">${content[6]}</span>`;
 
   return (
     <div
@@ -123,7 +125,7 @@ const SearchResult = ({
         </DropdownMenu>
 
         <div className="flex gap-2">
-          <p>{result.chapter}</p>
+          <p>{result.metadata.chapters.at(-1)}</p>
         </div>
       </div>
 
@@ -136,8 +138,8 @@ const SearchResult = ({
       />
 
       <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
-        <p>Page {result.page}</p>
-        <span>{(result.score * 100).toFixed(0)}%</span>
+        <p>Page {result.metadata.page}</p>
+        {result.score ? <span>{(result.score * 100).toFixed(0)}%</span> : null}
       </div>
     </div>
   );
@@ -146,14 +148,18 @@ const SearchResult = ({
 export default function SearchTab({
   pagesRange,
   pageToIndex,
+  bookSlug,
 }: {
   pagesRange: { start: number; end: number };
   pageToIndex?: Record<number, number>;
+  bookSlug: string;
 }) {
   const [activeMode, setActiveMode] = useState(modes[0]?.name);
   const [value, setValue] = useState("");
+  const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
+
   const { data, mutateAsync, isPending, error } = useMutation<
-    SearchResult[],
+    SemanticSearchBookNode[],
     Error,
     string
   >({
@@ -161,9 +167,17 @@ export default function SearchTab({
     mutationFn: async (q: string) => {
       if (!q) return [];
 
-      return (await fetch(
-        `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${q}`,
-      ).then((res) => res.json())) as SearchResult[];
+      return (
+        (await fetch(
+          `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${q}&bookSlug=${bookSlug}`,
+        ).then((res) => res.json())) as SemanticSearchBookNode[]
+      ).map((r) => ({
+        ...r,
+        metadata: {
+          ...r.metadata,
+          chapters: JSON.parse(r.metadata.chapters as any),
+        },
+      }));
     },
   });
   const filtersOpen = useBoolean(false);
@@ -188,15 +202,26 @@ export default function SearchTab({
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
+  const handleSearch = async (q: string) => {
+    if (!q) {
+      setResults(null);
+      return;
+    }
+
+    const data = await mutateAsync(q);
+    setResults(data);
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+    const newValue = e.target.value;
+    setValue(newValue);
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
 
     timeoutRef.current = setTimeout(() => {
-      mutateAsync(value);
+      handleSearch(newValue);
     }, 300);
   };
 
@@ -209,7 +234,7 @@ export default function SearchTab({
   }, []);
 
   const renderResults = () => {
-    if (!value)
+    if (results === null)
       return (
         // TODO: change fixed height
         <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
@@ -228,13 +253,6 @@ export default function SearchTab({
         </div>
       );
 
-    if (isPending || (!data && !error))
-      return (
-        <div className="flex h-[71vh] items-center justify-center">
-          <Spinner className="h-8 w-8" />
-        </div>
-      );
-
     if (error) {
       return (
         <div className="flex h-[71vh] items-center justify-center gap-5">
@@ -243,7 +261,7 @@ export default function SearchTab({
       );
     }
 
-    if (!data || data?.length === 0)
+    if (results.length === 0)
       return (
         <div className="flex h-[71vh] flex-col items-center justify-center gap-5">
           <p className="text-gray-500">No results</p>
@@ -252,7 +270,7 @@ export default function SearchTab({
 
     return (
       <div className="flex flex-col">
-        {data.map((r, idx) => (
+        {results.map((r, idx) => (
           <SearchResult
             key={idx}
             result={r}
@@ -415,7 +433,7 @@ export default function SearchTab({
 
       {/* {!isPending && data && <Separator className="mb-4 mt-6" />} */}
 
-      {!isPending && data && value && (
+      {results !== null && (
         <SidebarContainer className="mb-4 mt-6">
           <div className="flex items-center justify-between">
             <Select defaultValue="match">
