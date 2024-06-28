@@ -1,26 +1,36 @@
 import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import EventSource from "eventsource";
+
+const baseRequest = async (
+  method: "GET" | "POST",
+  relativeUrl: string,
+  body?: object,
+) => {
+  return (
+    await fetch(`${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`, {
+      method,
+      ...(method === "POST" && body
+        ? {
+            body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        : {}),
+    })
+  ).json();
+};
 
 export const chatWithBook = async (body: {
   bookSlug: string;
   question: string;
   messages: any[];
 }) => {
-  const response = (await (
-    await fetch(
-      `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/chat/${body.bookSlug}`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          question: body.question,
-          messages: body.messages,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    )
-  ).json()) as { chatId: string };
+  const response = (await baseRequest("POST", `/chat/${body.bookSlug}`, {
+    question: body.question,
+    messages: body.messages,
+  })) as { chatId: string };
 
   // this has the first chunk, we need to get the rest via SSE
   const eventSource = new EventSource(
@@ -31,11 +41,12 @@ export const chatWithBook = async (body: {
 };
 
 export const searchBook = async (bookSlug: string, query: string) => {
-  return (
-    (await fetch(
-      `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${query}&bookSlug=${bookSlug}`,
-    ).then((res) => res.json())) as SemanticSearchBookNode[]
-  ).map((r) => ({
+  const results = (await baseRequest(
+    "GET",
+    `/search?q=${query}&bookSlug=${bookSlug}`,
+  )) as SemanticSearchBookNode[];
+
+  return results.map((r) => ({
     ...r,
     metadata: {
       ...r.metadata,

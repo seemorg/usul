@@ -61,7 +61,7 @@ export default function useChat({
       let isFirstTime = true;
 
       eventSource.onerror = (err) => {
-        console.error(err);
+        eventSource.close();
         rej(err);
       };
 
