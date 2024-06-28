@@ -1,16 +1,10 @@
 "use client";
 
-import SidebarContainer from "../sidebar-container";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+import SidebarContainer from "../_components/sidebar/sidebar-container";
 import { useEffect, useRef, useState } from "react";
 import {
   AdjustmentsHorizontalIcon,
   XMarkIcon,
-  MagnifyingGlassIcon,
   SparklesIcon,
 } from "@heroicons/react/24/solid";
 import {
@@ -21,7 +15,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import {
   Select,
   SelectContent,
@@ -34,12 +27,10 @@ import {
 import { Link } from "@/navigation";
 import { removeDiacritics } from "@/lib/diacritics";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useBoolean } from "usehooks-ts";
-import { env } from "@/env";
 import Spinner from "@/components/ui/spinner";
-import { useReaderVirtuoso } from "../../context";
-import { useMobileSidebar } from "../../mobile-sidebar-provider";
+import { useReaderVirtuoso } from "../_components/context";
+import { useMobileSidebar } from "../_components/mobile-sidebar-provider";
 import { useMutation } from "@tanstack/react-query";
 import {
   DropdownMenu,
@@ -48,6 +39,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { searchBook } from "@/server/services/chat";
 
 interface SearchResult {
   chapters: string[];
@@ -158,7 +150,7 @@ export default function SearchTab({
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
 
-  const { data, mutateAsync, isPending, error } = useMutation<
+  const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],
     Error,
     string
@@ -167,17 +159,7 @@ export default function SearchTab({
     mutationFn: async (q: string) => {
       if (!q) return [];
 
-      return (
-        (await fetch(
-          `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/search?q=${q}&bookSlug=${bookSlug}`,
-        ).then((res) => res.json())) as SemanticSearchBookNode[]
-      ).map((r) => ({
-        ...r,
-        metadata: {
-          ...r.metadata,
-          chapters: JSON.parse(r.metadata.chapters as any),
-        },
-      }));
+      return await searchBook(bookSlug, q);
     },
   });
   const filtersOpen = useBoolean(false);
@@ -284,7 +266,7 @@ export default function SearchTab({
 
   return (
     <>
-      <SidebarContainer className="hidden sm:block">
+      {/* <SidebarContainer className="hidden sm:block">
         <Tabs defaultValue="keyword" className="-mt-6">
           <TabsList className="h-10 w-full rounded-t-none font-sans">
             <Tooltip>
@@ -314,7 +296,7 @@ export default function SearchTab({
             </Tooltip>
           </TabsList>
         </Tabs>
-      </SidebarContainer>
+      </SidebarContainer> */}
 
       <SidebarContainer>
         {/* <div className="mx-auto flex max-w-[13rem] items-center rounded-full bg-border">

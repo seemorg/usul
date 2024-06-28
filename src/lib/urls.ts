@@ -4,6 +4,8 @@ export const navigation = {
   books: {
     all: () => "/texts",
     reader: (bookId: string) => `/t/${bookId}`,
+    aiTab: (bookId: string) => `/t/${bookId}/ai`,
+    searchTab: (bookId: string) => `/t/${bookId}/search`,
   },
   authors: {
     all: () => "/authors",

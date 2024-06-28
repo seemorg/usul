@@ -1,22 +1,20 @@
-import { getPathLocale } from "@/lib/locale/server";
-import type { ReaderSearchParams } from "@/types/reader-search-params";
-import SearchTab from "./client";
 import { fetchBook } from "@/server/services/books";
+import { getPathLocale } from "@/lib/locale/server";
+import SearchTab from "./client";
 
-interface SearchTabProps {
-  bookId: string;
-  searchParams: ReaderSearchParams;
-}
-
-export default async function _SearchTab({
-  bookId,
-  searchParams,
-}: SearchTabProps) {
+export default async function Search({
+  params: { bookId, versionId },
+}: {
+  params: {
+    bookId: string;
+    versionId?: string;
+  };
+}) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
   const pathLocale = await getPathLocale();
 
   try {
-    result = await fetchBook(bookId, pathLocale, searchParams?.version);
+    result = await fetchBook(bookId, pathLocale, versionId);
   } catch (e) {
     return null;
   }

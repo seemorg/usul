@@ -16,7 +16,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { fetchBook } from "@/server/services/books";
 import { Label } from "@/components/ui/label";
-import SidebarContainer from "../sidebar-container";
+import SidebarContainer from "../sidebar/sidebar-container";
 import { notFound } from "next/navigation";
 import VersionSelector from "./version-selector";
 import PageNavigator from "./page-navigator";
@@ -33,7 +33,6 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import type { BookVersion } from "@/types";
-import type { ReaderSearchParams } from "@/types/reader-search-params";
 import PdfButton from "./pdf-button";
 
 // const breadcrumbs = [
@@ -83,18 +82,18 @@ import PdfButton from "./pdf-button";
 
 interface ContentTabProps {
   bookId: string;
-  searchParams: ReaderSearchParams;
+  versionId?: string;
 }
 
 export default async function ContentTab({
   bookId,
-  searchParams,
+  versionId,
 }: ContentTabProps) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
   const pathLocale = await getPathLocale();
 
   try {
-    result = await fetchBook(bookId, pathLocale, searchParams?.version);
+    result = await fetchBook(bookId, pathLocale, versionId);
   } catch (e) {
     notFound();
   }

@@ -44,8 +44,12 @@ export default function LocaleLayout({
           {children}
         </Providers>
 
-        <GoogleAnalytics gaId="G-QX48J9BW3C" />
-        <GoogleTagManager gtmId="AW-16482232385" />
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <GoogleAnalytics gaId="G-QX48J9BW3C" />
+            <GoogleTagManager gtmId="AW-16482232385" />
+          </>
+        )}
       </body>
     </html>
   );
