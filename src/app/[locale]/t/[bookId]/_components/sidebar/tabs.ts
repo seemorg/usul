@@ -1,32 +1,28 @@
-import { navigation } from "@/lib/urls";
+import { GradientSparklesIcon } from "@/components/Icons";
+
 import {
   DocumentMagnifyingGlassIcon,
   ListBulletIcon,
 } from "@heroicons/react/24/outline";
-import { SparklesIcon } from "@heroicons/react/24/solid";
 
 export const tabs = [
   {
     id: "ai",
     label: "common.ai",
-    icon: SparklesIcon,
-    href: navigation.books.aiTab,
+    icon: GradientSparklesIcon,
   },
   {
     id: "search",
     label: "common.search",
     icon: DocumentMagnifyingGlassIcon,
-    href: navigation.books.searchTab,
   },
   {
     id: "content",
     label: "reader.content",
     icon: ListBulletIcon,
-    href: navigation.books.reader,
   },
 ] satisfies {
+  id: "ai" | "search" | "content";
   label: string;
-  id: string;
   icon: any;
-  href: (bookId: string) => string;
 }[];

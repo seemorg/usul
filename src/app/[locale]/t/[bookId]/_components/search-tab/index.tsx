@@ -1,14 +1,13 @@
 import { fetchBook } from "@/server/services/books";
 import { getPathLocale } from "@/lib/locale/server";
-import SearchTab from "./client";
+import _SearchTab from "./client";
 
-export default async function Search({
-  params: { bookId, versionId },
+export default async function SearchTab({
+  bookId,
+  versionId,
 }: {
-  params: {
-    bookId: string;
-    versionId?: string;
-  };
+  bookId: string;
+  versionId?: string;
 }) {
   let result: Awaited<ReturnType<typeof fetchBook>>;
   const pathLocale = await getPathLocale();
@@ -36,7 +35,7 @@ export default async function Search({
   const pageToIndex = result.pageToRenderIndex;
 
   return (
-    <SearchTab
+    <_SearchTab
       bookSlug={bookId}
       pagesRange={pagesRange}
       pageToIndex={pageToIndex}

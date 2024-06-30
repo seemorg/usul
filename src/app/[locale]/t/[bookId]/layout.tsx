@@ -45,7 +45,7 @@ export default async function ReaderLayout({
       <MobileSidebarProvider
         key={tab.id}
         icon={<tab.icon className="h-5 w-5" />}
-        href={tab.href(bookId)}
+        tabId={tab.id}
       >
         {children}
       </MobileSidebarProvider>
@@ -60,7 +60,7 @@ export default async function ReaderLayout({
             {mobile}
           </div>
         }
-        sidebar={<ReaderSidebar bookId={bookId}>{children}</ReaderSidebar>}
+        sidebar={<ReaderSidebar>{children}</ReaderSidebar>}
       >
         <article>
           <ReaderContent pages={pages} />
