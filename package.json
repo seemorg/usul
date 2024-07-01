@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.1",
-    "@hugocxl/react-to-image": "^0.0.9",
     "@neondatabase/serverless": "^0.9.0",
     "@next/third-parties": "^14.2.3",
     "@openiti/markdown-parser": "^1.0.0",
@@ -52,6 +51,7 @@
     "fuse.js": "^7.0.0",
     "html2canvas": "^1.4.1",
     "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
     "lucide-react": "^0.356.0",
     "next": "^14.2.4",
     "next-axiom": "^1.1.1",
@@ -89,6 +89,7 @@
     "@types/eslint": "^8.44.7",
     "@types/eventsource": "^1.1.15",
     "@types/js-cookie": "^3.0.6",
+    "@types/lodash": "^4.17.6",
     "@types/node": "^18.17.0",
     "@types/nprogress": "^0.2.3",
     "@types/react": "^18.2.37",

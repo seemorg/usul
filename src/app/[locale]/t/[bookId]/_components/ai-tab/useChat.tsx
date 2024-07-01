@@ -1,14 +1,12 @@
 import { chatWithBook } from "@/server/services/chat";
 import type { ChatResponse } from "@/types/chat";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useBoolean } from "usehooks-ts";
-import type EventSource from "eventsource";
 
 type ChatMessage = {
   role: "ai" | "user";
   text: string;
   sourceNodes?: ChatResponse["sourceNodes"];
-  isLast?: boolean;
 };
 
 interface UseChatResult {
@@ -21,6 +19,44 @@ interface UseChatResult {
   isPending: boolean;
 }
 
+const handleEventSource = async (
+  eventSource: EventSource,
+  {
+    onChunk,
+  }: {
+    onChunk?: (chunk: ChatMessage) => void;
+  },
+) => {
+  return new Promise<ChatMessage>((res, rej) => {
+    let allContent = "";
+    let sources: ChatResponse["sourceNodes"] = [];
+
+    eventSource.onerror = (err) => {
+      eventSource.close();
+      rej(err);
+    };
+
+    eventSource.onmessage = (event) => {
+      if (event.data === "FINISH") {
+        eventSource.close();
+        return res({ role: "ai", text: allContent, sourceNodes: sources });
+      }
+
+      if (!event.data) return;
+
+      const data = JSON.parse(event.data) as ChatResponse;
+      if (!data) return;
+
+      allContent += data.response;
+      sources = data.sourceNodes;
+
+      if (onChunk) {
+        onChunk({ role: "ai", text: allContent });
+      }
+    };
+  });
+};
+
 export default function useChat({
   bookSlug,
 }: {
@@ -30,49 +66,13 @@ export default function useChat({
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const isPending = useBoolean(false);
 
-  const handleEventSource = async (
-    eventSource: EventSource,
-    {
-      onChunk,
-    }: {
-      onChunk?: (chunk: ChatMessage) => void;
-    },
-  ) => {
-    return await new Promise<ChatMessage>((res, rej) => {
-      let allContent = "";
-      let sources: ChatResponse["sourceNodes"] = [];
-
-      eventSource.onerror = (err) => {
-        eventSource.close();
-        rej(err);
-      };
-
-      eventSource.onmessage = (event) => {
-        if (event.data === "FINISH") {
-          eventSource.close();
-          return res({ role: "ai", text: allContent, sourceNodes: sources });
-        }
-
-        if (!event.data) return;
-
-        const data = JSON.parse(event.data) as ChatResponse;
-        if (!data) return;
-
-        allContent += data.response;
-        sources = data.sourceNodes;
-
-        onChunk?.({ role: "ai", text: allContent });
-      };
-    });
-  };
-
-  const sendQuestion = async () => {
+  const sendQuestion = useCallback(async () => {
     isPending.setTrue();
 
     const q = question.trim();
     const newMessages = [...messages, { role: "user", text: q } as ChatMessage];
 
-    setMessages(newMessages);
+    setMessages([...newMessages, { role: "ai", text: "" }]);
     setQuestion("");
 
     const eventSource = await chatWithBook({
@@ -81,46 +81,50 @@ export default function useChat({
       messages,
     });
 
-    const final = await handleEventSource(eventSource, {
+    const result = await handleEventSource(eventSource, {
       onChunk(chunk) {
         setMessages([...newMessages, chunk]);
       },
     });
-    setMessages([...newMessages, final]);
+    setMessages([...newMessages, result]);
 
     isPending.setFalse();
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookSlug, question]);
 
-  const clearChat = () => {
+  const clearChat = useCallback(() => {
     setMessages([]);
-  };
+  }, []);
 
-  const regenerateResponse = async (messageIndex: number) => {
-    const newMessages = [...messages];
-    const message = newMessages[messageIndex]!;
+  const regenerateResponse = useCallback(
+    async (messageIndex: number) => {
+      const newMessages = [...messages];
+      const message = newMessages[messageIndex]!;
 
-    if (message.role !== "ai") return;
+      if (message.role !== "ai") return;
 
-    // delete this message and all messages after
-    newMessages.splice(messageIndex);
-    setMessages(newMessages);
+      // delete this message and all messages after
+      newMessages.splice(messageIndex);
+      setMessages([...newMessages, { role: "ai", text: "" }]);
 
-    const previousMessages = newMessages.slice(0, newMessages.length - 1);
-    const question = newMessages.at(-1)!;
+      const previousMessages = newMessages.slice(0, newMessages.length - 1);
+      const question = newMessages.at(-1)!;
 
-    const eventSource = await chatWithBook({
-      bookSlug,
-      question: question.text,
-      messages: previousMessages,
-    });
+      const eventSource = await chatWithBook({
+        bookSlug,
+        question: question.text,
+        messages: previousMessages,
+      });
 
-    const final = await handleEventSource(eventSource, {
-      onChunk(chunk) {
-        setMessages([...newMessages, chunk]);
-      },
-    });
-    setMessages([...newMessages, final]);
-  };
+      const result = await handleEventSource(eventSource, {
+        onChunk(chunk) {
+          setMessages([...newMessages, chunk]);
+        },
+      });
+      setMessages([...newMessages, result]);
+    },
+    [bookSlug, messages],
+  );
 
   return {
     messages,
@@ -129,9 +133,6 @@ export default function useChat({
     clearChat,
     sendQuestion,
     isPending: isPending.value,
-    // isAutoScroll: isAutoScroll.value,
-    // containerRef,
     regenerateResponse,
-    // lockAutoScroll,
   };
 }

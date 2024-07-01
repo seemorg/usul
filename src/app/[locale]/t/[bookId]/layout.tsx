@@ -44,7 +44,7 @@ export default async function ReaderLayout({
     return (
       <MobileSidebarProvider
         key={tab.id}
-        icon={<tab.icon className="h-5 w-5" />}
+        icon={<tab.icon className="h-5 w-5 dark:text-white" />}
         tabId={tab.id}
       >
         {children}

@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
+import { useTranslations } from "next-intl";
 
 const SearchResult = ({
   result,
@@ -22,6 +23,7 @@ const SearchResult = ({
 }) => {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
+  const t = useTranslations();
 
   const handleNavigate = () => {
     virtuosoRef.current?.scrollToIndex({
@@ -81,7 +83,7 @@ const SearchResult = ({
       />
 
       <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
-        <p>Page {result.metadata.page}</p>
+        <p> {t("common.pagination.page-x", { page: result.metadata.page })}</p>
         {result.score ? <span>{(result.score * 100).toFixed(0)}%</span> : null}
       </div>
     </div>

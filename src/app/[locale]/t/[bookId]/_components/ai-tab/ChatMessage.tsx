@@ -6,14 +6,14 @@ import {
   HandThumbDownIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
-import { ArrowUpRightIcon } from "@heroicons/react/20/solid";
 import { OpenAILogo } from "@/components/Icons";
 import type { ChatResponse } from "@/types/chat";
 import { Button } from "@/components/ui/button";
-import { Link } from "@/navigation";
-import { navigation } from "@/lib/urls";
 import { useToast } from "@/components/ui/use-toast";
 import { useBoolean } from "usehooks-ts";
+import { useTranslations } from "next-intl";
+import { useReaderVirtuoso } from "../context";
+import { memo, useCallback } from "react";
 
 type ChatMessageProps = {
   text: string;
@@ -23,6 +23,8 @@ type ChatMessageProps = {
   isLast?: boolean;
   hasActions?: boolean;
   isScreenshot?: boolean;
+  pagesRange: { start: number; end: number };
+  pageToIndex?: Record<number, number>;
 };
 
 const ChatMessage = ({
@@ -33,26 +35,43 @@ const ChatMessage = ({
   hasActions = true,
   isScreenshot = false,
   onRegenerate,
+  pagesRange,
+  pageToIndex,
 }: ChatMessageProps) => {
   const { toast } = useToast();
+  const t = useTranslations();
+  const virtuosoRef = useReaderVirtuoso();
   const isLoading = useBoolean(false);
 
-  const handleRegenerate = async () => {
+  const handleNavigateToPage = useCallback(
+    (pageNumber: number) => {
+      virtuosoRef.current?.scrollToIndex({
+        // since range.start is our 0 index, we need to subtract it from the page number
+        index: pageToIndex
+          ? pageToIndex[pageNumber] ?? pageNumber - pagesRange.start
+          : pageNumber - pagesRange.start,
+        align: "center",
+      });
+    },
+    [pageToIndex, pagesRange.start],
+  );
+
+  const handleRegenerate = useCallback(async () => {
     if (!onRegenerate) return;
 
     isLoading.setTrue();
     await onRegenerate();
     isLoading.setFalse();
-  };
+  }, [onRegenerate]);
 
-  const handleCopy = async () => {
+  const handleCopy = useCallback(async () => {
     isLoading.setTrue();
     await navigator.clipboard.writeText(text);
-    toast({ description: "Copied to clipboard!" });
+    toast({ description: t("reader.chat.copied") });
     isLoading.setFalse();
-  };
+  }, [text]);
 
-  const handleFeedback = (type: "positive" | "negative") => {};
+  const handleFeedback = useCallback((type: "positive" | "negative") => {}, []);
 
   return (
     <div
@@ -72,24 +91,6 @@ const ChatMessage = ({
             : "",
         )}
       >
-        {/* <div class="loader"></div>  */}
-        {/* .loader {
-  width: 60px;
-  aspect-ratio: 2;
-  --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-  background: 
-    var(--_g) 0%   50%,
-    var(--_g) 50%  50%,
-    var(--_g) 100% 50%;
-  background-size: calc(100%/3) 50%;
-  animation: l3 1s infinite linear;
-}
-@keyframes l3 {
-    20%{background-position:0%   0%, 50%  50%,100%  50%}
-    40%{background-position:0% 100%, 50%   0%,100%  50%}
-    60%{background-position:0%  50%, 50% 100%,100%   0%}
-    80%{background-position:0%  50%, 50%  50%,100% 100%}
-} */}
         {role === "ai" && (
           <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white dark:bg-accent dark:text-white">
             <OpenAILogo className="size-5 shrink-0" />
@@ -102,21 +103,25 @@ const ChatMessage = ({
             isScreenshot && role === "user" ? "-mt-3" : "",
           )}
         >
-          <ReactMarkdown>{text}</ReactMarkdown>
+          {text === "" ? (
+            <div className="loader" />
+          ) : (
+            <ReactMarkdown>{text}</ReactMarkdown>
+          )}
 
           {sourceNodes ? (
             <div className="mt-4 flex flex-wrap items-center gap-1">
-              Sources:
-              {sourceNodes?.slice(0, 3).map((sourceNode, idx) => (
-                <Link
+              {t("reader.chat.sources")}:
+              {sourceNodes?.slice(0, 5).map((sourceNode, idx) => (
+                <button
                   key={idx}
-                  href={navigation.books.reader(sourceNode.metadata.bookSlug)}
-                  target="_blank"
-                  className="flex items-center gap-1 text-primary underline"
+                  className="p-0 text-primary underline"
+                  onClick={() => handleNavigateToPage(sourceNode.metadata.page)}
                 >
-                  Pg {sourceNode.metadata.page}
-                  <ArrowUpRightIcon className="h-4 w-4" />
-                </Link>
+                  {t("reader.chat.pg-x", {
+                    page: sourceNode.metadata.page,
+                  })}
+                </button>
               ))}
             </div>
           ) : null}
@@ -136,6 +141,7 @@ const ChatMessage = ({
                 className="size-7 text-gray-600 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleCopy}
+                tooltip={t("reader.chat.copy")}
               >
                 <DocumentDuplicateIcon className="size-4" />
               </Button>
@@ -146,6 +152,7 @@ const ChatMessage = ({
                 className="size-7 text-gray-600 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleRegenerate}
+                tooltip={t("reader.chat.regenerate")}
               >
                 <ArrowPathIcon className="size-4" />
               </Button>
@@ -156,6 +163,7 @@ const ChatMessage = ({
                 className="size-7 text-gray-600 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={() => handleFeedback("positive")}
+                tooltip={t("reader.chat.mark-as-correct")}
               >
                 <HandThumbUpIcon className="size-4" />
               </Button>
@@ -166,6 +174,7 @@ const ChatMessage = ({
                 className="size-7 text-gray-600 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={() => handleFeedback("negative")}
+                tooltip={t("reader.chat.report-as-incorrect")}
               >
                 <HandThumbDownIcon className="size-4" />
               </Button>
@@ -177,4 +186,4 @@ const ChatMessage = ({
   );
 };
 
-export default ChatMessage;
+export default memo(ChatMessage);

@@ -1,6 +1,6 @@
 import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import EventSource from "eventsource";
+// import EventSource from "eventsource";
 
 const baseRequest = async (
   method: "GET" | "POST",

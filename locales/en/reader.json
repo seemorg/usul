@@ -13,6 +13,28 @@
     "input-placeholder": "Page number",
     "go": "Go"
   },
+  "search": {
+    "begin-search": "Begin your search",
+    "description": " AI Search finds the closest matches even if you don’t know the exact phrase.",
+    "view-in-advanced": "View in Advanced Search",
+    "best-match": "Best Match",
+    "order": "Order (soon)",
+    "portion": "Portion",
+    "entire-book": "Entire Book",
+    "book": "Book",
+    "book-select-description": "To search multiple books use Advanced Search"
+  },
+  "chat": {
+    "new-chat": "New Chat",
+    "share-chat": "Share Chat",
+    "copy": "Copy to clipboard",
+    "copied": "Copied to clipboard!",
+    "regenerate": "Regenerate",
+    "mark-as-correct": "Mark as correct",
+    "report-as-incorrect": "Report as incorrect",
+    "sources": "Sources",
+    "pg-x": "Pg {page, number, nogroup}"
+  },
   "version": "Version",
   "select-version": "Select a version",
   "other-titles": "Other titles",

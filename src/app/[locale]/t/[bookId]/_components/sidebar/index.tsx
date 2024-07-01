@@ -17,23 +17,6 @@ import { tabs } from "./tabs";
 import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
 
-// const ComingSoonAlert = async () => {
-//   const t = await getTranslations("reader");
-//   const locale = await getLocale();
-
-//   return (
-//     <SidebarContainer>
-//       <Alert
-//         dir={getLocaleDirection(locale)}
-//         className="bg-transparent font-sans"
-//       >
-//         <AlertTitle>{t("coming-soon.title")}</AlertTitle>
-//         <AlertDescription>{t("coming-soon.message")}</AlertDescription>
-//       </Alert>
-//     </SidebarContainer>
-//   );
-// };
-
 const TabButton = ({
   tab,
   handleNavigate,

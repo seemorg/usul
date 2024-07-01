@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   AdjustmentsHorizontalIcon,
   XMarkIcon,
-  SparklesIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/solid";
 import {
   ChevronDownIcon,
@@ -23,7 +23,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Link } from "@/navigation";
 import { Label } from "@/components/ui/label";
 import { useBoolean } from "usehooks-ts";
 import Spinner from "@/components/ui/spinner";
@@ -31,6 +30,8 @@ import { useMutation } from "@tanstack/react-query";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { searchBook } from "@/server/services/chat";
 import SearchResult from "./SearchResult";
+import { useTranslations } from "next-intl";
+import ComingSoonModal from "@/components/coming-soon-modal";
 
 export default function SearchTab({
   pagesRange,
@@ -41,6 +42,7 @@ export default function SearchTab({
   pageToIndex?: Record<number, number>;
   bookSlug: string;
 }) {
+  const t = useTranslations();
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
 
@@ -114,17 +116,14 @@ export default function SearchTab({
       return (
         // TODO: change fixed height
         <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
-          <SparklesIcon className="h-auto w-8 text-gray-500" />
+          <MagnifyingGlassIcon className="h-auto w-8 text-gray-500" />
 
-          <p className="mt-5 font-semibold text-gray-700">Begin Your Search</p>
+          <p className="mt-5 font-semibold text-gray-700">
+            {t("reader.search.begin-search")}
+          </p>
 
           <p className="mt-2 text-sm text-gray-500">
-            AI Search finds the closest matches even if you don’t know the exact
-            phrase. If you know it use{" "}
-            <a className="underline" href="#">
-              keyword search
-            </a>{" "}
-            instead.
+            {t("reader.search.description")}
           </p>
         </div>
       );
@@ -132,7 +131,7 @@ export default function SearchTab({
     if (error) {
       return (
         <div className="flex h-[71vh] items-center justify-center gap-5">
-          <p className="text-red-500">An error occurred</p>
+          <p className="text-red-500">{t("common.coming-soon.error")}</p>
         </div>
       );
     }
@@ -140,7 +139,7 @@ export default function SearchTab({
     if (results.length === 0)
       return (
         <div className="flex h-[71vh] flex-col items-center justify-center gap-5">
-          <p className="text-gray-500">No results</p>
+          <p className="text-gray-500">{t("common.search-bar.no-results")}</p>
         </div>
       );
 
@@ -160,63 +159,7 @@ export default function SearchTab({
 
   return (
     <>
-      {/* <SidebarContainer className="hidden sm:block">
-        <Tabs defaultValue="keyword" className="-mt-6">
-          <TabsList className="h-10 w-full rounded-t-none font-sans">
-            <Tooltip>
-              <TabsTrigger value="keyword" className="w-full py-1.5" asChild>
-                <TooltipTrigger>
-                  <MagnifyingGlassIcon className="mr-2 h-4 w-4" />
-                  Keyword
-                </TooltipTrigger>
-              </TabsTrigger>
-
-              <TooltipContent side="bottom" sideOffset={10}>
-                Keyword search
-              </TooltipContent>
-            </Tooltip>
-
-            <Tooltip>
-              <TabsTrigger value="ai" className="w-full py-1.5" asChild>
-                <TooltipTrigger>
-                  <SparklesIcon className="mr-2 h-4 w-4" />
-                  AI
-                </TooltipTrigger>
-              </TabsTrigger>
-
-              <TooltipContent side="bottom" sideOffset={10}>
-                AI search
-              </TooltipContent>
-            </Tooltip>
-          </TabsList>
-        </Tabs>
-      </SidebarContainer> */}
-
       <SidebarContainer>
-        {/* <div className="mx-auto flex max-w-[13rem] items-center rounded-full bg-border">
-          {modes.map((mode) => (
-            <Tooltip key={mode.name}>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => setActiveMode(mode.name)}
-                  className={cn(
-                    "flex-1 rounded-full px-2 py-2 text-xs font-medium",
-                    mode.name === activeMode
-                      ? "bg-primary text-white"
-                      : "text-gray-500",
-                  )}
-                >
-                  {mode.name}
-                </button>
-              </TooltipTrigger>
-
-              <TooltipContent side="bottom">
-                <p>{mode.description}</p>
-              </TooltipContent>
-            </Tooltip>
-          ))}
-        </div> */}
-
         <div className="mt-5 flex items-center gap-2">
           <Button
             variant="outline"
@@ -251,22 +194,22 @@ export default function SearchTab({
           <div className="mt-2 flex flex-col gap-5 rounded-md bg-muted px-4 py-4 dark:bg-accent/80">
             <div>
               <div className="flex items-center justify-between">
-                <Label className="flex-1">Book</Label>
+                <Label className="flex-1">{t("reader.search.book")}</Label>
                 <div className="flex-1">
                   <Input disabled placeholder="Muwatta" className="bg-white" />
                 </div>
               </div>
 
               <p className="mt-1 text-end text-xs">
-                To search multiple books use Advanced Search
+                {t("reader.search.book-select-description")}
               </p>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
-                <Label className="flex-1">Portion</Label>
+                <Label className="flex-1">{t("reader.search.portion")}</Label>
                 <div className="flex-1">
-                  <Select>
+                  <Select defaultValue="entire-book">
                     <SelectTrigger
                       className="w-full max-w-full justify-center gap-3 bg-white sm:justify-between sm:py-2"
                       showIconOnMobile={false}
@@ -279,7 +222,9 @@ export default function SearchTab({
                     </SelectTrigger>
 
                     <SelectContent>
-                      <SelectItem value="match">Entire book</SelectItem>
+                      <SelectItem value="entire-book">
+                        {t("reader.search.entire-book")}
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -287,27 +232,7 @@ export default function SearchTab({
             </div>
           </div>
         )}
-
-        {/* <Tooltip>
-          <TooltipTrigger asChild>
-            <div className="mt-4 flex items-center space-x-2">
-              <Switch id="is-ai" />
-              <Label htmlFor="is-ai" className="flex items-center gap-2">
-                <SparklesIcon className="h-4 w-4" /> AI Search
-              </Label>
-            </div>
-          </TooltipTrigger>
-
-          <TooltipContent side="bottom" align="start">
-            <p className="max-w-[200px]">
-              AI search is a feature that helps you find results based on your
-              search query.
-            </p>
-          </TooltipContent>
-        </Tooltip> */}
       </SidebarContainer>
-
-      {/* {!isPending && data && <Separator className="mb-4 mt-6" />} */}
 
       {results !== null && (
         <SidebarContainer className="mb-4 mt-6">
@@ -321,39 +246,34 @@ export default function SearchTab({
               >
                 <ArrowsUpDownIcon className="h-4 w-4" />
                 <div className="hidden sm:block">
-                  {/* {currentSortLabel ? (
-            t(currentSortLabel)
-          ) : ( */}
-                  <SelectValue placeholder={"Sort by"} />
-                  {/* )} */}
+                  <SelectValue placeholder={t("common.sorts.placeholder")} />
                 </div>
               </SelectTrigger>
 
               <SelectContent>
-                {/* {sorts.map((sort) => (
-          <SelectItem key={sort.value} value={sort.value}>
-            {t(sort.label)}
-          </SelectItem>
-        ))} */}
                 <SelectGroup>
-                  <SelectLabel>Sort by</SelectLabel>
-                  <SelectItem value="match">Best Match</SelectItem>
-                  <SelectItem value="order">Order</SelectItem>
-                  {/* <SelectItem value="order">Order</SelectItem> */}
+                  <SelectLabel>{t("common.sorts.placeholder")}</SelectLabel>
+                  <SelectItem value="match">
+                    {t("reader.search.best-match")}
+                  </SelectItem>
+                  <SelectItem value="order" disabled>
+                    {t("reader.search.order")}
+                  </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
 
-            <Button
-              variant="link"
-              className="flex items-center gap-1 p-0 text-xs"
-              asChild
-            >
-              <Link href="/search">
-                View in Advanced Search
-                <ArrowUpRightIcon className="mt-[1px] h-3 w-3 align-middle" />
-              </Link>
-            </Button>
+            <ComingSoonModal
+              trigger={
+                <Button
+                  variant="link"
+                  className="flex items-center gap-1 p-0 text-xs"
+                >
+                  {t("reader.search.view-in-advanced")}
+                  <ArrowUpRightIcon className="mt-[1px] h-3 w-3 align-middle" />
+                </Button>
+              }
+            />
           </div>
         </SidebarContainer>
       )}

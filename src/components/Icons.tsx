@@ -53,7 +53,7 @@ export const GradientSparklesIcon = ({ className, ...props }: IconProps) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className={cn("text-pink-500", className)}
+      className={cn(className, "text-pink-500 dark:text-pink-500")}
       fill="currentColor"
       {...props}
     >
