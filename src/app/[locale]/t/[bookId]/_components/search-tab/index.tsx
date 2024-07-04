@@ -95,7 +95,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
 
     timeoutRef.current = setTimeout(() => {
       handleSearch(newValue);
-    }, 300);
+    }, 500);
   };
 
   useEffect(() => {

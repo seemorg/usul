@@ -76,7 +76,7 @@ const SearchResult = ({
 
       <p
         dir="rtl"
-        className="mt-2 font-amiri text-lg"
+        className="mt-2 font-amiri text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
         dangerouslySetInnerHTML={{
           __html: content.join(" "),
         }}

@@ -16,22 +16,23 @@ export default function ChaptersList({
   headers,
   pagesRange,
   pageToIndex,
+  chapterIndexToPageIndex,
 }: {
   headers:
     | NonNullable<ResponseType["headers"]>
     | NonNullable<ResponseType["turathResponse"]>["indexes"]["headings"];
+  chapterIndexToPageIndex: ResponseType["chapterIndexToPageIndex"];
   pagesRange: { start: number; end: number };
   pageToIndex?: Record<number, number>;
 }) {
-  // const [parentRef, setParentRef] = useState<HTMLDivElement | null>(null);
   const virtuosoRef = useReaderVirtuoso();
   const formatter = useFormatter();
   const mobileSidebar = useMobileSidebar();
 
-  const handleNavigate = (pageNumber: number) => {
+  const handleNavigate = (chapterIndex: number, pageNumber: number) => {
     virtuosoRef.current?.scrollToIndex({
-      index: pageToIndex
-        ? pageToIndex[pageNumber] ?? pageNumber - pagesRange.start
+      index: chapterIndexToPageIndex
+        ? chapterIndexToPageIndex[chapterIndex] ?? 0
         : pageNumber - pagesRange.start,
       align: "center",
     });
@@ -93,7 +94,7 @@ export default function ChaptersList({
             dir="rtl"
             onClick={() => {
               if (page && typeof page === "number") {
-                handleNavigate(page);
+                handleNavigate(idx, page);
               }
             }}
           >

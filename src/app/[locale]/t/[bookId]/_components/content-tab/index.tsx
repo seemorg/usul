@@ -109,7 +109,8 @@ export default function ContentTab({ bookResponse }: TabProps) {
     ? bookResponse.turathResponse.indexes.headings
     : bookResponse.headers;
 
-  const pageToIndex = bookResponse.pageToRenderIndex;
+  const pageToIndex = bookResponse.pageNumberToIndex;
+  const chapterIndexToPageIndex = bookResponse.chapterIndexToPageIndex;
 
   return (
     <>
@@ -261,6 +262,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
           pagesRange={pagesRange}
           headers={headings}
           pageToIndex={pageToIndex}
+          chapterIndexToPageIndex={chapterIndexToPageIndex}
         />
       </SidebarContainer>
 

@@ -1,4 +1,5 @@
-// "use server";
+"use server";
+
 import { type Block, parseMarkdown } from "@openiti/markdown-parser";
 import { cache } from "react";
 import slugify from "slugify";
@@ -97,18 +98,49 @@ export const fetchBook = cache(
         };
       });
 
-      const pageToRenderIndex: Record<number, number> = {};
+      const mergedPages: TurathBookResponse["pages"] = [];
+      const oldIndexToNewIndex: Record<number, number> = {};
+      const pageNumberToIndex: Record<number, number> = {};
+      for (let i = 0; i < res.pages.length; i++) {
+        const page = res.pages[i]!;
+        // const realPage = pageNumberToRealNumber[page.page];
 
-      res.pages.forEach((cur, idx) => {
-        if (pageToRenderIndex[cur.page] === undefined) {
-          pageToRenderIndex[cur.page] = idx;
+        let didMerge = false;
+        if (mergedPages.length > 0) {
+          const lastPage = mergedPages[mergedPages.length - 1]!;
+          if (lastPage.page === page.page && lastPage.vol === page.vol) {
+            lastPage.text += lastPage.text.endsWith("</span>.")
+              ? page.text
+              : `<br>${page.text}`;
+            didMerge = true;
+          }
         }
+
+        if (!didMerge) {
+          mergedPages.push(page);
+        }
+
+        oldIndexToNewIndex[i] = mergedPages.length - 1;
+        pageNumberToIndex[page.page] = mergedPages.length - 1;
+      }
+
+      const chapterIndexToPageIndex: Record<number, number> = {};
+      Object.entries(res.indexes.page_headings).forEach((curr) => {
+        const [pageIndex, headingIndices] = curr;
+        headingIndices.forEach((i) => {
+          chapterIndexToPageIndex[i - 1] =
+            oldIndexToNewIndex[Number(pageIndex) - 1] ?? -1;
+        });
       });
 
       // fetch from turath
       return {
-        turathResponse: res,
-        pageToRenderIndex,
+        turathResponse: {
+          ...res,
+          pages: mergedPages,
+        },
+        chapterIndexToPageIndex,
+        pageNumberToIndex,
         book: record,
       };
     }

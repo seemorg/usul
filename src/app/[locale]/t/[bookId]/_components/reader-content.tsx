@@ -34,8 +34,10 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
         return (
           <>
             <div
-              dangerouslySetInnerHTML={{ __html: pageObj.text }}
-              className="text-2xl leading-[2.3]"
+              dangerouslySetInnerHTML={{
+                __html: pageObj.text.replaceAll("</span>.", "</span>"),
+              }}
+              className="flex flex-col text-2xl leading-[2.3] [&>span:first-child]:mt-0 [&>span]:mx-auto [&>span]:my-10 [&>span]:text-center [&>span]:font-bold"
             />
 
             <PageLabel>

@@ -16,7 +16,7 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
     start: typeof firstPage === "number" ? firstPage : 0,
     end: typeof lastPage === "number" ? lastPage : 0,
   };
-  const pageToIndex = bookResponse.pageToRenderIndex;
+  const pageToIndex = bookResponse.pageNumberToIndex;
 
   return {
     pagesRange,
