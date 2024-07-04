@@ -6,12 +6,9 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
 import ReaderSidebar from "./_components/sidebar";
-import ReaderContent from "./_components/reader-content";
 import { notFound } from "next/navigation";
 import { MobileSidebarProvider } from "./_components/mobile-sidebar-provider";
 import { tabs } from "./_components/sidebar/tabs";
-
-type BookResponseType = Awaited<ReturnType<typeof fetchBook>>;
 
 export default async function ReaderLayout({
   children,
@@ -25,18 +22,12 @@ export default async function ReaderLayout({
 }) {
   const pathLocale = await getPathLocale();
 
-  let pages:
-    | NonNullable<BookResponseType["pages"]>
-    | NonNullable<BookResponseType["turathResponse"]>["pages"]
-    | null = null;
+  let response: Awaited<ReturnType<typeof fetchBook>> | null = null;
   try {
-    const response = await fetchBook(bookId, pathLocale, versionId);
-    pages = response.turathResponse
-      ? response.turathResponse.pages
-      : response.pages;
+    response = await fetchBook(bookId, pathLocale, versionId);
   } catch (e) {}
 
-  if (pages === null) {
+  if (response === null) {
     notFound();
   }
 
@@ -46,9 +37,10 @@ export default async function ReaderLayout({
         key={tab.id}
         icon={<tab.icon className="h-5 w-5 dark:text-white" />}
         tabId={tab.id}
-      >
-        {children}
-      </MobileSidebarProvider>
+        bookSlug={bookId}
+        versionId={versionId}
+        bookResponse={response as any}
+      />
     );
   });
 
@@ -60,11 +52,15 @@ export default async function ReaderLayout({
             {mobile}
           </div>
         }
-        sidebar={<ReaderSidebar>{children}</ReaderSidebar>}
+        sidebar={
+          <ReaderSidebar
+            bookSlug={bookId}
+            versionId={versionId}
+            bookResponse={response}
+          />
+        }
       >
-        <article>
-          <ReaderContent pages={pages} />
-        </article>
+        <article>{children}</article>
       </SidebarResizer>
     </ReaderContextProviders>
   );

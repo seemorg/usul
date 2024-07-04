@@ -1,7 +1,6 @@
 "use client";
 
-// import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
@@ -10,12 +9,13 @@ import {
 
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
-import { cn } from "@/lib/utils";
 import React from "react";
 import { useTranslations } from "next-intl";
-import { tabs } from "./tabs";
+import { type TabProps, tabs } from "./tabs";
 import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
+
+import { TabContent } from "../tab-content";
 
 const TabButton = ({
   tab,
@@ -51,12 +51,12 @@ const TabButton = ({
 };
 
 export default function ReaderSidebar({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+  bookResponse,
+  bookSlug,
+  versionId,
+}: TabProps) {
   const activeTabId = useSearchParams().get("tab");
-  const { isPending, handleNavigate } = useTabNavigate();
+  const { handleNavigate } = useTabNavigate();
   const activeTab =
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
 
@@ -65,7 +65,7 @@ export default function ReaderSidebar({
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
-      <Tabs value={activeTab}>
+      <Tabs defaultValue={activeTab}>
         <SidebarContainer className="hidden sm:block">
           <TabsList className="h-10 w-full rounded-b-none font-sans">
             {tabs.map((tab) => (
@@ -73,13 +73,23 @@ export default function ReaderSidebar({
                 key={tab.id}
                 tab={tab}
                 handleNavigate={handleNavigate}
-                disabled={isPending}
               />
             ))}
           </TabsList>
         </SidebarContainer>
 
-        <div className="mt-6">{children}</div>
+        <div className="mt-6">
+          {tabs.map((tab) => (
+            <TabsContent value={tab.id} key={tab.id}>
+              <TabContent
+                tabId={tab.id}
+                bookSlug={bookSlug}
+                versionId={versionId}
+                bookResponse={bookResponse}
+              />
+            </TabsContent>
+          ))}
+        </div>
       </Tabs>
     </SidebarWrapper>
   );
