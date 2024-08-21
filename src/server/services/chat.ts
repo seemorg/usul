@@ -46,11 +46,33 @@ export const searchBook = async (bookSlug: string, query: string) => {
     `/search?q=${query}&bookSlug=${bookSlug}`,
   )) as SemanticSearchBookNode[];
 
-  return results.map((r) => ({
-    ...r,
+  return results.map(parseSourceNode);
+};
+
+export const parseSourceNode = (sourceNode: SemanticSearchBookNode) => {
+  let chapters: string[] = [];
+  const pages: { vol: string; page: number }[] = [];
+
+  try {
+    chapters = JSON.parse(sourceNode.metadata.chapters as any) as string[];
+  } catch (e) {}
+
+  try {
+    pages.push(
+      ...JSON.parse(sourceNode.metadata.pages as any).map((p: string) => {
+        const [vol, page] = p.slice(1).split(":p");
+        const parsedPage = page ? parseInt(page) : -1;
+        return { vol, page: isNaN(parsedPage) ? -1 : parsedPage };
+      }),
+    );
+  } catch (e) {}
+
+  return {
+    ...sourceNode,
     metadata: {
-      ...r.metadata,
-      chapters: JSON.parse(r.metadata.chapters as any),
+      ...sourceNode.metadata,
+      chapters,
+      pages,
     },
-  }));
+  };
 };

@@ -1,4 +1,4 @@
-import { chatWithBook } from "@/server/services/chat";
+import { chatWithBook, parseSourceNode } from "@/server/services/chat";
 import type { ChatResponse } from "@/types/chat";
 import { useCallback, useState } from "react";
 import { useBoolean } from "usehooks-ts";
@@ -39,7 +39,11 @@ const handleEventSource = async (
     eventSource.onmessage = (event) => {
       if (event.data === "FINISH") {
         eventSource.close();
-        return res({ role: "ai", text: allContent, sourceNodes: sources });
+        return res({
+          role: "ai",
+          text: allContent,
+          sourceNodes: (sources ?? []).map(parseSourceNode),
+        });
       }
 
       if (!event.data) return;

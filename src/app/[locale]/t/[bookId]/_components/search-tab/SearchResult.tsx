@@ -25,12 +25,15 @@ const SearchResult = ({
   const mobileSidebar = useMobileSidebar();
   const t = useTranslations();
 
+  const page = result.metadata.pages[0];
+
   const handleNavigate = () => {
+    if (!page || page.page === -1) return;
+
     virtuosoRef.current?.scrollToIndex({
       index: pageToIndex
-        ? pageToIndex[result.metadata.page] ??
-          result.metadata.page - pagesRange.start
-        : result.metadata.page - pagesRange.start,
+        ? pageToIndex[page.page] ?? page.page - pagesRange.start
+        : page.page - pagesRange.start,
       align: "center",
     });
 
@@ -83,7 +86,7 @@ const SearchResult = ({
       />
 
       <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
-        <p> {t("common.pagination.page-x", { page: result.metadata.page })}</p>
+        <p> {t("common.pagination.page-x", { page: page ? page.page : -1 })}</p>
         {result.score ? <span>{(result.score * 100).toFixed(0)}%</span> : null}
       </div>
     </div>

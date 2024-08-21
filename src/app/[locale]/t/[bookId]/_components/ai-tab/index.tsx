@@ -1,9 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import {
   ArrowUpTrayIcon,
   PencilSquareIcon,
@@ -20,6 +18,7 @@ import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
+import ChatForm from "./ChatForm";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { pageToIndex, pagesRange } = usePageNavigation(bookResponse);
@@ -40,13 +39,9 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const captureRef = useRef<HTMLDivElement>(null);
   const isSavingImage = useBoolean(false);
 
-  const onSubmit = useCallback(
-    async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      await sendQuestion();
-    },
-    [sendQuestion],
-  );
+  const onSubmit = useCallback(async () => {
+    await sendQuestion();
+  }, [sendQuestion]);
 
   const handleShareChat = useCallback(async () => {
     isSavingImage.setTrue();
@@ -138,57 +133,185 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         ))}
       </div> */}
 
-      <div className="relative">
-        {!isAtBottom && (
-          <div className="absolute bottom-0 left-1/2 right-1/2 -translate-x-1/2">
-            <Button
-              size="icon"
-              className="size-8 rounded-full"
-              onClick={scrollToBottom}
-            >
-              <ArrowDownIcon className="size-4" />
-            </Button>
-          </div>
+      <div
+        className={cn(
+          "will flex h-[calc(100vh-240px)] flex-col justify-between",
         )}
-
-        <div
-          className={cn(
-            "h-[calc(100vh-320px)] w-full overflow-y-auto px-4",
-            showNavbar ? "" : "",
+      >
+        <div className="relative flex-1 overflow-hidden">
+          {!isAtBottom && (
+            <div className="absolute bottom-0 left-1/2 right-1/2 -translate-x-1/2">
+              <Button
+                size="icon"
+                className="size-8 rounded-full"
+                onClick={scrollToBottom}
+              >
+                <ArrowDownIcon className="size-4" />
+              </Button>
+            </div>
           )}
-          ref={scrollRef}
-        >
-          <div ref={messagesRef} className="flex flex-col gap-5 pb-[50px] pt-4">
-            <ChatMessage
-              role="ai"
-              text="Hey there, send something to start the chat!"
-              hasActions={false}
-              pagesRange={pagesRange}
-              pageToIndex={pageToIndex}
-            />
 
-            {messages.map((message, idx) => (
+          <div
+            className={cn(
+              "h-full w-full overflow-y-auto px-4",
+              showNavbar ? "" : "",
+            )}
+            ref={scrollRef}
+          >
+            <div
+              ref={messagesRef}
+              className="flex flex-col gap-5 pb-[30px] pt-4"
+            >
               <ChatMessage
-                key={idx}
-                role={message.role}
-                text={message.text}
-                sourceNodes={message.sourceNodes}
-                isLast={idx === messages.length - 1}
-                hasActions={
-                  idx === messages.length - 1 && isPending ? false : true
-                }
-                onRegenerate={() => regenerateResponse(idx)}
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
                 pagesRange={pagesRange}
                 pageToIndex={pageToIndex}
               />
-            ))}
 
-            <div className="h-px w-full" ref={visibilityRef} />
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              <ChatMessage
+                role="ai"
+                text="Hey there, send something to start the chat!"
+                hasActions={false}
+                pagesRange={pagesRange}
+                pageToIndex={pageToIndex}
+              />
+
+              {messages.map((message, idx) => (
+                <ChatMessage
+                  key={idx}
+                  role={message.role}
+                  text={message.text}
+                  sourceNodes={message.sourceNodes}
+                  isLast={idx === messages.length - 1}
+                  hasActions={
+                    idx === messages.length - 1 && isPending ? false : true
+                  }
+                  onRegenerate={() => regenerateResponse(idx)}
+                  pagesRange={pagesRange}
+                  pageToIndex={pageToIndex}
+                />
+              ))}
+
+              <div className="h-px w-full" ref={visibilityRef} />
+            </div>
           </div>
         </div>
-      </div>
 
-      <form
+        {/* <form
         className={cn(
           "mt-5 flex px-4 transition-transform will-change-transform",
           showNavbar ? "" : "translate-y-16",
@@ -211,7 +334,14 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         >
           <ArrowRightIcon className="size-5" />
         </Button>
-      </form>
+      </form> */}
+        <ChatForm
+          input={question}
+          setInput={setQuestion}
+          onSubmit={onSubmit}
+          isPending={isPending}
+        />
+      </div>
     </div>
   );
 }

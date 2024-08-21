@@ -45,6 +45,8 @@ const ChatMessage = ({
 
   const handleNavigateToPage = useCallback(
     (pageNumber: number) => {
+      if (pageNumber === -1) return;
+
       virtuosoRef.current?.scrollToIndex({
         // since range.start is our 0 index, we need to subtract it from the page number
         index: pageToIndex
@@ -79,7 +81,7 @@ const ChatMessage = ({
     >
       <div
         className={cn(
-          "max-w-[90%] text-wrap",
+          "chat-message max-w-[90%] text-wrap",
           "group text-foreground",
           role === "ai"
             ? "flex items-start gap-3"
@@ -112,17 +114,21 @@ const ChatMessage = ({
           {sourceNodes ? (
             <div className="mt-4 flex flex-wrap items-center gap-1">
               {t("reader.chat.sources")}:
-              {sourceNodes?.slice(0, 5).map((sourceNode, idx) => (
-                <button
-                  key={idx}
-                  className="p-0 text-primary underline"
-                  onClick={() => handleNavigateToPage(sourceNode.metadata.page)}
-                >
-                  {t("reader.chat.pg-x", {
-                    page: sourceNode.metadata.page,
-                  })}
-                </button>
-              ))}
+              {sourceNodes?.slice(0, 5).map((sourceNode, idx) => {
+                const page = sourceNode.metadata.pages[0]?.page ?? -1;
+
+                return (
+                  <button
+                    key={idx}
+                    className="p-0 text-primary underline"
+                    onClick={() => handleNavigateToPage(page)}
+                  >
+                    {t("reader.chat.pg-x", {
+                      page,
+                    })}
+                  </button>
+                );
+              })}
             </div>
           ) : null}
 
