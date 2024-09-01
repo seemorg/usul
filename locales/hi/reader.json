@@ -13,6 +13,28 @@
     "input-placeholder": "पृष्ठ संख्या",
     "go": "जाओ"
   },
+  "search": {
+    "begin-search": "अपनी खोज शुरू करें",
+    "description": " एआई खोज निकटतम मेल खोजता है, भले ही आपको सटीक वाक्यांश न पता हो।",
+    "view-in-advanced": "उन्नत खोज में देखें",
+    "best-match": "सर्वश्रेष्ठ मिलान",
+    "order": "ऑर्डर (जल्द ही)",
+    "portion": "भाग",
+    "entire-book": "पूरी किताब",
+    "book": "किताब",
+    "book-select-description": "कई किताबों को खोजने के लिए उन्नत खोज का उपयोग करें"
+  },
+  "chat": {
+    "new-chat": "नई चैट",
+    "share-chat": "चैट साझा करें",
+    "copy": "क्लिपबोर्ड पर कॉपी करें",
+    "copied": "क्लिपबोर्ड पर कॉपी किया गया!",
+    "regenerate": "फिर से उत्पन्न करें",
+    "mark-as-correct": "सही के रूप में चिह्नित करें",
+    "report-as-incorrect": "गलत के रूप में रिपोर्ट करें",
+    "sources": "स्रोत",
+    "pg-x": "पृष्ठ {page, number, nogroup}"
+  },
   "version": "संस्करण",
   "select-version": "एक संस्करण चुनें",
   "other-titles": "अन्य शीर्षक",

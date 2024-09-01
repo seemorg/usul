@@ -32,12 +32,13 @@ export default function PdfButton({
           : "Not available"
       }
       disabled={!url}
+      className="w-full"
     >
       <Wrapper
         href={url}
         download={slug + ".pdf"}
         target="_blank"
-        className="flex w-full gap-2"
+        className="flex w-full justify-center gap-2"
       >
         <ArrowDownTrayIcon className="h-4 w-4" /> {t("download-pdf")}{" "}
         {size && <span className="md:hidden">({bytesToMB(size)} MB)</span>}

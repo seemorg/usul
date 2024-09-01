@@ -13,6 +13,28 @@
     "input-placeholder": "پاڼې شمېره",
     "go": "لاړ شه"
   },
+  "search": {
+    "begin-search": "خپل لټون پیل کړئ",
+    "description": " د AI لټون نږدې پایلې مومي حتی که تاسو کره جمله نه پوهیږئ.",
+    "view-in-advanced": "په پرمختللي لټون کې وګورئ",
+    "best-match": "غوره پایله",
+    "order": "سفارش (ژر)",
+    "portion": "برخه",
+    "entire-book": "پوره کتاب",
+    "book": "کتاب",
+    "book-select-description": "د څو کتابونو د لټون لپاره پرمختللی لټون وکاروئ"
+  },
+  "chat": {
+    "new-chat": "نوی خبرې اترې",
+    "share-chat": "شریکوالې خبرې اترې",
+    "copy": "تختې ته کاپي کړئ",
+    "copied": "تخته ته کاپي شوی!",
+    "regenerate": "بیا تولید کړئ",
+    "mark-as-correct": "سم یې په توګه نښه کړئ",
+    "report-as-incorrect": "د غلطۍ راپور ورکړئ",
+    "sources": "سرچینې",
+    "pg-x": "مخ {page, number, nogroup}"
+  },
   "version": "نسخه",
   "select-version": "یوه نسخه وټاکئ",
   "other-titles": "نور عنوانونه",

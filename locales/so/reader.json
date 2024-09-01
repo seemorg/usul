@@ -13,6 +13,28 @@
     "input-placeholder": "Lambarka Bogga",
     "go": "Tag"
   },
+  "search": {
+    "begin-search": "Bilow raadintaada",
+    "description": " Raadinta AI waxay helaysaa isla'egta ugu dhow xitaa haddii aad garan weydid weedha saxda ah.",
+    "view-in-advanced": "Eeg Raadinta Weyn",
+    "best-match": "Isbarbardhiga Ugu Fiican",
+    "order": "Dalbo (dhawaan)",
+    "portion": "Qayb",
+    "entire-book": "Buugga Oo Dhan",
+    "book": "Buug",
+    "book-select-description": "Si aad u baarto buugag badan isticmaal Raadinta Weyn"
+  },
+  "chat": {
+    "new-chat": "Chat Cusub",
+    "share-chat": "La wadaag Chat",
+    "copy": "Nuqul ku dheji jillaab-qor",
+    "copied": "Nuqul laga dhigay jillaab-qor!",
+    "regenerate": "Dib u cusboonaysii",
+    "mark-as-correct": "Calaamadee sida saxda ah",
+    "report-as-incorrect": "Soo sheeg sida khaldan",
+    "sources": "Ilo",
+    "pg-x": "Bog {page, number, nogroup}"
+  },
   "version": "Nooca",
   "select-version": "Dooro nooc",
   "other-titles": "Cinwaano kale",

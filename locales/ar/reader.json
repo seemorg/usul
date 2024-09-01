@@ -13,6 +13,28 @@
     "input-placeholder": "رقم الصفحة",
     "go": "اذهب"
   },
+  "search": {
+    "begin-search": "ابدأ بحثك",
+    "description": "البحث الذكي يجد أقرب المطابقات حتى لو كنت لا تعرف العبارة الدقيقة.",
+    "view-in-advanced": "عرض في البحث المتقدم",
+    "best-match": "أفضل تطابق",
+    "order": "طلب (قريبًا)",
+    "portion": "جزء",
+    "entire-book": "الكتاب بأكمله",
+    "book": "كتاب",
+    "book-select-description": "للبحث في كتب متعددة، استخدم البحث المتقدم"
+  },
+  "chat": {
+    "new-chat": "دردشة جديدة",
+    "share-chat": "مشاركة الدردشة",
+    "copy": "نسخ إلى الحافظة",
+    "copied": "تم النسخ إلى الحافظة!",
+    "regenerate": "إعادة التوليد",
+    "mark-as-correct": "وضع علامة كصحيح",
+    "report-as-incorrect": "الإبلاغ عن غير صحيح",
+    "sources": "مصادر",
+    "pg-x": "ص. {page, number, nogroup}"
+  },
   "version": "النسخة",
   "select-version": "اختيار النسخة",
   "other-titles": "عناوين أخرى",

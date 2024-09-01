@@ -13,6 +13,28 @@
     "input-placeholder": "شماره صفحه",
     "go": "برو"
   },
+  "search": {
+    "begin-search": "جستجوی خود را شروع کنید",
+    "description": "جستجوی هوش مصنوعی نزدیک‌ترین تطابق‌ها را پیدا می‌کند حتی اگر عبارت دقیق را ندانید.",
+    "view-in-advanced": "مشاهده در جستجوی پیشرفته",
+    "best-match": "بهترین تطبیق",
+    "order": "سفارش (به زودی)",
+    "portion": "بخش",
+    "entire-book": "تمام کتاب",
+    "book": "کتاب",
+    "book-select-description": "برای جستجوی چندین کتاب از جستجوی پیشرفته استفاده کنید"
+  },
+  "chat": {
+    "new-chat": "گفتگوی جدید",
+    "share-chat": "اشتراک گفتگو",
+    "copy": "کپی به کلیپ‌بورد",
+    "copied": "به کلیپ‌بورد کپی شد!",
+    "regenerate": "تولید مجدد",
+    "mark-as-correct": "علامت‌گذاری به عنوان درست",
+    "report-as-incorrect": "گزارش به عنوان نادرست",
+    "sources": "منابع",
+    "pg-x": "ص {page, number, nogroup}"
+  },
   "version": "نسخه",
   "select-version": "انتخاب یک نسخه",
   "other-titles": "عناوین دیگر",

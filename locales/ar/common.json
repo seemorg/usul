@@ -2,6 +2,7 @@
   "advanced-search": "بحث متقدم",
   "load-more": "تحميل المزيد",
   "clear-all": "مسح الكل",
+  "ai": "الذكاء الاصطناعي",
   "search": "البحث",
   "pagination": {
     "previous": "السابقة",
@@ -12,14 +13,14 @@
   },
   "year-format": {
     "ah": {
-      "title": "ه",
+      "title": "هجري",
       "description": "صيغة السنة الهجرية",
-      "value": "{year, number, nogroup} ه"
+      "value": "{year, number, nogroup} هجري"
     },
     "ad": {
-      "title": "م",
+      "title": "ميلادي",
       "description": "صيغة السنة الميلادية",
-      "value": "{year, number, nogroup} م"
+      "value": "{year, number, nogroup} ميلادي"
     }
   },
   "sorts": {

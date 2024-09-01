@@ -13,6 +13,28 @@
     "input-placeholder": "Lambar shafi",
     "go": "Je"
   },
+  "search": {
+    "begin-search": "Fara bincike",
+    "description": "Binciken AI yana samun haɗuwa mafi kusa ko ba ku san ainihin jumlar ba.",
+    "view-in-advanced": "Duba a Bincike Mai zurfi",
+    "best-match": "Daidai Mafi Kyau",
+    "order": "Shekara (nan da nan)",
+    "portion": "Sashe",
+    "entire-book": "Dukkan Littafi",
+    "book": "Littafi",
+    "book-select-description": "Don bincika littattafai masu yawa yi amfani da Bincike Mai zurfi"
+  },
+  "chat": {
+    "new-chat": "Sabon Tattaunawa",
+    "share-chat": "Raba Tattaunawa",
+    "copy": "Kwafi zuwa allo mai kwakwalwa",
+    "copied": "An kwafi zuwa allo mai kwakwalwa!",
+    "regenerate": "Sabunta",
+    "mark-as-correct": "Alama daidai",
+    "report-as-incorrect": "Rahoton kuskure",
+    "sources": "Tushen",
+    "pg-x": "Shf {page, number, nogroup}"
+  },
   "version": "Sigar",
   "select-version": "Zabi wata siga",
   "other-titles": "Sauran taken",

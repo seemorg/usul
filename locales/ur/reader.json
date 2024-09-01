@@ -13,6 +13,28 @@
     "input-placeholder": "صفحہ نمبر",
     "go": "جاؤ"
   },
+  "search": {
+    "begin-search": "اپنی تلاش شروع کریں",
+    "description": "اے آئی تلاش قریب ترین مماثلتیں تلاش کرتی ہے چاہے آپ کو صحیح جملہ معلوم نہ ہو۔",
+    "view-in-advanced": "ایڈوانسڈ تلاش میں دیکھیں",
+    "best-match": "بہترین میچ",
+    "order": "آرڈر (جلد)",
+    "portion": "حصہ",
+    "entire-book": "پوری کتاب",
+    "book": "کتاب",
+    "book-select-description": "متعدد کتابیں تلاش کرنے کے لئے ایڈوانسڈ تلاش کا استعمال کریں"
+  },
+  "chat": {
+    "new-chat": "نیا چیٹ",
+    "share-chat": "چیٹ شئیر کریں",
+    "copy": "کلپ بورڈ پر کاپی کریں",
+    "copied": "کلپ بورڈ پر کاپی ہو گئی!",
+    "regenerate": "دوبارہ بنائیں",
+    "mark-as-correct": "صحیح کے طور پر نشان زد کریں",
+    "report-as-incorrect": "غلط رپورٹ کریں",
+    "sources": "ماخذ",
+    "pg-x": "صفحه {page, number, nogroup}"
+  },
   "version": "ورژن",
   "select-version": "ایک ورژن منتخب کریں",
   "other-titles": "دیگر عنوانات",

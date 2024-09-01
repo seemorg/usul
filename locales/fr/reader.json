@@ -13,6 +13,28 @@
     "input-placeholder": "Numéro de page",
     "go": "Aller"
   },
+  "search": {
+    "begin-search": "Commencez votre recherche",
+    "description": "La recherche AI trouve les correspondances les plus proches même si vous ne connaissez pas la phrase exacte.",
+    "view-in-advanced": "Afficher dans la recherche avancée",
+    "best-match": "Meilleure correspondance",
+    "order": "Commande (bientôt)",
+    "portion": "Portion",
+    "entire-book": "Livre entier",
+    "book": "Livre",
+    "book-select-description": "Pour rechercher plusieurs livres, utilisez la recherche avancée"
+  },
+  "chat": {
+    "new-chat": "Nouveau Chat",
+    "share-chat": "Partager le Chat",
+    "copy": "Copier dans le presse-papiers",
+    "copied": "Copié dans le presse-papiers !",
+    "regenerate": "Régénérer",
+    "mark-as-correct": "Marquer comme correct",
+    "report-as-incorrect": "Signaler comme incorrect",
+    "sources": "Sources",
+    "pg-x": "Pg {page, number, nogroup}"
+  },
   "version": "Version",
   "select-version": "Sélectionnez une version",
   "other-titles": "Autres titres",
