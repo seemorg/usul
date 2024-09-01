@@ -3,6 +3,10 @@ generator client {
   previewFeatures = ["driverAdapters"]
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+}
+
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
@@ -15,6 +19,7 @@ model Author {
 
   primaryNameTranslations AuthorPrimaryName[]
   otherNameTranslations   AuthorOtherNames[]
+  transliteration         String?
 
   year            Int
   numberOfBooks   Int         @default(0)
@@ -60,8 +65,9 @@ model Book {
 
   primaryNameTranslations BookPrimaryName[]
   otherNameTranslations   BookOtherNames[]
+  transliteration         String?
 
-  /// [BookVersion[]]
+  /// [BookVersion]
   versions         Json[]
   numberOfVersions Int    @default(0)
 

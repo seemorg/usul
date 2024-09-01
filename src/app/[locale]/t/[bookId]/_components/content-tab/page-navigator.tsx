@@ -7,9 +7,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useReaderVirtuoso } from "../../context";
+import { useReaderVirtuoso } from "../context";
 import { useTranslations } from "next-intl";
-import { useMobileSidebar } from "../../mobile-sidebar-provider";
+import { useMobileSidebar } from "../mobile-sidebar-provider";
 
 export default function PageNavigator({
   popover = true,

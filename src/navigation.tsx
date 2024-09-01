@@ -79,7 +79,7 @@ export const useRouter = () => {
 
   function replace(
     href: string,
-    options?: Parameters<typeof router.push>[1] & { locale?: AppLocale },
+    options?: Parameters<typeof router.replace>[1] & { locale?: AppLocale },
     NProgressOptions?: { showProgressBar?: boolean },
   ) {
     const mappedOptions = mapToPathLocale(currentLocale, options ?? {});

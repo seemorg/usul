@@ -2,8 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useSearchParams } from "next/navigation";
 import { createContext, useCallback, useContext } from "react";
 import { useBoolean } from "usehooks-ts";
+import { useTabNavigate } from "./sidebar/useTabNavigate";
+import { type TabProps, tabs } from "./sidebar/tabs";
+import { TabContent } from "./tab-content";
 
 interface MobileSidebarValue {
   closeSidebar: () => void;
@@ -14,13 +18,22 @@ const MobileSidebarContext = createContext<MobileSidebarValue>(
 );
 
 export function MobileSidebarProvider({
-  children,
   icon,
+  tabId,
+  bookSlug,
+  versionId,
+  bookResponse,
 }: {
-  children: React.ReactNode;
   icon: React.ReactNode;
-}) {
+  tabId: string;
+} & TabProps) {
   const open = useBoolean(false);
+
+  const { handleNavigate } = useTabNavigate();
+  const rawActiveTabId = useSearchParams().get("tab");
+  const activeTabId =
+    tabs.find((tab) => tab.id === rawActiveTabId)?.id ??
+    tabs[tabs.length - 1]!.id;
 
   const closeSidebar = useCallback(() => {
     open.setFalse();
@@ -34,13 +47,19 @@ export function MobileSidebarProvider({
             variant="ghost"
             size="icon"
             className="h-12 w-full flex-1 text-black"
+            onClick={() => handleNavigate(tabId)}
           >
             {icon}
           </Button>
         </SheetTrigger>
 
         <SheetContent className="w-full overflow-y-auto bg-slate-50 pb-10 pt-16 dark:bg-card [&>div]:p-0">
-          {children}
+          <TabContent
+            tabId={activeTabId}
+            bookResponse={bookResponse}
+            bookSlug={bookSlug}
+            versionId={versionId}
+          />
         </SheetContent>
       </Sheet>
     </MobileSidebarContext.Provider>

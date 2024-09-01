@@ -8,7 +8,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/navigation";
-import type { BookVersion } from "@/types";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
@@ -29,10 +28,31 @@ const idToName: Record<string, string> = {
   BibleCorpus: "Bible Corpus",
 };
 
+const versionIdToName = (versionId: string) => {
+  const parts = versionId.split(".");
+  const name = parts[parts.length - 1]?.split("-")[0]?.replace("Vols", "");
+
+  // remove numbers at the end
+  if (name) {
+    const id = name.replace(/\d+$/, "");
+    return idToName[id] ?? id;
+  }
+
+  return name;
+};
+
+const versionToName = (version: PrismaJson.BookVersion) => {
+  if (version.source === "turath") {
+    return "Shamela (Turath.io)";
+  }
+
+  return versionIdToName(version.value);
+};
+
 export default function VersionSelector({
   versions,
 }: {
-  versions: BookVersion[];
+  versions: PrismaJson.BookVersion[];
 }) {
   const params = useSearchParams();
   const pathname = usePathname();
@@ -63,27 +83,6 @@ export default function VersionSelector({
     startTransition(() => {
       replace(newUrl);
     });
-  };
-
-  const versionIdToName = (versionId: string) => {
-    const parts = versionId.split(".");
-    const name = parts[parts.length - 1]?.split("-")[0]?.replace("Vols", "");
-
-    // remove numbers at the end
-    if (name) {
-      const id = name.replace(/\d+$/, "");
-      return idToName[id] ?? id;
-    }
-
-    return name;
-  };
-
-  const versionToName = (version: BookVersion) => {
-    if (version.source === "turath") {
-      return "Shamela (Turath.io)";
-    }
-
-    return versionIdToName(version.value);
   };
 
   return (

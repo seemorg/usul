@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-key */
+"use client";
 
 import { Badge } from "@/components/ui/badge";
 import {
@@ -14,27 +15,24 @@ import {
 } from "@/components/ui/accordion";
 
 import { Separator } from "@/components/ui/separator";
-import { fetchBook } from "@/server/services/books";
 import { Label } from "@/components/ui/label";
-import SidebarContainer from "../sidebar-container";
-import { notFound } from "next/navigation";
+import SidebarContainer from "../sidebar/sidebar-container";
 import VersionSelector from "./version-selector";
 import PageNavigator from "./page-navigator";
 import ChaptersList from "./chapters-section";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { Button } from "@/components/ui/button";
-import { getTranslations } from "next-intl/server";
 import DottedList from "@/components/ui/dotted-list";
-import { getLocaleDirection } from "@/lib/locale/utils";
-import { getLocale, getPathLocale } from "@/lib/locale/server";
+import { getLocaleDirection, usePathLocale } from "@/lib/locale/utils";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import type { BookVersion } from "@/types";
-import type { ReaderSearchParams } from "@/types/reader-search-params";
 import PdfButton from "./pdf-button";
+import type { TabProps } from "../sidebar/tabs";
+import { useLocale, useTranslations } from "next-intl";
+import { usePageNavigation } from "../usePageNavigation";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -81,45 +79,15 @@ import PdfButton from "./pdf-button";
 //   },
 // ];
 
-interface ContentTabProps {
-  bookId: string;
-  searchParams: ReaderSearchParams;
-}
-
-export default async function ContentTab({
-  bookId,
-  searchParams,
-}: ContentTabProps) {
-  let result: Awaited<ReturnType<typeof fetchBook>>;
-  const pathLocale = await getPathLocale();
-
-  try {
-    result = await fetchBook(bookId, pathLocale, searchParams?.version);
-  } catch (e) {
-    notFound();
-  }
-
-  const t = await getTranslations();
-  const locale = await getLocale();
-
+export default function ContentTab({ bookResponse }: TabProps) {
+  const pathLocale = usePathLocale();
+  const t = useTranslations();
+  const locale = useLocale();
+  const { pagesRange } = usePageNavigation(bookResponse);
   const direction = getLocaleDirection(locale as any);
 
-  const book = result.book;
+  const book = bookResponse.book;
   const author = book.author;
-
-  const firstPage =
-    (result.turathResponse
-      ? result.turathResponse.pages?.[0]?.page
-      : result.pages[0]?.page?.page) ?? 0;
-  const lastPage =
-    (result.turathResponse
-      ? result.turathResponse.pages?.[result.turathResponse.pages.length - 1]
-          ?.page
-      : result.pages[result.pages.length - 1]?.page?.page) ?? 0;
-  const pagesRange = {
-    start: typeof firstPage === "number" ? firstPage : 0,
-    end: typeof lastPage === "number" ? lastPage : 0,
-  };
 
   const primaryName = getPrimaryLocalizedText(
     book.primaryNameTranslations,
@@ -136,11 +104,12 @@ export default async function ContentTab({
   const secondaryOtherNames =
     getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
 
-  const headings = result.turathResponse
-    ? result.turathResponse.indexes.headings
-    : result.headers;
+  const headings = bookResponse.turathResponse
+    ? bookResponse.turathResponse.indexes.headings
+    : bookResponse.headers;
 
-  const pageToIndex = result.pageToRenderIndex;
+  const pageToIndex = bookResponse.pageNumberToIndex;
+  const chapterIndexToPageIndex = bookResponse.chapterIndexToPageIndex;
 
   return (
     <>
@@ -212,13 +181,13 @@ export default async function ContentTab({
             {t("reader.version")}
           </Label>
 
-          <VersionSelector versions={book.versions as BookVersion[]} />
+          <VersionSelector versions={book.versions} />
         </div>
 
         <div className="w-full pb-2 pt-4">
           <PdfButton
-            pdf={result.turathResponse?.meta.pdf_links}
-            slug={result.book.slug}
+            pdf={bookResponse.turathResponse?.meta.pdf_links}
+            slug={bookResponse.book.slug}
           />
         </div>
       </SidebarContainer>
@@ -279,9 +248,9 @@ export default async function ContentTab({
       <Separator className="my-4" />
 
       <SidebarContainer className="flex flex-col gap-3">
-        {(result.turathResponse
-          ? result.turathResponse.indexes.headings
-          : result.headers
+        {(bookResponse.turathResponse
+          ? bookResponse.turathResponse.indexes.headings
+          : bookResponse.headers
         ).length > 0 && (
           <div className="w-full">
             <PageNavigator range={pagesRange} pageToIndex={pageToIndex} />
@@ -292,6 +261,7 @@ export default async function ContentTab({
           pagesRange={pagesRange}
           headers={headings}
           pageToIndex={pageToIndex}
+          chapterIndexToPageIndex={chapterIndexToPageIndex}
         />
       </SidebarContainer>
 
