@@ -11,7 +11,7 @@ export const makeSearchRequest = async (
     headers: {
       "X-TYPESENSE-API-KEY": env.TYPESENSE_API_KEY,
     },
-    cache: "force-cache",
+    cache: "no-store",
   });
 
   if (!res.ok) {
