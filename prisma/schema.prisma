@@ -69,6 +69,8 @@ model Book {
 
   /// [BookVersion]
   versions         Json[]
+  /// [BookFlags]
+  flags            Json   @default("{}")
   numberOfVersions Int    @default(0)
 
   genres Genre[]

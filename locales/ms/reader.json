@@ -13,6 +13,28 @@
     "input-placeholder": "Nombor halaman",
     "go": "Pergi"
   },
+  "search": {
+    "begin-search": "Mulakan carian anda",
+    "description": "Carian AI menemui padanan terdekat walaupun anda tidak tahu frasa yang tepat.",
+    "view-in-advanced": "Lihat dalam Carian Lanjutan",
+    "best-match": "Padanan Terbaik",
+    "order": "Pesanan (segera)",
+    "portion": "Bahagian",
+    "entire-book": "Buku Keseluruhan",
+    "book": "Buku",
+    "book-select-description": "Untuk mencari pelbagai buku gunakan Carian Lanjutan"
+  },
+  "chat": {
+    "new-chat": "Chat Baru",
+    "share-chat": "Kongsi Chat",
+    "copy": "Salin ke papan klip",
+    "copied": "Disalin ke papan klip!",
+    "regenerate": "Jana semula",
+    "mark-as-correct": "Tandakan sebagai betul",
+    "report-as-incorrect": "Lapor sebagai salah",
+    "sources": "Sumber",
+    "pg-x": "Hal {page, number, nogroup}"
+  },
   "version": "Versi",
   "select-version": "Pilih sebuah versi",
   "other-titles": "Tajuk lain",

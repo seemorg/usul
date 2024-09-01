@@ -13,6 +13,28 @@
     "input-placeholder": "Número de página",
     "go": "Ir"
   },
+  "search": {
+    "begin-search": "Comienza tu búsqueda",
+    "description": "La búsqueda por IA encuentra las coincidencias más cercanas incluso si no conoces la frase exacta.",
+    "view-in-advanced": "Ver en Búsqueda Avanzada",
+    "best-match": "Mejor Coincidencia",
+    "order": "Orden (pronto)",
+    "portion": "Porción",
+    "entire-book": "Libro Entero",
+    "book": "Libro",
+    "book-select-description": "Para buscar en múltiples libros usa la Búsqueda Avanzada"
+  },
+  "chat": {
+    "new-chat": "Nuevo Chat",
+    "share-chat": "Compartir Chat",
+    "copy": "Copiar al portapapeles",
+    "copied": "¡Copiado al portapapeles!",
+    "regenerate": "Regenerar",
+    "mark-as-correct": "Marcar como correcto",
+    "report-as-incorrect": "Reportar como incorrecto",
+    "sources": "Fuentes",
+    "pg-x": "Pg {page, number, nogroup}"
+  },
   "version": "Versión",
   "select-version": "Seleccione una versión",
   "other-titles": "Otros títulos",

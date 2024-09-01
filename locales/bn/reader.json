@@ -13,6 +13,28 @@
     "input-placeholder": "পাতা সংখ্যা",
     "go": "যান"
   },
+  "search": {
+    "begin-search": "আপনার অনুসন্ধান শুরু করুন",
+    "description": "AI অনুসন্ধান নিকটতম মিল খুঁজে পায় যদিও আপনি সঠিক বাক্যাংশটি না জানেন।",
+    "view-in-advanced": "উন্নত অনুসন্ধানে দেখুন",
+    "best-match": "সেরা মিল",
+    "order": "অর্ডার (শীঘ্রই)",
+    "portion": "অংশ",
+    "entire-book": "সম্পূর্ণ বই",
+    "book": "বই",
+    "book-select-description": "একাধিক বই অনুসন্ধানের জন্য উন্নত অনুসন্ধান ব্যবহার করুন"
+  },
+  "chat": {
+    "new-chat": "নতুন চ্যাট",
+    "share-chat": "চ্যাট শেয়ার করুন",
+    "copy": "ক্লিপবোর্ডে কপি করুন",
+    "copied": "ক্লিপবোর্ডে কপি হয়েছে!",
+    "regenerate": "পুনরায় তৈরি করুন",
+    "mark-as-correct": "সঠিক হিসাবে চিহ্নিত করুন",
+    "report-as-incorrect": "ভুল হিসাবে রিপোর্ট করুন",
+    "sources": "উৎস",
+    "pg-x": "পৃ {page, number, nogroup}"
+  },
   "version": "সংস্করণ",
   "select-version": "একটি সংস্করণ নির্বাচন করুন",
   "other-titles": "অন্যান্য শিরোনাম",
