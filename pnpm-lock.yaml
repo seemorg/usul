@@ -143,6 +143,9 @@ importers:
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
+      prisma-json-types-generator:
+        specifier: ^3.0.4
+        version: 3.0.4(prisma@5.12.1)(typescript@5.3.3)
       react:
         specifier: 18.2.0
         version: 18.2.0
@@ -1399,6 +1402,9 @@ packages:
   '@prisma/debug@5.12.1':
     resolution: {integrity: sha512-kd/wNsR0klrv79o1ITsbWxYyh4QWuBidvxsXSParPsYSu0ircUmNk3q4ojsgNc3/81b0ozg76iastOG43tbf8A==}
 
+  '@prisma/debug@5.9.1':
+    resolution: {integrity: sha512-yAHFSFCg8KVoL0oRUno3m60GAjsUKYUDkQ+9BA2X2JfVR3kRVSJFc/GpQ2fSORi4pSHZR9orfM4UC9OVXIFFTA==}
+
   '@prisma/driver-adapter-utils@5.12.1':
     resolution: {integrity: sha512-s5EHANHIyWID/3WLNYn3wy1SUGC2OFH2thYriq+sKo4GZxEduX9oraOVlPruZZBt/roN9ojZcph4R2oecWzfXg==}
 
@@ -1410,6 +1416,9 @@ packages:
 
   '@prisma/fetch-engine@5.12.1':
     resolution: {integrity: sha512-qSs3KcX1HKcea1A+hlJVK/ljj0PNIUHDxAayGMvgJBqmaN32P9tCidlKz1EGv6WoRFICYnk3Dd/YFLBwnFIozA==}
+
+  '@prisma/generator-helper@5.9.1':
+    resolution: {integrity: sha512-WMdEUPpPYxUGruRQM6e6IVTWXFjt1hHdF/m2TO7pWxhPo7/ZeoTOF9fH8JsvVSV78DYLOQkx9osjFLXZu447Kw==}
 
   '@prisma/get-platform@5.12.1':
     resolution: {integrity: sha512-pgIR+pSvhYHiUcqXVEZS31NrFOTENC9yFUdEAcx7cdQBoZPmHVjtjN4Ss6NzVDMYPrKJJ51U14EhEoeuBlMioQ==}
@@ -6142,6 +6151,14 @@ packages:
     resolution: {integrity: sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==}
     engines: {node: '>= 0.8'}
 
+  prisma-json-types-generator@3.0.4:
+    resolution: {integrity: sha512-W53OpjBdGZxCsYv7MlUX69d7TPA9lEsQbDf9ddF0J93FX5EvaIRDMexdFPe0KTxiuquGvZTDJgeNXb3gIqEhJw==}
+    engines: {node: '>=14.0'}
+    hasBin: true
+    peerDependencies:
+      prisma: ^5.1
+      typescript: ^5.1
+
   prisma@5.12.1:
     resolution: {integrity: sha512-SkMnb6wyIxTv9ACqiHBI2u9gD6y98qXRoCoLEnZsF6yee5Qg828G+ARrESN+lQHdw4maSZFFSBPPDpvSiVTo0Q==}
     engines: {node: '>=16.13'}
@@ -8694,6 +8711,8 @@ snapshots:
 
   '@prisma/debug@5.12.1': {}
 
+  '@prisma/debug@5.9.1': {}
+
   '@prisma/driver-adapter-utils@5.12.1':
     dependencies:
       '@prisma/debug': 5.12.1
@@ -8712,6 +8731,10 @@ snapshots:
       '@prisma/debug': 5.12.1
       '@prisma/engines-version': 5.12.0-21.473ed3124229e22d881cb7addf559799debae1ab
       '@prisma/get-platform': 5.12.1
+
+  '@prisma/generator-helper@5.9.1':
+    dependencies:
+      '@prisma/debug': 5.9.1
 
   '@prisma/get-platform@5.12.1':
     dependencies:
@@ -14631,6 +14654,13 @@ snapshots:
       react-is: 18.2.0
 
   pretty-hrtime@1.0.3: {}
+
+  prisma-json-types-generator@3.0.4(prisma@5.12.1)(typescript@5.3.3):
+    dependencies:
+      '@prisma/generator-helper': 5.9.1
+      prisma: 5.12.1
+      tslib: 2.6.2
+      typescript: 5.3.3
 
   prisma@5.12.1:
     dependencies:

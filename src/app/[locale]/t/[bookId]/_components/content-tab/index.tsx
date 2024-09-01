@@ -29,7 +29,6 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import type { BookVersion } from "@/types";
 import PdfButton from "./pdf-button";
 import type { TabProps } from "../sidebar/tabs";
 import { useLocale, useTranslations } from "next-intl";
@@ -182,7 +181,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
             {t("reader.version")}
           </Label>
 
-          <VersionSelector versions={book.versions as BookVersion[]} />
+          <VersionSelector versions={book.versions} />
         </div>
 
         <div className="w-full pb-2 pt-4">

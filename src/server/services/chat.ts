@@ -9,6 +9,7 @@ const baseRequest = async (
 ) => {
   return (
     await fetch(`${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`, {
+      cache: "no-store",
       method,
       ...(method === "POST" && body
         ? {
