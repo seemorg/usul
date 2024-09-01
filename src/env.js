@@ -15,6 +15,7 @@ export const env = createEnv({
   client: {},
   shared: {
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
+    NEXT_PUBLIC_SEMANTIC_SEARCH_URL: z.string().min(1),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -25,6 +26,8 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT:
       process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
+    NEXT_PUBLIC_SEMANTIC_SEARCH_URL:
+      process.env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

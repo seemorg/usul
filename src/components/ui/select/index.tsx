@@ -23,6 +23,7 @@ const SelectTrigger = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & {
     isLoading?: boolean;
     showIconOnMobile?: boolean;
+    icon?: React.ReactNode;
   }
 >(
   (
@@ -32,6 +33,7 @@ const SelectTrigger = React.forwardRef<
       isLoading,
       showIconOnMobile = false,
       disabled,
+      icon,
       ...props
     },
     ref,
@@ -52,7 +54,7 @@ const SelectTrigger = React.forwardRef<
           {isLoading ? (
             <Spinner className="h-4 w-4" />
           ) : (
-            <CaretSortIcon className="h-4 w-4 opacity-50" />
+            icon ?? <CaretSortIcon className="h-4 w-4 opacity-50" />
           )}
         </div>
       </SelectPrimitive.Icon>

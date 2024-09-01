@@ -1,103 +1,79 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+"use client";
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  StarIcon,
-  DocumentMagnifyingGlassIcon,
-  ListBulletIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/outline";
-import ContentTab from "./content-tab";
+
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
-import { getTranslations } from "next-intl/server";
-import { getLocaleDirection } from "@/lib/locale/utils";
-import { getLocale } from "@/lib/locale/server";
-import type { ReaderSearchParams } from "@/types/reader-search-params";
+import React from "react";
+import { useTranslations } from "next-intl";
+import { type TabProps, tabs } from "./tabs";
+import { useSearchParams } from "next/navigation";
+import { useTabNavigate } from "./useTabNavigate";
 
-const ComingSoonAlert = async () => {
-  const t = await getTranslations("reader");
-  const locale = await getLocale();
+import { TabContent } from "../tab-content";
+
+const TabButton = ({
+  tab,
+  handleNavigate,
+  disabled,
+}: {
+  tab: (typeof tabs)[number];
+  handleNavigate: ReturnType<typeof useTabNavigate>["handleNavigate"];
+  disabled?: boolean;
+}) => {
+  const t = useTranslations();
 
   return (
-    <SidebarContainer>
-      <Alert
-        dir={getLocaleDirection(locale)}
-        className="bg-transparent font-sans"
+    <Tooltip>
+      <TabsTrigger
+        value={tab.id}
+        type="button"
+        onClick={() => (disabled ? null : handleNavigate(tab.id))}
+        className="w-full py-1.5"
+        disabled={disabled}
+        asChild
       >
-        <AlertTitle>{t("coming-soon.title")}</AlertTitle>
-        <AlertDescription>{t("coming-soon.message")}</AlertDescription>
-      </Alert>
-    </SidebarContainer>
+        <TooltipTrigger>
+          <tab.icon className="size-5" />
+        </TooltipTrigger>
+      </TabsTrigger>
+
+      <TooltipContent side="bottom" sideOffset={10}>
+        {t(tab.label as any)}
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
-export const tabs = [
-  {
-    id: "notes",
-    label: "reader.notes",
-    icon: PencilSquareIcon,
-    content: ComingSoonAlert,
-  },
-  {
-    id: "bookmarks",
-    label: "reader.bookmarks",
-    icon: StarIcon,
-    content: ComingSoonAlert,
-  },
-  {
-    id: "search",
-    label: "common.search",
-    icon: DocumentMagnifyingGlassIcon,
-    content: ComingSoonAlert,
-  },
-
-  {
-    id: "content",
-    label: "reader.content",
-    icon: ListBulletIcon,
-    content: ContentTab,
-  },
-] satisfies {
-  label: string;
-  id: string;
-  icon: any;
-  content: any;
-}[];
-
-export default async function ReaderSidebar({
-  bookId,
-  searchParams,
-}: {
-  bookId: string;
-  searchParams: ReaderSearchParams;
-}) {
-  const t = await getTranslations();
+export default function ReaderSidebar({
+  bookResponse,
+  bookSlug,
+  versionId,
+}: TabProps) {
+  const activeTabId = useSearchParams().get("tab");
+  const { handleNavigate } = useTabNavigate();
+  const activeTab =
+    tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
 
   return (
     <SidebarWrapper>
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
-      <Tabs defaultValue="content">
+      <Tabs defaultValue={activeTab}>
         <SidebarContainer className="hidden sm:block">
-          <TabsList className="h-10 w-full font-sans">
+          <TabsList className="h-10 w-full rounded-b-none font-sans">
             {tabs.map((tab) => (
-              <Tooltip key={tab.id}>
-                <TabsTrigger value={tab.id} className="w-full py-1.5" asChild>
-                  <TooltipTrigger>
-                    <tab.icon className="h-5 w-5" />
-                  </TooltipTrigger>
-                </TabsTrigger>
-
-                <TooltipContent side="bottom" sideOffset={10}>
-                  {t(tab.label as any)}
-                </TooltipContent>
-              </Tooltip>
+              <TabButton
+                key={tab.id}
+                tab={tab}
+                handleNavigate={handleNavigate}
+              />
             ))}
           </TabsList>
         </SidebarContainer>
@@ -105,7 +81,12 @@ export default async function ReaderSidebar({
         <div className="mt-6">
           {tabs.map((tab) => (
             <TabsContent value={tab.id} key={tab.id}>
-              <tab.content bookId={bookId} searchParams={searchParams} />
+              <TabContent
+                tabId={tab.id}
+                bookSlug={bookSlug}
+                versionId={versionId}
+                bookResponse={bookResponse}
+              />
             </TabsContent>
           ))}
         </div>

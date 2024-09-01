@@ -9,8 +9,9 @@ import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
+import { Toaster } from "@/components/ui/toaster";
 
-export function generateMetadata() {
+export async function generateMetadata() {
   return getMetadata({
     all: true,
   });
@@ -42,10 +43,16 @@ export default function LocaleLayout({
       >
         <Providers locale={locale} messages={messages}>
           {children}
+
+          <Toaster />
         </Providers>
 
-        <GoogleAnalytics gaId="G-QX48J9BW3C" />
-        <GoogleTagManager gtmId="AW-16482232385" />
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <GoogleAnalytics gaId="G-QX48J9BW3C" />
+            <GoogleTagManager gtmId="AW-16482232385" />
+          </>
+        )}
       </body>
     </html>
   );
