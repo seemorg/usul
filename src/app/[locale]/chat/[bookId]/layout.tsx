@@ -1,19 +1,17 @@
-import Footer from "@/app/_components/footer";
-import Navbar from "@/app/_components/navbar";
-import { Button } from "@/components/ui/button";
+// import Navbar from "@/app/_components/navbar";
 
-export default function ChatPageLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div>
-      <Navbar />
+// export default function ChatPageLayout({
+//   children,
+// }: {
+//   children: React.ReactNode;
+// }) {
+//   return (
+//     <div>
+//       <Navbar />
 
-      {children}
+//       {children}
 
-      {/* <Footer /> */}
-    </div>
-  );
-}
+//       {/* <Footer /> */}
+//     </div>
+//   );
+// }
