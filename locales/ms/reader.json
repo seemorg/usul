@@ -38,6 +38,11 @@
   "version": "Versi",
   "select-version": "Pilih sebuah versi",
   "other-titles": "Tajuk lain",
-  "more-info": "Maklumat Lanjut",
+  "more-info": "Maklumat Buku",
+  "external-book": {
+    "title": "Berita baik!",
+    "description": "Buku ini tidak tersedia di Usul tetapi kami menemui versi di tempat lain.",
+    "navigate": "Navigasi"
+  },
   "download-pdf": "Muat Turun PDF"
 }

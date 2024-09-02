@@ -7,9 +7,12 @@ import { useTranslations } from "next-intl";
 import { Input, type InputProps } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "../ui/checkbox";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { InfoIcon } from "lucide-react";
 
 interface FilterContainerProps {
   title: string;
+  titleInfo?: string;
   isLoading?: boolean;
   titleChildren?: React.ReactNode;
   clearFilterHref?: LinkProps["href"];
@@ -18,6 +21,7 @@ interface FilterContainerProps {
 
 function FilterContainer({
   title,
+  titleInfo,
   isLoading,
   titleChildren,
   clearFilterHref,
@@ -31,6 +35,14 @@ function FilterContainer({
         <h3 className="text-lg font-bold">
           <span className="flex items-center gap-2">
             {title}
+            {titleInfo && (
+              <Tooltip>
+                <TooltipTrigger className="text-muted-foreground">
+                  <InfoIcon className="h-4 w-4" />
+                </TooltipTrigger>
+                <TooltipContent>{titleInfo}</TooltipContent>
+              </Tooltip>
+            )}
             {isLoading && <Spinner className="h-4 w-4" />}
           </span>
         </h3>

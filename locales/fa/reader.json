@@ -38,6 +38,11 @@
   "version": "نسخه",
   "select-version": "انتخاب یک نسخه",
   "other-titles": "عناوین دیگر",
-  "more-info": "اطلاعات بیشتر",
+  "more-info": "اطلاعات کتاب",
+  "external-book": {
+    "title": "خبر خوب!",
+    "description": "این کتاب در اسول موجود نیست، اما نسخه‌ای از آن را در جای دیگری پیدا کردیم.",
+    "navigate": "ناوبری"
+  },
   "download-pdf": "دانلود PDF"
 }

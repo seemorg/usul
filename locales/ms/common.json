@@ -144,5 +144,7 @@
     "message": "Ciri ini belum tersedia. Langgan ke surat berita kami dan dapatkan notifikasi bila ia siap.",
     "success": "Terima kasih!",
     "error": "Ada yang salah. Sila cuba lagi nanti."
-  }
+  },
+  "year-filter-info": "Tapis mengikut tahun kematian pengarang",
+  "regions-filter-info": "Tapis mengikut kawasan tempat pengarang dilahirkan, tinggal, melawat, atau meninggal dunia"
 }

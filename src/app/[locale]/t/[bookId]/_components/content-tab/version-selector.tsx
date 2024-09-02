@@ -27,8 +27,17 @@ const idToName: Record<string, string> = {
   BibleCorpus: "Bible Corpus",
 };
 
-const versionIdToName = (versionId: string) => {
-  const parts = versionId.split(".");
+const versionToName = (version: PrismaJson.BookVersion) => {
+  if (version.source === "turath") {
+    return "Shamela (Turath.io)";
+  }
+
+  if (version.source === "external") {
+    return "External";
+  }
+
+  // openiti version handling
+  const parts = version.value.split(".");
   const name = parts[parts.length - 1]?.split("-")[0]?.replace("Vols", "");
 
   // remove numbers at the end
@@ -38,14 +47,6 @@ const versionIdToName = (versionId: string) => {
   }
 
   return name;
-};
-
-const versionToName = (version: PrismaJson.BookVersion) => {
-  if (version.source === "turath") {
-    return "Shamela (Turath.io)";
-  }
-
-  return versionIdToName(version.value);
 };
 
 export default function VersionSelector({

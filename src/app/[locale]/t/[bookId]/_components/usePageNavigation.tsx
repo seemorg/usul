@@ -1,6 +1,20 @@
 import type { TabProps } from "./sidebar/tabs";
 
 export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
+  if (bookResponse.source === "external") {
+    return {
+      pagesRange: {
+        start: 0,
+        end: 0,
+      },
+      pageToIndex: null,
+      getVirtuosoIndex: () => ({
+        index: 0,
+        align: "center" as const,
+      }),
+    };
+  }
+
   const firstPage =
     (bookResponse.source === "turath"
       ? bookResponse.turathResponse.pages?.[0]?.page

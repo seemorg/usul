@@ -38,6 +38,11 @@
   "version": "Версия",
   "select-version": "Выберите версию",
   "other-titles": "Другие названия",
-  "more-info": "Больше информации",
+  "more-info": "Информация о книге",
+  "external-book": {
+    "title": "Хорошие новости!",
+    "description": "Эта книга недоступна на Usul, но мы нашли ее версию в другом месте.",
+    "navigate": "Перейти"
+  },
   "download-pdf": "Скачать PDF"
 }

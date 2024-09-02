@@ -89,14 +89,16 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const book = bookResponse.book;
   const author = book.author;
 
-  const primaryName = getPrimaryLocalizedText(
-    book.primaryNameTranslations,
-    pathLocale,
-  );
-  const authorName = getPrimaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
+  const primaryName =
+    pathLocale === "en" && book.transliteration
+      ? book.transliteration
+      : getPrimaryLocalizedText(book.primaryNameTranslations, pathLocale);
+
+  const authorName =
+    pathLocale === "en" && author.transliteration
+      ? author.transliteration
+      : getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale);
+
   const authorBio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
 
   const primaryOtherNames =
@@ -107,7 +109,9 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const headings =
     bookResponse.source === "turath"
       ? bookResponse.turathResponse.headings
-      : bookResponse.headers;
+      : bookResponse.source === "openiti"
+        ? bookResponse.headers
+        : [];
 
   const chapterIndexToPageIndex =
     bookResponse.source === "turath"
@@ -255,28 +259,32 @@ export default function ContentTab({ bookResponse }: TabProps) {
         </Accordion>
       </SidebarContainer>
 
-      <Separator className="my-4" />
+      {bookResponse.source === "external" ? null : (
+        <>
+          <Separator className="my-4" />
 
-      <SidebarContainer className="flex flex-col gap-3">
-        {(bookResponse.source === "turath"
-          ? bookResponse.turathResponse.headings
-          : bookResponse.headers
-        ).length > 0 && (
-          <div className="w-full">
-            <PageNavigator
-              range={pagesRange}
+          <SidebarContainer className="flex flex-col gap-3">
+            {(bookResponse.source === "turath"
+              ? bookResponse.turathResponse.headings
+              : bookResponse.headers
+            ).length > 0 && (
+              <div className="w-full">
+                <PageNavigator
+                  range={pagesRange}
+                  getVirtuosoIndex={getVirtuosoIndex}
+                />
+              </div>
+            )}
+
+            <ChaptersList
+              headers={headings}
               getVirtuosoIndex={getVirtuosoIndex}
+              chapterIndexToPageIndex={chapterIndexToPageIndex}
+              pagesRange={pagesRange}
             />
-          </div>
-        )}
-
-        <ChaptersList
-          headers={headings}
-          getVirtuosoIndex={getVirtuosoIndex}
-          chapterIndexToPageIndex={chapterIndexToPageIndex}
-          pagesRange={pagesRange}
-        />
-      </SidebarContainer>
+          </SidebarContainer>
+        </>
+      )}
 
       <div className="h-16" />
     </>

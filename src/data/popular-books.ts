@@ -55,6 +55,11 @@ const fetchBooksBySlugs = (slugs: string[], locale: PathLocale) => {
     },
     include: {
       primaryNameTranslations: localeWhere,
+      author: {
+        include: {
+          primaryNameTranslations: localeWhere,
+        },
+      },
     },
   });
 };

@@ -144,5 +144,7 @@
     "message": "Bu özellik henüz kullanılabilir değil. Hazır olduğunda bilgilendirilmek için bültenimize abone olun.",
     "success": "Teşekkürler!",
     "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
-  }
+  },
+  "year-filter-info": "Yazarın ölüm yılına göre filtrele",
+  "regions-filter-info": "Yazarın doğduğu, ikamet ettiği, ziyaret ettiği veya öldüğü bölgeye göre filtrele"
 }

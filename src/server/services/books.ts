@@ -10,13 +10,21 @@ import { log } from "next-axiom";
 
 export type TurathBookResponse = {
   source: "turath";
+  versionId: string;
   book: Awaited<ReturnType<typeof getBook>>;
 } & Awaited<ReturnType<typeof fetchTurathBook>>;
 
 export type OpenitiBookResponse = {
   source: "openiti";
+  versionId: string;
   book: Awaited<ReturnType<typeof getBook>>;
 } & Awaited<ReturnType<typeof fetchOpenitiBook>>;
+
+export type ExternalBookResponse = {
+  source: "external";
+  versionId: string;
+  book: Awaited<ReturnType<typeof getBook>>;
+};
 
 const getBook = async (id: string, locale: string) => {
   const localeWhere = getLocaleWhereClause(locale);
@@ -46,8 +54,17 @@ const getBook = async (id: string, locale: string) => {
   return record;
 };
 
+type FetchBookResponse =
+  | TurathBookResponse
+  | OpenitiBookResponse
+  | ExternalBookResponse;
+
 export const fetchBook = cache(
-  async (id: string, locale: PathLocale = "en", versionId?: string) => {
+  async (
+    id: string,
+    locale: PathLocale = "en",
+    versionId?: string,
+  ): Promise<FetchBookResponse> => {
     const record = await getBook(id, locale);
 
     const allVersions = record.versions;
@@ -74,14 +91,26 @@ export const fetchBook = cache(
       throw new Error("Book not found");
     }
 
+    const baseResponse = {
+      // source: "external",
+      // versionId: "https://app.turath.com/book/735",
+      source: version.source,
+      versionId: version.value,
+      book: record,
+    };
+
+    if (version.source === "external") {
+      return {
+        ...baseResponse,
+      } as ExternalBookResponse;
+    }
+
     if (version.source === "turath") {
       const turathBook = await fetchTurathBook(version.value);
       return {
-        versionId: version.value,
-        source: version.source,
-        book: record,
+        ...baseResponse,
         ...turathBook,
-      };
+      } as TurathBookResponse;
     }
 
     try {
@@ -91,11 +120,9 @@ export const fetchBook = cache(
         versionId: version.value,
       });
       return {
-        versionId: version.value,
-        source: version.source,
-        book: record,
+        ...baseResponse,
         ...openitiBook,
-      };
+      } as OpenitiBookResponse;
     } catch (e) {
       log.error("book_not_found", { slug: id, versionId });
       await log.flush();

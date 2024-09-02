@@ -38,6 +38,11 @@
   "version": "Sigar",
   "select-version": "Zabi wata siga",
   "other-titles": "Sauran taken",
-  "more-info": "Ƙarin Bayani",
+  "more-info": "Bayanin Littafi",
+  "external-book": {
+    "title": "Labarai masu dadi!",
+    "description": "Wannan littafin baya nan a Usul amma mun samu wani sigar a wani wuri.",
+    "navigate": "Navegate"
+  },
   "download-pdf": "Zazzage PDF"
 }
