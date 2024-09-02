@@ -10,15 +10,16 @@ import {
 import { useReaderVirtuoso } from "../context";
 import { useTranslations } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 export default function PageNavigator({
   popover = true,
   range,
-  pageToIndex,
+  getVirtuosoIndex,
 }: {
   popover?: boolean;
   range: { start: number; end: number };
-  pageToIndex?: Record<number, number>;
+  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -37,13 +38,7 @@ export default function PageNavigator({
       return;
     }
 
-    virtuosoRef.current?.scrollToIndex({
-      // since range.start is our 0 index, we need to subtract it from the page number
-      index: pageToIndex
-        ? pageToIndex[pageNumber] ?? pageNumber - range.start
-        : pageNumber - range.start,
-      align: "center",
-    });
+    virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(pageNumber));
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };

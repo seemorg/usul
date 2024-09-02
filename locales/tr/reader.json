@@ -38,6 +38,11 @@
   "version": "Versiyon",
   "select-version": "Bir versiyon seçin",
   "other-titles": "Diğer başlıklar",
-  "more-info": "Daha Fazla Bilgi",
+  "more-info": "Kitap Bilgisi",
+  "external-book": {
+    "title": "İyi haber!",
+    "description": "Bu kitap Usul'da mevcut değil ancak başka bir yerde bir versiyon bulduk.",
+    "navigate": "Gözat"
+  },
   "download-pdf": "PDF İndir"
 }

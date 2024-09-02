@@ -21,7 +21,7 @@ import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
-  const { pageToIndex, pagesRange } = usePageNavigation(bookResponse);
+  const { getVirtuosoIndex } = usePageNavigation(bookResponse);
   const { toast } = useToast();
   const t = useTranslations("reader");
   const showNavbar = useNavbarStore((s) => s.showNavbar);
@@ -166,8 +166,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                 role="ai"
                 text="Hey there, send something to start the chat!"
                 hasActions={false}
-                pagesRange={pagesRange}
-                pageToIndex={pageToIndex}
+                getVirtuosoIndex={getVirtuosoIndex}
               />
 
               {messages.map((message, idx) => (
@@ -181,8 +180,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                     idx === messages.length - 1 && isPending ? false : true
                   }
                   onRegenerate={() => regenerateResponse(idx)}
-                  pagesRange={pagesRange}
-                  pageToIndex={pageToIndex}
+                  getVirtuosoIndex={getVirtuosoIndex}
                 />
               ))}
 

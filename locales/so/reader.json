@@ -38,6 +38,11 @@
   "version": "Nooca",
   "select-version": "Dooro nooc",
   "other-titles": "Cinwaano kale",
-  "more-info": "Macluumaad Dheeraad ah",
+  "more-info": "Macluumaadka Buugga",
+  "external-book": {
+    "title": "War fiican!",
+    "description": "Buuggan lagama heli karo Usul laakiin waxaan ka helnay nooc kale.",
+    "navigate": "U gudub"
+  },
   "download-pdf": "Soo dejiso PDF"
 }

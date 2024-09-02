@@ -144,5 +144,7 @@
     "message": "Cette fonctionnalité n'est pas encore disponible. Abonnez-vous à notre newsletter et soyez notifié lorsque c'est prêt.",
     "success": "Merci !",
     "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
-  }
+  },
+  "year-filter-info": "Filtrer par année de décès de l'auteur",
+  "regions-filter-info": "Filtrer par une région où l'auteur est né, a résidé, visité ou est décédé"
 }

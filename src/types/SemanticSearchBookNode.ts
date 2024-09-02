@@ -5,7 +5,7 @@ export interface SemanticSearchBookNode {
     pages: {
       vol: string;
       page: number;
-    }[]; // ["v1:p1"]
+    }[];
   };
   text: string;
   score?: number;

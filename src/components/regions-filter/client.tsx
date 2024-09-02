@@ -142,6 +142,7 @@ export default function _RegionsFilter({
   return (
     <FilterContainer
       title={t("entities.regions")}
+      titleInfo={t("common.regions-filter-info")}
       isLoading={isPending}
       clearFilterHref={
         selectedRegions.length > 0

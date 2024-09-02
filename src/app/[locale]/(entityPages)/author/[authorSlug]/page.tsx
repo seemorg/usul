@@ -106,10 +106,11 @@ async function AuthorPage({
     },
   });
 
-  const primaryName = getPrimaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
+  const primaryName =
+    pathLocale === "en" && author.transliteration
+      ? author.transliteration
+      : getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale);
+
   const secondaryName = getSecondaryLocalizedText(
     author.primaryNameTranslations,
     pathLocale,

@@ -83,20 +83,22 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const pathLocale = usePathLocale();
   const t = useTranslations();
   const locale = useLocale();
-  const { pagesRange } = usePageNavigation(bookResponse);
+  const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
   const direction = getLocaleDirection(locale as any);
 
   const book = bookResponse.book;
   const author = book.author;
 
-  const primaryName = getPrimaryLocalizedText(
-    book.primaryNameTranslations,
-    pathLocale,
-  );
-  const authorName = getPrimaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
+  const primaryName =
+    pathLocale === "en" && book.transliteration
+      ? book.transliteration
+      : getPrimaryLocalizedText(book.primaryNameTranslations, pathLocale);
+
+  const authorName =
+    pathLocale === "en" && author.transliteration
+      ? author.transliteration
+      : getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale);
+
   const authorBio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
 
   const primaryOtherNames =
@@ -104,12 +106,17 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const secondaryOtherNames =
     getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
 
-  const headings = bookResponse.turathResponse
-    ? bookResponse.turathResponse.indexes.headings
-    : bookResponse.headers;
+  const headings =
+    bookResponse.source === "turath"
+      ? bookResponse.turathResponse.headings
+      : bookResponse.source === "openiti"
+        ? bookResponse.headers
+        : [];
 
-  const pageToIndex = bookResponse.pageNumberToIndex;
-  const chapterIndexToPageIndex = bookResponse.chapterIndexToPageIndex;
+  const chapterIndexToPageIndex =
+    bookResponse.source === "turath"
+      ? bookResponse.chapterIndexToPageIndex
+      : null;
 
   return (
     <>
@@ -181,12 +188,19 @@ export default function ContentTab({ bookResponse }: TabProps) {
             {t("reader.version")}
           </Label>
 
-          <VersionSelector versions={book.versions} />
+          <VersionSelector
+            versions={book.versions}
+            versionId={bookResponse.versionId}
+          />
         </div>
 
         <div className="w-full pb-2 pt-4">
           <PdfButton
-            pdf={bookResponse.turathResponse?.meta.pdf_links}
+            pdf={
+              bookResponse.source === "turath"
+                ? bookResponse.turathResponse.pdf
+                : null
+            }
             slug={bookResponse.book.slug}
           />
         </div>
@@ -245,25 +259,32 @@ export default function ContentTab({ bookResponse }: TabProps) {
         </Accordion>
       </SidebarContainer>
 
-      <Separator className="my-4" />
+      {bookResponse.source === "external" ? null : (
+        <>
+          <Separator className="my-4" />
 
-      <SidebarContainer className="flex flex-col gap-3">
-        {(bookResponse.turathResponse
-          ? bookResponse.turathResponse.indexes.headings
-          : bookResponse.headers
-        ).length > 0 && (
-          <div className="w-full">
-            <PageNavigator range={pagesRange} pageToIndex={pageToIndex} />
-          </div>
-        )}
+          <SidebarContainer className="flex flex-col gap-3">
+            {(bookResponse.source === "turath"
+              ? bookResponse.turathResponse.headings
+              : bookResponse.headers
+            ).length > 0 && (
+              <div className="w-full">
+                <PageNavigator
+                  range={pagesRange}
+                  getVirtuosoIndex={getVirtuosoIndex}
+                />
+              </div>
+            )}
 
-        <ChaptersList
-          pagesRange={pagesRange}
-          headers={headings}
-          pageToIndex={pageToIndex}
-          chapterIndexToPageIndex={chapterIndexToPageIndex}
-        />
-      </SidebarContainer>
+            <ChaptersList
+              headers={headings}
+              getVirtuosoIndex={getVirtuosoIndex}
+              chapterIndexToPageIndex={chapterIndexToPageIndex}
+              pagesRange={pagesRange}
+            />
+          </SidebarContainer>
+        </>
+      )}
 
       <div className="h-16" />
     </>

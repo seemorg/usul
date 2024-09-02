@@ -38,6 +38,11 @@
   "version": "نسخه",
   "select-version": "یوه نسخه وټاکئ",
   "other-titles": "نور عنوانونه",
-  "more-info": "نور معلومات",
+  "more-info": "د کتاب معلومات",
+  "external-book": {
+    "title": "ښه خبر!",
+    "description": "دا کتاب په اصول کې شتون نلري خو موږ بل ځای کې یوه نسخه موندلې ده.",
+    "navigate": "لارښوونه"
+  },
   "download-pdf": "پي ډي ایف ډاونلوډ کړئ"
 }

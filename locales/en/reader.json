@@ -38,6 +38,11 @@
   "version": "Version",
   "select-version": "Select a version",
   "other-titles": "Other titles",
-  "more-info": "More Info",
+  "more-info": "Book Info",
+  "external-book": {
+    "title": "Good news!",
+    "description": "This book is not available on Usul but we found a version somewhere else.",
+    "navigate": "Navigate"
+  },
   "download-pdf": "Download PDF"
 }

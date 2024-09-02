@@ -144,5 +144,7 @@
     "message": "Wannan fasalin ba shi da akwai tukuna. Yi rijista zuwa wasiƙarmu kuma an sanar da ku lokacin da yake shirye.",
     "success": "Na gode!",
     "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
-  }
+  },
+  "year-filter-info": "Tacewa bisa shekarar mutuwar marubuci",
+  "regions-filter-info": "Tacewa bisa yankin da aka haifi marubuci, ya zauna, ya ziyarta, ko ya mutu"
 }

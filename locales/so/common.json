@@ -144,5 +144,7 @@
     "message": "Astaamahan imika lama heli karo. Isdiiwaangeli warsidaha aan leenahay oo hel ogeysiis markuu diyaar yahay.",
     "success": "Mahadsanid!",
     "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
-  }
+  },
+  "year-filter-info": "Shaandhayn sanadka geerida qoraaga",
+  "regions-filter-info": "Shaandhayn gobol uu qoraagu ku dhashay, ku noolaaday, soo booqday, ama ku dhintay"
 }

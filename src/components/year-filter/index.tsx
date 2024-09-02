@@ -159,6 +159,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
   return (
     <FilterContainer
       title={t("entities.year")}
+      titleInfo={t("common.year-filter-info")}
       isLoading={isPending}
       titleChildren={
         <div className="flex items-center rounded-full bg-border">

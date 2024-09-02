@@ -34,8 +34,10 @@ const BookSearchResult = ({
   const title = getPrimaryLocalizedText(primaryNames, pathLocale) ?? "";
   const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
-  const authorName = author?.primaryNames
-    ? getPrimaryLocalizedText(author.primaryNames, pathLocale)
+  const authorPrimaryNames =
+    author?.primaryNames ?? (author as any)?.primaryNameTranslations;
+  const authorName = authorPrimaryNames
+    ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
     : undefined;
   const authorSecondaryName = author?.primaryNames
     ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
@@ -68,16 +70,27 @@ const BookSearchResult = ({
 
             {secondaryTitle && (
               <p
-                className="mt-2 text-wrap text-right"
+                className="mt-1 text-wrap text-right"
                 dangerouslySetInnerHTML={{ __html: secondaryTitle }}
                 title={secondaryTitle}
               />
+            )}
+
+            {authorName && (
+              <p
+                className="mt-2 text-wrap text-right text-sm text-muted-foreground"
+                title={authorName}
+              >
+                {authorName}
+              </p>
             )}
           </div>
         </Link>
       </div>
     );
   }
+
+  const deathYearString = author.year ? ` (d. ${author.year})` : "";
 
   return (
     <Link
@@ -97,8 +110,16 @@ const BookSearchResult = ({
             secondaryTitle && (
               <p dangerouslySetInnerHTML={{ __html: secondaryTitle }} />
             ),
-            <p>{authorName}</p>,
-            authorSecondaryName && <p>{authorSecondaryName}</p>,
+            <p>
+              {authorName}
+              {deathYearString}
+            </p>,
+            authorSecondaryName && (
+              <p>
+                {authorSecondaryName}
+                {deathYearString}
+              </p>
+            ),
           ]}
         />
       </div>

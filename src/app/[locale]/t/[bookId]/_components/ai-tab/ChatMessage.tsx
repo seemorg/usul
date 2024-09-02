@@ -14,6 +14,7 @@ import { useBoolean } from "usehooks-ts";
 import { useTranslations } from "next-intl";
 import { useReaderVirtuoso } from "../context";
 import { memo, useCallback } from "react";
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 type ChatMessageProps = {
   text: string;
@@ -23,8 +24,7 @@ type ChatMessageProps = {
   isLast?: boolean;
   hasActions?: boolean;
   isScreenshot?: boolean;
-  pagesRange: { start: number; end: number };
-  pageToIndex?: Record<number, number>;
+  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 };
 
 const ChatMessage = ({
@@ -35,8 +35,7 @@ const ChatMessage = ({
   hasActions = true,
   isScreenshot = false,
   onRegenerate,
-  pagesRange,
-  pageToIndex,
+  getVirtuosoIndex,
 }: ChatMessageProps) => {
   const { toast } = useToast();
   const t = useTranslations();
@@ -44,18 +43,12 @@ const ChatMessage = ({
   const isLoading = useBoolean(false);
 
   const handleNavigateToPage = useCallback(
-    (pageNumber: number) => {
-      if (pageNumber === -1) return;
+    (page?: { vol: string; page: number }) => {
+      if (!page) return;
 
-      virtuosoRef.current?.scrollToIndex({
-        // since range.start is our 0 index, we need to subtract it from the page number
-        index: pageToIndex
-          ? pageToIndex[pageNumber] ?? pageNumber - pagesRange.start
-          : pageNumber - pagesRange.start,
-        align: "center",
-      });
+      virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(page));
     },
-    [pageToIndex, pagesRange.start],
+    [getVirtuosoIndex],
   );
 
   const handleRegenerate = useCallback(async () => {
@@ -115,7 +108,7 @@ const ChatMessage = ({
             <div className="mt-4 flex flex-wrap items-center gap-1">
               {t("reader.chat.sources")}:
               {sourceNodes?.slice(0, 5).map((sourceNode, idx) => {
-                const page = sourceNode.metadata.pages[0]?.page ?? -1;
+                const page = sourceNode.metadata.pages[0];
 
                 return (
                   <button
@@ -124,7 +117,7 @@ const ChatMessage = ({
                     onClick={() => handleNavigateToPage(page)}
                   >
                     {t("reader.chat.pg-x", {
-                      page,
+                      page: page?.page,
                     })}
                   </button>
                 );
