@@ -36,7 +36,7 @@ import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
-  const { pageToIndex, pagesRange } = usePageNavigation(bookResponse);
+  const { getVirtuosoIndex } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
@@ -144,8 +144,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
           <SearchResult
             key={idx}
             result={r}
-            pagesRange={pagesRange}
-            pageToIndex={pageToIndex}
+            getVirtuosoIndex={getVirtuosoIndex}
           />
         ))}
       </div>

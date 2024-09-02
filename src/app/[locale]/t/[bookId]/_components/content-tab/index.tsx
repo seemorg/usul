@@ -83,7 +83,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const pathLocale = usePathLocale();
   const t = useTranslations();
   const locale = useLocale();
-  const { pagesRange } = usePageNavigation(bookResponse);
+  const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
   const direction = getLocaleDirection(locale as any);
 
   const book = bookResponse.book;
@@ -104,12 +104,15 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const secondaryOtherNames =
     getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
 
-  const headings = bookResponse.turathResponse
-    ? bookResponse.turathResponse.indexes.headings
-    : bookResponse.headers;
+  const headings =
+    bookResponse.source === "turath"
+      ? bookResponse.turathResponse.headings
+      : bookResponse.headers;
 
-  const pageToIndex = bookResponse.pageNumberToIndex;
-  const chapterIndexToPageIndex = bookResponse.chapterIndexToPageIndex;
+  const chapterIndexToPageIndex =
+    bookResponse.source === "turath"
+      ? bookResponse.chapterIndexToPageIndex
+      : null;
 
   return (
     <>
@@ -181,12 +184,19 @@ export default function ContentTab({ bookResponse }: TabProps) {
             {t("reader.version")}
           </Label>
 
-          <VersionSelector versions={book.versions} />
+          <VersionSelector
+            versions={book.versions}
+            versionId={bookResponse.versionId}
+          />
         </div>
 
         <div className="w-full pb-2 pt-4">
           <PdfButton
-            pdf={bookResponse.turathResponse?.meta.pdf_links}
+            pdf={
+              bookResponse.source === "turath"
+                ? bookResponse.turathResponse.pdf
+                : null
+            }
             slug={bookResponse.book.slug}
           />
         </div>
@@ -248,20 +258,23 @@ export default function ContentTab({ bookResponse }: TabProps) {
       <Separator className="my-4" />
 
       <SidebarContainer className="flex flex-col gap-3">
-        {(bookResponse.turathResponse
-          ? bookResponse.turathResponse.indexes.headings
+        {(bookResponse.source === "turath"
+          ? bookResponse.turathResponse.headings
           : bookResponse.headers
         ).length > 0 && (
           <div className="w-full">
-            <PageNavigator range={pagesRange} pageToIndex={pageToIndex} />
+            <PageNavigator
+              range={pagesRange}
+              getVirtuosoIndex={getVirtuosoIndex}
+            />
           </div>
         )}
 
         <ChaptersList
-          pagesRange={pagesRange}
           headers={headings}
-          pageToIndex={pageToIndex}
+          getVirtuosoIndex={getVirtuosoIndex}
           chapterIndexToPageIndex={chapterIndexToPageIndex}
+          pagesRange={pagesRange}
         />
       </SidebarContainer>
 

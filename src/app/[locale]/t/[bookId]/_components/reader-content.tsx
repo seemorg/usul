@@ -1,17 +1,19 @@
 "use client";
 
 import RenderBlock from "@/components/render-markdown";
-import type { fetchBook } from "@/server/services/books";
+import type {
+  OpenitiBookResponse,
+  TurathBookResponse,
+} from "@/server/services/books";
 import { Virtuoso } from "react-virtuoso";
 import React, { useCallback, type PropsWithChildren } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "./context";
 import Footer from "@/app/_components/footer";
 import { useTranslations } from "next-intl";
 
-type ResponseType = Awaited<ReturnType<typeof fetchBook>>;
 type Pages =
-  | NonNullable<ResponseType["pages"]>
-  | NonNullable<ResponseType["turathResponse"]>["pages"];
+  | OpenitiBookResponse["pages"]
+  | TurathBookResponse["turathResponse"]["pages"];
 
 const PageLabel = (props: PropsWithChildren) => (
   <p
@@ -33,16 +35,16 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
       if (isTurath) {
         return (
           <>
+            <div className="flex flex-col" />
             <div
+              className="text-2xl leading-[2.3] [&_span[data-type='title']:first-child]:mt-0 [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:my-5 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:font-bold"
               dangerouslySetInnerHTML={{
                 __html: pageObj.text.replaceAll("</span>.", "</span>"),
               }}
-              className="flex flex-col text-2xl leading-[2.3] [&>span:first-child]:mt-0 [&>span]:mx-auto [&>span]:my-10 [&>span]:text-center [&>span]:font-bold"
             />
-
             <PageLabel>
               {pageObj.page
-                ? t("pagination.page-x", { page: pageObj.page })
+                ? `${pageObj.vol} / ${pageObj.page}`
                 : t("pagination.page-unknown")}
             </PageLabel>
           </>

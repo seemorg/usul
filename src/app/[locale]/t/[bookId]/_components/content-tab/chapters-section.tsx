@@ -1,41 +1,47 @@
 "use client";
 
-import type { fetchBook } from "@/server/services/books";
+import type {
+  OpenitiBookResponse,
+  TurathBookResponse,
+} from "@/server/services/books";
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useFormatter } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
-// import { Virtuoso } from "react-virtuoso";
 import React from "react";
-
-type ResponseType = Awaited<ReturnType<typeof fetchBook>>;
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 export default function ChaptersList({
   headers,
-  pagesRange,
-  pageToIndex,
   chapterIndexToPageIndex,
+  getVirtuosoIndex,
+  pagesRange,
 }: {
   headers:
-    | NonNullable<ResponseType["headers"]>
-    | NonNullable<ResponseType["turathResponse"]>["indexes"]["headings"];
-  chapterIndexToPageIndex: ResponseType["chapterIndexToPageIndex"];
-  pagesRange: { start: number; end: number };
-  pageToIndex?: Record<number, number>;
+    | TurathBookResponse["turathResponse"]["headings"]
+    | OpenitiBookResponse["headers"];
+  chapterIndexToPageIndex?:
+    | TurathBookResponse["chapterIndexToPageIndex"]
+    | null;
+  pagesRange: UsePageNavigationReturnType["pagesRange"];
+  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const formatter = useFormatter();
   const mobileSidebar = useMobileSidebar();
 
-  const handleNavigate = (chapterIndex: number, pageNumber: number) => {
-    virtuosoRef.current?.scrollToIndex({
-      index: chapterIndexToPageIndex
-        ? chapterIndexToPageIndex[chapterIndex] ?? 0
-        : pageNumber - pagesRange.start,
-      align: "center",
-    });
+  const handleNavigate = (
+    chapterIndex: number,
+    pageNumber: number | { vol: string; page: number } | string,
+  ) => {
+    if (typeof pageNumber === "string") return;
+
+    const idx = chapterIndexToPageIndex?.[chapterIndex] ?? -1;
+    virtuosoRef.current?.scrollToIndex(
+      idx !== -1 ? idx : getVirtuosoIndex(pageNumber),
+    );
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
@@ -44,9 +50,9 @@ export default function ChaptersList({
     return (
       <div className="mt-5">
         <PageNavigator
-          range={pagesRange}
           popover={false}
-          pageToIndex={pageToIndex}
+          range={pagesRange}
+          getVirtuosoIndex={getVirtuosoIndex}
         />
       </div>
     );
@@ -93,14 +99,16 @@ export default function ChaptersList({
             )}
             dir="rtl"
             onClick={() => {
-              if (page && typeof page === "number") {
+              if (page) {
                 handleNavigate(idx, page);
               }
             }}
           >
-            {chapter.page && (
+            {page && (
               <span className="text-xs">
-                {typeof page === "number" ? formatter.number(page) : page}
+                {typeof page === "string" || typeof page === "number"
+                  ? formatter.number(Number(page))
+                  : `${page.vol} / ${page.page}`}
               </span>
             )}
 

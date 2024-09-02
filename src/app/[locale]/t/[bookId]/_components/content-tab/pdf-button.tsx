@@ -3,15 +3,15 @@
 import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { bytesToMB } from "@/lib/utils";
-import type { TurathBookResponse } from "@/types/turath/book";
 import React from "react";
 import { useTranslations } from "next-intl";
+import type { TurathBookResponse } from "@/server/services/books";
 
 export default function PdfButton({
   pdf,
   slug,
 }: {
-  pdf: TurathBookResponse["meta"]["pdf_links"];
+  pdf?: TurathBookResponse["turathResponse"]["pdf"] | null;
   slug: string;
 }) {
   const t = useTranslations("reader");

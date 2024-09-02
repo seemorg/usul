@@ -11,15 +11,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 const SearchResult = ({
   result,
-  pagesRange,
-  pageToIndex,
+  getVirtuosoIndex,
 }: {
   result: SemanticSearchBookNode;
-  pagesRange: { start: number; end: number };
-  pageToIndex?: Record<number, number>;
+  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -30,12 +29,7 @@ const SearchResult = ({
   const handleNavigate = () => {
     if (!page || page.page === -1) return;
 
-    virtuosoRef.current?.scrollToIndex({
-      index: pageToIndex
-        ? pageToIndex[page.page] ?? page.page - pagesRange.start
-        : page.page - pagesRange.start,
-      align: "center",
-    });
+    virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(page));
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };

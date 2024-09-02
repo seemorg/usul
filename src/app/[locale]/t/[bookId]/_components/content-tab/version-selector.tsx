@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 
 const idToName: Record<string, string> = {
@@ -51,21 +50,19 @@ const versionToName = (version: PrismaJson.BookVersion) => {
 
 export default function VersionSelector({
   versions,
+  versionId,
 }: {
   versions: PrismaJson.BookVersion[];
+  versionId: string;
 }) {
-  const params = useSearchParams();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const { replace } = useRouter();
   const t = useTranslations("reader");
 
   const [selectedVersion, setSelectedVersion] = useState(() => {
-    const versionInUrl = params.get("version");
-
-    const version = versionInUrl
-      ? versions.find((v) => v.value === versionInUrl)?.value ??
-        versions[0]?.value
+    const version = versionId
+      ? versions.find((v) => v.value === versionId)?.value ?? versions[0]?.value
       : versions[0]?.value;
 
     return version;
@@ -78,7 +75,7 @@ export default function VersionSelector({
     const newUrl =
       newVersion === versions[0]?.value
         ? pathname
-        : `${pathname}?version=${newVersion}`;
+        : `${pathname}?versionId=${newVersion}`;
 
     startTransition(() => {
       replace(newUrl);
