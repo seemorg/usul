@@ -1,3 +1,5 @@
+"use server";
+
 import { makeSearchRequest } from "@/lib/typesense";
 import {
   makePagination,

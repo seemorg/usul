@@ -1,3 +1,5 @@
+"use server";
+
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
