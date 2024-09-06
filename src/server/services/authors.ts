@@ -4,6 +4,7 @@ import type { PathLocale } from "@/lib/locale/utils";
 import { db } from "../db";
 import { cache } from "react";
 import { getLocaleWhereClause } from "../db/localization";
+import { unstable_cache } from "next/cache";
 
 export const findAuthorBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {
@@ -55,6 +56,12 @@ export const findAllAuthorIdsWithBooksCount = cache(async () => {
   });
 });
 
-export const countAllAuthors = cache(async () => {
-  return await db.author.count();
-});
+export const countAllAuthors = cache(
+  unstable_cache(
+    async () => {
+      return await db.author.count();
+    },
+    ["authors-count"],
+    { revalidate: false },
+  ),
+);

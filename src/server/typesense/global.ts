@@ -1,7 +1,10 @@
-"use server";
-
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareQuery, type SearchOptions } from "./utils";
+import {
+  makePagination,
+  prepareQuery,
+  prepareResults,
+  type SearchOptions,
+} from "./utils";
 import { GLOBAL_SEARCH_COLLECTION } from "./config";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
@@ -25,7 +28,7 @@ export const searchAllCollections = async (
   })) as SearchResponse<GlobalSearchDocument>;
 
   return {
-    results,
+    results: prepareResults(results),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

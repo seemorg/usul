@@ -2,6 +2,7 @@
 
 import { cache } from "react";
 import { db } from "../db";
+import { unstable_cache } from "next/cache";
 
 export const findAllGenres = cache(async () => {
   return await db.genre.findMany();
@@ -72,7 +73,13 @@ export const findAllGenresWithBooksCount = cache(
   },
 );
 
-export const countAllGenres = cache(async () => {
-  const result = await db.genre.count();
-  return result;
-});
+export const countAllGenres = cache(
+  unstable_cache(
+    async () => {
+      const result = await db.genre.count();
+      return result;
+    },
+    ["genres-count"],
+    { revalidate: false },
+  ),
+);

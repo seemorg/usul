@@ -1,9 +1,12 @@
-"use server";
-
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
-import { type SearchOptions, makePagination, prepareQuery } from "./utils";
+import {
+  type SearchOptions,
+  makePagination,
+  prepareQuery,
+  prepareResults,
+} from "./utils";
 import { makeMultiSearchRequest } from "@/lib/typesense";
 import { AUTHORS_COLLECTION, BOOKS_COLLECTION } from "./config";
 
@@ -12,9 +15,9 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
 
   const genres = (options?.filters?.genres ?? null) as string[] | null;
   const authors = (options?.filters?.authors ?? null) as string[] | null;
-  const geographies = (options?.filters?.geographies ?? null) as
-    | string[]
-    | null;
+  // const geographies = (options?.filters?.geographies ?? null) as
+  //   | string[]
+  //   | null;
   const regions = (options?.filters?.regions ?? null) as string[] | null;
   const yearRange = (options?.filters?.yearRange ?? null) as number[] | null;
 
@@ -22,7 +25,7 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
   if (yearRange) filters.push(`year:[${yearRange[0]}..${yearRange[1]}]`);
   if (genres && genres.length > 0) {
     filters.push(
-      `genreTags:[${genres.map((genre) => `\`${genre}\``).join(", ")}]`,
+      `genreIds:[${genres.map((genre) => `\`${genre}\``).join(", ")}]`,
     );
   }
 
@@ -30,21 +33,15 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
     filters.push(`authorId:[${authors.map((id) => `\`${id}\``).join(", ")}]`);
   }
 
-  if (geographies && geographies.length > 0) {
-    filters.push(
-      `geographies:[${geographies.map((geo) => `\`${geo}\``).join(", ")}]`,
-    );
-  }
+  // if (geographies && geographies.length > 0) {
+  //   filters.push(
+  //     `geographies:[${geographies.map((geo) => `\`${geo}\``).join(", ")}]`,
+  //   );
+  // }
 
   if (regions && regions.length > 0) {
     filters.push(
-      `regions:[${regions
-        .flatMap((region) => {
-          return ["born", "died", "visited", "resided"].map(
-            (type) => `\`${type}@${region}\``,
-          );
-        })
-        .join(", ")}]`,
+      `regions:[${regions.map((region) => `\`${region}\``).join(", ")}]`,
     );
   }
 
@@ -79,7 +76,7 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
           {
             collection: AUTHORS_COLLECTION.INDEX,
             q: "",
-            query_by: "primaryArabicName",
+            query_by: "primaryNames.text",
             limit: 100,
             page: 1,
             filter_by: `id:[${authors.map((id) => `\`${id}\``).join(", ")}]`,
@@ -93,7 +90,7 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
   const [booksResults, selectedAuthorsResults] = results.results;
 
   return {
-    results: booksResults,
+    results: prepareResults(booksResults),
     pagination: makePagination(booksResults.found, booksResults.page, limit),
     selectedAuthors: selectedAuthorsResults ?? null,
   };

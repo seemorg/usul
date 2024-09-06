@@ -3,6 +3,7 @@
 import { cache } from "react";
 import descriptions from "~/data/centuries.json";
 import { db } from "../db";
+import { unstable_cache } from "next/cache";
 
 export const findAllYearRanges = cache(async () => {
   const counts = await countAllBooksByCentury();
@@ -39,8 +40,10 @@ export const findYearRangeBySlug = cache(async (slug: string | number) => {
   return allRanges.find((r) => r.centuryNumber === Number(slug));
 });
 
-export const countAllBooksByCentury = cache(async () => {
-  const result = await db.$queryRaw<{ century: number; count: number }[]>`
+export const countAllBooksByCentury = cache(
+  unstable_cache(
+    async () => {
+      const result = await db.$queryRaw<{ century: number; count: number }[]>`
 SELECT 
 FLOOR("Author"."year" / 100) + 1 AS "century", 
 COUNT("Book"."id")::int as count
@@ -49,5 +52,9 @@ LEFT JOIN "Author" ON "Book"."authorId" = "Author"."id"
 GROUP BY "century" 
   `;
 
-  return result;
-});
+      return result;
+    },
+    ["years-count"],
+    { revalidate: false },
+  ),
+);

@@ -11,6 +11,6 @@ export type RegionDocument = {
   authorsCount: number;
   _popularity: number;
 
-  subLocations: string[];
+  subLocations: LocalizedEntry[];
   subLocationsCount: number;
 };

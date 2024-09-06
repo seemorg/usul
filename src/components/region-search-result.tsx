@@ -14,9 +14,7 @@ import {
 export default async function RegionSearchResult({
   result,
 }: {
-  result: NonNullable<
-    Awaited<ReturnType<typeof searchRegions>>["results"]["hits"]
-  >[number];
+  result: Awaited<ReturnType<typeof searchRegions>>["results"]["hits"][number];
 }) {
   const t = await getTranslations();
   const pathLocale = await getPathLocale();

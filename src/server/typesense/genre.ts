@@ -1,5 +1,5 @@
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, type SearchOptions } from "./utils";
+import { makePagination, prepareResults, type SearchOptions } from "./utils";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { GenreDocument } from "@/types/genre";
 import { GENRES_COLLECTION } from "./config";
@@ -23,7 +23,7 @@ export const searchGenres = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<GenreDocument>;
 
   return {
-    results,
+    results: prepareResults(results),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

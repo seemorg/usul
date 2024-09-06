@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import Paginator from "@/components/ui/pagination";
 import type { Pagination } from "@/types/pagination";
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
+import type { TypesenseResponse } from "@/server/typesense/utils";
 import SearchSort from "./sort";
 import {
   Drawer,
@@ -21,10 +21,8 @@ import type { View } from "@/validation/view";
 import type { Sort } from "@/types/sort";
 
 interface SearchResultsProps<T extends object & { id: string }> {
-  response: SearchResponse<T>;
-  renderResult: (
-    result: NonNullable<SearchResponse<T>["hits"]>[number],
-  ) => JSX.Element;
+  response: TypesenseResponse<T>;
+  renderResult: (result: TypesenseResponse<T>["hits"][number]) => JSX.Element;
   pagination?: Pagination;
   emptyMessage?: string;
   sorts: Sort[];
