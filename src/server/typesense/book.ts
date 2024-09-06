@@ -92,7 +92,9 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
   return {
     results: prepareResults(booksResults),
     pagination: makePagination(booksResults.found, booksResults.page, limit),
-    selectedAuthors: selectedAuthorsResults ?? null,
+    selectedAuthors: selectedAuthorsResults
+      ? prepareResults(selectedAuthorsResults)
+      : null,
   };
 
   // return {
