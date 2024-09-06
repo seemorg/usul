@@ -7,6 +7,7 @@ import { getLocaleWhereClause } from "../db/localization";
 import { fetchTurathBook } from "./book-fetchers/turath";
 import { fetchOpenitiBook } from "./book-fetchers/openiti";
 import { log } from "next-axiom";
+import { unstable_cache } from "next/cache";
 
 export type TurathBookResponse = {
   source: "turath";
@@ -131,9 +132,15 @@ export const fetchBook = cache(
   },
 );
 
-export const countAllBooks = cache(async () => {
-  return await db.book.count();
-});
+export const countAllBooks = cache(
+  unstable_cache(
+    async () => {
+      return await db.book.count();
+    },
+    ["books-count"],
+    { revalidate: false },
+  ),
+);
 
 export const getPopularBooks = cache(async () => {
   const result = await db.book.findMany({

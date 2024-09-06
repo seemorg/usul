@@ -14,25 +14,17 @@ import {
 const AuthorSearchResult = async ({
   result,
 }: {
-  result: NonNullable<
-    Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"]
-  >[number];
+  result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
 }) => {
   const t = await getTranslations();
   const pathLocale = await getPathLocale();
 
   const { document } = result;
 
-  // const primaryArabicName = highlight?.primaryArabicName?.snippet
-  //   ? highlight.primaryArabicName.snippet
-  //   : document.primaryArabicName;
-  // const primaryLatinName = highlight?.primaryLatinName?.snippet
-  //   ? highlight.primaryLatinName.snippet
-  //   : document.primaryLatinName;
-  const primaryName = getPrimaryLocalizedText(
-    document.primaryNames,
-    pathLocale,
-  );
+  const primaryName =
+    document.transliteration && pathLocale === "en"
+      ? document.transliteration
+      : getPrimaryLocalizedText(document.primaryNames, pathLocale);
   const secondaryName = getSecondaryLocalizedText(
     document.primaryNames,
     pathLocale,

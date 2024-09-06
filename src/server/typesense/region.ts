@@ -1,5 +1,5 @@
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, type SearchOptions } from "./utils";
+import { makePagination, prepareResults, type SearchOptions } from "./utils";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { RegionDocument } from "@/types/region";
 import { REGIONS_COLLECTION } from "./config";
@@ -23,7 +23,7 @@ export const searchRegions = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<RegionDocument>;
 
   return {
-    results,
+    results: prepareResults(results),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

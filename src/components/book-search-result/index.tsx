@@ -21,9 +21,7 @@ const BookSearchResult = ({
   view,
 }: {
   view?: View;
-  result: NonNullable<
-    Awaited<ReturnType<typeof searchBooks>>["results"]["hits"]
-  >[number];
+  result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
 }) => {
   const t = useTranslations();
   const pathLocale = usePathLocale();
@@ -31,14 +29,21 @@ const BookSearchResult = ({
 
   const { primaryNames, author } = document;
 
-  const title = getPrimaryLocalizedText(primaryNames, pathLocale) ?? "";
+  const title =
+    document.transliteration && pathLocale === "en"
+      ? document.transliteration
+      : getPrimaryLocalizedText(primaryNames, pathLocale) ?? "";
   const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
   const authorPrimaryNames =
     author?.primaryNames ?? (author as any)?.primaryNameTranslations;
-  const authorName = authorPrimaryNames
-    ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
-    : undefined;
+
+  const authorName =
+    author.transliteration && pathLocale === "en"
+      ? author.transliteration
+      : authorPrimaryNames
+        ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
+        : undefined;
   const authorSecondaryName = author?.primaryNames
     ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
     : undefined;
@@ -68,21 +73,21 @@ const BookSearchResult = ({
               title={title}
             />
 
+            {authorName && (
+              <p
+                className="mt-1 line-clamp-2 text-wrap text-right text-sm text-muted-foreground"
+                title={authorName}
+              >
+                {authorName}
+              </p>
+            )}
+
             {secondaryTitle && (
               <p
                 className="mt-1 text-wrap text-right"
                 dangerouslySetInnerHTML={{ __html: secondaryTitle }}
                 title={secondaryTitle}
               />
-            )}
-
-            {authorName && (
-              <p
-                className="mt-2 text-wrap text-right text-sm text-muted-foreground"
-                title={authorName}
-              >
-                {authorName}
-              </p>
             )}
           </div>
         </Link>

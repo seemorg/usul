@@ -7,7 +7,7 @@ export default function RootEntityPage({
 }: {
   children: React.ReactNode;
   title: string;
-  description?: string;
+  description?: React.ReactNode;
 }) {
   return (
     <>

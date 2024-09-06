@@ -1,7 +1,10 @@
-"use server";
-
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
-import { type SearchOptions, makePagination, prepareQuery } from "./utils";
+import {
+  type SearchOptions,
+  makePagination,
+  prepareQuery,
+  prepareResults,
+} from "./utils";
 import type { AuthorDocument } from "@/types/author";
 import { makeSearchRequest } from "@/lib/typesense";
 import { AUTHORS_COLLECTION } from "./config";
@@ -11,30 +14,24 @@ export const searchAuthors = async (q: string, options?: SearchOptions) => {
     options ?? {};
 
   const yearRange = (options?.filters?.yearRange ?? null) as number[] | null;
-  const geographies = (options?.filters?.geographies ?? null) as
-    | string[]
-    | null;
+  // const geographies = (options?.filters?.geographies ?? null) as
+  //   | string[]
+  //   | null;
   const regions = (options?.filters?.regions ?? null) as string[] | null;
   const ids = (options?.filters?.ids ?? null) as string[] | null;
 
   const filters: string[] = [];
   if (yearRange) filters.push(`year:[${yearRange[0]}..${yearRange[1]}]`);
 
-  if (geographies && geographies.length > 0) {
-    filters.push(
-      `geographies:[${geographies.map((geo) => `\`${geo}\``).join(", ")}]`,
-    );
-  }
+  // if (geographies && geographies.length > 0) {
+  //   filters.push(
+  //     `geographies:[${geographies.map((geo) => `\`${geo}\``).join(", ")}]`,
+  //   );
+  // }
 
   if (regions && regions.length > 0) {
     filters.push(
-      `regions:[${regions
-        .flatMap((region) => {
-          return ["born", "died", "visited", "resided"].map(
-            (type) => `\`${type}@${region}\``,
-          );
-        })
-        .join(", ")}]`,
+      `regions:[${regions.map((region) => `\`${region}\``).join(", ")}]`,
     );
   }
 
@@ -55,7 +52,7 @@ export const searchAuthors = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<AuthorDocument>;
 
   return {
-    results,
+    results: prepareResults(results),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

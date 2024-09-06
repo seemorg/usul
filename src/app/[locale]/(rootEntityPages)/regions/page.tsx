@@ -9,6 +9,7 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { InfoIcon } from "lucide-react";
 
 type PageProps = InferPagePropsType<RouteType>;
 
@@ -41,6 +42,18 @@ async function RegionsPage({ searchParams }: PageProps) {
         entity: t("regions"),
       })}
     >
+      <p className="-mt-14 mb-12 flex items-center">
+        <InfoIcon className="mr-1 size-4 rtl:ml-1" />
+        Regions on Usul are based on the&nbsp;
+        <a
+          href="https://althurayya.github.io/"
+          target="_blank"
+          className="underline"
+        >
+          Turayya project
+        </a>
+      </p>
+
       <SearchResults
         response={results.results}
         pagination={results.pagination}

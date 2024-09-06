@@ -3,7 +3,6 @@
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
@@ -12,6 +11,7 @@ import { useFormatter, useTranslations } from "next-intl";
 import { searchAuthors } from "@/server/typesense/author";
 import { usePathLocale } from "@/lib/locale/utils";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
+import type { TypesenseResponse } from "@/server/typesense/utils";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -39,7 +39,7 @@ interface AuthorsFilterProps {
   initialAuthorsResponse: Awaited<ReturnType<typeof searchAuthors>>;
   booksCount: Awaited<ReturnType<typeof findAllAuthorIdsWithBooksCount>>;
   currentAuthors: string[];
-  selectedAuthorsResponse: SearchResponse<AuthorDocument> | null;
+  selectedAuthorsResponse: TypesenseResponse<AuthorDocument> | null;
   filters?: Record<string, any>;
 }
 

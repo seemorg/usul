@@ -1,18 +1,31 @@
-import type { AuthorDocument } from "./author";
 import type { LocalizedArrayEntry, LocalizedEntry } from "./localized-entry";
 
 export type BookDocument = {
   id: string;
   slug: string;
   authorId: string;
-
+  transliteration?: string;
   primaryNames: LocalizedEntry[];
   otherNames: LocalizedArrayEntry[];
 
   _nameVariations: string[];
   _popularity: number;
-  author: Omit<AuthorDocument, "books" | "booksCount" | "geographies">;
-  versionIds: string[];
+
+  versions: PrismaJson.BookVersion[];
+  genreIds: string[];
+  // these are derived from the author
+  author: {
+    id: string;
+    slug: string;
+    transliteration?: string;
+    year: number;
+    primaryNames: LocalizedEntry[];
+    otherNames: LocalizedArrayEntry[];
+    _nameVariations: string[];
+    booksCount: number;
+  };
+
   year: number;
-  genreTags: string[];
+  geographies: string[];
+  regions: string[];
 };

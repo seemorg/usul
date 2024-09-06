@@ -1,5 +1,9 @@
 import { removeDiacritics } from "@/lib/diacritics";
 import type { Pagination } from "@/types/pagination";
+import type {
+  DocumentSchema,
+  SearchResponse,
+} from "typesense/lib/Typesense/Documents";
 
 export const makePagination = (
   totalRecords: number,
@@ -14,6 +18,23 @@ export const makePagination = (
     currentPage,
     hasPrev: currentPage > 1,
     hasNext: currentPage < totalPages,
+  };
+};
+
+export type TypesenseResponse<T extends DocumentSchema = any> = ReturnType<
+  typeof prepareResults<T>
+>;
+
+export const prepareResults = <T extends DocumentSchema = any>(
+  results: SearchResponse<T>,
+) => {
+  return {
+    found: results.found,
+    page: results.page,
+    hits:
+      results.hits?.map((h) => ({
+        document: h.document,
+      })) ?? [],
   };
 };
 
