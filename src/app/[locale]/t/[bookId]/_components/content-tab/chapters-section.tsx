@@ -34,13 +34,36 @@ export default function ChaptersList({
 
   const handleNavigate = (
     chapterIndex: number,
-    pageNumber: number | { vol: string; page: number } | string,
+    pageNumber:
+      | number
+      | { vol: string; page: number }
+      | { volume: number | string; page: number | string }
+      | string,
   ) => {
     if (typeof pageNumber === "string") return;
 
+    let pg: number | undefined;
+    let volume: number | string | undefined;
+    if (typeof pageNumber === "object") {
+      pg =
+        typeof pageNumber.page === "string"
+          ? Number(pageNumber.page)
+          : pageNumber.page;
+      volume = "vol" in pageNumber ? pageNumber.vol : pageNumber.volume;
+    }
+
     const idx = chapterIndexToPageIndex?.[chapterIndex] ?? -1;
     virtuosoRef.current?.scrollToIndex(
-      idx !== -1 ? idx : getVirtuosoIndex(pageNumber),
+      idx !== -1
+        ? idx
+        : getVirtuosoIndex(
+            typeof pageNumber === "object"
+              ? {
+                  page: pg as number,
+                  vol: String(volume) as string,
+                }
+              : pageNumber,
+          ),
     );
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
@@ -86,7 +109,7 @@ export default function ChaptersList({
       /> */}
 
       {headers.map((chapter, idx) => {
-        const page = "level" in chapter ? chapter.page : chapter?.page?.page;
+        const page = "level" in chapter ? chapter.page : chapter?.page;
         const title = "title" in chapter ? chapter.title : chapter.content;
 
         return (
@@ -108,7 +131,7 @@ export default function ChaptersList({
               <span className="text-xs">
                 {typeof page === "string" || typeof page === "number"
                   ? formatter.number(Number(page))
-                  : `${page.vol} / ${page.page}`}
+                  : `${"volume" in page ? page.volume : page.vol} / ${page.page}`}
               </span>
             )}
 

@@ -1,6 +1,6 @@
 "use client";
 
-import RenderBlock from "@/components/render-markdown";
+// import RenderBlock from "@/components/render-markdown";
 import type {
   OpenitiBookResponse,
   TurathBookResponse,
@@ -30,45 +30,52 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
   const renderContent = useCallback(
     (index: number) => {
       const pageObj = pages[index]!;
-      const isTurath = "text" in pageObj;
+      // const isTurath = "text" in pageObj;
 
-      if (isTurath) {
-        return (
-          <>
-            <div className="flex flex-col" />
-            <div
-              className="text-2xl leading-[2.3] [&_span[data-type='title']:first-child]:mt-0 [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:my-5 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:font-bold"
-              dangerouslySetInnerHTML={{
-                __html: pageObj.text.replaceAll("</span>.", "</span>"),
-              }}
-            />
-            <PageLabel>
-              {pageObj.page
-                ? `${pageObj.vol} / ${pageObj.page}`
-                : t("pagination.page-unknown")}
-            </PageLabel>
-          </>
-        );
-      }
+      const volume = "volume" in pageObj ? pageObj.volume : pageObj.vol;
+      const page = pageObj.page;
 
-      const { blocks, page } = pageObj;
+      const text = pageObj.text.replaceAll("</span>.", "</span>");
 
+      // if (isTurath) {
       return (
         <>
-          {blocks.map((block, blockIndex) => (
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-            <RenderBlock key={blockIndex} block={block as any} />
-          ))}
+          <div className="flex flex-col" />
+          {/* [&_span[data-type='title']:first-child]:mt-0 */}
+          <div
+            className="text-2xl leading-[2.3] [&_a]:text-primary [&_a]:underline [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:mb-12 [&_span[data-type='title']]:mt-28 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:text-3xl [&_span[data-type='title']]:font-bold [&_span[data-type='title']]:leading-[2]"
+            dangerouslySetInnerHTML={{
+              __html: text,
+            }}
+          />
 
           <PageLabel>
-            {page
-              ? typeof page.page === "number"
-                ? t("pagination.page-x", { page: page.page })
-                : page.page
+            {pageObj.page
+              ? `${volume} / ${page}`
               : t("pagination.page-unknown")}
           </PageLabel>
         </>
       );
+      // }
+
+      // const { blocks, page } = pageObj;
+
+      // return (
+      //   <>
+      //     {blocks.map((block, blockIndex) => (
+      //       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      //       <RenderBlock key={blockIndex} block={block as any} />
+      //     ))}
+
+      //     <PageLabel>
+      //       {page
+      //         ? typeof page.page === "number"
+      //           ? t("pagination.page-x", { page: page.page })
+      //           : page.page
+      //         : t("pagination.page-unknown")}
+      //     </PageLabel>
+      //   </>
+      // );
     },
     [pages, t],
   );

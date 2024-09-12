@@ -145,6 +145,6 @@
     "success": "Thank you!",
     "error": "Something went wrong. Please try again later."
   },
-  "year-filter-info": "Filter by author's death year",
-  "regions-filter-info": "Filter by a region the author was born in, resided, visited, or died"
+  "year-filter-info": "Author's death year",
+  "regions-filter-info": "Locations where the author has visited, been born, or died"
 }

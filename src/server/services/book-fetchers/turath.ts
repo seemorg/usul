@@ -23,6 +23,52 @@ const getTurathBookById = async (id: number | string) => {
   return JSON.parse(unObfuscateKeys(text)) as TurathBookResponse;
 };
 
+type PublicationDetails = {
+  title?: string;
+  author?: string;
+  editor?: string;
+  publisher?: string;
+  printVersion?: string;
+  volumes?: string;
+  pageNumbersMatchPrint?: boolean;
+};
+
+const getPublicationDetails = (info: string) => {
+  const publicationDetails: PublicationDetails = {};
+
+  info.split("\n").forEach((line) => {
+    if (line === "[ترقيم الكتاب موافق للمطبوع]") {
+      publicationDetails.pageNumbersMatchPrint = true;
+      return;
+    }
+
+    const [key, value] = line.split(":");
+    if (!key || !value) return;
+
+    const trimmedKey = key.trim();
+    let newKey: keyof Omit<PublicationDetails, "pageNumbersMatchPrint"> | null =
+      null;
+    if (trimmedKey === "الكتاب") {
+      newKey = "title";
+    } else if (trimmedKey === "المؤلف") {
+      newKey = "author";
+    } else if (trimmedKey === "المحقق") {
+      newKey = "editor";
+    } else if (trimmedKey === "الناشر") {
+      newKey = "publisher";
+    } else if (trimmedKey === "الطبعة") {
+      newKey = "printVersion";
+    } else if (trimmedKey === "عدد الأجزاء") {
+      newKey = "volumes";
+    }
+
+    if (newKey) {
+      publicationDetails[newKey] = value.trim();
+    }
+  });
+
+  return publicationDetails;
+};
 export const fetchTurathBook = async (id: string) => {
   const res = await getTurathBookById(id);
 
@@ -113,12 +159,15 @@ export const fetchTurathBook = async (id: string) => {
 
   const pdf = res.meta.pdf_links;
 
+  const publicationDetails = getPublicationDetails(res.meta.info);
+
   // fetch from turath
   return {
     turathResponse: {
       pdf,
       headings,
       pages: mergedPages,
+      publicationDetails,
     },
     chapterIndexToPageIndex,
     pageNumberWithVolumeToIndex,

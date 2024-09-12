@@ -33,6 +33,7 @@ import PdfButton from "./pdf-button";
 import type { TabProps } from "../sidebar/tabs";
 import { useLocale, useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
+import { CheckIcon, XIcon } from "lucide-react";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -117,6 +118,11 @@ export default function ContentTab({ bookResponse }: TabProps) {
     bookResponse.source === "turath"
       ? bookResponse.chapterIndexToPageIndex
       : null;
+
+  const publicationDetails =
+    bookResponse.source === "turath"
+      ? bookResponse.turathResponse.publicationDetails
+      : {};
 
   return (
     <>
@@ -215,22 +221,74 @@ export default function ContentTab({ bookResponse }: TabProps) {
               {t("reader.more-info")}
             </AccordionTrigger>
 
-            <AccordionContent className="flex flex-col gap-5">
+            <AccordionContent className="flex flex-col gap-8">
               <div>
                 <p className="font-semibold">{t("reader.other-titles")}:</p>
 
                 <div className="mt-3 space-y-3 text-sm text-muted-foreground">
-                  <p>
-                    {primaryOtherNames.length > 0
-                      ? primaryOtherNames.join(", ")
-                      : "-"}
-                  </p>
+                  {primaryOtherNames.length > 0 && (
+                    <p>{primaryOtherNames.join(", ")}</p>
+                  )}
 
-                  <p>
-                    {secondaryOtherNames.length > 0
-                      ? secondaryOtherNames.join(", ")
-                      : "-"}
-                  </p>
+                  {secondaryOtherNames.length > 0 && (
+                    <p>{secondaryOtherNames.join(", ")}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <p className="font-semibold">
+                  {t("reader.publication-details.title")}:
+                </p>
+
+                <div className="mt-3 flex flex-col gap-3">
+                  {publicationDetails.title && (
+                    <p>
+                      {t("reader.publication-details.book-title")}:{" "}
+                      <span dir="rtl">{publicationDetails.title}</span>
+                    </p>
+                  )}
+                  {publicationDetails.author && (
+                    <p>
+                      {t("reader.publication-details.author")}:{" "}
+                      <span dir="rtl">{publicationDetails.author}</span>
+                    </p>
+                  )}
+                  {publicationDetails.editor && (
+                    <p>
+                      {t("reader.publication-details.editor")}:{" "}
+                      <span dir="rtl">{publicationDetails.editor}</span>
+                    </p>
+                  )}
+                  {publicationDetails.publisher && (
+                    <p>
+                      {t("reader.publication-details.publisher")}:{" "}
+                      <span dir="rtl">{publicationDetails.publisher}</span>
+                    </p>
+                  )}
+                  {publicationDetails.printVersion && (
+                    <p>
+                      {t("reader.publication-details.print-version")}:{" "}
+                      <span dir="rtl">{publicationDetails.printVersion}</span>
+                    </p>
+                  )}
+                  {publicationDetails.volumes && (
+                    <p>
+                      {t("reader.publication-details.volumes")}:{" "}
+                      <span dir="rtl">{publicationDetails.volumes}</span>
+                    </p>
+                  )}
+                  {publicationDetails.pageNumbersMatchPrint !== undefined && (
+                    <p className="flex items-center gap-1">
+                      {t("reader.publication-details.page-numbers-match-print")}
+                      :{" "}
+                      {publicationDetails.pageNumbersMatchPrint ? (
+                        <CheckIcon className="size-4" />
+                      ) : (
+                        <XIcon className="size-4" />
+                      )}
+                    </p>
+                  )}
                 </div>
               </div>
 

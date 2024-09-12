@@ -18,8 +18,8 @@ importers:
         specifier: ^14.2.3
         version: 14.2.3(next@14.2.4(@babel/core@7.23.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       '@openiti/markdown-parser':
-        specifier: ^1.0.0
-        version: 1.0.0
+        specifier: ^1.1.0
+        version: 1.1.0
       '@prisma/adapter-neon':
         specifier: ^5.12.1
         version: 5.12.1(@neondatabase/serverless@0.9.0)
@@ -1351,8 +1351,8 @@ packages:
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
 
-  '@openiti/markdown-parser@1.0.0':
-    resolution: {integrity: sha512-D1tSjorwaBJdaJOq8TRc9kg6ewDPHahqhWw9GZdTXv/nwuNoUIdTxRP5vaPqGEpXpnxHwTgIiWvC4qHtWVFFDw==}
+  '@openiti/markdown-parser@1.1.0':
+    resolution: {integrity: sha512-CMO2PqAc3CAf1lRgaKHdCltVuNFxgJtupcmVZHjjt/rNmRbzT4VG6ljUo8zt9acIN6JtmTO6dLqEEIXk8Cd+tA==}
     engines: {node: '>=12'}
 
   '@pkgjs/parseargs@0.11.0':
@@ -8677,7 +8677,7 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
-  '@openiti/markdown-parser@1.0.0': {}
+  '@openiti/markdown-parser@1.1.0': {}
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
