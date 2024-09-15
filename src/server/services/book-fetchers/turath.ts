@@ -1,3 +1,4 @@
+import { bytesToMB } from "@/lib/utils";
 import type { TurathBookResponse } from "@/types/turath/book";
 
 const bookKeysMap = `
@@ -157,19 +158,49 @@ export const fetchTurathBook = async (id: string) => {
     });
   });
 
-  const pdf = res.meta.pdf_links;
-
   const publicationDetails = getPublicationDetails(res.meta.info);
 
   // fetch from turath
   return {
     turathResponse: {
-      pdf,
+      pdf: getPdfDetails(res.meta.pdf_links),
       headings,
       pages: mergedPages,
       publicationDetails,
     },
     chapterIndexToPageIndex,
     pageNumberWithVolumeToIndex,
+  };
+};
+
+const getPdfDetails = (pdf: TurathBookResponse["meta"]["pdf_links"]) => {
+  let root = pdf?.root ? pdf.root.replace(/\/$/, "") : null;
+  let file = pdf?.files[0];
+  if ((pdf?.files?.length ?? 0) > 1) {
+    const completeFile = pdf!.files?.find((e) => e.endsWith("|0"));
+    if (completeFile) {
+      file = completeFile.split("|")[0];
+    }
+  }
+
+  let finalUrl: string | undefined;
+  if (file) {
+    let url = `https://files.turath.io/pdf/`;
+
+    if (root) {
+      if (root.includes("archive.org")) {
+        root = "archive/" + root.replace("https://archive.org/download/", "");
+        url += `${root}_=_${file}`;
+      } else {
+        url += `${root}/${file}`;
+      }
+    }
+
+    finalUrl = encodeURI(url);
+  }
+
+  return {
+    finalUrl,
+    sizeInMb: pdf?.size ? bytesToMB(pdf.size) : undefined,
   };
 };

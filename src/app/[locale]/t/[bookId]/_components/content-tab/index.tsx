@@ -34,6 +34,7 @@ import type { TabProps } from "../sidebar/tabs";
 import { useLocale, useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
 import { CheckIcon, XIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -86,6 +87,9 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const locale = useLocale();
   const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
   const direction = getLocaleDirection(locale as any);
+  const view = (useSearchParams().get("view") ?? "default") as
+    | "pdf"
+    | "default";
 
   const book = bookResponse.book;
   const author = book.author;
@@ -327,7 +331,14 @@ export default function ContentTab({ bookResponse }: TabProps) {
         </Accordion>
       </SidebarContainer>
 
-      {bookResponse.source === "external" ? null : (
+      {bookResponse.source === "external" ? null : view === "pdf" ? (
+        <>
+          <Separator className="my-4" />
+          <SidebarContainer className="flex flex-col gap-3">
+            sorry, pdf view doesnt support navigation
+          </SidebarContainer>
+        </>
+      ) : (
         <>
           <Separator className="my-4" />
 
