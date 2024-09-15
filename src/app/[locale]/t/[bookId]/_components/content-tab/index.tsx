@@ -221,7 +221,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
               {t("reader.more-info")}
             </AccordionTrigger>
 
-            <AccordionContent className="flex flex-col gap-8">
+            <AccordionContent className="flex flex-col gap-5">
               <div>
                 <p className="font-semibold">{t("reader.other-titles")}:</p>
 
