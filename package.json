@@ -9,6 +9,7 @@
     "db:generate": "prisma generate",
     "dev": "next dev",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -17,7 +18,7 @@
     "@heroicons/react": "^2.1.1",
     "@neondatabase/serverless": "^0.9.0",
     "@next/third-parties": "^14.2.3",
-    "@openiti/markdown-parser": "^1.0.0",
+    "@openiti/markdown-parser": "^1.1.1",
     "@prisma/adapter-neon": "^5.12.1",
     "@prisma/client": "5.12.1",
     "@radix-ui/react-accordion": "^1.1.2",

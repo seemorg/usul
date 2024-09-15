@@ -12,7 +12,7 @@ import { useTranslations } from "next-intl";
 import RenderBlock from "@/components/render-markdown";
 
 type Pages =
-  | OpenitiBookResponse["pages"]
+  | OpenitiBookResponse["content"]
   | TurathBookResponse["turathResponse"]["pages"];
 
 const PageLabel = (props: PropsWithChildren) => (
@@ -62,10 +62,8 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
           ))}
 
           <PageLabel>
-            {page
-              ? typeof page.page === "number"
-                ? t("pagination.page-x", { page: page.page })
-                : page.page
+            {page && !isNaN(page)
+              ? t("pagination.page-x", { page })
               : t("pagination.page-unknown")}
           </PageLabel>
         </>

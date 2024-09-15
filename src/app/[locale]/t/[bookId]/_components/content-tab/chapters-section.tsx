@@ -21,7 +21,7 @@ export default function ChaptersList({
 }: {
   headers:
     | TurathBookResponse["turathResponse"]["headings"]
-    | OpenitiBookResponse["headers"];
+    | OpenitiBookResponse["chapters"];
   chapterIndexToPageIndex?:
     | TurathBookResponse["chapterIndexToPageIndex"]
     | null;
@@ -86,8 +86,11 @@ export default function ChaptersList({
       /> */}
 
       {headers.map((chapter, idx) => {
-        const page = "level" in chapter ? chapter.page : chapter?.page?.page;
-        const title = "title" in chapter ? chapter.title : chapter.content;
+        const page =
+          typeof chapter.page === "number" ? chapter.page : chapter?.page?.page;
+        const volume =
+          "volume" in chapter ? chapter.volume : (chapter?.page as any)?.vol;
+        const title = chapter.title;
 
         return (
           <Button
@@ -108,7 +111,7 @@ export default function ChaptersList({
               <span className="text-xs">
                 {typeof page === "string" || typeof page === "number"
                   ? formatter.number(Number(page))
-                  : `${page.vol} / ${page.page}`}
+                  : `${volume} / ${page}`}
               </span>
             )}
 

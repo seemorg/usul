@@ -35,10 +35,10 @@ export default async function SidebarContent({
   }
 
   let pages;
-  if (response.source === "turath" && "turathResponse" in response) {
+  if (response.source === "turath") {
     pages = response.turathResponse.pages;
-  } else if (response.source === "openiti" && "pages" in response) {
-    pages = response.pages;
+  } else if (response.source === "openiti") {
+    pages = response.content;
   } else {
     pages = null;
   }

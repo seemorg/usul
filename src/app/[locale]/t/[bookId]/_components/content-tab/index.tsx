@@ -111,7 +111,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
     bookResponse.source === "turath"
       ? bookResponse.turathResponse.headings
       : bookResponse.source === "openiti"
-        ? bookResponse.headers
+        ? bookResponse.chapters
         : [];
 
   const chapterIndexToPageIndex =
@@ -324,7 +324,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
           <SidebarContainer className="flex flex-col gap-3">
             {(bookResponse.source === "turath"
               ? bookResponse.turathResponse.headings
-              : bookResponse.headers
+              : bookResponse.chapters
             ).length > 0 && (
               <div className="w-full">
                 <PageNavigator
