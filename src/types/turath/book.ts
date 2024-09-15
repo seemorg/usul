@@ -14,6 +14,7 @@ export interface TurathBookResponse {
     pdf_links?: {
       files: string[];
       size: number; // in bytes
+      root?: string;
     };
   };
   indexes: {

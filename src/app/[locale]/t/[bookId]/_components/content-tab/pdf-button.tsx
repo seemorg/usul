@@ -15,27 +15,53 @@ export default function PdfButton({
   slug: string;
 }) {
   const t = useTranslations("reader");
-  const url = pdf?.files[0];
+
+  let root = pdf?.root ? pdf.root.replace(/\/$/, "") : null;
+  let file = pdf?.files[0];
+  if ((pdf?.files?.length ?? 0) > 1) {
+    const completeFile = pdf!.files?.find((e) => e.endsWith("|0"));
+    if (completeFile) {
+      file = completeFile.split("|")[0];
+    }
+  }
+
+  const finalUrl = (() => {
+    if (!file) return undefined;
+
+    let url = `https://files.turath.io/pdf/`;
+
+    if (root) {
+      if (root.includes("archive.org")) {
+        root = "archive/" + root.replace("https://archive.org/download/", "");
+        url += `${root}_=_${file}`;
+      } else {
+        url += `${root}/${file}`;
+      }
+    }
+
+    return encodeURI(url);
+  })();
+
   const size = pdf?.size;
 
-  const Wrapper = url ? "a" : "span";
+  const Wrapper = finalUrl ? "a" : "span";
 
   return (
     <Button
       variant="secondary"
-      asChild={!!url}
+      asChild={!!finalUrl}
       tooltip={
-        url
+        finalUrl
           ? size
             ? `${bytesToMB(size)} MB`
             : "Unknown size"
           : "Not available"
       }
-      disabled={!url}
+      disabled={!finalUrl}
       className="w-full"
     >
       <Wrapper
-        href={url}
+        href={finalUrl}
         download={slug + ".pdf"}
         target="_blank"
         className="flex w-full justify-center gap-2"
