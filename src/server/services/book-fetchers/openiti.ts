@@ -30,5 +30,8 @@ export const fetchOpenitiBook = async ({
   const text = await response.text();
   const final = parseMarkdown(text);
 
+  // filter out empty blocks
+  final.content = final.content.filter((a) => a.blocks.length > 0);
+
   return final;
 };

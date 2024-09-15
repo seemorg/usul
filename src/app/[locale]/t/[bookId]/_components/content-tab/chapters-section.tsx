@@ -8,7 +8,6 @@ import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useFormatter } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import React from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
@@ -29,7 +28,6 @@ export default function ChaptersList({
   getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const formatter = useFormatter();
   const mobileSidebar = useMobileSidebar();
 
   const handleNavigate = (
@@ -107,13 +105,7 @@ export default function ChaptersList({
               }
             }}
           >
-            {page && (
-              <span className="text-xs">
-                {typeof page === "string" || typeof page === "number"
-                  ? formatter.number(Number(page))
-                  : `${volume} / ${page}`}
-              </span>
-            )}
+            {page && <span className="text-xs">{`${volume} / ${page}`}</span>}
 
             <p
               className="block min-w-0 flex-wrap text-wrap text-start leading-5"
