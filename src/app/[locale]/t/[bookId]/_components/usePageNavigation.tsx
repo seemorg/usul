@@ -18,13 +18,13 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
   const firstPage =
     (bookResponse.source === "turath"
       ? bookResponse.turathResponse.pages?.[0]?.page
-      : bookResponse.pages[0]?.page) ?? 0;
+      : bookResponse.pages[0]?.page?.page) ?? 0;
   const lastPage =
     (bookResponse.source === "turath"
       ? bookResponse.turathResponse.pages?.[
           bookResponse.turathResponse.pages.length - 1
         ]?.page
-      : bookResponse.pages[bookResponse.pages.length - 1]?.page) ?? 0;
+      : bookResponse.pages[bookResponse.pages.length - 1]?.page?.page) ?? 0;
 
   const pagesRange = {
     start: typeof firstPage === "number" ? firstPage : 0,
