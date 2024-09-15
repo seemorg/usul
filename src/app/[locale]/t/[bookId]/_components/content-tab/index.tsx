@@ -210,6 +210,16 @@ export default function ContentTab({ bookResponse }: TabProps) {
             slug={bookResponse.book.slug}
           />
         </div>
+
+        {bookResponse.source === "openiti" && (
+          <div className="w-full pb-2 pt-4">
+            <Button variant="secondary" asChild className="w-full">
+              <a href={bookResponse.rawUrl} target="_blank">
+                Raw File
+              </a>
+            </Button>
+          </div>
+        )}
       </SidebarContainer>
 
       <Separator className="my-4" />

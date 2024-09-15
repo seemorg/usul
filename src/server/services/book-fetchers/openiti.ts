@@ -10,16 +10,20 @@ export const fetchOpenitiBook = async ({
   versionId: string;
 }) => {
   const baseUrl = `https://raw.githubusercontent.com/OpenITI/RELEASE/2385733573ab800b5aea09bc846b1d864f475476/data/${authorId}/${bookId}/${versionId}`;
+  let finalUrl = baseUrl;
+
   const options: RequestInit = {
     cache: "no-store",
   };
   let response = await fetch(baseUrl, options);
 
   if (!response.ok || response.status >= 300) {
-    response = await fetch(`${baseUrl}.completed`, options);
+    finalUrl = `${baseUrl}.completed`;
+    response = await fetch(finalUrl, options);
 
     if (!response.ok || response.status >= 300) {
-      response = await fetch(`${baseUrl}.mARkdown`, options);
+      finalUrl = `${baseUrl}.mARkdown`;
+      response = await fetch(finalUrl, options);
 
       if (!response.ok || response.status >= 300) {
         throw new Error("Book not found");
@@ -33,5 +37,8 @@ export const fetchOpenitiBook = async ({
   // filter out empty blocks
   final.content = final.content.filter((a) => a.blocks.length > 0);
 
-  return final;
+  return {
+    ...final,
+    rawUrl: finalUrl,
+  };
 };
