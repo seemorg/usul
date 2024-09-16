@@ -9,7 +9,7 @@ import type {
 // @ts-ignore
 import WebViewer from "@pdftron/pdfjs-express-viewer";
 import { useEffect, useRef } from "react";
-import { PdfChapter, usePdfChapterStore } from "./store";
+import { type PdfChapter, usePdfChapterStore } from "./store";
 import { useTheme } from "next-themes";
 
 const isInitializedByUrl = new Map<string, boolean>();

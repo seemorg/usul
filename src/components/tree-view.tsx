@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import {
-  Direction,
+  type Direction,
   DirectionProvider,
   useDirection,
 } from "@radix-ui/react-direction";
@@ -126,6 +126,7 @@ const TreeView = React.forwardRef<HTMLDivElement, TreeProps>(
     );
   },
 );
+TreeView.displayName = "TreeView";
 
 type TreeItemProps = TreeProps & {
   selectedItemId?: string;
@@ -182,7 +183,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
     );
   },
 );
-
+TreeItem.displayName = "TreeItem";
 const TreeNode = ({
   item,
   handleSelectChange,
@@ -304,7 +305,7 @@ const TreeLeaf = React.forwardRef<
     );
   },
 );
-
+TreeLeaf.displayName = "TreeLeaf";
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>

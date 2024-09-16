@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { PdfChapter, usePdfChapterStore } from "../pdf-view/store";
-import { TreeDataItem, TreeView } from "@/components/tree-view";
+import { type PdfChapter, usePdfChapterStore } from "../pdf-view/store";
+import { type TreeDataItem, TreeView } from "@/components/tree-view";
 
 const prepareChapter = (
   chapter: PdfChapter,
