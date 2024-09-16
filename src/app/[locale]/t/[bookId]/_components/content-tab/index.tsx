@@ -35,6 +35,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
 import { CheckIcon, XIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import PdfChaptersList from "./pdf-chapters-section";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -335,7 +336,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
         <>
           <Separator className="my-4" />
           <SidebarContainer className="flex flex-col gap-3">
-            sorry, pdf view doesnt support navigation
+            <PdfChaptersList />
           </SidebarContainer>
         </>
       ) : (
