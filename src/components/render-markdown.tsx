@@ -4,7 +4,7 @@ import React from "react";
 export default function RenderBlock({ block }: { block: Block }) {
   if (block.type === "verse") {
     return (
-      <div className="flex flex-col gap-2">
+      <div className="flex gap-8">
         {block.content.map((hemistich, index) => (
           <p key={index}>{hemistich}</p>
         ))}
