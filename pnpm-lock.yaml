@@ -18,8 +18,8 @@ importers:
         specifier: ^14.2.3
         version: 14.2.3(next@14.2.4(@babel/core@7.23.9)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)
       '@openiti/markdown-parser':
-        specifier: ^1.1.1
-        version: 1.1.1
+        specifier: ^1.2.0
+        version: 1.2.0
       '@pdftron/pdfjs-express-viewer':
         specifier: ^8.7.5
         version: 8.7.5
@@ -1357,8 +1357,8 @@ packages:
   '@one-ini/wasm@0.1.1':
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
 
-  '@openiti/markdown-parser@1.1.1':
-    resolution: {integrity: sha512-XzG6ct6GvzEJecGbfqKF0WI1yWaWw30GP9jRj8BK1c6/gdzaD5K1Vayc/18bEDhHOThtqhbSviN2iVZCdtYD6Q==}
+  '@openiti/markdown-parser@1.2.0':
+    resolution: {integrity: sha512-jHpnj1IovS34RhVyvBjnGivMyRe+ExkQgBo0UuLDyPd9GPwtzVkI2pZI6YiIUp1ZdT4C5QhcVG9Ht6mCBCU+mQ==}
     engines: {node: '>=12'}
 
   '@pdftron/pdfjs-express-viewer@8.7.5':
@@ -8689,7 +8689,7 @@ snapshots:
 
   '@one-ini/wasm@0.1.1': {}
 
-  '@openiti/markdown-parser@1.1.1': {}
+  '@openiti/markdown-parser@1.2.0': {}
 
   '@pdftron/pdfjs-express-viewer@8.7.5': {}
 

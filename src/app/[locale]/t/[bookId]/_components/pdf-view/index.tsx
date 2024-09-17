@@ -43,7 +43,7 @@ export default function PdfView({
           disabledElements: [
             "leftPanel",
             "leftPanelButton",
-            "selectToolButton",
+            // "selectToolButton",
             "themeChangeButton",
             "languageButton",
           ],
@@ -60,6 +60,9 @@ export default function PdfView({
           ? instance.UI.Theme.DARK
           : instance.UI.Theme.LIGHT,
       );
+
+      // enable text selection
+      // instance.Core.documentViewer.getSelectedText(true);
 
       instance.Core.documentViewer.addEventListener(
         "documentLoaded",

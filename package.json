@@ -18,7 +18,7 @@
     "@heroicons/react": "^2.1.1",
     "@neondatabase/serverless": "^0.9.0",
     "@next/third-parties": "^14.2.3",
-    "@openiti/markdown-parser": "^1.1.1",
+    "@openiti/markdown-parser": "^1.2.0",
     "@pdftron/pdfjs-express-viewer": "^8.7.5",
     "@pdftron/webviewer": "^10.12.0",
     "@prisma/adapter-neon": "^5.12.1",
