@@ -10,6 +10,8 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import type { AppLocale } from "~/i18n.config";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
+import { env } from "@/env";
 
 export async function generateMetadata() {
   return getMetadata({
@@ -47,13 +49,33 @@ export default function LocaleLayout({
           <Toaster />
         </Providers>
 
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <GoogleAnalytics gaId="G-QX48J9BW3C" />
-            <GoogleTagManager gtmId="AW-16482232385" />
-          </>
-        )}
+        {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
   );
 }
+
+const Analytics = () => {
+  return (
+    <>
+      <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
+
+      {env.NEXT_PUBLIC_ENABLE_CLARITY && (
+        <Script
+          id="clarity-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "${env.NEXT_PUBLIC_CLARITY_PROJECT_ID}");
+    `,
+          }}
+        />
+      )}
+    </>
+  );
+};

@@ -15,7 +15,12 @@ export const env = createEnv({
   client: {},
   shared: {
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
+    NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY: z.string().min(1),
     NEXT_PUBLIC_SEMANTIC_SEARCH_URL: z.string().min(1),
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().min(1),
+    NEXT_PUBLIC_ENABLE_CLARITY: z.coerce.boolean().default(false),
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().min(1),
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string().min(1),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -26,8 +31,16 @@ export const env = createEnv({
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT:
       process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
+    NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY:
+      process.env.NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY,
     NEXT_PUBLIC_SEMANTIC_SEARCH_URL:
       process.env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL,
+    NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
+    NEXT_PUBLIC_ENABLE_CLARITY: process.env.NEXT_PUBLIC_ENABLE_CLARITY,
+    NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
+      process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
+    NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
+      process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

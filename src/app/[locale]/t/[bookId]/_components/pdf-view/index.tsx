@@ -11,6 +11,7 @@ import WebViewer from "@pdftron/pdfjs-express-viewer";
 import { useEffect, useRef } from "react";
 import { type PdfChapter, usePdfChapterStore } from "./store";
 import { useTheme } from "next-themes";
+import { env } from "@/env";
 
 const isInitializedByUrl = new Map<string, boolean>();
 
@@ -47,7 +48,7 @@ export default function PdfView({
             "themeChangeButton",
             "languageButton",
           ],
-          licenseKey: "X83MG7YBqueJXUngqbHh",
+          licenseKey: env.NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY,
           // set the theme to dark
         } satisfies WebViewerOptions,
         viewerRef.current!,
