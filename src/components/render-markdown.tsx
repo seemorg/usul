@@ -4,7 +4,7 @@ import React from "react";
 export default function RenderBlock({ block }: { block: Block }) {
   if (block.type === "verse") {
     return (
-      <div className="flex gap-8">
+      <div className="mx-auto grid max-w-[600px] grid-cols-2 gap-x-4 gap-y-2">
         {block.content.map((hemistich, index) => (
           <p key={index}>{hemistich}</p>
         ))}
@@ -37,9 +37,11 @@ export default function RenderBlock({ block }: { block: Block }) {
 
   if (block.type === "blockquote") {
     return (
-      <blockquote className="border-r-[0.25rem] border-primary/30 p-3 text-xl font-semibold italic">
+      <p className="font-uthmanic-hafs px-2 text-2xl">
+        <span className="ml-2">ﵟ</span>
         {block.content}
-      </blockquote>
+        <span className="mr-2">ﵞ</span>
+      </p>
     );
   }
 

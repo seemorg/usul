@@ -28,5 +28,16 @@ const rubik = localFont({
   ],
 });
 
+const uthmanicHafs = localFont({
+  variable: "--font-uthmanic-hafs",
+  src: [
+    {
+      path: "../fonts/uthmanic-hafs/uthmanic-hafs.ttf",
+    },
+  ],
+});
+
 export const getFontsClassnames = () =>
-  [inter.variable, rubik.variable, amiri.variable].join(" ");
+  [inter.variable, rubik.variable, amiri.variable, uthmanicHafs.variable].join(
+    " ",
+  );

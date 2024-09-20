@@ -17,6 +17,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
         amiri: ["var(--font-amiri)", ...fontFamily.serif],
+        "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
         border: "hsl(var(--border))",

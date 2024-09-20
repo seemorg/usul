@@ -1,4 +1,18 @@
-import { parseMarkdown } from "@openiti/markdown-parser";
+import { parseMarkdown, type ContentItem } from "@openiti/markdown-parser";
+
+const prepareContent = (content: ContentItem[]): ContentItem[] => {
+  const newItems: ContentItem[] = [];
+
+  for (const item of content) {
+    if (item.blocks.length === 0) {
+      continue;
+    }
+
+    newItems.push(item);
+  }
+
+  return newItems;
+};
 
 export const fetchOpenitiBook = async ({
   authorId,
@@ -35,7 +49,7 @@ export const fetchOpenitiBook = async ({
   const final = parseMarkdown(text);
 
   // filter out empty blocks
-  final.content = final.content.filter((a) => a.blocks.length > 0);
+  final.content = prepareContent(final.content);
 
   return {
     ...final,
