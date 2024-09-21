@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Container from "@/components/ui/container";
 import Navbar from "../_components/navbar";
-import SearchBar from "../_components/navbar/search";
+import SearchBar from "../_components/navbar/search-bar";
 import { Link } from "@/navigation";
 import BookSearchResult from "@/components/book-search-result";
 
@@ -16,11 +16,14 @@ import {
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { ArabicLogo } from "@/components/Icons";
-import { CloudflareImage } from "@/components/cloudflare-image";
+// import { ArabicLogo } from "@/components/Icons";
 import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
+import { CollectionCard } from "@/components/ui/collection-card";
+import { Button } from "@/components/ui/button";
+import { PlayCircleIcon } from "lucide-react";
+// import { PlayCircleIcon } from "@heroicons/react/24/solid";
 
 const searchExamples = [
   {
@@ -79,26 +82,45 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
-        <Container className="flex flex-col items-center">
+      <div className="relative flex h-[450px] w-full pt-28 text-white sm:h-[610px] sm:pt-36">
+        <div className="absolute inset-0 z-0 h-full w-full bg-primary [clip-path:ellipse(130%_100%_at_50%_0%)]" />
+
+        <Container className="z-[1] flex flex-col items-center">
           {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
-          <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" />
+          {/* <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" /> */}
+          <h1 className="max-w-[600px] text-center text-5xl font-bold">
+            8,000+ Classical Islamic Texts and more
+          </h1>
 
-          <p className="mt-5 text-lg">{t("headline")}</p>
+          {/* <p className="mt-5 text-lg">{t("headline")}</p> */}
+          <p className="mt-5 max-w-[400px] text-center text-xl font-light text-white/80">
+            Discover, search, and research Islamic texts from the OpenITI
+            corpus.
+          </p>
 
-          <div className="mt-14 w-full sm:mt-[4.5rem]">
-            <div className="mx-auto max-w-[52rem]">
+          <Button
+            variant="ghost"
+            className="mt-6 h-14 gap-2 bg-accent/10 px-5 py-3 font-medium hover:bg-accent/20 focus:bg-accent/20"
+            rounded="full"
+            size="lg"
+          >
+            <PlayCircleIcon className="size-7 fill-white [&_polygon]:fill-primary [&_polygon]:stroke-primary" />
+            How Usul Works - 2:20
+          </Button>
+
+          <div className="mt-8 w-full">
+            <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
             </div>
 
-            <div className="mx-auto mt-4 flex max-w-[300px] flex-wrap items-center justify-center gap-2 sm:max-w-full">
-              <span>{t("try")}</span>
+            <div className="mx-auto mt-6 flex max-w-[300px] flex-wrap items-center justify-center gap-4 sm:max-w-full">
+              {/* <span>{t("try")}</span> */}
 
               {searchExamples.map((e) => (
                 <Link
                   key={e.href}
                   href={e.href}
-                  className="font-medium text-primary-foreground underline"
+                  className="font-medium text-primary-foreground underline underline-offset-1"
                 >
                   {e.title}
                 </Link>
@@ -108,7 +130,7 @@ export default async function HomePage({
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-4 bg-background py-10 sm:gap-12 sm:py-24">
+      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-24">
         <div>
           <HomepageSection
             title={t("sections.collections")}
@@ -117,20 +139,12 @@ export default async function HomePage({
                 href={navigation.genres.bySlug(collection.genre)}
                 key={collection.genre}
               >
-                <div className="relative block h-[140px] w-full overflow-hidden rounded-md bg-gray-200 sm:h-[160px] md:h-[180px]">
-                  <CloudflareImage
-                    src={`https://assets.usul.ai/collections${collection.image}`}
-                    alt={collection.name}
-                    width={500}
-                    height={500}
-                    className="absolute inset-0 h-full w-full object-cover"
-                    placeholder="empty"
-                  />
-                </div>
-
-                <p className="mt-2 text-base font-medium sm:text-lg">
-                  {t(`collections.${collection.name}`)}
-                </p>
+                <CollectionCard
+                  title={t(`collections.${collection.name}`)}
+                  numberOfBooks={collection.numberOfBooks}
+                  pattern={collection.pattern}
+                  color={collection.color}
+                />
               </Link>
             ))}
           />

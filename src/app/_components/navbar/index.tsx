@@ -13,7 +13,7 @@ import {
 
 import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import SearchBar from "./search";
+import SearchBar from "./search-bar";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import HomepageNavigationMenu from "./navigation-menu";
@@ -130,8 +130,8 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
-          <ThemeToggle />
           <LocaleSwitcher />
+          <ThemeToggle />
         </div>
       </header>
 

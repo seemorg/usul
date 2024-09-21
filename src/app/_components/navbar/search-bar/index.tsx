@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -6,25 +5,18 @@ import {
   Command,
   CommandEmpty,
   CommandInput,
-  CommandItem,
   CommandList,
 } from "@/components/ui/command";
 import { searchAllCollections } from "@/server/typesense/global";
-import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import { Link, useRouter } from "@/navigation";
+import { useRouter } from "@/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
-import DottedList from "@/components/ui/dotted-list";
-import type { GlobalSearchDocument } from "@/types/global-search-document";
 import ComingSoonModal from "@/components/coming-soon-modal";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
-import { usePathLocale } from "@/lib/locale/utils";
+import SearchBarEmptyState from "./empty-state";
+import SearchBarResults from "./results";
 
 export default function SearchBar({
   autoFocus,
@@ -36,10 +28,10 @@ export default function SearchBar({
   mobile?: boolean;
 }) {
   const t = useTranslations("common");
-  const entitiesT = useTranslations("entities");
+
   const [value, setValue] = useState("");
   const focusedState = useBoolean(false);
-  const pathLocale = usePathLocale();
+
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
@@ -55,8 +47,6 @@ export default function SearchBar({
     },
     enabled: !!debouncedValue,
   });
-
-  const hits = value ? data?.results?.hits ?? [] : [];
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -106,36 +96,8 @@ export default function SearchBar({
     }
   };
 
-  const getLocalizedType = (type: GlobalSearchDocument["type"]) => {
-    if (type === "book") {
-      return entitiesT("text");
-    } else if (type === "author") {
-      return entitiesT("author");
-    } else if (type === "genre") {
-      return entitiesT("genre");
-    } else if (type === "region") {
-      return entitiesT("region");
-    }
-
-    return null;
-  };
-
-  const getHref = (document: GlobalSearchDocument) => {
-    if (document.type === "book") {
-      return navigation.books.reader(document.slug);
-    } else if (document.type === "author") {
-      return navigation.authors.bySlug(document.slug);
-    } else if (document.type === "genre") {
-      return navigation.genres.bySlug(document.slug);
-    } else if (document.type === "region") {
-      return navigation.regions.bySlug(document.slug);
-    }
-
-    return null;
-  };
-
   const showList = focusedState.value;
-  const showSeeMore = (data?.results?.found ?? 0) > 5 && hits.length > 0;
+  // const showSeeMore = (data?.results?.found ?? 0) > 5 && hits.length > 0;
 
   return (
     <div className={cn("z-50 w-full")}>
@@ -151,7 +113,7 @@ export default function SearchBar({
         shouldFilter={false}
         className={cn(
           "relative overflow-visible",
-          size === "lg" && "rounded-[10px] [&_svg]:!h-6 [&_svg]:!w-6",
+          size === "lg" && "rounded-[10px]",
           showList && "rounded-b-none",
           // focusedState.value &&
           //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
@@ -174,7 +136,8 @@ export default function SearchBar({
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
           isLoading={isLoading}
-          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
+          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14 ")}
+          wrapperClassName={cn(size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6")}
         />
 
         <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
@@ -203,105 +166,23 @@ export default function SearchBar({
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
-          {value && hits.length === 0 && !isLoading && (
+          {value && data?.results?.hits?.length === 0 && !isLoading && (
             <CommandEmpty> {t("search-bar.no-results")}</CommandEmpty>
           )}
 
-          {!value && (
-            <p className="py-6 text-center text-sm">
-              {t("search-bar.start-typing")}
-            </p>
+          {value ? (
+            <SearchBarResults
+              results={data?.results}
+              onItemSelect={onItemSelect}
+            />
+          ) : (
+            <SearchBarEmptyState />
           )}
 
-          {hits.map((result) => {
-            // const primaryArabicName = result.highlight.primaryArabicName
-            //   ? result.highlight.primaryArabicName.snippet
-            //   : result.document.primaryArabicName;
-            const primaryName = getPrimaryLocalizedText(
-              result.document.primaryNames,
-              pathLocale,
-            );
-            const secondaryName = getSecondaryLocalizedText(
-              result.document.primaryNames,
-              pathLocale,
-            );
-
-            const authorName = getPrimaryLocalizedText(
-              result.document.author?.primaryNames ?? [],
-              pathLocale,
-            );
-            // const primaryLatinName = result.highlight.primaryLatinName
-            //   ? result.highlight.primaryLatinName.snippet
-            //   : result.document.primaryLatinName;
-
-            // const authorPrimaryLatinName = result.highlight.author
-            //   ?.primaryLatinName
-            //   ? result.highlight.author.primaryLatinName.snippet
-            //   : result.document.author?.primaryLatinName;
-
-            // const authorPrimaryArabicName = result.highlight.author
-            //   ?.primaryNames
-            //   ? result.highlight.author.primaryNames.snippet
-            //   : getPrimaryLocalizedText(
-            //       result.document.author?.primaryNames ?? [],
-            //       "en",
-            //     );
-
-            // use latin name if available, otherwise use arabic name
-            // const authorName =
-            //   authorPrimaryLatinName || authorPrimaryArabicName;
-
-            // const documentName = primaryArabicName || primaryLatinName;
-            // const documentSecondaryName =
-            //   documentName === primaryLatinName ? null : primaryLatinName;
-
-            const type = result.document.type;
-            const localizedType = getLocalizedType(type);
-            const href = getHref(result.document);
-
-            return (
-              <SearchItem
-                key={result.document.id}
-                value={result.document.id}
-                onSelect={() => onItemSelect(href ?? undefined)}
-                href={href ?? ""}
-              >
-                {primaryName && (
-                  <p
-                    className="text-base"
-                    dangerouslySetInnerHTML={{ __html: primaryName }}
-                  />
-                )}
-
-                <DottedList
-                  className="gap-1 text-xs"
-                  dotClassName="ltr:ml-1 rtl:mr-1"
-                  items={[
-                    <p>{localizedType}</p>,
-                    authorName && (
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: authorName,
-                        }}
-                      />
-                    ),
-                    secondaryName && (
-                      <p
-                        dangerouslySetInnerHTML={{
-                          __html: secondaryName,
-                        }}
-                      />
-                    ),
-                  ]}
-                />
-              </SearchItem>
-            );
-          })}
-
-          {showSeeMore && (
+          {/* {showSeeMore && (
             <ComingSoonModal
               trigger={
-                <SearchItem
+                <SearchBarItem
                   value={`more:${debouncedValue}`}
                   onSelect={() => onItemSelect()}
                   // href={`/search?q=${debouncedValue}`}
@@ -311,37 +192,12 @@ export default function SearchBar({
                       results: data?.results?.found ?? 0,
                     })}
                   </p>
-                </SearchItem>
+                </SearchBarItem>
               }
             />
-          )}
+          )} */}
         </CommandList>
       </Command>
     </div>
-  );
-}
-
-function SearchItem({
-  value,
-  onSelect,
-  href,
-  children,
-}: {
-  value: string;
-  href?: string;
-  onSelect: () => void;
-  children: React.ReactNode;
-}) {
-  const Comp = (href ? Link : "button") as any;
-
-  return (
-    <CommandItem value={value} onSelect={onSelect} className="px-0 py-0">
-      <Comp
-        {...(href ? { href } : {})}
-        className="flex h-full w-full flex-col items-start gap-3 px-4 py-3 hover:bg-accent"
-      >
-        {children}
-      </Comp>
-    </CommandItem>
   );
 }

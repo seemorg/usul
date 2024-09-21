@@ -40,10 +40,9 @@ const HomepageSection = ({
           <ComingSoonModal trigger={sectionTitle} />
         )}
 
-        <div className="flex items-center">
-          <CarouselPrevious />
-
-          <CarouselNext />
+        <div className="flex items-center gap-2">
+          <CarouselPrevious className="rounded-full bg-popover shadow hover:bg-popover/80 focus:bg-popover/80 disabled:opacity-50" />
+          <CarouselNext className="rounded-full bg-popover shadow hover:bg-popover/80 focus:bg-popover/80 disabled:opacity-50" />
         </div>
       </div>
 
