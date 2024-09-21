@@ -16,37 +16,12 @@ import {
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-// import { ArabicLogo } from "@/components/Icons";
 import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { Button } from "@/components/ui/button";
-import { PlayCircleIcon } from "lucide-react";
-// import { PlayCircleIcon } from "@heroicons/react/24/solid";
-
-const searchExamples = [
-  {
-    title: "الأشباه والنظائر",
-    href: navigation.books.reader("ashbah-1"),
-  },
-  {
-    title: "Al Risala",
-    href: navigation.books.reader("risala"),
-  },
-  {
-    title: "Ibn Al-Jawzi",
-    href: navigation.authors.bySlug("ibn-jawzi"),
-  },
-  {
-    title: "Iraq",
-    href: navigation.regions.bySlug("iraq"),
-  },
-  {
-    title: "Fiqh",
-    href: navigation.genres.bySlug("fiqh"),
-  },
-];
+import { PlayIcon } from "@heroicons/react/24/solid";
 
 export const generateMetadata = ({
   params: { locale },
@@ -82,8 +57,9 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex h-[450px] w-full pt-28 text-white sm:h-[610px] sm:pt-36">
-        <div className="absolute inset-0 z-0 h-full w-full bg-primary [clip-path:ellipse(130%_100%_at_50%_0%)]" />
+      <div className="relative flex h-[650px] w-full pt-28 text-white sm:h-[550px] sm:pt-32">
+        <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
+        {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
           {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
@@ -98,33 +74,23 @@ export default async function HomePage({
             corpus.
           </p>
 
-          <Button
-            variant="ghost"
-            className="mt-6 h-14 gap-2 bg-accent/10 px-5 py-3 font-medium hover:bg-accent/20 focus:bg-accent/20"
-            rounded="full"
-            size="lg"
-          >
-            <PlayCircleIcon className="size-7 fill-white [&_polygon]:fill-primary [&_polygon]:stroke-primary" />
-            How Usul Works - 2:20
-          </Button>
+          <div className="mt-6 flex w-full justify-center">
+            <Button
+              // className="mt-6 h-14 gap-2 bg-accent/10 px-5 py-3 font-medium hover:bg-accent/20 focus:bg-accent/20"
+              variant="ghost"
+              // rounded="full"
+              // size="lg"
+              className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+            >
+              {/* <PlayCircleIcon className="size-4 fill-white [&_polygon]:fill-primary [&_polygon]:stroke-primary" /> */}
+              <PlayIcon className="size-4" />
+              How Usul Works - 2:20
+            </Button>
+          </div>
 
-          <div className="mt-8 w-full">
+          <div className="mt-16 w-full">
             <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
-            </div>
-
-            <div className="mx-auto mt-6 flex max-w-[300px] flex-wrap items-center justify-center gap-4 sm:max-w-full">
-              {/* <span>{t("try")}</span> */}
-
-              {searchExamples.map((e) => (
-                <Link
-                  key={e.href}
-                  href={e.href}
-                  className="font-medium text-primary-foreground underline underline-offset-1"
-                >
-                  {e.title}
-                </Link>
-              ))}
             </div>
           </div>
         </Container>

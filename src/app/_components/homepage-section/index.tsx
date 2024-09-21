@@ -41,16 +41,10 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="rounded-full bg-popover shadow hover:bg-popover/80 focus:bg-popover/80 disabled:opacity-50" />
-          <CarouselNext className="rounded-full bg-popover shadow hover:bg-popover/80 focus:bg-popover/80 disabled:opacity-50" />
+          <CarouselPrevious className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselNext className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
         </div>
       </div>
-
-      {/* <ScrollArea className="relative mt-10 w-full whitespace-nowrap">
-        <div className="flex gap-5 pb-10">{children}</div>
-
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea> */}
 
       <CarouselContent className="mt-5 sm:mt-10">
         {items.map((item, idx) => (

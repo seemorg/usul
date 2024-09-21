@@ -126,7 +126,7 @@ export default function SearchBarResults({
             <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="texts">Texts</TabsTrigger>
             <TabsTrigger value="authors">Authors</TabsTrigger>
-            <TabsTrigger value="locations">Locations</TabsTrigger>
+            <TabsTrigger value="genres">Genres</TabsTrigger>
           </TabsList>
         </Tabs>
 

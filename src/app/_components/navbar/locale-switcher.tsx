@@ -26,12 +26,14 @@ export default function LocaleSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          rounded="full"
-          className="gap-2"
+          className="gap-1"
           dir={selectedLocale === "ar-SA" ? "ltr" : "rtl"}
+          // onMouseEnter={() => setOpen(true)}
+          // onMouseLeave={() => setOpen(false)}
         >
+          {/* <LanguageIcon className="h-4 w-4" /> */}
           {getLocaleFullName(selectedLocale === "ar-SA" ? "en-US" : "ar-SA")}
-          <ChevronDownIcon className="h-4 w-4" />
+          <ChevronDownIcon className="size-3" />
         </Button>
       </DropdownMenuTrigger>
 

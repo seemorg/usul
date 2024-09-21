@@ -92,16 +92,18 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           <ThemeToggle />
           <LocaleSwitcher />
 
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => {
-              setIsMenuOpen(false);
-              setIsSearchOpen(!isSearchOpen);
-            }}
-          >
-            <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
-          </Button>
+          {!isHomepage && (
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsSearchOpen(!isSearchOpen);
+              }}
+            >
+              <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
+            </Button>
+          )}
 
           {/* Mobile menu button */}
           <Button

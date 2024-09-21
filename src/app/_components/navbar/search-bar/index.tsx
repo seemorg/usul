@@ -140,12 +140,12 @@ export default function SearchBar({
           wrapperClassName={cn(size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6")}
         />
 
-        <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
-          <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
-            {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
               <span className="text-xs">⌘</span>K
             </kbd> */}
 
+        <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
+          <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
             <Button
               variant="ghost"
               className="text-primary hover:text-primary"
@@ -158,7 +158,7 @@ export default function SearchBar({
 
         <CommandList
           className={cn(
-            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-background text-sm text-foreground",
+            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-white text-sm text-foreground dark:bg-background",
             !mobile && "border border-border shadow",
             showList || mobile
               ? "opacity-100"
