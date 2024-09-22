@@ -12,7 +12,8 @@ import DottedList from "@/components/ui/dotted-list";
 import type { prepareResults } from "@/server/typesense/utils";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComingSoonModal from "@/components/coming-soon-modal";
-import { Info } from "lucide-react";
+import type { SearchType } from "@/types/search";
+import { CommandEmpty } from "@/components/ui/command";
 
 const getHref = (document: GlobalSearchDocument) => {
   if (document.type === "book") {
@@ -31,9 +32,13 @@ const getHref = (document: GlobalSearchDocument) => {
 export default function SearchBarResults({
   results,
   onItemSelect,
+  searchType,
+  setSearchType,
 }: {
   results?: ReturnType<typeof prepareResults<GlobalSearchDocument>>;
   onItemSelect: (href?: string) => void;
+  searchType: SearchType;
+  setSearchType: (type: SearchType) => void;
 }) {
   const t = useTranslations();
   const entitiesT = useTranslations("entities");
@@ -56,14 +61,17 @@ export default function SearchBarResults({
   const hits = results?.hits ?? [];
 
   const items = hits.map((result) => {
-    const primaryName = getPrimaryLocalizedText(
-      result.document.primaryNames,
-      pathLocale,
-    );
+    const primaryName =
+      getPrimaryLocalizedText(result.document.primaryNames, pathLocale) ??
+      (result.document as any).name;
+
     const secondaryName = getSecondaryLocalizedText(
       result.document.primaryNames,
       pathLocale,
     );
+
+    const finalPrimaryName = primaryName ?? secondaryName;
+    const finalSecondaryName = primaryName ? secondaryName : null;
 
     const authorName = getPrimaryLocalizedText(
       result.document.author?.primaryNames ?? [],
@@ -85,18 +93,17 @@ export default function SearchBarResults({
           className="gap-2"
           dotClassName="ltr:ml-2 rtl:mr-2"
           items={[
-            primaryName && (
+            finalPrimaryName && (
               <p
                 className="text-base"
-                dangerouslySetInnerHTML={{ __html: primaryName }}
+                dangerouslySetInnerHTML={{ __html: finalPrimaryName }}
               />
             ),
-
-            secondaryName && (
+            finalSecondaryName && (
               <p
                 className="text-muted-foreground"
                 dangerouslySetInnerHTML={{
-                  __html: secondaryName,
+                  __html: finalSecondaryName,
                 }}
               />
             ),
@@ -121,7 +128,12 @@ export default function SearchBarResults({
   return (
     <div className="p-6">
       <div className="flex items-center justify-between">
-        <Tabs defaultValue="all">
+        <Tabs
+          value={searchType}
+          onValueChange={(value) =>
+            setSearchType(value as "all" | "texts" | "authors" | "genres")
+          }
+        >
           <TabsList>
             <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="texts">Texts</TabsTrigger>
@@ -144,13 +156,10 @@ export default function SearchBarResults({
       </div>
 
       <div className="mt-5">
-        {items ? (
+        {hits.length > 0 ? (
           items
         ) : (
-          <p className="flex items-center gap-2 text-base text-muted-foreground">
-            <Info className="h-4 w-4" />
-            {t("common.search-bar.no-results")}
-          </p>
+          <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>
         )}
       </div>
     </div>

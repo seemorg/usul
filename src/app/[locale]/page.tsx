@@ -20,8 +20,14 @@ import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PlayIcon } from "@heroicons/react/24/solid";
+import dynamicImport from "next/dynamic";
+
+const VideoModal = dynamicImport(() => import("../_components/video-modal"), {
+  ssr: false,
+});
 
 export const generateMetadata = ({
   params: { locale },
@@ -75,17 +81,21 @@ export default async function HomePage({
           </p>
 
           <div className="mt-6 flex w-full justify-center">
-            <Button
-              // className="mt-6 h-14 gap-2 bg-accent/10 px-5 py-3 font-medium hover:bg-accent/20 focus:bg-accent/20"
-              variant="ghost"
-              // rounded="full"
-              // size="lg"
-              className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
-            >
-              {/* <PlayCircleIcon className="size-4 fill-white [&_polygon]:fill-primary [&_polygon]:stroke-primary" /> */}
-              <PlayIcon className="size-4" />
-              How Usul Works - 2:20
-            </Button>
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+                >
+                  <PlayIcon className="size-4" />
+                  How Usul Works - 2:20
+                </Button>
+              </DialogTrigger>
+
+              <DialogContent className="sm:max-w-[1200px]">
+                <VideoModal />
+              </DialogContent>
+            </Dialog>
           </div>
 
           <div className="mt-16 w-full">
@@ -120,6 +130,7 @@ export default async function HomePage({
           <HomepageSection
             title={t("sections.popular-texts")}
             href="/texts"
+            constraintWidth
             items={popularBooks.map((text) => (
               <BookSearchResult
                 result={
@@ -139,6 +150,7 @@ export default async function HomePage({
         <div>
           <HomepageSection
             title={t("sections.islamic-law")}
+            constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
                 result={
@@ -158,6 +170,7 @@ export default async function HomePage({
         <div>
           <HomepageSection
             title={t("sections.islamic-history")}
+            constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
                 result={

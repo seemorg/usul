@@ -1,12 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import {
-  Command,
-  CommandEmpty,
-  CommandInput,
-  CommandList,
-} from "@/components/ui/command";
+import { Command, CommandInput, CommandList } from "@/components/ui/command";
 import { searchAllCollections } from "@/server/typesense/global";
 import { cn } from "@/lib/utils";
 import { useRouter } from "@/navigation";
@@ -17,6 +12,21 @@ import { useBoolean, useDebounceValue } from "usehooks-ts";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import SearchBarEmptyState from "./empty-state";
 import SearchBarResults from "./results";
+import type { SearchType } from "@/types/search";
+import { searchBooks } from "@/server/typesense/book";
+import { searchAuthors } from "@/server/typesense/author";
+import { searchGenres } from "@/server/typesense/genre";
+import { useSearchHistoryStore } from "@/stores/search-history";
+import { useDetectClickOutside } from "react-detect-click-outside";
+
+const typeToMethod = {
+  all: searchAllCollections,
+  texts: searchBooks,
+  authors: searchAuthors,
+  genres: searchGenres,
+} satisfies Record<SearchType, any>;
+
+type SearchResults = Awaited<ReturnType<typeof searchAllCollections>>;
 
 export default function SearchBar({
   autoFocus,
@@ -30,20 +40,27 @@ export default function SearchBar({
   const t = useTranslations("common");
 
   const [value, setValue] = useState("");
+  const [searchType, setSearchType] = useState<SearchType>("all");
   const focusedState = useBoolean(false);
 
   const [debouncedValue] = useDebounceValue(value, 300);
   const inputRef = useRef<HTMLInputElement>(null);
-  const parentRef = useRef<HTMLDivElement>(null);
+  const parentRef = useDetectClickOutside({
+    onTriggered: () => {
+      focusedState.setFalse();
+    },
+  });
+
   const { replace } = useRouter();
   const isModalOpen = useBoolean(false);
+  const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
 
-  const { isLoading, data } = useQuery({
-    queryKey: ["search", debouncedValue],
+  const { isLoading, data } = useQuery<SearchResults>({
+    queryKey: ["search", searchType, debouncedValue],
     queryFn: ({ queryKey }) => {
-      const [, query] = queryKey;
-
-      return searchAllCollections(query ?? "", { limit: 5 });
+      const [, type, query = ""] = queryKey as [string, SearchType, string];
+      const method = typeToMethod[type];
+      return method(query ?? "", { limit: 5 }) as Promise<SearchResults>;
     },
     enabled: !!debouncedValue,
   });
@@ -67,37 +84,18 @@ export default function SearchBar({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    // if the input is not focused, and the user clicks outside of the parent element, close the list
-    const click = (e: MouseEvent) => {
-      if (
-        focusedState.value &&
-        parentRef.current &&
-        !parentRef.current.contains(e.target as Node) &&
-        !inputRef.current?.contains(e.target as Node)
-      ) {
-        focusedState.setFalse();
-      }
-    };
-
-    document.addEventListener("click", click);
-    return () => document.removeEventListener("click", click);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [focusedState.value, focusedState.setFalse]);
-
   // this function handles keyboard navigation and selection
   const onItemSelect = (href?: string) => {
     if (href) {
+      addRecentSearch(debouncedValue);
       replace(href);
+      focusedState.setFalse();
     } else {
-      // push(`/search?q=${debouncedValue}`);
       isModalOpen.setTrue();
     }
   };
 
   const showList = focusedState.value;
-  // const showSeeMore = (data?.results?.found ?? 0) > 5 && hits.length > 0;
 
   return (
     <div className={cn("z-50 w-full")}>
@@ -157,6 +155,7 @@ export default function SearchBar({
         </div>
 
         <CommandList
+          itemID="cmd-list"
           className={cn(
             "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-white text-sm text-foreground dark:bg-background",
             !mobile && "border border-border shadow",
@@ -166,36 +165,16 @@ export default function SearchBar({
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
-          {value && data?.results?.hits?.length === 0 && !isLoading && (
-            <CommandEmpty> {t("search-bar.no-results")}</CommandEmpty>
-          )}
-
           {value ? (
             <SearchBarResults
               results={data?.results}
               onItemSelect={onItemSelect}
+              searchType={searchType}
+              setSearchType={setSearchType}
             />
           ) : (
-            <SearchBarEmptyState />
+            <SearchBarEmptyState setValue={setValue} />
           )}
-
-          {/* {showSeeMore && (
-            <ComingSoonModal
-              trigger={
-                <SearchBarItem
-                  value={`more:${debouncedValue}`}
-                  onSelect={() => onItemSelect()}
-                  // href={`/search?q=${debouncedValue}`}
-                >
-                  <p className="text-primary">
-                    {t("search-bar.all-results", {
-                      results: data?.results?.found ?? 0,
-                    })}
-                  </p>
-                </SearchBarItem>
-              }
-            />
-          )} */}
         </CommandList>
       </Command>
     </div>

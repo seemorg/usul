@@ -12,15 +12,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useDirection } from "@/lib/locale/utils";
+import { cn } from "@/lib/utils";
 
 const HomepageSection = ({
   title,
   href,
   items,
+  constraintWidth,
 }: {
   title: string;
   href?: string;
   items: React.ReactNode[];
+  constraintWidth?: boolean;
 }) => {
   const dir = useDirection();
 
@@ -49,7 +52,12 @@ const HomepageSection = ({
       <CarouselContent className="mt-5 sm:mt-10">
         {items.map((item, idx) => (
           <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
-            <div className="w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]">
+            <div
+              className={cn(
+                constraintWidth &&
+                  "w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]",
+              )}
+            >
               {item}
             </div>
             {idx !== items.length - 1 && (
