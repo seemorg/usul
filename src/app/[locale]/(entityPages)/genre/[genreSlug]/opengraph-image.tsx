@@ -3,6 +3,7 @@ import { loadFileOnEdge } from "@/lib/edge";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { findGenreBySlug } from "@/server/services/genres";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 
 export const runtime = "edge";
 
@@ -30,10 +31,12 @@ export async function generateImageMetadata({
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return [];
 
+  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
+
   return [
     {
       id: "main",
-      alt: genre.name,
+      alt: primaryText,
       contentType: "image/png",
       size,
     },
@@ -50,6 +53,8 @@ export default async function Image({
   if (!genre) {
     notFound();
   }
+
+  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -71,7 +76,7 @@ export default async function Image({
             fontFamily: "Cal Sans",
           }}
         >
-          {genre.name}
+          {primaryText}
         </h1>
 
         {/* <p

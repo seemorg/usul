@@ -43,7 +43,9 @@ const getBook = async (id: string, locale: string) => {
           bioTranslations: localeWhere,
         },
       },
-      genres: true,
+      genres: {
+        include: { nameTranslations: localeWhere },
+      },
       primaryNameTranslations: localeWhere,
       otherNameTranslations: localeWhere,
     },

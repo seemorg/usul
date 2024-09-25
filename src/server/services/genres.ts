@@ -3,35 +3,54 @@
 import { cache } from "react";
 import { db } from "../db";
 import { unstable_cache } from "next/cache";
+import { PathLocale } from "@/lib/locale/utils";
+import { getLocaleWhereClause } from "../db/localization";
 
-export const findAllGenres = cache(async () => {
-  return await db.genre.findMany();
-});
+export const findAllGenres = cache(async (locale: PathLocale = "en") => {
+  const localeWhere = getLocaleWhereClause(locale);
 
-export const findGenreBySlug = cache(async (slug: string) => {
-  const genreRecord = await db.genre.findUnique({
-    where: {
-      slug,
+  return await db.genre.findMany({
+    include: {
+      nameTranslations: localeWhere,
     },
   });
-
-  if (!genreRecord) {
-    return;
-  }
-
-  return genreRecord;
 });
+
+export const findGenreBySlug = cache(
+  async (slug: string, locale: PathLocale = "en") => {
+    const localeWhere = getLocaleWhereClause(locale);
+
+    const genreRecord = await db.genre.findUnique({
+      where: {
+        slug,
+      },
+      include: {
+        nameTranslations: localeWhere,
+      },
+    });
+
+    if (!genreRecord) {
+      return;
+    }
+
+    return genreRecord;
+  },
+);
 
 export const findAllGenresWithBooksCount = cache(
   async ({
     yearRange,
     authorId,
     regionId,
+    locale = "en",
   }: {
     yearRange?: [number, number];
     authorId?: string;
     regionId?: string;
+    locale?: PathLocale;
   } = {}) => {
+    const localeWhere = getLocaleWhereClause(locale);
+
     const base = await db.genre.findMany({
       include: {
         _count: {
@@ -64,6 +83,7 @@ export const findAllGenresWithBooksCount = cache(
             },
           },
         },
+        nameTranslations: localeWhere,
       },
     });
 
