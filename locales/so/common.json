@@ -40,6 +40,10 @@
   "from": "Laga bilaabo",
   "to": "Ilaa",
   "search-bar": {
+    "recent-searches": "Raadiyadii Ugu Dambeeyay",
+    "recent-searches-placeholder": "Raadiyadii ugu dambeeyay halkan ayay ka soo muuqan doonaan",
+    "popular-searches": "Raadiyooyinka Caanka Ah",
+    "popular-collections": "Ururinta Caanka Ah",
     "placeholder": "Raadi qoraal",
     "start-typing": "Bilow qorista...",
     "no-results": "Natiijooyin Lama Helin",
@@ -145,6 +149,6 @@
     "success": "Mahadsanid!",
     "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
   },
-  "year-filter-info": "Shaandhayn sanadka geerida qoraaga",
-  "regions-filter-info": "Shaandhayn gobol uu qoraagu ku dhashay, ku noolaaday, soo booqday, ama ku dhintay"
+  "year-filter-info": "Sanadka Geerida Qoraa",
+  "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday"
 }

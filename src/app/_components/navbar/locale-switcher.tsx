@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { LanguageIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,8 +24,16 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="ghost">
-          <LanguageIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+        <Button
+          variant="ghost"
+          className="gap-1"
+          dir={selectedLocale === "ar-SA" ? "ltr" : "rtl"}
+          // onMouseEnter={() => setOpen(true)}
+          // onMouseLeave={() => setOpen(false)}
+        >
+          {/* <LanguageIcon className="h-4 w-4" /> */}
+          {getLocaleFullName(selectedLocale === "ar-SA" ? "en-US" : "ar-SA")}
+          <ChevronDownIcon className="size-3" />
         </Button>
       </DropdownMenuTrigger>
 

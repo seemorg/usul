@@ -13,7 +13,7 @@ import {
 
 import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import SearchBar from "./search";
+import SearchBar from "./search-bar";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import HomepageNavigationMenu from "./navigation-menu";
@@ -92,16 +92,18 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           <ThemeToggle />
           <LocaleSwitcher />
 
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={() => {
-              setIsMenuOpen(false);
-              setIsSearchOpen(!isSearchOpen);
-            }}
-          >
-            <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
-          </Button>
+          {!isHomepage && (
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => {
+                setIsMenuOpen(false);
+                setIsSearchOpen(!isSearchOpen);
+              }}
+            >
+              <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
+            </Button>
+          )}
 
           {/* Mobile menu button */}
           <Button
@@ -130,8 +132,8 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
-          <ThemeToggle />
           <LocaleSwitcher />
+          <ThemeToggle />
         </div>
       </header>
 

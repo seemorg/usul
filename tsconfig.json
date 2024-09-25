@@ -31,6 +31,7 @@
     }
   },
   "include": [
+    "src/types/types.d.ts",
     ".eslintrc.cjs",
     "next-env.d.ts",
     "**/*.ts",
@@ -39,5 +40,5 @@
     "**/*.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "public/pdf-express"]
 }

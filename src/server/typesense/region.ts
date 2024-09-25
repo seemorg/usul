@@ -23,7 +23,7 @@ export const searchRegions = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<RegionDocument>;
 
   return {
-    results: prepareResults(results),
+    results: prepareResults(results, "region"),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

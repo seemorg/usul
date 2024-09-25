@@ -1,4 +1,5 @@
 import { removeDiacritics } from "@/lib/diacritics";
+import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { Pagination } from "@/types/pagination";
 import type {
   DocumentSchema,
@@ -27,13 +28,14 @@ export type TypesenseResponse<T extends DocumentSchema = any> = ReturnType<
 
 export const prepareResults = <T extends DocumentSchema = any>(
   results: SearchResponse<T>,
+  type?: GlobalSearchDocument["type"],
 ) => {
   return {
     found: results.found,
     page: results.page,
     hits:
       results.hits?.map((h) => ({
-        document: h.document,
+        document: type ? { ...h.document, type } : h.document,
       })) ?? [],
   };
 };

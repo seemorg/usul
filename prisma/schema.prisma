@@ -102,10 +102,22 @@ model BookOtherNames {
 model Genre {
   id   String @id
   slug String @unique
-  name String
+
+  nameTranslations GenreName[]
+  transliteration  String?
 
   numberOfBooks Int    @default(0)
   books         Book[]
+}
+
+model GenreName {
+  locale String
+  text   String
+
+  genreId String
+  genre   Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([genreId, locale])
 }
 
 enum LocationType {

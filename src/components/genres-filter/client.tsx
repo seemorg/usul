@@ -8,6 +8,8 @@ import FilterContainer from "@/components/search-results/filter-container";
 import { useSearchParams, type ReadonlyURLSearchParams } from "next/navigation";
 import { useFormatter, useTranslations } from "next-intl";
 import type { findAllGenresWithBooksCount } from "@/server/services/genres";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { usePathLocale } from "@/lib/locale/utils";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -50,6 +52,7 @@ export default function _GenresFilter({
   const { replace } = useRouter();
   const searchParams = useSearchParams();
   const [size, setSize] = useState(10);
+  const locale = usePathLocale();
 
   const genreIdToGenreName = useMemo(() => {
     return Object.fromEntries(genres.map((item) => [item.id, item]));
@@ -152,7 +155,11 @@ export default function _GenresFilter({
           // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
           const booksCount = formatter.number(genre._count.books);
 
-          const title = `${genre.name} (${booksCount})`;
+          const primaryText =
+            locale === "en"
+              ? genre.transliteration
+              : getPrimaryLocalizedText(genre.nameTranslations, locale);
+          const title = `${primaryText} (${booksCount})`;
 
           return (
             <FilterContainer.Checkbox
@@ -163,7 +170,7 @@ export default function _GenresFilter({
               checked={selectedGenres.includes(genre.id)}
               onCheckedChange={() => handleChange(genre.id)}
             >
-              {genre.name}
+              {primaryText}
             </FilterContainer.Checkbox>
           );
         })}

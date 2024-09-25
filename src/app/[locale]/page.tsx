@@ -2,7 +2,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import Container from "@/components/ui/container";
 import Navbar from "../_components/navbar";
-import SearchBar from "../_components/navbar/search";
+import SearchBar from "../_components/navbar/search-bar";
 import { Link } from "@/navigation";
 import BookSearchResult from "@/components/book-search-result";
 
@@ -16,34 +16,20 @@ import {
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { ArabicLogo } from "@/components/Icons";
-import { CloudflareImage } from "@/components/cloudflare-image";
 import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
+import { CollectionCard } from "@/components/ui/collection-card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { PlayIcon } from "@heroicons/react/24/solid";
+import dynamicImport from "next/dynamic";
+import { env } from "@/env";
+import { cn } from "@/lib/utils";
 
-const searchExamples = [
-  {
-    title: "الأشباه والنظائر",
-    href: navigation.books.reader("ashbah-1"),
-  },
-  {
-    title: "Al Risala",
-    href: navigation.books.reader("risala"),
-  },
-  {
-    title: "Ibn Al-Jawzi",
-    href: navigation.authors.bySlug("ibn-jawzi"),
-  },
-  {
-    title: "Iraq",
-    href: navigation.regions.bySlug("iraq"),
-  },
-  {
-    title: "Fiqh",
-    href: navigation.genres.bySlug("fiqh"),
-  },
-];
+const VideoModal = dynamicImport(() => import("../_components/video-modal"), {
+  ssr: false,
+});
 
 export const generateMetadata = ({
   params: { locale },
@@ -75,40 +61,53 @@ export default async function HomePage({
 
   const t = await getTranslations({ locale, namespace: "home" });
 
+  const showVideo = env.VERCEL_ENV !== "production";
+
   return (
     <>
       <Navbar isHomepage />
 
-      <div className="flex h-[450px] w-full bg-primary pt-28 text-white sm:h-[500px] sm:pt-32">
-        <Container className="flex flex-col items-center">
-          {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
-          <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" />
+      <div className="relative flex h-[500px] w-full pt-28 text-white sm:pt-32">
+        <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
+        {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
-          <p className="mt-5 text-lg">{t("headline")}</p>
+        <Container className="z-[1] flex flex-col items-center">
+          <h1 className="text-center text-5xl font-bold">{t("headline")}</h1>
 
-          <div className="mt-14 w-full sm:mt-[4.5rem]">
-            <div className="mx-auto max-w-[52rem]">
-              <SearchBar size="lg" />
+          <p className="mt-5 text-center text-xl font-light text-white/80">
+            {t("subheadline")}
+          </p>
+
+          {/* TODO: remove this condition */}
+          {showVideo && (
+            <div className="mt-6 flex w-full justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+                  >
+                    <PlayIcon className="size-4" />
+                    How Usul Works - 2:20
+                  </Button>
+                </DialogTrigger>
+
+                <DialogContent className="sm:max-w-[1200px]">
+                  <VideoModal />
+                </DialogContent>
+              </Dialog>
             </div>
+          )}
 
-            <div className="mx-auto mt-4 flex max-w-[300px] flex-wrap items-center justify-center gap-2 sm:max-w-full">
-              <span>{t("try")}</span>
-
-              {searchExamples.map((e) => (
-                <Link
-                  key={e.href}
-                  href={e.href}
-                  className="font-medium text-primary-foreground underline"
-                >
-                  {e.title}
-                </Link>
-              ))}
+          <div className={cn("w-full", showVideo ? "mt-16" : "mt-28")}>
+            <div className="mx-auto max-w-[46rem]">
+              <SearchBar size="lg" />
             </div>
           </div>
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-4 bg-background py-10 sm:gap-12 sm:py-24">
+      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-24">
         <div>
           <HomepageSection
             title={t("sections.collections")}
@@ -117,20 +116,12 @@ export default async function HomePage({
                 href={navigation.genres.bySlug(collection.genre)}
                 key={collection.genre}
               >
-                <div className="relative block h-[140px] w-full overflow-hidden rounded-md bg-gray-200 sm:h-[160px] md:h-[180px]">
-                  <CloudflareImage
-                    src={`https://assets.usul.ai/collections${collection.image}`}
-                    alt={collection.name}
-                    width={500}
-                    height={500}
-                    className="absolute inset-0 h-full w-full object-cover"
-                    placeholder="empty"
-                  />
-                </div>
-
-                <p className="mt-2 text-base font-medium sm:text-lg">
-                  {t(`collections.${collection.name}`)}
-                </p>
+                <CollectionCard
+                  title={t(`collections.${collection.name}`)}
+                  numberOfBooks={collection.numberOfBooks}
+                  pattern={collection.pattern}
+                  color={collection.color}
+                />
               </Link>
             ))}
           />
@@ -140,6 +131,7 @@ export default async function HomePage({
           <HomepageSection
             title={t("sections.popular-texts")}
             href="/texts"
+            constraintWidth
             items={popularBooks.map((text) => (
               <BookSearchResult
                 result={
@@ -159,6 +151,7 @@ export default async function HomePage({
         <div>
           <HomepageSection
             title={t("sections.islamic-law")}
+            constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
                 result={
@@ -178,6 +171,7 @@ export default async function HomePage({
         <div>
           <HomepageSection
             title={t("sections.islamic-history")}
+            constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
                 result={

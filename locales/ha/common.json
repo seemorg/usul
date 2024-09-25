@@ -40,6 +40,10 @@
   "from": "Daga",
   "to": "Zuwa",
   "search-bar": {
+    "recent-searches": "Bincike Na Kwanan Nan",
+    "recent-searches-placeholder": "Bincikenka na kwanan nan zai bayyana a nan",
+    "popular-searches": "Shahararrun Bincike",
+    "popular-collections": "Shahararrun Tarin",
     "placeholder": "Nema don Rubutu",
     "start-typing": "Fara Rubutawa...",
     "no-results": "Babu sakamako",
@@ -145,6 +149,6 @@
     "success": "Na gode!",
     "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
   },
-  "year-filter-info": "Tacewa bisa shekarar mutuwar marubuci",
-  "regions-filter-info": "Tacewa bisa yankin da aka haifi marubuci, ya zauna, ya ziyarta, ko ya mutu"
+  "year-filter-info": "Shekarar mutuwar marubuci",
+  "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu"
 }

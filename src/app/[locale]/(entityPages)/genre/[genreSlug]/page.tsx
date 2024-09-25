@@ -14,6 +14,8 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import RegionsFilter from "@/components/regions-filter";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { getPathLocale } from "@/lib/locale/server";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -28,10 +30,16 @@ export const generateMetadata = async ({
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return;
 
+  const locale = await getPathLocale();
+  const primaryText =
+    locale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, locale);
+
   return getMetadata({
     hasImage: true,
     pagePath: navigation.genres.bySlug(genreSlug),
-    title: genre.name,
+    title: primaryText ?? "",
   });
 };
 
@@ -41,6 +49,7 @@ async function GenrePage({
   routeParams: { genreSlug },
   searchParams,
 }: GenrePageProps) {
+  const locale = await getPathLocale();
   const genre = await findGenreBySlug(decodeURIComponent(genreSlug));
 
   if (!genre) {
@@ -63,7 +72,10 @@ async function GenrePage({
     },
   });
 
-  const primaryName = genre.name;
+  const primaryName =
+    locale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, locale);
   const secondaryName = null;
 
   return (

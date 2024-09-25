@@ -1,6 +1,5 @@
 "use client";
 
-import RenderBlock from "@/components/render-markdown";
 import type {
   OpenitiBookResponse,
   TurathBookResponse,
@@ -10,9 +9,10 @@ import React, { useCallback, type PropsWithChildren } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "./context";
 import Footer from "@/app/_components/footer";
 import { useTranslations } from "next-intl";
+import RenderBlock from "@/components/render-markdown";
 
 type Pages =
-  | OpenitiBookResponse["pages"]
+  | OpenitiBookResponse["content"]
   | TurathBookResponse["turathResponse"]["pages"];
 
 const PageLabel = (props: PropsWithChildren) => (
@@ -36,8 +36,9 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
         return (
           <>
             <div className="flex flex-col" />
+            {/* [&_span[data-type='title']:first-child]:mt-0 */}
             <div
-              className="text-2xl leading-[2.3] [&_span[data-type='title']:first-child]:mt-0 [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:my-5 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:font-bold"
+              className="text-2xl leading-[2.3] [&_a]:text-primary [&_a]:underline [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:mb-12 [&_span[data-type='title']]:mt-28 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:text-3xl [&_span[data-type='title']]:font-bold [&_span[data-type='title']]:leading-[2]"
               dangerouslySetInnerHTML={{
                 __html: pageObj.text.replaceAll("</span>.", "</span>"),
               }}
@@ -61,10 +62,8 @@ export default function ReaderContent({ pages }: { pages: Pages }) {
           ))}
 
           <PageLabel>
-            {page
-              ? typeof page.page === "number"
-                ? t("pagination.page-x", { page: page.page })
-                : page.page
+            {page && !isNaN(page)
+              ? t("pagination.page-x", { page })
               : t("pagination.page-unknown")}
           </PageLabel>
         </>

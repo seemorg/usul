@@ -8,7 +8,6 @@ import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useFormatter } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import React from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
@@ -21,7 +20,7 @@ export default function ChaptersList({
 }: {
   headers:
     | TurathBookResponse["turathResponse"]["headings"]
-    | OpenitiBookResponse["headers"];
+    | OpenitiBookResponse["chapters"];
   chapterIndexToPageIndex?:
     | TurathBookResponse["chapterIndexToPageIndex"]
     | null;
@@ -29,7 +28,6 @@ export default function ChaptersList({
   getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const formatter = useFormatter();
   const mobileSidebar = useMobileSidebar();
 
   const handleNavigate = (
@@ -86,8 +84,11 @@ export default function ChaptersList({
       /> */}
 
       {headers.map((chapter, idx) => {
-        const page = "level" in chapter ? chapter.page : chapter?.page?.page;
-        const title = "title" in chapter ? chapter.title : chapter.content;
+        const page =
+          typeof chapter.page === "number" ? chapter.page : chapter?.page?.page;
+        const volume =
+          "volume" in chapter ? chapter.volume : (chapter?.page as any)?.vol;
+        const title = chapter.title;
 
         return (
           <Button
@@ -104,13 +105,7 @@ export default function ChaptersList({
               }
             }}
           >
-            {page && (
-              <span className="text-xs">
-                {typeof page === "string" || typeof page === "number"
-                  ? formatter.number(Number(page))
-                  : `${page.vol} / ${page.page}`}
-              </span>
-            )}
+            {page && <span className="text-xs">{`${volume} / ${page}`}</span>}
 
             <p
               className="block min-w-0 flex-wrap text-wrap text-start leading-5"

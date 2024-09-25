@@ -1,3 +1,4 @@
+import { bytesToMB } from "@/lib/utils";
 import type { TurathBookResponse } from "@/types/turath/book";
 
 const bookKeysMap = `
@@ -23,6 +24,52 @@ const getTurathBookById = async (id: number | string) => {
   return JSON.parse(unObfuscateKeys(text)) as TurathBookResponse;
 };
 
+type PublicationDetails = {
+  title?: string;
+  author?: string;
+  editor?: string;
+  publisher?: string;
+  printVersion?: string;
+  volumes?: string;
+  pageNumbersMatchPrint?: boolean;
+};
+
+const getPublicationDetails = (info: string) => {
+  const publicationDetails: PublicationDetails = {};
+
+  info.split("\n").forEach((line) => {
+    if (line === "[ترقيم الكتاب موافق للمطبوع]") {
+      publicationDetails.pageNumbersMatchPrint = true;
+      return;
+    }
+
+    const [key, value] = line.split(":");
+    if (!key || !value) return;
+
+    const trimmedKey = key.trim();
+    let newKey: keyof Omit<PublicationDetails, "pageNumbersMatchPrint"> | null =
+      null;
+    if (trimmedKey === "الكتاب") {
+      newKey = "title";
+    } else if (trimmedKey === "المؤلف") {
+      newKey = "author";
+    } else if (trimmedKey === "المحقق") {
+      newKey = "editor";
+    } else if (trimmedKey === "الناشر") {
+      newKey = "publisher";
+    } else if (trimmedKey === "الطبعة") {
+      newKey = "printVersion";
+    } else if (trimmedKey === "عدد الأجزاء") {
+      newKey = "volumes";
+    }
+
+    if (newKey) {
+      publicationDetails[newKey] = value.trim();
+    }
+  });
+
+  return publicationDetails;
+};
 export const fetchTurathBook = async (id: string) => {
   const res = await getTurathBookById(id);
 
@@ -111,16 +158,49 @@ export const fetchTurathBook = async (id: string) => {
     });
   });
 
-  const pdf = res.meta.pdf_links;
+  const publicationDetails = getPublicationDetails(res.meta.info);
 
   // fetch from turath
   return {
     turathResponse: {
-      pdf,
+      pdf: getPdfDetails(res.meta.pdf_links),
       headings,
       pages: mergedPages,
+      publicationDetails,
     },
     chapterIndexToPageIndex,
     pageNumberWithVolumeToIndex,
+  };
+};
+
+const getPdfDetails = (pdf: TurathBookResponse["meta"]["pdf_links"]) => {
+  let root = pdf?.root ? pdf.root.replace(/\/$/, "") : null;
+  let file = pdf?.files[0];
+  if ((pdf?.files?.length ?? 0) > 1) {
+    const completeFile = pdf!.files?.find((e) => e.endsWith("|0"));
+    if (completeFile) {
+      file = completeFile.split("|")[0];
+    }
+  }
+
+  let finalUrl: string | undefined;
+  if (file) {
+    let url = `https://files.turath.io/pdf/`;
+
+    if (root) {
+      if (root.includes("archive.org")) {
+        root = "archive/" + root.replace("https://archive.org/download/", "");
+        url += `${root}_=_${file}`;
+      } else {
+        url += `${root}/${file}`;
+      }
+    }
+
+    finalUrl = encodeURI(url);
+  }
+
+  return {
+    finalUrl,
+    sizeInMb: pdf?.size ? bytesToMB(pdf.size) : undefined,
   };
 };

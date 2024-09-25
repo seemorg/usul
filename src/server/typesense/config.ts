@@ -27,7 +27,7 @@ export const BOOKS_COLLECTION = {
 };
 
 const genresQueryWeights = {
-  1: ["name"],
+  1: ["nameTranslations.text"],
 };
 
 export const GENRES_COLLECTION = {
@@ -50,10 +50,10 @@ export const REGIONS_COLLECTION = {
 };
 
 const globalSearchQueryWeights = {
-  4: ["primaryNames.text"],
-  3: ["_nameVariations", "otherNames.texts"],
-  2: ["author.primaryNames.text"],
-  1: ["author._nameVariations", "author.otherNames.texts"],
+  // 4: [],
+  1: ["primaryNames.text", "_nameVariations", "otherNames.texts"],
+  // 2: ["author.primaryNames.text"],
+  // 1: ["author._nameVariations", "author.otherNames.texts"],
 };
 
 export const GLOBAL_SEARCH_COLLECTION = {

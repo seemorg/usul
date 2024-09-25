@@ -8,6 +8,7 @@ import { fetchTurathBook } from "./book-fetchers/turath";
 import { fetchOpenitiBook } from "./book-fetchers/openiti";
 import { log } from "next-axiom";
 import { unstable_cache } from "next/cache";
+import { notFound } from "next/navigation";
 
 export type TurathBookResponse = {
   source: "turath";
@@ -42,7 +43,9 @@ const getBook = async (id: string, locale: string) => {
           bioTranslations: localeWhere,
         },
       },
-      genres: true,
+      genres: {
+        include: { nameTranslations: localeWhere },
+      },
       primaryNameTranslations: localeWhere,
       otherNameTranslations: localeWhere,
     },
@@ -127,7 +130,7 @@ export const fetchBook = cache(
     } catch (e) {
       log.error("book_not_found", { slug: id, versionId });
       await log.flush();
-      throw e;
+      throw notFound();
     }
   },
 );

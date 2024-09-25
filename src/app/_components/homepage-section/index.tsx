@@ -12,15 +12,18 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useDirection } from "@/lib/locale/utils";
+import { cn } from "@/lib/utils";
 
 const HomepageSection = ({
   title,
   href,
   items,
+  constraintWidth,
 }: {
   title: string;
   href?: string;
   items: React.ReactNode[];
+  constraintWidth?: boolean;
 }) => {
   const dir = useDirection();
 
@@ -40,23 +43,21 @@ const HomepageSection = ({
           <ComingSoonModal trigger={sectionTitle} />
         )}
 
-        <div className="flex items-center">
-          <CarouselPrevious />
-
-          <CarouselNext />
+        <div className="flex items-center gap-2">
+          <CarouselPrevious className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselNext className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
         </div>
       </div>
-
-      {/* <ScrollArea className="relative mt-10 w-full whitespace-nowrap">
-        <div className="flex gap-5 pb-10">{children}</div>
-
-        <ScrollBar orientation="horizontal" />
-      </ScrollArea> */}
 
       <CarouselContent className="mt-5 sm:mt-10">
         {items.map((item, idx) => (
           <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
-            <div className="w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]">
+            <div
+              className={cn(
+                constraintWidth &&
+                  "w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]",
+              )}
+            >
               {item}
             </div>
             {idx !== items.length - 1 && (

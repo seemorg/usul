@@ -33,6 +33,9 @@ import PdfButton from "./pdf-button";
 import type { TabProps } from "../sidebar/tabs";
 import { useLocale, useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
+import { CheckIcon, XIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import PdfChaptersList from "./pdf-chapters-section";
 
 // const breadcrumbs = [
 //   "كتب الأخلاق والسلوك",
@@ -85,6 +88,9 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const locale = useLocale();
   const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
   const direction = getLocaleDirection(locale as any);
+  const view = (useSearchParams().get("view") ?? "default") as
+    | "pdf"
+    | "default";
 
   const book = bookResponse.book;
   const author = book.author;
@@ -110,13 +116,18 @@ export default function ContentTab({ bookResponse }: TabProps) {
     bookResponse.source === "turath"
       ? bookResponse.turathResponse.headings
       : bookResponse.source === "openiti"
-        ? bookResponse.headers
+        ? bookResponse.chapters
         : [];
 
   const chapterIndexToPageIndex =
     bookResponse.source === "turath"
       ? bookResponse.chapterIndexToPageIndex
       : null;
+
+  const publicationDetails =
+    bookResponse.source === "turath"
+      ? bookResponse.turathResponse.publicationDetails
+      : {};
 
   return (
     <>
@@ -204,6 +215,16 @@ export default function ContentTab({ bookResponse }: TabProps) {
             slug={bookResponse.book.slug}
           />
         </div>
+
+        {bookResponse.source === "openiti" && (
+          <div className="w-full pb-2 pt-4">
+            <Button variant="secondary" asChild className="w-full">
+              <a href={bookResponse.rawUrl} target="_blank">
+                Raw File
+              </a>
+            </Button>
+          </div>
+        )}
       </SidebarContainer>
 
       <Separator className="my-4" />
@@ -220,17 +241,69 @@ export default function ContentTab({ bookResponse }: TabProps) {
                 <p className="font-semibold">{t("reader.other-titles")}:</p>
 
                 <div className="mt-3 space-y-3 text-sm text-muted-foreground">
-                  <p>
-                    {primaryOtherNames.length > 0
-                      ? primaryOtherNames.join(", ")
-                      : "-"}
-                  </p>
+                  {primaryOtherNames.length > 0 && (
+                    <p>{primaryOtherNames.join(", ")}</p>
+                  )}
 
-                  <p>
-                    {secondaryOtherNames.length > 0
-                      ? secondaryOtherNames.join(", ")
-                      : "-"}
-                  </p>
+                  {secondaryOtherNames.length > 0 && (
+                    <p>{secondaryOtherNames.join(", ")}</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <p className="font-semibold">
+                  {t("reader.publication-details.title")}:
+                </p>
+
+                <div className="mt-3 flex flex-col gap-3">
+                  {publicationDetails.title && (
+                    <p>
+                      {t("reader.publication-details.book-title")}:{" "}
+                      <span dir="rtl">{publicationDetails.title}</span>
+                    </p>
+                  )}
+                  {publicationDetails.author && (
+                    <p>
+                      {t("reader.publication-details.author")}:{" "}
+                      <span dir="rtl">{publicationDetails.author}</span>
+                    </p>
+                  )}
+                  {publicationDetails.editor && (
+                    <p>
+                      {t("reader.publication-details.editor")}:{" "}
+                      <span dir="rtl">{publicationDetails.editor}</span>
+                    </p>
+                  )}
+                  {publicationDetails.publisher && (
+                    <p>
+                      {t("reader.publication-details.publisher")}:{" "}
+                      <span dir="rtl">{publicationDetails.publisher}</span>
+                    </p>
+                  )}
+                  {publicationDetails.printVersion && (
+                    <p>
+                      {t("reader.publication-details.print-version")}:{" "}
+                      <span dir="rtl">{publicationDetails.printVersion}</span>
+                    </p>
+                  )}
+                  {publicationDetails.volumes && (
+                    <p>
+                      {t("reader.publication-details.volumes")}:{" "}
+                      <span dir="rtl">{publicationDetails.volumes}</span>
+                    </p>
+                  )}
+                  {publicationDetails.pageNumbersMatchPrint !== undefined && (
+                    <p className="flex items-center gap-1">
+                      {t("reader.publication-details.page-numbers-match-print")}
+                      :{" "}
+                      {publicationDetails.pageNumbersMatchPrint ? (
+                        <CheckIcon className="size-4" />
+                      ) : (
+                        <XIcon className="size-4" />
+                      )}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -248,7 +321,12 @@ export default function ContentTab({ bookResponse }: TabProps) {
                         variant="secondary"
                         className="font-normal"
                       >
-                        {genre.name}
+                        {pathLocale === "en"
+                          ? genre.transliteration
+                          : getPrimaryLocalizedText(
+                              genre.nameTranslations,
+                              pathLocale,
+                            )}
                       </Badge>
                     </Link>
                   ))}
@@ -259,14 +337,21 @@ export default function ContentTab({ bookResponse }: TabProps) {
         </Accordion>
       </SidebarContainer>
 
-      {bookResponse.source === "external" ? null : (
+      {bookResponse.source === "external" ? null : view === "pdf" ? (
+        <>
+          <Separator className="my-4" />
+          <SidebarContainer className="flex flex-col gap-3">
+            <PdfChaptersList />
+          </SidebarContainer>
+        </>
+      ) : (
         <>
           <Separator className="my-4" />
 
           <SidebarContainer className="flex flex-col gap-3">
             {(bookResponse.source === "turath"
               ? bookResponse.turathResponse.headings
-              : bookResponse.headers
+              : bookResponse.chapters
             ).length > 0 && (
               <div className="w-full">
                 <PageNavigator

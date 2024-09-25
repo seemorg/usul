@@ -1,4 +1,5 @@
 {
+  "all": "الكل",
   "text": "نص",
   "texts": "نصوص",
   "x-texts": "{count, plural, zero {}=0 {لا توجد نصوص} one {# نص} two {# نصوص} few {# نصوص} many {# نصوص} other {# نصوص}}",

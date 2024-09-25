@@ -1,3 +1,5 @@
+"use server";
+
 import { makeSearchRequest } from "@/lib/typesense";
 import { makePagination, prepareResults, type SearchOptions } from "./utils";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
@@ -23,7 +25,7 @@ export const searchGenres = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<GenreDocument>;
 
   return {
-    results: prepareResults(results),
+    results: prepareResults(results, "genre"),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

@@ -17,6 +17,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
         amiri: ["var(--font-amiri)", ...fontFamily.serif],
+        "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,6 +52,13 @@ const config = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        collection: {
+          gray: "#35363E",
+          red: "#9E5147",
+          green: "#206E6E",
+          yellow: "#B7922D",
+          indigo: "#3C3AC7",
         },
       },
       borderRadius: {

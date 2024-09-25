@@ -2,10 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { bytesToMB } from "@/lib/utils";
+
 import React from "react";
 import { useTranslations } from "next-intl";
 import type { TurathBookResponse } from "@/server/services/books";
+import { useSearchParams } from "next/navigation";
+import { EyeIcon } from "lucide-react";
+import { usePathname, useRouter } from "@/navigation";
 
 export default function PdfButton({
   pdf,
@@ -15,34 +18,59 @@ export default function PdfButton({
   slug: string;
 }) {
   const t = useTranslations("reader");
-  const url = pdf?.files[0];
-  const size = pdf?.size;
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const view = searchParams.get("view");
+  const router = useRouter();
 
-  const Wrapper = url ? "a" : "span";
+  const size = pdf?.sizeInMb;
+  const Wrapper = pdf?.finalUrl ? "a" : "span";
+
+  const onViewClick = () => {
+    const newParams = new URLSearchParams(searchParams);
+    if (view === "pdf") {
+      newParams.delete("view");
+    } else {
+      newParams.set("view", "pdf");
+    }
+
+    router.replace(`${pathname}?${newParams.toString()}`);
+  };
 
   return (
-    <Button
-      variant="secondary"
-      asChild={!!url}
-      tooltip={
-        url
-          ? size
-            ? `${bytesToMB(size)} MB`
-            : "Unknown size"
-          : "Not available"
-      }
-      disabled={!url}
-      className="w-full"
-    >
-      <Wrapper
-        href={url}
-        download={slug + ".pdf"}
-        target="_blank"
-        className="flex w-full justify-center gap-2"
+    <div className="flex items-center gap-3">
+      <Button
+        variant={view === "pdf" ? "default" : "secondary"}
+        disabled={!pdf?.finalUrl}
+        size="icon"
+        onClick={onViewClick}
       >
-        <ArrowDownTrayIcon className="h-4 w-4" /> {t("download-pdf")}{" "}
-        {size && <span className="md:hidden">({bytesToMB(size)} MB)</span>}
-      </Wrapper>
-    </Button>
+        <EyeIcon className="h-4 w-4" />
+      </Button>
+
+      <Button
+        variant="secondary"
+        asChild={!!pdf?.finalUrl}
+        tooltip={
+          pdf?.finalUrl
+            ? size
+              ? `${size} MB`
+              : "Unknown size"
+            : "Not available"
+        }
+        disabled={!pdf?.finalUrl}
+        className="w-full flex-1"
+      >
+        <Wrapper
+          href={pdf?.finalUrl}
+          download={slug + ".pdf"}
+          target="_blank"
+          className="flex w-full justify-center gap-2"
+        >
+          <ArrowDownTrayIcon className="h-4 w-4" /> {t("download-pdf")}{" "}
+          {size && <span className="md:hidden">({size} MB)</span>}
+        </Wrapper>
+      </Button>
+    </div>
   );
 }

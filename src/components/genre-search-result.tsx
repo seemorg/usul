@@ -2,6 +2,8 @@ import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import type { searchGenres } from "@/server/typesense/genre";
 import { getTranslations } from "next-intl/server";
+import { getPathLocale } from "@/lib/locale/server";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
 
 export default async function GenreSearchResult({
   result,
@@ -11,8 +13,13 @@ export default async function GenreSearchResult({
   >[number];
 }) {
   const t = await getTranslations("entities");
+  const pathLocale = await getPathLocale();
 
   const genre = result.document;
+  const name =
+    pathLocale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, pathLocale);
 
   return (
     <Link
@@ -22,7 +29,7 @@ export default async function GenreSearchResult({
     >
       <div className="flex items-center justify-between">
         <div className="max-w-[70%] flex-1">
-          <h2 className="text-xl text-foreground">{genre.name}</h2>
+          <h2 className="text-xl text-foreground">{name}</h2>
         </div>
 
         <div className="flex-1 text-end">

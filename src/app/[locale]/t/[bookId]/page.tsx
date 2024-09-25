@@ -9,10 +9,14 @@ import { tabs } from "./_components/sidebar/tabs";
 import { ArrowUpRightIcon, FileQuestionIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+const PdfView = dynamic(() => import("./_components/pdf-view"), {
+  ssr: false,
+});
 
 export default async function SidebarContent({
   params: { bookId },
-  searchParams: { tab: _tabId, versionId },
+  searchParams: { tab: _tabId, versionId, view },
 }: {
   params: {
     bookId: string;
@@ -20,6 +24,7 @@ export default async function SidebarContent({
   searchParams: {
     versionId?: string;
     tab: string;
+    view: "pdf" | "default";
   };
 }) {
   const pathLocale = await getPathLocale();
@@ -35,10 +40,10 @@ export default async function SidebarContent({
   }
 
   let pages;
-  if (response.source === "turath" && "turathResponse" in response) {
+  if (response.source === "turath") {
     pages = response.turathResponse.pages;
-  } else if (response.source === "openiti" && "pages" in response) {
-    pages = response.pages;
+  } else if (response.source === "openiti") {
+    pages = response.content;
   } else {
     pages = null;
   }
@@ -72,9 +77,13 @@ export default async function SidebarContent({
       }
     >
       {pages ? (
-        <article>
-          <ReaderContent pages={pages} />
-        </article>
+        view === "pdf" && response.source === "turath" ? (
+          <PdfView pdf={response.turathResponse.pdf} />
+        ) : (
+          <article>
+            <ReaderContent pages={pages} />
+          </article>
+        )
       ) : (
         <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16">
           <div className="flex flex-col items-center justify-center py-20">

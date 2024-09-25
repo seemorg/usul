@@ -40,6 +40,10 @@
   "from": "Başlangıç",
   "to": "Bitiş",
   "search-bar": {
+    "recent-searches": "Son Aramalar",
+    "recent-searches-placeholder": "Son aramalarınız burada görünecek",
+    "popular-searches": "Popüler Aramalar",
+    "popular-collections": "Popüler Koleksiyonlar",
     "placeholder": "Bir metin arayın",
     "start-typing": "Yazmaya başlayın...",
     "no-results": "Sonuç bulunamadı",
@@ -145,6 +149,6 @@
     "success": "Teşekkürler!",
     "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
   },
-  "year-filter-info": "Yazarın ölüm yılına göre filtrele",
-  "regions-filter-info": "Yazarın doğduğu, ikamet ettiği, ziyaret ettiği veya öldüğü bölgeye göre filtrele"
+  "year-filter-info": "Yazarın ölüm yılı",
+  "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler"
 }

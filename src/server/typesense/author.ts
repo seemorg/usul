@@ -54,7 +54,7 @@ export const searchAuthors = async (q: string, options?: SearchOptions) => {
   })) as SearchResponse<AuthorDocument>;
 
   return {
-    results: prepareResults(results),
+    results: prepareResults(results, "author"),
     pagination: makePagination(results.found, results.page, limit),
   };
 };

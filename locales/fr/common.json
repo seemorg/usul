@@ -40,6 +40,10 @@
   "from": "De",
   "to": "À",
   "search-bar": {
+    "recent-searches": "Recherches récentes",
+    "recent-searches-placeholder": "Vos recherches récentes apparaîtront ici",
+    "popular-searches": "Recherches populaires",
+    "popular-collections": "Collections populaires",
     "placeholder": "Rechercher un texte",
     "start-typing": "Commencez à taper...",
     "no-results": "Aucun résultat trouvé",
@@ -145,6 +149,6 @@
     "success": "Merci !",
     "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
   },
-  "year-filter-info": "Filtrer par année de décès de l'auteur",
-  "regions-filter-info": "Filtrer par une région où l'auteur est né, a résidé, visité ou est décédé"
+  "year-filter-info": "Année de décès de l'auteur",
+  "regions-filter-info": "Lieux où l'auteur a visité, est né ou est décédé"
 }

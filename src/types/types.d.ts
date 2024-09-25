@@ -7,3 +7,14 @@ declare interface IntlMessages {
   reader: typeof import("../../locales/en/reader.json");
   meta: typeof import("../../locales/en/meta.json");
 }
+
+declare module "*.svg" {
+  import { FC, SVGProps } from "react";
+  const content: FC<SVGProps<SVGElement>>;
+  export default content;
+}
+
+declare module "*.svg?url" {
+  const content: any;
+  export default content;
+}

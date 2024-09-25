@@ -15,8 +15,36 @@ const amiri = Amiri({
 const rubik = localFont({
   variable: "--font-rubik",
   src: [
+    // {
+    //   path: "../fonts/rubik/rubik-variable-font.ttf",
+    // },
     {
-      path: "../fonts/rubik/rubik-variable-font.ttf",
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Bold.ttf",
+      weight: "700",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.ttf",
+      weight: "600",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Medium.ttf",
+      weight: "500",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.ttf",
+      weight: "400",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Light.ttf",
+      weight: "300",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-ExtraLight.ttf",
+      weight: "200",
+    },
+    {
+      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Thin.ttf",
+      weight: "100",
     },
   ],
   adjustFontFallback: false,
@@ -28,5 +56,16 @@ const rubik = localFont({
   ],
 });
 
+const uthmanicHafs = localFont({
+  variable: "--font-uthmanic-hafs",
+  src: [
+    {
+      path: "../fonts/uthmanic-hafs/uthmanic-hafs.ttf",
+    },
+  ],
+});
+
 export const getFontsClassnames = () =>
-  [inter.variable, rubik.variable, amiri.variable].join(" ");
+  [inter.variable, rubik.variable, amiri.variable, uthmanicHafs.variable].join(
+    " ",
+  );

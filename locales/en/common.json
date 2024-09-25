@@ -40,6 +40,10 @@
   "from": "From",
   "to": "To",
   "search-bar": {
+    "recent-searches": "Recent Searches",
+    "recent-searches-placeholder": "Your recent searches will show up here",
+    "popular-searches": "Popular Searches",
+    "popular-collections": "Popular Collections",
     "placeholder": "Search for a text",
     "start-typing": "Start typing...",
     "no-results": "No results found",
@@ -145,6 +149,6 @@
     "success": "Thank you!",
     "error": "Something went wrong. Please try again later."
   },
-  "year-filter-info": "Filter by author's death year",
-  "regions-filter-info": "Filter by a region the author was born in, resided, visited, or died"
+  "year-filter-info": "Author's death year",
+  "regions-filter-info": "Locations where the author has visited, been born, or died"
 }
