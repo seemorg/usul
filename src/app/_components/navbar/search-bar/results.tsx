@@ -14,6 +14,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { SearchType } from "@/types/search";
 import { CommandEmpty } from "@/components/ui/command";
+import type { GenreDocument } from "@/types/genre";
 
 const getHref = (document: GlobalSearchDocument) => {
   if (document.type === "book") {
@@ -61,14 +62,16 @@ export default function SearchBarResults({
   const hits = results?.hits ?? [];
 
   const items = hits.map((result) => {
-    const primaryName =
-      getPrimaryLocalizedText(result.document.primaryNames, pathLocale) ??
-      (result.document as any).name;
+    const names =
+      result.document.primaryNames ??
+      (result.document as unknown as GenreDocument).nameTranslations;
 
-    const secondaryName = getSecondaryLocalizedText(
-      result.document.primaryNames,
-      pathLocale,
-    );
+    const primaryName =
+      pathLocale === "en" &&
+      (result.document as unknown as GenreDocument).transliteration
+        ? (result.document as unknown as GenreDocument).transliteration
+        : getPrimaryLocalizedText(names, pathLocale);
+    const secondaryName = getSecondaryLocalizedText(names, pathLocale);
 
     const finalPrimaryName = primaryName ?? secondaryName;
     const finalSecondaryName = primaryName ? secondaryName : null;
