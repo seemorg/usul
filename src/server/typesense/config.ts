@@ -27,7 +27,7 @@ export const BOOKS_COLLECTION = {
 };
 
 const genresQueryWeights = {
-  1: ["name"],
+  1: ["nameTranslations.text"],
 };
 
 export const GENRES_COLLECTION = {
