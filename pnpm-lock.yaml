@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@crowdin/ota-client':
+        specifier: ^2.0.0
+        version: 2.0.0
       '@heroicons/react':
         specifier: ^2.1.1
         version: 2.1.1(react@18.2.0)
@@ -1038,6 +1041,10 @@ packages:
 
   '@base2/pretty-print-object@1.0.1':
     resolution: {integrity: sha512-4iri8i1AqYHJE2DstZYkyEprg6Pq6sKx3xn5FpySk9sNhH7qN2LLlHJCfDTZRILNwQNPD7mATWM0TBui7uC1pA==}
+
+  '@crowdin/ota-client@2.0.0':
+    resolution: {integrity: sha512-3cymvRcsYluTX4GliWpbYrZ4X1PaCGq87PRwnjeAvAMcPMAi8zezk9/1NA9IuYAnFZroJ7ceB8vjUezG5j5DTQ==}
+    engines: {node: '>=18.0.0'}
 
   '@emnapi/runtime@1.2.0':
     resolution: {integrity: sha512-bV21/9LQmcQeCPEg3BDFtvwL6cwiTMksYNWQQ4KOxCZikEGalWtenoZ0wCiukJINlGCIi2KXx01g4FoH/LxpzQ==}
@@ -7626,6 +7633,8 @@ snapshots:
       to-fast-properties: 2.0.0
 
   '@base2/pretty-print-object@1.0.1': {}
+
+  '@crowdin/ota-client@2.0.0': {}
 
   '@emnapi/runtime@1.2.0':
     dependencies:

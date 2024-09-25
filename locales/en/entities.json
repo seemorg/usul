@@ -1,4 +1,5 @@
 {
+  "all": "All",
   "text": "Text",
   "texts": "Texts",
   "x-texts": "{count, plural, =0 {No texts} one {# Text} other {# Texts}}",

@@ -1,4 +1,5 @@
 {
+  "all": "सभी",
   "text": "पाठ",
   "texts": "पाठों",
   "x-texts": "{count, plural, =0 {कोई पाठ नहीं} one {# पाठ} other {# पाठों}}",

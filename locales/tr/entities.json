@@ -1,4 +1,5 @@
 {
+  "all": "Tümü",
   "text": "Metin",
   "texts": "Metinler",
   "x-texts": "{count, plural, =0 {Metin yok} one {# Metin} other {# Metinler}}",

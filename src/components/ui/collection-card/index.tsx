@@ -68,7 +68,7 @@ export const CollectionCard = ({
       />
       <div
         className={clsx(
-          "absolute bottom-0 left-0 right-0 -z-[1] h-16 bg-gradient-to-t to-transparent opacity-10 backdrop-blur-sm",
+          "absolute bottom-0 left-0 right-0 -z-[1] h-20 bg-gradient-to-t to-collection-gray/0 opacity-10 backdrop-blur-[2px]",
           variant.gradientFrom10,
         )}
       />

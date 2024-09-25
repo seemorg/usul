@@ -24,6 +24,8 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { PlayIcon } from "@heroicons/react/24/solid";
 import dynamicImport from "next/dynamic";
+import { env } from "@/env";
+import { cn } from "@/lib/utils";
 
 const VideoModal = dynamicImport(() => import("../_components/video-modal"), {
   ssr: false,
@@ -59,46 +61,45 @@ export default async function HomePage({
 
   const t = await getTranslations({ locale, namespace: "home" });
 
+  const showVideo = env.VERCEL_ENV !== "production";
+
   return (
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex h-[650px] w-full pt-28 text-white sm:h-[550px] sm:pt-32">
+      <div className="relative flex h-[500px] w-full pt-28 text-white sm:pt-32">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
-          {/* <h1 className="font-rakkas -mt-6 text-5xl sm:text-8xl">أصول</h1> */}
-          {/* <ArabicLogo className="h-16 w-auto sm:h-24" aria-label="أصول" /> */}
-          <h1 className="max-w-[600px] text-center text-5xl font-bold">
-            8,000+ Classical Islamic Texts and more
-          </h1>
+          <h1 className="text-center text-5xl font-bold">{t("headline")}</h1>
 
-          {/* <p className="mt-5 text-lg">{t("headline")}</p> */}
-          <p className="mt-5 max-w-[400px] text-center text-xl font-light text-white/80">
-            Discover, search, and research Islamic texts from the OpenITI
-            corpus.
+          <p className="mt-5 text-center text-xl font-light text-white/80">
+            {t("subheadline")}
           </p>
 
-          <div className="mt-6 flex w-full justify-center">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
-                >
-                  <PlayIcon className="size-4" />
-                  How Usul Works - 2:20
-                </Button>
-              </DialogTrigger>
+          {/* TODO: remove this condition */}
+          {showVideo && (
+            <div className="mt-6 flex w-full justify-center">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+                  >
+                    <PlayIcon className="size-4" />
+                    How Usul Works - 2:20
+                  </Button>
+                </DialogTrigger>
 
-              <DialogContent className="sm:max-w-[1200px]">
-                <VideoModal />
-              </DialogContent>
-            </Dialog>
-          </div>
+                <DialogContent className="sm:max-w-[1200px]">
+                  <VideoModal />
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
 
-          <div className="mt-16 w-full">
+          <div className={cn("w-full", showVideo ? "mt-16" : "mt-28")}>
             <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
             </div>

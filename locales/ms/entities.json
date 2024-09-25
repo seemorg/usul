@@ -1,4 +1,5 @@
 {
+  "all": "Semua",
   "text": "Teks",
   "texts": "Teks-teks",
   "x-texts": "{count, plural, =0 {Tiada teks} one {# Teks} other {# Teks-teks}}",

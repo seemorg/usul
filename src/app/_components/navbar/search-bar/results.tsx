@@ -135,10 +135,10 @@ export default function SearchBarResults({
           }
         >
           <TabsList>
-            <TabsTrigger value="all">All</TabsTrigger>
-            <TabsTrigger value="texts">Texts</TabsTrigger>
-            <TabsTrigger value="authors">Authors</TabsTrigger>
-            <TabsTrigger value="genres">Genres</TabsTrigger>
+            <TabsTrigger value="all">{entitiesT("all")}</TabsTrigger>
+            <TabsTrigger value="texts">{entitiesT("texts")}</TabsTrigger>
+            <TabsTrigger value="authors">{entitiesT("authors")}</TabsTrigger>
+            <TabsTrigger value="genres">{entitiesT("genres")}</TabsTrigger>
           </TabsList>
         </Tabs>
 

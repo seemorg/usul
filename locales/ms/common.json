@@ -40,6 +40,10 @@
   "from": "Dari",
   "to": "Ke",
   "search-bar": {
+    "recent-searches": "Carian Terkini",
+    "recent-searches-placeholder": "Carian terkini anda akan muncul di sini",
+    "popular-searches": "Carian Popular",
+    "popular-collections": "Koleksi Popular",
     "placeholder": "Cari teks",
     "start-typing": "Mula menaip...",
     "no-results": "Tiada hasil ditemui",
@@ -145,6 +149,6 @@
     "success": "Terima kasih!",
     "error": "Ada yang salah. Sila cuba lagi nanti."
   },
-  "year-filter-info": "Tapis mengikut tahun kematian pengarang",
-  "regions-filter-info": "Tapis mengikut kawasan tempat pengarang dilahirkan, tinggal, melawat, atau meninggal dunia"
+  "year-filter-info": "Tahun kematian pengarang",
+  "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia"
 }

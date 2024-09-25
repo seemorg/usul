@@ -40,6 +40,10 @@
   "from": "From",
   "to": "To",
   "search-bar": {
+    "recent-searches": "Recent Searches",
+    "recent-searches-placeholder": "Your recent searches will show up here",
+    "popular-searches": "Popular Searches",
+    "popular-collections": "Popular Collections",
     "placeholder": "Search for a text",
     "start-typing": "Start typing...",
     "no-results": "No results found",

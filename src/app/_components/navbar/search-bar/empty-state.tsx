@@ -2,6 +2,7 @@
 import DottedList from "@/components/ui/dotted-list";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { TrendingUpIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const SearchPill = ({
   children,
@@ -37,6 +38,7 @@ export default function SearchBarEmptyState({
 }: {
   setValue: (value: string) => void;
 }) {
+  const t = useTranslations();
   const recentSearches = useSearchHistoryStore((s) => s.recentSearches);
   const clearRecentSearches = useSearchHistoryStore(
     (s) => s.clearRecentSearches,
@@ -47,13 +49,15 @@ export default function SearchBarEmptyState({
       <div>
         <DottedList
           items={[
-            <h2 className="font-semibold">Recent Searches</h2>,
+            <h2 className="font-semibold">
+              {t("common.search-bar.recent-searches")}
+            </h2>,
             recentSearches.length > 0 && (
               <button
                 className="text-primary underline"
                 onClick={clearRecentSearches}
               >
-                Clear
+                {t("common.clear-all")}
               </button>
             ),
           ]}
@@ -67,14 +71,16 @@ export default function SearchBarEmptyState({
             ))
           ) : (
             <p className="text-sm text-foreground/50">
-              Your recent searches will show up here
+              {t("common.search-bar.recent-searches-placeholder")}
             </p>
           )}
         </div>
       </div>
 
       <div>
-        <h2 className="font-semibold">Popular Searches</h2>
+        <h2 className="font-semibold">
+          {t("common.search-bar.popular-searches")}
+        </h2>
         <div className="mt-3 flex flex-wrap gap-3">
           {popularSearches.map((search, idx) => (
             <SearchPill key={idx} showIcon onClick={() => setValue(search)}>
@@ -85,7 +91,9 @@ export default function SearchBarEmptyState({
       </div>
 
       <div>
-        <h2 className="font-semibold">Popular Collections</h2>
+        <h2 className="font-semibold">
+          {t("common.search-bar.popular-collections")}
+        </h2>
         <div className="mt-3 flex flex-wrap gap-3">
           {popularCollections.map((collection, idx) => (
             <SearchPill key={idx} showIcon onClick={() => setValue(collection)}>

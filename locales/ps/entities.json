@@ -1,4 +1,5 @@
 {
+  "all": "ټول",
   "text": "متن",
   "texts": "متنونه",
   "x-texts": "{count, plural, =0 {هیڅ متنونه} one {# متن} other {# متنونه}}",

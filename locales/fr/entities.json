@@ -1,4 +1,5 @@
 {
+  "all": "Tous",
   "text": "Texte",
   "texts": "Textes",
   "x-texts": "{count, plural, =0 {Aucun texte} one {# Texte} other {# Textes}}",

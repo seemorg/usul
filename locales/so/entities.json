@@ -1,4 +1,5 @@
 {
+  "all": "Dhammaan",
   "text": "Qoraal",
   "texts": "Qoraallada",
   "x-texts": "{count, plural, =0 {Qoraal la'aan} one {# Qoraal} other {# Qoraallada}}",

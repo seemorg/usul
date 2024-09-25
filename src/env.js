@@ -21,6 +21,9 @@ export const env = createEnv({
     NEXT_PUBLIC_ENABLE_CLARITY: z.coerce.boolean().default(false),
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string().min(1),
+    VERCEL_ENV: z
+      .enum(["development", "preview", "production"])
+      .default("development"),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -41,6 +44,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
       process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
+    VERCEL_ENV: process.env.VERCEL_ENV,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,
