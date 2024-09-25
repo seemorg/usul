@@ -31,12 +31,15 @@ export const generateMetadata = async ({
   if (!genre) return;
 
   const locale = await getPathLocale();
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, locale);
+  const primaryText =
+    locale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, locale);
 
   return getMetadata({
     hasImage: true,
     pagePath: navigation.genres.bySlug(genreSlug),
-    title: primaryText,
+    title: primaryText ?? "",
   });
 };
 
@@ -69,7 +72,10 @@ async function GenrePage({
     },
   });
 
-  const primaryName = getPrimaryLocalizedText(genre.nameTranslations, locale);
+  const primaryName =
+    locale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, locale);
   const secondaryName = null;
 
   return (

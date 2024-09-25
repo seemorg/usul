@@ -321,10 +321,12 @@ export default function ContentTab({ bookResponse }: TabProps) {
                         variant="secondary"
                         className="font-normal"
                       >
-                        {getPrimaryLocalizedText(
-                          genre.nameTranslations,
-                          pathLocale,
-                        )}
+                        {pathLocale === "en"
+                          ? genre.transliteration
+                          : getPrimaryLocalizedText(
+                              genre.nameTranslations,
+                              pathLocale,
+                            )}
                       </Badge>
                     </Link>
                   ))}

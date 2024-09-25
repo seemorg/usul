@@ -31,7 +31,7 @@ export async function generateImageMetadata({
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return [];
 
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
+  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "ar");
 
   return [
     {
@@ -54,7 +54,7 @@ export default async function Image({
     notFound();
   }
 
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
+  const primaryText = genre.transliteration;
 
   // Font
   const [calSans, family] = await Promise.all([

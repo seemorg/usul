@@ -16,7 +16,10 @@ export default async function GenreSearchResult({
   const pathLocale = await getPathLocale();
 
   const genre = result.document;
-  const name = getPrimaryLocalizedText(genre.nameTranslations, pathLocale);
+  const name =
+    pathLocale === "en"
+      ? genre.transliteration
+      : getPrimaryLocalizedText(genre.nameTranslations, pathLocale);
 
   return (
     <Link

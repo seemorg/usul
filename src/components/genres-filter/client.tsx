@@ -155,10 +155,10 @@ export default function _GenresFilter({
           // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
           const booksCount = formatter.number(genre._count.books);
 
-          const primaryText = getPrimaryLocalizedText(
-            genre.nameTranslations,
-            locale,
-          );
+          const primaryText =
+            locale === "en"
+              ? genre.transliteration
+              : getPrimaryLocalizedText(genre.nameTranslations, locale);
           const title = `${primaryText} (${booksCount})`;
 
           return (
