@@ -1,9 +1,8 @@
 import { getPathLocale } from "@/lib/locale/server";
 import ReaderContextProviders from "./_components/context";
-import { fetchBook } from "@/server/services/books";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { getBook } from "@/lib/api";
 
 export default async function ReaderLayout({
   children,
@@ -22,28 +21,27 @@ export const generateMetadata = async ({
   };
 }) => {
   const pathLocale = await getPathLocale();
-  const book = await fetchBook(bookId, pathLocale, versionId);
+  const response = await getBook(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+  });
 
-  if (!book) return {};
+  if (!response.book) return {};
 
-  const name = getPrimaryLocalizedText(
-    book.book.primaryNameTranslations,
-    pathLocale,
-  );
+  const book = response.book;
 
   return getMetadata({
-    title: name,
+    title: book.primaryName,
     pagePath: navigation.books.reader(bookId),
-    keywords: book.book.primaryNameTranslations
-      .map((t) => t.text)
-      .concat(book.book.otherNameTranslations.flatMap((t) => t.texts)),
+    // keywords: book.book.primaryNameTranslations
+    //   .map((t) => t.text)
+    //   .concat(book.book.otherNameTranslations.flatMap((t) => t.texts)),
     authors: [
       {
-        name: getPrimaryLocalizedText(
-          book.book.author.primaryNameTranslations,
-          pathLocale,
-        ),
-        url: navigation.authors.bySlug(book.book.author.slug),
+        name: book.author.primaryName,
+        url: navigation.authors.bySlug(book.author.slug),
       },
     ],
   });

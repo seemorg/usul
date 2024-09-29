@@ -1,5 +1,5 @@
 import { GradientSparklesIcon } from "@/components/Icons";
-import type { fetchBook } from "@/server/services/books";
+import type { ApiBookResponse } from "@/types/ApiBookResponse";
 
 import {
   DocumentMagnifyingGlassIcon,
@@ -7,7 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 export type TabProps = {
-  bookResponse: Awaited<ReturnType<typeof fetchBook>>;
+  bookResponse: ApiBookResponse;
   bookSlug: string;
   versionId?: string;
 };
