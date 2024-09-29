@@ -53,7 +53,7 @@ const BookSearchResult = ({
       <div className="group relative mx-auto block h-full w-full">
         <InfoDialog result={result} />
 
-        <Link href={navigation.books.reader(document.slug)} prefetch={false}>
+        <Link href={navigation.books.reader(document.slug)} prefetch={true}>
           <div className={cn("overflow-hidden rounded-md bg-muted")}>
             <CloudflareImage
               src={`https://assets.usul.ai/covers/${document.slug}.png`}
