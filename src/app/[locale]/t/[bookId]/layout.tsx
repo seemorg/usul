@@ -3,6 +3,7 @@ import ReaderContextProviders from "./_components/context";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { getBook } from "@/lib/api";
+import { READER_PAGINATION_SIZE } from "@/lib/constants";
 
 export default async function ReaderLayout({
   children,
@@ -26,6 +27,7 @@ export const generateMetadata = async ({
     versionId,
     includeBook: true,
     fields: ["pdf", "headings", "indices", "publication_details"],
+    size: READER_PAGINATION_SIZE,
   });
 
   if (!response.book) return {};

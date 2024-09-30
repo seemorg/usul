@@ -10,6 +10,7 @@ import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { getBook } from "@/lib/api";
+import { READER_PAGINATION_SIZE } from "@/lib/constants";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -38,6 +39,7 @@ export default async function SidebarContent({
       versionId,
       includeBook: true,
       fields: ["pdf", "headings", "indices", "publication_details"],
+      size: READER_PAGINATION_SIZE,
     });
   } catch (e) {}
 

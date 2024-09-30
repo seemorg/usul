@@ -3,7 +3,7 @@
 import { makeSearchRequest } from "@/lib/typesense";
 import {
   makePagination,
-  // prepareQuery,
+  prepareQuery,
   prepareResults,
   type SearchOptions,
 } from "./utils";
@@ -19,8 +19,7 @@ export const searchAllCollections = async (
     options ?? {};
 
   const results = (await makeSearchRequest(GLOBAL_SEARCH_COLLECTION.INDEX, {
-    q: q,
-    //prepareQuery(q)
+    q: prepareQuery(q),
     query_by: GLOBAL_SEARCH_COLLECTION.queryBy,
     query_by_weights: GLOBAL_SEARCH_COLLECTION.queryByWeights,
     prioritize_token_position: true,

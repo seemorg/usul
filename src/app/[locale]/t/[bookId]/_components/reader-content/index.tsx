@@ -6,6 +6,7 @@ import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import Footer from "@/app/_components/footer";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
+import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 
 export default function ReaderContent({
   response,
@@ -29,8 +30,8 @@ export default function ReaderContent({
     <Virtuoso
       className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground"
       totalCount={response.pagination.total}
-      initialItemCount={Math.min(defaultPages.length, 5)}
-      overscan={5}
+      initialItemCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
+      overscan={READER_OVERSCAN_SIZE}
       scrollerRef={(ref) => {
         if (ref) {
           // @ts-ignore

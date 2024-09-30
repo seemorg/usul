@@ -50,10 +50,10 @@ export const REGIONS_COLLECTION = {
 };
 
 const globalSearchQueryWeights = {
-  // 4: [],
-  1: ["primaryNames.text", "_nameVariations", "otherNames.texts"],
-  // 2: ["author.primaryNames.text"],
-  // 1: ["author._nameVariations", "author.otherNames.texts"],
+  4: ["primaryNames.text", "_nameVariations"],
+  3: ["otherNames.texts"],
+  2: ["author.primaryNames.text", "author._nameVariations"],
+  1: ["author.otherNames.texts"],
 };
 
 export const GLOBAL_SEARCH_COLLECTION = {

@@ -70,6 +70,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
+          isHomepage && "border-b-2 border-white/5",
         )}
       >
         <div className="xl:col-span-2">

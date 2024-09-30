@@ -165,9 +165,10 @@ export default function SearchBar({
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
-          {value ? (
+          {debouncedValue ? (
             <SearchBarResults
               results={data?.results}
+              isLoading={isLoading}
               onItemSelect={onItemSelect}
               searchType={searchType}
               setSearchType={setSearchType}
