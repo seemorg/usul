@@ -7,10 +7,12 @@ import { getPrimaryLocalizedText } from "@/server/db/localization";
 
 export default async function GenreSearchResult({
   result,
+  prefetch = true,
 }: {
   result: NonNullable<
     Awaited<ReturnType<typeof searchGenres>>["results"]["hits"]
   >[number];
+  prefetch?: boolean;
 }) {
   const t = await getTranslations("entities");
   const pathLocale = await getPathLocale();
@@ -24,7 +26,7 @@ export default async function GenreSearchResult({
   return (
     <Link
       href={navigation.genres.bySlug(genre.slug)}
-      prefetch={false}
+      prefetch={prefetch}
       className="w-full border-b border-border bg-transparent px-6 py-8 transition-colors hover:bg-secondary"
     >
       <div className="flex items-center justify-between">

@@ -51,6 +51,7 @@ export default function MobileNavigationMenu() {
         title={t(item.title)}
         target={item.href!.startsWith("mailto:") ? "_blank" : undefined}
         className={className}
+        prefetch
       >
         {t(item.title)}
       </Link>

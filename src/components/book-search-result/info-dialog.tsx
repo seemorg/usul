@@ -173,7 +173,10 @@ export default function InfoDialog({
                     dir="ltr"
                     asChild
                   >
-                    <Link href={navigation.centuries.byYear(author.year)}>
+                    <Link
+                      href={navigation.centuries.byYear(author.year)}
+                      prefetch
+                    >
                       {t("common.year-format.ah.value", { year: author.year })}
                     </Link>
                   </Button>
@@ -198,6 +201,7 @@ export default function InfoDialog({
                       <Link
                         href={navigation.authors.bySlug(author.slug)}
                         className="text-xl text-primary hover:underline"
+                        prefetch
                       >
                         {authorPrimaryName}
                       </Link>
@@ -230,6 +234,7 @@ export default function InfoDialog({
                       <Link
                         href={navigation.authors.bySlug(author.slug)}
                         className="text-xl text-primary hover:underline"
+                        prefetch
                       >
                         {authorSecondaryName}
                       </Link>
@@ -297,6 +302,7 @@ export default function InfoDialog({
                             <Link
                               className="ml-2 text-primary hover:underline"
                               href={navigation.regions.bySlug(region.slug)}
+                              prefetch
                             >
                               {region.name}
                             </Link>

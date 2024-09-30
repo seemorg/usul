@@ -8,7 +8,11 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    patternSrcPrefix: {
+      control: false,
+    },
+  },
 } satisfies Meta<typeof CollectionCard>;
 
 export default meta;
@@ -21,5 +25,6 @@ export const Primary: Story = {
     numberOfBooks: 10,
     pattern: 1,
     color: "gray",
+    patternSrcPrefix: "patterns/",
   },
 };

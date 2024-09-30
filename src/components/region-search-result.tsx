@@ -13,8 +13,10 @@ import {
 
 export default async function RegionSearchResult({
   result,
+  prefetch = true,
 }: {
   result: Awaited<ReturnType<typeof searchRegions>>["results"]["hits"][number];
+  prefetch?: boolean;
 }) {
   const t = await getTranslations();
   const pathLocale = await getPathLocale();
@@ -30,7 +32,7 @@ export default async function RegionSearchResult({
   return (
     <Link
       href={navigation.regions.bySlug(region.slug)}
-      prefetch={false}
+      prefetch={prefetch}
       className="w-full border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary"
     >
       <div className="flex items-center justify-between">
