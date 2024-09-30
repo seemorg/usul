@@ -115,6 +115,7 @@ export default async function HomePage({
               <Link
                 href={navigation.genres.bySlug(collection.genre)}
                 key={collection.genre}
+                prefetch
               >
                 <CollectionCard
                   title={t(`collections.${collection.name}`)}

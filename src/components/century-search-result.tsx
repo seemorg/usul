@@ -7,8 +7,10 @@ import { getFormatter, getTranslations } from "next-intl/server";
 
 export default async function CenturySearchResult({
   result,
+  prefetch = true,
 }: {
   result: Awaited<ReturnType<typeof findAllYearRanges>>[number];
+  prefetch?: boolean;
 }) {
   const t = await getTranslations();
   const formatter = await getFormatter();
@@ -16,7 +18,7 @@ export default async function CenturySearchResult({
   return (
     <Link
       href={navigation.centuries.byNumber(result.centuryNumber)}
-      prefetch={false}
+      prefetch={prefetch}
       className="w-full border-b border-border bg-transparent px-6 py-6 transition-colors hover:bg-secondary"
     >
       <div className="flex items-center justify-between">

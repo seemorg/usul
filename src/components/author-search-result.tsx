@@ -13,8 +13,10 @@ import {
 
 const AuthorSearchResult = async ({
   result,
+  prefetch = true,
 }: {
   result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
+  prefetch?: boolean;
 }) => {
   const t = await getTranslations();
   const pathLocale = await getPathLocale();
@@ -33,7 +35,7 @@ const AuthorSearchResult = async ({
   return (
     <Link
       href={navigation.authors.bySlug(document.slug)}
-      prefetch={false}
+      prefetch={prefetch}
       className="w-full border-b border-border bg-transparent px-6 py-4 transition-colors hover:bg-secondary"
     >
       <div className="flex items-center justify-between">

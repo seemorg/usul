@@ -19,7 +19,7 @@ import {
 const BookSearchResult = ({
   result,
   view,
-  prefetch = false,
+  prefetch = true,
 }: {
   view?: View;
   result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];

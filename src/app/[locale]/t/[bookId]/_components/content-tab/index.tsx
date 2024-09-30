@@ -154,6 +154,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
           items={[
             <Button variant="link" className="p-0 text-sm" asChild>
               <Link
+                prefetch
                 href={navigation.centuries.byYear(author.year!)}
                 dir={direction}
               >
