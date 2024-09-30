@@ -134,6 +134,7 @@ export default async function HomePage({
             constraintWidth
             items={popularBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {
@@ -154,6 +155,7 @@ export default async function HomePage({
             constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {
@@ -174,6 +176,7 @@ export default async function HomePage({
             constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {

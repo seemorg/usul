@@ -19,9 +19,11 @@ import {
 const BookSearchResult = ({
   result,
   view,
+  prefetch = false,
 }: {
   view?: View;
   result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
+  prefetch?: boolean;
 }) => {
   const t = useTranslations();
   const pathLocale = usePathLocale();
@@ -53,7 +55,7 @@ const BookSearchResult = ({
       <div className="group relative mx-auto block h-full w-full">
         <InfoDialog result={result} />
 
-        <Link href={navigation.books.reader(document.slug)} prefetch={true}>
+        <Link href={navigation.books.reader(document.slug)} prefetch={prefetch}>
           <div className={cn("overflow-hidden rounded-md bg-muted")}>
             <CloudflareImage
               src={`https://assets.usul.ai/covers/${document.slug}.png`}
