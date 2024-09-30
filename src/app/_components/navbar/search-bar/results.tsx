@@ -8,16 +8,37 @@ import type { SearchType } from "@/types/search";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
 
+const skeletonWidths = [
+  [80, 112, 80],
+  [112, 112, 80],
+  [80, 112, 112],
+  [150, 112, 112],
+  [112, 80, 80],
+];
+
 const ResultsSkeleton = () => (
-  <div className="flex w-full flex-col gap-2">
+  <div className="flex w-full flex-col">
     {new Array(5).fill(null).map((_, index) => (
       <div
         key={index}
-        className="flex h-10 w-full items-center justify-between gap-2"
+        className="flex h-12 w-full items-center justify-between gap-2"
       >
-        <Skeleton className="h-6 w-64" />
+        <div className="hidden items-center gap-4 md:flex">
+          <Skeleton
+            className="h-6"
+            style={{ width: skeletonWidths[index]![0] }}
+          />
+          <Skeleton
+            className="h-6"
+            style={{ width: skeletonWidths[index]![1] }}
+          />
+          <Skeleton
+            className="h-6"
+            style={{ width: skeletonWidths[index]![2] }}
+          />
+        </div>
 
-        <Skeleton className="h-6 w-12" />
+        <Skeleton className="h-6 w-full md:w-12" />
       </div>
     ))}
   </div>
