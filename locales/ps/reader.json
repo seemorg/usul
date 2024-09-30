@@ -44,5 +44,15 @@
     "description": "دا کتاب په اصول کې شتون نلري خو موږ بل ځای کې یوه نسخه موندلې ده.",
     "navigate": "لارښوونه"
   },
-  "download-pdf": "پي ډي ایف ډاونلوډ کړئ"
+  "download-pdf": "پي ډي ایف ډاونلوډ کړئ",
+  "publication-details": {
+    "title": "د خپرونې جزئيات",
+    "book-title": "سرليک",
+    "author": "ليکوال",
+    "editor": "مدير",
+    "publisher": "خپرندوی",
+    "print-version": "طباعتي نسخه",
+    "volumes": "جلدونه",
+    "page-numbers-match-print": "د پاڼو شمېرې چاپ سره متناسب دي"
+  }
 }

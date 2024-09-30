@@ -44,5 +44,15 @@
     "description": "این کتاب در اسول موجود نیست، اما نسخه‌ای از آن را در جای دیگری پیدا کردیم.",
     "navigate": "ناوبری"
   },
-  "download-pdf": "دانلود PDF"
+  "download-pdf": "دانلود PDF",
+  "publication-details": {
+    "title": "جزئیات انتشار",
+    "book-title": "عنوان",
+    "author": "نویسنده",
+    "editor": "ویرایشگر",
+    "publisher": "ناشر",
+    "print-version": "نسخه چاپی",
+    "volumes": "جلدها",
+    "page-numbers-match-print": "شماره صفحات مطابق چاپ"
+  }
 }

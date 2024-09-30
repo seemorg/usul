@@ -44,5 +44,15 @@
     "description": "Bu kitap Usul'da mevcut değil ancak başka bir yerde bir versiyon bulduk.",
     "navigate": "Gözat"
   },
-  "download-pdf": "PDF İndir"
+  "download-pdf": "PDF İndir",
+  "publication-details": {
+    "title": "Yayın Ayrıntıları",
+    "book-title": "Başlık",
+    "author": "Yazar",
+    "editor": "Editör",
+    "publisher": "Yayıncı",
+    "print-version": "Baskı Versiyonu",
+    "volumes": "Ciltler",
+    "page-numbers-match-print": "Sayfa numaraları baskıyla uyumlu"
+  }
 }

@@ -44,5 +44,15 @@
     "description": "هذا الكتاب غير متوفر على Usul لكن وجدنا نسخة في مكان آخر.",
     "navigate": "انتقل"
   },
-  "download-pdf": "تحميل PDF"
+  "download-pdf": "تحميل PDF",
+  "publication-details": {
+    "title": "تفاصيل النشر",
+    "book-title": "العنوان",
+    "author": "مؤلف",
+    "editor": "محرر",
+    "publisher": "الناشر",
+    "print-version": "نسخة الطباعة",
+    "volumes": "المجلدات",
+    "page-numbers-match-print": "أرقام الصفحات تتطابق مع الطباعة"
+  }
 }

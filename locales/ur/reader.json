@@ -44,5 +44,15 @@
     "description": "یہ کتاب اصول پر دستیاب نہیں ہے لیکن ہمیں کہیں اور اس کا ایک ورژن ملا ہے۔",
     "navigate": "تشریف لے جائیں"
   },
-  "download-pdf": "پی ڈی ایف ڈاؤن لوڈ کریں"
+  "download-pdf": "پی ڈی ایف ڈاؤن لوڈ کریں",
+  "publication-details": {
+    "title": "اشاعت کی تفصیلات",
+    "book-title": "عنوان",
+    "author": "مصنف",
+    "editor": "مدیر",
+    "publisher": "ناشر",
+    "print-version": "طباعت کا ورژن",
+    "volumes": "جلدیں",
+    "page-numbers-match-print": "صفحہ نمبر طباعت سے مطابقت رکھتے ہیں"
+  }
 }

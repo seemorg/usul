@@ -161,7 +161,7 @@ const Paginator = ({
     <Pagination>
       <PaginationContent>
         {hasPrevious && showNextAndPrevious && (
-          <PaginationPrevious href={makePageLink(currentPage - 1)} />
+          <PaginationPrevious href={makePageLink(currentPage - 1)} prefetch />
         )}
 
         {pages.map((page, index) => {
@@ -197,11 +197,18 @@ const Paginator = ({
             );
           }
 
+          const isNextOrPrevious =
+            page === currentPage + 1 || page === currentPage - 1;
           return (
             <PaginationItem key={index}>
               <PaginationLink
                 href={makePageLink(page)}
                 isActive={page === currentPage}
+                {...(!showNextAndPrevious && isNextOrPrevious
+                  ? {
+                      prefetch: true,
+                    }
+                  : {})}
               >
                 {formatter.number(page)}
               </PaginationLink>
@@ -210,7 +217,7 @@ const Paginator = ({
         })}
 
         {hasNext && showNextAndPrevious && (
-          <PaginationNext href={makePageLink(currentPage + 1)} />
+          <PaginationNext href={makePageLink(currentPage + 1)} prefetch />
         )}
       </PaginationContent>
     </Pagination>

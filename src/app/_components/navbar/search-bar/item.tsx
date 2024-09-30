@@ -87,7 +87,7 @@ function SearchBarItem({
       className="px-0 py-0"
     >
       <Comp
-        {...(href ? { href } : {})}
+        {...(href ? { href, prefetch: true } : {})}
         className="flex h-full w-full items-start justify-between px-4 py-3 hover:bg-accent"
       >
         <DottedList
