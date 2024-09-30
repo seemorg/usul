@@ -44,5 +44,15 @@
     "description": "Эта книга недоступна на Usul, но мы нашли ее версию в другом месте.",
     "navigate": "Перейти"
   },
-  "download-pdf": "Скачать PDF"
+  "download-pdf": "Скачать PDF",
+  "publication-details": {
+    "title": "Детали публикации",
+    "book-title": "Название",
+    "author": "Автор",
+    "editor": "Редактор",
+    "publisher": "Издатель",
+    "print-version": "Печатная версия",
+    "volumes": "{count, plural, one {Том} few {Тома} many {Томов} other {Тома}}",
+    "page-numbers-match-print": "Номера страниц совпадают с печатной версией"
+  }
 }

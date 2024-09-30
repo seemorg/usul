@@ -44,5 +44,15 @@
     "description": "Wannan littafin baya nan a Usul amma mun samu wani sigar a wani wuri.",
     "navigate": "Navegate"
   },
-  "download-pdf": "Zazzage PDF"
+  "download-pdf": "Zazzage PDF",
+  "publication-details": {
+    "title": "Cikakkun Bayanai na Bugu",
+    "book-title": "Suna",
+    "author": "Mawallafi",
+    "editor": "Mai Shirya Bugu",
+    "publisher": "Mai Buga Littafi",
+    "print-version": "Nau'in Bugu",
+    "volumes": "Juzu'i",
+    "page-numbers-match-print": "Lambobin shafi sun yi daidai da bugu"
+  }
 }

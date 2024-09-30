@@ -44,5 +44,15 @@
     "description": "এই বইটি উসুলে পাওয়া যাচ্ছে না তবে আমরা অন্য কোথাও একটি সংস্করণ পেয়েছি।",
     "navigate": "নেভিগেট করুন"
   },
-  "download-pdf": "PDF ডাউনলোড করুন"
+  "download-pdf": "PDF ডাউনলোড করুন",
+  "publication-details": {
+    "title": "প্রকাশনার বিবরণ",
+    "book-title": "শিরোনাম",
+    "author": "লেখক",
+    "editor": "সম্পাদক",
+    "publisher": "প্রকাশক",
+    "print-version": "মুদ্রিত সংস্করণ",
+    "volumes": "খণ্ড",
+    "page-numbers-match-print": "পৃষ্ঠা সংখ্যা মুদ্রণের সাথে মেলে"
+  }
 }

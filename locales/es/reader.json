@@ -44,5 +44,15 @@
     "description": "Este libro no está disponible en Usul, pero encontramos una versión en otro lugar.",
     "navigate": "Navegar"
   },
-  "download-pdf": "Descargar PDF"
+  "download-pdf": "Descargar PDF",
+  "publication-details": {
+    "title": "Detalles de la publicación",
+    "book-title": "Título",
+    "author": "Autor",
+    "editor": "Editor",
+    "publisher": "Editorial",
+    "print-version": "Versión impresa",
+    "volumes": "Volúmenes",
+    "page-numbers-match-print": "Los números de página coinciden con la impresión"
+  }
 }

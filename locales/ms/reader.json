@@ -44,5 +44,15 @@
     "description": "Buku ini tidak tersedia di Usul tetapi kami menemui versi di tempat lain.",
     "navigate": "Navigasi"
   },
-  "download-pdf": "Muat Turun PDF"
+  "download-pdf": "Muat Turun PDF",
+  "publication-details": {
+    "title": "Butiran Penerbitan",
+    "book-title": "Tajuk",
+    "author": "Pengarang",
+    "editor": "Penyunting",
+    "publisher": "Penerbit",
+    "print-version": "Versi Cetak",
+    "volumes": "Jilid",
+    "page-numbers-match-print": "Nombor halaman sama seperti cetakan"
+  }
 }

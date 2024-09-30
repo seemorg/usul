@@ -44,5 +44,15 @@
     "description": "Buuggan lagama heli karo Usul laakiin waxaan ka helnay nooc kale.",
     "navigate": "U gudub"
   },
-  "download-pdf": "Soo dejiso PDF"
+  "download-pdf": "Soo dejiso PDF",
+  "publication-details": {
+    "title": "Faahfaahinta Daabacaadda",
+    "book-title": "Cinwaan",
+    "author": "Qoraa",
+    "editor": "Tifaftire",
+    "publisher": "Daabacaha",
+    "print-version": "Nooca Daabacaadda",
+    "volumes": "Mugga",
+    "page-numbers-match-print": "Tirada Bogagga waxay la siman yihiin Daabacaadda"
+  }
 }

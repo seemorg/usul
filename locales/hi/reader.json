@@ -44,5 +44,15 @@
     "description": "यह पुस्तक उसूल पर उपलब्ध नहीं है, लेकिन हमें कहीं और एक संस्करण मिला है।",
     "navigate": "नेविगेट करें"
   },
-  "download-pdf": "PDF डाउनलोड करें"
+  "download-pdf": "PDF डाउनलोड करें",
+  "publication-details": {
+    "title": "प्रकाशन विवरण",
+    "book-title": "शीर्षक",
+    "author": "लेखक",
+    "editor": "संपादक",
+    "publisher": "प्रकाशक",
+    "print-version": "प्रिंट संस्करण",
+    "volumes": "खंड",
+    "page-numbers-match-print": "पृष्ठ संख्याएँ प्रिंट से मेल खाती हैं"
+  }
 }
