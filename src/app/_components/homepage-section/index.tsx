@@ -44,8 +44,8 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
-          <CarouselNext className="rounded-full bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselPrevious className="bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselNext className="bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
         </div>
       </div>
 

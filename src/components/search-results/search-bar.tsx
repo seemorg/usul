@@ -38,6 +38,10 @@ export default function SearchBar({
       newParams.set("view", params.get("view")!);
     }
 
+    if (params.has("type")) {
+      newParams.set("type", params.get("type")!);
+    }
+
     return newParams;
   };
 

@@ -133,7 +133,6 @@ export default function SearchBar({
           ref={inputRef}
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
-          isLoading={isLoading}
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14 ")}
           wrapperClassName={cn(size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6")}
         />
@@ -165,9 +164,10 @@ export default function SearchBar({
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
-          {value ? (
+          {debouncedValue ? (
             <SearchBarResults
               results={data?.results}
+              isLoading={isLoading}
               onItemSelect={onItemSelect}
               searchType={searchType}
               setSearchType={setSearchType}

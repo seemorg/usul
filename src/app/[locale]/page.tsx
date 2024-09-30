@@ -67,7 +67,7 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex h-[500px] w-full pt-28 text-white sm:pt-32">
+      <div className="relative flex min-h-[500px] w-full pb-10 pt-28 text-white sm:pt-32">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
@@ -134,6 +134,7 @@ export default async function HomePage({
             constraintWidth
             items={popularBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {
@@ -154,6 +155,7 @@ export default async function HomePage({
             constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {
@@ -174,6 +176,7 @@ export default async function HomePage({
             constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
+                prefetch
                 result={
                   {
                     document: {

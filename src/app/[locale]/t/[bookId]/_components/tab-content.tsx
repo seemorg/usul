@@ -15,7 +15,7 @@ export const TabContent = ({
   const isSupported = bookResponse.book.flags.aiSupported;
 
   if (
-    (bookResponse.source === "external" || !isSupported) &&
+    (bookResponse.content.source === "external" || !isSupported) &&
     (tabId === "ai" || tabId === "search")
   ) {
     return <ComingSoonAlert />;

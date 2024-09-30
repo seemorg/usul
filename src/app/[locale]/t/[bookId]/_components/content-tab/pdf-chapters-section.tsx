@@ -35,8 +35,6 @@ export default function PdfChaptersList() {
 
   if (!preparedChapters || preparedChapters.length === 0) return null;
 
-  console.log(preparedChapters);
-
   return (
     <div dir="rtl">
       <TreeView

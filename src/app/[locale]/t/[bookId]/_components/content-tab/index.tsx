@@ -25,10 +25,6 @@ import { navigation } from "@/lib/urls";
 import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import { getLocaleDirection, usePathLocale } from "@/lib/locale/utils";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import PdfButton from "./pdf-button";
 import type { TabProps } from "../sidebar/tabs";
 import { useLocale, useTranslations } from "next-intl";
@@ -98,36 +94,30 @@ export default function ContentTab({ bookResponse }: TabProps) {
   const primaryName =
     pathLocale === "en" && book.transliteration
       ? book.transliteration
-      : getPrimaryLocalizedText(book.primaryNameTranslations, pathLocale);
+      : book.primaryName;
 
   const authorName =
     pathLocale === "en" && author.transliteration
       ? author.transliteration
-      : getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale);
+      : author.primaryName;
 
-  const authorBio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
+  const authorBio = author.bio;
 
-  const primaryOtherNames =
-    getPrimaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
-  const secondaryOtherNames =
-    getSecondaryLocalizedText(book.otherNameTranslations, pathLocale) ?? [];
+  const primaryOtherNames = book.otherNames ?? [];
+  const secondaryOtherNames = book.secondaryOtherNames ?? [];
 
-  const headings =
-    bookResponse.source === "turath"
-      ? bookResponse.turathResponse.headings
-      : bookResponse.source === "openiti"
-        ? bookResponse.chapters
-        : [];
+  const bookContent = bookResponse.content;
+
+  const isExternal = bookContent.source === "external";
+
+  const headings = !isExternal ? bookContent.headings : [];
 
   const chapterIndexToPageIndex =
-    bookResponse.source === "turath"
-      ? bookResponse.chapterIndexToPageIndex
+    bookContent.source === "turath"
+      ? bookContent.chapterIndexToPageIndex
       : null;
 
-  const publicationDetails =
-    bookResponse.source === "turath"
-      ? bookResponse.turathResponse.publicationDetails
-      : {};
+  const publicationDetails = !isExternal ? bookContent.publicationDetails : {};
 
   return (
     <>
@@ -164,7 +154,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
           items={[
             <Button variant="link" className="p-0 text-sm" asChild>
               <Link
-                href={navigation.centuries.byYear(author.year)}
+                href={navigation.centuries.byYear(author.year!)}
                 dir={direction}
               >
                 {t("common.year-format.ah.value", { year: author.year })}
@@ -201,25 +191,21 @@ export default function ContentTab({ bookResponse }: TabProps) {
 
           <VersionSelector
             versions={book.versions}
-            versionId={bookResponse.versionId}
+            versionId={bookContent.versionId}
           />
         </div>
 
         <div className="w-full pb-2 pt-4">
           <PdfButton
-            pdf={
-              bookResponse.source === "turath"
-                ? bookResponse.turathResponse.pdf
-                : null
-            }
+            pdf={bookContent.source === "turath" ? bookContent.pdf : null}
             slug={bookResponse.book.slug}
           />
         </div>
 
-        {bookResponse.source === "openiti" && (
+        {bookContent.source === "openiti" && (
           <div className="w-full pb-2 pt-4">
             <Button variant="secondary" asChild className="w-full">
-              <a href={bookResponse.rawUrl} target="_blank">
+              <a href={bookContent.rawUrl} target="_blank">
                 Raw File
               </a>
             </Button>
@@ -256,55 +242,59 @@ export default function ContentTab({ bookResponse }: TabProps) {
                   {t("reader.publication-details.title")}:
                 </p>
 
-                <div className="mt-3 flex flex-col gap-3">
-                  {publicationDetails.title && (
-                    <p>
-                      {t("reader.publication-details.book-title")}:{" "}
-                      <span dir="rtl">{publicationDetails.title}</span>
-                    </p>
-                  )}
-                  {publicationDetails.author && (
-                    <p>
-                      {t("reader.publication-details.author")}:{" "}
-                      <span dir="rtl">{publicationDetails.author}</span>
-                    </p>
-                  )}
-                  {publicationDetails.editor && (
-                    <p>
-                      {t("reader.publication-details.editor")}:{" "}
-                      <span dir="rtl">{publicationDetails.editor}</span>
-                    </p>
-                  )}
-                  {publicationDetails.publisher && (
-                    <p>
-                      {t("reader.publication-details.publisher")}:{" "}
-                      <span dir="rtl">{publicationDetails.publisher}</span>
-                    </p>
-                  )}
-                  {publicationDetails.printVersion && (
-                    <p>
-                      {t("reader.publication-details.print-version")}:{" "}
-                      <span dir="rtl">{publicationDetails.printVersion}</span>
-                    </p>
-                  )}
-                  {publicationDetails.volumes && (
-                    <p>
-                      {t("reader.publication-details.volumes")}:{" "}
-                      <span dir="rtl">{publicationDetails.volumes}</span>
-                    </p>
-                  )}
-                  {publicationDetails.pageNumbersMatchPrint !== undefined && (
-                    <p className="flex items-center gap-1">
-                      {t("reader.publication-details.page-numbers-match-print")}
-                      :{" "}
-                      {publicationDetails.pageNumbersMatchPrint ? (
-                        <CheckIcon className="size-4" />
-                      ) : (
-                        <XIcon className="size-4" />
-                      )}
-                    </p>
-                  )}
-                </div>
+                {publicationDetails ? (
+                  <div className="mt-3 flex flex-col gap-3">
+                    {publicationDetails.title && (
+                      <p>
+                        {t("reader.publication-details.book-title")}:{" "}
+                        <span dir="rtl">{publicationDetails.title}</span>
+                      </p>
+                    )}
+                    {publicationDetails.author && (
+                      <p>
+                        {t("reader.publication-details.author")}:{" "}
+                        <span dir="rtl">{publicationDetails.author}</span>
+                      </p>
+                    )}
+                    {publicationDetails.editor && (
+                      <p>
+                        {t("reader.publication-details.editor")}:{" "}
+                        <span dir="rtl">{publicationDetails.editor}</span>
+                      </p>
+                    )}
+                    {publicationDetails.publisher && (
+                      <p>
+                        {t("reader.publication-details.publisher")}:{" "}
+                        <span dir="rtl">{publicationDetails.publisher}</span>
+                      </p>
+                    )}
+                    {publicationDetails.printVersion && (
+                      <p>
+                        {t("reader.publication-details.print-version")}:{" "}
+                        <span dir="rtl">{publicationDetails.printVersion}</span>
+                      </p>
+                    )}
+                    {publicationDetails.volumes && (
+                      <p>
+                        {t("reader.publication-details.volumes")}:{" "}
+                        <span dir="rtl">{publicationDetails.volumes}</span>
+                      </p>
+                    )}
+                    {publicationDetails.pageNumbersMatchPrint !== undefined && (
+                      <p className="flex items-center gap-1">
+                        {t(
+                          "reader.publication-details.page-numbers-match-print",
+                        )}
+                        :{" "}
+                        {publicationDetails.pageNumbersMatchPrint ? (
+                          <CheckIcon className="size-4" />
+                        ) : (
+                          <XIcon className="size-4" />
+                        )}
+                      </p>
+                    )}
+                  </div>
+                ) : null}
               </div>
 
               <div>
@@ -323,10 +313,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
                       >
                         {pathLocale === "en"
                           ? genre.transliteration
-                          : getPrimaryLocalizedText(
-                              genre.nameTranslations,
-                              pathLocale,
-                            )}
+                          : genre.name}
                       </Badge>
                     </Link>
                   ))}
@@ -337,7 +324,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
         </Accordion>
       </SidebarContainer>
 
-      {bookResponse.source === "external" ? null : view === "pdf" ? (
+      {isExternal ? null : view === "pdf" ? (
         <>
           <Separator className="my-4" />
           <SidebarContainer className="flex flex-col gap-3">
@@ -349,20 +336,17 @@ export default function ContentTab({ bookResponse }: TabProps) {
           <Separator className="my-4" />
 
           <SidebarContainer className="flex flex-col gap-3">
-            {(bookResponse.source === "turath"
-              ? bookResponse.turathResponse.headings
-              : bookResponse.chapters
-            ).length > 0 && (
+            {headings && headings.length > 0 ? (
               <div className="w-full">
                 <PageNavigator
                   range={pagesRange}
                   getVirtuosoIndex={getVirtuosoIndex}
                 />
               </div>
-            )}
+            ) : null}
 
             <ChaptersList
-              headers={headings}
+              headers={headings || []}
               getVirtuosoIndex={getVirtuosoIndex}
               chapterIndexToPageIndex={chapterIndexToPageIndex}
               pagesRange={pagesRange}

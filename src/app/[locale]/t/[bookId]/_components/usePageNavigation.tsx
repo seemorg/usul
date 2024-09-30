@@ -1,7 +1,10 @@
 import type { TabProps } from "./sidebar/tabs";
 
 export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
-  if (bookResponse.source === "external") {
+  const source = bookResponse.content.source;
+  const total = bookResponse.pagination.total;
+
+  if (source === "external") {
     return {
       pagesRange: {
         start: 0,
@@ -15,24 +18,17 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
     };
   }
 
-  const firstPage =
-    (bookResponse.source === "turath"
-      ? bookResponse.turathResponse.pages?.[0]?.page
-      : bookResponse.content[0]?.page) ?? 0;
-  const lastPage =
-    (bookResponse.source === "turath"
-      ? bookResponse.turathResponse.pages?.[
-          bookResponse.turathResponse.pages.length - 1
-        ]?.page
-      : bookResponse.chapters[bookResponse.chapters.length - 1]?.page) ?? 0;
+  const firstPage = 1;
+  const lastPage = total;
 
   const pagesRange = {
     start: typeof firstPage === "number" ? firstPage : 0,
     end: typeof lastPage === "number" ? lastPage : 0,
   };
+
   const pageToIndex =
-    bookResponse.source === "turath"
-      ? bookResponse.pageNumberWithVolumeToIndex
+    source === "turath"
+      ? bookResponse.content.pageNumberWithVolumeToIndex
       : null;
 
   const getVirtuosoIndex = (
@@ -43,10 +39,17 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
           page: number;
         },
   ) => {
-    let index =
-      (typeof page === "number" ? page : page.page) - pagesRange.start;
+    let index: number | undefined;
+
     if (pageToIndex && typeof page === "object") {
-      index = pageToIndex[`${page.vol}-${page.page}`] ?? index;
+      const newIdx = pageToIndex[`${page.vol}-${page.page}`];
+      if (newIdx) {
+        index = newIdx;
+      }
+    }
+
+    if (index === undefined) {
+      index = (typeof page === "number" ? page : page.page) - pagesRange.start;
     }
 
     return {

@@ -1,9 +1,5 @@
 "use client";
 
-import type {
-  OpenitiBookResponse,
-  TurathBookResponse,
-} from "@/server/services/books";
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { Button } from "@/components/ui/button";
@@ -11,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import React from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import type { Openiti, Turath } from "@/types/ApiBookResponse";
 
 export default function ChaptersList({
   headers,
@@ -18,12 +15,8 @@ export default function ChaptersList({
   getVirtuosoIndex,
   pagesRange,
 }: {
-  headers:
-    | TurathBookResponse["turathResponse"]["headings"]
-    | OpenitiBookResponse["chapters"];
-  chapterIndexToPageIndex?:
-    | TurathBookResponse["chapterIndexToPageIndex"]
-    | null;
+  headers: NonNullable<Openiti["headings"] | Turath["headings"]>;
+  chapterIndexToPageIndex?: Turath["chapterIndexToPageIndex"] | null;
   pagesRange: UsePageNavigationReturnType["pagesRange"];
   getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 }) {

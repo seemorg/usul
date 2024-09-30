@@ -1,5 +1,4 @@
 import { getPathLocale } from "@/lib/locale/server";
-import { fetchBook } from "@/server/services/books";
 import { notFound } from "next/navigation";
 import ReaderContent from "./_components/reader-content";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
@@ -10,6 +9,9 @@ import { ArrowUpRightIcon, FileQuestionIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
+import { getBook } from "@/lib/api";
+import { READER_PAGINATION_SIZE } from "@/lib/constants";
+
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
 });
@@ -30,9 +32,15 @@ export default async function SidebarContent({
   const pathLocale = await getPathLocale();
   const t = await getTranslations("reader");
 
-  let response: Awaited<ReturnType<typeof fetchBook>> | null = null;
+  let response: Awaited<ReturnType<typeof getBook>> | null = null;
   try {
-    response = await fetchBook(bookId, pathLocale, versionId);
+    response = await getBook(bookId, {
+      locale: pathLocale,
+      versionId,
+      includeBook: true,
+      fields: ["pdf", "headings", "indices", "publication_details"],
+      size: READER_PAGINATION_SIZE,
+    });
   } catch (e) {}
 
   if (response === null) {
@@ -40,9 +48,9 @@ export default async function SidebarContent({
   }
 
   let pages;
-  if (response.source === "turath") {
-    pages = response.turathResponse.pages;
-  } else if (response.source === "openiti") {
+  if (response.content.source === "turath") {
+    pages = response.content.pages;
+  } else if (response.content.source === "openiti") {
     pages = response.content;
   } else {
     pages = null;
@@ -77,11 +85,13 @@ export default async function SidebarContent({
       }
     >
       {pages ? (
-        view === "pdf" && response.source === "turath" ? (
-          <PdfView pdf={response.turathResponse.pdf} />
+        view === "pdf" &&
+        response.content.source === "turath" &&
+        response.content.pdf ? (
+          <PdfView pdf={response.content.pdf} />
         ) : (
           <article>
-            <ReaderContent pages={pages} />
+            <ReaderContent response={response} />
           </article>
         )
       ) : (
@@ -98,7 +108,7 @@ export default async function SidebarContent({
             </p>
 
             <Button asChild variant="default" className="mt-6 gap-2">
-              <a href={response.versionId}>
+              <a href={response.content.versionId}>
                 {t("external-book.navigate")}
                 <ArrowUpRightIcon className="h-4 w-4" />
               </a>

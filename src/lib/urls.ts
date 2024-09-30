@@ -1,6 +1,11 @@
+import type { SearchType } from "@/types/search";
 import type { Sort } from "@/types/sort";
 
 export const navigation = {
+  search: {
+    index: (params: { type: SearchType; query: string }) =>
+      `/search?type=${params.type}&q=${params.query}`,
+  },
   books: {
     all: () => "/texts",
     reader: (bookId: string) => `/t/${bookId}`,
