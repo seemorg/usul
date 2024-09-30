@@ -8,6 +8,7 @@ export interface CollectionCardProps {
   numberOfBooks: number;
   pattern: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   color: "gray" | "red" | "green" | "yellow" | "indigo";
+  patternSrcPrefix?: string;
 }
 
 const variants = {
@@ -43,6 +44,7 @@ export const CollectionCard = ({
   numberOfBooks,
   pattern,
   color,
+  patternSrcPrefix = "/patterns/",
 }: CollectionCardProps) => {
   const t = useTranslations("entities");
   const variant = variants[color];
@@ -50,10 +52,7 @@ export const CollectionCard = ({
   return (
     <div
       style={{
-        // backgroundImage: `url("data:image/svg+xml,${encodeURIComponent(
-        //   patterns[pattern - 1] as string,
-        // )}")`,
-        backgroundImage: `url("/patterns/${pattern}.svg")`,
+        backgroundImage: `url("${patternSrcPrefix}${pattern}.svg")`,
       }}
       className={clsx(
         "relative isolate flex h-44 w-44 flex-col justify-end overflow-hidden rounded-2xl p-4 blur-0",
