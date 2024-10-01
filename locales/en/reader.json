@@ -33,6 +33,8 @@
     "mark-as-correct": "Mark as correct",
     "report-as-incorrect": "Report as incorrect",
     "sources": "Sources",
+    "error": "An error occurred!",
+    "try-again": "Try again",
     "pg-x": "Pg {page, number, nogroup}"
   },
   "version": "Version",

@@ -2,13 +2,14 @@ import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 // import EventSource from "eventsource";
 
-const baseRequest = async (
+const baseRequest = async <T>(
   method: "GET" | "POST",
   relativeUrl: string,
   body?: object,
 ) => {
-  return (
-    await fetch(`${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`, {
+  const response = await fetch(
+    `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`,
+    {
       cache: "no-store",
       method,
       ...(method === "POST" && body
@@ -19,8 +20,14 @@ const baseRequest = async (
             },
           }
         : {}),
-    })
-  ).json();
+    },
+  );
+
+  if (!response.ok || response.status >= 300) {
+    throw new Error(response.statusText);
+  }
+
+  return response.json() as Promise<T>;
 };
 
 export const chatWithBook = async (body: {
@@ -28,10 +35,14 @@ export const chatWithBook = async (body: {
   question: string;
   messages: any[];
 }) => {
-  const response = (await baseRequest("POST", `/chat/${body.bookSlug}`, {
-    question: body.question,
-    messages: body.messages,
-  })) as { chatId: string };
+  const response = await baseRequest<{ chatId: string }>(
+    "POST",
+    `/chat/${body.bookSlug}`,
+    {
+      question: body.question,
+      messages: body.messages,
+    },
+  );
 
   // this has the first chunk, we need to get the rest via SSE
   const eventSource = new EventSource(

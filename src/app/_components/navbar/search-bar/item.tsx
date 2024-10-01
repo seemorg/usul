@@ -1,7 +1,10 @@
 import { CommandItem } from "@/components/ui/command";
 import DottedList from "@/components/ui/dotted-list";
+import {
+  getGlobalDocumentHref,
+  getGlobalDocumentLocalizedTypeKey,
+} from "@/lib/global-search";
 import { usePathLocale } from "@/lib/locale/utils";
-import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import {
   getPrimaryLocalizedText,
@@ -11,36 +14,6 @@ import type { GenreDocument } from "@/types/genre";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import { useTranslations } from "next-intl";
 
-const getHref = (document: GlobalSearchDocument) => {
-  if (document.type === "book") {
-    return navigation.books.reader(document.slug);
-  } else if (document.type === "author") {
-    return navigation.authors.bySlug(document.slug);
-  } else if (document.type === "genre") {
-    return navigation.genres.bySlug(document.slug);
-  } else if (document.type === "region") {
-    return navigation.regions.bySlug(document.slug);
-  }
-
-  return null;
-};
-
-const getLocalizedTypeKey = (
-  type: GlobalSearchDocument["type"],
-): keyof IntlMessages["entities"] | null => {
-  if (type === "book") {
-    return "text";
-  } else if (type === "author") {
-    return "author";
-  } else if (type === "genre") {
-    return "genre";
-  } else if (type === "region") {
-    return "region";
-  }
-
-  return null;
-};
-
 function SearchBarItem({
   onSelect,
   document,
@@ -48,7 +21,7 @@ function SearchBarItem({
   onSelect: (href?: string) => void;
   document: GlobalSearchDocument;
 }) {
-  const href = getHref(document);
+  const href = getGlobalDocumentHref(document);
   const pathLocale = usePathLocale();
   const t = useTranslations("entities");
   const Comp = (href ? Link : "button") as any;
@@ -73,12 +46,9 @@ function SearchBarItem({
   );
 
   const type = document.type;
-  const localizedType = t(getLocalizedTypeKey(type) ?? "no-entity");
-
-  // key={result.document.id}
-  // value={result.document.id}
-  // onSelect={() => onItemSelect(href ?? undefined)}
-  // href={href ?? ""}
+  const localizedType = t(
+    getGlobalDocumentLocalizedTypeKey(type) ?? "no-entity",
+  );
 
   return (
     <CommandItem

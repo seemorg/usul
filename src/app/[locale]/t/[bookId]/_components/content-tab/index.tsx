@@ -165,7 +165,10 @@ export default function ContentTab({ bookResponse }: TabProps) {
               <HoverCardTrigger asChild>
                 <p dir="rtl">
                   <Button variant="link" asChild className="px-0 text-base">
-                    <Link href={navigation.authors.bySlug(author.slug)}>
+                    <Link
+                      href={navigation.authors.bySlug(author.slug)}
+                      prefetch
+                    >
                       {authorName}
                     </Link>
                   </Button>

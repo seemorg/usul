@@ -12,7 +12,7 @@ import {
 } from "@radix-ui/react-direction";
 
 const treeVariants = cva(
-  "group hover:before:opacity-100 before:absolute before:rounded-lg px-2 before:w-full before:opacity-0 before:bg-accent/70 before:h-[2rem] before:-z-10",
+  "group hover:before:opacity-100 before:absolute before:rounded-lg before:w-full before:opacity-0 before:bg-accent/70 before:h-[2.8rem] before:-z-10",
   {
     variants: {
       dir: {
@@ -24,7 +24,7 @@ const treeVariants = cva(
 );
 
 const selectedTreeVariants = cva(
-  "before:opacity-100 before:bg-accent/70 text-accent-foreground",
+  "before:opacity-100 text-primary before:bg-primary-foreground/50",
 );
 
 interface TreeDataItem {
@@ -227,18 +227,31 @@ const TreeNode = ({
             isOpen={value.includes(item.id)}
             default={defaultNodeIcon}
           />
-          <span className="truncate text-sm">{item.name}</span>
+          <p className="truncate" title={item.name}>
+            {item.name}
+          </p>
           <TreeActions isSelected={selectedItemId === item.id}>
             {item.actions}
           </TreeActions>
         </AccordionTrigger>
+
         <AccordionContent
-          className={cn(
-            dir === "ltr" ? "ml-4 border-l pl-1" : "mr-4 border-r pr-1",
-          )}
+          className={cn("relative", dir === "ltr" ? "pl-3" : "pr-3")}
         >
+          <AccordionPrimitive.Trigger
+            className={cn(
+              "group absolute z-10 h-full w-3",
+              dir === "ltr" ? "left-0" : "right-0",
+            )}
+            onClick={() => {
+              handleSelectChange(item);
+              item.onClick?.();
+            }}
+          >
+            <div className="h-full w-[2px] bg-border group-hover:bg-foreground/30" />
+          </AccordionPrimitive.Trigger>
+
           <TreeItem
-            //
             data={item.children ? item.children : item}
             selectedItemId={selectedItemId}
             handleSelectChange={handleSelectChange}
@@ -297,7 +310,9 @@ const TreeLeaf = React.forwardRef<
           isSelected={selectedItemId === item.id}
           default={defaultLeafIcon}
         />
-        <span className="flex-grow truncate text-sm">{item.name}</span>
+        <span className="flex-grow truncate text-lg" title={item.name}>
+          {item.name}
+        </span>
         <TreeActions isSelected={selectedItemId === item.id}>
           {item.actions}
         </TreeActions>
@@ -316,7 +331,7 @@ const AccordionTrigger = React.forwardRef<
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          "flex w-full flex-1 items-center py-2 transition-all first:[&[data-state=open]>svg]:rotate-90",
+          "flex w-full flex-1 items-center py-4 text-lg transition-all first:[&[data-state=open]>svg]:rotate-90",
           className,
         )}
         {...props}
@@ -341,7 +356,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      "overflow-hidden text-lg transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
       className,
     )}
     {...props}

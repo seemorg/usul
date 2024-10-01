@@ -7,6 +7,8 @@ import ComingSoonModal from "@/components/coming-soon-modal";
 import type { SearchType } from "@/types/search";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "@/navigation";
+import { navigation } from "@/lib/urls";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -50,12 +52,14 @@ export default function SearchBarResults({
   searchType,
   setSearchType,
   isLoading,
+  value,
 }: {
   results?: ReturnType<typeof prepareResults<GlobalSearchDocument>>;
   onItemSelect: (href?: string) => void;
   searchType: SearchType;
   setSearchType: (type: SearchType) => void;
   isLoading?: boolean;
+  value: string;
 }) {
   const t = useTranslations();
   const entitiesT = useTranslations("entities");
@@ -108,15 +112,14 @@ export default function SearchBarResults({
         </Tabs>
 
         {showSeeMore && (
-          <ComingSoonModal
-            trigger={
-              <button className="mt-3 text-primary underline sm:mt-0">
-                {t("common.search-bar.all-results", {
-                  results: results?.found,
-                })}
-              </button>
-            }
-          />
+          <Link
+            href={navigation.search.index({ type: searchType, query: value })}
+            className="mt-3 text-primary underline sm:mt-0"
+          >
+            {t("common.search-bar.all-results", {
+              results: results?.found,
+            })}
+          </Link>
         )}
       </div>
 
