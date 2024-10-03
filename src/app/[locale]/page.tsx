@@ -67,7 +67,7 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex min-h-[500px] w-full pb-10 pt-24 text-white sm:pt-32">
+      <div className="relative flex min-h-[450px] w-full pb-10 pt-24 text-white sm:pt-28">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
@@ -87,7 +87,7 @@ export default async function HomePage({
                 <DialogTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+                    className="h-10 gap-2 bg-accent/10 px-4 py-3 hover:bg-accent/20 focus:bg-accent/20"
                   >
                     <PlayIcon className="size-4" />
                     How Usul Works - 2:20
@@ -101,7 +101,7 @@ export default async function HomePage({
             </div>
           )}
 
-          <div className={cn("w-full", showVideo ? "mt-16" : "mt-28")}>
+          <div className={cn("w-full", showVideo ? "mt-10" : "mt-10")}>
             <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
             </div>
@@ -109,7 +109,7 @@ export default async function HomePage({
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-24">
+      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-12">
         <div>
           <HomepageSection
             title={t("sections.collections")}

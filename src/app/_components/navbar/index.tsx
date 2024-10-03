@@ -1,6 +1,6 @@
 "use client";
 
-import { Logo } from "@/components/Icons";
+import { ArabicLogo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -74,7 +74,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
       >
         <div className="xl:col-span-2">
           <Link href="/" className="flex w-fit items-center gap-3">
-            <Logo className="h-5 w-auto" />
+            <ArabicLogo className="h-8 w-auto" />
           </Link>
         </div>
 

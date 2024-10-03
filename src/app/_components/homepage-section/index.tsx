@@ -49,7 +49,7 @@ const HomepageSection = ({
         </div>
       </div>
 
-      <CarouselContent className="mt-5 sm:mt-10">
+      <CarouselContent className="mt-6">
         {items.map((item, idx) => (
           <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
             <div

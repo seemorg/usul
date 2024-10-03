@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import SearchBarItem from "./item";
 import type { prepareResults } from "@/server/typesense/utils";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ComingSoonModal from "@/components/coming-soon-modal";
 import type { SearchType } from "@/types/search";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -27,20 +26,20 @@ const ResultsSkeleton = () => (
       >
         <div className="hidden items-center gap-4 md:flex">
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![0] }}
           />
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![1] }}
           />
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![2] }}
           />
         </div>
 
-        <Skeleton className="h-6 w-full md:w-12" />
+        <Skeleton className="h-6 w-full bg-accent md:w-12" />
       </div>
     ))}
   </div>

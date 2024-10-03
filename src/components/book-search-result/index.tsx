@@ -83,14 +83,6 @@ const BookSearchResult = ({
                 {authorName}
               </p>
             )}
-
-            {secondaryTitle && (
-              <p
-                className="mt-1 text-wrap text-right"
-                dangerouslySetInnerHTML={{ __html: secondaryTitle }}
-                title={secondaryTitle}
-              />
-            )}
           </div>
         </Link>
       </div>
