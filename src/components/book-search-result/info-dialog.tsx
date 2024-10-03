@@ -131,8 +131,8 @@ export default function InfoDialog({
               <div className="w-full bg-primary px-8 py-6 text-primary-foreground sm:rounded-t-lg">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold">Text Info</h3>
-                  <RawDialogClose className="rounded-sm p-3 opacity-70 ring-offset-background transition-opacity hover:bg-white/10 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
-                    <XIcon className="h-4 w-4" />
+                  <RawDialogClose className="rounded-sm p-2 opacity-70 ring-offset-background transition-opacity hover:bg-white/10 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+                    <XIcon className="h-6 w-6" />
                     <span className="sr-only">Close</span>
                   </RawDialogClose>
                 </div>
