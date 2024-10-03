@@ -140,12 +140,12 @@ export default function InfoDialog({
                 <Separator className="my-6 bg-white/10" />
 
                 <div className="flex justify-between">
-                  <div className="flex w-full flex-1 flex-col gap-3">
+                  <div className="w-full flex-1">
                     <p className="text-base font-medium text-white/60">
                       {t("common.latin-names")}
                     </p>
 
-                    <div>
+                    <div className="mt-2">
                       <p className="text-xl font-bold">{primaryTitle}</p>
 
                       {otherTitles && (
@@ -156,12 +156,12 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div className="flex w-full flex-1 flex-col gap-3" dir="rtl">
+                  <div className="w-full flex-1" dir="rtl">
                     <p className="text-base font-medium text-white/60">
                       {t("common.arabic-names")}
                     </p>
 
-                    <div>
+                    <div className="mt-2">
                       <p className="text-xl font-bold">{secondaryTitle}</p>
 
                       {otherSecondaryTitles && (
@@ -178,12 +178,14 @@ export default function InfoDialog({
                     <p className="text-base font-medium text-white/60">
                       {t("entities.genres")}
                     </p>
-                    <div className="mt-3 flex flex-wrap gap-2">
+
+                    <div className="mt-2 flex flex-wrap gap-2">
                       {genres.map((genre) => (
                         <Link
                           key={genre.id}
                           href={navigation.genres.bySlug(genre.slug)}
-                          className="rounded-md bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
+                          // className="rounded-md bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
+                          className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent"
                         >
                           {getPrimaryLocalizedText(
                             genre.nameTranslations,
@@ -200,56 +202,62 @@ export default function InfoDialog({
                 <h3 className="text-2xl font-bold">Author Info</h3>
 
                 <div className="flex justify-between">
-                  <div className="flex w-full flex-1 flex-col gap-3">
+                  <div className="w-full flex-1">
                     <p className="text-base font-medium text-secondary-foreground/60">
                       {t("common.latin-names")}
                     </p>
 
-                    {isLoading ? (
-                      <div>
-                        <Skeleton className="h-8 w-40 max-w-full" />
-                        <Skeleton className="mt-2 h-6 w-64 max-w-full" />
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-xl font-bold">{authorPrimaryName}</p>
-
-                        {authorOtherPrimaryNames && (
-                          <p className="mt-3 text-sm text-secondary-foreground">
-                            {authorOtherPrimaryNames.join(", ")}
+                    <div className="mt-2 w-full">
+                      {isLoading ? (
+                        <>
+                          <Skeleton className="h-8 w-40 max-w-full" />
+                          <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xl font-bold">
+                            {authorPrimaryName}
                           </p>
-                        )}
-                      </div>
-                    )}
+
+                          {authorOtherPrimaryNames && (
+                            <p className="mt-3 text-sm text-secondary-foreground">
+                              {authorOtherPrimaryNames.join(", ")}
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </div>
                   </div>
 
-                  <div className="flex w-full flex-1 flex-col gap-3" dir="rtl">
+                  <div className="w-full flex-1" dir="rtl">
                     <p className="text-base font-medium text-secondary-foreground/60">
                       {t("common.arabic-names")}
                     </p>
 
-                    {isLoading ? (
-                      <div>
-                        <Skeleton className="h-8 w-40 max-w-full" />
-                        <Skeleton className="mt-2 h-6 w-64 max-w-full" />
-                      </div>
-                    ) : (
-                      <div>
-                        <p className="text-xl font-bold">
-                          {authorSecondaryName}
-                        </p>
-
-                        {authorOtherSecondaryNames && (
-                          <p className="mt-3 text-sm text-secondary-foreground">
-                            {authorOtherSecondaryNames.join(", ")}
+                    <div className="mt-2 w-full">
+                      {isLoading ? (
+                        <>
+                          <Skeleton className="h-8 w-40 max-w-full" />
+                          <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-xl font-bold">
+                            {authorSecondaryName}
                           </p>
-                        )}
-                      </div>
-                    )}
+
+                          {authorOtherSecondaryNames && (
+                            <p className="mt-3 text-sm text-secondary-foreground">
+                              {authorOtherSecondaryNames.join(", ")}
+                            </p>
+                          )}
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-2">
                   <p className="text-base font-medium text-secondary-foreground/60">
                     {t("common.author-bio")}
                   </p>
@@ -275,9 +283,9 @@ export default function InfoDialog({
                 </div>
 
                 <div className="flex gap-32">
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2">
                     <p className="text-base font-medium text-secondary-foreground/60">
-                      {t("common.author-regions")}:
+                      {t("common.author-regions")}
                     </p>
 
                     {isLoading ? (
@@ -317,7 +325,7 @@ export default function InfoDialog({
                     )}
                   </div>
 
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-2">
                     <p className="text-base font-medium text-secondary-foreground/60">
                       {t("entities.year")}
                     </p>
