@@ -85,8 +85,6 @@ export default function ChaptersList({
     return buildHierarchy(headers);
   }, [headers]);
 
-  console.log(finalHeaders);
-
   const handleNavigate = (
     chapterIndex: number,
     pageNumber: number | { vol: string; page: number } | string,

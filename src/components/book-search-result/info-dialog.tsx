@@ -1,7 +1,12 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogOverlay,
+  DialogPortal,
+  RawDialogClose,
+  RawDialogContent,
+} from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useMemo, type ComponentProps, useState } from "react";
@@ -18,6 +23,9 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { XIcon } from "lucide-react";
+import { Separator } from "../ui/separator";
+import type { GenreDocument } from "@/types/genre";
 
 const order: Record<string, number> = {
   born: 1,
@@ -47,11 +55,20 @@ export default function InfoDialog({
     enabled: shouldFetch,
   });
 
-  const primaryTitle = author?.primaryNameTranslations
-    ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+  const primaryTitle = document?.primaryNames
+    ? getPrimaryLocalizedText(document.primaryNames, pathLocale)
     : null;
-  const secondaryTitle = author?.primaryNameTranslations
-    ? getSecondaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+
+  const otherTitles = document?.otherNames
+    ? getPrimaryLocalizedText(document.otherNames, pathLocale)
+    : null;
+
+  const secondaryTitle = document?.primaryNames
+    ? getSecondaryLocalizedText(document.primaryNames, pathLocale)
+    : null;
+
+  const otherSecondaryTitles = document?.otherNames
+    ? getSecondaryLocalizedText(document.otherNames, pathLocale)
     : null;
 
   const authorPrimaryName = author
@@ -94,232 +111,241 @@ export default function InfoDialog({
 
   const isLoading = isFetching || !author;
 
+  const genres = ((document as any).genres ?? []) as GenreDocument[];
+
   return (
     <>
       <Button
         variant="ghost"
         size="icon"
-        className="pointer-events-none absolute top-3 z-10 bg-background/80 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
+        className="pointer-events-none absolute top-3 z-10 bg-background opacity-0 hover:bg-background/80 focus:bg-background/80 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
         onClick={() => setOpen(true)}
       >
         <InformationCircleIcon className="h-5 w-5" />
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-4xl">
-          <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">
-                {t("common.arabic-names")}:
-              </h3>
-              {isLoading ? (
-                <div>
-                  <Skeleton className="h-8 w-40 max-w-full" />
-
-                  <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+        <DialogPortal>
+          <DialogOverlay>
+            <RawDialogContent className="relative z-50 grid w-full max-w-3xl gap-4 bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+              <div className="w-full bg-primary px-8 py-6 text-primary-foreground sm:rounded-t-lg">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-2xl font-bold">Text Info</h3>
+                  <RawDialogClose className="rounded-sm p-3 opacity-70 ring-offset-background transition-opacity hover:bg-white/10 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+                    <XIcon className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                  </RawDialogClose>
                 </div>
-              ) : (
-                <div>
-                  <p className="text-xl">{primaryTitle}</p>
 
-                  {primaryTitle && (
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {authorOtherPrimaryNames &&
-                      authorOtherPrimaryNames.length > 0
-                        ? authorOtherPrimaryNames.join(", ")
-                        : "-"}
+                <Separator className="my-6 bg-white/10" />
+
+                <div className="flex justify-between">
+                  <div className="flex w-full flex-1 flex-col gap-3">
+                    <p className="text-base font-medium text-white/60">
+                      {t("common.latin-names")}
                     </p>
-                  )}
-                </div>
-              )}
-            </div>
 
-            <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">{t("common.latin-names")}:</h3>
+                    <div>
+                      <p className="text-xl font-bold">{primaryTitle}</p>
 
-              {isLoading ? (
-                <div>
-                  <Skeleton className="h-8 w-40 max-w-full" />
-
-                  <Skeleton className="mt-2 h-6 w-64 max-w-full" />
-                </div>
-              ) : (
-                <div>
-                  <p className="text-xl">{secondaryTitle}</p>
-
-                  {secondaryTitle && (
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {authorOtherSecondaryNames &&
-                      authorOtherSecondaryNames.length > 0
-                        ? authorOtherSecondaryNames.join(", ")
-                        : "-"}
-                    </p>
-                  )}
-                </div>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-5">
-              <h3 className="text-2xl font-bold">{t("entities.year")}:</h3>
-              {isLoading ? (
-                <div>
-                  <Skeleton className="h-8 w-28 max-w-full" />
-                </div>
-              ) : (
-                <div>
-                  <Button
-                    variant="link"
-                    className="p-0 text-xl"
-                    dir="ltr"
-                    asChild
-                  >
-                    <Link
-                      href={navigation.centuries.byYear(author.year)}
-                      prefetch
-                    >
-                      {t("common.year-format.ah.value", { year: author.year })}
-                    </Link>
-                  </Button>
-                </div>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">
-                  {t("common.author-arabic-names")}:
-                </h3>
-                {isLoading ? (
-                  <div>
-                    <Skeleton className="h-8 w-40 max-w-full" />
-
-                    <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                      {otherTitles && (
+                        <p className="mt-3 text-sm text-muted">
+                          {otherTitles.join(", ")}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                ) : (
-                  <div>
-                    {authorPrimaryName ? (
-                      <Link
-                        href={navigation.authors.bySlug(author.slug)}
-                        className="text-xl text-primary hover:underline"
-                        prefetch
-                      >
-                        {authorPrimaryName}
-                      </Link>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">-</p>
-                    )}
 
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {(authorOtherPrimaryNames ?? []).length > 0
-                        ? authorOtherPrimaryNames!.join(", ")
-                        : "-"}
+                  <div className="flex w-full flex-1 flex-col gap-3" dir="rtl">
+                    <p className="text-base font-medium text-white/60">
+                      {t("common.arabic-names")}
                     </p>
+
+                    <div>
+                      <p className="text-xl font-bold">{secondaryTitle}</p>
+
+                      {otherSecondaryTitles && (
+                        <p className="mt-3 text-sm text-muted">
+                          {otherSecondaryTitles.join(", ")}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {genres.length > 0 && (
+                  <div className="mt-6">
+                    <p className="text-base font-medium text-white/60">
+                      {t("entities.genres")}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {genres.map((genre) => (
+                        <Link
+                          key={genre.id}
+                          href={navigation.genres.bySlug(genre.slug)}
+                          className="rounded-md bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
+                        >
+                          {getPrimaryLocalizedText(
+                            genre.nameTranslations,
+                            pathLocale,
+                          )}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
 
-              <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">
-                  {t("common.author-latin-names")}:
-                </h3>
-                {isLoading ? (
-                  <div>
-                    <Skeleton className="h-8 w-40 max-w-full" />
+              <div className="flex flex-col gap-6 px-8 py-6">
+                <h3 className="text-2xl font-bold">Author Info</h3>
 
-                    <Skeleton className="mt-2 h-6 w-64 max-w-full" />
-                  </div>
-                ) : (
-                  <div>
-                    {authorSecondaryName ? (
-                      <Link
-                        href={navigation.authors.bySlug(author.slug)}
-                        className="text-xl text-primary hover:underline"
-                        prefetch
-                      >
-                        {authorSecondaryName}
-                      </Link>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">-</p>
-                    )}
-
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {(authorOtherSecondaryNames ?? []).length > 0
-                        ? authorOtherSecondaryNames!.join(", ")
-                        : "-"}
+                <div className="flex justify-between">
+                  <div className="flex w-full flex-1 flex-col gap-3">
+                    <p className="text-base font-medium text-secondary-foreground/60">
+                      {t("common.latin-names")}
                     </p>
-                  </div>
-                )}
-              </div>
 
-              <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">
-                  {t("common.author-bio")}:
-                </h3>
-                {isLoading ? (
-                  <div className="flex flex-col gap-2">
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-full" />
-                    <Skeleton className="h-2.5 w-1/3" />
+                    {isLoading ? (
+                      <div>
+                        <Skeleton className="h-8 w-40 max-w-full" />
+                        <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-xl font-bold">{authorPrimaryName}</p>
+
+                        {authorOtherPrimaryNames && (
+                          <p className="mt-3 text-sm text-secondary-foreground">
+                            {authorOtherPrimaryNames.join(", ")}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
-                ) : (
-                  <div>
-                    <p className="text-lg">
+
+                  <div className="flex w-full flex-1 flex-col gap-3" dir="rtl">
+                    <p className="text-base font-medium text-secondary-foreground/60">
+                      {t("common.arabic-names")}
+                    </p>
+
+                    {isLoading ? (
+                      <div>
+                        <Skeleton className="h-8 w-40 max-w-full" />
+                        <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                      </div>
+                    ) : (
+                      <div>
+                        <p className="text-xl font-bold">
+                          {authorSecondaryName}
+                        </p>
+
+                        {authorOtherSecondaryNames && (
+                          <p className="mt-3 text-sm text-secondary-foreground">
+                            {authorOtherSecondaryNames.join(", ")}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3">
+                  <p className="text-base font-medium text-secondary-foreground/60">
+                    {t("common.author-bio")}
+                  </p>
+
+                  {isLoading ? (
+                    <div className="flex flex-col gap-2">
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-full" />
+                      <Skeleton className="h-2.5 w-1/3" />
+                    </div>
+                  ) : (
+                    <p>
                       {getPrimaryLocalizedText(
                         author.bioTranslations,
                         pathLocale,
                       )}
                     </p>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
 
-              <div className="flex flex-col gap-5">
-                <h3 className="text-2xl font-bold">
-                  {t("common.author-regions")}:
-                </h3>
-                {isLoading ? (
-                  <div className="flex flex-col gap-2">
-                    <Skeleton className="h-3 w-40 max-w-full" />
-                    <Skeleton className="h-3 w-40 max-w-full" />
-                    <Skeleton className="h-3 w-40 max-w-full" />
-                    <Skeleton className="h-3 w-40 max-w-full" />
-                  </div>
-                ) : (
-                  <div>
-                    {parsedRegions.length > 0 ? (
-                      <ul>
-                        {parsedRegions.map((region) => (
-                          <li
-                            key={region.id}
-                            className="flex items-center gap-1 text-lg capitalize"
-                          >
-                            <span>-</span>
+                <div className="flex gap-32">
+                  <div className="flex flex-col gap-3">
+                    <p className="text-base font-medium text-secondary-foreground/60">
+                      {t("common.author-regions")}:
+                    </p>
 
-                            <Link
-                              className="ml-2 text-primary hover:underline"
-                              href={navigation.regions.bySlug(region.slug)}
-                              prefetch
-                            >
-                              {region.name}
-                            </Link>
-
-                            <span>({region.type})</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {isLoading ? (
+                      <div className="flex flex-col gap-2">
+                        <Skeleton className="h-3 w-40 max-w-full" />
+                        <Skeleton className="h-3 w-40 max-w-full" />
+                        <Skeleton className="h-3 w-40 max-w-full" />
+                        <Skeleton className="h-3 w-40 max-w-full" />
+                      </div>
                     ) : (
-                      <p className="text-sm text-muted-foreground">-</p>
+                      <div>
+                        {parsedRegions.length > 0 ? (
+                          <ul>
+                            {parsedRegions.map((region) => (
+                              <li
+                                key={region.id}
+                                className="flex items-center gap-1 text-lg capitalize"
+                              >
+                                <span>-</span>
+
+                                <Link
+                                  className="ml-2 text-primary hover:underline"
+                                  href={navigation.regions.bySlug(region.slug)}
+                                  prefetch
+                                >
+                                  {region.name}
+                                </Link>
+
+                                <span>({region.type})</span>
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-sm text-muted-foreground">-</p>
+                        )}
+                      </div>
                     )}
                   </div>
-                )}
+
+                  <div className="flex flex-col gap-3">
+                    <p className="text-base font-medium text-secondary-foreground/60">
+                      {t("entities.year")}
+                    </p>
+
+                    {isLoading ? (
+                      <div>
+                        <Skeleton className="h-8 w-28 max-w-full" />
+                      </div>
+                    ) : (
+                      <div>
+                        <Link
+                          href={navigation.centuries.byYear(author.year)}
+                          prefetch
+                          dir="ltr"
+                          className="text-lg text-primary underline-offset-4 hover:underline"
+                        >
+                          {t("common.year-format.ah.value", {
+                            year: author.year,
+                          })}
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </DialogContent>
+            </RawDialogContent>
+          </DialogOverlay>
+        </DialogPortal>
       </Dialog>
     </>
   );

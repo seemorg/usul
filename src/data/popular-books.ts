@@ -60,6 +60,11 @@ const fetchBooksBySlugs = (slugs: string[], locale: PathLocale) => {
           primaryNameTranslations: localeWhere,
         },
       },
+      genres: {
+        include: {
+          nameTranslations: localeWhere,
+        },
+      },
     },
   });
 };
