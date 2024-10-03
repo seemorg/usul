@@ -46,7 +46,8 @@ const ChatMessage = ({
     (page?: { vol: string; page: number }) => {
       if (!page) return;
 
-      virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(page));
+      const props = getVirtuosoIndex(page);
+      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
     },
     [getVirtuosoIndex],
   );

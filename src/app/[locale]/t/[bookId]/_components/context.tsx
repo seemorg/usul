@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useRef, useState } from "react";
-import type { VirtuosoHandle } from "react-virtuoso";
+import type { VListHandle } from "virtua";
+// import type { VirtuosoHandle } from "react-virtuoso";
 
-type VirtuosoContextType = React.RefObject<VirtuosoHandle>;
+type VirtuosoContextType = React.RefObject<VListHandle>;
 
 const VirtuosoContext = React.createContext<VirtuosoContextType>(
   {} as VirtuosoContextType,
@@ -44,7 +45,7 @@ export default function ReaderContextProviders({
   const [containerEl, setContainerEl] = useState<{
     element: HTMLDivElement;
   } | null>(null);
-  const virtuosoRef = useRef<VirtuosoHandle>(null);
+  const virtuosoRef = useRef<VListHandle>(null);
 
   return (
     <VirtuosoContext.Provider value={virtuosoRef}>

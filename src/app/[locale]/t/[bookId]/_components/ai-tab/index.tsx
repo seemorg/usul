@@ -188,7 +188,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
 
               {isError && (
                 <div
-                  className="flex items-center gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-red-500"
+                  className="flex items-center gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
                   role="alert"
                 >
                   <InfoIcon className="size-4" />

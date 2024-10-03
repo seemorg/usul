@@ -67,12 +67,14 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex min-h-[500px] w-full pb-10 pt-28 text-white sm:pt-32">
+      <div className="relative flex min-h-[500px] w-full pb-10 pt-24 text-white sm:pt-32">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
-          <h1 className="text-center text-5xl font-bold">{t("headline")}</h1>
+          <h1 className="text-center text-4xl font-bold sm:text-5xl">
+            {t("headline")}
+          </h1>
 
           <p className="mt-5 text-center text-xl font-light text-white/80">
             {t("subheadline")}
@@ -80,7 +82,7 @@ export default async function HomePage({
 
           {/* TODO: remove this condition */}
           {showVideo && (
-            <div className="mt-6 flex w-full justify-center">
+            <div className="mt-7 flex w-full justify-center">
               <Dialog>
                 <DialogTrigger asChild>
                   <Button

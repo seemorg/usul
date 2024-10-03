@@ -24,7 +24,7 @@ const treeVariants = cva(
 );
 
 const selectedTreeVariants = cva(
-  "before:opacity-100 text-primary before:bg-primary-foreground/50",
+  "before:bg-primary-foreground/30 before:opacity-100 text-primary",
 );
 
 interface TreeDataItem {
@@ -245,7 +245,6 @@ const TreeNode = ({
             )}
             onClick={() => {
               handleSelectChange(item);
-              item.onClick?.();
             }}
           >
             <div className="h-full w-[2px] bg-border group-hover:bg-foreground/30" />
@@ -310,7 +309,7 @@ const TreeLeaf = React.forwardRef<
           isSelected={selectedItemId === item.id}
           default={defaultLeafIcon}
         />
-        <span className="flex-grow truncate text-lg" title={item.name}>
+        <span className="flex-grow truncate text-base" title={item.name}>
           {item.name}
         </span>
         <TreeActions isSelected={selectedItemId === item.id}>
@@ -331,7 +330,7 @@ const AccordionTrigger = React.forwardRef<
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          "flex w-full flex-1 items-center py-4 text-lg transition-all first:[&[data-state=open]>svg]:rotate-90",
+          "flex w-full flex-1 items-center py-3 text-base transition-all first:[&[data-state=open]>svg]:rotate-90",
           className,
         )}
         {...props}
@@ -356,7 +355,7 @@ const AccordionContent = React.forwardRef<
   <AccordionPrimitive.Content
     ref={ref}
     className={cn(
-      "overflow-hidden text-lg transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+      "overflow-hidden text-base transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
       className,
     )}
     {...props}

@@ -7,6 +7,8 @@ const baseRequest = async <T>(
   relativeUrl: string,
   body?: object,
 ) => {
+  throw new Error("err");
+
   const response = await fetch(
     `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`,
     {

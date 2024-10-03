@@ -38,7 +38,8 @@ export default function PageNavigator({
       return;
     }
 
-    virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(pageNumber));
+    const props = getVirtuosoIndex(pageNumber);
+    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
