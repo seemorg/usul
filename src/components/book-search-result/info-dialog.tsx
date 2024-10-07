@@ -18,7 +18,7 @@ import { navigation } from "@/lib/urls";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { Skeleton } from "../ui/skeleton";
 import { useTranslations } from "next-intl";
-import { usePathLocale } from "@/lib/locale/utils";
+import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
@@ -43,6 +43,7 @@ export default function InfoDialog({
   const [open, setOpen] = useState(false);
   const pathLocale = usePathLocale();
   const t = useTranslations();
+  const dir = useDirection();
 
   const shouldFetch = open;
 
@@ -158,9 +159,12 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div className="w-full flex-1" dir="rtl">
+                  <div
+                    className="w-full flex-1"
+                    dir={dir === "ltr" ? "rtl" : "ltr"}
+                  >
                     <p className="mb-2 text-base font-medium text-white/60">
-                      الاسم
+                      {pathLocale === "ar" ? "Name" : "الاسم"}
                     </p>
 
                     <div>
@@ -233,9 +237,12 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div className="w-full flex-1" dir="rtl">
+                  <div
+                    className="w-full flex-1"
+                    dir={dir === "ltr" ? "rtl" : "ltr"}
+                  >
                     <p className="mb-2 text-base font-medium text-secondary-foreground/60">
-                      الاسم
+                      {pathLocale === "ar" ? "Name" : "الاسم"}
                     </p>
 
                     <div className="w-full">
