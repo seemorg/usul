@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
-import { cn } from "@/lib/utils";
 import type { searchRegions } from "@/server/typesense/region";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";
@@ -39,7 +38,7 @@ export default async function RegionSearchResult({
         <div className="flex-1">
           {primaryName && (
             <h2
-              className="text-xl text-foreground"
+              className="text-lg font-semibold"
               dangerouslySetInnerHTML={{
                 __html: primaryName,
               }}
@@ -47,17 +46,22 @@ export default async function RegionSearchResult({
           )}
 
           <DottedList
-            className="mt-3 text-muted-foreground"
+            className="mt-2 text-xs text-muted-foreground"
             items={[
+              // primaryName && (
+              //   <h2
+              //     dangerouslySetInnerHTML={{
+              //       __html: primaryName,
+              //     }}
+              //   />
+              // ),
               secondaryName && (
                 <h2
-                  className={cn(primaryName ? "text-lg" : "text-xl")}
                   dangerouslySetInnerHTML={{
                     __html: secondaryName,
                   }}
                 />
               ),
-
               subLocations.length > 0 && (
                 <p>
                   {t("common.includes")}{" "}

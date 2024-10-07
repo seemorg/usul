@@ -19,11 +19,13 @@ const HomepageSection = ({
   href,
   items,
   constraintWidth,
+  isBooks = true,
 }: {
   title: string;
   href?: string;
   items: React.ReactNode[];
   constraintWidth?: boolean;
+  isBooks?: boolean;
 }) => {
   const dir = useDirection();
 
@@ -35,7 +37,10 @@ const HomepageSection = ({
   );
 
   return (
-    <Carousel className="relative w-full pb-10" opts={{ direction: dir }}>
+    <Carousel
+      className={cn("relative w-full", isBooks ? "pb-8 sm:pb-10" : "pb-10")}
+      opts={{ direction: dir }}
+    >
       <div className="flex items-center justify-between">
         {href ? (
           <Link href={href}>{sectionTitle}</Link>
@@ -44,8 +49,8 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
-          <CarouselNext className="hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselPrevious className="hover:bg-accent/80 focus:bg-accent/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselNext className="hover:bg-accent/80 focus:bg-accent/80 disabled:bg-transparent disabled:opacity-50" />
         </div>
       </div>
 

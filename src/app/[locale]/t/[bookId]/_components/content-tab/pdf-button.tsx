@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 
 import React from "react";
-import { useTranslations } from "next-intl";
+// import { useTranslations } from "next-intl";
 import type { TurathBookResponse } from "@/server/services/books";
 import { useSearchParams } from "next/navigation";
-import { EyeIcon } from "lucide-react";
+import { FileTextIcon, XIcon } from "lucide-react";
 import { usePathname, useRouter } from "@/navigation";
 
 export default function PdfButton({
@@ -17,13 +17,13 @@ export default function PdfButton({
   pdf?: TurathBookResponse["turathResponse"]["pdf"] | null;
   slug: string;
 }) {
-  const t = useTranslations("reader");
+  // const t = useTranslations("reader");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const view = searchParams.get("view");
   const router = useRouter();
 
-  const size = pdf?.sizeInMb;
+  // const size = pdf?.sizeInMb;
   const Wrapper = pdf?.finalUrl ? "a" : "span";
 
   const onViewClick = () => {
@@ -41,25 +41,24 @@ export default function PdfButton({
     <div className="flex items-center gap-3">
       <Button
         variant={view === "pdf" ? "default" : "secondary"}
-        disabled={!pdf?.finalUrl}
-        size="icon"
         onClick={onViewClick}
+        className="w-full flex-1 gap-2 hover:opacity-80"
       >
-        <EyeIcon className="h-4 w-4" />
+        {view === "pdf" ? (
+          <XIcon className="h-4 w-4" />
+        ) : (
+          <FileTextIcon className="h-4 w-4" />
+        )}
+        {view === "pdf" ? "Exit PDF" : "View PDF"}
       </Button>
 
       <Button
         variant="secondary"
-        asChild={!!pdf?.finalUrl}
-        tooltip={
-          pdf?.finalUrl
-            ? size
-              ? `${size} MB`
-              : "Unknown size"
-            : "Not available"
-        }
+        size="icon"
+        tooltip={"Download PDF"}
         disabled={!pdf?.finalUrl}
-        className="w-full flex-1"
+        asChild={!!pdf?.finalUrl}
+        className="w-[40px]"
       >
         <Wrapper
           href={pdf?.finalUrl}
@@ -67,8 +66,7 @@ export default function PdfButton({
           target="_blank"
           className="flex w-full justify-center gap-2"
         >
-          <ArrowDownTrayIcon className="h-4 w-4" /> {t("download-pdf")}{" "}
-          {size && <span className="md:hidden">({size} MB)</span>}
+          <ArrowDownTrayIcon className="h-4 w-4" />
         </Wrapper>
       </Button>
     </div>

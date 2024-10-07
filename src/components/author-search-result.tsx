@@ -2,7 +2,6 @@
 import type { searchAuthors } from "@/server/typesense/author";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
-import { cn } from "@/lib/utils";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";
 import { getPathLocale } from "@/lib/locale/server";
@@ -42,7 +41,7 @@ const AuthorSearchResult = async ({
         <div className="max-w-[70%]">
           {primaryName && (
             <h2
-              className="text-xl text-foreground"
+              className="text-lg font-semibold"
               dangerouslySetInnerHTML={{
                 __html: primaryName,
               }}
@@ -50,11 +49,10 @@ const AuthorSearchResult = async ({
           )}
 
           <DottedList
-            className="mt-5 text-muted-foreground"
+            className="mt-2 text-xs text-muted-foreground"
             items={[
               secondaryName && (
                 <h2
-                  className={cn(primaryName ? "text-lg" : "text-xl")}
                   dangerouslySetInnerHTML={{
                     __html: secondaryName,
                   }}

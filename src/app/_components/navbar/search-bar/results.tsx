@@ -129,7 +129,7 @@ export default function SearchBarResults({
           <Button
             asChild
             className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
-            variant="secondary"
+            variant="link"
           >
             <Link
               href={navigation.search.index({ type: searchType, query: value })}

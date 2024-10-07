@@ -65,6 +65,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentSort={sort.raw}
         currentQuery={q}
+        hasViews={false}
         filters={
           <>
             <YearFilter
