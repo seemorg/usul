@@ -2,12 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import {
-  type NavItem,
-  toolsItems,
-  exploreItems,
-  contributeItems,
-} from "./links";
+import { type NavItem, browseItems, contributeItems } from "./links";
 import { Link } from "@/navigation";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
@@ -23,13 +18,13 @@ const groups: {
   title: NamespaceTranslations<"common">;
   items: NavItem[];
 }[] = [
+  // {
+  //   title: "navigation.tools.title",
+  //   items: toolsItems,
+  // },
   {
-    title: "navigation.tools.title",
-    items: toolsItems,
-  },
-  {
-    title: "navigation.explore.title",
-    items: exploreItems,
+    title: "navigation.browse.title",
+    items: browseItems,
   },
   {
     title: "navigation.contribute.title",

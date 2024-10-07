@@ -16,19 +16,15 @@ type NavItem = {
 };
 
 const navigation = {
-  tools: [
-    { label: "navigation.tools.advanced-search.title" },
-    { label: "navigation.tools.text-explorer.title", href: urls.books.all() },
-    {
-      label: "navigation.tools.author-explorer.title",
-      href: urls.authors.all(),
-    },
-  ] satisfies NavItem[],
-  explore: [
-    { label: "navigation.explore.texts.title", href: urls.books.all() },
-    { label: "navigation.explore.authors.title", href: urls.authors.all() },
-    { label: "navigation.explore.regions.title", href: urls.regions.all() },
-    { label: "navigation.explore.genres.title", href: urls.genres.all() },
+  // about: [
+  //   { label: "navigation.about." },
+
+  // ] satisfies NavItem[],
+  browse: [
+    { label: "navigation.browse.texts.title", href: urls.books.all() },
+    { label: "navigation.browse.authors.title", href: urls.authors.all() },
+    { label: "navigation.browse.regions.title", href: urls.regions.all() },
+    { label: "navigation.browse.genres.title", href: urls.genres.all() },
   ] satisfies NavItem[],
   contribute: [
     {
@@ -138,13 +134,13 @@ export default function Footer() {
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
+            {/* <FooterRow
+              title={t("navigation.about.title")}
+              items={navigation.about}
+            /> */}
             <FooterRow
-              title={t("navigation.tools.title")}
-              items={navigation.tools}
-            />
-            <FooterRow
-              title={t("navigation.explore.title")}
-              items={navigation.explore}
+              title={t("navigation.browse.title")}
+              items={navigation.browse}
             />
             <FooterRow
               title={t("navigation.contribute.title")}
