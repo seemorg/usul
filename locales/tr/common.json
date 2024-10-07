@@ -112,8 +112,6 @@
   },
   "lost": "Kaybolmuş gibi görünüyorsun",
   "go-back-home": "Ana sayfaya dön",
-  "arabic-names": "Arap isimleri",
-  "latin-names": "İsimler",
   "author-arabic-names": "Yazar Arap isimleri",
   "author-latin-names": "Yazar Latin isimleri",
   "author-bio": "Yazar Latin isimleri",
@@ -140,5 +138,6 @@
   "year-filter-info": "Yazarın ölüm yılı",
   "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler",
   "text-info": "Metin Bilgisi",
-  "author-info": "Yazar Bilgisi"
+  "author-info": "Yazar Bilgisi",
+  "names": "İsimler"
 }

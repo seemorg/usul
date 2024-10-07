@@ -112,8 +112,6 @@
   },
   "lost": "Waxay u muuqataa inaad lumtay",
   "go-back-home": "Ku noqo guriga",
-  "arabic-names": "Magacyada Carabiga",
-  "latin-names": "Magacyo",
   "author-arabic-names": "Magacyada Qoraaga Carabiga",
   "author-latin-names": "Magacyada Qoraaga Latin-ka",
   "author-bio": "Magacyada Qoraaga Latin-ka",
@@ -140,5 +138,6 @@
   "year-filter-info": "Sanadka Geerida Qoraa",
   "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday",
   "text-info": "Macluumaadka Qoraalka",
-  "author-info": "Macluumaadka Qoraaga"
+  "author-info": "Macluumaadka Qoraaga",
+  "names": "Magacyada"
 }

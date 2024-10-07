@@ -143,9 +143,9 @@ export default function InfoDialog({
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
-                    {/* <p className="text-base font-medium text-white/60 mb-2">
-                      {t("common.latin-names")}
-                    </p> */}
+                    <p className="mb-2 text-base font-medium text-white/60">
+                      {t("common.names")}
+                    </p>
 
                     <div>
                       <p className="text-xl font-bold">{primaryTitle}</p>
@@ -159,9 +159,9 @@ export default function InfoDialog({
                   </div>
 
                   <div className="w-full flex-1" dir="rtl">
-                    {/* <p className="text-base font-medium text-white/60 mb-2">
-                      {t("common.arabic-names")}
-                    </p> */}
+                    <p className="mb-2 text-base font-medium text-white/60">
+                      الاسم
+                    </p>
 
                     <div>
                       <p className="text-xl font-bold">{secondaryTitle}</p>
@@ -207,9 +207,9 @@ export default function InfoDialog({
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
-                    {/* <p className="text-base font-medium text-secondary-foreground/60 mb-2">
-                      {t("common.latin-names")}
-                    </p> */}
+                    <p className="mb-2 text-base font-medium text-secondary-foreground/60">
+                      {t("common.names")}
+                    </p>
 
                     <div className="w-full">
                       {isLoading ? (
@@ -234,9 +234,9 @@ export default function InfoDialog({
                   </div>
 
                   <div className="w-full flex-1" dir="rtl">
-                    {/* <p className="text-base font-medium text-secondary-foreground/60 mb-2">
-                      {t("common.arabic-names")}
-                    </p> */}
+                    <p className="mb-2 text-base font-medium text-secondary-foreground/60">
+                      الاسم
+                    </p>
 
                     <div className="w-full">
                       {isLoading ? (

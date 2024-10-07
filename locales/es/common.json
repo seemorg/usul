@@ -112,8 +112,6 @@
   },
   "lost": "Parece que te has perdido",
   "go-back-home": "Vuelve a casa",
-  "arabic-names": "Nombres árabes",
-  "latin-names": "Nombres",
   "author-arabic-names": "Nombres árabes del autor",
   "author-latin-names": "Nombres latinos del autor",
   "author-bio": "Nombres latinos del autor",
@@ -140,5 +138,6 @@
   "year-filter-info": "Año de fallecimiento del autor",
   "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
   "text-info": "Información del texto",
-  "author-info": "Información del autor"
+  "author-info": "Información del autor",
+  "names": "Nombres"
 }

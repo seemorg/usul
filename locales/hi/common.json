@@ -112,8 +112,6 @@
   },
   "lost": "लगता है आप खो गए हैं",
   "go-back-home": "घर वापस जाओ",
-  "arabic-names": "अरबी नाम",
-  "latin-names": "नाम",
   "author-arabic-names": "लेखक अरबी नाम",
   "author-latin-names": "लेखक लैटिन नाम",
   "author-bio": "लेखक लैटिन नाम",
@@ -140,5 +138,6 @@
   "year-filter-info": "लेखक का मृत्यु वर्ष",
   "regions-filter-info": "वे स्थान जहाँ लेखक ने दौरा किया, जन्म लिया, या निधन हुआ",
   "text-info": "पाठ जानकारी",
-  "author-info": "लेखक जानकारी"
+  "author-info": "लेखक जानकारी",
+  "names": "नाम"
 }

@@ -112,8 +112,6 @@
   },
   "lost": "Sepertinya anda tersesat",
   "go-back-home": "Kembali ke halaman utama",
-  "arabic-names": "Nama-nama Arab",
-  "latin-names": "Nama",
   "author-arabic-names": "Nama-nama Arab Pengarang",
   "author-latin-names": "Nama-nama Latin Pengarang",
   "author-bio": "Nama-nama Latin Pengarang",
@@ -140,5 +138,6 @@
   "year-filter-info": "Tahun kematian pengarang",
   "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia",
   "text-info": "Maklumat Teks",
-  "author-info": "Maklumat Pengarang"
+  "author-info": "Maklumat Pengarang",
+  "names": "Nama-nama"
 }

@@ -112,8 +112,6 @@
   },
   "lost": "لگتا ہے آپ گم ہو گئے ہیں",
   "go-back-home": "گھر واپس جائیں",
-  "arabic-names": "عربی نام",
-  "latin-names": "نام",
   "author-arabic-names": "مصنفین کے عربی نام",
   "author-latin-names": "مصنفین کے لاطینی نام",
   "author-bio": "مصنفین کے لاطینی نام",
@@ -140,5 +138,6 @@
   "year-filter-info": "مصنف کا سال وفات",
   "regions-filter-info": "مقامات جہاں مصنف نے دورہ کیا، پیدا ہوئے، یا وفات پائی",
   "text-info": "متن کی معلومات",
-  "author-info": "مصنف کی معلومات"
+  "author-info": "مصنف کی معلومات",
+  "names": "نام"
 }

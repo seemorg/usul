@@ -112,8 +112,6 @@
   },
   "lost": "On dirait que vous êtes perdus",
   "go-back-home": "Retour à l'accueil",
-  "arabic-names": "Noms arabes",
-  "latin-names": "Noms",
   "author-arabic-names": "Noms arabes des auteurs",
   "author-latin-names": "Noms latins des auteurs",
   "author-bio": "Noms latins des auteurs",
@@ -140,5 +138,6 @@
   "year-filter-info": "Année de décès de l'auteur",
   "regions-filter-info": "Lieux où l'auteur a visité, est né ou est décédé",
   "text-info": "Infos Texte",
-  "author-info": "Infos Auteur"
+  "author-info": "Infos Auteur",
+  "names": "Noms"
 }

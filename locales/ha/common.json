@@ -112,8 +112,6 @@
   },
   "lost": "Yana kama da ka bata",
   "go-back-home": "Koma gida",
-  "arabic-names": "Sunayen Larabci",
-  "latin-names": "Suna",
   "author-arabic-names": "Sunayen Marubuta Larabci",
   "author-latin-names": "Sunayen Marubuta Latin",
   "author-bio": "Sunayen Marubuta Latin",
@@ -140,5 +138,6 @@
   "year-filter-info": "Shekarar mutuwar marubuci",
   "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
   "text-info": "Bayanin Rubutu",
-  "author-info": "Bayanin Mawallafi"
+  "author-info": "Bayanin Mawallafi",
+  "names": "Sunaye"
 }
