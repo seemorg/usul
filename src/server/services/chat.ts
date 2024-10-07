@@ -1,14 +1,11 @@
 import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-// import EventSource from "eventsource";
 
 const baseRequest = async <T>(
   method: "GET" | "POST",
   relativeUrl: string,
   body?: object,
 ) => {
-  throw new Error("err");
-
   const response = await fetch(
     `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`,
     {
