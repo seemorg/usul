@@ -70,7 +70,8 @@ function Providers({
   return (
     <NextIntlClientProvider
       messages={messagesInNamespace}
-      {...getSharedConfig(locale)}
+      locale={locale as AppLocale}
+      {...getSharedConfig()}
     >
       <DirectionProvider dir={dir}>
         <AppProgressBar

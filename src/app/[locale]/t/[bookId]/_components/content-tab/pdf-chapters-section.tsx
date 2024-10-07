@@ -36,11 +36,11 @@ export default function PdfChaptersList() {
   if (!preparedChapters || preparedChapters.length === 0) return null;
 
   return (
-    <div dir="rtl">
+    <div dir="rtl" className="px-6">
       <TreeView
         dir="rtl"
         onSelectChange={(item) => {
-          if (!item || item?.children || !item.page) return;
+          if (!item || !item.page) return;
 
           // navigate when it's a chapter
           navigateToPage(item.page);

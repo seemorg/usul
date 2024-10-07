@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "Alat Penyelidikan untuk Teks Islam",
+    "description": "Baca, cari, dan kaji 8,000+ teks Islam dan klasik dengan beberapa klik"
+  },
   "author-page": {
     "title": "{author} | Buku dan Teks",
-    "description-secondary": "Baca buku-buku {author}. {author}, yang juga dikenali sebagai {authorSecondary}, telah mengarang {books} buku.",
+    "description-secondary": "Baca buku {author}. {author}, juga dikenali sebagai {authorSecondary}, mengarang {books} buku.",
     "description": "Baca buku-buku {author}. {author} telah mengarang {books} buku."
   }
 }

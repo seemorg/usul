@@ -1,7 +1,8 @@
 "use client";
 
-import { Virtuoso } from "react-virtuoso";
-import React, { useMemo } from "react";
+import { Virtualizer } from "virtua";
+
+import React, { forwardRef, memo, useMemo, useRef } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import Footer from "@/app/_components/footer";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
@@ -15,6 +16,7 @@ export default function ReaderContent({
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
+  const containerEl = useRef<HTMLElement>(null);
 
   const defaultPages = useMemo(() => {
     if (response.content.source === "turath") {
@@ -27,44 +29,73 @@ export default function ReaderContent({
   }, [response]);
 
   return (
-    <Virtuoso
-      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground"
-      totalCount={response.pagination.total}
-      initialItemCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
-      overscan={READER_OVERSCAN_SIZE}
-      scrollerRef={(ref) => {
-        if (ref) {
+    <div
+      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground [overflow-anchor:none]"
+      dir="rtl"
+      ref={(r) => {
+        if (r) {
+          setContainerEl({ element: r });
           // @ts-ignore
-          setContainerEl({ element: ref });
+          containerEl.current = r;
         }
       }}
-      dir="rtl"
-      ref={virtuosoRef}
-      components={{
-        Header: (props) => <div {...props} className="h-20 w-full" />,
-        Footer: (props) => (
-          <div className="mx-auto mt-10 w-full max-w-[90%]" {...props}>
-            <Footer />
-          </div>
-        ),
+    >
+      <div className="h-[80px] w-full" />
+
+      <Virtualizer
+        count={response.pagination.total}
+        ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
+        overscan={READER_OVERSCAN_SIZE}
+        ref={virtuosoRef}
+        startMargin={80}
         // eslint-disable-next-line react/display-name
-        List: React.forwardRef((props, ref) => (
+        as={forwardRef((props, ref) => (
           <div
-            {...props}
-            ref={ref}
             className="mx-auto w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16"
+            ref={ref}
+            {...props}
           />
-        )),
-      }}
-      itemContent={(index) => (
-        <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
-          <ReaderPage
+        ))}
+      >
+        {new Array(response.pagination.total).fill(null).map((_, index) => (
+          <Page
+            key={index}
             index={index}
             defaultPages={defaultPages}
             perPage={response.pagination.size}
           />
-        </div>
-      )}
-    />
+        ))}
+      </Virtualizer>
+
+      <div className="mx-auto mt-10 w-full max-w-[90%]">
+        <Footer />
+      </div>
+    </div>
   );
 }
+
+// eslint-disable-next-line react/display-name
+const Page = memo(
+  ({
+    index,
+    defaultPages,
+    perPage,
+  }: {
+    index: number;
+    defaultPages: any[];
+    perPage: number;
+  }) => {
+    return (
+      <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
+        <ReaderPage
+          index={index}
+          defaultPages={defaultPages}
+          perPage={perPage}
+        />
+      </div>
+    );
+  },
+  (prevProps, nextProps) => {
+    return prevProps.index === nextProps.index;
+  },
+);

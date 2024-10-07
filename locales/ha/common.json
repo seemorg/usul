@@ -50,42 +50,30 @@
     "all-results": "Duba duk sakamakon ({results, number})"
   },
   "navigation": {
-    "tools": {
-      "title": "Kayan Aiki",
-      "get-notified": {
-        "title": "Samun Sanarwa",
-        "description": "Kasance na jiran sababbin kayan aikin, wanda ke amfani da sabbin fasahohin AI."
-      },
-      "advanced-search": {
-        "title": "Bincike Mai Zurfi",
-        "description": "Bincike don rubutattun bayanai, marubuta, yankuna, da nau'o'in"
-      },
-      "text-explorer": {
-        "title": "Mai Binciken Rubutu",
-        "description": "Bincika rubutu ta amfani da ka’idoji masu zurfi"
-      },
-      "author-explorer": {
-        "title": "Mai Binciken Marubuci",
-        "description": "Bincika rubutu ta amfani da ka’idoji masu zurfi"
-      }
-    },
-    "explore": {
-      "title": "Binciko",
+    "browse": {
+      "title": "Duba",
       "texts": {
-        "title": "Rubutu",
-        "description": "Binciko rubutattun bayanai mafi shahara"
+        "title": "Rubutun",
+        "description": "Bincika sanannun rubutu"
       },
       "authors": {
         "title": "Marubuta",
-        "description": "Binciko marubutan da suka fi shahara"
+        "description": "Bincika sanannun marubuta"
       },
       "regions": {
         "title": "Yankuna",
-        "description": "Binciko yankunan da suka fi shahara"
+        "description": "Bincika sanannun yankuna"
       },
       "genres": {
         "title": "Nau'o'i",
-        "description": "Binciko nau'o'in da suka fi shahara"
+        "description": "Bincika sanannun nau'o'i"
+      }
+    },
+    "about": {
+      "title": "Game da",
+      "get-notified": {
+        "title": "Karɓi Sanarwa",
+        "description": "Kasance tare da sabbin kayan aikin da za a kawo, tare da amfani da fasahar AI na zamani."
       }
     },
     "contribute": {
@@ -120,12 +108,10 @@
     "description": "Usul.ai na hidima sama da rubutun Musulunci 8,000 daga korpus na OpenITI. Burinmu shine saukaka karatun rubuce-rubuce na asali, bincike, da bincike. Yi rajista a kasa don samun sabuntawa na wata-wata akan aikinmu.",
     "email-address": "Adireshin Imel",
     "subscribe": "Yi rajista",
-    "copyright": "{year, number, nogroup} Gidauniyar Usul.ai. Dukkan hakkoki an tanadar."
+    "copyright": "{year, number, nogroup} Seemorg Foundation. Duk haƙƙin mallaka."
   },
   "lost": "Yana kama da ka bata",
   "go-back-home": "Koma gida",
-  "arabic-names": "Sunayen Larabci",
-  "latin-names": "Sunayen Latin",
   "author-arabic-names": "Sunayen Marubuta Larabci",
   "author-latin-names": "Sunayen Marubuta Latin",
   "author-bio": "Sunayen Marubuta Latin",
@@ -150,5 +136,8 @@
     "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
   },
   "year-filter-info": "Shekarar mutuwar marubuci",
-  "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu"
+  "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
+  "text-info": "Bayanin Rubutu",
+  "author-info": "Bayanin Mawallafi",
+  "names": "Sunaye"
 }

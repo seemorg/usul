@@ -2,12 +2,69 @@
 
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
-import React from "react";
+import React, { useMemo } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { Openiti, Turath } from "@/types/ApiBookResponse";
+import { type TreeDataItem, TreeView } from "@/components/tree-view";
+
+type OpenitiChapter = NonNullable<Openiti["headings"]>[number];
+type TurathChapter = NonNullable<Turath["headings"]>[number];
+
+type BookDataItem = TreeDataItem & { level: number; volume?: number | string };
+
+function prepareChapter(
+  chapter: OpenitiChapter | TurathChapter,
+  idx: number,
+): BookDataItem {
+  const isTurath = !(typeof chapter.page === "number");
+
+  return {
+    id: idx.toString(),
+    name: chapter.title,
+    page: isTurath
+      ? (chapter.page as TurathChapter["page"])?.page
+      : (chapter as OpenitiChapter).page,
+    volume: isTurath
+      ? (chapter.page as TurathChapter["page"])?.vol
+      : (chapter as OpenitiChapter).volume,
+    level: chapter.level,
+  };
+}
+
+// Function to build hierarchy
+function buildHierarchy(
+  chapters: (OpenitiChapter | TurathChapter)[],
+): TreeDataItem[] {
+  const result: BookDataItem[] = [];
+  const stack: BookDataItem[] = [];
+
+  chapters.forEach((chapter, idx) => {
+    const preparedChapter = prepareChapter(chapter, idx);
+
+    while (
+      stack.length > 0 &&
+      stack[stack.length - 1]!.level >= preparedChapter.level
+    ) {
+      stack.pop(); // Pop the stack until we find the correct parent
+    }
+
+    if (stack.length === 0) {
+      // No parent, this is a root level item
+      result.push(preparedChapter);
+    } else {
+      // There is a parent, append to its children
+      const parent = stack[stack.length - 1]!;
+      parent.children = parent.children || [];
+      parent.children.push(preparedChapter);
+    }
+
+    // Push the current chapter onto the stack to process future nested levels
+    stack.push(preparedChapter);
+  });
+
+  return result;
+}
 
 export default function ChaptersList({
   headers,
@@ -23,6 +80,11 @@ export default function ChaptersList({
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
 
+  const finalHeaders = useMemo(() => {
+    if (!headers) return [];
+    return buildHierarchy(headers);
+  }, [headers]);
+
   const handleNavigate = (
     chapterIndex: number,
     pageNumber: number | { vol: string; page: number } | string,
@@ -30,9 +92,12 @@ export default function ChaptersList({
     if (typeof pageNumber === "string") return;
 
     const idx = chapterIndexToPageIndex?.[chapterIndex] ?? -1;
-    virtuosoRef.current?.scrollToIndex(
-      idx !== -1 ? idx : getVirtuosoIndex(pageNumber),
-    );
+    if (idx !== -1) {
+      virtuosoRef.current?.scrollToIndex(idx);
+    } else {
+      const props = getVirtuosoIndex(pageNumber);
+      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    }
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
@@ -50,65 +115,16 @@ export default function ChaptersList({
   }
 
   return (
-    <div
-      className="flex w-full flex-col gap-3"
-      // ref={(el) => {
-      //   setParentRef(el);
-      // }}
-    >
-      {/* <Virtuoso
-        className="w-full"
-        customScrollParent={parentRef ?? undefined}
-        totalCount={headers.length}
-        overscan={5}
-        initialItemCount={20}
-        components={{
-          // eslint-disable-next-line react/display-name
-          List: React.forwardRef((props, ref) => (
-            <div {...props} ref={ref} className="flex flex-col gap-3" />
-          )),
+    <div dir="rtl" className="mt-3 px-6">
+      <TreeView
+        dir="rtl"
+        onSelectChange={(item) => {
+          if (!item || !item.page) return;
+
+          handleNavigate(parseInt(item.id), item.page);
         }}
-        itemContent={(idx) => {
-          const chapter = headers[idx]!;
-         
-
-          
-        }}
-      /> */}
-
-      {headers.map((chapter, idx) => {
-        const page =
-          typeof chapter.page === "number" ? chapter.page : chapter?.page?.page;
-        const volume =
-          "volume" in chapter ? chapter.volume : (chapter?.page as any)?.vol;
-        const title = chapter.title;
-
-        return (
-          <Button
-            key={idx}
-            variant="link"
-            className={cn(
-              "h-auto w-full items-center justify-start gap-5 px-0 text-lg font-normal hover:no-underline",
-              idx !== 0 && "text-foreground hover:text-foreground/75",
-            )}
-            dir="rtl"
-            onClick={() => {
-              if (page) {
-                handleNavigate(idx, page);
-              }
-            }}
-          >
-            {page && <span className="text-xs">{`${volume} / ${page}`}</span>}
-
-            <p
-              className="block min-w-0 flex-wrap text-wrap text-start leading-5"
-              dir="rtl"
-            >
-              {title}
-            </p>
-          </Button>
-        );
-      })}
+        data={finalHeaders}
+      />
     </div>
   );
 }

@@ -1,15 +1,10 @@
-import { PATH_LOCALES, supportedBcp47LocaleToPathLocale } from "./locale/utils";
+import { PATH_LOCALES, appLocaleToPathLocale } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
 import { relativeUrl } from "./sitemap";
-// import { getLocale, getPathLocale } from "./locale/server";
 import type { AppLocale } from "~/i18n.config";
+import { getTranslations } from "next-intl/server";
 
 export const config = {
-  title: "Usul - The Research tool for Islamic Texts",
-  shortTitle: "Usul",
-  siteName: "Usul",
-  description:
-    "Read, search, and research 8,000+ Islamic and classical texts in a few clicks",
   themeColor: "#AA4A44",
   image: {
     url: "/cover.png",
@@ -24,7 +19,7 @@ export const config = {
 
 export const getMetadata = async ({
   title: baseTitle,
-  description = config.description,
+  description,
   all = false,
   concatTitle = true,
   pagePath,
@@ -43,23 +38,26 @@ export const getMetadata = async ({
   authors?: Metadata["authors"];
   locale?: AppLocale;
 } = {}): Promise<Metadata> => {
-  // const locale = await getLocale();
-  const pathLocale = locale
-    ? supportedBcp47LocaleToPathLocale(locale)
-    : undefined;
+  const t = await getTranslations("meta.global");
+
+  const pathLocale = locale ? appLocaleToPathLocale(locale) : undefined;
 
   const images = [config.image];
 
+  const siteName = t("usul");
+  const defaultTitle = `${siteName} - ${t("slogan")}`;
+  const defaultDescription = t("description");
+
   const title = baseTitle
     ? concatTitle
-      ? `${baseTitle} | ${config.shortTitle}`
+      ? `${baseTitle} | ${siteName}`
       : baseTitle
-    : config.title;
+    : defaultTitle;
 
   if (!all) {
-    const newTitle = title !== config.title ? { title } : {};
+    const newTitle = title !== defaultTitle ? { title } : {};
     const newDescription =
-      description !== config.description ? { description } : {};
+      description && description !== defaultDescription ? { description } : {};
     const newImages = hasImage ? {} : { images };
 
     const canonical =
@@ -76,7 +74,7 @@ export const getMetadata = async ({
       authors,
       openGraph: {
         type: "website",
-        siteName: config.siteName,
+        siteName,
         url: "/",
         locale,
         ...newTitle,
@@ -111,16 +109,16 @@ export const getMetadata = async ({
 
   return {
     title,
-    description,
+    description: description ?? defaultDescription,
     metadataBase: new URL(config.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],
     openGraph: {
       type: "website",
-      siteName: config.siteName,
+      siteName,
       url: "/",
       title,
       locale,
-      description,
+      description: description ?? defaultDescription,
       images,
     },
     alternates: {
@@ -140,7 +138,7 @@ export const getMetadata = async ({
     twitter: {
       card: "summary_large_image",
       title,
-      description,
+      description: description ?? defaultDescription,
       images,
     },
   };

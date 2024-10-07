@@ -18,7 +18,7 @@ import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
@@ -50,7 +50,7 @@ export default async function HomePage({
 }) {
   unstable_setRequestLocale(locale);
 
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale);
+  const pathLocale = appLocaleToPathLocale(locale);
 
   const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
     await Promise.all([
@@ -67,12 +67,14 @@ export default async function HomePage({
     <>
       <Navbar isHomepage />
 
-      <div className="relative flex min-h-[500px] w-full pb-10 pt-28 text-white sm:pt-32">
+      <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
-          <h1 className="text-center text-5xl font-bold">{t("headline")}</h1>
+          <h1 className="text-center text-4xl font-bold sm:text-5xl">
+            {t("headline")}
+          </h1>
 
           <p className="mt-5 text-center text-xl font-light text-white/80">
             {t("subheadline")}
@@ -80,12 +82,12 @@ export default async function HomePage({
 
           {/* TODO: remove this condition */}
           {showVideo && (
-            <div className="mt-6 flex w-full justify-center">
+            <div className="mt-7 flex w-full justify-center">
               <Dialog>
                 <DialogTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="h-10 gap-2 bg-accent/10 px-5 py-3 hover:bg-accent/20 focus:bg-accent/20"
+                    className="h-10 gap-2 bg-accent/10 px-4 py-3 hover:bg-accent/20 focus:bg-accent/20"
                   >
                     <PlayIcon className="size-4" />
                     How Usul Works - 2:20
@@ -99,7 +101,7 @@ export default async function HomePage({
             </div>
           )}
 
-          <div className={cn("w-full", showVideo ? "mt-16" : "mt-28")}>
+          <div className={cn("w-full", "mt-16")}>
             <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
             </div>
@@ -107,7 +109,7 @@ export default async function HomePage({
         </Container>
       </div>
 
-      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-24">
+      <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-12">
         <div>
           <HomepageSection
             title={t("sections.collections")}

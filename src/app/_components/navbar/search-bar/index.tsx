@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
 import { searchAllCollections } from "@/server/typesense/global";
 import { cn } from "@/lib/utils";
-import { useRouter } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,6 +18,7 @@ import { searchAuthors } from "@/server/typesense/author";
 import { searchGenres } from "@/server/typesense/genre";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { useDetectClickOutside } from "react-detect-click-outside";
+import { navigation } from "@/lib/urls";
 
 const typeToMethod = {
   all: searchAllCollections,
@@ -51,7 +52,7 @@ export default function SearchBar({
     },
   });
 
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const isModalOpen = useBoolean(false);
   const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
 
@@ -88,7 +89,7 @@ export default function SearchBar({
   const onItemSelect = (href?: string) => {
     if (href) {
       addRecentSearch(debouncedValue);
-      replace(href);
+      push(href);
       focusedState.setFalse();
     } else {
       isModalOpen.setTrue();
@@ -146,9 +147,11 @@ export default function SearchBar({
             <Button
               variant="ghost"
               className="text-primary hover:text-primary"
-              onClick={() => isModalOpen.setTrue()}
+              asChild
             >
-              {t("advanced-search")}
+              <Link href={navigation.search.advanced()}>
+                {t("advanced-search")}
+              </Link>
             </Button>
           </p>
         </div>
@@ -171,6 +174,7 @@ export default function SearchBar({
               onItemSelect={onItemSelect}
               searchType={searchType}
               setSearchType={setSearchType}
+              value={debouncedValue}
             />
           ) : (
             <SearchBarEmptyState setValue={setValue} />

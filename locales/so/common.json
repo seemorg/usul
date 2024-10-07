@@ -50,33 +50,14 @@
     "all-results": "Eeg Dhammaan Natiijooyinka ({results, number})"
   },
   "navigation": {
-    "tools": {
-      "title": "Qalab",
-      "get-notified": {
-        "title": "Hel Ogeysiis",
-        "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
-      },
-      "advanced-search": {
-        "title": "Raadin Horumarsan",
-        "description": "Raadi qoraallada, qorayaasha, gobollada, iyo noocyada"
-      },
-      "text-explorer": {
-        "title": "Baare Qoraal",
-        "description": "Raadi qoraal adoo adeegsanaya shuruudaha horumarsan"
-      },
-      "author-explorer": {
-        "title": "Baare Qoraa",
-        "description": "Raadi qoraal adoo adeegsanaya shuruudaha horumarsan"
-      }
-    },
-    "explore": {
+    "browse": {
       "title": "Baadh",
       "texts": {
-        "title": "Qoraallada",
+        "title": "Qoraallo",
         "description": "Baadh qoraallada ugu caansan"
       },
       "authors": {
-        "title": "Qorayaasha",
+        "title": "Qorayaal",
         "description": "Baadh qorayaasha ugu caansan"
       },
       "regions": {
@@ -84,8 +65,15 @@
         "description": "Baadh gobollada ugu caansan"
       },
       "genres": {
-        "title": "Noocyada",
+        "title": "Noocyo",
         "description": "Baadh noocyada ugu caansan"
+      }
+    },
+    "about": {
+      "title": "Ku saabsan",
+      "get-notified": {
+        "title": "Ogaysiis Hel",
+        "description": "La soco agabka soo socda, oo isticmaalaya tignoolajiyada AI-ga casriga ah."
       }
     },
     "contribute": {
@@ -120,12 +108,10 @@
     "description": "Usul.ai waxa uu u adeegaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda corpus-ka OpenITI. Hadafkayagu waa inaan fududeyno akhrinta, raadinta, iyo cilmi-baarista qoraalada dhaqameed. Ku qor hoos si aad u hesho warbixinno bille ah oo ku saabsan shaqadayada.",
     "email-address": "Cinwaanka Emailka",
     "subscribe": "Isdiiwaangeli",
-    "copyright": "{year, number, nogroup} Hay'adda Usul.ai. Dhammaan xuquuqaha waa la ilaaliyay."
+    "copyright": "{year, number, nogroup} Seemorg Foundation. Dhamaan xuquuqaha way xifdisan."
   },
   "lost": "Waxay u muuqataa inaad lumtay",
   "go-back-home": "Ku noqo guriga",
-  "arabic-names": "Magacyada Carabiga",
-  "latin-names": "Magacyada Latin-ka",
   "author-arabic-names": "Magacyada Qoraaga Carabiga",
   "author-latin-names": "Magacyada Qoraaga Latin-ka",
   "author-bio": "Magacyada Qoraaga Latin-ka",
@@ -150,5 +136,8 @@
     "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
   },
   "year-filter-info": "Sanadka Geerida Qoraa",
-  "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday"
+  "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday",
+  "text-info": "Macluumaadka Qoraalka",
+  "author-info": "Macluumaadka Qoraaga",
+  "names": "Magacyada"
 }

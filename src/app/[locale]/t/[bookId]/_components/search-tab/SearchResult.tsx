@@ -29,7 +29,8 @@ const SearchResult = ({
   const handleNavigate = () => {
     if (!page || page.page === -1) return;
 
-    virtuosoRef.current?.scrollToIndex(getVirtuosoIndex(page));
+    const props = getVirtuosoIndex(page.page);
+    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };

@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "उसूल",
+    "slogan": "इस्लामी ग्रंथों के लिए शोध उपकरण",
+    "description": "कुछ ही क्लिक में 8,000+ इस्लामी और शास्त्रीय ग्रंथ पढ़ें, खोजें और शोध करें"
+  },
   "author-page": {
     "title": "{author} | पुस्तकें और ग्रंथ",
-    "description-secondary": "{author} की पुस्तकें पढ़ें। {author}, जिन्हें {authorSecondary} के नाम से भी जाना जाता है, उन्होंने {books} पुस्तकें लिखी हैं।",
+    "description-secondary": "{author} की पुस्तकें पढ़ें। {author}, जिसे {authorSecondary} के नाम से भी जाना जाता है, ने {books} पुस्तकें लिखी हैं।",
     "description": "{author} की पुस्तकें पढ़ें। {author} ने {books} पुस्तकें लिखी हैं।"
   }
 }

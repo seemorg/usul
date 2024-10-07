@@ -19,6 +19,7 @@ import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
+import { InfoIcon } from "lucide-react";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -28,6 +29,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
     useScrollAnchor();
   const {
+    isError,
     isPending,
     question,
     setQuestion,
@@ -183,6 +185,22 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                   getVirtuosoIndex={getVirtuosoIndex}
                 />
               ))}
+
+              {isError && (
+                <div
+                  className="flex items-center gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
+                  role="alert"
+                >
+                  <InfoIcon className="size-4" />
+                  {t("chat.error")}
+                  <button
+                    onClick={() => regenerateResponse()}
+                    className="underline"
+                  >
+                    {t("chat.try-again")}
+                  </button>
+                </div>
+              )}
 
               <div className="h-px w-full" ref={visibilityRef} />
             </div>

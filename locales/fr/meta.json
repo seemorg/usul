@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "L'outil de recherche pour les textes islamiques",
+    "description": "Lisez, cherchez et étudiez plus de 8 000 textes islamiques et classiques en quelques clics"
+  },
   "author-page": {
     "title": "{author} | Livres et textes",
-    "description-secondary": "Lisez les livres de {author}. {author}, également connu sous le nom de {authorSecondary}, auteur de livres {books}.",
+    "description-secondary": "Lisez les livres de {author}. {author}, également connu sous le nom de {authorSecondary}, a écrit {books} livre{books, plural, one {} other {s}}.",
     "description": "Lisez les livres de {author}. {author} a écrit {books} livres."
   }
 }

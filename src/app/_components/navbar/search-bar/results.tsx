@@ -3,10 +3,12 @@ import { useTranslations } from "next-intl";
 import SearchBarItem from "./item";
 import type { prepareResults } from "@/server/typesense/utils";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import ComingSoonModal from "@/components/coming-soon-modal";
 import type { SearchType } from "@/types/search";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Link } from "@/navigation";
+import { navigation } from "@/lib/urls";
+import { Button } from "@/components/ui/button";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -25,20 +27,20 @@ const ResultsSkeleton = () => (
       >
         <div className="hidden items-center gap-4 md:flex">
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![0] }}
           />
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![1] }}
           />
           <Skeleton
-            className="h-6"
+            className="h-6 bg-accent"
             style={{ width: skeletonWidths[index]![2] }}
           />
         </div>
 
-        <Skeleton className="h-6 w-full md:w-12" />
+        <Skeleton className="h-6 w-full bg-accent md:w-12" />
       </div>
     ))}
   </div>
@@ -50,12 +52,14 @@ export default function SearchBarResults({
   searchType,
   setSearchType,
   isLoading,
+  value,
 }: {
   results?: ReturnType<typeof prepareResults<GlobalSearchDocument>>;
   onItemSelect: (href?: string) => void;
   searchType: SearchType;
   setSearchType: (type: SearchType) => void;
   isLoading?: boolean;
+  value: string;
 }) {
   const t = useTranslations();
   const entitiesT = useTranslations("entities");
@@ -108,19 +112,35 @@ export default function SearchBarResults({
         </Tabs>
 
         {showSeeMore && (
-          <ComingSoonModal
-            trigger={
-              <button className="mt-3 text-primary underline sm:mt-0">
-                {t("common.search-bar.all-results", {
-                  results: results?.found,
-                })}
-              </button>
-            }
-          />
+          <Link
+            href={navigation.search.index({ type: searchType, query: value })}
+            className="mt-3 hidden text-primary underline sm:mt-0 sm:block"
+          >
+            {t("common.search-bar.all-results", {
+              results: results?.found,
+            })}
+          </Link>
         )}
       </div>
 
-      <div className="mt-5">{renderResults()}</div>
+      <div className="mt-5">
+        {renderResults()}
+        {showSeeMore && (
+          <Button
+            asChild
+            className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
+            variant="secondary"
+          >
+            <Link
+              href={navigation.search.index({ type: searchType, query: value })}
+            >
+              {t("common.search-bar.all-results", {
+                results: results?.found,
+              })}
+            </Link>
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

@@ -7,7 +7,7 @@ import "plyr-react/plyr.css";
 import { useState } from "react";
 import {
   getLocaleFullName,
-  pathLocaleToSupportedBcp47Locale,
+  pathLocaleToAppLocale,
   usePathLocale,
 } from "@/lib/locale/utils";
 
@@ -24,14 +24,14 @@ export default function VideoModal() {
           variant={activeLanguage === "en" ? "default" : "outline"}
           onClick={() => setActiveLanguage("en")}
         >
-          {getLocaleFullName(pathLocaleToSupportedBcp47Locale("en")!)}
+          {getLocaleFullName(pathLocaleToAppLocale("en")!)}
         </Button>
 
         <Button
           variant={activeLanguage === "ar" ? "default" : "outline"}
           onClick={() => setActiveLanguage("ar")}
         >
-          {getLocaleFullName(pathLocaleToSupportedBcp47Locale("ar")!)}
+          {getLocaleFullName(pathLocaleToAppLocale("ar")!)}
         </Button>
       </div>
 

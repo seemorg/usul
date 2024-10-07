@@ -14,9 +14,11 @@ interface UseChatResult {
   question: string;
   setQuestion: (question: string) => void;
   sendQuestion: () => Promise<void>;
-  regenerateResponse: (messageIndex: number) => Promise<void>;
+  regenerateResponse: (messageIndex?: number) => Promise<void>;
   clearChat: () => void;
   isPending: boolean;
+  isError: boolean;
+  error?: Error;
 }
 
 const handleEventSource = async (
@@ -68,6 +70,7 @@ export default function useChat({
 }): UseChatResult {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [error, setError] = useState<Error | undefined>();
   const isPending = useBoolean(false);
 
   const sendQuestion = useCallback(async () => {
@@ -79,45 +82,11 @@ export default function useChat({
     setMessages([...newMessages, { role: "ai", text: "" }]);
     setQuestion("");
 
-    const eventSource = await chatWithBook({
-      bookSlug,
-      question: q,
-      messages,
-    });
-
-    const result = await handleEventSource(eventSource, {
-      onChunk(chunk) {
-        setMessages([...newMessages, chunk]);
-      },
-    });
-    setMessages([...newMessages, result]);
-
-    isPending.setFalse();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookSlug, question]);
-
-  const clearChat = useCallback(() => {
-    setMessages([]);
-  }, []);
-
-  const regenerateResponse = useCallback(
-    async (messageIndex: number) => {
-      const newMessages = [...messages];
-      const message = newMessages[messageIndex]!;
-
-      if (message.role !== "ai") return;
-
-      // delete this message and all messages after
-      newMessages.splice(messageIndex);
-      setMessages([...newMessages, { role: "ai", text: "" }]);
-
-      const previousMessages = newMessages.slice(0, newMessages.length - 1);
-      const question = newMessages.at(-1)!;
-
+    try {
       const eventSource = await chatWithBook({
         bookSlug,
-        question: question.text,
-        messages: previousMessages,
+        question: q,
+        messages,
       });
 
       const result = await handleEventSource(eventSource, {
@@ -125,12 +94,76 @@ export default function useChat({
           setMessages([...newMessages, chunk]);
         },
       });
+
       setMessages([...newMessages, result]);
+    } catch (err) {
+      setMessages(newMessages);
+      setError(err as Error);
+    }
+
+    isPending.setFalse();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [bookSlug, question]);
+
+  const clearChat = useCallback(() => {
+    setMessages([]);
+    setError(undefined);
+    setQuestion("");
+    isPending.setFalse();
+  }, []);
+
+  const regenerateResponse = useCallback(
+    async (messageIndex?: number) => {
+      let previousMessages: ChatMessage[] = [];
+      let question: ChatMessage | undefined;
+      const newMessages = [...messages];
+
+      if (messageIndex === undefined) {
+        // user click on error message
+        previousMessages = newMessages.slice(0, newMessages.length - 1);
+        question = newMessages.at(-1)!;
+        setMessages([...newMessages, { role: "ai", text: "" }]);
+      } else {
+        const message = newMessages[messageIndex]!;
+
+        if (message.role !== "ai") return;
+
+        // delete this message and all messages after
+        newMessages.splice(messageIndex);
+        setMessages([...newMessages, { role: "ai", text: "" }]);
+
+        previousMessages = newMessages.slice(0, newMessages.length - 1);
+        question = newMessages.at(-1)!;
+      }
+
+      isPending.setTrue();
+
+      try {
+        const eventSource = await chatWithBook({
+          bookSlug,
+          question: question.text,
+          messages: previousMessages,
+        });
+
+        const result = await handleEventSource(eventSource, {
+          onChunk(chunk) {
+            setMessages([...newMessages, chunk]);
+          },
+        });
+        setMessages([...newMessages, result]);
+      } catch (err) {
+        setMessages(newMessages);
+        setError(err as Error);
+      }
+
+      isPending.setFalse();
     },
     [bookSlug, messages],
   );
 
   return {
+    isError: !!error,
+    error,
     messages,
     question,
     setQuestion,

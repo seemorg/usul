@@ -1,4 +1,9 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "The Research tool for Islamic Texts",
+    "description": "Read, search, and research 8,000+ Islamic and classical texts in a few clicks"
+  },
   "author-page": {
     "title": "{author} | Books and Texts",
     "description-secondary": "Read {author}'s books. {author}, also known as {authorSecondary},authored {books} books.",

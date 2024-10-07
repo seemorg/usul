@@ -50,26 +50,7 @@
     "all-results": "Ver todos los resultados ({results, number})"
   },
   "navigation": {
-    "tools": {
-      "title": "Herramientas",
-      "get-notified": {
-        "title": "Recibir Notificaciones",
-        "description": "Manténgase al tanto de las próximas herramientas, utilizando tecnologías de IA de vanguardia."
-      },
-      "advanced-search": {
-        "title": "Búsqueda Avanzada",
-        "description": "Buscar textos, autores, regiones y géneros"
-      },
-      "text-explorer": {
-        "title": "Explorador de Textos",
-        "description": "Buscar un texto utilizando criterios avanzados"
-      },
-      "author-explorer": {
-        "title": "Explorador de Autores",
-        "description": "Buscar un texto utilizando criterios avanzados"
-      }
-    },
-    "explore": {
+    "browse": {
       "title": "Explorar",
       "texts": {
         "title": "Textos",
@@ -86,6 +67,13 @@
       "genres": {
         "title": "Géneros",
         "description": "Explora los géneros más populares"
+      }
+    },
+    "about": {
+      "title": "Acerca de",
+      "get-notified": {
+        "title": "Recibe Notificaciones",
+        "description": "Mantente al tanto de las próximas herramientas, utilizando tecnologías de vanguardia de IA."
       }
     },
     "contribute": {
@@ -120,12 +108,10 @@
     "description": "Usul.ai sirve más de 8.000 textos islámicos del cuerpo OpenITI. Nuestro objetivo es facilitar la lectura, la búsqueda y la investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
     "email-address": "Dirección de correo electrónico",
     "subscribe": "Suscribirse",
-    "copyright": "{year, number, nogroup} Usul.ai Foundation. Todos los derechos reservados."
+    "copyright": "{year, number, nogroup} Fundación Seemorg. Todos los derechos reservados."
   },
   "lost": "Parece que te has perdido",
   "go-back-home": "Vuelve a casa",
-  "arabic-names": "Nombres árabes",
-  "latin-names": "Nombres latinos",
   "author-arabic-names": "Nombres árabes del autor",
   "author-latin-names": "Nombres latinos del autor",
   "author-bio": "Nombres latinos del autor",
@@ -150,5 +136,8 @@
     "error": "Algo salió mal. Por favor, intenta de nuevo más tarde."
   },
   "year-filter-info": "Año de fallecimiento del autor",
-  "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido"
+  "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
+  "text-info": "Información del texto",
+  "author-info": "Información del autor",
+  "names": "Nombres"
 }

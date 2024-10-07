@@ -10,12 +10,14 @@ interface DottedListProps extends React.HTMLAttributes<HTMLDivElement> {
       }
   )[];
   dotClassName?: string;
+  itemClassName?: string;
 }
 
 export default function DottedList({
   items,
   className,
   dotClassName,
+  itemClassName,
   ...props
 }: DottedListProps) {
   const filteredItems = items.filter((item) => item); // remove null or undefined items
@@ -33,7 +35,11 @@ export default function DottedList({
 
         return (
           <div
-            className={cn("flex items-center", hasText && item.className)}
+            className={cn(
+              "flex items-center",
+              hasText && item.className,
+              itemClassName,
+            )}
             key={idx}
           >
             {hasText ? item.text : item}

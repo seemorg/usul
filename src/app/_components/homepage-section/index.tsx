@@ -44,12 +44,12 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
-          <CarouselNext className="bg-popover hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselPrevious className="hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselNext className="hover:bg-popover/80 focus:bg-popover/80 disabled:bg-transparent disabled:opacity-50" />
         </div>
       </div>
 
-      <CarouselContent className="mt-5 sm:mt-10">
+      <CarouselContent className="mt-6">
         {items.map((item, idx) => (
           <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
             <div

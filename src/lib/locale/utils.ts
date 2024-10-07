@@ -12,14 +12,12 @@ export const PATH_LOCALES = Object.keys(
 
 export type PathLocale = (typeof PATH_LOCALES)[number];
 
-export const pathLocaleToSupportedBcp47Locale = (
+export const pathLocaleToAppLocale = (
   pathLocale: string | PathLocale,
 ): AppLocale | undefined =>
   pathLocaleToSupportedBcp47LocaleMap[pathLocale.toLowerCase() as PathLocale];
 
-export const supportedBcp47LocaleToPathLocale = (
-  bcp47Locale: AppLocale,
-): PathLocale => {
+export const appLocaleToPathLocale = (bcp47Locale: AppLocale): PathLocale => {
   const match = Object.entries(pathLocaleToSupportedBcp47LocaleMap).find(
     (entry) => entry[1] === bcp47Locale,
   );
@@ -43,7 +41,7 @@ export const getLocaleDirection = (locale: AppLocale) => {
 
 export const usePathLocale = (): PathLocale => {
   const locale = useLocale() as AppLocale;
-  return supportedBcp47LocaleToPathLocale(locale);
+  return appLocaleToPathLocale(locale);
 };
 
 export const useDirection = (): "ltr" | "rtl" => {

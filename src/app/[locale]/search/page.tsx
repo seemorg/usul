@@ -21,10 +21,10 @@ import AuthorSearchResult from "@/components/author-search-result";
 import type { View } from "@/validation/view";
 import GenreSearchResult from "@/components/genre-search-result";
 import RegionSearchResult from "@/components/region-search-result";
-import type { GlobalSearchDocument } from "@/types/global-search-document";
 import Navbar from "@/app/_components/navbar";
 import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
+import GlobalSearchResult from "@/components/global-search-result";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -47,7 +47,6 @@ async function search(params: TextsPageProps["searchParams"]) {
     return searchAllCollections(q, {
       limit: 20,
       page,
-      sortBy: sort,
     });
   }
 
@@ -87,32 +86,23 @@ async function search(params: TextsPageProps["searchParams"]) {
 
 // eslint-disable-next-line react/display-name
 const renderResult = (type: SearchType, view: View) => (result: any) => {
-  let finalType = type;
   if (type === "all") {
-    finalType = (
-      {
-        author: "authors",
-        book: "texts",
-        genre: "genres",
-        region: "regions",
-      } as const
-    )[result.document.type as GlobalSearchDocument["type"]];
-    // return <GlobalSearchResult result={result} view={view} />;
+    return <GlobalSearchResult result={result} />;
   }
 
-  if (finalType === "texts") {
+  if (type === "texts") {
     return <BookSearchResult result={result} view={view} />;
   }
 
-  if (finalType === "authors") {
+  if (type === "authors") {
     return <AuthorSearchResult result={result} />;
   }
 
-  if (finalType === "genres") {
+  if (type === "genres") {
     return <GenreSearchResult result={result} />;
   }
 
-  if (finalType === "regions") {
+  if (type === "regions") {
     return <RegionSearchResult result={result} />;
   }
 };

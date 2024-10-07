@@ -152,24 +152,26 @@ export default function ContentTab({ bookResponse }: TabProps) {
         <DottedList
           className="mt-6 ltr:justify-end"
           items={[
-            <Button variant="link" className="p-0 text-sm" asChild>
-              <Link
-                prefetch
-                href={navigation.centuries.byYear(author.year!)}
-                dir={direction}
-              >
-                {t("common.year-format.ah.value", { year: author.year })}
-              </Link>
-            </Button>,
+            <Link
+              prefetch
+              href={navigation.centuries.byYear(author.year!)}
+              dir={direction}
+              className="text-sm text-primary underline-offset-4 hover:underline"
+            >
+              {t("common.year-format.ah.value", { year: author.year })}
+            </Link>,
             <HoverCard>
               <HoverCardTrigger asChild>
-                <p dir="rtl">
-                  <Button variant="link" asChild className="px-0 text-base">
-                    <Link href={navigation.authors.bySlug(author.slug)}>
-                      {authorName}
-                    </Link>
-                  </Button>
-                </p>
+                <span>
+                  <Link
+                    href={navigation.authors.bySlug(author.slug)}
+                    prefetch
+                    dir={direction}
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    {authorName}
+                  </Link>
+                </span>
               </HoverCardTrigger>
 
               <HoverCardContent
@@ -328,31 +330,31 @@ export default function ContentTab({ bookResponse }: TabProps) {
       {isExternal ? null : view === "pdf" ? (
         <>
           <Separator className="my-4" />
-          <SidebarContainer className="flex flex-col gap-3">
-            <PdfChaptersList />
-          </SidebarContainer>
+          {/* <SidebarContainer className="flex flex-col gap-3"> */}
+          <PdfChaptersList />
+          {/* </SidebarContainer> */}
         </>
       ) : (
         <>
           <Separator className="my-4" />
 
-          <SidebarContainer className="flex flex-col gap-3">
-            {headings && headings.length > 0 ? (
+          {headings && headings.length > 0 ? (
+            <SidebarContainer>
               <div className="w-full">
                 <PageNavigator
                   range={pagesRange}
                   getVirtuosoIndex={getVirtuosoIndex}
                 />
               </div>
-            ) : null}
+            </SidebarContainer>
+          ) : null}
 
-            <ChaptersList
-              headers={headings || []}
-              getVirtuosoIndex={getVirtuosoIndex}
-              chapterIndexToPageIndex={chapterIndexToPageIndex}
-              pagesRange={pagesRange}
-            />
-          </SidebarContainer>
+          <ChaptersList
+            headers={headings || []}
+            getVirtuosoIndex={getVirtuosoIndex}
+            chapterIndexToPageIndex={chapterIndexToPageIndex}
+            pagesRange={pagesRange}
+          />
         </>
       )}
 
