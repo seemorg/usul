@@ -10,7 +10,7 @@ import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
 import { CloudflareImage } from "../cloudflare-image";
 import { useTranslations } from "next-intl";
-import { usePathLocale } from "@/lib/locale/utils";
+import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
@@ -26,6 +26,7 @@ const BookSearchResult = ({
   prefetch?: boolean;
 }) => {
   const t = useTranslations();
+  const dir = useDirection();
   const pathLocale = usePathLocale();
   const { document } = result;
 
@@ -69,16 +70,17 @@ const BookSearchResult = ({
 
           <div className="mt-2">
             <p
-              className="mt-2 text-wrap text-lg font-semibold"
-              dir="rtl"
+              className="mt-2 line-clamp-2 text-wrap text-lg font-semibold"
+              dir={dir}
               dangerouslySetInnerHTML={{ __html: title }}
               title={title}
             />
 
             {authorName && (
               <p
-                className="mt-1 line-clamp-2 text-wrap text-right text-sm text-muted-foreground"
+                className="mt-1 line-clamp-2 text-wrap text-sm text-muted-foreground"
                 title={authorName}
+                dir={dir}
               >
                 {authorName}
               </p>

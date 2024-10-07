@@ -2,7 +2,7 @@
 
 import { getLocale as baseGetLocale } from "next-intl/server";
 import type { AppLocale } from "~/i18n.config";
-import { supportedBcp47LocaleToPathLocale } from "./utils";
+import { appLocaleToPathLocale } from "./utils";
 
 export const getLocale = async () => {
   const locale = await baseGetLocale();
@@ -11,5 +11,5 @@ export const getLocale = async () => {
 
 export const getPathLocale = async () => {
   const locale = await getLocale();
-  return supportedBcp47LocaleToPathLocale(locale);
+  return appLocaleToPathLocale(locale);
 };

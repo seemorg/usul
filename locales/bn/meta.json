@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "ইসলামী পাঠ্যের জন্য গবেষণা সরঞ্জাম",
+    "description": "মাত্র কয়েকটি ক্লিকে ৮,০০০+ ইসলামিক এবং ক্লাসিকাল গ্রন্থ পড়ুন, সন্ধান করুন এবং গবেষণা করুন"
+  },
   "author-page": {
     "title": "{author} | বই এবং পাঠ্যপুস্তক",
-    "description-secondary": "{author} এর বই পড়ুন। {author}, যিনি {authorSecondary} নামেও পরিচিত, {books} বই রচনা করেছেন।",
+    "description-secondary": "{author} এর বইগুলি পড়ুন। {authorSecondary} নামেও পরিচিত {author}, {books} টি বই লিখেছেন।",
     "description": "{author} এর বই পড়ুন। {author} {books} বই রচনা করেছেন।"
   }
 }

@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "اصول",
+    "slogan": "د اسلامي متون لپاره د څیړنې وسیله",
+    "description": "په څو کلیکونو کې له ۸۰۰۰ څخه زیات اسلامي او کلاسیک متون ولولئ، وپلټئ، او وڅیړئ"
+  },
   "author-page": {
     "title": "{author} | کتابونه او متون",
-    "description-secondary": "د {author} کتابونه ولولئ. {author}، چې په نوم هم پېژندل شوی {authorSecondary}، {books} کتابونه لیکلي دي.",
+    "description-secondary": "د {author} کتابونه ولولئ. {author}، چې د {authorSecondary} په نوم هم پېژندل کېږي، {books} کتابونه لیکلي دي.",
     "description": "د {author} کتابونه ولولئ. {author} {books} کتابونه لیکلي دي."
   }
 }

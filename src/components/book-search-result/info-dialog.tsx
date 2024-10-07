@@ -128,9 +128,11 @@ export default function InfoDialog({
         <DialogPortal>
           <DialogOverlay>
             <RawDialogContent className="relative z-50 grid w-full max-w-3xl gap-4 bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
-              <div className="w-full bg-primary px-8 py-6 text-primary-foreground sm:rounded-t-lg">
+              <div className="w-full bg-primary px-8 py-6 text-white sm:rounded-t-lg">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-bold">Text Info</h3>
+                  <h3 className="text-2xl font-bold">
+                    {t("common.text-info")}
+                  </h3>
                   <RawDialogClose className="rounded-sm p-2 opacity-70 ring-offset-background transition-opacity hover:bg-white/10 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
                     <XIcon className="h-6 w-6" />
                     <span className="sr-only">Close</span>
@@ -141,11 +143,11 @@ export default function InfoDialog({
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
-                    <p className="text-base font-medium text-white/60">
+                    {/* <p className="text-base font-medium text-white/60 mb-2">
                       {t("common.latin-names")}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-2">
+                    <div>
                       <p className="text-xl font-bold">{primaryTitle}</p>
 
                       {otherTitles && (
@@ -157,11 +159,11 @@ export default function InfoDialog({
                   </div>
 
                   <div className="w-full flex-1" dir="rtl">
-                    <p className="text-base font-medium text-white/60">
+                    {/* <p className="text-base font-medium text-white/60 mb-2">
                       {t("common.arabic-names")}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-2">
+                    <div>
                       <p className="text-xl font-bold">{secondaryTitle}</p>
 
                       {otherSecondaryTitles && (
@@ -175,11 +177,11 @@ export default function InfoDialog({
 
                 {genres.length > 0 && (
                   <div className="mt-6">
-                    <p className="text-base font-medium text-white/60">
+                    <p className="mb-2 text-base font-medium text-white/60">
                       {t("entities.genres")}
                     </p>
 
-                    <div className="mt-2 flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {genres.map((genre) => (
                         <Link
                           key={genre.id}
@@ -199,15 +201,17 @@ export default function InfoDialog({
               </div>
 
               <div className="flex flex-col gap-6 px-8 py-6">
-                <h3 className="text-2xl font-bold">Author Info</h3>
+                <h3 className="text-2xl font-bold">
+                  {t("common.author-info")}
+                </h3>
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
-                    <p className="text-base font-medium text-secondary-foreground/60">
+                    {/* <p className="text-base font-medium text-secondary-foreground/60 mb-2">
                       {t("common.latin-names")}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-2 w-full">
+                    <div className="w-full">
                       {isLoading ? (
                         <>
                           <Skeleton className="h-8 w-40 max-w-full" />
@@ -230,11 +234,11 @@ export default function InfoDialog({
                   </div>
 
                   <div className="w-full flex-1" dir="rtl">
-                    <p className="text-base font-medium text-secondary-foreground/60">
+                    {/* <p className="text-base font-medium text-secondary-foreground/60 mb-2">
                       {t("common.arabic-names")}
-                    </p>
+                    </p> */}
 
-                    <div className="mt-2 w-full">
+                    <div className="w-full">
                       {isLoading ? (
                         <>
                           <Skeleton className="h-8 w-40 max-w-full" />

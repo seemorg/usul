@@ -1,6 +1,6 @@
 "use client";
 
-import { supportedBcp47LocaleToPathLocale } from "@/lib/locale/utils";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { usePathname } from "@/navigation";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
@@ -18,7 +18,7 @@ export const useTabNavigate = () => {
     const base =
       locale === defaultLocale
         ? pathname
-        : `/${supportedBcp47LocaleToPathLocale(locale)}${pathname}`;
+        : `/${appLocaleToPathLocale(locale)}${pathname}`;
     const href = tabId === "content" ? base : `${base}?tab=${tabId}`;
 
     window.history.replaceState(null, "", href);

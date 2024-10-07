@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "La herramienta de investigación para textos islámicos",
+    "description": "Lee, busca e investiga más de 8,000 textos islámicos y clásicos en unos pocos clics"
+  },
   "author-page": {
     "title": "{author} | Libros y textos",
-    "description-secondary": "Lee los libros de {author}. {author}, también conocido como {authorSecondary}, escribió libros de {books}.",
+    "description-secondary": "Lee los libros de {author}. {author}, también conocido como {authorSecondary}, escribió {books} libros.",
     "description": "Lee los libros de {author}. {author} escribió {books} libros."
   }
 }

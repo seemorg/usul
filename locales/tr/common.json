@@ -50,27 +50,8 @@
     "all-results": "Tüm sonuçları gör ({results, number})"
   },
   "navigation": {
-    "tools": {
-      "title": "Araçlar",
-      "get-notified": {
-        "title": "Bildirim Al",
-        "description": "Yakında çıkacak araçlar için takipte kalın, bu araçlar son teknoloji AI teknolojilerini kullanıyor."
-      },
-      "advanced-search": {
-        "title": "Gelişmiş Arama",
-        "description": "Metinleri, yazarları, bölgeleri ve türleri arayın"
-      },
-      "text-explorer": {
-        "title": "Metin Gezgini",
-        "description": "Gelişmiş kriterleri kullanarak bir metin arayın"
-      },
-      "author-explorer": {
-        "title": "Yazar Gezgini",
-        "description": "Gelişmiş kriterleri kullanarak bir metin arayın"
-      }
-    },
-    "explore": {
-      "title": "Keşfet",
+    "browse": {
+      "title": "Gözat",
       "texts": {
         "title": "Metinler",
         "description": "En popüler metinleri keşfedin"
@@ -86,6 +67,13 @@
       "genres": {
         "title": "Türler",
         "description": "En popüler türleri keşfedin"
+      }
+    },
+    "about": {
+      "title": "Hakkında",
+      "get-notified": {
+        "title": "Bildirim Al",
+        "description": "En yeni araçlar ve son teknoloji yapay zeka teknolojileri için bizi takip edin."
       }
     },
     "contribute": {
@@ -120,12 +108,12 @@
     "description": "Usul.ai, OpenITI korpusundan 8.000'den fazla İslami metin sunar. Amacımız, klasik metinleri okumayı, aramayı ve araştırmayı kolaylaştırmaktır. Çalışmalarımız hakkında aylık güncellemeler almak için aşağıya abone olun.",
     "email-address": "E-posta Adresi",
     "subscribe": "Abone Ol",
-    "copyright": "{year, number, nogroup} Usul.ai Vakfı. Tüm hakları saklıdır."
+    "copyright": "{year, number, nogroup} Seemorg Vakfı. Tüm hakları saklıdır."
   },
   "lost": "Kaybolmuş gibi görünüyorsun",
   "go-back-home": "Ana sayfaya dön",
   "arabic-names": "Arap isimleri",
-  "latin-names": "Latin isimleri",
+  "latin-names": "İsimler",
   "author-arabic-names": "Yazar Arap isimleri",
   "author-latin-names": "Yazar Latin isimleri",
   "author-bio": "Yazar Latin isimleri",
@@ -150,5 +138,7 @@
     "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
   },
   "year-filter-info": "Yazarın ölüm yılı",
-  "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler"
+  "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler",
+  "text-info": "Metin Bilgisi",
+  "author-info": "Yazar Bilgisi"
 }

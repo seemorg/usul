@@ -22,7 +22,8 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
         meta,
         reader,
       }}
-      {...getSharedConfig("en")}
+      locale="en-US"
+      {...getSharedConfig()}
     >
       <div className="font-sans">{children}</div>
     </NextIntlClientProvider>

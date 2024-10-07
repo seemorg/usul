@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Усуль",
+    "slogan": "Исследовательский инструмент для исламских текстов",
+    "description": "Читайте, ищите и исследуйте более 8,000 исламских и классических текстов за несколько кликов"
+  },
   "author-page": {
     "title": "{author} | Книги и тексты",
-    "description-secondary": "Читайте книги {author}. {author}, также известные как {authorSecondary}, авторы книг {books}.",
+    "description-secondary": "Читайте книги {author}. {author}, также известный как {authorSecondary}, написал {books} книгу.",
     "description": "Читайте книги {author}. {author} написал книги {books}."
   }
 }

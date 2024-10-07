@@ -8,6 +8,7 @@ import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
+import { Button } from "@/components/ui/button";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -113,7 +114,7 @@ export default function SearchBarResults({
         {showSeeMore && (
           <Link
             href={navigation.search.index({ type: searchType, query: value })}
-            className="mt-3 text-primary underline sm:mt-0"
+            className="mt-3 hidden text-primary underline sm:mt-0 sm:block"
           >
             {t("common.search-bar.all-results", {
               results: results?.found,
@@ -122,7 +123,24 @@ export default function SearchBarResults({
         )}
       </div>
 
-      <div className="mt-5">{renderResults()}</div>
+      <div className="mt-5">
+        {renderResults()}
+        {showSeeMore && (
+          <Button
+            asChild
+            className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
+            variant="secondary"
+          >
+            <Link
+              href={navigation.search.index({ type: searchType, query: value })}
+            >
+              {t("common.search-bar.all-results", {
+                results: results?.found,
+              })}
+            </Link>
+          </Button>
+        )}
+      </div>
     </div>
   );
 }

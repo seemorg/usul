@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "Qalabka Cilmi-baarista Qoraalada Islaamka",
+    "description": "Akhri, baadh, oo cilmi baadhis ku samee in ka badan 8,000 oo qoraalo Islaami iyo kuwo caadi ah oo dhowr gujin ah"
+  },
   "author-page": {
     "title": "{author} | Buugaagta iyo Qoraallada",
-    "description-secondary": "Akhri buugaagta {author}. {author}, sidoo kale loo yaqaan {authorSecondary}, wuxuu qoray {books} buug.",
+    "description-secondary": "Akhri buugaagta uu qoray {author}. {author} oo sidoo kale loo yaqaan {authorSecondary}, wuxuu qoray {books} buug.",
     "description": "Akhri buugaagta {author}. {author} wuxuu qoray {books} buug."
   }
 }

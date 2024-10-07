@@ -52,7 +52,7 @@ export default function SearchBar({
     },
   });
 
-  const { replace } = useRouter();
+  const { push } = useRouter();
   const isModalOpen = useBoolean(false);
   const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
 
@@ -89,7 +89,7 @@ export default function SearchBar({
   const onItemSelect = (href?: string) => {
     if (href) {
       addRecentSearch(debouncedValue);
-      replace(href);
+      push(href);
       focusedState.setFalse();
     } else {
       isModalOpen.setTrue();

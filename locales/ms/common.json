@@ -50,42 +50,30 @@
     "all-results": "Lihat semua hasil ({results, number})"
   },
   "navigation": {
-    "tools": {
-      "title": "Alat",
-      "get-notified": {
-        "title": "Dapatkan Notifikasi",
-        "description": "Nantikan alat-alat akan datang, yang menggunakan teknologi AI terkini."
-      },
-      "advanced-search": {
-        "title": "Carian Lanjutan",
-        "description": "Cari teks, pengarang, wilayah, dan genre"
-      },
-      "text-explorer": {
-        "title": "Pengeluar Teks",
-        "description": "Cari teks menggunakan kriteria lanjutan"
-      },
-      "author-explorer": {
-        "title": "Pengeluar Pengarang",
-        "description": "Cari teks menggunakan kriteria lanjutan"
-      }
-    },
-    "explore": {
-      "title": "Teroka",
+    "browse": {
+      "title": "Semak",
       "texts": {
         "title": "Teks",
-        "description": "Teroka teks-teks yang paling popular"
+        "description": "Terokai teks paling popular"
       },
       "authors": {
-        "title": "Pengarang",
-        "description": "Teroka pengarang-pengarang yang paling popular"
+        "title": "Penulis",
+        "description": "Terokai penulis paling popular"
       },
       "regions": {
         "title": "Wilayah",
-        "description": "Teroka wilayah-wilayah yang paling popular"
+        "description": "Terokai wilayah paling popular"
       },
       "genres": {
         "title": "Genre",
-        "description": "Teroka genre-genre yang paling popular"
+        "description": "Terokai genre paling popular"
+      }
+    },
+    "about": {
+      "title": "Mengenai",
+      "get-notified": {
+        "title": "Dapatkan Pemberitahuan",
+        "description": "Ikuti perkembangan untuk alat akan datang, menggunakan teknologi AI terkini."
       }
     },
     "contribute": {
@@ -120,12 +108,12 @@
     "description": "Usul.ai menyediakan lebih dari 8,000 teks Islam dari korpus OpenITI. Tujuan kami adalah untuk memudahkan membaca, mencari, dan meneliti teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
     "email-address": "Alamat E-mel",
     "subscribe": "Langgan",
-    "copyright": "{year, number, nogroup} Yayasan Usul.ai. Hak cipta terpelihara."
+    "copyright": "{year, number, nogroup} Seemorg Foundation. Hak cipta terpelihara."
   },
   "lost": "Sepertinya anda tersesat",
   "go-back-home": "Kembali ke halaman utama",
   "arabic-names": "Nama-nama Arab",
-  "latin-names": "Nama-nama Latin",
+  "latin-names": "Nama",
   "author-arabic-names": "Nama-nama Arab Pengarang",
   "author-latin-names": "Nama-nama Latin Pengarang",
   "author-bio": "Nama-nama Latin Pengarang",
@@ -150,5 +138,7 @@
     "error": "Ada yang salah. Sila cuba lagi nanti."
   },
   "year-filter-info": "Tahun kematian pengarang",
-  "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia"
+  "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia",
+  "text-info": "Maklumat Teks",
+  "author-info": "Maklumat Pengarang"
 }

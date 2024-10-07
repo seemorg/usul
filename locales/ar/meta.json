@@ -1,7 +1,12 @@
 {
+  "global": {
+    "usul": "أصول",
+    "slogan": "أداة البحث للنصوص الإسلامية",
+    "description": "اقرأ، وابحث، وقم ببحث في أكثر من 8,000 نص إسلامي وكلاسيكي ببضع نقرات"
+  },
   "author-page": {
     "title": "{author} | الكتب والنصوص",
-    "description-secondary": "اقرأ كتب {author}. {author}، المعروفة أيضًا باسم {authorSecondary}، تأليف كتب {books}.",
+    "description-secondary": "اقرأ كتب {author}. {author} المعروف أيضًا باسم {authorSecondary}، كتب {books} كتابًا.",
     "description": "اقرأ كتب {author}. {author} تأليف كتب {books}."
   }
 }

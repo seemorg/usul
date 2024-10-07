@@ -8,43 +8,43 @@ export type NavItem = {
   description: NamespaceTranslations<"common">;
 };
 
-export const toolsItems: NavItem[] = [
-  {
-    title: "navigation.tools.advanced-search.title",
-    description: "navigation.tools.advanced-search.description",
-  },
-  {
-    title: "navigation.tools.text-explorer.title",
-    description: "navigation.tools.text-explorer.description",
-    href: navigation.books.all(),
-  },
-  {
-    title: "navigation.tools.author-explorer.title",
-    description: "navigation.tools.author-explorer.description",
-    href: navigation.authors.all(),
-  },
-];
+// export const toolsItems: NavItem[] = [
+//   {
+//     title: "navigation.tools.advanced-search.title",
+//     description: "navigation.tools.advanced-search.description",
+//   },
+//   {
+//     title: "navigation.tools.text-explorer.title",
+//     description: "navigation.tools.text-explorer.description",
+//     href: navigation.books.all(),
+//   },
+//   {
+//     title: "navigation.tools.author-explorer.title",
+//     description: "navigation.tools.author-explorer.description",
+//     href: navigation.authors.all(),
+//   },
+// ];
 
-export const exploreItems: NavItem[] = [
+export const browseItems: NavItem[] = [
   {
     href: navigation.books.all(),
-    title: "navigation.explore.texts.title",
-    description: "navigation.explore.texts.description",
+    title: "navigation.browse.texts.title",
+    description: "navigation.browse.texts.description",
   },
   {
     href: navigation.authors.all(),
-    title: "navigation.explore.authors.title",
-    description: "navigation.explore.authors.description",
+    title: "navigation.browse.authors.title",
+    description: "navigation.browse.authors.description",
   },
   {
     href: navigation.regions.all(),
-    title: "navigation.explore.regions.title",
-    description: "navigation.explore.regions.description",
+    title: "navigation.browse.regions.title",
+    description: "navigation.browse.regions.description",
   },
   {
     href: navigation.genres.all(),
-    title: "navigation.explore.genres.title",
-    description: "navigation.explore.genres.description",
+    title: "navigation.browse.genres.title",
+    description: "navigation.browse.genres.description",
   },
 ];
 

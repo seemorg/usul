@@ -15,8 +15,8 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import {
   type NavItem,
-  toolsItems,
-  exploreItems,
+  // toolsItems,
+  browseItems,
   contributeItems,
 } from "./links";
 
@@ -58,7 +58,19 @@ export default function HomepageNavigationMenu() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuTrigger>
-            {t("navigation.tools.title")}
+            {t("navigation.browse.title")}
+          </NavigationMenuTrigger>
+
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+              {browseItems.map(renderItem)}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>
+            {t("navigation.about.title")}
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
@@ -71,27 +83,15 @@ export default function HomepageNavigationMenu() {
                   <EnvelopeIcon className="h-6 w-6" />
 
                   <div className="mb-2 mt-4 text-lg font-medium">
-                    {t("navigation.tools.get-notified.title")}
+                    {t("navigation.about.get-notified.title")}
                   </div>
                   <p className="text-sm leading-tight text-muted-foreground">
-                    {t("navigation.tools.get-notified.description")}
+                    {t("navigation.about.get-notified.description")}
                   </p>
                 </NavigationMenuLink>
               </li>
 
-              {toolsItems.map(renderItem)}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>
-            {t("navigation.explore.title")}
-          </NavigationMenuTrigger>
-
-          <NavigationMenuContent>
-            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {exploreItems.map(renderItem)}
+              {/* {toolsItems.map(renderItem)} */}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

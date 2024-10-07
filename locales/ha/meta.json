@@ -1,4 +1,9 @@
 {
+  "global": {
+    "usul": "Usul",
+    "slogan": "Kayan Bincike don Rubuce-rubucen Musulunci",
+    "description": "Karanta, bincika, kuma duba rubuce-rubuce 8,000+ na Musulunci da na gargajiya cikin fewan dannawa"
+  },
   "author-page": {
     "title": "{author} | Littattafai da Rubutattun Wakoki",
     "description-secondary": "Karanta littattafan {author}. {author}, wanda aka fi sani da {authorSecondary}, ya rubuta littattafai {books}.",

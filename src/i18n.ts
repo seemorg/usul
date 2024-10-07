@@ -1,14 +1,13 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 import config, { locales, type AppLocale } from "i18n.config";
-import type { IntlConfig } from "next-intl";
-import { supportedBcp47LocaleToPathLocale } from "./lib/locale/utils";
+import { appLocaleToPathLocale } from "./lib/locale/utils";
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as AppLocale)) notFound();
 
-  const pathLocale = supportedBcp47LocaleToPathLocale(locale as AppLocale);
+  const pathLocale = appLocaleToPathLocale(locale as AppLocale);
 
   const messages = (
     await Promise.all(
@@ -28,13 +27,12 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages,
-    ...getSharedConfig(locale),
+    ...getSharedConfig(),
   };
 });
 
-export const getSharedConfig = (locale: string): IntlConfig => {
+export const getSharedConfig = () => {
   return {
-    locale: locale as AppLocale,
     timeZone: "UTC",
     formats: {
       number: {
