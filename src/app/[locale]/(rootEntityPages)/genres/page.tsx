@@ -49,6 +49,7 @@ async function GenresPage({ searchParams }: PageProps) {
         placeholder={t("search-within", {
           entity: t("genres"),
         })}
+        hasViews={false}
         sorts={sorts as any}
         currentSort={sort.raw}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"

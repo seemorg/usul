@@ -101,7 +101,7 @@ export default async function HomePage({
             </div>
           )}
 
-          <div className={cn("w-full", "mt-16")}>
+          <div className={cn("w-full", "mt-16 sm:mt-[4.5rem]")}>
             <div className="mx-auto max-w-[46rem]">
               <SearchBar size="lg" />
             </div>
@@ -112,6 +112,7 @@ export default async function HomePage({
       <Container className="flex flex-col gap-4 py-10 sm:gap-12 sm:py-12">
         <div>
           <HomepageSection
+            isBooks={false}
             title={t("sections.collections")}
             items={collections.map((collection) => (
               <Link

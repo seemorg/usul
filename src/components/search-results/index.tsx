@@ -32,6 +32,7 @@ interface SearchResultsProps<T extends object & { id: string }> {
   placeholder?: string;
   itemsContainerClassName?: string;
   view?: View;
+  hasViews?: boolean;
 }
 
 export default function SearchResults<T extends object & { id: string }>({
@@ -46,6 +47,7 @@ export default function SearchResults<T extends object & { id: string }>({
   placeholder,
   itemsContainerClassName,
   view,
+  hasViews = true,
 }: SearchResultsProps<T>) {
   const hasResults = response.hits?.length ?? 0 > 0;
 
@@ -85,9 +87,11 @@ export default function SearchResults<T extends object & { id: string }>({
                 <SearchSort sorts={sorts} currentSort={currentSort} />
               </div>
 
-              <div>
-                <ViewSwitcher />
-              </div>
+              {hasViews && (
+                <div>
+                  <ViewSwitcher />
+                </div>
+              )}
 
               {filters && (
                 <div className="col-span-4 sm:hidden">
