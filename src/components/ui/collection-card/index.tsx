@@ -15,27 +15,27 @@ const variants = {
   gray: {
     bg: "bg-collection-gray",
     gradientFrom: "from-collection-gray",
-    gradientFrom10: "from-collection-gray/10",
+    gradientFrom10: "from-collection-gray/[.01]",
   },
   red: {
     bg: "bg-collection-red",
     gradientFrom: "from-collection-red",
-    gradientFrom10: "from-collection-red/10",
+    gradientFrom10: "from-collection-red/[.01]",
   },
   green: {
     bg: "bg-collection-green",
     gradientFrom: "from-collection-green",
-    gradientFrom10: "from-collection-green/10",
+    gradientFrom10: "from-collection-green/[.01]",
   },
   yellow: {
     bg: "bg-collection-yellow",
     gradientFrom: "from-collection-yellow",
-    gradientFrom10: "from-collection-yellow/10",
+    gradientFrom10: "from-collection-yellow/[.01]",
   },
   indigo: {
     bg: "bg-collection-indigo",
     gradientFrom: "from-collection-indigo",
-    gradientFrom10: "from-collection-indigo/10",
+    gradientFrom10: "from-collection-indigo/[.01]",
   },
 };
 
@@ -65,9 +65,10 @@ export const CollectionCard = ({
           variant.gradientFrom,
         )}
       />
+
       <div
         className={clsx(
-          "absolute bottom-0 left-0 right-0 -z-[1] h-20 bg-gradient-to-t to-collection-gray/0 opacity-10 backdrop-blur-[2px]",
+          "absolute bottom-0 left-0 right-0 -z-[1] h-20 bg-gradient-to-t to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black,transparent)]",
           variant.gradientFrom10,
         )}
       />

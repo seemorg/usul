@@ -1,6 +1,6 @@
 "use client";
 
-import { ArabicLogo } from "@/components/Icons";
+import { ArabicLogo, Logo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -21,6 +21,7 @@ import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import { useTranslations } from "next-intl";
+import { useDirection } from "@/lib/locale/utils";
 
 interface NavbarProps {
   isHomepage?: boolean;
@@ -33,6 +34,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const containerEl = useReaderScroller();
+  const dir = useDirection();
 
   useEffect(() => {
     let oldValue = 0;
@@ -74,7 +76,11 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
       >
         <div className="xl:col-span-2">
           <Link href="/" className="flex w-fit items-center gap-3">
-            <ArabicLogo className="h-8 w-auto" />
+            {dir === "ltr" ? (
+              <Logo className="h-5 w-auto" />
+            ) : (
+              <ArabicLogo className="h-8 w-auto" />
+            )}
           </Link>
         </div>
 
