@@ -22,7 +22,7 @@
     "portion": "Portion",
     "entire-book": "Entire Book",
     "book": "Book",
-    "book-select-description": "To search multiple books use Advanced Search"
+    "book-select-description": "Searching multiple books isn't supported yet"
   },
   "chat": {
     "new-chat": "New Chat",

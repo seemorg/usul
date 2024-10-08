@@ -7,6 +7,7 @@ declare global {
 
     type BookFlags = {
       aiSupported?: boolean;
+      aiVersion?: string;
     };
   }
 }

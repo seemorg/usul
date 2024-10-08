@@ -54,19 +54,19 @@
       "title": "Browse",
       "texts": {
         "title": "Texts",
-        "description": "Explore the most popular texts"
+        "description": "Most popular texts"
       },
       "authors": {
         "title": "Authors",
-        "description": "Explore the most popular authors"
+        "description": "Most popular authors"
       },
       "regions": {
         "title": "Regions",
-        "description": "Explore the most popular regions"
+        "description": "Most popular regions"
       },
       "genres": {
         "title": "Genres",
-        "description": "Explore the most popular genres"
+        "description": "Most popular genres"
       }
     },
     "about": {
@@ -74,6 +74,18 @@
       "get-notified": {
         "title": "Get Notified",
         "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
+      },
+      "about": {
+        "title": "About",
+        "description": "Most popular texts"
+      },
+      "team": {
+        "title": "Team",
+        "description": "Most popular texts"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "Most popular texts"
       }
     },
     "contribute": {
@@ -91,7 +103,8 @@
         "description": "Help us develop new tools through open-source contributions"
       },
       "contact": {
-        "title": "Contact"
+        "title": "Contact",
+        "description": "Contact us"
       },
       "report-mistake": {
         "title": "Report Mistake",

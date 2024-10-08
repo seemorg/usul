@@ -6,6 +6,7 @@ export type GlobalSearchDocument = {
   slug: string;
   type: "author" | "book" | "genre" | "region";
 
+  transliteration?: string;
   primaryNames: LocalizedEntry[];
   otherNames: LocalizedArrayEntry[];
 

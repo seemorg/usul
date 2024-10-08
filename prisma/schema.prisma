@@ -133,9 +133,9 @@ model Location {
   name String
   type LocationType
 
+  transliteration      String?
   cityNameTranslations LocationCityName[]
-
-  authors Author[]
+  authors              Author[]
 
   region   Region? @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   regionId String?
@@ -157,9 +157,11 @@ model Region {
   id   String @id
   slug String @unique
 
-  currentNameTranslations RegionCurrentName[]
-  nameTranslations        RegionName[]
-  overviewTranslations    RegionOverview[]
+  transliteration            String?
+  currentNameTransliteration String?
+  currentNameTranslations    RegionCurrentName[]
+  nameTranslations           RegionName[]
+  overviewTranslations       RegionOverview[]
 
   numberOfAuthors Int        @default(0)
   numberOfBooks   Int        @default(0)

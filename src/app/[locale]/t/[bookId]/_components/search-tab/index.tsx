@@ -34,6 +34,9 @@ import { useTranslations } from "next-intl";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Link } from "@/navigation";
+import { InfoIcon } from "lucide-react";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -155,7 +158,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
     <>
       <SidebarContainer>
         <div className="mt-5 flex items-center gap-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="icon"
             className="h-10 w-10 flex-shrink-0 border-gray-300 shadow-none"
@@ -166,7 +169,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
             ) : (
               <AdjustmentsHorizontalIcon className="h-5 w-5" />
             )}
-          </Button>
+          </Button> */}
 
           <div className="relative w-full">
             <Input
@@ -184,7 +187,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
           </div>
         </div>
 
-        {filtersOpen.value && (
+        {/* {filtersOpen.value && (
           <div className="mt-2 flex flex-col gap-5 rounded-md bg-muted px-4 py-4 dark:bg-accent/80">
             <div>
               <div className="flex items-center justify-between">
@@ -225,7 +228,23 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
               </div>
             </div>
           </div>
-        )}
+        )} */}
+      </SidebarContainer>
+
+      <SidebarContainer className="my-4">
+        <Alert className="border-border bg-transparent">
+          <InfoIcon className="h-5 w-5" />
+          <AlertTitle>
+            AI has been trained on a different edition of this book
+            (VERSION_NAME). You can still use [AI] but the results might be
+            slightly different.
+          </AlertTitle>
+          <AlertDescription className="mt-2">
+            <Link href={`/`} className="text-primary underline">
+              Switch to (VERSION_NAME)
+            </Link>
+          </AlertDescription>
+        </Alert>
       </SidebarContainer>
 
       {results !== null && (
