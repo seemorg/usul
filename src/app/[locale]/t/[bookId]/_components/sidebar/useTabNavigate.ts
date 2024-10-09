@@ -10,7 +10,8 @@ export const useTabNavigate = () => {
   const pathname = usePathname();
   const locale = useLocale() as AppLocale;
 
-  const activeTabId = useSearchParams().get("tab") ?? "content";
+  const searchParams = useSearchParams();
+  const activeTabId = searchParams.get("tab") ?? "content";
 
   const handleNavigate = (tabId: string) => {
     if (tabId === activeTabId) return;
@@ -19,7 +20,16 @@ export const useTabNavigate = () => {
       locale === defaultLocale
         ? pathname
         : `/${appLocaleToPathLocale(locale)}${pathname}`;
-    const href = tabId === "content" ? base : `${base}?tab=${tabId}`;
+
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (tabId === "content") {
+      newSearchParams.delete("tab");
+    } else {
+      newSearchParams.set("tab", tabId);
+    }
+
+    const href =
+      newSearchParams.size > 0 ? `${base}?${newSearchParams.toString()}` : base;
 
     window.history.replaceState(null, "", href);
   };

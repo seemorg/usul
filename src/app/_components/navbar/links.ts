@@ -2,15 +2,15 @@ import { config } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
+  BadgePlusIcon,
   BookOpenIcon,
   FileTextIcon,
-  FlagIcon,
   ListIcon,
   MailIcon,
   MapIcon,
-  MessageSquareIcon,
+  MessageSquarePlusIcon,
   PlayIcon,
-  PlusIcon,
+  ShieldAlertIcon,
   UserIcon,
   UsersIcon,
 } from "lucide-react";
@@ -74,19 +74,19 @@ export const contributeItems: NavItem[] = [
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",
     href: `mailto:${config.feedbackEmail}`,
-    icon: PlusIcon,
+    icon: BadgePlusIcon,
   },
   {
     title: "navigation.contribute.report-mistake.title",
     description: "navigation.contribute.report-mistake.description",
     href: `mailto:${config.feedbackEmail}`,
-    icon: FlagIcon,
+    icon: ShieldAlertIcon,
   },
   {
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
     href: `mailto:${config.feedbackEmail}`,
-    icon: MessageSquareIcon,
+    icon: MessageSquarePlusIcon,
   },
   {
     title: "navigation.contribute.contact.title",

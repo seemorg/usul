@@ -22,6 +22,7 @@ import ChatForm from "./ChatForm";
 import { InfoIcon } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Link } from "@/navigation";
+import { config } from "@/lib/seo";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -212,13 +213,25 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                   role="alert"
                 >
                   <InfoIcon className="size-4" />
-                  {t("chat.error")}
-                  <button
-                    onClick={() => regenerateResponse()}
-                    className="underline"
-                  >
-                    {t("chat.try-again")}
-                  </button>
+                  {t.rich("chat.error", {
+                    retry: (children) => (
+                      <button
+                        onClick={() => regenerateResponse()}
+                        className="underline"
+                      >
+                        {children}
+                      </button>
+                    ),
+                    contact: (children) => (
+                      <a
+                        href={config.contactEmail}
+                        target="_blank"
+                        className="underline"
+                      >
+                        {children}
+                      </a>
+                    ),
+                  })}
                 </div>
               )}
 

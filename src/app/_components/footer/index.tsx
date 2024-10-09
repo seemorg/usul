@@ -16,10 +16,17 @@ type NavItem = {
 };
 
 const navigation = {
-  // about: [
-  //   { label: "navigation.about." },
-
-  // ] satisfies NavItem[],
+  about: [
+    {
+      label: "navigation.about.about.title",
+    },
+    {
+      label: "navigation.about.team.title",
+    },
+    {
+      label: "navigation.about.demo.title",
+    },
+  ] satisfies NavItem[],
   browse: [
     { label: "navigation.browse.texts.title", href: urls.books.all() },
     { label: "navigation.browse.authors.title", href: urls.authors.all() },
@@ -134,10 +141,10 @@ export default function Footer() {
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
-            {/* <FooterRow
+            <FooterRow
               title={t("navigation.about.title")}
               items={navigation.about}
-            /> */}
+            />
             <FooterRow
               title={t("navigation.browse.title")}
               items={navigation.browse}

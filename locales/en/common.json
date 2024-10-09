@@ -77,15 +77,15 @@
       },
       "about": {
         "title": "About",
-        "description": "Most popular texts"
+        "description": "The Organization"
       },
       "team": {
         "title": "Team",
-        "description": "Most popular texts"
+        "description": "Who's behind it"
       },
       "demo": {
         "title": "Demo",
-        "description": "Most popular texts"
+        "description": "How it works"
       }
     },
     "contribute": {
@@ -96,7 +96,11 @@
       },
       "add-text": {
         "title": "Add Text",
-        "description": "Add a new text to the library"
+        "description": "Upload Book or PDF"
+      },
+      "report-mistake": {
+        "title": "Report Mistake",
+        "description": "Found something wrong"
       },
       "develop": {
         "title": "Develop",
@@ -104,15 +108,11 @@
       },
       "contact": {
         "title": "Contact",
-        "description": "Contact us"
-      },
-      "report-mistake": {
-        "title": "Report Mistake",
-        "description": "Report a mistake in a text"
+        "description": "Or email contact@usul.ai"
       },
       "feedback": {
         "title": "Feedback",
-        "description": "Send us your feedback"
+        "description": "Share a suggestion"
       }
     }
   },

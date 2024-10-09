@@ -2,6 +2,8 @@
   "notes": "Notes",
   "bookmarks": "Bookmarks",
   "content": "Content",
+  "version-warning": "AI has been trained on a <tooltip>different version of this book</tooltip>. You can still use {feature} but the results might be slightly different.",
+  "switch-version": "Switch to {version}",
   "coming-soon": {
     "title": "Coming Soon",
     "message": "This feature is not available yet."
@@ -33,8 +35,7 @@
     "mark-as-correct": "Mark as correct",
     "report-as-incorrect": "Report as incorrect",
     "sources": "Sources",
-    "error": "Something went wrong.  Try again or contact us if it persists.",
-    "try-again": "Try again",
+    "error": "Something went wrong. <retry>Try again</retry> or <contact>contact us</contact> if it persists.",
     "pg-x": "Pg {page, number, nogroup}"
   },
   "version": "Version",

@@ -37,12 +37,20 @@ import { usePageNavigation } from "../usePageNavigation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Link } from "@/navigation";
 import { InfoIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { VersionAlert } from "../version-alert";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
+  const isVersionMismatch =
+    bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 
   const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],
@@ -231,21 +239,11 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
         )} */}
       </SidebarContainer>
 
-      <SidebarContainer className="my-4">
-        <Alert className="border-border bg-transparent">
-          <InfoIcon className="h-5 w-5" />
-          <AlertTitle>
-            AI has been trained on a different edition of this book
-            (VERSION_NAME). You can still use [AI] but the results might be
-            slightly different.
-          </AlertTitle>
-          <AlertDescription className="mt-2">
-            <Link href={`/`} className="text-primary underline">
-              Switch to (VERSION_NAME)
-            </Link>
-          </AlertDescription>
-        </Alert>
-      </SidebarContainer>
+      {isVersionMismatch && (
+        <SidebarContainer className="my-4">
+          <VersionAlert versionId={bookResponse.book.flags.aiVersion!} />
+        </SidebarContainer>
+      )}
 
       {results !== null && (
         <SidebarContainer className="mb-4 mt-6">
