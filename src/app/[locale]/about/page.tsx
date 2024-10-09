@@ -16,10 +16,10 @@ export default async function AboutPage({
     const Content = (await import(`./${locale}.mdx`)).default;
 
     return (
-      <Container className="pt-16">
-        <h1 className="text-5xl font-bold">{t("about-us")}</h1>
+      <Container className="max-w-4xl pt-16">
+        <h1 className="mb-15 text-5xl font-bold">{t("about-us")}</h1>
 
-        <article className="prose prose-xl prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 prose-ul:list-none dark:prose-invert mt-14 max-w-full">
+        <article className="prose prose-xl prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 prose-ul:list-none dark:prose-invert mt-14">
           <Content />
         </article>
       </Container>

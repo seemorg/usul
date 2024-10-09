@@ -19,6 +19,7 @@ const navigation = {
   about: [
     {
       label: "navigation.about.about.title",
+      href: urls.about(),
     },
     {
       label: "navigation.about.team.title",

@@ -55,6 +55,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.about.title",
     description: "navigation.about.about.description",
     icon: FileTextIcon,
+    href: navigation.about(),
   },
   {
     title: "navigation.about.team.title",
@@ -71,8 +72,8 @@ export const aboutItems: NavItem[] = [
   {
     title: "navigation.about.contact.title",
     description: "navigation.about.contact.description",
-    href: `mailto:${config.feedbackEmail}`,
     icon: MailIcon,
+    href: `mailto:${config.feedbackEmail}`,
   },
 ];
 
