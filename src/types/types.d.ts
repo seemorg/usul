@@ -6,6 +6,7 @@ declare interface IntlMessages {
   home: typeof import("../../locales/en/home.json");
   reader: typeof import("../../locales/en/reader.json");
   meta: typeof import("../../locales/en/meta.json");
+  about: typeof import("../../locales/en/about.json");
 }
 
 declare module "*.svg" {

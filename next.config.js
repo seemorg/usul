@@ -6,11 +6,11 @@ await import("./src/env.js");
 
 import createNextIntlPlugin from "next-intl/plugin";
 import { withAxiom } from "next-axiom";
-
-const withNextIntl = createNextIntlPlugin();
+import createMDX from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   headers: async () => {
     return [
       {
@@ -56,4 +56,13 @@ const config = {
   },
 };
 
-export default withNextIntl(withAxiom(config));
+const withNextIntl = createNextIntlPlugin();
+
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(withNextIntl(withAxiom(config)));

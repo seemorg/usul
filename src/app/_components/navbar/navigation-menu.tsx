@@ -52,11 +52,11 @@ export default function HomepageNavigationMenu() {
   };
 
   return (
-    <NavigationMenu>
+    <NavigationMenu orientation="vertical">
       <ComingSoonModal open={isModalOpen} onOpenChange={setIsModalOpen} />
 
       <NavigationMenuList>
-        <NavigationMenuItem>
+        <NavigationMenuItem value="1">
           <NavigationMenuTrigger>
             {t("navigation.browse.title")}
           </NavigationMenuTrigger>
@@ -68,7 +68,7 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
+        <NavigationMenuItem value="2">
           <NavigationMenuTrigger>
             {t("navigation.about.title")}
           </NavigationMenuTrigger>
@@ -80,7 +80,7 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        <NavigationMenuItem>
+        <NavigationMenuItem value="3">
           <NavigationMenuTrigger>
             {t("navigation.contribute.title")}
           </NavigationMenuTrigger>
