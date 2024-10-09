@@ -54,30 +54,26 @@
       "title": "Browse",
       "texts": {
         "title": "Texts",
-        "description": "Most popular texts"
+        "description": "8,646 Texts"
       },
       "authors": {
         "title": "Authors",
-        "description": "Most popular authors"
+        "description": "3,646 Texts"
       },
       "regions": {
         "title": "Regions",
-        "description": "Most popular regions"
+        "description": "40 Regions"
       },
       "genres": {
         "title": "Genres",
-        "description": "Most popular genres"
+        "description": "40 Genres"
       }
     },
     "about": {
       "title": "About",
-      "get-notified": {
-        "title": "Get Notified",
-        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
-      },
       "about": {
         "title": "About",
-        "description": "The Organization"
+        "description": "What's Usul"
       },
       "team": {
         "title": "Team",
@@ -86,14 +82,14 @@
       "demo": {
         "title": "Demo",
         "description": "How it works"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Get in touch"
       }
     },
     "contribute": {
       "title": "Contribute",
-      "about": {
-        "title": "About Usul",
-        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
-      },
       "add-text": {
         "title": "Add Text",
         "description": "Upload Book or PDF"
@@ -102,17 +98,13 @@
         "title": "Report Mistake",
         "description": "Found something wrong"
       },
-      "develop": {
-        "title": "Develop",
-        "description": "Help us develop new tools through open-source contributions"
-      },
-      "contact": {
-        "title": "Contact",
-        "description": "Or email contact@usul.ai"
-      },
       "feedback": {
         "title": "Feedback",
         "description": "Share a suggestion"
+      },
+      "volunteer": {
+        "title": "Volunteer",
+        "description": "Work with our team"
       }
     }
   },

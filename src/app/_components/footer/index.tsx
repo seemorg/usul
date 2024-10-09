@@ -26,12 +26,16 @@ const navigation = {
     {
       label: "navigation.about.demo.title",
     },
+    {
+      label: "navigation.about.contact.title",
+      href: `mailto:${config.contactEmail}`,
+    },
   ] satisfies NavItem[],
   browse: [
     { label: "navigation.browse.texts.title", href: urls.books.all() },
     { label: "navigation.browse.authors.title", href: urls.authors.all() },
-    { label: "navigation.browse.regions.title", href: urls.regions.all() },
     { label: "navigation.browse.genres.title", href: urls.genres.all() },
+    { label: "navigation.browse.regions.title", href: urls.regions.all() },
   ] satisfies NavItem[],
   contribute: [
     {
@@ -47,8 +51,7 @@ const navigation = {
       href: `mailto:${config.feedbackEmail}`,
     },
     {
-      label: "navigation.contribute.contact.title",
-      href: `mailto:${config.contactEmail}`,
+      label: "navigation.contribute.volunteer.title",
     },
   ] satisfies NavItem[],
   social: [
@@ -142,12 +145,12 @@ export default function Footer() {
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
             <FooterRow
-              title={t("navigation.about.title")}
-              items={navigation.about}
-            />
-            <FooterRow
               title={t("navigation.browse.title")}
               items={navigation.browse}
+            />
+            <FooterRow
+              title={t("navigation.about.title")}
+              items={navigation.about}
             />
             <FooterRow
               title={t("navigation.contribute.title")}

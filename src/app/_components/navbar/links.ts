@@ -2,9 +2,10 @@ import { config } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
-  BadgePlusIcon,
   BookOpenIcon,
+  CirclePlusIcon,
   FileTextIcon,
+  HeartHandshakeIcon,
   ListIcon,
   MailIcon,
   MapIcon,
@@ -21,6 +22,33 @@ export type NavItem = {
   description: NamespaceTranslations<"common">;
   icon?: React.ElementType;
 };
+
+export const browseItems: NavItem[] = [
+  {
+    href: navigation.books.all(),
+    title: "navigation.browse.texts.title",
+    description: "navigation.browse.texts.description",
+    icon: BookOpenIcon,
+  },
+  {
+    href: navigation.authors.all(),
+    title: "navigation.browse.authors.title",
+    description: "navigation.browse.authors.description",
+    icon: UserIcon,
+  },
+  {
+    href: navigation.genres.all(),
+    title: "navigation.browse.genres.title",
+    description: "navigation.browse.genres.description",
+    icon: ListIcon,
+  },
+  {
+    href: navigation.regions.all(),
+    title: "navigation.browse.regions.title",
+    description: "navigation.browse.regions.description",
+    icon: MapIcon,
+  },
+];
 
 export const aboutItems: NavItem[] = [
   {
@@ -40,32 +68,11 @@ export const aboutItems: NavItem[] = [
     icon: PlayIcon,
     href: navigation.authors.all(),
   },
-];
-
-export const browseItems: NavItem[] = [
   {
-    href: navigation.books.all(),
-    title: "navigation.browse.texts.title",
-    description: "navigation.browse.texts.description",
-    icon: BookOpenIcon,
-  },
-  {
-    href: navigation.authors.all(),
-    title: "navigation.browse.authors.title",
-    description: "navigation.browse.authors.description",
-    icon: UserIcon,
-  },
-  {
-    href: navigation.regions.all(),
-    title: "navigation.browse.regions.title",
-    description: "navigation.browse.regions.description",
-    icon: MapIcon,
-  },
-  {
-    href: navigation.genres.all(),
-    title: "navigation.browse.genres.title",
-    description: "navigation.browse.genres.description",
-    icon: ListIcon,
+    title: "navigation.about.contact.title",
+    description: "navigation.about.contact.description",
+    href: `mailto:${config.feedbackEmail}`,
+    icon: MailIcon,
   },
 ];
 
@@ -74,7 +81,7 @@ export const contributeItems: NavItem[] = [
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",
     href: `mailto:${config.feedbackEmail}`,
-    icon: BadgePlusIcon,
+    icon: CirclePlusIcon,
   },
   {
     title: "navigation.contribute.report-mistake.title",
@@ -89,9 +96,9 @@ export const contributeItems: NavItem[] = [
     icon: MessageSquarePlusIcon,
   },
   {
-    title: "navigation.contribute.contact.title",
-    description: "navigation.contribute.contact.description",
-    href: `mailto:${config.feedbackEmail}`,
-    icon: MailIcon,
+    title: "navigation.contribute.volunteer.title",
+    description: "navigation.contribute.volunteer.description",
+    // href: `mailto:${config.feedbackEmail}`,
+    icon: HeartHandshakeIcon,
   },
 ];
