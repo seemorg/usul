@@ -23,6 +23,7 @@ const navigation = {
     },
     {
       label: "navigation.about.team.title",
+      href: urls.team(),
     },
     {
       label: "navigation.about.demo.title",

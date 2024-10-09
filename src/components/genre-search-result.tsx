@@ -19,17 +19,14 @@ export default async function GenreSearchResult({
   prefetch?: boolean;
 }) {
   const t = await getTranslations("entities");
-  const pathLocale = await getPathLocale();
+  const locale = await getPathLocale();
 
   const genre = result.document;
-  const showTransliteration = pathLocale === "en" && !!genre.transliteration;
-  const name = showTransliteration
-    ? genre.transliteration
-    : getPrimaryLocalizedText(genre.nameTranslations, pathLocale);
 
+  const name = getPrimaryLocalizedText(genre.nameTranslations, locale);
   const secondaryName = getSecondaryLocalizedText(
     genre.nameTranslations,
-    pathLocale,
+    locale,
   );
 
   return (
@@ -44,10 +41,8 @@ export default async function GenreSearchResult({
         <DottedList
           className="mt-2 text-xs text-muted-foreground"
           items={[
-            showTransliteration && (
-              <p>
-                {getPrimaryLocalizedText(genre.nameTranslations, pathLocale)}
-              </p>
+            locale === "en" && genre.transliteration && (
+              <p>{genre.transliteration}</p>
             ),
             secondaryName && (
               <p dangerouslySetInnerHTML={{ __html: secondaryName }} />

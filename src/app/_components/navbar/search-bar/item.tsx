@@ -25,6 +25,7 @@ function SearchBarItem({
   const pathLocale = usePathLocale();
   const t = useTranslations("entities");
   const Comp = (href ? Link : "button") as any;
+  const type = document.type;
 
   const names =
     document.primaryNames ??
@@ -32,7 +33,8 @@ function SearchBarItem({
 
   const primaryName =
     pathLocale === "en" &&
-    (document as unknown as GenreDocument).transliteration
+    (document as unknown as GenreDocument).transliteration &&
+    type !== "genre"
       ? (document as unknown as GenreDocument).transliteration
       : getPrimaryLocalizedText(names, pathLocale);
   const secondaryName = getSecondaryLocalizedText(names, pathLocale);
@@ -45,7 +47,6 @@ function SearchBarItem({
     pathLocale,
   );
 
-  const type = document.type;
   const localizedType = t(
     getGlobalDocumentLocalizedTypeKey(type) ?? "no-entity",
   );

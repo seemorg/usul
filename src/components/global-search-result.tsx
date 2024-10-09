@@ -27,6 +27,7 @@ export default async function GlobalSearchResult({
   const document = result.document;
 
   const href = getGlobalDocumentHref(document);
+  const type = document.type;
 
   const names =
     document.primaryNames ??
@@ -34,7 +35,8 @@ export default async function GlobalSearchResult({
 
   const primaryName =
     pathLocale === "en" &&
-    (document as unknown as GenreDocument).transliteration
+    (document as unknown as GenreDocument).transliteration &&
+    type !== "genre"
       ? (document as unknown as GenreDocument).transliteration
       : getPrimaryLocalizedText(names, pathLocale);
 
@@ -48,7 +50,6 @@ export default async function GlobalSearchResult({
     pathLocale,
   );
 
-  const type = document.type;
   const localizedType = t(
     getGlobalDocumentLocalizedTypeKey(type) ?? "no-entity",
   );

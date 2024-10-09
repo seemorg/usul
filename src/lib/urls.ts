@@ -31,6 +31,7 @@ export const navigation = {
     byYear: (year: number) => `/century/${Math.ceil(year / 100)}`,
   },
   about: () => "/about",
+  team: () => "/team",
 };
 
 export const booksSorts = [

@@ -62,7 +62,7 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
-            <ul className="flex w-[230px] flex-col gap-1 p-2">
+            <ul className="flex w-[200px] flex-col gap-1 p-2">
               {browseItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>
@@ -74,7 +74,7 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
-            <ul className="flex w-[230px] flex-col gap-1 p-2">
+            <ul className="flex w-[210px] flex-col gap-1 p-2">
               {aboutItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>
@@ -86,7 +86,7 @@ export default function HomepageNavigationMenu() {
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
-            <ul className="flex w-[250px] flex-col gap-1 p-2">
+            <ul className="flex w-[230px] flex-col gap-1 p-2">
               {contributeItems.map(renderItem)}
             </ul>
           </NavigationMenuContent>

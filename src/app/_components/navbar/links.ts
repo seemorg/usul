@@ -61,7 +61,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.team.title",
     description: "navigation.about.team.description",
     icon: UsersIcon,
-    href: navigation.books.all(),
+    href: navigation.team(),
   },
   {
     title: "navigation.about.demo.title",
