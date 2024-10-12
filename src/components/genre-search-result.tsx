@@ -19,34 +19,16 @@ export default async function GenreSearchResult({
   prefetch?: boolean;
 }) {
   const t = await getTranslations("entities");
-  const pathLocale = await getPathLocale();
+  const locale = await getPathLocale();
 
   const genre = result.document;
-  const name =
-    pathLocale === "en"
-      ? genre.transliteration
-      : getPrimaryLocalizedText(genre.nameTranslations, pathLocale);
 
+  const name = getPrimaryLocalizedText(genre.nameTranslations, locale);
   const secondaryName = getSecondaryLocalizedText(
     genre.nameTranslations,
-    pathLocale,
+    locale,
   );
 
-  // <Link
-
-  //   prefetch={prefetch}
-  //   className="w-full border-b border-border bg-transparent px-6 py-8 transition-colors hover:bg-secondary"
-  // >
-  //   <div className="flex items-center justify-between">
-  //     <div className="max-w-[70%] flex-1">
-  //       <h2 className="text-xl text-foreground">{name}</h2>
-  //     </div>
-
-  //     <div className="flex-1 text-end">
-  //       {t("x-texts", { count: genre.booksCount })}
-  //     </div>
-  //   </div>
-  // </Link>
   return (
     <Link
       href={navigation.genres.bySlug(genre.slug)}
@@ -59,8 +41,9 @@ export default async function GenreSearchResult({
         <DottedList
           className="mt-2 text-xs text-muted-foreground"
           items={[
-            // eslint-disable-next-line react/jsx-key
-            // <p>{name}</p>,
+            locale === "en" && genre.transliteration && (
+              <p>{genre.transliteration}</p>
+            ),
             secondaryName && (
               <p dangerouslySetInnerHTML={{ __html: secondaryName }} />
             ),

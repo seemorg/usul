@@ -2,6 +2,8 @@
   "notes": "Bayanai",
   "bookmarks": "Alamomin Shafi",
   "content": "Abun ciki",
+  "version-warning": "AI an horar da shi akan <tooltip>sabanin sigar wannan littafi</tooltip>. Har yanzu zaka iya amfani da {feature} amma sakamakon na iya zama dan bambanta.",
+  "switch-version": "Canja zuwa {version}",
   "coming-soon": {
     "title": "Da zuwa",
     "message": "Wannan fasalin ba ya samuwa tukuna."
@@ -22,7 +24,7 @@
     "portion": "Sashe",
     "entire-book": "Dukkan Littafi",
     "book": "Littafi",
-    "book-select-description": "Don bincika littattafai masu yawa yi amfani da Bincike Mai zurfi"
+    "book-select-description": "Binciken littattafai da yawa ba a goyan bayan shi ba tukuna"
   },
   "chat": {
     "new-chat": "Sabon Tattaunawa",
@@ -33,6 +35,7 @@
     "mark-as-correct": "Alama daidai",
     "report-as-incorrect": "Rahoton kuskure",
     "sources": "Tushen",
+    "error": "Wani abu ya faru ba daidai ba. <retry>Sake gwadawa</retry> ko <contact>saduwa damu</contact> idan ya ci gaba.",
     "pg-x": "Shf {page, number, nogroup}"
   },
   "version": "Sigar",

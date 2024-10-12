@@ -48,6 +48,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     // home page
     generateEntryFromUrl("/"),
+    // about page
+    generateEntryFromUrl("/about"),
+    // team page
+    generateEntryFromUrl("/team"),
     // root entities
     ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
     ...books.map((book) =>

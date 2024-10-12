@@ -67,7 +67,12 @@ const ChatMessage = ({
     isLoading.setFalse();
   }, [text]);
 
-  const handleFeedback = useCallback((type: "positive" | "negative") => {}, []);
+  const handleFeedback = useCallback((type: "positive" | "negative") => {
+    toast({
+      variant: "primary",
+      description: "Feedback submitted!",
+    });
+  }, []);
 
   return (
     <div

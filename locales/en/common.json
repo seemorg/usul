@@ -54,52 +54,57 @@
       "title": "Browse",
       "texts": {
         "title": "Texts",
-        "description": "Explore the most popular texts"
+        "description": "8,646 Texts"
       },
       "authors": {
         "title": "Authors",
-        "description": "Explore the most popular authors"
+        "description": "3,646 Texts"
       },
       "regions": {
         "title": "Regions",
-        "description": "Explore the most popular regions"
+        "description": "40 Regions"
       },
       "genres": {
         "title": "Genres",
-        "description": "Explore the most popular genres"
+        "description": "40 Genres"
       }
     },
     "about": {
       "title": "About",
-      "get-notified": {
-        "title": "Get Notified",
-        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
+      "about": {
+        "title": "About",
+        "description": "What's Usul"
+      },
+      "team": {
+        "title": "Team",
+        "description": "Who's behind Usul"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "How Usul works"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Get in touch"
       }
     },
     "contribute": {
       "title": "Contribute",
-      "about": {
-        "title": "About Usul",
-        "description": "Stay tuned for the upcoming tools, utilizing cutting-edge AI technologies."
-      },
       "add-text": {
         "title": "Add Text",
-        "description": "Add a new text to the library"
-      },
-      "develop": {
-        "title": "Develop",
-        "description": "Help us develop new tools through open-source contributions"
-      },
-      "contact": {
-        "title": "Contact"
+        "description": "Upload Book or PDF"
       },
       "report-mistake": {
         "title": "Report Mistake",
-        "description": "Report a mistake in a text"
+        "description": "Found something wrong"
       },
       "feedback": {
         "title": "Feedback",
-        "description": "Send us your feedback"
+        "description": "Share a suggestion"
+      },
+      "volunteer": {
+        "title": "Volunteer",
+        "description": "Work with our team"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Thank you!",
     "error": "Something went wrong. Please try again later."
   },
-  "year-filter-info": "Author's death year",
+  "year-filter-info": "Author's death date",
   "regions-filter-info": "Locations where the author has visited, been born, or died",
   "text-info": "Text Info",
   "author-info": "Author Info",

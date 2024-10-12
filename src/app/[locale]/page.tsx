@@ -20,16 +20,9 @@ import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
-import { PlayIcon } from "@heroicons/react/24/solid";
-import dynamicImport from "next/dynamic";
-import { env } from "@/env";
-import { cn } from "@/lib/utils";
 
-const VideoModal = dynamicImport(() => import("../_components/video-modal"), {
-  ssr: false,
-});
+import { cn } from "@/lib/utils";
+import { DemoButton } from "./demo-button";
 
 export const generateMetadata = ({
   params: { locale },
@@ -61,8 +54,6 @@ export default async function HomePage({
 
   const t = await getTranslations({ locale, namespace: "home" });
 
-  const showVideo = env.VERCEL_ENV !== "production";
-
   return (
     <>
       <Navbar isHomepage />
@@ -80,26 +71,9 @@ export default async function HomePage({
             {t("subheadline")}
           </p>
 
-          {/* TODO: remove this condition */}
-          {showVideo && (
-            <div className="mt-7 flex w-full justify-center">
-              <Dialog>
-                <DialogTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="h-10 gap-2 bg-accent/10 px-4 py-3 hover:bg-accent/20 focus:bg-accent/20"
-                  >
-                    <PlayIcon className="size-4" />
-                    How Usul Works - 2:20
-                  </Button>
-                </DialogTrigger>
-
-                <DialogContent className="sm:max-w-[1200px]">
-                  <VideoModal />
-                </DialogContent>
-              </Dialog>
-            </div>
-          )}
+          <div className="mt-7 flex w-full justify-center">
+            <DemoButton />
+          </div>
 
           <div className={cn("w-full", "mt-16 sm:mt-[4.5rem]")}>
             <div className="mx-auto max-w-[46rem]">

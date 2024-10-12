@@ -34,12 +34,23 @@ import { useTranslations } from "next-intl";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Link } from "@/navigation";
+import { InfoIcon } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { VersionAlert } from "../version-alert";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
+  const isVersionMismatch =
+    bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 
   const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],
@@ -155,7 +166,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
     <>
       <SidebarContainer>
         <div className="mt-5 flex items-center gap-2">
-          <Button
+          {/* <Button
             variant="outline"
             size="icon"
             className="h-10 w-10 flex-shrink-0 border-gray-300 shadow-none"
@@ -166,7 +177,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
             ) : (
               <AdjustmentsHorizontalIcon className="h-5 w-5" />
             )}
-          </Button>
+          </Button> */}
 
           <div className="relative w-full">
             <Input
@@ -184,7 +195,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
           </div>
         </div>
 
-        {filtersOpen.value && (
+        {/* {filtersOpen.value && (
           <div className="mt-2 flex flex-col gap-5 rounded-md bg-muted px-4 py-4 dark:bg-accent/80">
             <div>
               <div className="flex items-center justify-between">
@@ -225,8 +236,14 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </SidebarContainer>
+
+      {isVersionMismatch && (
+        <SidebarContainer className="my-4">
+          <VersionAlert versionId={bookResponse.book.flags.aiVersion!} />
+        </SidebarContainer>
+      )}
 
       {results !== null && (
         <SidebarContainer className="mb-4 mt-6">

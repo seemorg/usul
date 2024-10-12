@@ -2,6 +2,8 @@
   "notes": "Notlar",
   "bookmarks": "Yer İşaretleri",
   "content": "İçerik",
+  "version-warning": "Yapay zeka, bu kitabın <tooltip>farklı bir versiyonu</tooltip> üzerinde eğitildi. {feature} kullanabilirsiniz ancak sonuçlar biraz farklı olabilir.",
+  "switch-version": "{version} sürümüne geç",
   "coming-soon": {
     "title": "Yakında",
     "message": "Bu özellik henüz kullanılamıyor."
@@ -22,7 +24,7 @@
     "portion": "Bölüm",
     "entire-book": "Tüm Kitap",
     "book": "Kitap",
-    "book-select-description": "Birden fazla kitap aramak için Gelişmiş Arama'yı kullanın"
+    "book-select-description": "Birden fazla kitap aramak henüz desteklenmiyor"
   },
   "chat": {
     "new-chat": "Yeni Sohbet",
@@ -33,6 +35,7 @@
     "mark-as-correct": "Doğru olarak işaretle",
     "report-as-incorrect": "Yanlış olarak bildir",
     "sources": "Kaynaklar",
+    "error": "Bir şeyler ters gitti. <retry>Tekrar deneyin</retry> veya devam ederse <contact>bize ulaşın</contact>.",
     "pg-x": "Sf {page, number, nogroup}"
   },
   "version": "Versiyon",

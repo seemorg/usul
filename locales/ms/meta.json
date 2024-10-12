@@ -8,5 +8,13 @@
     "title": "{author} | Buku dan Teks",
     "description-secondary": "Baca buku {author}. {author}, juga dikenali sebagai {authorSecondary}, mengarang {books} buku.",
     "description": "Baca buku-buku {author}. {author} telah mengarang {books} buku."
+  },
+  "about-page": {
+    "title": "Tentang Usul",
+    "description": "Ketahui tentang Usul"
+  },
+  "team-page": {
+    "title": "Pasukan",
+    "description": "Berkenalan dengan pasukan Usul"
   }
 }

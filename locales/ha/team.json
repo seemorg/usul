@@ -1,0 +1,59 @@
+{
+  "title": "Sadu da Ƙungiyar",
+  "subtitle": "Ƙungiyar Seemorg Foundation ta ƙunshi injiniyoyi, masu bincike, da ƴan zane waɗanda ke da sha'awa wajen gina binciken addinin Musulunci na zamani. Manufarmu ita ce samar da babban ratar ilimi tsakanin ilimin gargajiya da fasahar zamani, ta yadda dukiyar al'adun adabin Musulunci za ta kasance a hannu ga duk duniya.",
+  "become-a-volunteer": "Kasance mai sa kai",
+  "contact-us": "Tuntuɓe Mu",
+  "board-title": "Sadu da hukumar",
+  "board-subtitle": "Kwamitin Seemorg Foundation ya ƙunshi manyan ƙwararru a cikin bincike da fasaha, kowannensu yana da shekaru na gogewa a fagen da suka dace. A tare, suna kula da ƙungiyar kuma suna tabbatar da cewa tana ci gaba da manufarta na cire ilimin Musulunci.",
+  "members": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma ya kasance injiniya a Quran.com."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad ya kware a cikin ilimin fiqhun Maliki da tarihin Andalusiya. Ya gudanar da Markaz Imam Malik tare."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma ta jagoranci aikin lokalisar da harshen larabci a Tarteel AI. Ta kasance mai fassara a Human Rights Watch."
+    },
+    "ahmed-noor": {
+      "name": "Ahmed Noor",
+      "description": "Ahmed dalibi ne na ilmin addinin Musulunci a İZÜ. Yana iya magana da Harshen Larabci, Turanci, da Urdu sosai."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed dalibi ne a Kwalejin Zaytuna. Shi ne mahalicci podcast na The Creative Minority."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed yana da PhD daga jami'ar Al-Azhar. Yana jagorantar tawagar digitization da ayyuka."
+    }
+  },
+  "board-members": {
+    "adnan-zulfiqar": {
+      "name": "Adnan Zulfiqar",
+      "description": "Adnan ya ƙware a Shari'ar Musulunci da laifuffuka. Ya rubuta dokokin laifi ga Maldives da Somalia."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Intisar malama ce a fannin Shari'a a Harvard. Ita ce shugabar SHARIAsource da Tsarin Shari'ar Musulunci."
+    },
+    "zeki-mokhtarzada": {
+      "name": "Zeki Mokhtarzada",
+      "description": "Zeki ɗan kasuwa ne mai ƙwarewa a fannin fasaha sosai. Ya kafa Freewebs da Truebill tare da wasu."
+    }
+  },
+  "roles": {
+    "ceo": "Shugaba",
+    "founding-engineer": "Injiniya Mai Kafa Kamfanin",
+    "researcher": "Masu Bincike",
+    "localization-lead": "Jagoran Lokaliyasa",
+    "digitization-lead": "Jagoran Digitization"
+  }
+}

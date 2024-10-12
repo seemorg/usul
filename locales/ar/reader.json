@@ -2,6 +2,8 @@
   "notes": "الملاحظات",
   "bookmarks": "العلامات",
   "content": "المحتوى",
+  "version-warning": "تم تدريب الذكاء الاصطناعي على <tooltip>نسخة مختلفة من هذا الكتاب</tooltip>. يمكنك استخدام {feature} ولكن قد تكون النتائج مختلفة قليلاً.",
+  "switch-version": "التبديل إلى {version}",
   "coming-soon": {
     "title": "قريباً",
     "message": "الخاصية غير متاحة بعد."
@@ -22,7 +24,7 @@
     "portion": "جزء",
     "entire-book": "الكتاب بأكمله",
     "book": "كتاب",
-    "book-select-description": "للبحث في كتب متعددة، استخدم البحث المتقدم"
+    "book-select-description": "البحث في عدة كتب غير مدعوم بعد"
   },
   "chat": {
     "new-chat": "دردشة جديدة",
@@ -33,6 +35,7 @@
     "mark-as-correct": "وضع علامة كصحيح",
     "report-as-incorrect": "الإبلاغ عن غير صحيح",
     "sources": "مصادر",
+    "error": "حدث خطأ ما. <retry>حاول مرة أخرى</retry> أو <contact>اتصل بنا</contact> إذا استمرت المشكلة.",
     "pg-x": "ص. {page, number, nogroup}"
   },
   "version": "النسخة",

@@ -2,6 +2,8 @@
   "notes": "नोट्स",
   "bookmarks": "बुकमार्क्स",
   "content": "सामग्री",
+  "version-warning": "एआई को इस पुस्तक के <tooltip>अलग संस्करण</tooltip> पर प्रशिक्षित किया गया है। आप अभी भी {feature} का उपयोग कर सकते हैं लेकिन परिणाम थोड़े अलग हो सकते हैं।",
+  "switch-version": "{version} पर स्विच करें",
   "coming-soon": {
     "title": "जल्द आ रहा है",
     "message": "यह सुविधा अभी उपलब्ध नहीं है।"
@@ -22,7 +24,7 @@
     "portion": "भाग",
     "entire-book": "पूरी किताब",
     "book": "किताब",
-    "book-select-description": "कई किताबों को खोजने के लिए उन्नत खोज का उपयोग करें"
+    "book-select-description": "एकाधिक पुस्तकों की खोज अभी तक समर्थित नहीं है"
   },
   "chat": {
     "new-chat": "नई चैट",
@@ -33,6 +35,7 @@
     "mark-as-correct": "सही के रूप में चिह्नित करें",
     "report-as-incorrect": "गलत के रूप में रिपोर्ट करें",
     "sources": "स्रोत",
+    "error": "कुछ गलत हो गया। <retry>फिर से प्रयास करें</retry> या अगर यह समस्या बनी रहती है तो <contact>हमसे संपर्क करें</contact>.",
     "pg-x": "पृष्ठ {page, number, nogroup}"
   },
   "version": "संस्करण",

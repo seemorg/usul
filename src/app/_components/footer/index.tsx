@@ -1,6 +1,11 @@
 import ComingSoonModal from "@/components/coming-soon-modal";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
+import {
+  ADD_TEXT_URL,
+  REPORT_MISTAKE_URL,
+  VOLUNTEER_EMAIL,
+} from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { config } from "@/lib/seo";
 import { navigation as urls } from "@/lib/urls";
@@ -9,39 +14,55 @@ import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
+import FooterDemoButton from "./demo-button";
 
 type NavItem = {
   label: NamespaceTranslations<"common">;
   href?: string;
+  isDemo?: boolean;
 };
 
 const navigation = {
-  // about: [
-  //   { label: "navigation.about." },
-
-  // ] satisfies NavItem[],
+  about: [
+    {
+      label: "navigation.about.about.title",
+      href: urls.about(),
+    },
+    {
+      label: "navigation.about.team.title",
+      href: urls.team(),
+    },
+    {
+      label: "navigation.about.demo.title",
+      isDemo: true,
+    },
+    {
+      label: "navigation.about.contact.title",
+      href: `mailto:${config.contactEmail}`,
+    },
+  ] satisfies NavItem[],
   browse: [
     { label: "navigation.browse.texts.title", href: urls.books.all() },
     { label: "navigation.browse.authors.title", href: urls.authors.all() },
-    { label: "navigation.browse.regions.title", href: urls.regions.all() },
     { label: "navigation.browse.genres.title", href: urls.genres.all() },
+    { label: "navigation.browse.regions.title", href: urls.regions.all() },
   ] satisfies NavItem[],
   contribute: [
     {
       label: "navigation.contribute.add-text.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: ADD_TEXT_URL,
     },
     {
       label: "navigation.contribute.report-mistake.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: REPORT_MISTAKE_URL,
     },
     {
       label: "navigation.contribute.feedback.title",
       href: `mailto:${config.feedbackEmail}`,
     },
     {
-      label: "navigation.contribute.contact.title",
-      href: `mailto:${config.contactEmail}`,
+      label: "navigation.contribute.volunteer.title",
+      href: `mailto:${VOLUNTEER_EMAIL}`,
     },
   ] satisfies NavItem[],
   social: [
@@ -87,6 +108,12 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
               >
                 {t(item.label)}
               </Link>
+            );
+          } else if (item.isDemo) {
+            link = (
+              <FooterDemoButton className={cn(linkClassName, "cursor-pointer")}>
+                {t(item.label)}
+              </FooterDemoButton>
             );
           } else {
             link = (
@@ -134,13 +161,13 @@ export default function Footer() {
           </div>
 
           <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 xl:mt-0">
-            {/* <FooterRow
-              title={t("navigation.about.title")}
-              items={navigation.about}
-            /> */}
             <FooterRow
               title={t("navigation.browse.title")}
               items={navigation.browse}
+            />
+            <FooterRow
+              title={t("navigation.about.title")}
+              items={navigation.about}
             />
             <FooterRow
               title={t("navigation.contribute.title")}

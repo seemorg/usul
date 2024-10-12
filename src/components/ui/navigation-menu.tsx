@@ -8,19 +8,30 @@ import { cn } from "@/lib/utils";
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
->(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Root
-    ref={ref}
-    className={cn(
-      "relative z-10 flex max-w-max flex-1 items-center justify-center",
-      className,
-    )}
-    {...props}
-  >
-    {children}
-    <NavigationMenuViewport />
-  </NavigationMenuPrimitive.Root>
-));
+>(({ className, children, ...props }, ref) => {
+  const [active, setActive] = React.useState<number | null>(null);
+
+  return (
+    <NavigationMenuPrimitive.Root
+      ref={ref}
+      className={cn(
+        "relative z-10 flex max-w-max flex-1 items-center justify-center",
+        className,
+      )}
+      onValueChange={(value) => (value ? setActive(Number(value)) : null)}
+      {...props}
+    >
+      {children}
+      <NavigationMenuViewport
+        containerClassName={cn(
+          "will-change-transform transition-transform",
+          active === 2 && "rtl:-translate-x-20 ltr:translate-x-24",
+          active === 3 && "rtl:-translate-x-40 ltr:translate-x-48",
+        )}
+      />
+    </NavigationMenuPrimitive.Root>
+  );
+});
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
 
 const NavigationMenuList = React.forwardRef<
@@ -81,11 +92,14 @@ const NavigationMenuLink = NavigationMenuPrimitive.Link;
 
 const NavigationMenuViewport = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Viewport>,
-  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport>
->(({ className, ...props }, ref) => (
+  React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Viewport> & {
+    containerClassName?: string;
+  }
+>(({ className, containerClassName, ...props }, ref) => (
   <div
     className={cn(
       "absolute top-full flex justify-center ltr:left-0 rtl:right-0",
+      containerClassName,
     )}
   >
     <NavigationMenuPrimitive.Viewport

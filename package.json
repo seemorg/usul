@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "prisma generate && next build",
-    "pull-translations": "pnpm dlx tsx pull-translations.ts",
+    "pull-translations": "pnpm with-env pnpm dlx tsx scripts/pull-translations.ts",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "dev": "next dev",
@@ -13,12 +13,15 @@
     "typecheck": "tsc --noEmit",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "with-env": "dotenv --"
   },
   "dependencies": {
-    "@crowdin/ota-client": "^2.0.0",
     "@heroicons/react": "^2.1.1",
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
     "@neondatabase/serverless": "^0.9.0",
+    "@next/mdx": "^14.2.15",
     "@next/third-parties": "^14.2.3",
     "@openiti/markdown-parser": "^1.2.2",
     "@pdftron/pdfjs-express-viewer": "^8.7.5",
@@ -48,6 +51,7 @@
     "@t3-oss/env-nextjs": "^0.7.3",
     "@tanstack/react-query": "^5.22.2",
     "@tanstack/react-virtual": "^3.1.2",
+    "@types/mdx": "^2.0.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.1",
@@ -84,6 +88,8 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
+    "@crowdin/crowdin-api-client": "^1.36.0",
+    "@crowdin/ota-client": "^2.0.0",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
@@ -92,6 +98,7 @@
     "@storybook/nextjs": "^8.3.2",
     "@storybook/react": "^8.3.2",
     "@storybook/test": "^8.3.2",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/eslint": "^8.56.3",
     "@types/node": "^18.19.18",
     "@types/nprogress": "^0.2.3",
@@ -100,6 +107,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.17",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-plugin-storybook": "^0.8.0",

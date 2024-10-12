@@ -10,6 +10,8 @@ import { useSearchParams } from "next/navigation";
 import { FileTextIcon, XIcon } from "lucide-react";
 import { usePathname, useRouter } from "@/navigation";
 
+// TODO: localize
+
 export default function PdfButton({
   pdf,
   slug,
@@ -22,9 +24,6 @@ export default function PdfButton({
   const searchParams = useSearchParams();
   const view = searchParams.get("view");
   const router = useRouter();
-
-  // const size = pdf?.sizeInMb;
-  const Wrapper = pdf?.finalUrl ? "a" : "span";
 
   const onViewClick = () => {
     const newParams = new URLSearchParams(searchParams);
@@ -43,32 +42,37 @@ export default function PdfButton({
         variant={view === "pdf" ? "default" : "secondary"}
         onClick={onViewClick}
         className="w-full flex-1 gap-2 hover:opacity-80"
+        disabled={!pdf?.finalUrl}
       >
         {view === "pdf" ? (
           <XIcon className="h-4 w-4" />
         ) : (
           <FileTextIcon className="h-4 w-4" />
         )}
-        {view === "pdf" ? "Exit PDF" : "View PDF"}
+
+        {!pdf?.finalUrl
+          ? "No PDF Attached"
+          : view === "pdf"
+            ? "Exit PDF"
+            : "View PDF"}
       </Button>
 
-      <Button
-        variant="secondary"
-        size="icon"
-        tooltip={"Download PDF"}
-        disabled={!pdf?.finalUrl}
-        asChild={!!pdf?.finalUrl}
-        className="w-[40px]"
-      >
-        <Wrapper
-          href={pdf?.finalUrl}
-          download={slug + ".pdf"}
-          target="_blank"
-          className="flex w-full justify-center gap-2"
+      {pdf?.finalUrl ? (
+        <Button variant="secondary" size="icon" tooltip="Download PDF" asChild>
+          <a href={pdf?.finalUrl} download={slug + ".pdf"} target="_blank">
+            <ArrowDownTrayIcon className="h-4 w-4" />
+          </a>
+        </Button>
+      ) : (
+        <Button
+          variant="secondary"
+          size="icon"
+          tooltip="Download PDF"
+          disabled={!pdf?.finalUrl}
         >
           <ArrowDownTrayIcon className="h-4 w-4" />
-        </Wrapper>
-      </Button>
+        </Button>
+      )}
     </div>
   );
 }

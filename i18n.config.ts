@@ -57,11 +57,21 @@ export const localePrefix = {
 } satisfies LocalePrefix<typeof locales>;
 
 const config = {
-  namespaces: ["common", "home", "entities", "reader", "meta"] as const,
+  namespaces: [
+    "common",
+    "home",
+    "entities",
+    "reader",
+    "meta",
+    "about",
+    "team",
+  ] as const,
   namespacedRoutes: {
     "*": ["common", "entities", "meta", "reader"],
     "/": ["home"],
     "/t/*": ["reader"],
+    "/about": ["about"],
+    "/team": ["team"],
     // "/chat/*": ["reader"],
   },
 };

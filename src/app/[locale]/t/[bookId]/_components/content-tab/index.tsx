@@ -314,9 +314,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
                         variant="secondary"
                         className="font-normal"
                       >
-                        {pathLocale === "en"
-                          ? genre.transliteration
-                          : genre.name}
+                        {genre.name}
                       </Badge>
                     </Link>
                   ))}

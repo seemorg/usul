@@ -30,6 +30,8 @@ export const navigation = {
     byNumber: (n: number) => `/century/${n}`,
     byYear: (year: number) => `/century/${Math.ceil(year / 100)}`,
   },
+  about: () => "/about",
+  team: () => "/team",
 };
 
 export const booksSorts = [

@@ -54,7 +54,7 @@ export default async function Image({
     notFound();
   }
 
-  const primaryText = genre.transliteration;
+  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
 
   // Font
   const [calSans, family] = await Promise.all([

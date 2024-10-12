@@ -8,5 +8,13 @@
     "title": "{author} | Kitaplar ve Metinler",
     "description-secondary": "{author}'ın kitaplarını okuyun. {author}, {authorSecondary} olarak da bilinir, {books} kitap yazmıştır.",
     "description": "{author}'nin kitaplarını okuyun. {author} {books} kitap yazmıştır."
+  },
+  "about-page": {
+    "title": "Usul Hakkında",
+    "description": "Usul hakkında bilgi edinin"
+  },
+  "team-page": {
+    "title": "Ekip",
+    "description": "Usul ekibiyle tanışın"
   }
 }

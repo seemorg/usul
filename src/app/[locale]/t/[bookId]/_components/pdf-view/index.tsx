@@ -12,6 +12,7 @@ import { useEffect, useRef } from "react";
 import { type PdfChapter, usePdfChapterStore } from "./store";
 import { useTheme } from "next-themes";
 import { env } from "@/env";
+import { makePdfViewerButtons } from "./buttons";
 
 const isInitializedByUrl = new Map<string, boolean>();
 
@@ -39,15 +40,18 @@ export default function PdfView({
       const instance: WebViewerInstance = await WebViewer(
         {
           path: "/pdf-express", // point to where the files you copied are served from
-          initialDoc: pdfSource.finalUrl!, // path to your document
+          // initialDoc: pdfSource.finalUrl!, // path to your document
+          initialDoc: "/demo.pdf",
           enableAnnotations: false,
           disabledElements: [
+            // "selectToolButton",
             "leftPanel",
             "leftPanelButton",
-            // "selectToolButton",
+            "menuButton",
             "themeChangeButton",
             "languageButton",
           ],
+
           licenseKey: env.NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY,
           // set the theme to dark
         } satisfies WebViewerOptions,
@@ -56,14 +60,16 @@ export default function PdfView({
 
       instanceRef.current = instance;
 
+      instance.UI.setHeaderItems((headers) => {
+        const buttons = makePdfViewerButtons(instance);
+        buttons.forEach((b) => headers.push(b));
+      });
+
       instance.UI.setTheme(
         resolvedTheme === "dark"
           ? instance.UI.Theme.DARK
           : instance.UI.Theme.LIGHT,
       );
-
-      // enable text selection
-      // instance.Core.documentViewer.getSelectedText(true);
 
       instance.Core.documentViewer.addEventListener(
         "documentLoaded",

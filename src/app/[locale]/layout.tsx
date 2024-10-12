@@ -12,6 +12,7 @@ import type { AppLocale } from "~/i18n.config";
 import { Toaster } from "@/components/ui/toaster";
 import Script from "next/script";
 import { env } from "@/env";
+import DemoModalProvider from "../_components/video-modal/provider";
 
 export async function generateMetadata() {
   return getMetadata({
@@ -47,6 +48,7 @@ export default function LocaleLayout({
           {children}
 
           <Toaster />
+          <DemoModalProvider />
         </Providers>
 
         {process.env.NODE_ENV === "production" && <Analytics />}

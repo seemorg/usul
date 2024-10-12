@@ -2,6 +2,8 @@
   "notes": "Qoraallo",
   "bookmarks": "Xusuus-qoryo",
   "content": "Mawduuc",
+  "version-warning": "AI waxaa lagu tababaray <tooltip>nuqul kale oo buuggan ah</tooltip>. Weli waxaad isticmaali kartaa {feature} laakiin natiijooyinku way ka duwanaan karaan waxyar.",
+  "switch-version": "U wareeji {version}",
   "coming-soon": {
     "title": "Dhawaan Imaanaysa",
     "message": "Astaantan hadda lama heli karo."
@@ -22,7 +24,7 @@
     "portion": "Qayb",
     "entire-book": "Buugga Oo Dhan",
     "book": "Buug",
-    "book-select-description": "Si aad u baarto buugag badan isticmaal Raadinta Weyn"
+    "book-select-description": "Baadhista buugaag badan weli lama taageerin"
   },
   "chat": {
     "new-chat": "Chat Cusub",
@@ -33,6 +35,7 @@
     "mark-as-correct": "Calaamadee sida saxda ah",
     "report-as-incorrect": "Soo sheeg sida khaldan",
     "sources": "Ilo",
+    "error": "Waxbaa qaldamay. <retry>Mar kale isku day</retry> ama <contact>nala soo xidhiidh</contact> haddii ay sii socoto.",
     "pg-x": "Bog {page, number, nogroup}"
   },
   "version": "Nooca",

@@ -19,7 +19,7 @@ export default function VideoModal() {
 
   return (
     <>
-      <div className="flex items-center gap-3">
+      {/* <div className="flex items-center gap-3">
         <Button
           variant={activeLanguage === "en" ? "default" : "outline"}
           onClick={() => setActiveLanguage("en")}
@@ -33,16 +33,22 @@ export default function VideoModal() {
         >
           {getLocaleFullName(pathLocaleToAppLocale("ar")!)}
         </Button>
-      </div>
+      </div> */}
 
       <div className="mt-5">
         <Plyr
+          // autoPlay
+          options={{ autoplay: true }}
           source={{
             type: "video",
             sources: [
+              // {
+              //   provider: "youtube",
+              //   src: "nqye02H_H6I",
+              // },
               {
-                provider: "youtube",
-                src: "nqye02H_H6I",
+                provider: "html5",
+                src: "https://assets.usul.ai/usul%20beta.mp4",
               },
             ],
           }}

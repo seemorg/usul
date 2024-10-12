@@ -8,5 +8,13 @@
     "title": "{author} | Livres et textes",
     "description-secondary": "Lisez les livres de {author}. {author}, également connu sous le nom de {authorSecondary}, a écrit {books} livre{books, plural, one {} other {s}}.",
     "description": "Lisez les livres de {author}. {author} a écrit {books} livres."
+  },
+  "about-page": {
+    "title": "À propos d'Usul",
+    "description": "Découvrez Usul"
+  },
+  "team-page": {
+    "title": "Équipe",
+    "description": "Rencontrez l'équipe Usul"
   }
 }

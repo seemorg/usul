@@ -54,52 +54,57 @@
       "title": "Parcourir",
       "texts": {
         "title": "Textes",
-        "description": "Explorez les textes les plus populaires"
+        "description": "8 646 Textes"
       },
       "authors": {
         "title": "Auteurs",
-        "description": "Explorez les auteurs les plus populaires"
+        "description": "3 646 Textes"
       },
       "regions": {
         "title": "Régions",
-        "description": "Explorez les régions les plus populaires"
+        "description": "40 Régions"
       },
       "genres": {
         "title": "Genres",
-        "description": "Explorez les genres les plus populaires"
+        "description": "40 Genres"
       }
     },
     "about": {
       "title": "À propos",
-      "get-notified": {
-        "title": "Soyez notifié",
-        "description": "Restez informé des prochains outils, utilisant des technologies d'IA de pointe."
+      "about": {
+        "title": "À propos",
+        "description": "Qu'est-ce que Usul"
+      },
+      "team": {
+        "title": "Équipe",
+        "description": "Qui est derrière Usul"
+      },
+      "demo": {
+        "title": "Démo",
+        "description": "Comment fonctionne Usul"
+      },
+      "contact": {
+        "title": "Contact",
+        "description": "Prendre contact"
       }
     },
     "contribute": {
       "title": "Contribuer",
-      "about": {
-        "title": "À propos d'Usul",
-        "description": "Restez à l'écoute pour les prochains outils, utilisant les technologies d'IA de pointe."
-      },
       "add-text": {
         "title": "Ajouter Texte",
-        "description": "Ajoutez un nouveau texte à la bibliothèque"
-      },
-      "develop": {
-        "title": "Développer",
-        "description": "Aidez-nous à développer de nouveaux outils grâce aux contributions open-source"
-      },
-      "contact": {
-        "title": "Contact"
+        "description": "Télécharger un livre ou PDF"
       },
       "report-mistake": {
         "title": "Signaler une Erreur",
-        "description": "Signalez une erreur dans un texte"
+        "description": "Trouvé quelque chose d'erroné"
       },
       "feedback": {
         "title": "Retours",
-        "description": "Envoyez-nous vos retours"
+        "description": "Partager une suggestion"
+      },
+      "volunteer": {
+        "title": "Bénévole",
+        "description": "Travailler avec notre équipe"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Merci !",
     "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
   },
-  "year-filter-info": "Année de décès de l'auteur",
+  "year-filter-info": "Date de décès de l'auteur",
   "regions-filter-info": "Lieux où l'auteur a visité, est né ou est décédé",
   "text-info": "Infos Texte",
   "author-info": "Infos Auteur",

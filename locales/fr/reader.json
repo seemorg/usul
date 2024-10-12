@@ -2,6 +2,8 @@
   "notes": "Notes",
   "bookmarks": "Signets",
   "content": "Contenu",
+  "version-warning": "L'IA a été formée sur une <tooltip>version différente de ce livre</tooltip>. Vous pouvez toujours utiliser {feature} mais les résultats pourraient être légèrement différents.",
+  "switch-version": "Passer à {version}",
   "coming-soon": {
     "title": "Prochainement",
     "message": "Cette fonctionnalité n'est pas encore disponible."
@@ -22,7 +24,7 @@
     "portion": "Portion",
     "entire-book": "Livre entier",
     "book": "Livre",
-    "book-select-description": "Pour rechercher plusieurs livres, utilisez la recherche avancée"
+    "book-select-description": "La recherche dans plusieurs livres n'est pas encore prise en charge"
   },
   "chat": {
     "new-chat": "Nouveau Chat",
@@ -33,6 +35,7 @@
     "mark-as-correct": "Marquer comme correct",
     "report-as-incorrect": "Signaler comme incorrect",
     "sources": "Sources",
+    "error": "Quelque chose s'est mal passé. <retry>Réessayez</retry> ou <contact>contactez-nous</contact> si le problème persiste.",
     "pg-x": "Pg {page, number, nogroup}"
   },
   "version": "Version",

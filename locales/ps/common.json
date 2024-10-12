@@ -54,52 +54,57 @@
       "title": "ګورئ",
       "texts": {
         "title": "متنونه",
-        "description": "تر ټولو مشهور متنونه وپلټئ"
+        "description": "۸,۶۴۶ متنونه"
       },
       "authors": {
         "title": "لیکوالان",
-        "description": "تر ټولو مشهور لیکوالان وپلټئ"
+        "description": "۳,۶۴۶ متنونه"
       },
       "regions": {
         "title": "سیمې",
-        "description": "تر ټولو مشهور سیمې وپلټئ"
+        "description": "۴۰ سیمې"
       },
       "genres": {
         "title": "ژانرونه",
-        "description": "تر ټولو مشهور ژانرونه وپلټئ"
+        "description": "۴۰ ژانرونه"
       }
     },
     "about": {
       "title": "په اړه",
-      "get-notified": {
-        "title": "خبر شئ",
-        "description": "د راتلونکو وسیلو لپاره خبر اوسئ، چې د پرمختللو AI ټکنالوژیو کارول کیږي."
+      "about": {
+        "title": "په اړه",
+        "description": "Usul څه دی"
+      },
+      "team": {
+        "title": "ډله",
+        "description": "د Usul تر شا څوک دی"
+      },
+      "demo": {
+        "title": "ډيمو",
+        "description": "Usul څنګه کار کوي"
+      },
+      "contact": {
+        "title": "اړیکه",
+        "description": "اړیکه ونیسئ"
       }
     },
     "contribute": {
       "title": "ونډه ورکول",
-      "about": {
-        "title": "د اصولو په اړه",
-        "description": "د راتلونکو آلاتو لپاره مو چمتو وساتئ، چې د پرمختیايي AI ټکنالوژیو کاروي."
-      },
       "add-text": {
         "title": "متن اضافه کول",
-        "description": "نوی متن په کتابتون کې اضافه کول"
-      },
-      "develop": {
-        "title": "وروسته کول",
-        "description": "موږ ته د خلاصه سرچینې له لارې د نوي آلاتو پرمختیا کې مرسته وکړئ"
-      },
-      "contact": {
-        "title": "اړیکه"
+        "description": "کتاب یا پی‌ډی‌اف پورته کړئ"
       },
       "report-mistake": {
         "title": "غلطي راپور ورکول",
-        "description": "په یوه متن کې غلطي راپور ورکړئ"
+        "description": "څه غلط پیدا شول"
       },
       "feedback": {
         "title": "تبصرې",
-        "description": "خپلې تبصرې را واستوئ"
+        "description": "يو وړانديز شريک کړه"
+      },
+      "volunteer": {
+        "title": "رضاکار",
+        "description": "زموږ له ډلې سره کار وکړئ"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "مننه!",
     "error": "یوه ستونزه راپیدا شوه. بیا وروسته هڅه وکړئ."
   },
-  "year-filter-info": "د لیکوال د مړینې کال",
+  "year-filter-info": "د لیکوال د مړینې نېټه",
   "regions-filter-info": "ځایونه چې لیکوال لیدلي، زېږېدلی یا مړ شوی دی",
   "text-info": "د متن معلومات",
   "author-info": "د لیکوال معلومات",

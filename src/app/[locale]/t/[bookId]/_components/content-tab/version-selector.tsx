@@ -73,10 +73,7 @@ export default function VersionSelector({
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
 
-    const newUrl =
-      newVersion === versions[0]?.value
-        ? pathname
-        : `${pathname}?versionId=${newVersion}`;
+    const newUrl = `${pathname}?versionId=${newVersion}`;
 
     startTransition(() => {
       replace(newUrl);

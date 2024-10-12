@@ -2,6 +2,8 @@
   "notes": "نوٹس",
   "bookmarks": "بُک مارکس",
   "content": "مواد",
+  "version-warning": "AI کو اس کتاب کے <tooltip>مختلف ورژن</tooltip> پر تربیت دی گئی ہے۔ آپ {feature} کو استعمال کر سکتے ہیں لیکن نتائج تھوڑے مختلف ہو سکتے ہیں۔",
+  "switch-version": "{version} پر سوئچ کریں",
   "coming-soon": {
     "title": "جلد آ رہا ہے",
     "message": "یہ خصوصیت ابھی دستیاب نہیں ہے۔"
@@ -22,7 +24,7 @@
     "portion": "حصہ",
     "entire-book": "پوری کتاب",
     "book": "کتاب",
-    "book-select-description": "متعدد کتابیں تلاش کرنے کے لئے ایڈوانسڈ تلاش کا استعمال کریں"
+    "book-select-description": "متعدد کتابوں کی تلاش کی ابھی تک حمایت نہیں ہے"
   },
   "chat": {
     "new-chat": "نیا چیٹ",
@@ -33,6 +35,7 @@
     "mark-as-correct": "صحیح کے طور پر نشان زد کریں",
     "report-as-incorrect": "غلط رپورٹ کریں",
     "sources": "ماخذ",
+    "error": "کچھ غلط ہو گیا ہے۔ <retry>دوبارہ کوشش کریں</retry> یا اگر یہ مسئلہ برقرار رہے تو <contact>ہم سے رابطہ کریں</contact>۔",
     "pg-x": "صفحه {page, number, nogroup}"
   },
   "version": "ورژن",
