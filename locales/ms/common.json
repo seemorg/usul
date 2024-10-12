@@ -54,52 +54,57 @@
       "title": "Semak",
       "texts": {
         "title": "Teks",
-        "description": "Terokai teks paling popular"
+        "description": "8,646 Teks"
       },
       "authors": {
         "title": "Penulis",
-        "description": "Terokai penulis paling popular"
+        "description": "3,646 Teks"
       },
       "regions": {
         "title": "Wilayah",
-        "description": "Terokai wilayah paling popular"
+        "description": "40 Wilayah"
       },
       "genres": {
         "title": "Genre",
-        "description": "Terokai genre paling popular"
+        "description": "40 Genre"
       }
     },
     "about": {
       "title": "Mengenai",
-      "get-notified": {
-        "title": "Dapatkan Pemberitahuan",
-        "description": "Ikuti perkembangan untuk alat akan datang, menggunakan teknologi AI terkini."
+      "about": {
+        "title": "Mengenai",
+        "description": "Apa Itu Usul"
+      },
+      "team": {
+        "title": "Pasukan",
+        "description": "Siapa Di Sebalik Usul"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "Bagaimana Usul Berfungsi"
+      },
+      "contact": {
+        "title": "Hubungi",
+        "description": "Dapatkan Hubungan"
       }
     },
     "contribute": {
       "title": "Sumbang",
-      "about": {
-        "title": "Mengenai Usul",
-        "description": "Nantikan alat-alat akan datang, yang menggunakan teknologi AI terkini."
-      },
       "add-text": {
         "title": "Tambah Teks",
-        "description": "Tambah teks baru ke perpustakaan"
-      },
-      "develop": {
-        "title": "Kembangkan",
-        "description": "Bantulah kami mengembangkan alat baru melalui sumbangan sumber terbuka"
-      },
-      "contact": {
-        "title": "Hubungi"
+        "description": "Muat Naik Buku atau PDF"
       },
       "report-mistake": {
         "title": "Laporkan Kesalahan",
-        "description": "Laporkan kesalahan dalam sebuah teks"
+        "description": "Jumpa Ada Kesalahan"
       },
       "feedback": {
         "title": "Maklum Balas",
-        "description": "Hantarkan maklum balas anda kepada kami"
+        "description": "Kongsi cadangan"
+      },
+      "volunteer": {
+        "title": "Sukarelawan",
+        "description": "Bekerjasama dengan pasukan kami"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Terima kasih!",
     "error": "Ada yang salah. Sila cuba lagi nanti."
   },
-  "year-filter-info": "Tahun kematian pengarang",
+  "year-filter-info": "Tarikh kematian penulis",
   "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia",
   "text-info": "Maklumat Teks",
   "author-info": "Maklumat Pengarang",

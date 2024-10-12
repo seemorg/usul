@@ -8,5 +8,13 @@
     "title": "{author} | کتابونه او متون",
     "description-secondary": "د {author} کتابونه ولولئ. {author}، چې د {authorSecondary} په نوم هم پېژندل کېږي، {books} کتابونه لیکلي دي.",
     "description": "د {author} کتابونه ولولئ. {author} {books} کتابونه لیکلي دي."
+  },
+  "about-page": {
+    "title": "د اصول په اړه",
+    "description": "د اصول په اړه زده کړئ"
+  },
+  "team-page": {
+    "title": "ټیم",
+    "description": "د اصول ټیم سره وګورئ"
   }
 }

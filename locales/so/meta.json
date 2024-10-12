@@ -8,5 +8,13 @@
     "title": "{author} | Buugaagta iyo Qoraallada",
     "description-secondary": "Akhri buugaagta uu qoray {author}. {author} oo sidoo kale loo yaqaan {authorSecondary}, wuxuu qoray {books} buug.",
     "description": "Akhri buugaagta {author}. {author} wuxuu qoray {books} buug."
+  },
+  "about-page": {
+    "title": "Ku saabsan Usul",
+    "description": "Baro Usul"
+  },
+  "team-page": {
+    "title": "Kooxda",
+    "description": "La kulan kooxda Usul"
   }
 }

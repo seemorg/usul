@@ -1,0 +1,59 @@
+{
+  "title": "Rencontrez l'équipe",
+  "subtitle": "L'équipe de la Fondation Seemorg est composée d'ingénieurs, de chercheurs et de designers passionnés par la construction de recherches islamiques de pointe. Notre mission est de combler le fossé entre la connaissance classique et la technologie moderne, en veillant à ce que la riche patrimoine de la littérature islamique soit facilement accessible à travers le monde entier.",
+  "become-a-volunteer": "Devenez bénévole",
+  "contact-us": "Contactez-nous",
+  "board-title": "Rencontrez le conseil d'administration",
+  "board-subtitle": "Le conseil d'administration de la Fondation Seemorg est composé d'experts remarquables en recherche et technologie, chacun ayant des décennies d'expérience dans leurs domaines respectifs. Ensemble, ils supervisent l'organisation et veillent à ce qu'elle progresse vers sa mission de faire avancer l'érudition islamique.",
+  "members": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif a co-fondé Tarteel AI, dirigé l'ingénierie chez Quran.com et travaillé chez Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed a co-fondé Remail AI, Betterbook, et était ingénieur chez Quran.com."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad est spécialisé dans le fiqh malékite et l'histoire andalouse. Il a co-géré le Markaz Imam Malik."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma a dirigé la localisation arabe chez Tarteel AI. Elle était traductrice pour Human Rights Watch."
+    },
+    "ahmed-noor": {
+      "name": "Ahmed Noor",
+      "description": "Ahmed est étudiant en théologie islamique à İZÜ. Il parle couramment l'arabe, l'anglais et l'ourdou."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed est étudiant au Zaytuna College. Il est le créateur du podcast The Creative Minority."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed est titulaire d'un doctorat de l'université d'Al-Azhar. Il dirige l'équipe de numérisation et les efforts."
+    }
+  },
+  "board-members": {
+    "adnan-zulfiqar": {
+      "name": "Adnan Zulfiqar",
+      "description": "Adnan est spécialisé en droit islamique et pénal. Il a rédigé des codes pénaux pour les Maldives et la Somalie."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Intisar est professeur de droit à Harvard. Elle dirige SHARIAsource et le Program in Islamic Law."
+    },
+    "zeki-mokhtarzada": {
+      "name": "Zeki Mokhtarzada",
+      "description": "Zeki est un entrepreneur avec une expertise technique pointue. Il a cofondé Freewebs et Truebill."
+    }
+  },
+  "roles": {
+    "ceo": "PDG",
+    "founding-engineer": "Ingénieur Fondateur",
+    "researcher": "Chercheur",
+    "localization-lead": "Responsable de la Localisation",
+    "digitization-lead": "Responsable de la Numérisation"
+  }
+}

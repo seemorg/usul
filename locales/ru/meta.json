@@ -8,5 +8,13 @@
     "title": "{author} | Книги и тексты",
     "description-secondary": "Читайте книги {author}. {author}, также известный как {authorSecondary}, написал {books} книгу.",
     "description": "Читайте книги {author}. {author} написал книги {books}."
+  },
+  "about-page": {
+    "title": "О нас",
+    "description": "Узнайте о Usul"
+  },
+  "team-page": {
+    "title": "Команда",
+    "description": "Познакомьтесь с командой Usul"
   }
 }

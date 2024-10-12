@@ -1,0 +1,59 @@
+{
+  "title": "Takımla Tanışın",
+  "subtitle": "Seemorg Vakfı ekibi, son teknoloji İslami araştırmalar yapmaya tutkulu mühendisler, araştırmacılar ve tasarımcılardan oluşur. Misyonumuz, klasik bilgi ile modern teknolojiyi birleştirerek İslam edebiyatının zengin mirasını tüm dünyaya ulaştırmaktır.",
+  "become-a-volunteer": "Gönüllü Olun",
+  "contact-us": "Bize Ulaşın",
+  "board-title": "Yönetim Kuruluyla Tanışın",
+  "board-subtitle": "Seemorg Vakfı’nın yönetim kurulu, kendi alanlarında onlarca yıllık deneyime sahip seçkin araştırma ve teknoloji uzmanlarından oluşur. Birlikte, organizasyonu denetler ve İslami araştırmanın ilerletilmesi misyonuna doğru ilerlemesini sağlarlar.",
+  "members": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif, Tarteel AI'yı kurdu, Quran.com'da mühendislik liderliği yaptı ve Twitter'da çalıştı."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed, Remail AI ve Betterbook’u kurdu ve Quran.com'da mühendis olarak çalıştı."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad, Maliki fıkhı ve Endülüs tarihi konusunda uzmanlaşmıştır. Markaz Imam Malik'i ortaklaşa yönetti."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma, Tarteel AI'de Arapça yerelleştirme çalışmalarını yönetti. Human Rights Watch'ta çevirmen olarak çalıştı."
+    },
+    "ahmed-noor": {
+      "name": "Ahmed Noor",
+      "description": "Ahmed, İZÜ'de İslami teoloji öğrencisidir. Arapça, İngilizce ve Urduca dillerinde akıcıdır."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed, Zaytuna College'de öğrencidir. The Creative Minority podcast'inin yaratıcısıdır."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed, Al-Azhar Üniversitesi'nden doktora sahibidir. Dijitalleşme ekibi ve çalışmalarını yönetmektedir."
+    }
+  },
+  "board-members": {
+    "adnan-zulfiqar": {
+      "name": "Adnan Zulfiqar",
+      "description": "Adnan, İslam ve ceza hukuku konusunda uzmandır. Maldivler ve Somali için ceza kanunları hazırladı."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Intisar, Harvard'da Hukuk profesörüdür. SHARIAsource ve İslam Hukuku Programı'nı yönetmektedir."
+    },
+    "zeki-mokhtarzada": {
+      "name": "Zeki Mokhtarzada",
+      "description": "Zeki, derin teknik uzmanlığa sahip bir girişimcidir. Freewebs ve Truebill'i kurdu."
+    }
+  },
+  "roles": {
+    "ceo": "CEO",
+    "founding-engineer": "Kurucu Mühendis",
+    "researcher": "Araştırmacı",
+    "localization-lead": "Yerelleştirme Lideri",
+    "digitization-lead": "Dijitalleştirme Lideri"
+  }
+}

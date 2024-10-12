@@ -8,5 +8,13 @@
     "title": "{author} | বই এবং পাঠ্যপুস্তক",
     "description-secondary": "{author} এর বইগুলি পড়ুন। {authorSecondary} নামেও পরিচিত {author}, {books} টি বই লিখেছেন।",
     "description": "{author} এর বই পড়ুন। {author} {books} বই রচনা করেছেন।"
+  },
+  "about-page": {
+    "title": "Usul সম্পর্কে",
+    "description": "Usul সম্পর্কে জানুন"
+  },
+  "team-page": {
+    "title": "দল",
+    "description": "Usul দলের সাথে পরিচিত হন"
   }
 }
