@@ -54,52 +54,57 @@
       "title": "مرور",
       "texts": {
         "title": "متون",
-        "description": "کشف متون محبوب"
+        "description": "۸٬۶۴۶ متن"
       },
       "authors": {
         "title": "نویسندگان",
-        "description": "کشف نویسندگان محبوب"
+        "description": "۳٬۶۴۶ متن"
       },
       "regions": {
         "title": "مناطق",
-        "description": "کشف مناطق محبوب"
+        "description": "۴۰ منطقه"
       },
       "genres": {
         "title": "ژانرها",
-        "description": "کشف ژانرهای محبوب"
+        "description": "۴۰ ژانر"
       }
     },
     "about": {
       "title": "درباره",
-      "get-notified": {
-        "title": "دریافت اعلان‌ها",
-        "description": "از ابزارهای جدید مبتنی بر تکنولوژی‌های پیشرفته هوش مصنوعی مطلع شوید."
+      "about": {
+        "title": "درباره",
+        "description": "اوسول چیست"
+      },
+      "team": {
+        "title": "تیم",
+        "description": "چه کسانی پشت اوسول هستند"
+      },
+      "demo": {
+        "title": "دمو",
+        "description": "اوسول چگونه کار می‌کند"
+      },
+      "contact": {
+        "title": "تماس",
+        "description": "در تماس باشید"
       }
     },
     "contribute": {
       "title": "مشارکت",
-      "about": {
-        "title": "درباره اصول",
-        "description": "منتظر ابزارهای آتی با استفاده از فناوری‌های پیشرفته هوش مصنوعی بمانید."
-      },
       "add-text": {
         "title": "افزودن متن",
-        "description": "افزودن یک متن جدید به کتابخانه"
-      },
-      "develop": {
-        "title": "توسعه",
-        "description": "به ما در توسعه ابزارهای جدید از طریق مشارکت‌های منبع باز کمک کنید"
-      },
-      "contact": {
-        "title": "تماس"
+        "description": "کتاب یا PDF بارگذاری کنید"
       },
       "report-mistake": {
         "title": "گزارش خطا",
-        "description": "گزارش یک خطا در یک متن"
+        "description": "اشکالی پیدا کردید"
       },
       "feedback": {
         "title": "بازخورد",
-        "description": "بازخورد خود را برای ما ارسال کنید"
+        "description": "اشتراک یک پیشنهاد"
+      },
+      "volunteer": {
+        "title": "داوطلب شوید",
+        "description": "همکاری با تیم ما"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "متشکریم!",
     "error": "مشکلی پیش آمد. لطفا بعدا دوباره تلاش کنید."
   },
-  "year-filter-info": "سال فوت نویسنده",
+  "year-filter-info": "تاریخ فوت نویسنده",
   "regions-filter-info": "مکان‌هایی که نویسنده بازدید کرده، زاده شده یا درگذشته است",
   "text-info": "اطلاعات متن",
   "author-info": "اطلاعات نویسنده",

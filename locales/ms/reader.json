@@ -2,6 +2,8 @@
   "notes": "Nota",
   "bookmarks": "Penanda Buku",
   "content": "Kandungan",
+  "version-warning": "AI telah dilatih pada <tooltip>versi berbeza buku ini</tooltip>. Anda masih boleh menggunakan {feature} tetapi hasilnya mungkin sedikit berbeza.",
+  "switch-version": "Tukar kepada {version}",
   "coming-soon": {
     "title": "Akan Datang",
     "message": "Ciri ini belum tersedia."
@@ -22,7 +24,7 @@
     "portion": "Bahagian",
     "entire-book": "Buku Keseluruhan",
     "book": "Buku",
-    "book-select-description": "Untuk mencari pelbagai buku gunakan Carian Lanjutan"
+    "book-select-description": "Carian untuk pelbagai buku belum disokong lagi"
   },
   "chat": {
     "new-chat": "Chat Baru",
@@ -33,6 +35,7 @@
     "mark-as-correct": "Tandakan sebagai betul",
     "report-as-incorrect": "Lapor sebagai salah",
     "sources": "Sumber",
+    "error": "Sesuatu telah berlaku. <retry>Cuba lagi</retry> atau <contact>hubungi kami</contact> jika ia berterusan.",
     "pg-x": "Hal {page, number, nogroup}"
   },
   "version": "Versi",

@@ -2,6 +2,8 @@
   "notes": "یادداشت‌ها",
   "bookmarks": "نشانک‌ها",
   "content": "محتوا",
+  "version-warning": "هوش مصنوعی روی <tooltip>نسخه متفاوتی از این کتاب</tooltip> آموزش دیده است. شما همچنان می‌توانید از {feature} استفاده کنید اما نتایج ممکن است کمی متفاوت باشد.",
+  "switch-version": "تغییر به {version}",
   "coming-soon": {
     "title": "به زودی",
     "message": "این قابلیت هنوز در دسترس نیست."
@@ -22,7 +24,7 @@
     "portion": "بخش",
     "entire-book": "تمام کتاب",
     "book": "کتاب",
-    "book-select-description": "برای جستجوی چندین کتاب از جستجوی پیشرفته استفاده کنید"
+    "book-select-description": "جستجوی همزمان در چند کتاب هنوز پشتیبانی نمی‌شود"
   },
   "chat": {
     "new-chat": "گفتگوی جدید",
@@ -33,6 +35,7 @@
     "mark-as-correct": "علامت‌گذاری به عنوان درست",
     "report-as-incorrect": "گزارش به عنوان نادرست",
     "sources": "منابع",
+    "error": "مشکلی پیش آمد. <retry>دوباره امتحان کنید</retry> یا <contact>با ما تماس بگیرید</contact> اگر ادامه پیدا کرد.",
     "pg-x": "ص {page, number, nogroup}"
   },
   "version": "نسخه",

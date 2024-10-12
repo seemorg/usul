@@ -54,52 +54,57 @@
       "title": "Baadh",
       "texts": {
         "title": "Qoraallo",
-        "description": "Baadh qoraallada ugu caansan"
+        "description": "8,646 Qoraallada"
       },
       "authors": {
         "title": "Qorayaal",
-        "description": "Baadh qorayaasha ugu caansan"
+        "description": "3,646 Qoraallada"
       },
       "regions": {
         "title": "Gobollada",
-        "description": "Baadh gobollada ugu caansan"
+        "description": "40 Gobollo"
       },
       "genres": {
         "title": "Noocyo",
-        "description": "Baadh noocyada ugu caansan"
+        "description": "40 Noocyada"
       }
     },
     "about": {
       "title": "Ku saabsan",
-      "get-notified": {
-        "title": "Ogaysiis Hel",
-        "description": "La soco agabka soo socda, oo isticmaalaya tignoolajiyada AI-ga casriga ah."
+      "about": {
+        "title": "Ku Saabsan",
+        "description": "Waa maxay Usul"
+      },
+      "team": {
+        "title": "Kooxda",
+        "description": "Yaa ka dambeeya Usul"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "Sida Usul u shaqeeyo"
+      },
+      "contact": {
+        "title": "La xiriir",
+        "description": "La soo xirir"
       }
     },
     "contribute": {
       "title": "Ku Biiri",
-      "about": {
-        "title": "Ku Saabsan Usul",
-        "description": "Dhawrsoonaanta qalabka soo socda, iyadoo la adeegsanayo tiknoolajiyada AI ee ugu dambeysa."
-      },
       "add-text": {
         "title": "Ku Dar Qoraal",
-        "description": "Ku dar qoraal cusub maktabadda"
-      },
-      "develop": {
-        "title": "Hormari",
-        "description": "Naga caawi inaan hormarino qalabyo cusub iyada oo loo marayo ka qaybgalka il furan"
-      },
-      "contact": {
-        "title": "Xiriir"
+        "description": "Soo geli Buug ama PDF"
       },
       "report-mistake": {
         "title": "Sheeg Khaladaad",
-        "description": "Sheeg khalad ku jira qoraal"
+        "description": "Wax khaldan baa laga helay"
       },
       "feedback": {
         "title": "Jawaabcelin",
-        "description": "Noo soo dir jawaabcelintaada"
+        "description": "La wadaag talo soo jeedin"
+      },
+      "volunteer": {
+        "title": "Tabaruc",
+        "description": "Ka shaqee kooxda nala joogo"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Mahadsanid!",
     "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
   },
-  "year-filter-info": "Sanadka Geerida Qoraa",
+  "year-filter-info": "Taariikhda geerida qoraha",
   "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday",
   "text-info": "Macluumaadka Qoraalka",
   "author-info": "Macluumaadka Qoraaga",

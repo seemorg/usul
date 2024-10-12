@@ -2,6 +2,8 @@
   "notes": "নোট",
   "bookmarks": "বুকমার্কস",
   "content": "বিষয়বস্তু",
+  "version-warning": "AI একটি <tooltip>এই বইটির অন্য সংস্করণ</tooltip> এর উপর প্রশিক্ষিত হয়েছে। আপনি এখনও {feature} ব্যবহার করতে পারেন কিন্তু ফলাফল সামান্য ভিন্ন হতে পারে।",
+  "switch-version": "{version}-এ স্যুইচ করুন",
   "coming-soon": {
     "title": "শীঘ্রই আসছে",
     "message": "এই বৈশিষ্ট্যটি এখনও উপলব্ধ নয়।"
@@ -22,7 +24,7 @@
     "portion": "অংশ",
     "entire-book": "সম্পূর্ণ বই",
     "book": "বই",
-    "book-select-description": "একাধিক বই অনুসন্ধানের জন্য উন্নত অনুসন্ধান ব্যবহার করুন"
+    "book-select-description": "একাধিক বই অনুসন্ধান করার সুবিধা এখনও সমর্থিত নয়"
   },
   "chat": {
     "new-chat": "নতুন চ্যাট",
@@ -33,6 +35,7 @@
     "mark-as-correct": "সঠিক হিসাবে চিহ্নিত করুন",
     "report-as-incorrect": "ভুল হিসাবে রিপোর্ট করুন",
     "sources": "উৎস",
+    "error": "কিছু ভুল হয়েছে। <retry>আবার চেষ্টা করুন</retry> অথবা যদি এটি অব্যাহত থাকে, <contact>আমাদের সাথে যোগাযোগ করুন</contact>.",
     "pg-x": "পৃ {page, number, nogroup}"
   },
   "version": "সংস্করণ",

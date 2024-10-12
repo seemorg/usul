@@ -8,5 +8,13 @@
     "title": "{author} | الكتب والنصوص",
     "description-secondary": "اقرأ كتب {author}. {author} المعروف أيضًا باسم {authorSecondary}، كتب {books} كتابًا.",
     "description": "اقرأ كتب {author}. {author} تأليف كتب {books}."
+  },
+  "about-page": {
+    "title": "عن أصول",
+    "description": "تعرّف على أصول"
+  },
+  "team-page": {
+    "title": "فريق العمل",
+    "description": "تعرف على فريق أصول"
   }
 }

@@ -54,52 +54,57 @@
       "title": "Duba",
       "texts": {
         "title": "Rubutun",
-        "description": "Bincika sanannun rubutu"
+        "description": "8,646 Rubuce-rubuce"
       },
       "authors": {
         "title": "Marubuta",
-        "description": "Bincika sanannun marubuta"
+        "description": "3,646 Rubuce-rubuce"
       },
       "regions": {
         "title": "Yankuna",
-        "description": "Bincika sanannun yankuna"
+        "description": "40 Yankuna"
       },
       "genres": {
         "title": "Nau'o'i",
-        "description": "Bincika sanannun nau'o'i"
+        "description": "40 Nau'o'i"
       }
     },
     "about": {
       "title": "Game da",
-      "get-notified": {
-        "title": "Karɓi Sanarwa",
-        "description": "Kasance tare da sabbin kayan aikin da za a kawo, tare da amfani da fasahar AI na zamani."
+      "about": {
+        "title": "Game da",
+        "description": "Menene Usul"
+      },
+      "team": {
+        "title": "Ƙungiya",
+        "description": "Waye ke bayan Usul"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "Yadda Usul ke aiki"
+      },
+      "contact": {
+        "title": "Tuntuɓar mu",
+        "description": "Tuntuɓi mu"
       }
     },
     "contribute": {
       "title": "Gudumawa",
-      "about": {
-        "title": "Game da Usul",
-        "description": "Kasance na jiran sababbin kayan aikin, wanda ke amfani da sabbin fasahohin AI."
-      },
       "add-text": {
         "title": "Ƙara Rubutu",
-        "description": "Ƙara sabon rubutu zuwa ɗakin karatu"
-      },
-      "develop": {
-        "title": "Haɓaka",
-        "description": "Taimaka mana haɓaka sababbin kayan aiki ta hanyar gudummawar bude ido"
-      },
-      "contact": {
-        "title": "Saduwa"
+        "description": "Loda Littafi ko PDF"
       },
       "report-mistake": {
         "title": "Ruwaito Kuskure",
-        "description": "Ruwaito kuskuren cikin rubutu"
+        "description": "Kimanta wani kuskure"
       },
       "feedback": {
         "title": "Martani",
-        "description": "Aiko mana da martaninku"
+        "description": "Raba shawarwari"
+      },
+      "volunteer": {
+        "title": "Yin aikin sa kai",
+        "description": "Yi aiki tare da tawagarmu"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Na gode!",
     "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
   },
-  "year-filter-info": "Shekarar mutuwar marubuci",
+  "year-filter-info": "Ranar mutuwar marubuci",
   "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
   "text-info": "Bayanin Rubutu",
   "author-info": "Bayanin Mawallafi",

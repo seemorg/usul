@@ -8,5 +8,13 @@
     "title": "{author} | کتب اور متون",
     "description-secondary": "{author} کی کتابیں پڑھیں۔ {author} جو {authorSecondary} کے نام سے بھی جانے جاتے ہیں، انہوں نے {books} کتابیں لکھیں۔",
     "description": "{author} کی کتابیں پڑھیں۔ {author} نے {books} کتابیں لکھیں۔"
+  },
+  "about-page": {
+    "title": "اسول کے بارے میں",
+    "description": "اسول کے بارے میں جانیں"
+  },
+  "team-page": {
+    "title": "ٹیم",
+    "description": "اسول کی ٹیم سے ملیں"
   }
 }

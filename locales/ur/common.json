@@ -54,52 +54,57 @@
       "title": "براؤز",
       "texts": {
         "title": "متون",
-        "description": "مقبول ترین متون کو دریافت کریں"
+        "description": "8,646 متون"
       },
       "authors": {
         "title": "مصنفین",
-        "description": "مقبول ترین مصنفین کو دریافت کریں"
+        "description": "3,646 متون"
       },
       "regions": {
         "title": "علاقے",
-        "description": "مقبول ترین علاقوں کو دریافت کریں"
+        "description": "40 خطے"
       },
       "genres": {
         "title": "اصناف",
-        "description": "مقبول ترین اصناف کو دریافت کریں"
+        "description": "40 اصناف"
       }
     },
     "about": {
       "title": "کے بارے میں",
-      "get-notified": {
-        "title": "اطلاع حاصل کریں",
-        "description": "آنے والے آلات کے لیے باخبر رہیں، جو جدید ترین AI ٹیکنالوجیز کا استعمال کرتے ہیں۔"
+      "about": {
+        "title": "تعرف",
+        "description": "اصول کیا ہے"
+      },
+      "team": {
+        "title": "ٹیم",
+        "description": "اصول کے پیچھے کون ہے"
+      },
+      "demo": {
+        "title": "ڈیمو",
+        "description": "اصول کیسے کام کرتا ہے"
+      },
+      "contact": {
+        "title": "رابطہ",
+        "description": "رابطہ کریں"
       }
     },
     "contribute": {
       "title": "تعاون کریں",
-      "about": {
-        "title": "ہمارے بارے میں",
-        "description": "آنے والے اوزاروں کے لئے پرجوش رہیں، جو جدید ترین آئی اے ٹیکنالوجیز کا استعمال کرتے ہیں۔"
-      },
       "add-text": {
         "title": "متن شامل کریں",
-        "description": "لائبریری میں نیا متن شامل کریں"
-      },
-      "develop": {
-        "title": "توسیع کریں",
-        "description": "کھلے ذریعہ کے تعاون کے ذریعے نئے اوزار تیار کرنے میں ہماری مدد کریں"
-      },
-      "contact": {
-        "title": "رابطہ"
+        "description": "کتاب یا پی ڈی ایف اپ لوڈ کریں"
       },
       "report-mistake": {
         "title": "غلطی کی اطلاع دیں",
-        "description": "کسی متن میں غلطی کی اطلاع دیں"
+        "description": "کچھ غلط ملا"
       },
       "feedback": {
         "title": "آپ کی رائے",
-        "description": "ہمیں اپنی رائے بھیجیں"
+        "description": "تجویز شیئر کریں"
+      },
+      "volunteer": {
+        "title": "رضاکار بنیں",
+        "description": "ہماری ٹیم کے ساتھ کام کریں"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "شکریہ!",
     "error": "کچھ غلط ہو گیا۔ براہ کرم بعد میں دوبارہ کوشش کریں۔"
   },
-  "year-filter-info": "مصنف کا سال وفات",
+  "year-filter-info": "مصنف کی وفات کی تاریخ",
   "regions-filter-info": "مقامات جہاں مصنف نے دورہ کیا، پیدا ہوئے، یا وفات پائی",
   "text-info": "متن کی معلومات",
   "author-info": "مصنف کی معلومات",

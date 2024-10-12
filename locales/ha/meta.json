@@ -8,5 +8,13 @@
     "title": "{author} | Littattafai da Rubutattun Wakoki",
     "description-secondary": "Karanta littattafan {author}. {author}, wanda aka fi sani da {authorSecondary}, ya rubuta littattafai {books}.",
     "description": "Karanta littattafan {author}. {author} ya rubuta littattafai {books}."
+  },
+  "about-page": {
+    "title": "Game da Usul",
+    "description": "Koyi game da Usul"
+  },
+  "team-page": {
+    "title": "Ƙungiya",
+    "description": "Koyi da Ƙungiyar Usul"
   }
 }

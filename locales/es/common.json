@@ -54,52 +54,57 @@
       "title": "Explorar",
       "texts": {
         "title": "Textos",
-        "description": "Explora los textos más populares"
+        "description": "8,646 Textos"
       },
       "authors": {
         "title": "Autores",
-        "description": "Explora los autores más populares"
+        "description": "3,646 Textos"
       },
       "regions": {
         "title": "Regiones",
-        "description": "Explora las regiones más populares"
+        "description": "40 Regiones"
       },
       "genres": {
         "title": "Géneros",
-        "description": "Explora los géneros más populares"
+        "description": "40 Géneros"
       }
     },
     "about": {
       "title": "Acerca de",
-      "get-notified": {
-        "title": "Recibe Notificaciones",
-        "description": "Mantente al tanto de las próximas herramientas, utilizando tecnologías de vanguardia de IA."
+      "about": {
+        "title": "Acerca de",
+        "description": "Qué es Usul"
+      },
+      "team": {
+        "title": "Equipo",
+        "description": "Quién está detrás de Usul"
+      },
+      "demo": {
+        "title": "Demostración",
+        "description": "Cómo funciona Usul"
+      },
+      "contact": {
+        "title": "Contacto",
+        "description": "Ponte en contacto"
       }
     },
     "contribute": {
       "title": "Contribuir",
-      "about": {
-        "title": "Acerca de Usul",
-        "description": "Manténgase al tanto de las próximas herramientas, utilizando tecnologías de IA de vanguardia."
-      },
       "add-text": {
         "title": "Añadir Texto",
-        "description": "Agregar un nuevo texto a la biblioteca"
-      },
-      "develop": {
-        "title": "Desarrollar",
-        "description": "Ayúdanos a desarrollar nuevas herramientas mediante contribuciones de código abierto"
-      },
-      "contact": {
-        "title": "Contacto"
+        "description": "Subir libro o PDF"
       },
       "report-mistake": {
         "title": "Reportar Error",
-        "description": "Reporta un error en un texto"
+        "description": "Encontré un error"
       },
       "feedback": {
         "title": "Retroalimentación",
-        "description": "Envíanos tus comentarios"
+        "description": "Compartir una sugerencia"
+      },
+      "volunteer": {
+        "title": "Voluntario",
+        "description": "Trabajar con nuestro equipo"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "¡Gracias!",
     "error": "Algo salió mal. Por favor, intenta de nuevo más tarde."
   },
-  "year-filter-info": "Año de fallecimiento del autor",
+  "year-filter-info": "Fecha de fallecimiento del autor",
   "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
   "text-info": "Información del texto",
   "author-info": "Información del autor",

@@ -1,0 +1,59 @@
+{
+  "title": "La kulan kooxda",
+  "subtitle": "Kooxda Seemorg Foundation waxa la ka kooban yihiin injineero, cilmi-baarayaal, iyo naqshadeeyayaal xiiseeya dhisidda cilmi baaris Islaami ah oo casri ah. Hadafkayagu waa inaan buuxinno farqiga u dhexeeya aqoonta caadiga ah iyo tignoolajiyada casriga ah, annagoo hubinayna in dhaxalka qani ee suugaanta Islaamku si fudud ugu diyaar noqdo dunida oo dhan.",
+  "become-a-volunteer": "Noqo mutadawiciin",
+  "contact-us": "Nagala soo xiriir",
+  "board-title": "La kulan guddiga",
+  "board-subtitle": "Guddiga Seemorg Foundation waxa uu ka kooban yahay khubaro cilmi-baaris iyo tignoolaji oo la isku halayn karo, midkastoo leh khibrad tobanaan sano ah oo ka soo jeeda meelaha ay khuseeyaan. Si wadajir ah ayay u maamulaan ururka iyagoo hubinaya inuu horumarka ku sii socdo himilooyinkiisa horumarinta aqoonta Islaamka.",
+  "members": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif wuxuu aasaasay Tarteel AI, wuxuu hogaaminayey injineernimada Quran.com, wuxuuna ka shaqeeyay Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed wuxuu aasaasay Remail AI, Betterbook, wuxuuna ahaa injineer ka shaqeeya Quran.com."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad wuxuu takhasus ku leeyahay fiqiga Maliki iyo taariikhda Andulus. Wuxuu wada maamulay Markaz Imam Malik."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma waxay hoggaamisaa tarjumada Carabiga ee Tarteel AI. Waxay ahayd turjubaan Hay’adda Xuquuqda Aadanaha."
+    },
+    "ahmed-noor": {
+      "name": "Ahmed Noor",
+      "description": "Ahmed waa arday cilmiga diinta Islaamka ah oo wax ka barta İZÜ. Wuxuu ku hadlaa Af-Carabi, Ingiriisi, iyo Urdu."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed waa arday jooga Zaytuna College. Wuxuu abuuray barnaamijka The Creative Minority."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed wuxuu haystaa PhD. Jaamacadda Al-Azhar. Wuxuu hogaamiyaa koox digitization iyo dadaallada la xiriira."
+    }
+  },
+  "board-members": {
+    "adnan-zulfiqar": {
+      "name": "Adnan Zulfiqar",
+      "description": "Adnan wuxuu ku takhasusay sharciga Islaamka iyo kan dembiyada. Wuxuu qoray xeerarka dembiyada ee Maldives iyo Soomaaliya."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Intisar waa bare sharci oo jaamacadda Harvard ah. Waxay hoggaamisaa SHARIAsource iyo Barnaamijka Qaanuunka Islaamka."
+    },
+    "zeki-mokhtarzada": {
+      "name": "Zeki Mokhtarzada",
+      "description": "Zeki waa ganacsade leh khibrad farsamo oo qoto dheer. Wuxuu wada aasaasay Freewebs iyo Truebill."
+    }
+  },
+  "roles": {
+    "ceo": "CEO",
+    "founding-engineer": "Injineer Aasaasaye",
+    "researcher": "Baarayaasha",
+    "localization-lead": "Hormuudka Meeleeyaha",
+    "digitization-lead": "Hormuudka Dhijitaleynta"
+  }
+}

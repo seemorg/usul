@@ -54,52 +54,57 @@
       "title": "Gözat",
       "texts": {
         "title": "Metinler",
-        "description": "En popüler metinleri keşfedin"
+        "description": "8.646 Metin"
       },
       "authors": {
         "title": "Yazarlar",
-        "description": "En popüler yazarları keşfedin"
+        "description": "3.646 Metin"
       },
       "regions": {
         "title": "Bölgeler",
-        "description": "En popüler bölgeleri keşfedin"
+        "description": "40 Bölge"
       },
       "genres": {
         "title": "Türler",
-        "description": "En popüler türleri keşfedin"
+        "description": "40 Tür"
       }
     },
     "about": {
       "title": "Hakkında",
-      "get-notified": {
-        "title": "Bildirim Al",
-        "description": "En yeni araçlar ve son teknoloji yapay zeka teknolojileri için bizi takip edin."
+      "about": {
+        "title": "Hakkında",
+        "description": "Usul Nedir"
+      },
+      "team": {
+        "title": "Takım",
+        "description": "Usul'ün arkasında kim var"
+      },
+      "demo": {
+        "title": "Demo",
+        "description": "Usul nasıl çalışır"
+      },
+      "contact": {
+        "title": "İletişim",
+        "description": "İletişime geçin"
       }
     },
     "contribute": {
       "title": "Katkıda Bulun",
-      "about": {
-        "title": "Hakkımızda Usul",
-        "description": "Yakında çıkacak araçlar için takipte kalın, bu araçlar son teknoloji AI teknolojilerini kullanıyor."
-      },
       "add-text": {
         "title": "Metin Ekle",
-        "description": "Kütüphaneye yeni bir metin ekleyin"
-      },
-      "develop": {
-        "title": "Geliştir",
-        "description": "Açık kaynak katkıları aracılığıyla yeni araçlar geliştirmemize yardımcı olun"
-      },
-      "contact": {
-        "title": "İletişim"
+        "description": "Kitap veya PDF Yükleyin"
       },
       "report-mistake": {
         "title": "Hata Bildir",
-        "description": "Bir metinde hata bildirin"
+        "description": "Bir hata mı buldunuz"
       },
       "feedback": {
         "title": "Geri Bildirim",
-        "description": "Bize geri bildiriminizi gönderin"
+        "description": "Bir öneri paylaş"
+      },
+      "volunteer": {
+        "title": "Gönüllü Ol",
+        "description": "Ekibimizle çalışın"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "Teşekkürler!",
     "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
   },
-  "year-filter-info": "Yazarın ölüm yılı",
+  "year-filter-info": "Yazarın ölüm tarihi",
   "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler",
   "text-info": "Metin Bilgisi",
   "author-info": "Yazar Bilgisi",

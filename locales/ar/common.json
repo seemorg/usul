@@ -54,52 +54,57 @@
       "title": "تصفح",
       "texts": {
         "title": "النصوص",
-        "description": "استكشف النصوص الأكثر شعبية"
+        "description": "8,646 نصوص"
       },
       "authors": {
         "title": "المؤلفون",
-        "description": "استكشاف المؤلفين الأكثر شعبية"
+        "description": "3,646 نصوص"
       },
       "regions": {
         "title": "المناطق",
-        "description": "استكشاف المناطق الأكثر شعبية"
+        "description": "40 مناطق"
       },
       "genres": {
         "title": "الأنواع",
-        "description": "استكشاف أكثر الأنواع شعبية"
+        "description": "40 أنواع"
       }
     },
     "about": {
       "title": "حول",
-      "get-notified": {
-        "title": "احصل على الإشعارات",
-        "description": "استقر على تهذيب الأدوات القادمة، باستخدام أحدث تكنولوجيات الذكاء الاصطناعي."
+      "about": {
+        "title": "حول",
+        "description": "ما هو أصول"
+      },
+      "team": {
+        "title": "الفريق",
+        "description": "من وراء أصول"
+      },
+      "demo": {
+        "title": "عرض توضيحي",
+        "description": "كيف يعمل أصول"
+      },
+      "contact": {
+        "title": "اتصال",
+        "description": "تواصل معنا"
       }
     },
     "contribute": {
       "title": "ساهم",
-      "about": {
-        "title": "عن أصول",
-        "description": "استقر على تهذيب الأدوات القادمة، باستخدام أحدث تكنولوجيات الذكاء الاصطناعي."
-      },
       "add-text": {
         "title": "أضف نصًا",
-        "description": "إضافة نص جديد إلى المكتبة"
-      },
-      "develop": {
-        "title": "تطوير",
-        "description": "ساعدنا في تطوير أدوات جديدة من خلال مساهمات مفتوحة المصدر"
-      },
-      "contact": {
-        "title": "اتصال"
+        "description": "تحميل كتاب أو PDF"
       },
       "report-mistake": {
         "title": "الإبلاغ عن خطأ",
-        "description": "الإبلاغ عن خطأ في النصوص"
+        "description": "وجدت شيئًا خاطئًا"
       },
       "feedback": {
         "title": "ملاحظات",
-        "description": "أرسل لنا ملاحظاتك"
+        "description": "شارك اقتراحًا"
+      },
+      "volunteer": {
+        "title": "تطوع",
+        "description": "اعمل مع فريقنا"
       }
     }
   },
@@ -135,7 +140,7 @@
     "success": "شكراً لك!",
     "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
   },
-  "year-filter-info": "سنة وفاة المؤلف",
+  "year-filter-info": "تاريخ وفاة المؤلف",
   "regions-filter-info": "المواقع التي زارها المؤلف أو وُلد أو تُوفي بها",
   "text-info": "معلومات النص",
   "author-info": "معلومات الكاتب",
