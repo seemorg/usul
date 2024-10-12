@@ -2,11 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useReaderVirtuoso } from "../context";
 import { useTranslations } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
@@ -75,19 +70,22 @@ export default function PageNavigator({
   }
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          className="px-0 font-normal text-primary hover:text-primary"
-        >
-          {t("name")}
-        </Button>
-      </PopoverTrigger>
+    <div className="flex items-center justify-between">
+      <p className="text-sm">{t("name")}</p>
 
-      <PopoverContent className="w-80 max-w-full py-5">
-        {Content}
-      </PopoverContent>
-    </Popover>
+      <form className="grid grid-cols-3 items-center" onSubmit={handleSubmit}>
+        <Input
+          id="pageNumber"
+          name="pageNumber"
+          type="number"
+          placeholder={t("input-placeholder")}
+          className="col-span-2 h-9 ltr:rounded-r-none rtl:rounded-l-none"
+        />
+
+        <Button className="ltr:rounded-l-none rtl:rounded-r-none">
+          {t("go")}
+        </Button>
+      </form>
+    </div>
   );
 }

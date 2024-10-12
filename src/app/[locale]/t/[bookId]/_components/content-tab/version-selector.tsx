@@ -1,5 +1,6 @@
 "use client";
 
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -83,12 +84,12 @@ export default function VersionSelector({
   return (
     <Select value={selectedVersion} onValueChange={handleVersionChange}>
       <SelectTrigger
-        className="w-[300px] max-w-full overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
+        className="w-[200px] overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
         id="version-selector"
         isLoading={isPending}
       >
         {selectedVersionObj ? (
-          versionToName(selectedVersionObj)
+          <span>{versionToName(selectedVersionObj)}</span>
         ) : (
           <SelectValue placeholder={t("select-version")} />
         )}

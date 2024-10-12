@@ -11,6 +11,8 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { getBook } from "@/lib/api";
 import { READER_PAGINATION_SIZE } from "@/lib/constants";
+import Container from "@/components/ui/container";
+import ReaderNavigation from "./_components/reader-navigation";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -71,11 +73,14 @@ export default async function SidebarContent({
 
   return (
     <SidebarResizer
-      secondNav={
-        <div className="relative flex w-full items-center justify-between bg-slate-50 dark:bg-card lg:hidden">
-          {mobile}
-        </div>
-      }
+      // secondNav={
+      //   <div className="relative flex w-full items-center justify-between bg-slate-50 dark:bg-card lg:hidden">
+      //     {mobile}
+      //   </div>
+      // }
+      // secondNav={
+
+      // }
       sidebar={
         <ReaderSidebar
           bookSlug={bookId}
@@ -84,6 +89,8 @@ export default async function SidebarContent({
         />
       }
     >
+      <ReaderNavigation bookResponse={response} />
+
       {pages ? (
         view === "pdf" &&
         response.content.source === "turath" &&

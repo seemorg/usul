@@ -26,7 +26,6 @@ export const getBook = cache(
         headers: {
           "Content-Type": "application/json",
         },
-        cache: "no-store",
       },
     );
 
