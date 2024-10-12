@@ -1,85 +1,17 @@
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import { HeartHandshakeIcon, MailIcon } from "lucide-react";
-import { getTranslations } from "next-intl/server";
 import MemberCard from "./member-card";
+import { boardMembers, members } from "./members";
+import { getMetadata } from "@/lib/seo";
 
-const members = [
-  {
-    name: "Abdellatif Abdelfattah",
-    role: "CEO",
-    description:
-      "Abdellatif co-founded Tarteel AI, lead engineering at Quran.com, and worked at Twitter.",
-    image: "",
-  },
-  {
-    name: "Ahmed Riad",
-    role: "Founding Engineer",
-    description:
-      "Ahmed co-founded Remail AI, Betterbook, and was an engineer at Quran.com.",
-    image: "",
-  },
-  {
-    name: "Ryad Ramo",
-    role: "Researcher",
-    description:
-      "Ryad specializes in Maliki fiqh and Andulisian hisory. He co-managed Markaz Imam Malik.",
-    image: "",
-  },
-  {
-    name: "Ismail Safadi",
-    role: "Researcher",
-    description:
-      "Ismail specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey.",
-    image: "",
-  },
-  {
-    name: "Ahmed Noor",
-    role: "Researcher",
-    description:
-      "Ahmed is an Islamic theology student at İZÜ. He’s fluent in Arabic, English, and in Urdu.",
-    image: "",
-  },
-  {
-    name: "Ahmed Khan",
-    role: "Researcher",
-    description:
-      "Ahmed is a student at Zaytuna College. He’s the creator of The Creative Minority podcast.",
-    image: "",
-  },
-  {
-    name: "Ahmet Aktan",
-    role: "Digitization Lead",
-    description:
-      "Ahmed holds a PhD. from Al-Azhar university. He leads the digitization team and efforts.",
-    image: "",
-  },
-];
-
-const boardMembers = [
-  {
-    name: "Adnan Zulfiqar",
-    description:
-      "Adnan specializes in Islamic and criminal law. He drafted criminal codes for Maldives and Somalia.",
-    image: "",
-  },
-  {
-    name: "Intisar Rabb",
-    description:
-      "Intisar is a Law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law.",
-    image: "",
-  },
-  {
-    name: "Zeki Mokhtarzada",
-    description:
-      "Zeki is an enterprenuer with with deep technical expertise. He co-founded Freewebs and Truebill.",
-    image: "",
-  },
-];
+export const generateMetadata = async () =>
+  getMetadata({
+    title: "Team",
+    description: "Meet the Usul team",
+  });
 
 export default async function TeamPage() {
-  const t = await getTranslations("about");
-
   return (
     <Container className="max-w-5xl pt-16 2xl:max-w-6xl">
       <h1 className="mb-15 text-5xl font-bold">Meet the team</h1>
@@ -110,6 +42,7 @@ export default async function TeamPage() {
             role={member.role}
             description={member.description}
             image={member.image}
+            blurDataUrl={member.blurDataUrl}
           />
         ))}
       </div>

@@ -1,8 +1,15 @@
 import Container from "@/components/ui/container";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { getMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { AppLocale } from "~/i18n.config";
+
+export const generateMetadata = async () =>
+  getMetadata({
+    title: "About",
+    description: "Learn more about Usul",
+  });
 
 export default async function AboutPage({
   params,
