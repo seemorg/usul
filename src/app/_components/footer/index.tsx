@@ -1,6 +1,11 @@
 import ComingSoonModal from "@/components/coming-soon-modal";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
+import {
+  ADD_TEXT_URL,
+  REPORT_MISTAKE_URL,
+  VOLUNTEER_EMAIL,
+} from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { config } from "@/lib/seo";
 import { navigation as urls } from "@/lib/urls";
@@ -42,11 +47,11 @@ const navigation = {
   contribute: [
     {
       label: "navigation.contribute.add-text.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: ADD_TEXT_URL,
     },
     {
       label: "navigation.contribute.report-mistake.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: REPORT_MISTAKE_URL,
     },
     {
       label: "navigation.contribute.feedback.title",
@@ -54,6 +59,7 @@ const navigation = {
     },
     {
       label: "navigation.contribute.volunteer.title",
+      href: `mailto:${VOLUNTEER_EMAIL}`,
     },
   ] satisfies NavItem[],
   social: [

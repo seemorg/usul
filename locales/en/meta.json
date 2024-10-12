@@ -8,5 +8,13 @@
     "title": "{author} | Books and Texts",
     "description-secondary": "Read {author}'s books. {author}, also known as {authorSecondary},authored {books} books.",
     "description": "Read {author}'s books. {author} authored {books} books."
+  },
+  "about-page": {
+    "title": "About Usul",
+    "description": "Learn about Usul"
+  },
+  "team-page": {
+    "title": "Team",
+    "description": "Meet the Usul team"
   }
 }

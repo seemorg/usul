@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "prisma generate && next build",
-    "pull-translations": "pnpm dlx tsx pull-translations.ts",
+    "pull-translations": "pnpm with-env pnpm dlx tsx scripts/pull-translations.ts",
     "db:studio": "prisma studio",
     "db:generate": "prisma generate",
     "dev": "next dev",
@@ -13,10 +13,10 @@
     "typecheck": "tsc --noEmit",
     "start": "next start",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "with-env": "dotenv --"
   },
   "dependencies": {
-    "@crowdin/ota-client": "^2.0.0",
     "@heroicons/react": "^2.1.1",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
@@ -88,6 +88,8 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
+    "@crowdin/crowdin-api-client": "^1.36.0",
+    "@crowdin/ota-client": "^2.0.0",
     "@storybook/addon-essentials": "^8.3.2",
     "@storybook/addon-interactions": "^8.3.2",
     "@storybook/addon-links": "^8.3.2",
@@ -105,6 +107,7 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.17",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.1.0",
     "eslint-plugin-storybook": "^0.8.0",

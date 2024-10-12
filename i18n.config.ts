@@ -64,12 +64,14 @@ const config = {
     "reader",
     "meta",
     "about",
+    "team",
   ] as const,
   namespacedRoutes: {
     "*": ["common", "entities", "meta", "reader"],
     "/": ["home"],
     "/t/*": ["reader"],
     "/about": ["about"],
+    "/team": ["team"],
     // "/chat/*": ["reader"],
   },
 };
