@@ -13,6 +13,7 @@ import { type PdfChapter, usePdfChapterStore } from "./store";
 import { useTheme } from "next-themes";
 import { env } from "@/env";
 import { makePdfViewerButtons } from "./buttons";
+import { useNavbarStore } from "@/stores/navbar";
 
 const isInitializedByUrl = new Map<string, boolean>();
 
@@ -26,6 +27,7 @@ export default function PdfView({
   const instanceRef = useRef<WebViewerInstance | null>(null);
 
   const setChapters = usePdfChapterStore((s) => s.setChapters);
+  const setShowNavbar = useNavbarStore((s) => s.setShowNavbar);
   const setIsLoading = usePdfChapterStore((s) => s.setIsLoading);
   const setNavigateToPage = usePdfChapterStore((s) => s.setNavigateToPage);
 
@@ -40,8 +42,7 @@ export default function PdfView({
       const instance: WebViewerInstance = await WebViewer(
         {
           path: "/pdf-express", // point to where the files you copied are served from
-          // initialDoc: pdfSource.finalUrl!, // path to your document
-          initialDoc: "/demo.pdf",
+          initialDoc: pdfSource.finalUrl!, // path to your document
           enableAnnotations: false,
           disabledElements: [
             // "selectToolButton",
@@ -100,6 +101,10 @@ export default function PdfView({
       );
     }
   }, [resolvedTheme]);
+
+  useEffect(() => {
+    setShowNavbar(true);
+  }, [setShowNavbar]);
 
   return (
     <div className="mx-auto w-full min-w-0 flex-auto pt-28 lg:pt-20">
