@@ -10,7 +10,6 @@ const NavigationMenu = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof NavigationMenuPrimitive.Root>
 >(({ className, children, ...props }, ref) => {
   const [active, setActive] = React.useState<number | null>(null);
-  console.log({ active });
 
   return (
     <NavigationMenuPrimitive.Root
@@ -26,8 +25,8 @@ const NavigationMenu = React.forwardRef<
       <NavigationMenuViewport
         containerClassName={cn(
           "will-change-transform transition-transform",
-          active === 2 && "translate-x-24",
-          active === 3 && "translate-x-48",
+          active === 2 && "rtl:-translate-x-20 ltr:translate-x-24",
+          active === 3 && "rtl:-translate-x-40 ltr:translate-x-48",
         )}
       />
     </NavigationMenuPrimitive.Root>

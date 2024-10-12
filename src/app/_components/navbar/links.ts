@@ -26,6 +26,7 @@ export type NavItem = {
   title: NamespaceTranslations<"common">;
   description: NamespaceTranslations<"common">;
   icon?: React.ElementType;
+  isDemo?: boolean;
 };
 
 export const browseItems: NavItem[] = [
@@ -72,7 +73,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.demo.title",
     description: "navigation.about.demo.description",
     icon: PlayIcon,
-    href: navigation.authors.all(),
+    isDemo: true,
   },
   {
     title: "navigation.about.contact.title",

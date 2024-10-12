@@ -5,6 +5,7 @@ import MemberCard from "./member-card";
 import { boardMembers, members } from "./members";
 import { config, getMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
+import { VOLUNTEER_EMAIL } from "@/lib/constants";
 
 export const generateMetadata = async () => {
   const t = await getTranslations("meta");
@@ -23,9 +24,11 @@ export default async function TeamPage() {
       <p className="mt-5">{t("subtitle")}</p>
 
       <div className="flex items-center gap-5">
-        <Button className="mt-10 h-9 gap-2">
-          <HeartHandshakeIcon className="size-4" />
-          {t("become-a-volunteer")}
+        <Button className="mt-10 h-9 gap-2" asChild>
+          <a href={`mailto:${VOLUNTEER_EMAIL}`} target="_blank">
+            <HeartHandshakeIcon className="size-4" />
+            {t("become-a-volunteer")}
+          </a>
         </Button>
         <Button className="mt-10 h-9 gap-2" variant="outline" asChild>
           <a href={`mailto:${config.contactEmail}`} target="_blank">

@@ -31,11 +31,7 @@ export const makePdfViewerButtons = (instance: WebViewerInstance) => {
       },
     },
     mount: (update: any) => {
-      console.log("Mounted");
-
       const fullscreenToState = () => {
-        console.log({ full: instance.UI.isFullscreen() });
-
         // the returned state should be the opposite of the new current state
         // as the opposite state is what we want to switch to when the button
         // is clicked next

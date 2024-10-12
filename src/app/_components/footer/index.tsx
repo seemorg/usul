@@ -14,10 +14,12 @@ import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
+import FooterDemoButton from "./demo-button";
 
 type NavItem = {
   label: NamespaceTranslations<"common">;
   href?: string;
+  isDemo?: boolean;
 };
 
 const navigation = {
@@ -32,6 +34,7 @@ const navigation = {
     },
     {
       label: "navigation.about.demo.title",
+      isDemo: true,
     },
     {
       label: "navigation.about.contact.title",
@@ -105,6 +108,12 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
               >
                 {t(item.label)}
               </Link>
+            );
+          } else if (item.isDemo) {
+            link = (
+              <FooterDemoButton className={cn(linkClassName, "cursor-pointer")}>
+                {t(item.label)}
+              </FooterDemoButton>
             );
           } else {
             link = (

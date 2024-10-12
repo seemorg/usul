@@ -17,9 +17,11 @@ import {
   contributeItems,
   aboutItems,
 } from "./links";
+import { useDemo } from "../video-modal/provider";
 
 export default function HomepageNavigationMenu() {
   const t = useTranslations("common");
+  const setDemo = useDemo((s) => s.setIsOpen);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const renderItem = (item: NavItem, idx: number) => {
@@ -31,6 +33,20 @@ export default function HomepageNavigationMenu() {
           icon={item.icon}
           title={t(item.title)}
           target={item.href.startsWith("mailto:") ? "_blank" : undefined}
+        >
+          {t(item.description)}
+        </ListItem>
+      );
+    }
+
+    if (item.isDemo) {
+      return (
+        <ListItem
+          key={idx}
+          onClick={() => setDemo(true)}
+          icon={item.icon}
+          title={t(item.title)}
+          className="cursor-pointer"
         >
           {t(item.description)}
         </ListItem>
