@@ -1,9 +1,9 @@
 "use client";
 
-import { Virtualizer } from "virtua";
+import { WindowVirtualizer } from "virtua";
 
-import React, { forwardRef, memo, useMemo, useRef } from "react";
-import { useReaderVirtuoso, useSetReaderScroller } from "../context";
+import React, { forwardRef, memo, useMemo } from "react";
+import { useReaderVirtuoso } from "../context";
 import Footer from "@/app/_components/footer";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
@@ -15,8 +15,6 @@ export default function ReaderContent({
   response: ApiBookResponse;
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const setContainerEl = useSetReaderScroller();
-  const containerEl = useRef<HTMLElement>(null);
 
   const defaultPages = useMemo(() => {
     if (response.content.source === "turath") {
@@ -29,48 +27,41 @@ export default function ReaderContent({
   }, [response]);
 
   return (
-    <div
-      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground [overflow-anchor:none]"
-      dir="rtl"
-      ref={(r) => {
-        if (r) {
-          setContainerEl({ element: r });
-          // @ts-ignore
-          containerEl.current = r;
-        }
-      }}
-    >
-      <div className="h-[80px] w-full" />
-
-      <Virtualizer
-        count={response.pagination.total}
-        ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
-        overscan={READER_OVERSCAN_SIZE}
-        ref={virtuosoRef}
-        startMargin={80}
-        // eslint-disable-next-line react/display-name
-        as={forwardRef((props, ref) => (
-          <div
-            className="mx-auto w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16"
-            ref={ref}
-            {...props}
-          />
-        ))}
+    <>
+      <div
+        className="mx-auto w-full max-w-5xl px-5 text-xl text-foreground lg:!px-8 xl:!px-16"
+        dir="rtl"
       >
-        {new Array(response.pagination.total).fill(null).map((_, index) => (
-          <Page
-            key={index}
-            index={index}
-            defaultPages={defaultPages}
-            perPage={response.pagination.size}
-          />
-        ))}
-      </Virtualizer>
+        <WindowVirtualizer
+          count={response.pagination.total}
+          ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
+          overscan={READER_OVERSCAN_SIZE}
+          ref={virtuosoRef}
+          // startMargin={80}
+          // eslint-disable-next-line react/display-name
+          as={forwardRef((props, ref) => (
+            <div
+              className="w-full flex-auto divide-y-2 divide-border"
+              ref={ref}
+              {...props}
+            />
+          ))}
+        >
+          {new Array(response.pagination.total).fill(null).map((_, index) => (
+            <Page
+              key={index}
+              index={index}
+              defaultPages={defaultPages}
+              perPage={response.pagination.size}
+            />
+          ))}
+        </WindowVirtualizer>
+      </div>
 
       <div className="mx-auto mt-10 w-full max-w-[90%]">
         <Footer />
       </div>
-    </div>
+    </>
   );
 }
 

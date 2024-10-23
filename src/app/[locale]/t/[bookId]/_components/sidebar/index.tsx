@@ -9,13 +9,13 @@ import {
 
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
-import React from "react";
 import { useTranslations } from "next-intl";
 import { type TabProps, tabs } from "./tabs";
 import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
 
 import { TabContent } from "../tab-content";
+import { Sidebar, SidebarContent } from "@/components/ui/sidebar";
 
 const TabButton = ({
   tab,
@@ -61,36 +61,40 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
 
   return (
-    <SidebarWrapper>
-      <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
+    <Sidebar side="right">
+      <SidebarContent>
+        <SidebarWrapper>
+          {/* <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" /> */}
+          {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" /> */}
 
-      <Tabs defaultValue={activeTab}>
-        <SidebarContainer className="hidden sm:block">
-          <TabsList className="h-10 w-full rounded-b-none font-sans">
-            {tabs.map((tab) => (
-              <TabButton
-                key={tab.id}
-                tab={tab}
-                handleNavigate={handleNavigate}
-              />
-            ))}
-          </TabsList>
-        </SidebarContainer>
+          <Tabs defaultValue={activeTab}>
+            <SidebarContainer className="hidden sm:block">
+              <TabsList className="h-10 w-full rounded-b-none font-sans">
+                {tabs.map((tab) => (
+                  <TabButton
+                    key={tab.id}
+                    tab={tab}
+                    handleNavigate={handleNavigate}
+                  />
+                ))}
+              </TabsList>
+            </SidebarContainer>
 
-        <div className="mt-6">
-          {tabs.map((tab) => (
-            <TabsContent value={tab.id} key={tab.id}>
-              <TabContent
-                tabId={tab.id}
-                bookSlug={bookSlug}
-                versionId={versionId}
-                bookResponse={bookResponse}
-              />
-            </TabsContent>
-          ))}
-        </div>
-      </Tabs>
-    </SidebarWrapper>
+            <div className="mt-6">
+              {tabs.map((tab) => (
+                <TabsContent value={tab.id} key={tab.id}>
+                  <TabContent
+                    tabId={tab.id}
+                    bookSlug={bookSlug}
+                    versionId={versionId}
+                    bookResponse={bookResponse}
+                  />
+                </TabsContent>
+              ))}
+            </div>
+          </Tabs>
+        </SidebarWrapper>
+      </SidebarContent>
+    </Sidebar>
   );
 }

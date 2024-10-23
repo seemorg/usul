@@ -1,40 +1,16 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import type { VListHandle } from "virtua";
-// import type { VirtuosoHandle } from "react-virtuoso";
+import { createContext, useContext, useRef } from "react";
+import type { WindowVirtualizerHandle } from "virtua";
 
-type VirtuosoContextType = React.RefObject<VListHandle>;
+type VirtuosoContextType = React.RefObject<WindowVirtualizerHandle>;
 
-const VirtuosoContext = React.createContext<VirtuosoContextType>(
+const VirtuosoContext = createContext<VirtuosoContextType>(
   {} as VirtuosoContextType,
 );
 
-type ReaderScrollerContextType = { element: HTMLDivElement } | null;
-
-const ReaderScrollerContext = React.createContext<ReaderScrollerContextType>(
-  {} as ReaderScrollerContextType,
-);
-
-type SetReaderScrollerContextType = React.Dispatch<
-  React.SetStateAction<ReaderScrollerContextType>
->;
-
-const SetReaderScrollerContext =
-  React.createContext<SetReaderScrollerContextType>(
-    {} as SetReaderScrollerContextType,
-  );
-
 export function useReaderVirtuoso() {
-  return React.useContext(VirtuosoContext);
-}
-
-export function useReaderScroller() {
-  return React.useContext(ReaderScrollerContext);
-}
-
-export function useSetReaderScroller() {
-  return React.useContext(SetReaderScrollerContext);
+  return useContext(VirtuosoContext);
 }
 
 export default function ReaderContextProviders({
@@ -42,18 +18,11 @@ export default function ReaderContextProviders({
 }: {
   children: React.ReactNode;
 }) {
-  const [containerEl, setContainerEl] = useState<{
-    element: HTMLDivElement;
-  } | null>(null);
-  const virtuosoRef = useRef<VListHandle>(null);
+  const virtuosoRef = useRef<WindowVirtualizerHandle>(null);
 
   return (
     <VirtuosoContext.Provider value={virtuosoRef}>
-      <ReaderScrollerContext.Provider value={containerEl}>
-        <SetReaderScrollerContext.Provider value={setContainerEl}>
-          {children}
-        </SetReaderScrollerContext.Provider>
-      </ReaderScrollerContext.Provider>
+      {children}
     </VirtuosoContext.Provider>
   );
 }

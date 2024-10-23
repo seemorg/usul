@@ -4,14 +4,7 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { getBook } from "@/lib/api";
 import { READER_PAGINATION_SIZE } from "@/lib/constants";
-
-export default async function ReaderLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <ReaderContextProviders>{children}</ReaderContextProviders>;
-}
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export const generateMetadata = async ({
   params: { bookId, versionId },
@@ -48,3 +41,15 @@ export const generateMetadata = async ({
     ],
   });
 };
+
+export default async function ReaderLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <ReaderContextProviders>
+      <SidebarProvider>{children}</SidebarProvider>
+    </ReaderContextProviders>
+  );
+}

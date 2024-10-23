@@ -15,60 +15,65 @@ import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import SearchBar from "./search-bar";
 import { useNavbarStore } from "@/stores/navbar";
-import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import HomepageNavigationMenu from "./navigation-menu";
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import { useTranslations } from "next-intl";
 import { useDirection } from "@/lib/locale/utils";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 interface NavbarProps {
   isHomepage?: boolean;
-  secondNav?: React.ReactNode;
+  layout?: "default" | "reader";
 }
 
-export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
+export default function Navbar({
+  isHomepage,
+  layout = "default",
+}: NavbarProps) {
   const t = useTranslations();
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const containerEl = useReaderScroller();
   const dir = useDirection();
 
   useEffect(() => {
-    let oldValue = 0;
-    let newValue = 0;
+    if (layout !== "reader") return;
 
-    const container = containerEl?.element;
+    // let oldValue = 0;
+    // // let newValue = 0;
 
-    if (!container) return;
+    // const handleScroll = () => {
+    //   const newValue = window.scrollY || document.documentElement.scrollTop;
 
-    const handleScroll = () => {
-      // Get the new Value
-      newValue = container?.scrollTop || 0;
+    //   //Subtract the two and conclude
+    //   if (newValue <= 100) setShowNavbar(true);
+    //   else if (oldValue - newValue < 0) setShowNavbar(false);
+    //   else if (oldValue - newValue > 0 && newValue > 120) setShowNavbar(true);
 
-      //Subtract the two and conclude
-      if (newValue <= 100) setShowNavbar(true);
-      else if (oldValue - newValue < 0) setShowNavbar(false);
-      else if (oldValue - newValue > 0 && newValue > 120) setShowNavbar(true);
+    //   // check scroll direction
+    //   // const distance = scrollTop - prev;
 
-      // Update the old value
-      oldValue = newValue;
-    };
+    //   // if (distance < 0) setShowNavbar(true);
+    //   // else setShowNavbar(false);
 
-    container?.addEventListener("scroll", handleScroll, { passive: true });
+    //   oldValue = newValue;
+    // };
 
-    return () => container?.removeEventListener("scroll", handleScroll);
+    // window?.addEventListener("scroll", handleScroll, { passive: true });
+
+    // return () => window?.removeEventListener("scroll", handleScroll);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [containerEl]);
+  }, [layout]);
 
   return (
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          layout === "reader" ? "sticky top-0" : "fixed inset-x-0 top-0",
+          "z-[41] flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -89,7 +94,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
             <HomepageNavigationMenu />
           </div>
         ) : (
-          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-8 xl:px-0">
+          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-7 xl:px-0">
             <SearchBar />
           </div>
         )}
@@ -137,24 +142,12 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           </Button>
         </div>
 
-        <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
+        <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-3 [&>button]:flex-shrink-0">
           <LocaleSwitcher />
           <ThemeToggle />
+          {layout === "reader" && <SidebarTrigger className="rotate-180" />}
         </div>
       </header>
-
-      {secondNav && (
-        <nav
-          className={cn(
-            "fixed inset-x-0 top-16 z-30 w-full transition",
-            showNavbar
-              ? "pointer-events-auto translate-y-0 opacity-100"
-              : "pointer-events-none -translate-y-10 opacity-0",
-          )}
-        >
-          {secondNav}
-        </nav>
-      )}
 
       {isMenuOpen && (
         <MobileMenu>

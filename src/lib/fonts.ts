@@ -1,7 +1,7 @@
 import { Plus_Jakarta_Sans, Amiri } from "next/font/google";
 import localFont from "next/font/local";
 
-const inter = Plus_Jakarta_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -70,6 +70,9 @@ const uthmanicHafs = localFont({
 });
 
 export const getFontsClassnames = () =>
-  [inter.variable, rubik.variable, amiri.variable, uthmanicHafs.variable].join(
-    " ",
-  );
+  [
+    plusJakartaSans.variable,
+    rubik.variable,
+    amiri.variable,
+    uthmanicHafs.variable,
+  ].join(" ");
