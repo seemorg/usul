@@ -25,8 +25,14 @@ model Author {
   numberOfBooks   Int         @default(0)
   bioTranslations AuthorBio[]
 
+  /// [AuthorExtraProperties]
+  extraProperties Json @default("{}")
+
   books     Book[]
   locations Location[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model AuthorBio {
@@ -73,10 +79,19 @@ model Book {
   flags            Json   @default("{}")
   numberOfVersions Int    @default(0)
 
-  genres Genre[]
+  /// [BookExtraProperties]
+  extraProperties Json @default("{}")
 
-  author   Author @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  authorId String
+  genres         Genre[]
+  advancedGenres AdvancedGenre[]
+  author         Author          @relation(fields: [authorId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  authorId       String
+
+  physicalDetails String?
+  coverImageUrl   String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model BookPrimaryName {
@@ -106,8 +121,14 @@ model Genre {
   nameTranslations GenreName[]
   transliteration  String?
 
+  /// [GenreExtraProperties]
+  extraProperties Json @default("{}")
+
   numberOfBooks Int    @default(0)
   books         Book[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model GenreName {
@@ -116,6 +137,33 @@ model GenreName {
 
   genreId String
   genre   Genre  @relation(fields: [genreId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([genreId, locale])
+}
+
+model AdvancedGenre {
+  id   String @id
+  slug String @unique
+
+  nameTranslations AdvancedGenreName[]
+  transliteration  String?
+
+  /// [AdvancedGenreExtraProperties]
+  extraProperties Json @default("{}")
+
+  numberOfBooks Int    @default(0)
+  books         Book[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model AdvancedGenreName {
+  locale String
+  text   String
+
+  genreId String
+  genre   AdvancedGenre @relation(fields: [genreId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@id([genreId, locale])
 }
@@ -139,6 +187,9 @@ model Location {
 
   region   Region? @relation(fields: [regionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   regionId String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 
   @@unique([slug, type])
 }
@@ -166,6 +217,9 @@ model Region {
   numberOfAuthors Int        @default(0)
   numberOfBooks   Int        @default(0)
   locations       Location[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
 }
 
 model RegionCurrentName {
