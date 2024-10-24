@@ -54,7 +54,7 @@ export default function SearchResults<T extends object & { id: string }>({
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
       {filters && (
-        <div className="hidden w-full sm:block">
+        <div className="top-85 scrollbar-width-6 scrollbar-width-thin scrollbar-color-#9d5148-white sticky hidden h-[499px] w-full overflow-y-auto sm:block">
           {/* <div className="h-10">
           <h2 className="text-2xl">Filters</h2>
         </div> */}
