@@ -110,7 +110,7 @@ const ChatMessage = ({
             <ReactMarkdown>{text}</ReactMarkdown>
           )}
 
-          {sourceNodes ? (
+          {sourceNodes && sourceNodes.length > 0 ? (
             <div className="mt-4 flex flex-wrap items-center gap-1">
               {t("reader.chat.sources")}:
               {sourceNodes?.slice(0, 5).map((sourceNode, idx) => {

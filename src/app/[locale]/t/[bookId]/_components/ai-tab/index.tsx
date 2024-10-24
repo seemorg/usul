@@ -20,9 +20,9 @@ import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
 import { InfoIcon } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Link } from "@/navigation";
 import { config } from "@/lib/seo";
+import { VersionAlert } from "../version-alert";
+import SidebarContainer from "../sidebar/sidebar-container";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -81,24 +81,19 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
   }, []);
 
   const isLoading = isPending || isSavingImage.value;
+  const isVersionMismatch =
+    bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 
   return (
     <div className="pb-2">
-      <div className="my-4 px-4">
-        <Alert className="border-border bg-transparent">
-          <InfoIcon className="h-5 w-5" />
-          <AlertTitle>
-            AI has been trained on a different edition of this book
-            (VERSION_NAME). You can still use [AI] but the results might be
-            slightly different.
-          </AlertTitle>
-          <AlertDescription className="mt-2">
-            <Link href="/" className="text-primary underline">
-              Switch to (VERSION_NAME)
-            </Link>
-          </AlertDescription>
-        </Alert>
-      </div>
+      {isVersionMismatch && (
+        <SidebarContainer className="my-4">
+          <VersionAlert
+            versionId={bookResponse.book.flags.aiVersion!}
+            feature="ai"
+          />
+        </SidebarContainer>
+      )}
 
       <div className="flex items-center justify-between px-4">
         Chat
@@ -157,8 +152,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
       <div
         className={cn(
           "will flex flex-col justify-between",
-          // 'h-[calc(100vh-240px)]'
-          "h-[calc(100vh-370px)]",
+          isVersionMismatch ? "h-[calc(100vh-370px)]" : "h-[calc(100vh-240px)]",
         )}
       >
         <div className="relative flex-1 overflow-hidden">
