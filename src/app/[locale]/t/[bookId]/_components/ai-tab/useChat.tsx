@@ -1,4 +1,5 @@
 import { chatWithBook, parseSourceNode } from "@/server/services/chat";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
 import { useCallback, useState } from "react";
 import { useBoolean } from "usehooks-ts";
@@ -6,7 +7,7 @@ import { useBoolean } from "usehooks-ts";
 type ChatMessage = {
   role: "ai" | "user";
   text: string;
-  sourceNodes?: ChatResponse["sourceNodes"];
+  sourceNodes?: SemanticSearchBookNode[];
 };
 
 interface UseChatResult {
@@ -31,7 +32,7 @@ const handleEventSource = async (
 ) => {
   return new Promise<ChatMessage>((res, rej) => {
     let allContent = "";
-    let sources: ChatResponse["sourceNodes"] = [];
+    let sources: SemanticSearchBookNode[] = [];
 
     eventSource.onerror = (err) => {
       eventSource.close();
@@ -53,8 +54,13 @@ const handleEventSource = async (
       const data = JSON.parse(event.data) as ChatResponse;
       if (!data) return;
 
-      allContent += data.response;
-      sources = data.sourceNodes;
+      if ("type" in data && data.type === "SOURCES") {
+        sources = data.sourceNodes;
+      }
+
+      if ("response" in data && data.response) {
+        allContent += data.response;
+      }
 
       if (onChunk) {
         onChunk({ role: "ai", text: allContent });
