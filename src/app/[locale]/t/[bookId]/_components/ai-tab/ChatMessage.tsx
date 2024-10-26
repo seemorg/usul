@@ -7,7 +7,6 @@ import {
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
 import { OpenAILogo } from "@/components/Icons";
-import type { ChatResponse } from "@/types/chat";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useBoolean } from "usehooks-ts";
@@ -15,12 +14,13 @@ import { useTranslations } from "next-intl";
 import { useReaderVirtuoso } from "../context";
 import { memo, useCallback } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 
 type ChatMessageProps = {
   text: string;
   role: "ai" | "user";
   onRegenerate?: () => Promise<void>;
-  sourceNodes?: ChatResponse["sourceNodes"];
+  sourceNodes?: SemanticSearchBookNode[];
   isLast?: boolean;
   hasActions?: boolean;
   isScreenshot?: boolean;
