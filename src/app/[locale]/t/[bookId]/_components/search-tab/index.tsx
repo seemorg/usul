@@ -2,16 +2,8 @@
 
 import SidebarContainer from "../../_components/sidebar/sidebar-container";
 import { useEffect, useRef, useState } from "react";
-import {
-  AdjustmentsHorizontalIcon,
-  XMarkIcon,
-  MagnifyingGlassIcon,
-} from "@heroicons/react/24/solid";
-import {
-  ChevronDownIcon,
-  ArrowUpRightIcon,
-  ArrowsUpDownIcon,
-} from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { ArrowUpRightIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,8 +15,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
-import { useBoolean } from "usehooks-ts";
 import Spinner from "@/components/ui/spinner";
 import { useMutation } from "@tanstack/react-query";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
@@ -34,14 +24,7 @@ import { useTranslations } from "next-intl";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Link } from "@/navigation";
-import { InfoIcon } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+
 import { VersionAlert } from "../version-alert";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
@@ -64,7 +47,6 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
       return await searchBook(bookSlug, q);
     },
   });
-  const filtersOpen = useBoolean(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -241,7 +223,10 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
 
       {isVersionMismatch && (
         <SidebarContainer className="my-4">
-          <VersionAlert versionId={bookResponse.book.flags.aiVersion!} />
+          <VersionAlert
+            versionId={bookResponse.book.flags.aiVersion!}
+            feature="search"
+          />
         </SidebarContainer>
       )}
 

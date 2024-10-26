@@ -11,7 +11,13 @@ import { InfoIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 
-export const VersionAlert = ({ versionId }: { versionId: string }) => {
+export const VersionAlert = ({
+  versionId,
+  feature,
+}: {
+  versionId: string;
+  feature: "ai" | "search";
+}) => {
   const t = useTranslations();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -28,7 +34,7 @@ export const VersionAlert = ({ versionId }: { versionId: string }) => {
       <InfoIcon className="h-5 w-5" />
       <AlertTitle>
         {t.rich("reader.version-warning", {
-          feature: "Search",
+          feature: t(`common.${feature}`),
           tooltip: (children) => (
             <Tooltip>
               <TooltipTrigger
