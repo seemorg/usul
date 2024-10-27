@@ -138,8 +138,10 @@ export default function BookInfoHeader({
         <div className="flex justify-between">
           <div className="flex items-center gap-3 text-base font-semibold">
             {[
+              // eslint-disable-next-line react/jsx-key
               <p>{book.primaryName}</p>,
               book.secondaryName ? <p>{book.secondaryName}</p> : null,
+              // eslint-disable-next-line react/jsx-key
               <bdi>
                 <Link
                   href={navigation.authors.bySlug(book.author.slug)}
