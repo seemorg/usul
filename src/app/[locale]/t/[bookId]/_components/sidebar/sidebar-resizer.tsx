@@ -65,7 +65,7 @@ export default function SidebarResizer({
 
   return (
     <>
-      <Navbar secondNav={secondNav} />
+      <Navbar layout="reader" secondNav={secondNav} />
 
       {dir === "ltr" ? (
         <ResizablePanelGroup

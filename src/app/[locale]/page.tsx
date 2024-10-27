@@ -56,7 +56,7 @@ export default async function HomePage({
 
   return (
     <>
-      <Navbar isHomepage />
+      <Navbar layout="home" />
 
       <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
