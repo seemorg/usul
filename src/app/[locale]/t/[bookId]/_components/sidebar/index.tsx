@@ -1,11 +1,6 @@
 "use client";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 import SidebarContainer from "./sidebar-container";
 import SidebarWrapper from "./wrapper";
@@ -29,24 +24,16 @@ const TabButton = ({
   const t = useTranslations();
 
   return (
-    <Tooltip>
-      <TabsTrigger
-        value={tab.id}
-        type="button"
-        onClick={() => (disabled ? null : handleNavigate(tab.id))}
-        className="w-full py-1.5"
-        disabled={disabled}
-        asChild
-      >
-        <TooltipTrigger>
-          <tab.icon className="size-5" />
-        </TooltipTrigger>
-      </TabsTrigger>
-
-      <TooltipContent side="bottom" sideOffset={10}>
-        {t(tab.label as any)}
-      </TooltipContent>
-    </Tooltip>
+    <TabsTrigger
+      value={tab.id}
+      type="button"
+      onClick={() => (disabled ? null : handleNavigate(tab.id))}
+      className="w-full gap-2 py-1.5"
+      disabled={disabled}
+    >
+      <tab.icon className="size-5" />
+      {t(tab.label as any)}
+    </TabsTrigger>
   );
 };
 

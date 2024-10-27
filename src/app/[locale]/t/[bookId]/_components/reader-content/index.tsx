@@ -8,6 +8,8 @@ import Footer from "@/app/_components/footer";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
+import Container from "@/components/ui/container";
+import BookInfoHeader from "./book-info-header";
 
 export default function ReaderContent({
   response,
@@ -40,7 +42,8 @@ export default function ReaderContent({
         }
       }}
     >
-      <div className="h-[80px] w-full" />
+      <div className="h-[120px] w-full" />
+      <BookInfoHeader bookResponse={response} />
 
       <Virtualizer
         count={response.pagination.total}
@@ -51,7 +54,7 @@ export default function ReaderContent({
         // eslint-disable-next-line react/display-name
         as={forwardRef((props, ref) => (
           <div
-            className="mx-auto w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16"
+            className="w-full flex-auto divide-y-2 divide-border"
             ref={ref}
             {...props}
           />
@@ -86,13 +89,13 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
+      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-14 font-amiri lg:px-8 xl:px-16 2xl:max-w-5xl">
         <ReaderPage
           index={index}
           defaultPages={defaultPages}
           perPage={perPage}
         />
-      </div>
+      </Container>
     );
   },
   (prevProps, nextProps) => {

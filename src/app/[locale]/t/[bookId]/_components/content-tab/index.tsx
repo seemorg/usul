@@ -121,30 +121,31 @@ export default function ContentTab({ bookResponse }: TabProps) {
 
   return (
     <>
-      <SidebarContainer>
-        {/* <nav className="flex" aria-label="Breadcrumb" dir="rtl">
+      {/* <nav className="flex" aria-label="Breadcrumb" dir="rtl">
           <ol role="list" className="flex flex-wrap items-center gap-y-2">
-            {breadcrumbs.map((b, idx) => (
-              <li key={idx}>
-                <div className={cn(idx > 0 && "flex items-center")}>
-                  {idx > 0 && (
+          {breadcrumbs.map((b, idx) => (
+            <li key={idx}>
+            <div className={cn(idx > 0 && "flex items-center")}>
+            {idx > 0 && (
                     <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400 rtl:rotate-180" />
                   )}
 
                   <a
-                    href="#"
-                    className={cn(
-                      "text-xs font-medium text-gray-500 hover:text-gray-700 ltr:ml-0.5 rtl:mr-0.5",
+                  href="#"
+                  className={cn(
+                    "text-xs font-medium text-gray-500 hover:text-gray-700 ltr:ml-0.5 rtl:mr-0.5",
                     )}
-                  >
+                    >
                     {b}
-                  </a>
-                </div>
+                    </a>
+                    </div>
               </li>
-            ))}
-          </ol>
-        </nav> */}
-        {/* mt-6  */}
+              ))}
+              </ol>
+              </nav> */}
+      {/* mt-6  */}
+
+      {/* <SidebarContainer>
         <h2 className="flex gap-2 text-4xl font-bold" dir="rtl">
           {primaryName}
         </h2>
@@ -323,7 +324,7 @@ export default function ContentTab({ bookResponse }: TabProps) {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </SidebarContainer>
+      </SidebarContainer> */}
 
       {isExternal ? null : view === "pdf" ? (
         <>
