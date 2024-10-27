@@ -57,7 +57,7 @@ export const sendFeedback = async (body: {
 }) => {
   const response = await baseRequest<{ success: boolean }>(
     "POST",
-    `/feedback/${body.messageId}`,
+    `/chat/feedback/${body.messageId}`,
     {
       type: body.feedback,
     },
