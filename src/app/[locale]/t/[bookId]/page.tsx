@@ -11,12 +11,55 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { getBook } from "@/lib/api";
 import { READER_PAGINATION_SIZE } from "@/lib/constants";
-import Container from "@/components/ui/container";
 import ReaderNavigation from "./_components/reader-navigation";
+import { getMetadata } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
 });
+
+export const generateMetadata = async ({
+  params: { bookId },
+  searchParams: { versionId },
+}: {
+  params: {
+    bookId: string;
+  };
+  searchParams: {
+    versionId?: string;
+  };
+}) => {
+  const pathLocale = await getPathLocale();
+
+  const response = await getBook(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+    size: READER_PAGINATION_SIZE,
+  });
+
+  if (!response.book) return {};
+
+  const book = response.book;
+
+  return getMetadata({
+    title: book.primaryName,
+    pagePath: navigation.books.reader(bookId),
+    keywords: [
+      ...book.otherNames,
+      ...(book.secondaryName ? [book.secondaryName] : []),
+      ...(book.secondaryOtherNames ?? []),
+    ],
+    authors: [
+      {
+        name: book.author.primaryName,
+        url: navigation.authors.bySlug(book.author.slug),
+      },
+    ],
+  });
+};
 
 export default async function SidebarContent({
   params: { bookId },
@@ -77,9 +120,6 @@ export default async function SidebarContent({
       //   <div className="relative flex w-full items-center justify-between bg-slate-50 dark:bg-card lg:hidden">
       //     {mobile}
       //   </div>
-      // }
-      // secondNav={
-
       // }
       sidebar={
         <ReaderSidebar

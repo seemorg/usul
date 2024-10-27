@@ -3,7 +3,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import SidebarContainer from "./sidebar-container";
-import SidebarWrapper from "./wrapper";
 import React from "react";
 import { useTranslations } from "next-intl";
 import { type TabProps, tabs } from "./tabs";
@@ -48,7 +47,7 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
 
   return (
-    <SidebarWrapper>
+    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 pb-16 pt-10 shadow-inner dark:bg-card sm:pt-5">
       <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
       <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
 
@@ -78,6 +77,6 @@ export default function ReaderSidebar({
           ))}
         </div>
       </Tabs>
-    </SidebarWrapper>
+    </div>
   );
 }

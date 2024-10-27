@@ -31,37 +31,12 @@ function ChatForm({
     }
   }, []);
 
-  //   return  <form
-  //   className={cn(
-  //     "mt-5 flex px-4 transition-transform will-change-transform",
-  //     showNavbar ? "" : "translate-y-16",
-  //   )}
-  //   onSubmit={onSubmit}
-  // >
-  //   <Input
-  //     className="h-10 flex-1 rounded-r-none bg-white focus-visible:ring-inset dark:bg-accent"
-  //     placeholder="Type your question..."
-  //     value={question}
-  //     onChange={(e) => setQuestion(e.target.value)}
-  //     disabled={isPending}
-  //   />
-
-  //   <Button
-  //     size="icon"
-  //     type="submit"
-  //     className="size-10 shrink-0 rounded-l-none"
-  //     disabled={isPending}
-  //   >
-  //     <ArrowRightIcon className="size-5" />
-  //   </Button>
-  // </form>
-
   return (
     <form
       ref={formRef}
       className={cn(
         "mt-5 shrink-0 px-4 transition-transform will-change-transform",
-        showNavbar ? "" : "translate-y-16",
+        showNavbar ? "-translate-y-4" : "translate-y-16",
       )}
       onSubmit={(e: any) => {
         e.preventDefault();

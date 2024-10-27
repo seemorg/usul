@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
 import { useDirection } from "@/lib/locale/utils";
+import { useNavbarStore } from "@/stores/navbar";
 
 const defaultSizes = [75, 25];
 
@@ -25,6 +26,7 @@ export default function SidebarResizer({
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const dir = useDirection();
+  const showNavbar = useNavbarStore((s) => s.showNavbar);
 
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
@@ -69,7 +71,10 @@ export default function SidebarResizer({
         <ResizablePanelGroup
           direction="horizontal"
           autoSaveId="reader-sidebar"
-          className="relative h-full w-full"
+          className={cn(
+            "relative h-full w-full transition-transform will-change-transform",
+            !showNavbar && "-translate-y-16 lg:-translate-y-20",
+          )}
         >
           {panels}
         </ResizablePanelGroup>
@@ -77,7 +82,10 @@ export default function SidebarResizer({
         <ResizablePanelGroup
           direction="horizontal"
           autoSaveId="reader-sidebar-rtl"
-          className="relative h-full w-full"
+          className={cn(
+            "relative h-full w-full transition-transform will-change-transform",
+            !showNavbar && "-translate-y-16 lg:-translate-y-20",
+          )}
         >
           {panels.reverse()}
         </ResizablePanelGroup>

@@ -6,6 +6,7 @@ import { useReaderVirtuoso } from "../context";
 import { useTranslations } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { Label } from "@/components/ui/label";
 
 export default function PageNavigator({
   popover = true,
@@ -70,16 +71,24 @@ export default function PageNavigator({
   }
 
   return (
-    <div className="flex items-center justify-between">
-      <p className="text-sm">{t("name")}</p>
+    <div>
+      <Label htmlFor="pageNumber" className="text-sm">
+        {t("name")}
+      </Label>
+      <p className="mt-1 text-xs text-muted-foreground">
+        {t("description", { start: range.start, end: range.end })}
+      </p>
 
-      <form className="grid grid-cols-3 items-center" onSubmit={handleSubmit}>
+      <form
+        className="mt-3 grid grid-cols-3 items-center"
+        onSubmit={handleSubmit}
+      >
         <Input
           id="pageNumber"
           name="pageNumber"
           type="number"
           placeholder={t("input-placeholder")}
-          className="col-span-2 h-9 ltr:rounded-r-none rtl:rounded-l-none"
+          className="col-span-2 h-9 bg-background ltr:rounded-r-none rtl:rounded-l-none"
         />
 
         <Button className="ltr:rounded-l-none rtl:rounded-r-none">

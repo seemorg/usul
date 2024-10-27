@@ -1,6 +1,5 @@
 "use client";
 
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -84,7 +83,7 @@ export default function VersionSelector({
   return (
     <Select value={selectedVersion} onValueChange={handleVersionChange}>
       <SelectTrigger
-        className="w-[200px] overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
+        className="w-[200px] overflow-hidden ltr:rounded-l-none rtl:rounded-r-none [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
         id="version-selector"
         isLoading={isPending}
       >

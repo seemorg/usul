@@ -42,7 +42,8 @@ export default function ReaderContent({
         }
       }}
     >
-      <div className="h-[120px] w-full" />
+      <div className="h-[30px] w-full" />
+
       <BookInfoHeader bookResponse={response} />
 
       <Virtualizer
@@ -89,7 +90,7 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-14 font-amiri lg:px-8 xl:px-16 2xl:max-w-5xl">
+      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 font-amiri lg:px-8 xl:px-16 2xl:max-w-5xl">
         <ReaderPage
           index={index}
           defaultPages={defaultPages}

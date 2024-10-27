@@ -13,6 +13,11 @@ datasource db {
   directUrl = env("DATABASE_DIRECT_URL")
 }
 
+enum AuthorYearStatus {
+  Unknown
+  Alive
+}
+
 model Author {
   id   String @id
   slug String @unique
@@ -21,8 +26,9 @@ model Author {
   otherNameTranslations   AuthorOtherNames[]
   transliteration         String?
 
-  year            Int
-  numberOfBooks   Int         @default(0)
+  year            Int?
+  yearStatus      AuthorYearStatus?
+  numberOfBooks   Int               @default(0)
   bioTranslations AuthorBio[]
 
   /// [AuthorExtraProperties]

@@ -3,17 +3,16 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
-  ArrowUpTrayIcon,
+  // ArrowUpTrayIcon,
   PencilSquareIcon,
   ArrowDownIcon,
 } from "@heroicons/react/24/outline";
+// import html2canvas from "html2canvas";
+// import { useToast } from "@/components/ui/use-toast";
 import useChat from "./useChat";
-import { useNavbarStore } from "@/stores/navbar";
 import ChatMessage from "./ChatMessage";
-import { useToast } from "@/components/ui/use-toast";
-import html2canvas from "html2canvas";
 import { useBoolean } from "usehooks-ts";
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
@@ -26,9 +25,8 @@ import SidebarContainer from "../sidebar/sidebar-container";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
-  const { toast } = useToast();
+  // const { toast } = useToast();
   const t = useTranslations("reader");
-  const showNavbar = useNavbarStore((s) => s.showNavbar);
   const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
     useScrollAnchor();
   const {
@@ -41,44 +39,44 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
     clearChat,
     regenerateResponse,
   } = useChat({ bookSlug: bookSlug });
-  const captureRef = useRef<HTMLDivElement>(null);
+  // const captureRef = useRef<HTMLDivElement>(null);
   const isSavingImage = useBoolean(false);
 
   const onSubmit = useCallback(async () => {
     await sendQuestion();
   }, [sendQuestion]);
 
-  const handleShareChat = useCallback(async () => {
-    isSavingImage.setTrue();
+  // const handleShareChat = useCallback(async () => {
+  //   isSavingImage.setTrue();
 
-    // const height = captureRef.current!.scrollHeight;
-    // captureRef.current!.style.height = `${height}px`;
+  //   // const height = captureRef.current!.scrollHeight;
+  //   // captureRef.current!.style.height = `${height}px`;
 
-    captureRef.current!.style.width = "700px";
-    captureRef.current!.style.height = "fit-content";
+  //   captureRef.current!.style.width = "700px";
+  //   captureRef.current!.style.height = "fit-content";
 
-    try {
-      const canvas = await html2canvas(captureRef.current!, {
-        width: 700,
-        windowWidth: 1350,
-        backgroundColor: "white",
-      });
+  //   try {
+  //     const canvas = await html2canvas(captureRef.current!, {
+  //       width: 700,
+  //       windowWidth: 1350,
+  //       backgroundColor: "white",
+  //     });
 
-      const link = document.createElement("a");
-      link.download = "chat.png";
-      link.href = canvas.toDataURL("image/png", 1.0);
-      link.click();
+  //     const link = document.createElement("a");
+  //     link.download = "chat.png";
+  //     link.href = canvas.toDataURL("image/png", 1.0);
+  //     link.click();
 
-      toast({ description: "Done!" });
-    } catch (e) {
-      toast({ description: "An error occurred!", variant: "destructive" });
-    }
+  //     toast({ description: "Done!" });
+  //   } catch (e) {
+  //     toast({ description: "An error occurred!", variant: "destructive" });
+  //   }
 
-    isSavingImage.setFalse();
-    captureRef.current!.style.width = "";
-    captureRef.current!.style.height = "";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //   isSavingImage.setFalse();
+  //   captureRef.current!.style.width = "";
+  //   captureRef.current!.style.height = "";
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const isLoading = isPending || isSavingImage.value;
   const isVersionMismatch =
@@ -98,7 +96,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
       <div className="flex items-center justify-between px-4">
         Chat
         <div className="flex gap-2">
-          <Button
+          {/* <Button
             size="icon"
             variant="ghost"
             className="size-10 hover:bg-secondary"
@@ -107,7 +105,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
             tooltip={t("chat.share-chat")}
           >
             <ArrowUpTrayIcon className="size-4" />
-          </Button>
+          </Button> */}
 
           <Button
             size="icon"
@@ -121,33 +119,6 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           </Button>
         </div>
       </div>
-
-      {/* <div
-        className="sr-only pointer-events-none flex flex-col gap-5 overflow-y-scroll px-4 py-10"
-        ref={captureRef}
-      >
-        <ChatMessage
-          role="ai"
-          text="Hey there, send something to start the chat!"
-          hasActions={false}
-          isScreenshot
-          pagesRange={pagesRange}
-          pageToIndex={pageToIndex}
-        />
-
-        {messages.map((message, idx) => (
-          <ChatMessage
-            key={idx}
-            role={message.role}
-            text={message.text}
-            sourceNodes={message.sourceNodes}
-            hasActions={false}
-            isScreenshot
-            pagesRange={pagesRange}
-            pageToIndex={pageToIndex}
-          />
-        ))}
-      </div> */}
 
       <div
         className={cn(
@@ -169,10 +140,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           )}
 
           <div
-            className={cn(
-              "h-full w-full overflow-y-auto px-4",
-              showNavbar ? "" : "",
-            )}
+            className={cn("h-full w-full overflow-y-auto px-4")}
             ref={scrollRef}
           >
             <div
@@ -234,30 +202,6 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           </div>
         </div>
 
-        {/* <form
-        className={cn(
-          "mt-5 flex px-4 transition-transform will-change-transform",
-          showNavbar ? "" : "translate-y-16",
-        )}
-        onSubmit={onSubmit}
-      >
-        <Input
-          className="h-10 flex-1 rounded-r-none bg-white focus-visible:ring-inset dark:bg-accent"
-          placeholder="Type your question..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          disabled={isPending}
-        />
-
-        <Button
-          size="icon"
-          type="submit"
-          className="size-10 shrink-0 rounded-l-none"
-          disabled={isPending}
-        >
-          <ArrowRightIcon className="size-5" />
-        </Button>
-      </form> */}
         <ChatForm
           input={question}
           setInput={setQuestion}

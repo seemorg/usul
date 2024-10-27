@@ -107,7 +107,7 @@ export default function PdfView({
   }, [setShowNavbar]);
 
   return (
-    <div className="mx-auto w-full min-w-0 flex-auto pt-28 lg:pt-20">
+    <div className="mx-auto w-full min-w-0 flex-auto">
       <div
         ref={viewerRef}
         className="h-[calc(100vh-7rem)] w-full border-t border-border lg:h-[calc(100vh-5rem)] lg:border-none [&_iframe]:h-[calc(100vh-7rem)] lg:[&_iframe]:h-[calc(100vh-5rem)]"
