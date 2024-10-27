@@ -48,7 +48,22 @@ export const chatWithBook = async (body: {
     `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/chat/sse/${response.chatId}`,
   );
 
-  return eventSource;
+  return { eventSource, messageId: response.chatId };
+};
+
+export const sendFeedback = async (body: {
+  messageId: string;
+  feedback: "positive" | "negative";
+}) => {
+  const response = await baseRequest<{ success: boolean }>(
+    "POST",
+    `/feedback/${body.messageId}`,
+    {
+      type: body.feedback,
+    },
+  );
+
+  return response;
 };
 
 export const searchBook = async (bookSlug: string, query: string) => {

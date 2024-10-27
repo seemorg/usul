@@ -157,6 +157,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
               {messages.map((message, idx) => (
                 <ChatMessage
                   key={idx}
+                  id={message.id}
                   role={message.role}
                   text={message.text}
                   sourceNodes={message.sourceNodes}

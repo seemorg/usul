@@ -57,5 +57,6 @@
     "print-version": "Print Version",
     "volumes": "Volumes",
     "page-numbers-match-print": "Page numbers match print"
-  }
+  },
+  "feedback-submitted": "Feedback submitted!"
 }

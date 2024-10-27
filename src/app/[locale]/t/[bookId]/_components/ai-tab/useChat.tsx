@@ -5,8 +5,9 @@ import { useCallback, useState } from "react";
 import { useBoolean } from "usehooks-ts";
 
 type ChatMessage = {
-  role: "ai" | "user";
+  id?: string;
   text: string;
+  role: "ai" | "user";
   sourceNodes?: SemanticSearchBookNode[];
 };
 
@@ -23,6 +24,7 @@ interface UseChatResult {
 }
 
 const handleEventSource = async (
+  id: string,
   eventSource: EventSource,
   {
     onChunk,
@@ -43,6 +45,7 @@ const handleEventSource = async (
       if (event.data === "FINISH") {
         eventSource.close();
         return res({
+          id,
           role: "ai",
           text: allContent,
           sourceNodes: (sources ?? []).map(parseSourceNode),
@@ -63,7 +66,7 @@ const handleEventSource = async (
       }
 
       if (onChunk) {
-        onChunk({ role: "ai", text: allContent });
+        onChunk({ id, role: "ai", text: allContent });
       }
     };
   });
@@ -89,13 +92,13 @@ export default function useChat({
     setQuestion("");
 
     try {
-      const eventSource = await chatWithBook({
+      const { eventSource, messageId } = await chatWithBook({
         bookSlug,
         question: q,
         messages,
       });
 
-      const result = await handleEventSource(eventSource, {
+      const result = await handleEventSource(messageId, eventSource, {
         onChunk(chunk) {
           setMessages([...newMessages, chunk]);
         },
@@ -145,13 +148,13 @@ export default function useChat({
       isPending.setTrue();
 
       try {
-        const eventSource = await chatWithBook({
+        const { eventSource, messageId } = await chatWithBook({
           bookSlug,
           question: question.text,
           messages: previousMessages,
         });
 
-        const result = await handleEventSource(eventSource, {
+        const result = await handleEventSource(messageId, eventSource, {
           onChunk(chunk) {
             setMessages([...newMessages, chunk]);
           },

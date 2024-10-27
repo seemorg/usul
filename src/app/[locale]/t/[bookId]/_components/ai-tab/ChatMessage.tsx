@@ -15,8 +15,11 @@ import { useReaderVirtuoso } from "../context";
 import { memo, useCallback } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { useMutation } from "@tanstack/react-query";
+import { sendFeedback } from "@/server/services/chat";
 
 type ChatMessageProps = {
+  id?: string;
   text: string;
   role: "ai" | "user";
   onRegenerate?: () => Promise<void>;
@@ -28,6 +31,7 @@ type ChatMessageProps = {
 };
 
 const ChatMessage = ({
+  id,
   text,
   role,
   sourceNodes,
@@ -41,6 +45,19 @@ const ChatMessage = ({
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
   const isLoading = useBoolean(false);
+  const didSendFeedback = useBoolean(false);
+
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["send-feedback"],
+    mutationFn: sendFeedback,
+    onSuccess: () => {
+      toast({
+        variant: "primary",
+        description: t("reader.feedback-submitted"),
+      });
+      didSendFeedback.setTrue();
+    },
+  });
 
   const handleNavigateToPage = useCallback(
     (page?: { vol: string; page: number }) => {
@@ -67,12 +84,13 @@ const ChatMessage = ({
     isLoading.setFalse();
   }, [text]);
 
-  const handleFeedback = useCallback((type: "positive" | "negative") => {
-    toast({
-      variant: "primary",
-      description: "Feedback submitted!",
-    });
-  }, []);
+  const handleFeedback = useCallback(
+    (type: "positive" | "negative") => {
+      if (!id) return;
+      mutateAsync({ messageId: id, feedback: type });
+    },
+    [id],
+  );
 
   return (
     <div
@@ -162,27 +180,31 @@ const ChatMessage = ({
                 <ArrowPathIcon className="size-4" />
               </Button>
 
-              <Button
-                size="icon"
-                variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
-                disabled={isLoading.value}
-                onClick={() => handleFeedback("positive")}
-                tooltip={t("reader.chat.mark-as-correct")}
-              >
-                <HandThumbUpIcon className="size-4" />
-              </Button>
+              {!didSendFeedback.value && (
+                <>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-7 text-gray-600 hover:bg-secondary"
+                    disabled={isLoading.value || isPending}
+                    onClick={() => handleFeedback("positive")}
+                    tooltip={t("reader.chat.mark-as-correct")}
+                  >
+                    <HandThumbUpIcon className="size-4" />
+                  </Button>
 
-              <Button
-                size="icon"
-                variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
-                disabled={isLoading.value}
-                onClick={() => handleFeedback("negative")}
-                tooltip={t("reader.chat.report-as-incorrect")}
-              >
-                <HandThumbDownIcon className="size-4" />
-              </Button>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="size-7 text-gray-600 hover:bg-secondary"
+                    disabled={isLoading.value || isPending}
+                    onClick={() => handleFeedback("negative")}
+                    tooltip={t("reader.chat.report-as-incorrect")}
+                  >
+                    <HandThumbDownIcon className="size-4" />
+                  </Button>
+                </>
+              )}
             </div>
           )}
         </div>
