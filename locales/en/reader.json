@@ -2,6 +2,7 @@
   "notes": "Notes",
   "bookmarks": "Bookmarks",
   "content": "Content",
+  "ask-ai": "Ask AI",
   "version-warning": "AI has been trained on a <tooltip>different version of this book</tooltip>. You can still use {feature} but the results might be slightly different.",
   "switch-version": "Switch to {version}",
   "coming-soon": {

@@ -17,6 +17,11 @@ export const useScrollAnchor = () => {
     }
   }, []);
 
+  const resetState = useCallback(() => {
+    setIsAtBottom(true);
+    setIsVisible(false);
+  }, []);
+
   useEffect(() => {
     if (messagesRef.current) {
       if (isAtBottom && !isVisible) {
@@ -83,5 +88,6 @@ export const useScrollAnchor = () => {
     scrollToBottom,
     isAtBottom,
     isVisible,
+    resetState,
   };
 };

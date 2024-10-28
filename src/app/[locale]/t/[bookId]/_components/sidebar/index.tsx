@@ -27,10 +27,10 @@ const TabButton = ({
       value={tab.id}
       type="button"
       onClick={() => (disabled ? null : handleNavigate(tab.id))}
-      className="w-full gap-2 py-1.5"
+      className="w-full gap-2"
       disabled={disabled}
     >
-      <tab.icon className="size-5" />
+      <tab.icon className="size-4" />
       {t(tab.label as any)}
     </TabsTrigger>
   );
@@ -47,13 +47,10 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
 
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-slate-50 pb-16 pt-10 shadow-inner dark:bg-card sm:pt-5">
-      <div className="absolute bottom-0 left-0 top-0 z-0 w-px bg-border" />
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-[50vw] max-w-full" />
-
+    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 dark:bg-card sm:pt-4">
       <Tabs defaultValue={activeTab}>
         <SidebarContainer className="hidden sm:block">
-          <TabsList className="h-10 w-full rounded-b-none font-sans">
+          <TabsList className="w-full font-sans">
             {tabs.map((tab) => (
               <TabButton
                 key={tab.id}

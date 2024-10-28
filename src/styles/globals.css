@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --plyr-color-main: #9d5148;
+
     --background: 0 0% 100%;
     /* --background: 0 25% 98.4%; */
     --foreground: 222.2 84% 4.9%;
@@ -17,25 +19,25 @@
     --primary: 6 37% 45%;
     --primary-foreground: 4 53% 94%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 0 0% 95.3%;
     --secondary-foreground: 222.2 47.4% 11.2%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 0 0% 95.3%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
+    --accent: 0 0% 95.3%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
+    --border: 0 0% 0% / 0.12;
+    --input: 0 0% 96.1%;
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
 
-    --plyr-color-main: #9d5148;
+    --reader: 0 0% 99.2%;
   }
 
   .dark {
@@ -66,6 +68,8 @@
     --border: 226.67 6.04% 29.22%;
     --input: 226.67 6.04% 29.22%;
     --ring: 212.7 26.8% 83.9%;
+
+    --reader: 240 5.56% 7.06%;
   }
 }
 

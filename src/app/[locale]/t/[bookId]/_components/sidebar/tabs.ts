@@ -1,9 +1,9 @@
-import { GradientSparklesIcon } from "@/components/Icons";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 
 import {
-  DocumentMagnifyingGlassIcon,
+  MagnifyingGlassIcon,
   ListBulletIcon,
+  SparklesIcon,
 } from "@heroicons/react/24/outline";
 
 export type TabProps = {
@@ -15,13 +15,13 @@ export type TabProps = {
 export const tabs = [
   {
     id: "ai",
-    label: "common.ai",
-    icon: GradientSparklesIcon,
+    label: "reader.ask-ai",
+    icon: SparklesIcon,
   },
   {
     id: "search",
     label: "common.search",
-    icon: DocumentMagnifyingGlassIcon,
+    icon: MagnifyingGlassIcon,
   },
   {
     id: "content",

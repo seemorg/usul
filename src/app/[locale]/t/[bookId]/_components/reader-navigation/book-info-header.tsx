@@ -131,7 +131,7 @@ export default function BookInfoHeader({
 
   return (
     <Container
-      className="mx-auto px-5 lg:px-8 xl:px-16 2xl:max-w-5xl"
+      className="mx-auto border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl"
       dir={dir}
     >
       {!open.value && (

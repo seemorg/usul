@@ -1,58 +1,64 @@
+"use client";
+
 import Container from "@/components/ui/container";
 import VersionSelector from "./version-selector";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import { Button } from "@/components/ui/button";
 import { ExpandIcon } from "lucide-react";
 import DownloadButton from "./download-button";
-import { Label } from "@/components/ui/label";
-import { useTranslations } from "next-intl";
 import ViewTabs from "./view-tabs";
+import BookInfoHeader from "./book-info-header";
+import { useNavbarStore } from "@/stores/navbar";
+import { cn } from "@/lib/utils";
 
 export default function ReaderNavigation({
   bookResponse,
 }: {
   bookResponse: ApiBookResponse;
 }) {
-  const t = useTranslations("reader");
+  const showNavbar = useNavbarStore((s) => s.showNavbar);
 
   return (
-    <div className="relative z-[10] w-full border-b-2 border-border bg-white py-3">
-      <Container className="flex w-full items-center justify-between">
-        <div className="flex items-center">
-          <div className="flex h-9 items-center justify-center border border-border bg-secondary px-4 ltr:rounded-l-md rtl:rounded-r-md">
-            <Label htmlFor="version-selector" className="font-normal">
-              {t("version")}
-            </Label>
-          </div>
-
+    <>
+      <div
+        className={cn(
+          "bg-reader relative z-[10] w-full transition will-change-transform",
+          showNavbar
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-20 opacity-0",
+        )}
+      >
+        <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl">
           <VersionSelector
             versions={bookResponse.book.versions}
             versionId={bookResponse.content.versionId}
           />
-        </div>
 
-        <ViewTabs
-          hasPdf={
-            bookResponse.content.source === "turath" &&
-            !!bookResponse.content.pdf?.finalUrl
-          }
-        />
-
-        <div className="flex items-center gap-3">
-          <DownloadButton
-            pdf={
-              bookResponse.content.source === "turath"
-                ? bookResponse.content.pdf
-                : undefined
+          <ViewTabs
+            hasPdf={
+              bookResponse.content.source === "turath" &&
+              !!bookResponse.content.pdf?.finalUrl
             }
-            slug={bookResponse.book.slug}
           />
 
-          <Button size="icon" variant="outline">
-            <ExpandIcon className="size-4" />
-          </Button>
-        </div>
-      </Container>
-    </div>
+          <div className="flex items-center gap-3">
+            <DownloadButton
+              pdf={
+                bookResponse.content.source === "turath"
+                  ? bookResponse.content.pdf
+                  : undefined
+              }
+              slug={bookResponse.book.slug}
+            />
+
+            <Button size="icon" variant="outline">
+              <ExpandIcon className="size-4" />
+            </Button>
+          </div>
+        </Container>
+      </div>
+
+      <BookInfoHeader bookResponse={bookResponse} />
+    </>
   );
 }

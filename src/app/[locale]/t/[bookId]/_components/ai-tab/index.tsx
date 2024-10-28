@@ -7,11 +7,8 @@ import {
   PencilSquareIcon,
   ArrowDownIcon,
 } from "@heroicons/react/24/outline";
-// import html2canvas from "html2canvas";
-// import { useToast } from "@/components/ui/use-toast";
 import useChat from "./useChat";
 import ChatMessage from "./ChatMessage";
-import { useBoolean } from "usehooks-ts";
 import { useCallback } from "react";
 import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
@@ -22,13 +19,19 @@ import { InfoIcon } from "lucide-react";
 import { config } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
+import { Badge } from "@/components/ui/badge";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
-  // const { toast } = useToast();
-  const t = useTranslations("reader");
-  const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
-    useScrollAnchor();
+  const t = useTranslations();
+  const {
+    messagesRef,
+    scrollRef,
+    visibilityRef,
+    isAtBottom,
+    scrollToBottom,
+    resetState,
+  } = useScrollAnchor();
   const {
     isError,
     isPending,
@@ -39,46 +42,19 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
     clearChat,
     regenerateResponse,
   } = useChat({ bookSlug: bookSlug });
-  // const captureRef = useRef<HTMLDivElement>(null);
-  const isSavingImage = useBoolean(false);
 
   const onSubmit = useCallback(async () => {
     await sendQuestion();
   }, [sendQuestion]);
 
-  // const handleShareChat = useCallback(async () => {
-  //   isSavingImage.setTrue();
+  const onClearChat = useCallback(() => {
+    clearChat();
+    resetState();
+  }, [clearChat, resetState]);
 
-  //   // const height = captureRef.current!.scrollHeight;
-  //   // captureRef.current!.style.height = `${height}px`;
+  // const isLoading = isPending || isSavingImage.value;
+  const isLoading = isPending;
 
-  //   captureRef.current!.style.width = "700px";
-  //   captureRef.current!.style.height = "fit-content";
-
-  //   try {
-  //     const canvas = await html2canvas(captureRef.current!, {
-  //       width: 700,
-  //       windowWidth: 1350,
-  //       backgroundColor: "white",
-  //     });
-
-  //     const link = document.createElement("a");
-  //     link.download = "chat.png";
-  //     link.href = canvas.toDataURL("image/png", 1.0);
-  //     link.click();
-
-  //     toast({ description: "Done!" });
-  //   } catch (e) {
-  //     toast({ description: "An error occurred!", variant: "destructive" });
-  //   }
-
-  //   isSavingImage.setFalse();
-  //   captureRef.current!.style.width = "";
-  //   captureRef.current!.style.height = "";
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
-  const isLoading = isPending || isSavingImage.value;
   const isVersionMismatch =
     bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 
@@ -93,8 +69,11 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         </SidebarContainer>
       )}
 
-      <div className="flex items-center justify-between px-4">
-        Chat
+      <div className="flex items-center justify-between px-6">
+        <div className="flex gap-2">
+          {t("reader.ask-ai")}{" "}
+          <Badge variant="secondary">{t("common.beta")}</Badge>
+        </div>
         <div className="flex gap-2">
           {/* <Button
             size="icon"
@@ -106,14 +85,13 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           >
             <ArrowUpTrayIcon className="size-4" />
           </Button> */}
-
           <Button
             size="icon"
             variant="ghost"
             className="size-10 hover:bg-secondary"
-            onClick={clearChat}
+            onClick={onClearChat}
             disabled={isLoading}
-            tooltip={t("chat.new-chat")}
+            tooltip={t("reader.chat.new-chat")}
           >
             <PencilSquareIcon className="size-4" />
           </Button>
@@ -139,10 +117,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
             </div>
           )}
 
-          <div
-            className={cn("h-full w-full overflow-y-auto px-4")}
-            ref={scrollRef}
-          >
+          <div className="h-full w-full overflow-y-auto px-6" ref={scrollRef}>
             <div
               ref={messagesRef}
               className="flex flex-col gap-5 pb-[30px] pt-4"
@@ -172,29 +147,31 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
 
               {isError && (
                 <div
-                  className="flex items-center gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
+                  className="flex items-start gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
                   role="alert"
                 >
                   <InfoIcon className="size-4" />
-                  {t.rich("chat.error", {
-                    retry: (children) => (
-                      <button
-                        onClick={() => regenerateResponse()}
-                        className="underline"
-                      >
-                        {children}
-                      </button>
-                    ),
-                    contact: (children) => (
-                      <a
-                        href={config.contactEmail}
-                        target="_blank"
-                        className="underline"
-                      >
-                        {children}
-                      </a>
-                    ),
-                  })}
+                  <p>
+                    {t.rich("reader.chat.error", {
+                      retry: (children) => (
+                        <button
+                          onClick={() => regenerateResponse()}
+                          className="inline underline"
+                        >
+                          {children}
+                        </button>
+                      ),
+                      contact: (children) => (
+                        <a
+                          href={`mailto:${config.contactEmail}`}
+                          target="_blank"
+                          className="inline underline"
+                        >
+                          {children}
+                        </a>
+                      ),
+                    })}
+                  </p>
                 </div>
               )}
 

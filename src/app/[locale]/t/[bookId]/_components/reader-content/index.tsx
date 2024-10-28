@@ -9,7 +9,6 @@ import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";
-import BookInfoHeader from "./book-info-header";
 
 export default function ReaderContent({
   response,
@@ -32,7 +31,7 @@ export default function ReaderContent({
 
   return (
     <div
-      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground [overflow-anchor:none]"
+      className="!h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
@@ -42,10 +41,6 @@ export default function ReaderContent({
         }
       }}
     >
-      <div className="h-[30px] w-full" />
-
-      <BookInfoHeader bookResponse={response} />
-
       <Virtualizer
         count={response.pagination.total}
         ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}

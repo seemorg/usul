@@ -1,5 +1,6 @@
 "use client";
 
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -81,26 +82,32 @@ export default function VersionSelector({
   };
 
   return (
-    <Select value={selectedVersion} onValueChange={handleVersionChange}>
-      <SelectTrigger
-        className="w-[200px] overflow-hidden ltr:rounded-l-none rtl:rounded-r-none [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
-        id="version-selector"
-        isLoading={isPending}
-      >
-        {selectedVersionObj ? (
-          <span>{versionToName(selectedVersionObj)}</span>
-        ) : (
-          <SelectValue placeholder={t("select-version")} />
-        )}
-      </SelectTrigger>
+    <div className="flex items-center">
+      <div className="flex h-9 items-center justify-center rounded-md border border-border px-4 text-muted-foreground ltr:rounded-r-none rtl:rounded-l-none">
+        <Label htmlFor="version-selector">{t("version")}</Label>
+      </div>
 
-      <SelectContent>
-        {versions.map((version, idx) => (
-          <SelectItem key={idx} value={version.value}>
-            {versionToName(version)}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+      <Select value={selectedVersion} onValueChange={handleVersionChange}>
+        <SelectTrigger
+          className="w-[200px] overflow-hidden border border-border shadow-none ltr:rounded-l-none ltr:border-l-0 rtl:rounded-r-none rtl:border-r-0 [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
+          id="version-selector"
+          isLoading={isPending}
+        >
+          {selectedVersionObj ? (
+            <span>{versionToName(selectedVersionObj)}</span>
+          ) : (
+            <SelectValue placeholder={t("select-version")} />
+          )}
+        </SelectTrigger>
+
+        <SelectContent>
+          {versions.map((version, idx) => (
+            <SelectItem key={idx} value={version.value}>
+              {versionToName(version)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 }

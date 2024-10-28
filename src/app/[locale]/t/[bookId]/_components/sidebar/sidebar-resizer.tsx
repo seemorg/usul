@@ -55,8 +55,9 @@ export default function SidebarResizer({
       onCollapse={onCollapse}
       onExpand={onExpand}
       className={cn(
-        "hidden lg:block",
+        "hidden transition-transform will-change-transform lg:block",
         isCollapsed && "min-w-[20px] transition-all duration-300 ease-in-out",
+        !showNavbar && "translate-y-[86px]",
       )}
     >
       {isCollapsed ? <CollapsedSidebar sidebarRef={sidebarRef} /> : sidebar}
@@ -73,7 +74,7 @@ export default function SidebarResizer({
           autoSaveId="reader-sidebar"
           className={cn(
             "relative h-full w-full transition-transform will-change-transform",
-            !showNavbar && "-translate-y-16 lg:-translate-y-20",
+            !showNavbar && "-translate-y-[150px] lg:-translate-y-[166px]",
           )}
         >
           {panels}
@@ -84,7 +85,7 @@ export default function SidebarResizer({
           autoSaveId="reader-sidebar-rtl"
           className={cn(
             "relative h-full w-full transition-transform will-change-transform",
-            !showNavbar && "-translate-y-16 lg:-translate-y-20",
+            !showNavbar && "-translate-y-[150px] lg:-translate-y-[166px]",
           )}
         >
           {panels.reverse()}
