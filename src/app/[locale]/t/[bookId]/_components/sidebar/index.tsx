@@ -44,7 +44,7 @@ export default function ReaderSidebar({
   const activeTabId = useSearchParams().get("tab");
   const { handleNavigate } = useTabNavigate();
   const activeTab =
-    tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[tabs.length - 1]!.id;
+    tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[0]!.id;
 
   return (
     <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 dark:bg-card sm:pt-4">
