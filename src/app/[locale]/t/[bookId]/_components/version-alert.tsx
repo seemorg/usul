@@ -16,7 +16,7 @@ export const VersionAlert = ({
   feature,
 }: {
   versionId: string;
-  feature: "ai" | "search";
+  feature: "ask-ai" | "search";
 }) => {
   const t = useTranslations();
   const pathname = usePathname();
@@ -34,7 +34,7 @@ export const VersionAlert = ({
       <InfoIcon className="h-5 w-5" />
       <AlertTitle>
         {t.rich("reader.version-warning", {
-          feature: t(`common.${feature}`),
+          feature: t(feature === "search" ? "common.search" : "reader.ask-ai"),
           tooltip: (children) => (
             <Tooltip>
               <TooltipTrigger

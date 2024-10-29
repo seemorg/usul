@@ -61,7 +61,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         <SidebarContainer className="my-4">
           <VersionAlert
             versionId={bookResponse.book.flags.aiVersion!}
-            feature="ai"
+            feature="ask-ai"
           />
         </SidebarContainer>
       )}
