@@ -69,7 +69,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
       <div className="flex items-center justify-between px-6">
         <div className="flex gap-2">
           {t("reader.ask-ai")}{" "}
-          <Badge variant="secondary">{t("common.beta")}</Badge>
+          <Badge variant="tertiary">{t("common.beta")}</Badge>
         </div>
         <div className="flex">
           <Button

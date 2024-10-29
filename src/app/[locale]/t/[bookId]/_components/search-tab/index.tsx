@@ -150,7 +150,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
       <SidebarContainer>
         <div className="flex gap-2">
           {t("common.search")}{" "}
-          <Badge variant="secondary">{t("common.beta")}</Badge>
+          <Badge variant="tertiary">{t("common.beta")}</Badge>
         </div>
 
         <div className="mt-5 flex items-center gap-2">
