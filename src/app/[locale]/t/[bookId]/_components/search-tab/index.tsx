@@ -26,6 +26,7 @@ import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 
 import { VersionAlert } from "../version-alert";
+import { Badge } from "@/components/ui/badge";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -147,6 +148,11 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   return (
     <>
       <SidebarContainer>
+        <div className="flex gap-2">
+          {t("common.search")}{" "}
+          <Badge variant="secondary">{t("common.beta")}</Badge>
+        </div>
+
         <div className="mt-5 flex items-center gap-2">
           {/* <Button
             variant="outline"

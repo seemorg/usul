@@ -10,6 +10,11 @@ import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
 
 import { TabContent } from "../tab-content";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const TabButton = ({
   tab,
@@ -23,16 +28,24 @@ const TabButton = ({
   const t = useTranslations();
 
   return (
-    <TabsTrigger
-      value={tab.id}
-      type="button"
-      onClick={() => (disabled ? null : handleNavigate(tab.id))}
-      className="w-full gap-2"
-      disabled={disabled}
-    >
-      <tab.icon className="size-4" />
-      {t(tab.label as any)}
-    </TabsTrigger>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="h-full w-full">
+          <TabsTrigger
+            value={tab.id}
+            type="button"
+            onClick={() => (disabled ? null : handleNavigate(tab.id))}
+            className="w-full gap-2"
+            disabled={disabled}
+          >
+            <tab.icon className="size-4" />
+            <span className="@sm:inline hidden">{t(tab.label as any)}</span>
+          </TabsTrigger>
+        </span>
+      </TooltipTrigger>
+
+      <TooltipContent side="bottom">{t(tab.label as any)}</TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -47,7 +60,7 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[0]!.id;
 
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 dark:bg-card sm:pt-4">
+    <div className="@container sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 dark:bg-card sm:pt-4">
       <Tabs defaultValue={activeTab}>
         <SidebarContainer className="hidden sm:block">
           <TabsList className="w-full font-sans">
