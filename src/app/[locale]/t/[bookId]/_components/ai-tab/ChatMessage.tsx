@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import {
   DocumentDuplicateIcon,
   HandThumbUpIcon,
@@ -11,12 +11,14 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useBoolean } from "usehooks-ts";
 import { useTranslations } from "next-intl";
-import { useReaderVirtuoso } from "../context";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useMutation } from "@tanstack/react-query";
 import { sendFeedback } from "@/server/services/chat";
+import makeSourcesPlugin from "./sources-plugin";
+import rehypeRaw from "rehype-raw";
+import PageReference from "./PageReference";
 
 type ChatMessageProps = {
   id?: string;
@@ -29,6 +31,20 @@ type ChatMessageProps = {
   isScreenshot?: boolean;
   getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
 };
+
+const makeComponents = (
+  sourceNodes: SemanticSearchBookNode[],
+  getVirtuosoIndex: ChatMessageProps["getVirtuosoIndex"],
+): Components => ({
+  // @ts-expect-error
+  "page-reference": (props) => (
+    <PageReference
+      getVirtuosoIndex={getVirtuosoIndex}
+      sourceNodes={sourceNodes}
+      {...props}
+    />
+  ),
+});
 
 const ChatMessage = ({
   id,
@@ -43,7 +59,7 @@ const ChatMessage = ({
 }: ChatMessageProps) => {
   const { toast } = useToast();
   const t = useTranslations();
-  const virtuosoRef = useReaderVirtuoso();
+
   const isLoading = useBoolean(false);
   const didSendFeedback = useBoolean(false);
 
@@ -58,16 +74,6 @@ const ChatMessage = ({
       didSendFeedback.setTrue();
     },
   });
-
-  const handleNavigateToPage = useCallback(
-    (page?: { vol: string; page: number }) => {
-      if (!page) return;
-
-      const props = getVirtuosoIndex(page);
-      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
-    },
-    [getVirtuosoIndex],
-  );
 
   const handleRegenerate = useCallback(async () => {
     if (!onRegenerate) return;
@@ -91,6 +97,21 @@ const ChatMessage = ({
     },
     [id],
   );
+
+  const sourcesPlugin = useMemo(() => {
+    return {
+      plugin: makeSourcesPlugin(
+        (sourceNodes ?? []).map((_, idx) => {
+          return idx + 1;
+        }),
+      ),
+      components: makeComponents(sourceNodes ?? [], getVirtuosoIndex),
+    };
+  }, [sourceNodes, getVirtuosoIndex]);
+
+  // if (role === "ai") {
+  //   console.log({ sourceNodes, text });
+  // }
 
   return (
     <div
@@ -125,29 +146,15 @@ const ChatMessage = ({
           {text === "" ? (
             <div className="loader" />
           ) : (
-            <ReactMarkdown>{text}</ReactMarkdown>
+            <ReactMarkdown
+              remarkPlugins={[sourcesPlugin.plugin]}
+              rehypePlugins={[rehypeRaw]}
+              components={sourcesPlugin.components}
+              className="flex flex-col gap-3"
+            >
+              {text}
+            </ReactMarkdown>
           )}
-
-          {sourceNodes && sourceNodes.length > 0 ? (
-            <div className="mt-4 flex flex-wrap items-center gap-1">
-              {t("reader.chat.sources")}:
-              {sourceNodes?.slice(0, 5).map((sourceNode, idx) => {
-                const page = sourceNode.metadata.pages[0];
-
-                return (
-                  <button
-                    key={idx}
-                    className="p-0 text-primary underline"
-                    onClick={() => handleNavigateToPage(page)}
-                  >
-                    {t("reader.chat.pg-x", {
-                      page: page?.page,
-                    })}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
 
           {role === "ai" && hasActions && (
             <div
