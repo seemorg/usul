@@ -1,6 +1,6 @@
 {
-  "headline": "استكشف 8,000+ من النصوص الإسلامية",
-  "subheadline": "اقرأ وابحث وادرس النصوص من Shamela وOpenITI",
+  "headline": "استكشف ٨٠٠٠+ من النصوص الإسلامية",
+  "subheadline": "اقرأ وابحث وادرس النصوص من المكتبة الشاملة و المبادرة المفتوحة للنصوص الإسلامية (OpenITI)",
   "try": "جرّب: ",
   "sections": {
     "collections": "مجموعات",
@@ -12,13 +12,13 @@
     "quranic-sciences": "علوم القرآن",
     "hadith-sciences": "علوم الحديث",
     "fiqh": "الفقه",
-    "islamic-theology": "اللاهوت الإسلامي",
+    "islamic-theology": "العقيدة الإسلامية",
     "islamic-history": "التاريخ الإسلامي",
     "islamic-ethics": "الأخلاق الإسلامية",
     "islamic-philosophy": "الفلسفة الإسلامية",
-    "islamic-finance": "التمويل الإسلامي",
+    "islamic-finance": "الاقتصاد الإسلامي",
     "literature": "الأدب",
     "medicine": "الطب"
   },
-  "how-usul-works": "كيف يعمل Usul"
+  "how-usul-works": "كيف يعمل موقع أصول"
 }

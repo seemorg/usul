@@ -2,12 +2,16 @@
   "notes": "الملاحظات",
   "bookmarks": "العلامات",
   "content": "المحتوى",
-  "version-warning": "تم تدريب الذكاء الاصطناعي على <tooltip>نسخة مختلفة من هذا الكتاب</tooltip>. يمكنك استخدام {feature} ولكن قد تكون النتائج مختلفة قليلاً.",
+  "history": "التاريخ",
+  "ask-ai": "اسأل الذكاء الاصطناعي",
+  "version-warning": "تم تدريب الذكاء الاصطناعي على <tooltip>نسخة مختلفة من هذا الكتاب</tooltip>. يمكنك استخدام {feature} ولكن قد تكون النتائج مختلفة قليلًا.",
   "switch-version": "التبديل إلى {version}",
   "coming-soon": {
-    "title": "قريباً",
-    "message": "الخاصية غير متاحة بعد."
+    "title": "قريبًا",
+    "message": "هذه الميزة غير متوفرة بعد."
   },
+  "e-book": "كتاب إلكتروني",
+  "pdf": "PDF",
   "page-navigator": {
     "name": "تصفح الصفحات",
     "title": "انتقل إلى صفحة",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "ابدأ بحثك",
+    "placeholder": "ابحث عن مصطلح",
     "description": "البحث الذكي يجد أقرب المطابقات حتى لو كنت لا تعرف العبارة الدقيقة.",
     "view-in-advanced": "عرض في البحث المتقدم",
     "best-match": "أفضل تطابق",
@@ -27,6 +32,9 @@
     "book-select-description": "البحث في عدة كتب غير مدعوم بعد"
   },
   "chat": {
+    "empty-state": "استخدم قوة الذكاء الاصطناعي للبحث داخل الكتاب، ابدأ بكتابة ما تبحث عنه...",
+    "placeholder": "اكتب سؤالك...",
+    "send-message": "أرسل الرسالة",
     "new-chat": "دردشة جديدة",
     "share-chat": "مشاركة الدردشة",
     "copy": "نسخ إلى الحافظة",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "الإبلاغ عن غير صحيح",
     "sources": "مصادر",
     "error": "حدث خطأ ما. <retry>حاول مرة أخرى</retry> أو <contact>اتصل بنا</contact> إذا استمرت المشكلة.",
-    "pg-x": "ص. {page, number, nogroup}"
+    "pg-x": "صفحة {page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/صفحة {page, number, nogroup}"
   },
   "version": "النسخة",
   "select-version": "اختيار النسخة",
@@ -57,5 +66,6 @@
     "print-version": "نسخة الطباعة",
     "volumes": "المجلدات",
     "page-numbers-match-print": "أرقام الصفحات تتطابق مع الطباعة"
-  }
+  },
+  "feedback-submitted": "تم إرسال التعليق!"
 }
