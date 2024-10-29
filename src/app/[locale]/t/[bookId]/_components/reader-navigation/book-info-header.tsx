@@ -62,7 +62,7 @@ export default function BookInfoHeader({
       </HoverCardTrigger>
 
       <HoverCardContent
-        className=" w-full max-w-[400px] text-muted-foreground"
+        className="w-full max-w-[400px] text-muted-foreground"
         avoidCollisions
         side="left"
       >

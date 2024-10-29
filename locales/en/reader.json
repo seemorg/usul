@@ -44,8 +44,8 @@
     "report-as-incorrect": "Report as incorrect",
     "sources": "Sources",
     "error": "Something went wrong. <retry>Try again</retry> or <contact>contact us</contact> if it persists.",
-    "pg-x": "Page {page, number, nogroup}",
-    "pg-x-vol": "Page {vol, number, nogroup} / {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Version",
   "select-version": "Select a version",

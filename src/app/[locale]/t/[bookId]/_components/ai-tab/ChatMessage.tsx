@@ -48,6 +48,8 @@ const makeComponents = (
       {...props}
     />
   ),
+  ol: (props) => <ol className="flex flex-col gap-2" {...props} />,
+  ul: (props) => <ul className="flex flex-col gap-2" {...props} />,
 });
 
 const ChatMessage = ({

@@ -35,15 +35,13 @@ function PageReference({
 
   return (
     <button
-      className="inline cursor-pointer text-primary underline-offset-4 hover:underline"
+      className="mx-1 inline cursor-pointer rounded-md bg-muted p-1 text-xs transition-opacity hover:opacity-80"
       onClick={() => handleNavigateToPage(pg)}
     >
-      [
       {t("chat.pg-x-vol", {
         page: pg.page,
         vol: pg.vol,
       })}
-      ]
     </button>
   );
 }
