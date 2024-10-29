@@ -6,12 +6,16 @@ import {
   HandThumbDownIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
+import {
+  HandThumbUpIcon as SolidHandThumbUpIcon,
+  HandThumbDownIcon as SolidHandThumbDownIcon,
+} from "@heroicons/react/24/solid";
 import { OpenAILogo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useBoolean } from "usehooks-ts";
 import { useTranslations } from "next-intl";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useMutation } from "@tanstack/react-query";
@@ -61,17 +65,19 @@ const ChatMessage = ({
   const t = useTranslations();
 
   const isLoading = useBoolean(false);
-  const didSendFeedback = useBoolean(false);
+  const [feedbackSentType, setFeedbackSentType] = useState<
+    "positive" | "negative" | null
+  >(null);
 
   const { mutateAsync, isPending } = useMutation({
     mutationKey: ["send-feedback"],
     mutationFn: sendFeedback,
-    onSuccess: () => {
+    onSuccess: (_, { feedback }) => {
       toast({
         variant: "primary",
         description: t("reader.feedback-submitted"),
       });
-      didSendFeedback.setTrue();
+      setFeedbackSentType(feedback);
     },
   });
 
@@ -92,10 +98,10 @@ const ChatMessage = ({
 
   const handleFeedback = useCallback(
     (type: "positive" | "negative") => {
-      if (!id) return;
+      if (!id || feedbackSentType) return;
       mutateAsync({ messageId: id, feedback: type });
     },
-    [id],
+    [id, feedbackSentType],
   );
 
   const sourcesPlugin = useMemo(() => {
@@ -108,10 +114,6 @@ const ChatMessage = ({
       components: makeComponents(sourceNodes ?? [], getVirtuosoIndex),
     };
   }, [sourceNodes, getVirtuosoIndex]);
-
-  // if (role === "ai") {
-  //   console.log({ sourceNodes, text });
-  // }
 
   return (
     <div
@@ -137,9 +139,9 @@ const ChatMessage = ({
           </div>
         )}
 
-        <div
+        <bdi
           className={cn(
-            "text-sm",
+            "block text-sm",
             isScreenshot && role === "user" ? "-mt-3" : "",
           )}
         >
@@ -159,8 +161,7 @@ const ChatMessage = ({
           {role === "ai" && hasActions && (
             <div
               className={cn(
-                "message-actions",
-                "mt-2 flex gap-1",
+                "message-actions mt-2 flex gap-1 text-muted-foreground",
                 !isLast &&
                   "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100",
               )}
@@ -168,7 +169,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
+                className="size-7 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleCopy}
                 tooltip={t("reader.chat.copy")}
@@ -179,7 +180,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
+                className="size-7 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleRegenerate}
                 tooltip={t("reader.chat.regenerate")}
@@ -187,34 +188,38 @@ const ChatMessage = ({
                 <ArrowPathIcon className="size-4" />
               </Button>
 
-              {!didSendFeedback.value && (
-                <>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="size-7 text-gray-600 hover:bg-secondary"
-                    disabled={isLoading.value || isPending}
-                    onClick={() => handleFeedback("positive")}
-                    tooltip={t("reader.chat.mark-as-correct")}
-                  >
-                    <HandThumbUpIcon className="size-4" />
-                  </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-7 hover:bg-secondary"
+                disabled={isLoading.value || isPending}
+                onClick={() => handleFeedback("positive")}
+                tooltip={t("reader.chat.mark-as-correct")}
+              >
+                {feedbackSentType === "positive" ? (
+                  <SolidHandThumbUpIcon className="size-4" />
+                ) : (
+                  <HandThumbUpIcon className="size-4" />
+                )}
+              </Button>
 
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="size-7 text-gray-600 hover:bg-secondary"
-                    disabled={isLoading.value || isPending}
-                    onClick={() => handleFeedback("negative")}
-                    tooltip={t("reader.chat.report-as-incorrect")}
-                  >
-                    <HandThumbDownIcon className="size-4" />
-                  </Button>
-                </>
-              )}
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-7 hover:bg-secondary"
+                disabled={isLoading.value || isPending}
+                onClick={() => handleFeedback("negative")}
+                tooltip={t("reader.chat.report-as-incorrect")}
+              >
+                {feedbackSentType === "negative" ? (
+                  <SolidHandThumbDownIcon className="size-4" />
+                ) : (
+                  <HandThumbDownIcon className="size-4" />
+                )}
+              </Button>
             </div>
           )}
-        </div>
+        </bdi>
       </div>
     </div>
   );

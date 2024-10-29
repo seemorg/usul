@@ -14,9 +14,9 @@ export type TabProps = {
 
 export const tabs = [
   {
-    id: "ai",
-    label: "reader.ask-ai",
-    icon: SparklesIcon,
+    id: "content",
+    label: "reader.content",
+    icon: ListBulletIcon,
   },
   {
     id: "search",
@@ -24,9 +24,9 @@ export const tabs = [
     icon: MagnifyingGlassIcon,
   },
   {
-    id: "content",
-    label: "reader.content",
-    icon: ListBulletIcon,
+    id: "ai",
+    label: "reader.ask-ai",
+    icon: SparklesIcon,
   },
 ] satisfies {
   id: "ai" | "search" | "content";

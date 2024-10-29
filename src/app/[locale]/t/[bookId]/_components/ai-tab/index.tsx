@@ -2,11 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  // ArrowUpTrayIcon,
-  PencilSquareIcon,
-  ArrowDownIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useChat from "./useChat";
 import ChatMessage from "./ChatMessage";
 import { useCallback } from "react";
@@ -15,11 +11,12 @@ import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
-import { InfoIcon } from "lucide-react";
+import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
 import { config } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
 import { Badge } from "@/components/ui/badge";
+import { OpenAILogo } from "@/components/Icons";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoIndex } = usePageNavigation(bookResponse);
@@ -74,26 +71,27 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           {t("reader.ask-ai")}{" "}
           <Badge variant="secondary">{t("common.beta")}</Badge>
         </div>
-        <div className="flex gap-2">
-          {/* <Button
-            size="icon"
-            variant="ghost"
-            className="size-10 hover:bg-secondary"
-            onClick={handleShareChat}
-            disabled={isLoading}
-            tooltip={t("chat.share-chat")}
-          >
-            <ArrowUpTrayIcon className="size-4" />
-          </Button> */}
+        <div className="flex">
           <Button
             size="icon"
             variant="ghost"
-            className="size-10 hover:bg-secondary"
+            className="size-9 text-muted-foreground hover:bg-secondary"
+            // onClick={handleShareChat}
+            disabled={isLoading}
+            tooltip={t("reader.history")}
+          >
+            <HistoryIcon className="size-4" />
+          </Button>
+
+          <Button
+            size="icon"
+            variant="ghost"
+            className="size-9 text-muted-foreground hover:bg-secondary"
             onClick={onClearChat}
             disabled={isLoading}
             tooltip={t("reader.chat.new-chat")}
           >
-            <PencilSquareIcon className="size-4" />
+            <SquarePenIcon className="size-4" />
           </Button>
         </div>
       </div>
@@ -122,12 +120,15 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
               ref={messagesRef}
               className="flex flex-col gap-5 pb-[30px] pt-4"
             >
-              <ChatMessage
-                role="ai"
-                text="Hey there, send something to start the chat!"
-                hasActions={false}
-                getVirtuosoIndex={getVirtuosoIndex}
-              />
+              {messages.length === 0 && (
+                <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
+                    <OpenAILogo className="h-auto w-7" />
+                  </div>
+
+                  <p className="mt-4">{t("reader.chat.empty-state")}</p>
+                </div>
+              )}
 
               {messages.map((message, idx) => (
                 <ChatMessage

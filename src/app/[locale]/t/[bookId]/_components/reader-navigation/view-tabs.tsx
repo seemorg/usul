@@ -2,32 +2,13 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePathname, useRouter } from "@/navigation";
+import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
-
-{
-  /* <Button
-variant={view === "pdf" ? "default" : "secondary"}
-onClick={onViewClick}
-className="w-full flex-1 gap-2 hover:opacity-80"
-disabled={!pdf?.finalUrl}
->
-{view === "pdf" ? (
-  <XIcon className="h-4 w-4" />
-) : (
-  <FileTextIcon className="h-4 w-4" />
-)}
-
-{!pdf?.finalUrl
-  ? "No PDF Attached"
-  : view === "pdf"
-    ? "Exit PDF"
-    : "View PDF"}
-</Button> */
-}
 
 export default function ViewTabs({ hasPdf }: { hasPdf?: boolean }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const t = useTranslations("reader");
   const view = searchParams.get("view");
   const router = useRouter();
 
@@ -51,9 +32,9 @@ export default function ViewTabs({ hasPdf }: { hasPdf?: boolean }) {
       onValueChange={onViewClick as any}
     >
       <TabsList>
-        <TabsTrigger value="ebook">e-Book</TabsTrigger>
+        <TabsTrigger value="ebook">{t("e-book")}</TabsTrigger>
         <TabsTrigger value="pdf" disabled={!hasPdf}>
-          PDF
+          {t("pdf")}
         </TabsTrigger>
       </TabsList>
     </Tabs>

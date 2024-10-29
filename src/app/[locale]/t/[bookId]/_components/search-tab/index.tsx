@@ -167,12 +167,12 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
               ref={inputRef}
               value={value}
               onChange={handleChange}
-              placeholder="Search for a term (⌘ + F)"
+              placeholder={`${t("reader.search.placeholder")} (⌘ + F)`}
               className="h-10 w-full border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
             />
 
             {isPending && (
-              <Spinner className="absolute right-3 top-3 h-4 w-4" />
+              <Spinner className="absolute top-3 h-4 w-4 ltr:right-3 rtl:left-3" />
             )}
           </div>
         </div>

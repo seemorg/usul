@@ -9,6 +9,7 @@ import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { useEnterSubmit } from "@/hooks/useEnterSubmit";
 import { useNavbarStore } from "@/stores/navbar";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 function ChatForm({
   input,
@@ -23,6 +24,7 @@ function ChatForm({
 }) {
   const showNavbar = useNavbarStore((s) => s.showNavbar);
   const { formRef, onKeyDown } = useEnterSubmit();
+  const t = useTranslations("reader");
   const inputRef = React.useRef<HTMLTextAreaElement>(null);
 
   React.useEffect(() => {
@@ -55,14 +57,14 @@ function ChatForm({
         onSubmit(value);
       }}
     >
-      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden rounded-3xl bg-input pr-8 sm:pr-12">
+      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden rounded-md bg-input ltr:pr-8 ltr:sm:pr-12 rtl:pl-8 rtl:sm:pl-12">
         <Textarea
           ref={inputRef}
           tabIndex={0}
           onKeyDown={onKeyDown}
-          placeholder="Type your question..."
+          placeholder={t("chat.placeholder")}
           // className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
-          className="min-h-[3.5rem] w-full resize-none bg-transparent px-5 py-4 text-base text-secondary-foreground focus-within:outline-none"
+          className="min-h-[2.5rem] w-full resize-none bg-transparent px-5 py-3 text-base text-secondary-foreground focus-within:outline-none"
           autoFocus
           spellCheck={false}
           autoComplete="off"
@@ -73,15 +75,15 @@ function ChatForm({
           onChange={(e) => setInput(e.target.value)}
         />
 
-        <div className="absolute right-3 top-2.5">
+        <div className="absolute top-2 ltr:right-3 rtl:left-3">
           <Button
             size="icon"
             type="submit"
-            className="size-9 shrink-0 rounded-full"
+            className="size-8 shrink-0 rounded-full"
             disabled={isPending || input === ""}
-            tooltip="Send message"
+            tooltip={t("chat.send-message")}
           >
-            <ArrowRightIcon className="size-5" />
+            <ArrowRightIcon className="size-4 rtl:rotate-180" />
           </Button>
         </div>
       </div>

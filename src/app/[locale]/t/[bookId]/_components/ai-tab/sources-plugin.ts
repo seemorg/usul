@@ -1,9 +1,9 @@
-import visit from "unist-util-visit";
-import type { Node, Data } from "unist";
+import { SKIP, visit } from "unist-util-visit";
+import type { Node } from "unist";
 
 function makeSourcesPlugin(numbers: number[]) {
   return () => {
-    return (tree: Node<Data>) => {
+    return (tree: Node) => {
       visit(tree, "text", (node, index, parent) => {
         const value = (node as any).value;
 
@@ -44,9 +44,9 @@ function makeSourcesPlugin(numbers: number[]) {
 
         if (newNodes.length > 0) {
           if (parent) {
-            parent.children.splice(index, 1, ...newNodes);
+            (parent as any).children.splice(index, 1, ...newNodes);
           }
-          return [visit.SKIP, index + newNodes.length];
+          return [SKIP, index + newNodes.length];
         }
       });
     };

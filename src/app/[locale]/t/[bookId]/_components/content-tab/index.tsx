@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 "use client";
 
 import { Separator } from "@/components/ui/separator";
@@ -10,7 +9,7 @@ import { usePageNavigation } from "../usePageNavigation";
 import { useSearchParams } from "next/navigation";
 import PdfChaptersList from "./pdf-chapters-section";
 
-export default function ContentTab({ bookResponse }: TabProps) {
+function ContentTab({ bookResponse }: TabProps) {
   const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
 
   const view = (useSearchParams().get("view") ?? "default") as
@@ -28,38 +27,42 @@ export default function ContentTab({ bookResponse }: TabProps) {
       ? bookContent.chapterIndexToPageIndex
       : null;
 
+  if (isExternal) return null;
+
+  let content;
+  if (view === "pdf") {
+    content = <PdfChaptersList />;
+  } else {
+    content = (
+      <>
+        {headings && headings.length > 0 ? (
+          <SidebarContainer>
+            <div className="w-full">
+              <PageNavigator
+                range={pagesRange}
+                getVirtuosoIndex={getVirtuosoIndex}
+              />
+            </div>
+          </SidebarContainer>
+        ) : null}
+
+        <ChaptersList
+          headers={headings || []}
+          getVirtuosoIndex={getVirtuosoIndex}
+          chapterIndexToPageIndex={chapterIndexToPageIndex}
+          pagesRange={pagesRange}
+        />
+      </>
+    );
+  }
+
   return (
     <>
-      {isExternal ? null : view === "pdf" ? (
-        <>
-          <Separator className="my-4" />
-          <PdfChaptersList />
-        </>
-      ) : (
-        <>
-          <Separator className="my-4" />
-
-          {headings && headings.length > 0 ? (
-            <SidebarContainer>
-              <div className="w-full">
-                <PageNavigator
-                  range={pagesRange}
-                  getVirtuosoIndex={getVirtuosoIndex}
-                />
-              </div>
-            </SidebarContainer>
-          ) : null}
-
-          <ChaptersList
-            headers={headings || []}
-            getVirtuosoIndex={getVirtuosoIndex}
-            chapterIndexToPageIndex={chapterIndexToPageIndex}
-            pagesRange={pagesRange}
-          />
-        </>
-      )}
-
+      <Separator className="my-4" />
+      {content}
       <div className="h-16" />
     </>
   );
 }
+
+export default ContentTab;

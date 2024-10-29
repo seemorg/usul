@@ -25,10 +25,10 @@ export default function ReaderNavigation({
           "bg-reader relative z-[10] w-full transition will-change-transform",
           showNavbar
             ? "translate-y-0 opacity-100"
-            : "-translate-y-20 opacity-0",
+            : "-translate-y-10 opacity-0",
         )}
       >
-        <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl">
+        <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl">
           <VersionSelector
             versions={bookResponse.book.versions}
             versionId={bookResponse.content.versionId}

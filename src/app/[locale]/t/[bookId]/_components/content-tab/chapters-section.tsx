@@ -1,5 +1,3 @@
-"use client";
-
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { useMobileSidebar } from "../mobile-sidebar-provider";

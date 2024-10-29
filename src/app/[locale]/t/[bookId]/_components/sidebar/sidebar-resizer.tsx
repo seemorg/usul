@@ -57,12 +57,16 @@ export default function SidebarResizer({
       className={cn(
         "hidden transition-transform will-change-transform lg:block",
         isCollapsed && "min-w-[20px] transition-all duration-300 ease-in-out",
-        !showNavbar && "translate-y-[86px]",
+        !showNavbar && "translate-y-[60px]", // READER_NAVIGATION_HEIGHT
       )}
     >
       {isCollapsed ? <CollapsedSidebar sidebarRef={sidebarRef} /> : sidebar}
     </ResizablePanel>,
   ];
+
+  // -translate-y-[READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT]
+  const navbarTranslateY =
+    !showNavbar && "-translate-y-[124px] lg:-translate-y-[140px]";
 
   return (
     <>
@@ -74,7 +78,7 @@ export default function SidebarResizer({
           autoSaveId="reader-sidebar"
           className={cn(
             "relative h-full w-full transition-transform will-change-transform",
-            !showNavbar && "-translate-y-[150px] lg:-translate-y-[166px]",
+            navbarTranslateY,
           )}
         >
           {panels}
@@ -85,7 +89,7 @@ export default function SidebarResizer({
           autoSaveId="reader-sidebar-rtl"
           className={cn(
             "relative h-full w-full transition-transform will-change-transform",
-            !showNavbar && "-translate-y-[150px] lg:-translate-y-[166px]",
+            navbarTranslateY,
           )}
         >
           {panels.reverse()}

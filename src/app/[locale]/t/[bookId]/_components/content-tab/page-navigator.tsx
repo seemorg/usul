@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useReaderVirtuoso } from "../context";
@@ -8,7 +6,7 @@ import { useMobileSidebar } from "../mobile-sidebar-provider";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { Label } from "@/components/ui/label";
 
-export default function PageNavigator({
+function PageNavigator({
   popover = true,
   range,
   getVirtuosoIndex,
@@ -98,3 +96,5 @@ export default function PageNavigator({
     </div>
   );
 }
+
+export default PageNavigator;
