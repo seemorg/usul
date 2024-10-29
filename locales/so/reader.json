@@ -2,12 +2,16 @@
   "notes": "Qoraallo",
   "bookmarks": "Xusuus-qoryo",
   "content": "Mawduuc",
+  "history": "Taariikhda",
+  "ask-ai": "Weydiiso AI",
   "version-warning": "AI waxaa lagu tababaray <tooltip>nuqul kale oo buuggan ah</tooltip>. Weli waxaad isticmaali kartaa {feature} laakiin natiijooyinku way ka duwanaan karaan waxyar.",
   "switch-version": "U wareeji {version}",
   "coming-soon": {
     "title": "Dhawaan Imaanaysa",
     "message": "Astaantan hadda lama heli karo."
   },
+  "e-book": "e-Buug",
+  "pdf": "PDF",
   "page-navigator": {
     "name": "Sawir-qaade Bogga",
     "title": "U bood bogga",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "Bilow raadintaada",
+    "placeholder": "Raadi erayga",
     "description": " Raadinta AI waxay helaysaa isla'egta ugu dhow xitaa haddii aad garan weydid weedha saxda ah.",
     "view-in-advanced": "Eeg Raadinta Weyn",
     "best-match": "Isbarbardhiga Ugu Fiican",
@@ -27,6 +32,9 @@
     "book-select-description": "Baadhista buugaag badan weli lama taageerin"
   },
   "chat": {
+    "empty-state": "Ka faa'ideyso awoodda AI si aad ugu dhex baadho buugga, ku bilow qorista waxa aad raadineyso...",
+    "placeholder": "Nooca su’aashaada...",
+    "send-message": "Dir fariin",
     "new-chat": "Chat Cusub",
     "share-chat": "La wadaag Chat",
     "copy": "Nuqul ku dheji jillaab-qor",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "Soo sheeg sida khaldan",
     "sources": "Ilo",
     "error": "Waxbaa qaldamay. <retry>Mar kale isku day</retry> ama <contact>nala soo xidhiidh</contact> haddii ay sii socoto.",
-    "pg-x": "Bog {page, number, nogroup}"
+    "pg-x": "B{page, number, nogroup}",
+    "pg-x-vol": "B{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Nooca",
   "select-version": "Dooro nooc",
@@ -57,5 +66,6 @@
     "print-version": "Nooca Daabacaadda",
     "volumes": "Mugga",
     "page-numbers-match-print": "Tirada Bogagga waxay la siman yihiin Daabacaadda"
-  }
+  },
+  "feedback-submitted": "Jawaab-celin diray!"
 }

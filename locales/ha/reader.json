@@ -2,12 +2,16 @@
   "notes": "Bayanai",
   "bookmarks": "Alamomin Shafi",
   "content": "Abun ciki",
+  "history": "Tarihi",
+  "ask-ai": "Tambayi AI",
   "version-warning": "AI an horar da shi akan <tooltip>sabanin sigar wannan littafi</tooltip>. Har yanzu zaka iya amfani da {feature} amma sakamakon na iya zama dan bambanta.",
   "switch-version": "Canja zuwa {version}",
   "coming-soon": {
     "title": "Da zuwa",
     "message": "Wannan fasalin ba ya samuwa tukuna."
   },
+  "e-book": "e-Littafi",
+  "pdf": "PDF",
   "page-navigator": {
     "name": "Mai Naviga Shafi",
     "title": "Tsallaka zuwa shafi",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "Fara bincike",
+    "placeholder": "Nemi kalma",
     "description": "Binciken AI yana samun haɗuwa mafi kusa ko ba ku san ainihin jumlar ba.",
     "view-in-advanced": "Duba a Bincike Mai zurfi",
     "best-match": "Daidai Mafi Kyau",
@@ -27,6 +32,9 @@
     "book-select-description": "Binciken littattafai da yawa ba a goyan bayan shi ba tukuna"
   },
   "chat": {
+    "empty-state": "Yi amfani da ƙarfin AI don bincika cikin littafin, fara da rubuta abin da kake nema...",
+    "placeholder": "Rubuta tambayarka...",
+    "send-message": "Aika saƙo",
     "new-chat": "Sabon Tattaunawa",
     "share-chat": "Raba Tattaunawa",
     "copy": "Kwafi zuwa allo mai kwakwalwa",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "Rahoton kuskure",
     "sources": "Tushen",
     "error": "Wani abu ya faru ba daidai ba. <retry>Sake gwadawa</retry> ko <contact>saduwa damu</contact> idan ya ci gaba.",
-    "pg-x": "Shf {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Sigar",
   "select-version": "Zabi wata siga",
@@ -57,5 +66,6 @@
     "print-version": "Nau'in Bugu",
     "volumes": "Juzu'i",
     "page-numbers-match-print": "Lambobin shafi sun yi daidai da bugu"
-  }
+  },
+  "feedback-submitted": "An tura ra'ayi!"
 }
