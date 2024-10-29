@@ -2,12 +2,16 @@
   "notes": "नोट्स",
   "bookmarks": "बुकमार्क्स",
   "content": "सामग्री",
+  "history": "इतिहास",
+  "ask-ai": "AI से पूछें",
   "version-warning": "एआई को इस पुस्तक के <tooltip>अलग संस्करण</tooltip> पर प्रशिक्षित किया गया है। आप अभी भी {feature} का उपयोग कर सकते हैं लेकिन परिणाम थोड़े अलग हो सकते हैं।",
   "switch-version": "{version} पर स्विच करें",
   "coming-soon": {
     "title": "जल्द आ रहा है",
     "message": "यह सुविधा अभी उपलब्ध नहीं है।"
   },
+  "e-book": "ई-पुस्तक",
+  "pdf": "पीडीएफ",
   "page-navigator": {
     "name": "पृष्ठ नेविगेटर",
     "title": "पृष्ठ पर जाएँ",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "अपनी खोज शुरू करें",
+    "placeholder": "किसी शब्द के लिए खोजें",
     "description": " एआई खोज निकटतम मेल खोजता है, भले ही आपको सटीक वाक्यांश न पता हो।",
     "view-in-advanced": "उन्नत खोज में देखें",
     "best-match": "सर्वश्रेष्ठ मिलान",
@@ -27,6 +32,9 @@
     "book-select-description": "एकाधिक पुस्तकों की खोज अभी तक समर्थित नहीं है"
   },
   "chat": {
+    "empty-state": "पुस्तक के अंदर खोज करने के लिए AI की शक्ति का उपयोग करें, ऐसा लिखकर शुरुआत करें जिसकी आप तलाश कर रहे हैं...",
+    "placeholder": "अपना प्रश्न लिखें...",
+    "send-message": "संदेश भेजें",
     "new-chat": "नई चैट",
     "share-chat": "चैट साझा करें",
     "copy": "क्लिपबोर्ड पर कॉपी करें",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "गलत के रूप में रिपोर्ट करें",
     "sources": "स्रोत",
     "error": "कुछ गलत हो गया। <retry>फिर से प्रयास करें</retry> या अगर यह समस्या बनी रहती है तो <contact>हमसे संपर्क करें</contact>.",
-    "pg-x": "पृष्ठ {page, number, nogroup}"
+    "pg-x": "पृष्ठ {page, number, nogroup}",
+    "pg-x-vol": "मात्रा {vol, number, nogroup}/पृष्ठ {page, number, nogroup}"
   },
   "version": "संस्करण",
   "select-version": "एक संस्करण चुनें",
@@ -57,5 +66,6 @@
     "print-version": "प्रिंट संस्करण",
     "volumes": "खंड",
     "page-numbers-match-print": "पृष्ठ संख्याएँ प्रिंट से मेल खाती हैं"
-  }
+  },
+  "feedback-submitted": "प्रतिक्रिया जमा की गई!"
 }

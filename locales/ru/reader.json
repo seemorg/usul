@@ -2,12 +2,16 @@
   "notes": "Заметки",
   "bookmarks": "Закладки",
   "content": "Содержание",
+  "history": "История",
+  "ask-ai": "Спросить AI",
   "version-warning": "ИИ был обучен на <tooltip>другой версии этой книги</tooltip>. Вы всё же можете использовать {feature}, но результаты могут немного отличаться.",
   "switch-version": "Переключиться на {version}",
   "coming-soon": {
     "title": "Скоро будет",
     "message": "Эта функция пока недоступна."
   },
+  "e-book": "e-Book",
+  "pdf": "PDF",
   "page-navigator": {
     "name": "Навигатор по страницам",
     "title": "Перейти на страницу",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "Начните поиск",
+    "placeholder": "Поиск термина",
     "description": "Искусственный интеллект поиск находит самые близкие совпадения, даже если вы не знаете точную фразу.",
     "view-in-advanced": "Просмотреть в Расширенном поиске",
     "best-match": "Лучшее совпадение",
@@ -27,6 +32,9 @@
     "book-select-description": "Поиск в нескольких книгах пока не поддерживается"
   },
   "chat": {
+    "empty-state": "Используйте мощь AI для поиска внутри книги, начните с ввода того, что вы ищете...",
+    "placeholder": "Напишите ваш вопрос...",
+    "send-message": "Отправить сообщение",
     "new-chat": "Новый чат",
     "share-chat": "Поделиться чатом",
     "copy": "Копировать в буфер обмена",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "Отметить как неправильное",
     "sources": "Источники",
     "error": "Что-то пошло не так. <retry>Попробуйте снова</retry> или <contact>свяжитесь с нами</contact>, если проблема сохраняется.",
-    "pg-x": "Стр. {page, number, nogroup}"
+    "pg-x": "Страница {page, number, nogroup}",
+    "pg-x-vol": "Том {vol, number, nogroup}/Страница {page, number, nogroup}"
   },
   "version": "Версия",
   "select-version": "Выберите версию",
@@ -57,5 +66,6 @@
     "print-version": "Печатная версия",
     "volumes": "{count, plural, one {Том} few {Тома} many {Томов} other {Тома}}",
     "page-numbers-match-print": "Номера страниц совпадают с печатной версией"
-  }
+  },
+  "feedback-submitted": "Отзыв отправлен!"
 }

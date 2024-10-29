@@ -2,29 +2,29 @@
   "advanced-search": "بحث متقدم",
   "load-more": "تحميل المزيد",
   "clear-all": "مسح الكل",
-  "ai": "الذكاء الاصطناعي",
+  "beta": "بيتا",
   "search": "البحث",
   "pagination": {
-    "previous": "السابقة",
+    "previous": "السابق",
     "next": "التالي",
     "page-x": "صفحة {page, number, nogroup}",
-    "vol-x": "صفحة {volume, number, nogroup}",
+    "vol-x": "جزء {volume, number, nogroup}",
     "page-unknown": "صفحة غير معروفة"
   },
   "year-format": {
     "ah": {
       "title": "هجري",
-      "description": "صيغة السنة الهجرية",
+      "description": "السنة بصيغة هجرية",
       "value": "{year, number, nogroup} هجري"
     },
     "ad": {
       "title": "ميلادي",
-      "description": "صيغة السنة الميلادية",
+      "description": "السنة بصيغة ميلادية",
       "value": "{year, number, nogroup} ميلادي"
     }
   },
   "sorts": {
-    "placeholder": "الترتيب حسب",
+    "placeholder": "رتب حسب",
     "relevance": "الصلة",
     "chronological": "الترتيب الزمني",
     "no-of-texts": "عدد النصوص",
@@ -38,10 +38,10 @@
     "auto": "تلقائي"
   },
   "from": "من",
-  "to": "الى",
+  "to": "إلى",
   "search-bar": {
     "recent-searches": "عمليات البحث الأخيرة",
-    "recent-searches-placeholder": "ستظهر عمليات البحث الأخيرة هنا",
+    "recent-searches-placeholder": "عمليات البحث الأخيرة الخاصة بك ستظهر هنا",
     "popular-searches": "عمليات البحث الشائعة",
     "popular-collections": "المجموعات الشائعة",
     "placeholder": "ابحث عن نص",
@@ -54,26 +54,26 @@
       "title": "تصفح",
       "texts": {
         "title": "النصوص",
-        "description": "8,646 نصوص"
+        "description": "٨٦٤٦ نص"
       },
       "authors": {
         "title": "المؤلفون",
-        "description": "3,646 نصوص"
+        "description": "٣٦٤٦ نص"
       },
       "regions": {
         "title": "المناطق",
-        "description": "40 مناطق"
+        "description": "٤٠ منطقة"
       },
       "genres": {
-        "title": "الأنواع",
-        "description": "40 أنواع"
+        "title": "تصانيف",
+        "description": "٤٠ تصنيف"
       }
     },
     "about": {
-      "title": "حول",
+      "title": "من نحن",
       "about": {
-        "title": "حول",
-        "description": "ما هو أصول"
+        "title": "من نحن",
+        "description": "عن أصول"
       },
       "team": {
         "title": "الفريق",
@@ -84,14 +84,14 @@
         "description": "كيف يعمل أصول"
       },
       "contact": {
-        "title": "اتصال",
+        "title": "تواصل معنا",
         "description": "تواصل معنا"
       }
     },
     "contribute": {
       "title": "ساهم",
       "add-text": {
-        "title": "أضف نصًا",
+        "title": "إضافة نص",
         "description": "تحميل كتاب أو PDF"
       },
       "report-mistake": {
@@ -100,49 +100,49 @@
       },
       "feedback": {
         "title": "ملاحظات",
-        "description": "شارك اقتراحًا"
+        "description": "مقترحات أو شكاوى"
       },
       "volunteer": {
         "title": "تطوع",
-        "description": "اعمل مع فريقنا"
+        "description": "الانضمام إلى الفريق"
       }
     }
   },
   "footer": {
-    "headline": "أصول - أداة البحث للنصوص الإسلامية",
-    "description": "ويخدم أصول أكثر من 8000 نص إسلامي من هيئة OpenITI. هدفنا هو جعل القراءة والبحث عن النصوص الكلاسيكية سهلاً. اشترك أدناه لتلقي تحديثات شهرية عن أعمالنا.",
-    "email-address": "البريد الأكتروني",
-    "subscribe": "إشترِك",
+    "headline": "أصول - أداة البحث في النصوص الإسلامية",
+    "description": "ويخدم أصول ما يزيد على ٨٠٠٠ نص إسلامي من مبادرة OpenITI. هدفنا هو تسهيل القراءة والبحث في النصوص التراثية. \nاشترك أدناه لمعرفة التطورات الشهرية.",
+    "email-address": "البريد الإلكتروني",
+    "subscribe": "اشترِك",
     "copyright": "{year, number, nogroup} مؤسسة سيمورج. جميع الحقوق محفوظة."
   },
-  "lost": "يبدو وكأنك فقدت",
+  "lost": "يبدو أنك تائه",
   "go-back-home": "العودة إلى الرئيسية",
-  "author-arabic-names": "أسماء المؤلف العربية",
-  "author-latin-names": "أسماء المؤلف اللاتينية",
-  "author-bio": "أسماء المؤلف اللاتينية",
+  "author-arabic-names": "اسم المؤلف بالعربية",
+  "author-latin-names": "اسم المؤلف باللاتينية",
+  "author-bio": "السيرة الذاتية للمؤلف",
   "author-regions": "مناطق المؤلف",
   "lived": "عاش",
   "died": "توفي",
   "born": "ولد",
-  "resided": "مقيم",
-  "visited": "زيارة",
-  "aka": "يعرف أيضا",
+  "resided": "بلد الإقامة",
+  "visited": "زار",
+  "aka": "معروف أيضا باسم",
   "views": {
     "switch-to-list": "التبديل إلى عرض القائمة",
-    "switch-to-grid": "التبديل الى عرض الخلايا"
+    "switch-to-grid": "التبديل الى العرض الشبكي"
   },
   "see-more": "عرض المزيد",
   "see-less": "عرض أقل",
   "includes": "يحتوي على",
   "coming-soon": {
-    "title": "قريباً",
-    "message": "هذه الميزة غير متوفرة بعد. اشترك في النشرة الإخبارية لدينا واحصل على إشعار عندما تكون جاهزة.",
-    "success": "شكراً لك!",
+    "title": "قريبًا",
+    "message": "هذه الميزة غير متوفرة بعد. اشترك في نشرتنا الإخبارية واحصل على إشعار عندما تكون جاهزة.",
+    "success": "شكرًا لك!",
     "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا."
   },
   "year-filter-info": "تاريخ وفاة المؤلف",
-  "regions-filter-info": "المواقع التي زارها المؤلف أو وُلد أو تُوفي بها",
-  "text-info": "معلومات النص",
-  "author-info": "معلومات الكاتب",
+  "regions-filter-info": "المواقع التي زارها المؤلف أو وُلد أو تُوفي فيها",
+  "text-info": "معلومات عن النص",
+  "author-info": "معلومات عن المؤلف",
   "names": "أسماء"
 }

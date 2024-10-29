@@ -2,12 +2,16 @@
   "notes": "Notes",
   "bookmarks": "Signets",
   "content": "Contenu",
+  "history": "Historique",
+  "ask-ai": "Demander à l'IA",
   "version-warning": "L'IA a été formée sur une <tooltip>version différente de ce livre</tooltip>. Vous pouvez toujours utiliser {feature} mais les résultats pourraient être légèrement différents.",
   "switch-version": "Passer à {version}",
   "coming-soon": {
     "title": "Prochainement",
     "message": "Cette fonctionnalité n'est pas encore disponible."
   },
+  "e-book": "e-Book",
+  "pdf": "PDF",
   "page-navigator": {
     "name": "Navigateur de Page",
     "title": "Aller à la page",
@@ -17,6 +21,7 @@
   },
   "search": {
     "begin-search": "Commencez votre recherche",
+    "placeholder": "Rechercher un terme",
     "description": "La recherche AI trouve les correspondances les plus proches même si vous ne connaissez pas la phrase exacte.",
     "view-in-advanced": "Afficher dans la recherche avancée",
     "best-match": "Meilleure correspondance",
@@ -27,6 +32,9 @@
     "book-select-description": "La recherche dans plusieurs livres n'est pas encore prise en charge"
   },
   "chat": {
+    "empty-state": "Utilisez la puissance de l'IA pour rechercher dans le livre, commencez par écrire ce que vous cherchez...",
+    "placeholder": "Tapez votre question...",
+    "send-message": "Envoyer le message",
     "new-chat": "Nouveau Chat",
     "share-chat": "Partager le Chat",
     "copy": "Copier dans le presse-papiers",
@@ -36,7 +44,8 @@
     "report-as-incorrect": "Signaler comme incorrect",
     "sources": "Sources",
     "error": "Quelque chose s'est mal passé. <retry>Réessayez</retry> ou <contact>contactez-nous</contact> si le problème persiste.",
-    "pg-x": "Pg {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Version",
   "select-version": "Sélectionnez une version",
@@ -57,5 +66,6 @@
     "print-version": "Version imprimée",
     "volumes": "Volumes",
     "page-numbers-match-print": "Les numéros de page correspondent à l'imprimé"
-  }
+  },
+  "feedback-submitted": "Commentaires soumis !"
 }
