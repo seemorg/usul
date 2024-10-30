@@ -1,6 +1,6 @@
 "use client";
 
-import SidebarContainer from "../../_components/sidebar/sidebar-container";
+import SidebarContainer from "../sidebar/sidebar-container";
 import { useEffect, useRef, useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ArrowUpRightIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";

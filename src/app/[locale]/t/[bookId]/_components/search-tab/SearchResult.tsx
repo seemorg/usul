@@ -35,10 +35,8 @@ const SearchResult = ({
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
-  const content = removeDiacritics(result.text).split(" ");
-  // content[4] = `<span class="text-primary font-bold">${content[4]}</span>`;
-  // content[5] = `<span class="text-primary font-bold">${content[5]}</span>`;
-  // content[6] = `<span class="text-primary font-bold">${content[6]}</span>`;
+  const content = removeDiacritics(result.text);
+  const summary = result.summary ? removeDiacritics(result.summary) : null;
 
   return (
     <div
@@ -76,7 +74,7 @@ const SearchResult = ({
         dir="rtl"
         className="mt-2 font-amiri text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
         dangerouslySetInnerHTML={{
-          __html: content.join(" "),
+          __html: summary || content,
         }}
       />
 

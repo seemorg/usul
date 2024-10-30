@@ -13,8 +13,10 @@ import { cn } from "@/lib/utils";
 
 export default function ReaderNavigation({
   bookResponse,
+  isSinglePage,
 }: {
   bookResponse: ApiBookResponse;
+  isSinglePage?: boolean;
 }) {
   const showNavbar = useNavbarStore((s) => s.showNavbar);
 
@@ -22,7 +24,7 @@ export default function ReaderNavigation({
     <>
       <div
         className={cn(
-          "bg-reader relative z-[10] w-full transition will-change-transform",
+          "relative z-[10] w-full bg-reader transition will-change-transform",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",
@@ -34,13 +36,14 @@ export default function ReaderNavigation({
             versionId={bookResponse.content.versionId}
           />
 
-          <ViewTabs
-            hasPdf={
-              bookResponse.content.source === "turath" &&
-              !!bookResponse.content.pdf?.finalUrl
-            }
-          />
-
+          {!isSinglePage && (
+            <ViewTabs
+              hasPdf={
+                bookResponse.content.source === "turath" &&
+                !!bookResponse.content.pdf?.finalUrl
+              }
+            />
+          )}
           <div className="flex items-center gap-3">
             <DownloadButton
               pdf={

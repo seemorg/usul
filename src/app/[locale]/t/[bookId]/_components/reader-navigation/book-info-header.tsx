@@ -177,9 +177,11 @@ export default function BookInfoHeader({
               <h2 className="text-3xl font-bold">{primaryName}</h2>
             </bdi>
 
-            <bdi className="flex-1">
-              <h2 className="text-3xl font-bold">{secondaryName}</h2>
-            </bdi>
+            {secondaryName && (
+              <bdi className="flex-1">
+                <h2 className="text-3xl font-bold">{secondaryName}</h2>
+              </bdi>
+            )}
           </div>
 
           <div className="mt-5 flex justify-between">
@@ -196,18 +198,20 @@ export default function BookInfoHeader({
               </AuthorHoverCard>
             </div>
 
-            <bdi>
-              <AuthorHoverCard>
-                <Link
-                  href={navigation.authors.bySlug(book.author.slug)}
-                  className="text-primary underline underline-offset-4"
-                  prefetch
-                >
-                  {authorSecondaryName} -{" "}
-                  {t("common.year-format.ah.value", { year })}
-                </Link>
-              </AuthorHoverCard>
-            </bdi>
+            {authorSecondaryName && (
+              <bdi>
+                <AuthorHoverCard>
+                  <Link
+                    href={navigation.authors.bySlug(book.author.slug)}
+                    className="text-primary underline underline-offset-4"
+                    prefetch
+                  >
+                    {authorSecondaryName} -{" "}
+                    {t("common.year-format.ah.value", { year })}
+                  </Link>
+                </AuthorHoverCard>
+              </bdi>
+            )}
           </div>
 
           {publicationDetails && (

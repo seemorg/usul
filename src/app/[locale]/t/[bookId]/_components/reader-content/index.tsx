@@ -9,11 +9,16 @@ import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";
+import Paginator from "../../[pageNumber]/paginator";
 
 export default function ReaderContent({
   response,
+  isSinglePage,
+  currentPage,
 }: {
   response: ApiBookResponse;
+  isSinglePage?: boolean;
+  currentPage?: number;
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
@@ -31,7 +36,7 @@ export default function ReaderContent({
 
   return (
     <div
-      className="!h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
+      className="relative !h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
@@ -41,9 +46,21 @@ export default function ReaderContent({
         }
       }}
     >
+      {isSinglePage && (
+        <Paginator
+          totalPages={response.pagination.total}
+          currentPage={currentPage!}
+          slug={response.book.slug}
+        />
+      )}
+
       <Virtualizer
-        count={response.pagination.total}
-        ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
+        count={isSinglePage ? 1 : response.pagination.total}
+        ssrCount={
+          isSinglePage
+            ? 1
+            : Math.min(defaultPages.length, READER_PAGINATION_SIZE)
+        }
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}
         startMargin={80}
@@ -56,14 +73,16 @@ export default function ReaderContent({
           />
         ))}
       >
-        {new Array(response.pagination.total).fill(null).map((_, index) => (
-          <Page
-            key={index}
-            index={index}
-            defaultPages={defaultPages}
-            perPage={response.pagination.size}
-          />
-        ))}
+        {new Array(isSinglePage ? 1 : response.pagination.total)
+          .fill(null)
+          .map((_, index) => (
+            <Page
+              key={index}
+              index={index}
+              defaultPages={defaultPages}
+              perPage={response.pagination.size}
+            />
+          ))}
       </Virtualizer>
 
       <div className="mx-auto mt-10 w-full max-w-[90%]">

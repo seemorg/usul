@@ -106,7 +106,7 @@ const ChatMessage = ({
     [id, feedbackSentType],
   );
 
-  const sourcesPlugin = useMemo(() => {
+  const markdownProps = useMemo(() => {
     return {
       plugin: makeSourcesPlugin(
         (sourceNodes ?? []).map((_, idx) => {
@@ -151,9 +151,9 @@ const ChatMessage = ({
             <div className="loader" />
           ) : (
             <ReactMarkdown
-              remarkPlugins={[sourcesPlugin.plugin]}
               rehypePlugins={[rehypeRaw]}
-              components={sourcesPlugin.components}
+              remarkPlugins={[markdownProps.plugin]}
+              components={markdownProps.components}
               className="flex flex-col gap-3"
             >
               {text}

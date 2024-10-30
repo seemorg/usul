@@ -82,6 +82,7 @@
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "typesense": "^1.7.2",
+    "unist-util-flatmap": "^1.0.0",
     "unist-util-visit": "^5.0.0",
     "use-intl": "^3.9.5",
     "usehooks-ts": "^2.15.1",

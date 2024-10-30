@@ -1,8 +1,6 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { useCallback } from "react";
-import { useReaderVirtuoso } from "../context";
-import { UsePageNavigationReturnType } from "../usePageNavigation";
-import { useTranslations } from "next-intl";
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import SourceModal from "@/components/ui/source-modal";
 
 interface PageReferenceProps {
   "data-number": string;
@@ -15,34 +13,13 @@ function PageReference({
   getVirtuosoIndex,
   ...props
 }: PageReferenceProps) {
-  const virtuosoRef = useReaderVirtuoso();
-  const t = useTranslations("reader");
-  const handleNavigateToPage = useCallback(
-    (page?: { vol: string; page: number }) => {
-      if (!page) return;
-
-      const props = getVirtuosoIndex(page);
-      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
-    },
-    [getVirtuosoIndex],
-  );
-
   const number = props["data-number"];
   const idx = Number(number) - 1;
 
   const sourceNode = sourceNodes[idx]!;
-  const pg = sourceNode.metadata.pages[0]!;
 
   return (
-    <button
-      className="mx-1 inline cursor-pointer rounded-md bg-muted p-1 text-xs transition-opacity hover:opacity-80"
-      onClick={() => handleNavigateToPage(pg)}
-    >
-      {t("chat.pg-x-vol", {
-        page: pg.page,
-        vol: pg.vol,
-      })}
-    </button>
+    <SourceModal source={sourceNode} getVirtuosoIndex={getVirtuosoIndex} />
   );
 }
 

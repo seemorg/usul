@@ -10,6 +10,13 @@ export type ApiBookParams = {
   includeBook?: boolean;
 };
 
+export type ApiBookPageParams = {
+  fields?: ("indices" | "pdf" | "publication_details" | "headings")[];
+  versionId?: string;
+  locale?: string;
+  includeBook?: boolean;
+} & ({ index: number } | { page: number; volume?: string });
+
 export type Turath = {
   source: TurathBookResponse["source"];
   versionId: TurathBookResponse["versionId"];
@@ -37,40 +44,52 @@ export type Openiti = {
   headings?: ParseResult["chapters"];
 };
 
-export type ApiBookResponse = {
-  book: {
+type BookDetails = {
+  id: string;
+  slug: string;
+  author: {
     id: string;
     slug: string;
-    author: {
-      id: string;
-      slug: string;
-      transliteration: string;
-      year?: number | null;
-      numberOfBooks: number;
-      primaryName: string;
-      otherNames: string[];
-      secondaryName?: string | null;
-      secondaryOtherNames?: string[] | null;
-      bio: string;
-    };
     transliteration: string;
-    versions: PrismaJson.BookVersion[];
-    numberOfVersions: number;
-    flags: PrismaJson.BookFlags;
+    year?: number | null;
+    numberOfBooks: number;
     primaryName: string;
     otherNames: string[];
     secondaryName?: string | null;
     secondaryOtherNames?: string[] | null;
-    genres: {
-      id: string;
-      slug: string;
-      transliteration: string;
-      numberOfBooks: number;
-      name: string;
-      secondaryName: string;
-    }[];
+    bio: string;
   };
+  transliteration: string;
+  versions: PrismaJson.BookVersion[];
+  numberOfVersions: number;
+  flags: PrismaJson.BookFlags;
+  primaryName: string;
+  otherNames: string[];
+  secondaryName?: string | null;
+  secondaryOtherNames?: string[] | null;
+  genres: {
+    id: string;
+    slug: string;
+    transliteration: string;
+    numberOfBooks: number;
+    name: string;
+    secondaryName: string;
+  }[];
+};
+
+export type ApiBookResponse = {
+  book: BookDetails;
   content: Turath | External | Openiti;
+  pagination: {
+    startIndex: number;
+    total: number;
+    size: number; // per page
+  };
+};
+
+export type ApiBookPageResponse = {
+  book: BookDetails;
+  content: Turath | Openiti;
   pagination: {
     startIndex: number;
     total: number;
