@@ -13,12 +13,12 @@ import { Link } from "@/navigation";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 import { useBookDetailsStore } from "../../_stores/book-details";
 import Container from "@/components/ui/container";
-import { useNavbarStore } from "@/stores/navbar";
+// import { useNavbarStore } from "@/stores/navbar";
 
 export default function BookInfoHeader({
   bookResponse,
@@ -28,7 +28,7 @@ export default function BookInfoHeader({
   const dir = useDirection();
   const t = useTranslations();
   const { isOpen, setIsOpen } = useBookDetailsStore();
-  const showNavbar = useNavbarStore((s) => s.showNavbar);
+  // const showNavbar = useNavbarStore((s) => s.showNavbar);
 
   const book = bookResponse.book;
   const {
@@ -117,8 +117,8 @@ export default function BookInfoHeader({
           dir={dir}
           asChild
           // TODO: fix this
-          // defaultValue={isOpen ? "header" : undefined}
-          value={isOpen ? "header" : ""}
+          defaultValue={isOpen ? "header" : undefined}
+          // value={isOpen ? "header" : ""}
           onValueChange={(value) => setIsOpen(!!value && value === "header")}
         >
           <AccordionPrimitive.Item value="header" className="w-full">

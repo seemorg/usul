@@ -1,27 +1,27 @@
 "use client";
 
 import SidebarContainer from "../sidebar/sidebar-container";
-import { useState } from "react";
+// import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { ArrowUpRightIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
+// import { ArrowUpRightIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectGroup,
+//   SelectItem,
+//   SelectLabel,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
 import Spinner from "@/components/ui/spinner";
 import { useMutation } from "@tanstack/react-query";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { searchBook } from "@/server/services/chat";
 import SearchResult from "./SearchResult";
 import { useTranslations } from "next-intl";
-import ComingSoonModal from "@/components/coming-soon-modal";
+// import ComingSoonModal from "@/components/coming-soon-modal";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 
@@ -117,6 +117,16 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
 
   return (
     <>
+      {isVersionMismatch && (
+        <SidebarContainer className="my-4">
+          <VersionAlert
+            versionId={bookResponse.book.flags.aiVersion!}
+            versions={bookResponse.book.versions}
+            feature="search"
+          />
+        </SidebarContainer>
+      )}
+
       <SidebarContainer>
         <div className="flex gap-2">
           {t("common.search")}{" "}
@@ -208,16 +218,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
         )} */}
       </SidebarContainer>
 
-      {isVersionMismatch && (
-        <SidebarContainer className="my-4">
-          <VersionAlert
-            versionId={bookResponse.book.flags.aiVersion!}
-            feature="search"
-          />
-        </SidebarContainer>
-      )}
-
-      {results !== null && (
+      {/* {results !== null && (
         <SidebarContainer className="mb-4 mt-6">
           <div className="flex items-center justify-between">
             <Select defaultValue="match">
@@ -259,7 +260,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
             />
           </div>
         </SidebarContainer>
-      )}
+      )} */}
 
       {renderResults()}
 

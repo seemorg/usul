@@ -72,7 +72,7 @@ export default function SourceModal({
   return (
     <>
       <button
-        className="inline cursor-pointer rounded-md border border-border bg-accent/20 px-2 py-0.5 text-xs transition-opacity hover:bg-accent"
+        className="inline cursor-pointer rounded-md bg-muted p-1 text-xs"
         onClick={() => setIsOpen(true)}
       >
         {t("reader.chat.pg-x-vol", {
@@ -81,32 +81,34 @@ export default function SourceModal({
         })}
       </button>
 
+      {/* TODO: add scrollbar styles */}
+
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogPortal>
           <DialogOverlay>
-            <RawDialogContent className="relative z-50 flex w-full max-w-xl flex-col bg-background p-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+            <RawDialogContent className="relative z-50 flex w-full max-w-xl flex-col bg-background px-6 py-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-base text-muted-foreground">
-                  <p dir="rtl">{chapter}</p>
-                  <Separator
-                    orientation="vertical"
-                    className="h-1.5 w-1.5 rounded-full"
-                  />
-                  <p>
-                    Page {page?.vol} / {page?.page}
-                  </p>
-                </div>
-
                 <RawDialogClose className="rounded-sm p-2 text-muted-foreground ring-offset-background transition-colors hover:bg-accent/70 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
                   <XIcon className="size-5" />
                   <span className="sr-only">Close</span>
                 </RawDialogClose>
+
+                <div className="flex items-center gap-2 text-base text-muted-foreground">
+                  {/* <p>
+                    Page {page?.vol} / {page?.page}
+                  </p>
+                  <Separator
+                    orientation="vertical"
+                    className="h-1.5 w-1.5 rounded-full"
+                  /> */}
+                  <p dir="rtl">{chapter}</p>
+                </div>
               </div>
 
               <Separator className="mb-6 mt-4" />
 
               <div
-                className="max-h-96 w-full overflow-y-auto px-8"
+                className="max-h-96 w-full overflow-y-auto pl-5"
                 dir="rtl"
                 dangerouslySetInnerHTML={{
                   __html: source.text.replaceAll("\n", "<br>"),
@@ -121,7 +123,12 @@ export default function SourceModal({
                   onClick={handleGoToPage}
                   disabled={isPending}
                 >
-                  {isPending ? "Loading..." : "Go to page"}
+                  {isPending
+                    ? "Loading..."
+                    : t("reader.go-to-page-x", {
+                        vol: page.vol,
+                        page: page.page,
+                      })}
                 </Button>
 
                 <div className="flex">
