@@ -1,5 +1,5 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-// import { useReaderVirtuoso } from "../context";
+import { useReaderVirtuoso } from "../context";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import { removeDiacritics } from "@/lib/diacritics";
 import {
@@ -12,26 +12,45 @@ import { Button } from "@/components/ui/button";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { useMutation } from "@tanstack/react-query";
+import { getBookPageIndex } from "@/lib/api";
+import { useParams, useSearchParams } from "next/navigation";
 
 const SearchResult = ({
   result,
-  // getVirtuosoScrollProps,
+  getVirtuosoScrollProps,
 }: {
   result: SemanticSearchBookNode;
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) => {
-  // const virtuosoRef = useReaderVirtuoso();
+  const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
   const t = useTranslations();
+  const slug = useParams().bookId as string;
+  const versionId = useSearchParams().get("versionId");
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationKey: ["page"],
+    mutationFn: (args: { page: number; vol?: string }) => {
+      return getBookPageIndex(slug, {
+        page: args.page,
+        volume: args.vol,
+        versionId: versionId ?? undefined,
+      });
+    },
+  });
 
   const page = result.metadata.pages[0];
 
-  const handleNavigate = () => {
-    if (!page || page.page === -1) return;
+  const handleNavigate = async () => {
+    if (!page || page.page === -1 || isPending) return;
 
-    // TODO: get index
-    // const props = getVirtuosoScrollProps(page.page);
-    // virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    const result = await mutateAsync({ page: page.page, vol: page.vol });
+
+    if (result.index === null) return;
+
+    const props = getVirtuosoScrollProps(result.index);
+    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };

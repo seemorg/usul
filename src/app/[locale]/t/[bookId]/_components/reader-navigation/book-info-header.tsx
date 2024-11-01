@@ -14,6 +14,7 @@ import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
+import { cn } from "@/lib/utils";
 
 export default function BookInfoHeader({
   bookResponse,
@@ -130,7 +131,12 @@ export default function BookInfoHeader({
             </AccordionPrimitive.Trigger>
 
             <div className="flex justify-between transition-all">
-              <div className="flex items-center gap-3 text-base font-semibold">
+              <div
+                className={cn(
+                  "flex items-center gap-3 text-base font-semibold",
+                  book.secondaryName && "md:flex-1",
+                )}
+              >
                 {[
                   // eslint-disable-next-line react/jsx-key
                   <p>{book.primaryName}</p>,
@@ -160,7 +166,7 @@ export default function BookInfoHeader({
               </div>
 
               {book.secondaryName && (
-                <div className="hidden items-center gap-3 text-base font-semibold md:flex">
+                <div className="hidden items-center justify-end gap-3 text-base font-semibold md:flex md:flex-1">
                   {[
                     // eslint-disable-next-line react/jsx-key
                     <bdi>

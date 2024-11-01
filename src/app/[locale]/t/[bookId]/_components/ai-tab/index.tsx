@@ -99,7 +99,9 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
       <div
         className={cn(
           "will flex flex-col justify-between",
-          isVersionMismatch ? "h-[calc(100vh-370px)]" : "h-[calc(100vh-240px)]",
+          isVersionMismatch
+            ? "h-[calc(100vh-330px)] md:h-[calc(100vh-370px)]"
+            : "h-[calc(100vh-200px)] md:h-[calc(100vh-240px)]",
         )}
       >
         <div className="relative flex-1 overflow-hidden">
@@ -121,7 +123,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
               className="flex flex-col gap-5 pb-[30px] pt-4"
             >
               {messages.length === 0 && (
-                <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
+                <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
                   <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
                     <OpenAILogo className="h-auto w-7" />
                   </div>

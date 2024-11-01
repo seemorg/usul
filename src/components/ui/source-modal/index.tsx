@@ -1,5 +1,4 @@
-/* eslint-disable react/jsx-key */
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   RawDialogClose,
@@ -19,6 +18,9 @@ import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { toast } from "../use-toast";
 import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context";
 import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_components/usePageNavigation";
+import { useQuery } from "@tanstack/react-query";
+import { getBookPageIndex } from "@/lib/api";
+import { useParams, useSearchParams } from "next/navigation";
 
 export default function SourceModal({
   source,
@@ -27,23 +29,29 @@ export default function SourceModal({
   source: SemanticSearchBookNode;
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const slug = useParams().bookId as string;
+  const versionId = useSearchParams().get("versionId");
+
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
-  const handleNavigateToPage = useCallback(
-    (page?: { vol: string; page: number }) => {
-      if (!page) return;
-
-      // TODO: get index
-      // const props = getVirtuosoScrollProps(page);
-      // virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
-    },
-    [getVirtuosoScrollProps],
-  );
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const chapter = source.metadata.chapters[0];
   const page = source.metadata.pages[0]!;
+
+  const { isPending, data } = useQuery({
+    queryKey: ["page", page.page, page.vol, versionId] as const,
+    queryFn: ({ queryKey }) => {
+      const [, pg, vol, version] = queryKey;
+
+      return getBookPageIndex(slug, {
+        page: pg,
+        volume: vol,
+        versionId: version ?? undefined,
+      });
+    },
+    enabled: isOpen && !!page,
+  });
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(source.text);
@@ -53,7 +61,11 @@ export default function SourceModal({
   };
 
   const handleGoToPage = () => {
-    handleNavigateToPage(page);
+    if (!data || data.index === null) return;
+
+    const props = getVirtuosoScrollProps(data.index);
+    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+
     setIsOpen(false);
   };
 
@@ -104,8 +116,12 @@ export default function SourceModal({
               <Separator className="my-4" />
 
               <div className="flex justify-between">
-                <Button variant="outline" onClick={handleGoToPage}>
-                  Go to page
+                <Button
+                  variant="outline"
+                  onClick={handleGoToPage}
+                  disabled={isPending}
+                >
+                  {isPending ? "Loading..." : "Go to page"}
                 </Button>
 
                 <div className="flex">

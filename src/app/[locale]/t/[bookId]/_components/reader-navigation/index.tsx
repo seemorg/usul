@@ -9,12 +9,15 @@ import BookInfoHeader from "./book-info-header";
 import { useNavbarStore } from "@/stores/navbar";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import { MenuIcon, SearchIcon, SparklesIcon } from "lucide-react";
 import ReaderNavigationMobileActions from "./mobile-actions";
 import { SinglePageIcon } from "@/components/Icons";
 import ReaderNavigationButton from "./navigation-button";
 import { useTranslations } from "next-intl";
 import { useGetBookUrl } from "./utils";
+import { TabContent } from "../tab-content";
+import { tabs } from "../sidebar/tabs";
+import { useState } from "react";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
 
 export default function ReaderNavigation({
   bookResponse,
@@ -27,6 +30,11 @@ export default function ReaderNavigation({
   const bookSlug = bookResponse.book.slug;
   const t = useTranslations("reader");
   const bookUrl = useGetBookUrl(isSinglePage ? undefined : 1);
+  const [activeTabId, setActiveTabId] = useState<
+    (typeof tabs)[number]["id"] | null
+  >(null);
+
+  const versionId = bookResponse.content.versionId;
 
   const pdf =
     bookResponse.content.source === "turath"
@@ -74,15 +82,37 @@ export default function ReaderNavigation({
           </div>
 
           <div className="flex items-center gap-1 md:hidden">
-            <ReaderNavigationButton>
-              <SparklesIcon className="size-4" />
-            </ReaderNavigationButton>
-            <ReaderNavigationButton>
-              <SearchIcon className="size-4" />
-            </ReaderNavigationButton>
-            <ReaderNavigationButton>
-              <MenuIcon className="size-4" />
-            </ReaderNavigationButton>
+            {tabs.reverse().map((tab) => (
+              <ReaderNavigationButton
+                key={tab.id}
+                onClick={() => setActiveTabId(tab.id)}
+              >
+                <tab.icon className="size-4" />
+              </ReaderNavigationButton>
+            ))}
+
+            <Drawer
+              open={!!activeTabId}
+              onOpenChange={(state) => {
+                if (!state) {
+                  setActiveTabId(null);
+                }
+              }}
+            >
+              <DrawerContent>
+                {activeTabId && (
+                  <div className="h-[85vh] w-full overflow-y-auto">
+                    <TabContent
+                      tabId={activeTabId}
+                      bookSlug={bookSlug}
+                      versionId={versionId}
+                      isSinglePage={isSinglePage}
+                      bookResponse={bookResponse}
+                    />
+                  </div>
+                )}
+              </DrawerContent>
+            </Drawer>
           </div>
         </Container>
       </div>

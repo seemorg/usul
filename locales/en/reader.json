@@ -12,6 +12,8 @@
   },
   "e-book": "e-Book",
   "pdf": "PDF",
+  "view-as-e-book": "View as e-Book",
+  "view-as-pdf": "View as PDF",
   "page-navigator": {
     "name": "Page Navigator",
     "title": "Jump to page",

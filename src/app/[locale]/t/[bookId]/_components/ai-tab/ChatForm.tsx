@@ -38,7 +38,7 @@ function ChatForm({
       ref={formRef}
       className={cn(
         "mt-5 shrink-0 px-4 transition-transform will-change-transform",
-        showNavbar ? "translate-y-2.5" : "translate-y-[5.5rem]",
+        showNavbar ? "md:translate-y-2.5" : "md:translate-y-[5.5rem]",
       )}
       onSubmit={(e: any) => {
         e.preventDefault();

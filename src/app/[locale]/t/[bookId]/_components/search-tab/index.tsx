@@ -1,7 +1,7 @@
 "use client";
 
 import SidebarContainer from "../sidebar/sidebar-container";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { ArrowUpRightIcon, ArrowsUpDownIcon } from "@heroicons/react/20/solid";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,7 @@ import { usePageNavigation } from "../usePageNavigation";
 
 import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
+import { ChevronRightIcon } from "lucide-react";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
@@ -44,30 +45,9 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
     mutationKey: ["search"],
     mutationFn: async (q: string) => {
       if (!q) return [];
-
       return await searchBook(bookSlug, q);
     },
   });
-
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    // listen for keyboard shortcuts
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.metaKey && event.key === "f") {
-        event.preventDefault();
-        inputRef.current?.focus();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const handleSearch = async (q: string) => {
     if (!q) {
@@ -82,29 +62,18 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
-
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      handleSearch(newValue);
-    }, 500);
   };
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, []);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSearch(value);
+  };
 
   const renderResults = () => {
     if (results === null)
       return (
         // TODO: change fixed height
-        <div className="mx-auto flex h-[65vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
+        <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
           <MagnifyingGlassIcon className="h-auto w-8 text-gray-500" />
 
           <p className="mt-5 font-semibold text-gray-700">
@@ -167,20 +136,31 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
             )}
           </Button> */}
 
-          <div className="relative w-full">
-            <Input
-              type="text"
-              ref={inputRef}
-              value={value}
-              onChange={handleChange}
-              placeholder={`${t("reader.search.placeholder")} (⌘ + F)`}
-              className="h-10 w-full border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
-            />
+          <form className="flex w-full items-center" onSubmit={handleSubmit}>
+            <div className="relative flex-1">
+              {isPending ? (
+                <Spinner className="absolute top-3 h-4 w-4 ltr:left-3 rtl:right-3" />
+              ) : (
+                <MagnifyingGlassIcon className="absolute top-3 h-4 w-4 ltr:left-3 rtl:right-3" />
+              )}
 
-            {isPending && (
-              <Spinner className="absolute top-3 h-4 w-4 ltr:right-3 rtl:left-3" />
-            )}
-          </div>
+              <Input
+                type="text"
+                value={value}
+                onChange={handleChange}
+                placeholder={t("reader.search.placeholder")}
+                className="mr-10 h-10 w-full flex-1 border border-gray-300 bg-white pl-9 shadow-none focus:outline-none focus:ring-inset dark:border-border dark:bg-transparent ltr:rounded-r-none rtl:rounded-l-none"
+              />
+            </div>
+
+            <Button
+              size="icon"
+              className="size-10 flex-shrink-0 ltr:rounded-l-none rtl:rounded-r-none"
+              disabled={isPending}
+            >
+              <ChevronRightIcon className="size-5" />
+            </Button>
+          </form>
         </div>
 
         {/* {filtersOpen.value && (

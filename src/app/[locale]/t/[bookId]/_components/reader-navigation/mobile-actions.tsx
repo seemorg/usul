@@ -38,17 +38,18 @@ export default function ReaderNavigationMobileActions({
         </ReaderNavigationButton>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-40">
+      <DropdownMenuContent className="w-40 ltr:ml-3 rtl:mr-3">
         <DropdownMenuGroup>
           <DropdownMenuItem
             disabled={!hasPdfView}
             onClick={() => setView(view === "pdf" ? "ebook" : "pdf")}
+            className="gap-2"
           >
             <FileText className="h-4 w-4" />
-            <span>{view === "pdf" ? "View as E-Book" : "View as PDF"}</span>
+            <span>{t(view === "pdf" ? "view-as-e-book" : "view-as-pdf")}</span>
           </DropdownMenuItem>
 
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem asChild className="gap-2">
             <Link href={bookUrl}>
               <SinglePageIcon className="h-4 w-4" />
               <span>{t(isSinglePage ? "all-pages" : "single-page")}</span>
@@ -60,14 +61,14 @@ export default function ReaderNavigationMobileActions({
 
         <DropdownMenuGroup>
           {pdf?.finalUrl ? (
-            <DropdownMenuItem asChild>
+            <DropdownMenuItem asChild className="gap-2">
               <a href={pdf?.finalUrl} download={slug + ".pdf"} target="_blank">
                 <ArrowDownTrayIcon className="h-4 w-4" />
                 <span>{t("download-pdf")}</span>
               </a>
             </DropdownMenuItem>
           ) : (
-            <DropdownMenuItem disabled>
+            <DropdownMenuItem disabled className="gap-2">
               <ArrowDownTrayIcon className="h-4 w-4" />
               <span>{t("download-pdf")}</span>
             </DropdownMenuItem>
