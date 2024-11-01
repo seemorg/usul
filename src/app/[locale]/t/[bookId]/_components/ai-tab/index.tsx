@@ -2,35 +2,33 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  ArrowUpTrayIcon,
-  PencilSquareIcon,
-  ArrowDownIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useChat from "./useChat";
-import { useNavbarStore } from "@/stores/navbar";
 import ChatMessage from "./ChatMessage";
-import { useToast } from "@/components/ui/use-toast";
-import html2canvas from "html2canvas";
-import { useBoolean } from "usehooks-ts";
-import { useCallback, useRef } from "react";
+import { useCallback } from "react";
 import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
-import { InfoIcon } from "lucide-react";
+import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
 import { config } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
+import { Badge } from "@/components/ui/badge";
+import { OpenAILogo } from "@/components/Icons";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
-  const { getVirtuosoIndex } = usePageNavigation(bookResponse);
-  const { toast } = useToast();
-  const t = useTranslations("reader");
-  const showNavbar = useNavbarStore((s) => s.showNavbar);
-  const { messagesRef, scrollRef, visibilityRef, isAtBottom, scrollToBottom } =
-    useScrollAnchor();
+  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
+  const t = useTranslations();
+  const {
+    messagesRef,
+    scrollRef,
+    visibilityRef,
+    isAtBottom,
+    scrollToBottom,
+    resetState,
+  } = useScrollAnchor();
   const {
     isError,
     isPending,
@@ -41,46 +39,19 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
     clearChat,
     regenerateResponse,
   } = useChat({ bookSlug: bookSlug });
-  const captureRef = useRef<HTMLDivElement>(null);
-  const isSavingImage = useBoolean(false);
 
   const onSubmit = useCallback(async () => {
     await sendQuestion();
   }, [sendQuestion]);
 
-  const handleShareChat = useCallback(async () => {
-    isSavingImage.setTrue();
+  const onClearChat = useCallback(() => {
+    clearChat();
+    resetState();
+  }, [clearChat, resetState]);
 
-    // const height = captureRef.current!.scrollHeight;
-    // captureRef.current!.style.height = `${height}px`;
+  // const isLoading = isPending || isSavingImage.value;
+  const isLoading = isPending;
 
-    captureRef.current!.style.width = "700px";
-    captureRef.current!.style.height = "fit-content";
-
-    try {
-      const canvas = await html2canvas(captureRef.current!, {
-        width: 700,
-        windowWidth: 1350,
-        backgroundColor: "white",
-      });
-
-      const link = document.createElement("a");
-      link.download = "chat.png";
-      link.href = canvas.toDataURL("image/png", 1.0);
-      link.click();
-
-      toast({ description: "Done!" });
-    } catch (e) {
-      toast({ description: "An error occurred!", variant: "destructive" });
-    }
-
-    isSavingImage.setFalse();
-    captureRef.current!.style.width = "";
-    captureRef.current!.style.height = "";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const isLoading = isPending || isSavingImage.value;
   const isVersionMismatch =
     bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 
@@ -90,69 +61,47 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         <SidebarContainer className="my-4">
           <VersionAlert
             versionId={bookResponse.book.flags.aiVersion!}
-            feature="ai"
+            feature="ask-ai"
           />
         </SidebarContainer>
       )}
 
-      <div className="flex items-center justify-between px-4">
-        Chat
+      <div className="flex items-center justify-between px-6">
         <div className="flex gap-2">
+          {t("reader.ask-ai")}{" "}
+          <Badge variant="tertiary">{t("common.beta")}</Badge>
+        </div>
+        <div className="flex">
           <Button
             size="icon"
             variant="ghost"
-            className="size-10 hover:bg-secondary"
-            onClick={handleShareChat}
+            className="size-9 text-muted-foreground hover:bg-secondary"
+            // onClick={handleShareChat}
             disabled={isLoading}
-            tooltip={t("chat.share-chat")}
+            tooltip={t("reader.history")}
           >
-            <ArrowUpTrayIcon className="size-4" />
+            <HistoryIcon className="size-4" />
           </Button>
 
           <Button
             size="icon"
             variant="ghost"
-            className="size-10 hover:bg-secondary"
-            onClick={clearChat}
+            className="size-9 text-muted-foreground hover:bg-secondary"
+            onClick={onClearChat}
             disabled={isLoading}
-            tooltip={t("chat.new-chat")}
+            tooltip={t("reader.chat.new-chat")}
           >
-            <PencilSquareIcon className="size-4" />
+            <SquarePenIcon className="size-4" />
           </Button>
         </div>
       </div>
 
-      {/* <div
-        className="sr-only pointer-events-none flex flex-col gap-5 overflow-y-scroll px-4 py-10"
-        ref={captureRef}
-      >
-        <ChatMessage
-          role="ai"
-          text="Hey there, send something to start the chat!"
-          hasActions={false}
-          isScreenshot
-          pagesRange={pagesRange}
-          pageToIndex={pageToIndex}
-        />
-
-        {messages.map((message, idx) => (
-          <ChatMessage
-            key={idx}
-            role={message.role}
-            text={message.text}
-            sourceNodes={message.sourceNodes}
-            hasActions={false}
-            isScreenshot
-            pagesRange={pagesRange}
-            pageToIndex={pageToIndex}
-          />
-        ))}
-      </div> */}
-
       <div
         className={cn(
           "will flex flex-col justify-between",
-          isVersionMismatch ? "h-[calc(100vh-370px)]" : "h-[calc(100vh-240px)]",
+          isVersionMismatch
+            ? "h-[calc(100vh-330px)] md:h-[calc(100vh-370px)]"
+            : "h-[calc(100vh-200px)] md:h-[calc(100vh-240px)]",
         )}
       >
         <div className="relative flex-1 overflow-hidden">
@@ -168,27 +117,25 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
             </div>
           )}
 
-          <div
-            className={cn(
-              "h-full w-full overflow-y-auto px-4",
-              showNavbar ? "" : "",
-            )}
-            ref={scrollRef}
-          >
+          <div className="h-full w-full overflow-y-auto px-6" ref={scrollRef}>
             <div
               ref={messagesRef}
               className="flex flex-col gap-5 pb-[30px] pt-4"
             >
-              <ChatMessage
-                role="ai"
-                text="Hey there, send something to start the chat!"
-                hasActions={false}
-                getVirtuosoIndex={getVirtuosoIndex}
-              />
+              {messages.length === 0 && (
+                <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
+                    <OpenAILogo className="h-auto w-7" />
+                  </div>
+
+                  <p className="mt-4">{t("reader.chat.empty-state")}</p>
+                </div>
+              )}
 
               {messages.map((message, idx) => (
                 <ChatMessage
                   key={idx}
+                  id={message.id}
                   role={message.role}
                   text={message.text}
                   sourceNodes={message.sourceNodes}
@@ -197,35 +144,37 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                     idx === messages.length - 1 && isPending ? false : true
                   }
                   onRegenerate={() => regenerateResponse(idx)}
-                  getVirtuosoIndex={getVirtuosoIndex}
+                  getVirtuosoScrollProps={getVirtuosoScrollProps}
                 />
               ))}
 
               {isError && (
                 <div
-                  className="flex items-center gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
+                  className="flex items-start gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
                   role="alert"
                 >
                   <InfoIcon className="size-4" />
-                  {t.rich("chat.error", {
-                    retry: (children) => (
-                      <button
-                        onClick={() => regenerateResponse()}
-                        className="underline"
-                      >
-                        {children}
-                      </button>
-                    ),
-                    contact: (children) => (
-                      <a
-                        href={config.contactEmail}
-                        target="_blank"
-                        className="underline"
-                      >
-                        {children}
-                      </a>
-                    ),
-                  })}
+                  <p>
+                    {t.rich("reader.chat.error", {
+                      retry: (children) => (
+                        <button
+                          onClick={() => regenerateResponse()}
+                          className="inline underline"
+                        >
+                          {children}
+                        </button>
+                      ),
+                      contact: (children) => (
+                        <a
+                          href={`mailto:${config.contactEmail}`}
+                          target="_blank"
+                          className="inline underline"
+                        >
+                          {children}
+                        </a>
+                      ),
+                    })}
+                  </p>
                 </div>
               )}
 
@@ -234,30 +183,6 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           </div>
         </div>
 
-        {/* <form
-        className={cn(
-          "mt-5 flex px-4 transition-transform will-change-transform",
-          showNavbar ? "" : "translate-y-16",
-        )}
-        onSubmit={onSubmit}
-      >
-        <Input
-          className="h-10 flex-1 rounded-r-none bg-white focus-visible:ring-inset dark:bg-accent"
-          placeholder="Type your question..."
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
-          disabled={isPending}
-        />
-
-        <Button
-          size="icon"
-          type="submit"
-          className="size-10 shrink-0 rounded-l-none"
-          disabled={isPending}
-        >
-          <ArrowRightIcon className="size-5" />
-        </Button>
-      </form> */}
         <ChatForm
           input={question}
           setInput={setQuestion}

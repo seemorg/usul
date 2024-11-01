@@ -2,12 +2,18 @@
   "notes": "نوٹس",
   "bookmarks": "بُک مارکس",
   "content": "مواد",
+  "history": "تاریخ",
+  "ask-ai": "AI سے پوچھیں",
   "version-warning": "AI کو اس کتاب کے <tooltip>مختلف ورژن</tooltip> پر تربیت دی گئی ہے۔ آپ {feature} کو استعمال کر سکتے ہیں لیکن نتائج تھوڑے مختلف ہو سکتے ہیں۔",
   "switch-version": "{version} پر سوئچ کریں",
   "coming-soon": {
     "title": "جلد آ رہا ہے",
     "message": "یہ خصوصیت ابھی دستیاب نہیں ہے۔"
   },
+  "e-book": "ای-کتاب",
+  "pdf": "PDF",
+  "view-as-e-book": "ای بک کے طور پر دیکھیں",
+  "view-as-pdf": "PDF کے طور پر دیکھیں",
   "page-navigator": {
     "name": "صفحہ نیویگیٹر",
     "title": "صفحہ پر جائیں",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "اپنی تلاش شروع کریں",
+    "placeholder": "اصطلاح تلاش کریں",
     "description": "اے آئی تلاش قریب ترین مماثلتیں تلاش کرتی ہے چاہے آپ کو صحیح جملہ معلوم نہ ہو۔",
     "view-in-advanced": "ایڈوانسڈ تلاش میں دیکھیں",
     "best-match": "بہترین میچ",
@@ -27,6 +34,9 @@
     "book-select-description": "متعدد کتابوں کی تلاش کی ابھی تک حمایت نہیں ہے"
   },
   "chat": {
+    "empty-state": "کتاب کے اندر تلاش کرنے کے لئے AI کی طاقت کا استعمال کریں، وہ لکھ کر شروع کریں جسے آپ تلاش کر رہے ہیں...",
+    "placeholder": "اپنا سوال لکھیں...",
+    "send-message": "پیغام بھیجیں",
     "new-chat": "نیا چیٹ",
     "share-chat": "چیٹ شئیر کریں",
     "copy": "کلپ بورڈ پر کاپی کریں",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "غلط رپورٹ کریں",
     "sources": "ماخذ",
     "error": "کچھ غلط ہو گیا ہے۔ <retry>دوبارہ کوشش کریں</retry> یا اگر یہ مسئلہ برقرار رہے تو <contact>ہم سے رابطہ کریں</contact>۔",
-    "pg-x": "صفحه {page, number, nogroup}"
+    "pg-x": "ص{page, number, nogroup}",
+    "pg-x-vol": "ص{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "ورژن",
   "select-version": "ایک ورژن منتخب کریں",
+  "single-page": "واحد صفحہ",
+  "all-pages": "تمام صفحات",
   "other-titles": "دیگر عنوانات",
   "more-info": "کتاب معلومات",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "طباعت کا ورژن",
     "volumes": "جلدیں",
     "page-numbers-match-print": "صفحہ نمبر طباعت سے مطابقت رکھتے ہیں"
-  }
+  },
+  "feedback-submitted": "فیڈبیک جمع کر دیا گیا!"
 }

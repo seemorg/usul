@@ -24,11 +24,11 @@ import { useTranslations } from "next-intl";
 import { useDirection } from "@/lib/locale/utils";
 
 interface NavbarProps {
-  isHomepage?: boolean;
+  layout?: "home" | "reader";
   secondNav?: React.ReactNode;
 }
 
-export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
+export default function Navbar({ layout, secondNav }: NavbarProps) {
   const t = useTranslations();
   const { showNavbar, setShowNavbar } = useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,7 +68,8 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          layout === "reader" ? "relative" : "fixed",
+          "top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -84,7 +85,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           </Link>
         </div>
 
-        {isHomepage ? (
+        {layout === "home" ? (
           <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none lg:justify-center xl:col-span-8 xl:px-0">
             <HomepageNavigationMenu />
           </div>
@@ -98,7 +99,7 @@ export default function Navbar({ isHomepage, secondNav }: NavbarProps) {
           <ThemeToggle />
           <LocaleSwitcher />
 
-          {!isHomepage && (
+          {layout !== "home" && (
             <Button
               size="icon"
               variant="ghost"

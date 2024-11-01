@@ -2,12 +2,18 @@
   "notes": "Nota",
   "bookmarks": "Penanda Buku",
   "content": "Kandungan",
+  "history": "Sejarah",
+  "ask-ai": "Tanya AI",
   "version-warning": "AI telah dilatih pada <tooltip>versi berbeza buku ini</tooltip>. Anda masih boleh menggunakan {feature} tetapi hasilnya mungkin sedikit berbeza.",
   "switch-version": "Tukar kepada {version}",
   "coming-soon": {
     "title": "Akan Datang",
     "message": "Ciri ini belum tersedia."
   },
+  "e-book": "e-Book",
+  "pdf": "PDF",
+  "view-as-e-book": "Lihat sebagai e-Buku",
+  "view-as-pdf": "Lihat sebagai PDF",
   "page-navigator": {
     "name": "Navigator Halaman",
     "title": "Lompat ke halaman",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "Mulakan carian anda",
+    "placeholder": "Cari istilah",
     "description": "Carian AI menemui padanan terdekat walaupun anda tidak tahu frasa yang tepat.",
     "view-in-advanced": "Lihat dalam Carian Lanjutan",
     "best-match": "Padanan Terbaik",
@@ -27,6 +34,9 @@
     "book-select-description": "Carian untuk pelbagai buku belum disokong lagi"
   },
   "chat": {
+    "empty-state": "Gunakan kuasa AI untuk mencari dalam buku, mula dengan menulis apa yang anda cari...",
+    "placeholder": "Taip soalan anda...",
+    "send-message": "Hantar mesej",
     "new-chat": "Chat Baru",
     "share-chat": "Kongsi Chat",
     "copy": "Salin ke papan klip",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "Lapor sebagai salah",
     "sources": "Sumber",
     "error": "Sesuatu telah berlaku. <retry>Cuba lagi</retry> atau <contact>hubungi kami</contact> jika ia berterusan.",
-    "pg-x": "Hal {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Versi",
   "select-version": "Pilih sebuah versi",
+  "single-page": "Halaman Tunggal",
+  "all-pages": "Semua Halaman",
   "other-titles": "Tajuk lain",
   "more-info": "Maklumat Buku",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "Versi Cetak",
     "volumes": "Jilid",
     "page-numbers-match-print": "Nombor halaman sama seperti cetakan"
-  }
+  },
+  "feedback-submitted": "Maklum balas dihantar!"
 }

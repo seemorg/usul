@@ -2,12 +2,18 @@
   "notes": "Notlar",
   "bookmarks": "Yer İşaretleri",
   "content": "İçerik",
+  "history": "Geçmiş",
+  "ask-ai": "AI Sormak",
   "version-warning": "Yapay zeka, bu kitabın <tooltip>farklı bir versiyonu</tooltip> üzerinde eğitildi. {feature} kullanabilirsiniz ancak sonuçlar biraz farklı olabilir.",
   "switch-version": "{version} sürümüne geç",
   "coming-soon": {
     "title": "Yakında",
     "message": "Bu özellik henüz kullanılamıyor."
   },
+  "e-book": "e-Kitap",
+  "pdf": "PDF",
+  "view-as-e-book": "e-Kitap olarak görüntüle",
+  "view-as-pdf": "PDF olarak Görüntüle",
   "page-navigator": {
     "name": "Sayfa Yönlendirici",
     "title": "Sayfaya Git",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "Aramaya başlayın",
+    "placeholder": "Bir terim ara",
     "description": " Yapay Zeka Arama, tam ifadeyi bilmiyorsanız bile en yakın eşleşmeleri bulur.",
     "view-in-advanced": "Gelişmiş Arama'da Görüntüle",
     "best-match": "En İyi Eşleşme",
@@ -27,6 +34,9 @@
     "book-select-description": "Birden fazla kitap aramak henüz desteklenmiyor"
   },
   "chat": {
+    "empty-state": "Kitap içinde arama yapmak için yapay zekanın gücünü kullanın, aradığınız şeyi yazarak başlayın...",
+    "placeholder": "Sorunuzu yazın...",
+    "send-message": "Mesaj gönder",
     "new-chat": "Yeni Sohbet",
     "share-chat": "Sohbeti Paylaş",
     "copy": "Panoya Kopyala",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "Yanlış olarak bildir",
     "sources": "Kaynaklar",
     "error": "Bir şeyler ters gitti. <retry>Tekrar deneyin</retry> veya devam ederse <contact>bize ulaşın</contact>.",
-    "pg-x": "Sf {page, number, nogroup}"
+    "pg-x": "S{page, number, nogroup}",
+    "pg-x-vol": "S{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Versiyon",
   "select-version": "Bir versiyon seçin",
+  "single-page": "Tek Sayfa",
+  "all-pages": "Tüm Sayfalar",
   "other-titles": "Diğer başlıklar",
   "more-info": "Kitap Bilgisi",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "Baskı Versiyonu",
     "volumes": "Ciltler",
     "page-numbers-match-print": "Sayfa numaraları baskıyla uyumlu"
-  }
+  },
+  "feedback-submitted": "Geri bildirim gönderildi!"
 }

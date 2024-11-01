@@ -1,4 +1,4 @@
-import { Plus_Jakarta_Sans, Amiri } from "next/font/google";
+import { Plus_Jakarta_Sans, Scheherazade_New } from "next/font/google";
 import localFont from "next/font/local";
 
 const inter = Plus_Jakarta_Sans({
@@ -6,9 +6,9 @@ const inter = Plus_Jakarta_Sans({
   variable: "--font-sans",
 });
 
-const amiri = Amiri({
-  variable: "--font-amiri",
-  weight: ["400", "700"],
+const scheherazade = Scheherazade_New({
+  variable: "--font-scheherazade",
+  weight: ["400", "500", "700"],
   subsets: ["arabic", "latin"],
 });
 
@@ -70,6 +70,9 @@ const uthmanicHafs = localFont({
 });
 
 export const getFontsClassnames = () =>
-  [inter.variable, rubik.variable, amiri.variable, uthmanicHafs.variable].join(
-    " ",
-  );
+  [
+    inter.variable,
+    rubik.variable,
+    scheherazade.variable,
+    uthmanicHafs.variable,
+  ].join(" ");

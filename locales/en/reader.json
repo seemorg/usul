@@ -2,12 +2,18 @@
   "notes": "Notes",
   "bookmarks": "Bookmarks",
   "content": "Content",
+  "history": "History",
+  "ask-ai": "Ask AI",
   "version-warning": "AI has been trained on a <tooltip>different version of this book</tooltip>. You can still use {feature} but the results might be slightly different.",
   "switch-version": "Switch to {version}",
   "coming-soon": {
     "title": "Coming Soon",
     "message": "This feature is not available yet."
   },
+  "e-book": "e-Book",
+  "pdf": "PDF",
+  "view-as-e-book": "View as e-Book",
+  "view-as-pdf": "View as PDF",
   "page-navigator": {
     "name": "Page Navigator",
     "title": "Jump to page",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "Begin your search",
+    "placeholder": "Search for a term",
     "description": " AI Search finds the closest matches even if you don’t know the exact phrase.",
     "view-in-advanced": "View in Advanced Search",
     "best-match": "Best Match",
@@ -27,6 +34,9 @@
     "book-select-description": "Searching multiple books isn't supported yet"
   },
   "chat": {
+    "empty-state": "Use the power of AI to search within the book, start by writing what you’re looking for...",
+    "placeholder": "Type your question...",
+    "send-message": "Send message",
     "new-chat": "New Chat",
     "share-chat": "Share Chat",
     "copy": "Copy to clipboard",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "Report as incorrect",
     "sources": "Sources",
     "error": "Something went wrong. <retry>Try again</retry> or <contact>contact us</contact> if it persists.",
-    "pg-x": "Pg {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Version",
   "select-version": "Select a version",
+  "single-page": "Single Page",
+  "all-pages": "All Pages",
   "other-titles": "Other titles",
   "more-info": "Book Info",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "Print Version",
     "volumes": "Volumes",
     "page-numbers-match-print": "Page numbers match print"
-  }
+  },
+  "feedback-submitted": "Feedback submitted!"
 }

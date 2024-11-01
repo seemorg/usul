@@ -32,8 +32,7 @@ export function MobileSidebarProvider({
   const { handleNavigate } = useTabNavigate();
   const rawActiveTabId = useSearchParams().get("tab");
   const activeTabId =
-    tabs.find((tab) => tab.id === rawActiveTabId)?.id ??
-    tabs[tabs.length - 1]!.id;
+    tabs.find((tab) => tab.id === rawActiveTabId)?.id ?? tabs[0]!.id;
 
   const closeSidebar = useCallback(() => {
     open.setFalse();

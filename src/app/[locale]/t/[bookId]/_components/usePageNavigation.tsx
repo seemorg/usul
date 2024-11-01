@@ -11,7 +11,7 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
         end: 0,
       },
       pageToIndex: null,
-      getVirtuosoIndex: () => ({
+      getVirtuosoScrollProps: () => ({
         index: 0,
         align: "center" as const,
       }),
@@ -26,32 +26,7 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
     end: typeof lastPage === "number" ? lastPage : 0,
   };
 
-  const pageToIndex =
-    source === "turath"
-      ? bookResponse.content.pageNumberWithVolumeToIndex
-      : null;
-
-  const getVirtuosoIndex = (
-    page:
-      | number
-      | {
-          vol: string;
-          page: number;
-        },
-  ) => {
-    let index: number | undefined;
-
-    if (pageToIndex && typeof page === "object") {
-      const newIdx = pageToIndex[`${page.vol}-${page.page}`];
-      if (newIdx) {
-        index = newIdx;
-      }
-    }
-
-    if (index === undefined) {
-      index = (typeof page === "number" ? page : page.page) - pagesRange.start;
-    }
-
+  const getVirtuosoScrollProps = (index: number) => {
     return {
       index,
       align: "center" as const,
@@ -60,8 +35,7 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
 
   return {
     pagesRange,
-    pageToIndex,
-    getVirtuosoIndex,
+    getVirtuosoScrollProps,
   };
 };
 

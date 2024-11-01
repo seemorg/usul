@@ -347,16 +347,18 @@ export default function InfoDialog({
                       </div>
                     ) : (
                       <div>
-                        <Link
-                          href={navigation.centuries.byYear(author.year)}
-                          prefetch
-                          dir="ltr"
-                          className="text-lg text-primary underline-offset-4 hover:underline"
-                        >
-                          {t("common.year-format.ah.value", {
-                            year: author.year,
-                          })}
-                        </Link>
+                        {author.year ? (
+                          <Link
+                            href={navigation.centuries.byYear(author.year)}
+                            prefetch
+                            dir="ltr"
+                            className="text-lg text-primary underline-offset-4 hover:underline"
+                          >
+                            {t("common.year-format.ah.value", {
+                              year: author.year,
+                            })}
+                          </Link>
+                        ) : null}
                       </div>
                     )}
                   </div>

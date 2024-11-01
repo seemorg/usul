@@ -16,12 +16,13 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
-        amiri: ["var(--font-amiri)", ...fontFamily.serif],
+        scheherazade: ["var(--font-scheherazade)", ...fontFamily.serif],
         "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
+        reader: "hsl(var(--reader))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
@@ -89,7 +90,11 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/container-queries"),
+  ],
 } satisfies Config;
 
 export default config;

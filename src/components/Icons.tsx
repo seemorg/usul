@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import React from "react";
 
 type IconProps = React.SVGProps<SVGSVGElement>;
@@ -48,31 +47,33 @@ export function OpenAILogo(props: IconProps) {
   );
 }
 
-export const GradientSparklesIcon = ({ className, ...props }: IconProps) => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      className={cn(className, "text-pink-500 dark:text-pink-500")}
-      fill="currentColor"
-      {...props}
-    >
-      {/* <defs>
-        <linearGradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
-          <stop offset="0%" style={{ stopColor: "#ffaa40", stopOpacity: 1 }} />
-          <stop offset="50%" style={{ stopColor: "#9c40ff", stopOpacity: 1 }} />
-          <stop
-            offset="100%"
-            style={{ stopColor: "#ffaa40", stopOpacity: 1 }}
-          />
-        </linearGradient>
-      </defs> */}
-
-      <path
-        d="M9 4.5a.75.75 0 0 1 .721.544l.813 2.846a3.75 3.75 0 0 0 2.576 2.576l2.846.813a.75.75 0 0 1 0 1.442l-2.846.813a3.75 3.75 0 0 0-2.576 2.576l-.813 2.846a.75.75 0 0 1-1.442 0l-.813-2.846a3.75 3.75 0 0 0-2.576-2.576l-2.846-.813a.75.75 0 0 1 0-1.442l2.846-.813A3.75 3.75 0 0 0 7.466 7.89l.813-2.846A.75.75 0 0 1 9 4.5ZM18 1.5a.75.75 0 0 1 .728.568l.258 1.036c.236.94.97 1.674 1.91 1.91l1.036.258a.75.75 0 0 1 0 1.456l-1.036.258c-.94.236-1.674.97-1.91 1.91l-.258 1.036a.75.75 0 0 1-1.456 0l-.258-1.036a2.625 2.625 0 0 0-1.91-1.91l-1.036-.258a.75.75 0 0 1 0-1.456l1.036-.258a2.625 2.625 0 0 0 1.91-1.91l.258-1.036A.75.75 0 0 1 18 1.5ZM16.5 15a.75.75 0 0 1 .712.513l.394 1.183c.15.447.5.799.948.948l1.183.395a.75.75 0 0 1 0 1.422l-1.183.395c-.447.15-.799.5-.948.948l-.395 1.183a.75.75 0 0 1-1.422 0l-.395-1.183a1.5 1.5 0 0 0-.948-.948l-1.183-.395a.75.75 0 0 1 0-1.422l1.183-.395c.447-.15.799-.5.948-.948l.395-1.183A.75.75 0 0 1 16.5 15Z"
-        clipRule="evenodd"
-        fillRule="evenodd"
-      />
-    </svg>
-  );
-};
+export const SinglePageIcon = (props: IconProps) => (
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path
+      d="M3.33301 16.2497V14.583C3.33301 13.8927 3.89265 13.333 4.58301 13.333H15.4163C16.1067 13.333 16.6663 13.8927 16.6663 14.583V16.2497"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M15.8337 9.99967H4.16699"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M16.6663 3.75V5.41667C16.6663 6.10702 16.1067 6.66667 15.4163 6.66667H4.58301C3.89265 6.66667 3.33301 6.10702 3.33301 5.41667V3.75"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

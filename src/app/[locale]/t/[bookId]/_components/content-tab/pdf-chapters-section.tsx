@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useMemo } from "react";
+import { useMemo } from "react";
 import { type PdfChapter, usePdfChapterStore } from "../pdf-view/store";
 import { type TreeDataItem, TreeView } from "@/components/tree-view";
 
@@ -25,7 +23,7 @@ const prepareChapter = (
   };
 };
 
-export default function PdfChaptersList() {
+function PdfChaptersList() {
   const chapters = usePdfChapterStore((s) => s.chapters);
   const navigateToPage = usePdfChapterStore((s) => s.navigateToPage);
 
@@ -54,3 +52,5 @@ export default function PdfChaptersList() {
     </div>
   );
 }
+
+export default PdfChaptersList;

@@ -1,12 +1,13 @@
 import { chatWithBook, parseSourceNode } from "@/server/services/chat";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
-import { useCallback, useState } from "react";
-import { useBoolean } from "usehooks-ts";
+import { useCallback } from "react";
+import { useChatStore } from "../../_stores/chat";
 
 type ChatMessage = {
-  role: "ai" | "user";
+  id?: string;
   text: string;
+  role: "ai" | "user";
   sourceNodes?: SemanticSearchBookNode[];
 };
 
@@ -23,6 +24,7 @@ interface UseChatResult {
 }
 
 const handleEventSource = async (
+  id: string,
   eventSource: EventSource,
   {
     onChunk,
@@ -43,6 +45,7 @@ const handleEventSource = async (
       if (event.data === "FINISH") {
         eventSource.close();
         return res({
+          id,
           role: "ai",
           text: allContent,
           sourceNodes: (sources ?? []).map(parseSourceNode),
@@ -63,7 +66,7 @@ const handleEventSource = async (
       }
 
       if (onChunk) {
-        onChunk({ role: "ai", text: allContent });
+        onChunk({ id, role: "ai", text: allContent });
       }
     };
   });
@@ -74,13 +77,20 @@ export default function useChat({
 }: {
   bookSlug: string;
 }): UseChatResult {
-  const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [error, setError] = useState<Error | undefined>();
-  const isPending = useBoolean(false);
+  const {
+    messages,
+    setMessages,
+    question,
+    setQuestion,
+    isPending,
+    setIsPending,
+    error,
+    setError,
+    reset,
+  } = useChatStore();
 
   const sendQuestion = useCallback(async () => {
-    isPending.setTrue();
+    setIsPending(true);
 
     const q = question.trim();
     const newMessages = [...messages, { role: "user", text: q } as ChatMessage];
@@ -89,13 +99,13 @@ export default function useChat({
     setQuestion("");
 
     try {
-      const eventSource = await chatWithBook({
+      const { eventSource, messageId } = await chatWithBook({
         bookSlug,
         question: q,
         messages,
       });
 
-      const result = await handleEventSource(eventSource, {
+      const result = await handleEventSource(messageId, eventSource, {
         onChunk(chunk) {
           setMessages([...newMessages, chunk]);
         },
@@ -107,16 +117,9 @@ export default function useChat({
       setError(err as Error);
     }
 
-    isPending.setFalse();
+    setIsPending(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookSlug, question]);
-
-  const clearChat = useCallback(() => {
-    setMessages([]);
-    setError(undefined);
-    setQuestion("");
-    isPending.setFalse();
-  }, []);
 
   const regenerateResponse = useCallback(
     async (messageIndex?: number) => {
@@ -142,16 +145,16 @@ export default function useChat({
         question = newMessages.at(-1)!;
       }
 
-      isPending.setTrue();
+      setIsPending(true);
 
       try {
-        const eventSource = await chatWithBook({
+        const { eventSource, messageId } = await chatWithBook({
           bookSlug,
           question: question.text,
           messages: previousMessages,
         });
 
-        const result = await handleEventSource(eventSource, {
+        const result = await handleEventSource(messageId, eventSource, {
           onChunk(chunk) {
             setMessages([...newMessages, chunk]);
           },
@@ -162,7 +165,7 @@ export default function useChat({
         setError(err as Error);
       }
 
-      isPending.setFalse();
+      setIsPending(false);
     },
     [bookSlug, messages],
   );
@@ -173,9 +176,9 @@ export default function useChat({
     messages,
     question,
     setQuestion,
-    clearChat,
+    clearChat: reset,
     sendQuestion,
-    isPending: isPending.value,
+    isPending,
     regenerateResponse,
   };
 }

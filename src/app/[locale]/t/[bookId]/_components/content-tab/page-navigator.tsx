@@ -1,25 +1,19 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import { useReaderVirtuoso } from "../context";
 import { useTranslations } from "next-intl";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { Label } from "@/components/ui/label";
 
-export default function PageNavigator({
+function PageNavigator({
   popover = true,
   range,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: {
   popover?: boolean;
   range: { start: number; end: number };
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -38,7 +32,7 @@ export default function PageNavigator({
       return;
     }
 
-    const props = getVirtuosoIndex(pageNumber);
+    const props = getVirtuosoScrollProps(pageNumber - 1);
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
@@ -75,19 +69,32 @@ export default function PageNavigator({
   }
 
   return (
-    <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          className="px-0 font-normal text-primary hover:text-primary"
-        >
-          {t("name")}
-        </Button>
-      </PopoverTrigger>
+    <div>
+      <Label htmlFor="pageNumber" className="text-sm">
+        {t("name")}
+      </Label>
+      <p className="mt-1 text-xs text-muted-foreground">
+        {t("description", { start: range.start, end: range.end })}
+      </p>
 
-      <PopoverContent className="w-80 max-w-full py-5">
-        {Content}
-      </PopoverContent>
-    </Popover>
+      <form
+        className="mt-3 grid grid-cols-3 items-center"
+        onSubmit={handleSubmit}
+      >
+        <Input
+          id="pageNumber"
+          name="pageNumber"
+          type="number"
+          placeholder={t("input-placeholder")}
+          className="col-span-2 h-9 bg-background ltr:rounded-r-none rtl:rounded-l-none"
+        />
+
+        <Button className="ltr:rounded-l-none rtl:rounded-r-none">
+          {t("go")}
+        </Button>
+      </form>
+    </div>
   );
 }
+
+export default PageNavigator;

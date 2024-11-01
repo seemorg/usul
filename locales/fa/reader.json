@@ -2,12 +2,18 @@
   "notes": "یادداشت‌ها",
   "bookmarks": "نشانک‌ها",
   "content": "محتوا",
+  "history": "تاریخچه",
+  "ask-ai": "پرسیدن از هوش مصنوعی",
   "version-warning": "هوش مصنوعی روی <tooltip>نسخه متفاوتی از این کتاب</tooltip> آموزش دیده است. شما همچنان می‌توانید از {feature} استفاده کنید اما نتایج ممکن است کمی متفاوت باشد.",
   "switch-version": "تغییر به {version}",
   "coming-soon": {
     "title": "به زودی",
     "message": "این قابلیت هنوز در دسترس نیست."
   },
+  "e-book": "کتاب الکترونیکی",
+  "pdf": "PDF",
+  "view-as-e-book": "مشاهده به عنوان کتاب الکترونیکی",
+  "view-as-pdf": "مشاهده به عنوان PDF",
   "page-navigator": {
     "name": "ناوبری صفحه",
     "title": "پرش به صفحه",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "جستجوی خود را شروع کنید",
+    "placeholder": "به‌دنبال یک اصطلاح بگردید",
     "description": "جستجوی هوش مصنوعی نزدیک‌ترین تطابق‌ها را پیدا می‌کند حتی اگر عبارت دقیق را ندانید.",
     "view-in-advanced": "مشاهده در جستجوی پیشرفته",
     "best-match": "بهترین تطبیق",
@@ -27,6 +34,9 @@
     "book-select-description": "جستجوی همزمان در چند کتاب هنوز پشتیبانی نمی‌شود"
   },
   "chat": {
+    "empty-state": "از قدرت هوش مصنوعی برای جستجو در کتاب استفاده کنید، با نوشتن چیزی که به‌دنبال آن هستید شروع کنید...",
+    "placeholder": "سوال خود را تایپ کنید...",
+    "send-message": "ارسال پیام",
     "new-chat": "گفتگوی جدید",
     "share-chat": "اشتراک گفتگو",
     "copy": "کپی به کلیپ‌بورد",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "گزارش به عنوان نادرست",
     "sources": "منابع",
     "error": "مشکلی پیش آمد. <retry>دوباره امتحان کنید</retry> یا <contact>با ما تماس بگیرید</contact> اگر ادامه پیدا کرد.",
-    "pg-x": "ص {page, number, nogroup}"
+    "pg-x": "ص{page, number, nogroup}",
+    "pg-x-vol": "ج{vol, number, nogroup}/ص{page, number, nogroup}"
   },
   "version": "نسخه",
   "select-version": "انتخاب یک نسخه",
+  "single-page": "صفحه واحد",
+  "all-pages": "همه صفحات",
   "other-titles": "عناوین دیگر",
   "more-info": "اطلاعات کتاب",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "نسخه چاپی",
     "volumes": "جلدها",
     "page-numbers-match-print": "شماره صفحات مطابق چاپ"
-  }
+  },
+  "feedback-submitted": "بازخورد ارسال شد!"
 }

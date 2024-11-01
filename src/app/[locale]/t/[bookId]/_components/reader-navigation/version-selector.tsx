@@ -1,5 +1,6 @@
 "use client";
 
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -9,6 +10,7 @@ import {
 } from "@/components/ui/select";
 import { usePathname, useRouter } from "@/navigation";
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 
 const idToName: Record<string, string> = {
@@ -58,7 +60,8 @@ export default function VersionSelector({
 }) {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
-  const { replace } = useRouter();
+  const { push } = useRouter();
+  const searchParams = useSearchParams();
   const t = useTranslations("reader");
 
   const [selectedVersion, setSelectedVersion] = useState(() => {
@@ -73,34 +76,43 @@ export default function VersionSelector({
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
 
-    const newUrl = `${pathname}?versionId=${newVersion}`;
+    const newParams = new URLSearchParams(searchParams);
+
+    newParams.set("versionId", newVersion);
+    const newUrl = `${pathname}?${newParams.toString()}`;
 
     startTransition(() => {
-      replace(newUrl);
+      push(newUrl);
     });
   };
 
   return (
-    <Select value={selectedVersion} onValueChange={handleVersionChange}>
-      <SelectTrigger
-        className="w-[300px] max-w-full overflow-hidden [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
-        id="version-selector"
-        isLoading={isPending}
-      >
-        {selectedVersionObj ? (
-          versionToName(selectedVersionObj)
-        ) : (
-          <SelectValue placeholder={t("select-version")} />
-        )}
-      </SelectTrigger>
+    <div className="flex items-center">
+      <div className="hidden h-9 items-center justify-center rounded-md border border-border px-4 text-muted-foreground md:flex ltr:rounded-r-none rtl:rounded-l-none">
+        <Label htmlFor="version-selector">{t("version")}</Label>
+      </div>
 
-      <SelectContent>
-        {versions.map((version, idx) => (
-          <SelectItem key={idx} value={version.value}>
-            {versionToName(version)}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+      <Select value={selectedVersion} onValueChange={handleVersionChange}>
+        <SelectTrigger
+          className="w-[170px] overflow-hidden border border-border shadow-none md:w-[200px] ltr:md:rounded-l-none ltr:md:border-l-0 rtl:md:rounded-r-none rtl:md:border-r-0 [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:overflow-ellipsis [&>span]:break-words"
+          id="version-selector"
+          isLoading={isPending}
+        >
+          {selectedVersionObj ? (
+            <span>{versionToName(selectedVersionObj)}</span>
+          ) : (
+            <SelectValue placeholder={t("select-version")} />
+          )}
+        </SelectTrigger>
+
+        <SelectContent>
+          {versions.map((version, idx) => (
+            <SelectItem key={idx} value={version.value}>
+              {versionToName(version)}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 }

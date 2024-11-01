@@ -1,5 +1,3 @@
-"use client";
-
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
@@ -7,11 +5,18 @@ import React, { useMemo } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { Openiti, Turath } from "@/types/ApiBookResponse";
 import { type TreeDataItem, TreeView } from "@/components/tree-view";
+import { useRouter } from "@/navigation";
+import { useParams, useSearchParams } from "next/navigation";
+import { navigation } from "@/lib/urls";
 
 type OpenitiChapter = NonNullable<Openiti["headings"]>[number];
 type TurathChapter = NonNullable<Turath["headings"]>[number];
 
-type BookDataItem = TreeDataItem & { level: number; volume?: number | string };
+type BookDataItem = TreeDataItem & {
+  level: number;
+  volume?: number | string;
+  pageIndex?: number;
+};
 
 function prepareChapter(
   chapter: OpenitiChapter | TurathChapter,
@@ -29,6 +34,7 @@ function prepareChapter(
       ? (chapter.page as TurathChapter["page"])?.vol
       : (chapter as OpenitiChapter).volume,
     level: chapter.level,
+    pageIndex: chapter.pageIndex,
   };
 }
 
@@ -68,35 +74,39 @@ function buildHierarchy(
 
 export default function ChaptersList({
   headers,
-  chapterIndexToPageIndex,
-  getVirtuosoIndex,
   pagesRange,
+  getVirtuosoScrollProps,
+  isSinglePage,
 }: {
   headers: NonNullable<Openiti["headings"] | Turath["headings"]>;
-  chapterIndexToPageIndex?: Turath["chapterIndexToPageIndex"] | null;
   pagesRange: UsePageNavigationReturnType["pagesRange"];
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
+  isSinglePage?: boolean;
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
+  const bookSlug = useParams().bookId as string;
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const finalHeaders = useMemo(() => {
     if (!headers) return [];
     return buildHierarchy(headers);
   }, [headers]);
 
-  const handleNavigate = (
-    chapterIndex: number,
-    pageNumber: number | { vol: string; page: number } | string,
-  ) => {
-    if (typeof pageNumber === "string") return;
+  const handleNavigate = (chapterIndex: number) => {
+    const chapter = headers[chapterIndex];
+    const idx = chapter?.pageIndex;
 
-    const idx = chapterIndexToPageIndex?.[chapterIndex] ?? -1;
-    if (idx !== -1) {
-      virtuosoRef.current?.scrollToIndex(idx);
-    } else {
-      const props = getVirtuosoIndex(pageNumber);
-      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    if (idx !== undefined && idx !== -1) {
+      if (isSinglePage) {
+        router.push(
+          `${navigation.books.pageReader(bookSlug, idx + 1)}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`,
+        );
+      } else {
+        const props = getVirtuosoScrollProps(idx);
+        virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+      }
     }
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
@@ -108,7 +118,7 @@ export default function ChaptersList({
         <PageNavigator
           popover={false}
           range={pagesRange}
-          getVirtuosoIndex={getVirtuosoIndex}
+          getVirtuosoScrollProps={getVirtuosoScrollProps}
         />
       </div>
     );
@@ -121,7 +131,7 @@ export default function ChaptersList({
         onSelectChange={(item) => {
           if (!item || !item.page) return;
 
-          handleNavigate(parseInt(item.id), item.page);
+          handleNavigate(parseInt(item.id));
         }}
         data={finalHeaders}
       />

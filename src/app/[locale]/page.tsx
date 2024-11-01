@@ -20,6 +20,7 @@ import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
+import { PlayIcon } from "@heroicons/react/24/solid";
 
 import { cn } from "@/lib/utils";
 import { DemoButton } from "./demo-button";
@@ -56,7 +57,7 @@ export default async function HomePage({
 
   return (
     <>
-      <Navbar isHomepage />
+      <Navbar layout="home" />
 
       <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
@@ -72,7 +73,10 @@ export default async function HomePage({
           </p>
 
           <div className="mt-7 flex w-full justify-center">
-            <DemoButton />
+            <DemoButton>
+              <PlayIcon className="size-4" />
+              {t("how-usul-works")} - 2:40
+            </DemoButton>
           </div>
 
           <div className={cn("w-full", "mt-16 sm:mt-[4.5rem]")}>

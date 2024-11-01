@@ -10,14 +10,24 @@ export type ApiBookParams = {
   includeBook?: boolean;
 };
 
+export type ApiBookPageParams = {
+  fields?: ("indices" | "pdf" | "publication_details" | "headings")[];
+  versionId?: string;
+  locale?: string;
+  includeBook?: boolean;
+  index: number;
+};
+
+export type ApiPageIndexParams = {
+  versionId?: string;
+  page: number;
+  volume?: string | number;
+};
+
 export type Turath = {
   source: TurathBookResponse["source"];
   versionId: TurathBookResponse["versionId"];
   pages: TurathBookResponse["turathResponse"]["pages"];
-
-  chapterIndexToPageIndex?: TurathBookResponse["chapterIndexToPageIndex"];
-  pageNumberWithVolumeToIndex?: TurathBookResponse["pageNumberWithVolumeToIndex"];
-
   pdf?: TurathBookResponse["turathResponse"]["pdf"];
   publicationDetails?: TurathBookResponse["turathResponse"]["publicationDetails"];
   headings?: TurathBookResponse["turathResponse"]["headings"];
@@ -34,46 +44,62 @@ export type Openiti = {
   rawUrl: string;
   pages: ParseResult["content"];
   publicationDetails?: ParseResult["metadata"];
-  headings?: ParseResult["chapters"];
+  headings?: (ParseResult["chapters"][number] & { pageIndex?: number })[];
 };
 
-export type ApiBookResponse = {
-  book: {
+type BookDetails = {
+  id: string;
+  slug: string;
+  author: {
     id: string;
     slug: string;
-    author: {
-      id: string;
-      slug: string;
-      transliteration: string;
-      year?: number | null;
-      numberOfBooks: number;
-      primaryName: string;
-      otherNames: string[];
-      secondaryName?: string | null;
-      secondaryOtherNames?: string[] | null;
-      bio: string;
-    };
     transliteration: string;
-    versions: PrismaJson.BookVersion[];
-    numberOfVersions: number;
-    flags: PrismaJson.BookFlags;
+    year?: number | null;
+    numberOfBooks: number;
     primaryName: string;
     otherNames: string[];
     secondaryName?: string | null;
     secondaryOtherNames?: string[] | null;
-    genres: {
-      id: string;
-      slug: string;
-      transliteration: string;
-      numberOfBooks: number;
-      name: string;
-      secondaryName: string;
-    }[];
+    bio: string;
   };
+  transliteration: string;
+  versions: PrismaJson.BookVersion[];
+  numberOfVersions: number;
+  flags: PrismaJson.BookFlags;
+  primaryName: string;
+  otherNames: string[];
+  secondaryName?: string | null;
+  secondaryOtherNames?: string[] | null;
+  genres: {
+    id: string;
+    slug: string;
+    transliteration: string;
+    numberOfBooks: number;
+    name: string;
+    secondaryName: string;
+  }[];
+};
+
+export type ApiBookResponse = {
+  book: BookDetails;
   content: Turath | External | Openiti;
   pagination: {
     startIndex: number;
     total: number;
     size: number; // per page
   };
+};
+
+export type ApiBookPageResponse = {
+  book: BookDetails;
+  content: Turath | Openiti;
+  pagination: {
+    startIndex: number;
+    total: number;
+    size: number; // per page
+  };
+};
+
+export type ApiPageIndexResponse = {
+  index: number | null;
 };

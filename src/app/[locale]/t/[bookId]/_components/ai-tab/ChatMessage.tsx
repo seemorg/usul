@@ -1,22 +1,31 @@
 import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import {
   DocumentDuplicateIcon,
   HandThumbUpIcon,
   HandThumbDownIcon,
   ArrowPathIcon,
 } from "@heroicons/react/24/outline";
+import {
+  HandThumbUpIcon as SolidHandThumbUpIcon,
+  HandThumbDownIcon as SolidHandThumbDownIcon,
+} from "@heroicons/react/24/solid";
 import { OpenAILogo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { useBoolean } from "usehooks-ts";
 import { useTranslations } from "next-intl";
-import { useReaderVirtuoso } from "../context";
-import { memo, useCallback } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { useMutation } from "@tanstack/react-query";
+import { sendFeedback } from "@/server/services/chat";
+import makeSourcesPlugin from "./sources-plugin";
+import rehypeRaw from "rehype-raw";
+import PageReference from "./PageReference";
 
 type ChatMessageProps = {
+  id?: string;
   text: string;
   role: "ai" | "user";
   onRegenerate?: () => Promise<void>;
@@ -24,10 +33,27 @@ type ChatMessageProps = {
   isLast?: boolean;
   hasActions?: boolean;
   isScreenshot?: boolean;
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 };
 
+const makeComponents = (
+  sourceNodes: SemanticSearchBookNode[],
+  getVirtuosoScrollProps: ChatMessageProps["getVirtuosoScrollProps"],
+): Components => ({
+  // @ts-expect-error
+  "page-reference": (props) => (
+    <PageReference
+      getVirtuosoScrollProps={getVirtuosoScrollProps}
+      sourceNodes={sourceNodes}
+      {...props}
+    />
+  ),
+  ol: (props) => <ol className="flex flex-col gap-2" {...props} />,
+  ul: (props) => <ul className="flex flex-col gap-2" {...props} />,
+});
+
 const ChatMessage = ({
+  id,
   text,
   role,
   sourceNodes,
@@ -35,22 +61,27 @@ const ChatMessage = ({
   hasActions = true,
   isScreenshot = false,
   onRegenerate,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: ChatMessageProps) => {
   const { toast } = useToast();
   const t = useTranslations();
-  const virtuosoRef = useReaderVirtuoso();
+
   const isLoading = useBoolean(false);
+  const [feedbackSentType, setFeedbackSentType] = useState<
+    "positive" | "negative" | null
+  >(null);
 
-  const handleNavigateToPage = useCallback(
-    (page?: { vol: string; page: number }) => {
-      if (!page) return;
-
-      const props = getVirtuosoIndex(page);
-      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+  const { mutateAsync, isPending } = useMutation({
+    mutationKey: ["send-feedback"],
+    mutationFn: sendFeedback,
+    onSuccess: (_, { feedback }) => {
+      toast({
+        variant: "primary",
+        description: t("reader.feedback-submitted"),
+      });
+      setFeedbackSentType(feedback);
     },
-    [getVirtuosoIndex],
-  );
+  });
 
   const handleRegenerate = useCallback(async () => {
     if (!onRegenerate) return;
@@ -67,12 +98,24 @@ const ChatMessage = ({
     isLoading.setFalse();
   }, [text]);
 
-  const handleFeedback = useCallback((type: "positive" | "negative") => {
-    toast({
-      variant: "primary",
-      description: "Feedback submitted!",
-    });
-  }, []);
+  const handleFeedback = useCallback(
+    (type: "positive" | "negative") => {
+      if (!id || feedbackSentType) return;
+      mutateAsync({ messageId: id, feedback: type });
+    },
+    [id, feedbackSentType],
+  );
+
+  const markdownProps = useMemo(() => {
+    return {
+      plugin: makeSourcesPlugin(
+        (sourceNodes ?? []).map((_, idx) => {
+          return idx + 1;
+        }),
+      ),
+      components: makeComponents(sourceNodes ?? [], getVirtuosoScrollProps),
+    };
+  }, [sourceNodes, getVirtuosoScrollProps]);
 
   return (
     <div
@@ -98,44 +141,29 @@ const ChatMessage = ({
           </div>
         )}
 
-        <div
+        <bdi
           className={cn(
-            "text-sm",
+            "block text-sm",
             isScreenshot && role === "user" ? "-mt-3" : "",
           )}
         >
           {text === "" ? (
             <div className="loader" />
           ) : (
-            <ReactMarkdown>{text}</ReactMarkdown>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[markdownProps.plugin]}
+              components={markdownProps.components}
+              className="flex flex-col gap-3"
+            >
+              {text}
+            </ReactMarkdown>
           )}
-
-          {sourceNodes && sourceNodes.length > 0 ? (
-            <div className="mt-4 flex flex-wrap items-center gap-1">
-              {t("reader.chat.sources")}:
-              {sourceNodes?.slice(0, 5).map((sourceNode, idx) => {
-                const page = sourceNode.metadata.pages[0];
-
-                return (
-                  <button
-                    key={idx}
-                    className="p-0 text-primary underline"
-                    onClick={() => handleNavigateToPage(page)}
-                  >
-                    {t("reader.chat.pg-x", {
-                      page: page?.page,
-                    })}
-                  </button>
-                );
-              })}
-            </div>
-          ) : null}
 
           {role === "ai" && hasActions && (
             <div
               className={cn(
-                "message-actions",
-                "mt-2 flex gap-1",
+                "message-actions mt-2 flex gap-1 text-muted-foreground",
                 !isLast &&
                   "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100",
               )}
@@ -143,7 +171,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
+                className="size-7 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleCopy}
                 tooltip={t("reader.chat.copy")}
@@ -154,7 +182,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
+                className="size-7 hover:bg-secondary"
                 disabled={isLoading.value}
                 onClick={handleRegenerate}
                 tooltip={t("reader.chat.regenerate")}
@@ -165,27 +193,35 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
-                disabled={isLoading.value}
+                className="size-7 hover:bg-secondary"
+                disabled={isLoading.value || isPending}
                 onClick={() => handleFeedback("positive")}
                 tooltip={t("reader.chat.mark-as-correct")}
               >
-                <HandThumbUpIcon className="size-4" />
+                {feedbackSentType === "positive" ? (
+                  <SolidHandThumbUpIcon className="size-4" />
+                ) : (
+                  <HandThumbUpIcon className="size-4" />
+                )}
               </Button>
 
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 text-gray-600 hover:bg-secondary"
-                disabled={isLoading.value}
+                className="size-7 hover:bg-secondary"
+                disabled={isLoading.value || isPending}
                 onClick={() => handleFeedback("negative")}
                 tooltip={t("reader.chat.report-as-incorrect")}
               >
-                <HandThumbDownIcon className="size-4" />
+                {feedbackSentType === "negative" ? (
+                  <SolidHandThumbDownIcon className="size-4" />
+                ) : (
+                  <HandThumbDownIcon className="size-4" />
+                )}
               </Button>
             </div>
           )}
-        </div>
+        </bdi>
       </div>
     </div>
   );

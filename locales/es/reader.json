@@ -2,12 +2,18 @@
   "notes": "Notas",
   "bookmarks": "Marcadores",
   "content": "Contenido",
+  "history": "Historial",
+  "ask-ai": "Preguntar a la IA",
   "version-warning": "La IA se ha entrenado en una <tooltip>versión diferente de este libro</tooltip>. Aun así, puedes usar {feature} pero los resultados podrían ser ligeramente diferentes.",
   "switch-version": "Cambiar a {version}",
   "coming-soon": {
     "title": "Próximamente",
     "message": "Esta función aún no está disponible."
   },
+  "e-book": "e-Book",
+  "pdf": "PDF",
+  "view-as-e-book": "Ver como e-Book",
+  "view-as-pdf": "Ver como PDF",
   "page-navigator": {
     "name": "Navegador de Páginas",
     "title": "Saltar a la página",
@@ -17,6 +23,7 @@
   },
   "search": {
     "begin-search": "Comienza tu búsqueda",
+    "placeholder": "Buscar un término",
     "description": "La búsqueda por IA encuentra las coincidencias más cercanas incluso si no conoces la frase exacta.",
     "view-in-advanced": "Ver en Búsqueda Avanzada",
     "best-match": "Mejor Coincidencia",
@@ -27,6 +34,9 @@
     "book-select-description": "La búsqueda en varios libros no está soportada todavía"
   },
   "chat": {
+    "empty-state": "Utiliza el poder de la IA para buscar dentro del libro, comienza escribiendo lo que buscas...",
+    "placeholder": "Escribe tu pregunta...",
+    "send-message": "Enviar mensaje",
     "new-chat": "Nuevo Chat",
     "share-chat": "Compartir Chat",
     "copy": "Copiar al portapapeles",
@@ -36,10 +46,13 @@
     "report-as-incorrect": "Reportar como incorrecto",
     "sources": "Fuentes",
     "error": "Algo salió mal. <retry>Inténtalo de nuevo</retry> o <contact>contáctanos</contact> si persiste.",
-    "pg-x": "Pg {page, number, nogroup}"
+    "pg-x": "P{page, number, nogroup}",
+    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
   "version": "Versión",
   "select-version": "Seleccione una versión",
+  "single-page": "Página Única",
+  "all-pages": "Todas las Páginas",
   "other-titles": "Otros títulos",
   "more-info": "Información del libro",
   "external-book": {
@@ -57,5 +70,6 @@
     "print-version": "Versión impresa",
     "volumes": "Volúmenes",
     "page-numbers-match-print": "Los números de página coinciden con la impresión"
-  }
+  },
+  "feedback-submitted": "¡Comentarios enviados!"
 }

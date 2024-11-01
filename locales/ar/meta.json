@@ -1,13 +1,13 @@
 {
   "global": {
     "usul": "أصول",
-    "slogan": "أداة البحث للنصوص الإسلامية",
-    "description": "اقرأ، وابحث، وقم ببحث في أكثر من 8,000 نص إسلامي وكلاسيكي ببضع نقرات"
+    "slogan": "أداة البحث في النصوص الإسلامية",
+    "description": "اقرأ وابحث في أكثر من ٨,٠٠٠ نص إسلامي وتراثي ببضع النقرات"
   },
   "author-page": {
     "title": "{author} | الكتب والنصوص",
     "description-secondary": "اقرأ كتب {author}. {author} المعروف أيضًا باسم {authorSecondary}، كتب {books} كتابًا.",
-    "description": "اقرأ كتب {author}. {author} تأليف كتب {books}."
+    "description": "اقرأ كتب {author}. {author} ألف كتب {books}."
   },
   "about-page": {
     "title": "عن أصول",

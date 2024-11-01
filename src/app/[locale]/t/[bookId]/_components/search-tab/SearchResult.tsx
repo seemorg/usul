@@ -12,33 +12,50 @@ import { Button } from "@/components/ui/button";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { useMutation } from "@tanstack/react-query";
+import { getBookPageIndex } from "@/lib/api";
+import { useParams, useSearchParams } from "next/navigation";
 
 const SearchResult = ({
   result,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: {
   result: SemanticSearchBookNode;
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
   const t = useTranslations();
+  const slug = useParams().bookId as string;
+  const versionId = useSearchParams().get("versionId");
+
+  const { isPending, mutateAsync } = useMutation({
+    mutationKey: ["page"],
+    mutationFn: (args: { page: number; vol?: string }) => {
+      return getBookPageIndex(slug, {
+        page: args.page,
+        volume: args.vol,
+        versionId: versionId ?? undefined,
+      });
+    },
+  });
 
   const page = result.metadata.pages[0];
 
-  const handleNavigate = () => {
-    if (!page || page.page === -1) return;
+  const handleNavigate = async () => {
+    if (!page || page.page === -1 || isPending) return;
 
-    const props = getVirtuosoIndex(page.page);
+    const result = await mutateAsync({ page: page.page, vol: page.vol });
+
+    if (result.index === null) return;
+
+    const props = getVirtuosoScrollProps(result.index);
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
-  const content = removeDiacritics(result.text).split(" ");
-  // content[4] = `<span class="text-primary font-bold">${content[4]}</span>`;
-  // content[5] = `<span class="text-primary font-bold">${content[5]}</span>`;
-  // content[6] = `<span class="text-primary font-bold">${content[6]}</span>`;
+  const content = removeDiacritics(result.text);
 
   return (
     <div
@@ -74,9 +91,9 @@ const SearchResult = ({
 
       <p
         dir="rtl"
-        className="mt-2 font-amiri text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
+        className="mt-2 font-scheherazade text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
         dangerouslySetInnerHTML={{
-          __html: content.join(" "),
+          __html: content,
         }}
       />
 

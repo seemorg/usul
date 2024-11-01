@@ -8,11 +8,17 @@ import Footer from "@/app/_components/footer";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
+import Container from "@/components/ui/container";
+import Paginator from "../../[pageNumber]/paginator";
 
 export default function ReaderContent({
   response,
+  isSinglePage,
+  currentPage,
 }: {
   response: ApiBookResponse;
+  isSinglePage?: boolean;
+  currentPage?: number;
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
@@ -30,7 +36,7 @@ export default function ReaderContent({
 
   return (
     <div
-      className="!h-screen w-full overflow-y-auto bg-background text-xl text-foreground [overflow-anchor:none]"
+      className="relative !h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
@@ -40,31 +46,43 @@ export default function ReaderContent({
         }
       }}
     >
-      <div className="h-[80px] w-full" />
+      {isSinglePage && (
+        <Paginator
+          totalPages={response.pagination.total}
+          currentPage={currentPage!}
+          slug={response.book.slug}
+        />
+      )}
 
       <Virtualizer
-        count={response.pagination.total}
-        ssrCount={Math.min(defaultPages.length, READER_PAGINATION_SIZE)}
+        count={isSinglePage ? 1 : response.pagination.total}
+        ssrCount={
+          isSinglePage
+            ? 1
+            : Math.min(defaultPages.length, READER_PAGINATION_SIZE)
+        }
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}
         startMargin={80}
         // eslint-disable-next-line react/display-name
         as={forwardRef((props, ref) => (
           <div
-            className="mx-auto w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16"
+            className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
             ref={ref}
             {...props}
           />
         ))}
       >
-        {new Array(response.pagination.total).fill(null).map((_, index) => (
-          <Page
-            key={index}
-            index={index}
-            defaultPages={defaultPages}
-            perPage={response.pagination.size}
-          />
-        ))}
+        {new Array(isSinglePage ? 1 : response.pagination.total)
+          .fill(null)
+          .map((_, index) => (
+            <Page
+              key={index}
+              index={index}
+              defaultPages={defaultPages}
+              perPage={response.pagination.size}
+            />
+          ))}
       </Virtualizer>
 
       <div className="mx-auto mt-10 w-full max-w-[90%]">
@@ -86,13 +104,13 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <div className="flex flex-col gap-8 pb-5 pt-14 font-amiri">
+      <Container className="font-scheherazade mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 lg:px-8 xl:px-16 2xl:max-w-5xl">
         <ReaderPage
           index={index}
           defaultPages={defaultPages}
           perPage={perPage}
         />
-      </div>
+      </Container>
     );
   },
   (prevProps, nextProps) => {

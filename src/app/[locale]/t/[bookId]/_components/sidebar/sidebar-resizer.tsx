@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import CollapsedSidebar from "./collapsed-sidebar";
 import { useDirection } from "@/lib/locale/utils";
+import { useNavbarStore } from "@/stores/navbar";
 
 const defaultSizes = [75, 25];
 
@@ -25,6 +26,7 @@ export default function SidebarResizer({
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const dir = useDirection();
+  const showNavbar = useNavbarStore((s) => s.showNavbar);
 
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
@@ -53,23 +55,31 @@ export default function SidebarResizer({
       onCollapse={onCollapse}
       onExpand={onExpand}
       className={cn(
-        "hidden lg:block",
+        "hidden transition-transform will-change-transform lg:block",
         isCollapsed && "min-w-[20px] transition-all duration-300 ease-in-out",
+        !showNavbar && "translate-y-[60px]", // READER_NAVIGATION_HEIGHT
       )}
     >
       {isCollapsed ? <CollapsedSidebar sidebarRef={sidebarRef} /> : sidebar}
     </ResizablePanel>,
   ];
 
+  // -translate-y-[READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT]
+  const navbarTranslateY =
+    !showNavbar && "-translate-y-[124px] lg:-translate-y-[140px]";
+
   return (
     <>
-      <Navbar secondNav={secondNav} />
+      <Navbar layout="reader" secondNav={secondNav} />
 
       {dir === "ltr" ? (
         <ResizablePanelGroup
           direction="horizontal"
           autoSaveId="reader-sidebar"
-          className="relative h-full w-full"
+          className={cn(
+            "relative h-full w-full transition-transform will-change-transform",
+            navbarTranslateY,
+          )}
         >
           {panels}
         </ResizablePanelGroup>
@@ -77,7 +87,10 @@ export default function SidebarResizer({
         <ResizablePanelGroup
           direction="horizontal"
           autoSaveId="reader-sidebar-rtl"
-          className="relative h-full w-full"
+          className={cn(
+            "relative h-full w-full transition-transform will-change-transform",
+            navbarTranslateY,
+          )}
         >
           {panels.reverse()}
         </ResizablePanelGroup>

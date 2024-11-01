@@ -175,11 +175,13 @@ async function AuthorPage({
       <DottedList
         className="mt-9 sm:mt-14"
         items={[
-          <Button variant="link" asChild className="h-auto p-0">
-            <Link href={navigation.centuries.byYear(author.year)} prefetch>
-              {t("common.year-format.ah.value", { year: author.year })}
-            </Link>
-          </Button>,
+          author.year ? (
+            <Button variant="link" asChild className="h-auto p-0">
+              <Link href={navigation.centuries.byYear(author.year)} prefetch>
+                {t("common.year-format.ah.value", { year: author.year })}
+              </Link>
+            </Button>
+          ) : null,
           locations.length > 0 && (
             <>
               <p className="capitalize">{t("common.lived")}: &nbsp;</p>
