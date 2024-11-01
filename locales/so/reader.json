@@ -12,6 +12,8 @@
   },
   "e-book": "e-Buug",
   "pdf": "PDF",
+  "view-as-e-book": "Fiiri sida e-Buug",
+  "view-as-pdf": "Fiiri sida PDF",
   "page-navigator": {
     "name": "Sawir-qaade Bogga",
     "title": "U bood bogga",
@@ -49,6 +51,8 @@
   },
   "version": "Nooca",
   "select-version": "Dooro nooc",
+  "single-page": "Bogga Keli",
+  "all-pages": "Dhamaan Bogagga",
   "other-titles": "Cinwaano kale",
   "more-info": "Macluumaadka Buugga",
   "external-book": {

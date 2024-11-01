@@ -12,6 +12,8 @@
   },
   "e-book": "ई-पुस्तक",
   "pdf": "पीडीएफ",
+  "view-as-e-book": "ई-पुस्तक के रूप में देखें",
+  "view-as-pdf": "पीडीएफ के रूप में देखें",
   "page-navigator": {
     "name": "पृष्ठ नेविगेटर",
     "title": "पृष्ठ पर जाएँ",
@@ -49,6 +51,8 @@
   },
   "version": "संस्करण",
   "select-version": "एक संस्करण चुनें",
+  "single-page": "एकल पृष्ठ",
+  "all-pages": "सभी पृष्ठ",
   "other-titles": "अन्य शीर्षक",
   "more-info": "पुस्तक जानकारी",
   "external-book": {

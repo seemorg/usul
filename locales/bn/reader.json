@@ -12,6 +12,8 @@
   },
   "e-book": "ই-বই",
   "pdf": "পিডিএফ",
+  "view-as-e-book": "ই-বুক হিসেবে দেখুন",
+  "view-as-pdf": "পিডিএফ হিসেবে দেখুন",
   "page-navigator": {
     "name": "পাতা নেভিগেটর",
     "title": "পাতায় যান",
@@ -49,6 +51,8 @@
   },
   "version": "সংস্করণ",
   "select-version": "একটি সংস্করণ নির্বাচন করুন",
+  "single-page": "একক পৃষ্ঠা",
+  "all-pages": "সব পৃষ্ঠা",
   "other-titles": "অন্যান্য শিরোনাম",
   "more-info": "বইয়ের তথ্য",
   "external-book": {

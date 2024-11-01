@@ -12,6 +12,8 @@
   },
   "e-book": "كتاب إلكتروني",
   "pdf": "PDF",
+  "view-as-e-book": "عرض ككتاب إلكتروني",
+  "view-as-pdf": "عرض كملف PDF",
   "page-navigator": {
     "name": "تصفح الصفحات",
     "title": "انتقل إلى صفحة",
@@ -49,6 +51,8 @@
   },
   "version": "النسخة",
   "select-version": "اختيار النسخة",
+  "single-page": "صفحة واحدة",
+  "all-pages": "جميع الصفحات",
   "other-titles": "عناوين أخرى",
   "more-info": "معلومات الكتاب",
   "external-book": {

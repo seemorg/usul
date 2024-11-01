@@ -12,6 +12,8 @@
   },
   "e-book": "برېښنايي کتاب",
   "pdf": "PDF",
+  "view-as-e-book": "د ای-کتاب په توګه وګورئ",
+  "view-as-pdf": "د پی ډي ایف په توګه وګورئ",
   "page-navigator": {
     "name": "پاڼه نیویګی",
     "title": "په پاڼه ورځه",
@@ -49,6 +51,8 @@
   },
   "version": "نسخه",
   "select-version": "یوه نسخه وټاکئ",
+  "single-page": "یوه پاڼه",
+  "all-pages": "ټولې پاڼې",
   "other-titles": "نور عنوانونه",
   "more-info": "د کتاب معلومات",
   "external-book": {
