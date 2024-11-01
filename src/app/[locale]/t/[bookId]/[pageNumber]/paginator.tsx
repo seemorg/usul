@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 
 export default function Paginator({
   totalPages,
@@ -17,6 +18,15 @@ export default function Paginator({
   slug: string;
 }) {
   const showNavbar = useNavbarStore((s) => s.showNavbar);
+  const searchParams = useSearchParams();
+
+  const makeUrl = (url: string) => {
+    if (searchParams.size === 0) {
+      return url;
+    }
+
+    return `${url}?${searchParams.toString()}`;
+  };
 
   return (
     <div
@@ -36,7 +46,9 @@ export default function Paginator({
           {currentPage === 1 ? (
             <ChevronLeftIcon className="h-4 w-4" />
           ) : (
-            <Link href={navigation.books.pageReader(slug, currentPage - 1)}>
+            <Link
+              href={makeUrl(navigation.books.pageReader(slug, currentPage - 1))}
+            >
               <ChevronLeftIcon className="h-4 w-4" />
             </Link>
           )}
@@ -53,7 +65,9 @@ export default function Paginator({
           {currentPage === totalPages ? (
             <ChevronRightIcon className="h-4 w-4" />
           ) : (
-            <Link href={navigation.books.pageReader(slug, currentPage + 1)}>
+            <Link
+              href={makeUrl(navigation.books.pageReader(slug, currentPage + 1))}
+            >
               <ChevronRightIcon className="h-4 w-4" />
             </Link>
           )}

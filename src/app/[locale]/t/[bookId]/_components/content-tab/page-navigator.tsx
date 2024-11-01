@@ -9,11 +9,11 @@ import { Label } from "@/components/ui/label";
 function PageNavigator({
   popover = true,
   range,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: {
   popover?: boolean;
   range: { start: number; end: number };
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -32,7 +32,7 @@ function PageNavigator({
       return;
     }
 
-    const props = getVirtuosoIndex(pageNumber);
+    const props = getVirtuosoScrollProps(pageNumber - 1);
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();

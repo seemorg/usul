@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
+import type { ButtonProps } from "@/components/ui/button";
 import type { TurathBookResponse } from "@/server/services/books";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
+import ReaderNavigationButton from "./navigation-button";
 
 export default function DownloadButton({
   pdf,
@@ -13,31 +14,24 @@ export default function DownloadButton({
   const t = useTranslations("reader");
   const tooltip = t("download-pdf");
 
+  const commonProps: Partial<ButtonProps> = {
+    tooltip,
+    tooltipProps: { side: "bottom" },
+  };
+
   if (pdf?.finalUrl) {
     return (
-      <Button
-        variant="outline"
-        size="icon"
-        tooltip={tooltip}
-        tooltipProps={{ side: "bottom" }}
-        asChild
-      >
+      <ReaderNavigationButton {...commonProps} asChild>
         <a href={pdf?.finalUrl} download={slug + ".pdf"} target="_blank">
           <ArrowDownTrayIcon className="h-4 w-4" />
         </a>
-      </Button>
+      </ReaderNavigationButton>
     );
   }
 
   return (
-    <Button
-      variant="outline"
-      size="icon"
-      tooltip={tooltip}
-      tooltipProps={{ side: "bottom" }}
-      disabled
-    >
+    <ReaderNavigationButton {...commonProps} disabled>
       <ArrowDownTrayIcon className="h-4 w-4" />
-    </Button>
+    </ReaderNavigationButton>
   );
 }

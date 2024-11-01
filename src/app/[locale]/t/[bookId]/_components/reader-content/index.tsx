@@ -67,7 +67,7 @@ export default function ReaderContent({
         // eslint-disable-next-line react/display-name
         as={forwardRef((props, ref) => (
           <div
-            className="w-full flex-auto divide-y-2 divide-border"
+            className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
             ref={ref}
             {...props}
           />
@@ -104,7 +104,7 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 font-amiri lg:px-8 xl:px-16 2xl:max-w-5xl">
+      <Container className="font-scheherazade mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 lg:px-8 xl:px-16 2xl:max-w-5xl">
         <ReaderPage
           index={index}
           defaultPages={defaultPages}

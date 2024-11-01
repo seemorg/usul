@@ -1,5 +1,5 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { useReaderVirtuoso } from "../context";
+// import { useReaderVirtuoso } from "../context";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import { removeDiacritics } from "@/lib/diacritics";
 import {
@@ -15,12 +15,12 @@ import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 const SearchResult = ({
   result,
-  getVirtuosoIndex,
+  // getVirtuosoScrollProps,
 }: {
   result: SemanticSearchBookNode;
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) => {
-  const virtuosoRef = useReaderVirtuoso();
+  // const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
   const t = useTranslations();
 
@@ -29,14 +29,14 @@ const SearchResult = ({
   const handleNavigate = () => {
     if (!page || page.page === -1) return;
 
-    const props = getVirtuosoIndex(page.page);
-    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    // TODO: get index
+    // const props = getVirtuosoScrollProps(page.page);
+    // virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
   };
 
   const content = removeDiacritics(result.text);
-  const summary = result.summary ? removeDiacritics(result.summary) : null;
 
   return (
     <div
@@ -72,9 +72,9 @@ const SearchResult = ({
 
       <p
         dir="rtl"
-        className="mt-2 font-amiri text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
+        className="mt-2 font-scheherazade text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
         dangerouslySetInnerHTML={{
-          __html: summary || content,
+          __html: content,
         }}
       />
 

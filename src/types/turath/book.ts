@@ -23,6 +23,7 @@ export interface TurathBookResponse {
       title: string;
       level: number;
       page: number;
+      pageIndex?: number;
     }[];
     print_pg_to_pg: Record<string, number>; // example '1,1': 1
     page_map: string[]; // example: ['1,1', '1,2']

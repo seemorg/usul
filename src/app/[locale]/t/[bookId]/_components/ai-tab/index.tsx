@@ -19,7 +19,7 @@ import { Badge } from "@/components/ui/badge";
 import { OpenAILogo } from "@/components/Icons";
 
 export default function AITab({ bookSlug, bookResponse }: TabProps) {
-  const { getVirtuosoIndex } = usePageNavigation(bookResponse);
+  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const {
     messagesRef,
@@ -142,7 +142,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
                     idx === messages.length - 1 && isPending ? false : true
                   }
                   onRegenerate={() => regenerateResponse(idx)}
-                  getVirtuosoIndex={getVirtuosoIndex}
+                  getVirtuosoScrollProps={getVirtuosoScrollProps}
                 />
               ))}
 

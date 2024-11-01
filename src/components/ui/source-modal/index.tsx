@@ -22,10 +22,10 @@ import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_com
 
 export default function SourceModal({
   source,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: {
   source: SemanticSearchBookNode;
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
@@ -33,10 +33,11 @@ export default function SourceModal({
     (page?: { vol: string; page: number }) => {
       if (!page) return;
 
-      const props = getVirtuosoIndex(page);
-      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+      // TODO: get index
+      // const props = getVirtuosoScrollProps(page);
+      // virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
     },
-    [getVirtuosoIndex],
+    [getVirtuosoScrollProps],
   );
 
   const [isOpen, setIsOpen] = useState(false);

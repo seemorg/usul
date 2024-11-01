@@ -130,6 +130,7 @@ async function SidebarContent({
           bookSlug={bookId}
           versionId={versionId}
           bookResponse={response}
+          isSinglePage
         />
       }
     >

@@ -49,6 +49,8 @@
   },
   "version": "Version",
   "select-version": "Select a version",
+  "single-page": "Single Page",
+  "all-pages": "All Pages",
   "other-titles": "Other titles",
   "more-info": "Book Info",
   "external-book": {

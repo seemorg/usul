@@ -33,17 +33,17 @@ type ChatMessageProps = {
   isLast?: boolean;
   hasActions?: boolean;
   isScreenshot?: boolean;
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 };
 
 const makeComponents = (
   sourceNodes: SemanticSearchBookNode[],
-  getVirtuosoIndex: ChatMessageProps["getVirtuosoIndex"],
+  getVirtuosoScrollProps: ChatMessageProps["getVirtuosoScrollProps"],
 ): Components => ({
   // @ts-expect-error
   "page-reference": (props) => (
     <PageReference
-      getVirtuosoIndex={getVirtuosoIndex}
+      getVirtuosoScrollProps={getVirtuosoScrollProps}
       sourceNodes={sourceNodes}
       {...props}
     />
@@ -61,7 +61,7 @@ const ChatMessage = ({
   hasActions = true,
   isScreenshot = false,
   onRegenerate,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
 }: ChatMessageProps) => {
   const { toast } = useToast();
   const t = useTranslations();
@@ -113,9 +113,9 @@ const ChatMessage = ({
           return idx + 1;
         }),
       ),
-      components: makeComponents(sourceNodes ?? [], getVirtuosoIndex),
+      components: makeComponents(sourceNodes ?? [], getVirtuosoScrollProps),
     };
-  }, [sourceNodes, getVirtuosoIndex]);
+  }, [sourceNodes, getVirtuosoScrollProps]);
 
   return (
     <div

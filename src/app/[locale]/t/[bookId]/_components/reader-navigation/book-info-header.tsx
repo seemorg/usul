@@ -1,8 +1,5 @@
-"use client";
-
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import Container from "@/components/ui/container";
 import {
   HoverCard,
   HoverCardContent,
@@ -13,17 +10,16 @@ import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import type { ApiBookResponse } from "@/types/ApiBookResponse";
-import { CheckIcon, ChevronDownIcon, ChevronUpIcon, XIcon } from "lucide-react";
+import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
-import { useBoolean } from "usehooks-ts";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 
 export default function BookInfoHeader({
   bookResponse,
 }: {
   bookResponse: ApiBookResponse;
 }) {
-  const open = useBoolean(false);
   const dir = useDirection();
   const t = useTranslations();
 
@@ -38,22 +34,6 @@ export default function BookInfoHeader({
     },
     genres,
   } = book;
-
-  const ToggleButton = () => (
-    <Button
-      size="icon"
-      variant="ghost"
-      className="hover:bg-accent/70 focus:bg-accent/70"
-      onClick={open.toggle}
-      id="book-info-header-toggle-button"
-    >
-      {open.value ? (
-        <ChevronUpIcon className="size-4" />
-      ) : (
-        <ChevronDownIcon className="size-4" />
-      )}
-    </Button>
-  );
 
   const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => (
     <HoverCard>
@@ -130,48 +110,89 @@ export default function BookInfoHeader({
   };
 
   return (
-    <Container
-      className="mx-auto border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl"
+    <AccordionPrimitive.Root
+      type="single"
+      collapsible
+      className="relative mx-auto border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl"
       dir={dir}
     >
-      {!open.value && (
-        <div className="flex justify-between">
-          <div className="flex items-center gap-3 text-base font-semibold">
-            {[
-              // eslint-disable-next-line react/jsx-key
-              <p>{book.primaryName}</p>,
-              book.secondaryName ? <p>{book.secondaryName}</p> : null,
-              // eslint-disable-next-line react/jsx-key
-              <bdi>
-                <Link
-                  href={navigation.authors.bySlug(book.author.slug)}
-                  className="text-primary underline underline-offset-4"
-                  prefetch
-                >
-                  {book.author.primaryName}
-                  {book.author.year
-                    ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
-                    : ""}
-                </Link>
-              </bdi>,
-            ]
-              .filter(Boolean)
-              .map((item, index, arr) => (
-                <Fragment key={index}>
-                  {item}
-                  {index < arr.length - 1 && (
-                    <Separator orientation="vertical" className="h-6" />
-                  )}
-                </Fragment>
-              ))}
+      <AccordionPrimitive.Item value="header">
+        <AccordionPrimitive.Header asChild>
+          <div className="[&[data-state=open]>div]:pointer-events-none [&[data-state=open]>div]:-translate-y-full [&[data-state=open]>div]:opacity-0">
+            <AccordionPrimitive.Trigger asChild>
+              <Button
+                size="icon"
+                variant="outline"
+                className="absolute bottom-0 left-1/2 z-10 size-8 -translate-x-1/2 translate-y-2/3 hover:bg-accent focus:bg-accent [&[data-state=open]>svg]:rotate-180"
+              >
+                <ChevronDownIcon className="size-4 transition-transform" />
+              </Button>
+            </AccordionPrimitive.Trigger>
+
+            <div className="flex justify-between transition-all">
+              <div className="flex items-center gap-3 text-base font-semibold">
+                {[
+                  // eslint-disable-next-line react/jsx-key
+                  <p>{book.primaryName}</p>,
+                  // eslint-disable-next-line react/jsx-key
+                  <bdi>
+                    <Link
+                      href={navigation.authors.bySlug(book.author.slug)}
+                      className="text-primary underline underline-offset-4"
+                      prefetch
+                    >
+                      {book.author.primaryName}
+                      {book.author.year
+                        ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
+                        : ""}
+                    </Link>
+                  </bdi>,
+                ]
+                  .filter(Boolean)
+                  .map((item, index, arr) => (
+                    <Fragment key={index}>
+                      {item}
+                      {index < arr.length - 1 && (
+                        <Separator orientation="vertical" className="h-6" />
+                      )}
+                    </Fragment>
+                  ))}
+              </div>
+
+              {book.secondaryName && (
+                <div className="hidden items-center gap-3 text-base font-semibold md:flex">
+                  {[
+                    // eslint-disable-next-line react/jsx-key
+                    <bdi>
+                      <Link
+                        href={navigation.authors.bySlug(book.author.slug)}
+                        className="text-primary underline underline-offset-4"
+                        prefetch
+                      >
+                        {book.author.secondaryName}
+                        {book.author.year
+                          ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
+                          : ""}
+                      </Link>
+                    </bdi>,
+                    book.secondaryName ? <p>{book.secondaryName}</p> : null,
+                  ]
+                    .filter(Boolean)
+                    .map((item, index, arr) => (
+                      <Fragment key={index}>
+                        {item}
+                        {index < arr.length - 1 && (
+                          <Separator orientation="vertical" className="h-6" />
+                        )}
+                      </Fragment>
+                    ))}
+                </div>
+              )}
+            </div>
           </div>
+        </AccordionPrimitive.Header>
 
-          <ToggleButton />
-        </div>
-      )}
-
-      {open.value && (
-        <div className="mt-5">
+        <AccordionPrimitive.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
           <div className="flex justify-between">
             <bdi className="flex-1">
               <h2 className="text-3xl font-bold">{primaryName}</h2>
@@ -246,10 +267,10 @@ export default function BookInfoHeader({
               ))}
             </div>
 
-            <ToggleButton />
+            {/* <ToggleButton /> */}
           </div>
-        </div>
-      )}
-    </Container>
+        </AccordionPrimitive.Content>
+      </AccordionPrimitive.Item>
+    </AccordionPrimitive.Root>
   );
 }

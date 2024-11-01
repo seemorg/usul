@@ -5,12 +5,12 @@ import SourceModal from "@/components/ui/source-modal";
 interface PageReferenceProps {
   "data-number": string;
   sourceNodes: SemanticSearchBookNode[];
-  getVirtuosoIndex: UsePageNavigationReturnType["getVirtuosoIndex"];
+  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }
 
 function PageReference({
   sourceNodes,
-  getVirtuosoIndex,
+  getVirtuosoScrollProps,
   ...props
 }: PageReferenceProps) {
   const number = props["data-number"];
@@ -19,7 +19,10 @@ function PageReference({
   const sourceNode = sourceNodes[idx]!;
 
   return (
-    <SourceModal source={sourceNode} getVirtuosoIndex={getVirtuosoIndex} />
+    <SourceModal
+      source={sourceNode}
+      getVirtuosoScrollProps={getVirtuosoScrollProps}
+    />
   );
 }
 

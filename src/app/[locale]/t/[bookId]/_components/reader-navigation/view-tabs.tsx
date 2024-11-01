@@ -1,35 +1,17 @@
-"use client";
-
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { usePathname, useRouter } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
+import { useReaderView } from "./utils";
 
 export default function ViewTabs({ hasPdf }: { hasPdf?: boolean }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const t = useTranslations("reader");
-  const view = searchParams.get("view");
-  const router = useRouter();
-
-  const onViewClick = (clickedView: "pdf" | "ebook") => {
-    if (clickedView === view) return;
-
-    const newParams = new URLSearchParams(searchParams);
-    if (clickedView === "ebook") {
-      newParams.delete("view");
-    } else {
-      newParams.set("view", "pdf");
-    }
-
-    router.replace(`${pathname}?${newParams.toString()}`);
-  };
+  const { view, setView } = useReaderView();
 
   return (
     <Tabs
       defaultValue="ebook"
       value={view === "pdf" ? "pdf" : "ebook"}
-      onValueChange={onViewClick as any}
+      onValueChange={setView as any}
+      className="hidden md:inline-flex"
     >
       <TabsList>
         <TabsTrigger value="ebook">{t("e-book")}</TabsTrigger>

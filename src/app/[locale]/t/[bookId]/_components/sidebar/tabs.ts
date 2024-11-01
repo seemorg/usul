@@ -10,6 +10,7 @@ export type TabProps = {
   bookResponse: ApiBookResponse;
   bookSlug: string;
   versionId?: string;
+  isSinglePage?: boolean;
 };
 
 export const tabs = [

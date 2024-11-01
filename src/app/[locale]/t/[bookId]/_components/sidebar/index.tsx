@@ -39,7 +39,7 @@ const TabButton = ({
             disabled={disabled}
           >
             <tab.icon className="size-4" />
-            <span className="@sm:inline hidden">{t(tab.label as any)}</span>
+            <span className="hidden @sm:inline">{t(tab.label as any)}</span>
           </TabsTrigger>
         </span>
       </TooltipTrigger>
@@ -53,6 +53,7 @@ export default function ReaderSidebar({
   bookResponse,
   bookSlug,
   versionId,
+  isSinglePage,
 }: TabProps) {
   const activeTabId = useSearchParams().get("tab");
   const { handleNavigate } = useTabNavigate();
@@ -60,7 +61,7 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[0]!.id;
 
   return (
-    <div className="@container sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 dark:bg-card sm:pt-4">
+    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 @container dark:bg-card sm:pt-4">
       <Tabs defaultValue={activeTab}>
         <SidebarContainer className="hidden sm:block">
           <TabsList className="w-full font-sans">
@@ -81,6 +82,7 @@ export default function ReaderSidebar({
                 tabId={tab.id}
                 bookSlug={bookSlug}
                 versionId={versionId}
+                isSinglePage={isSinglePage}
                 bookResponse={bookResponse}
               />
             </TabsContent>

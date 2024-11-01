@@ -29,7 +29,7 @@ import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
-  const { getVirtuosoIndex } = usePageNavigation(bookResponse);
+  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const [value, setValue] = useState("");
   const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
@@ -138,7 +138,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
           <SearchResult
             key={idx}
             result={r}
-            getVirtuosoIndex={getVirtuosoIndex}
+            getVirtuosoScrollProps={getVirtuosoScrollProps}
           />
         ))}
       </div>

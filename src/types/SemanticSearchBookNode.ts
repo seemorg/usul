@@ -8,6 +8,5 @@ export interface SemanticSearchBookNode {
     }[];
   };
   text: string;
-  summary?: string;
   score?: number;
 }

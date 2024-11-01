@@ -9,8 +9,9 @@ import { usePageNavigation } from "../usePageNavigation";
 import { useSearchParams } from "next/navigation";
 import PdfChaptersList from "./pdf-chapters-section";
 
-function ContentTab({ bookResponse }: TabProps) {
-  const { pagesRange, getVirtuosoIndex } = usePageNavigation(bookResponse);
+function ContentTab({ bookResponse, isSinglePage }: TabProps) {
+  const { pagesRange, getVirtuosoScrollProps } =
+    usePageNavigation(bookResponse);
 
   const view = (useSearchParams().get("view") ?? "default") as
     | "pdf"
@@ -22,11 +23,6 @@ function ContentTab({ bookResponse }: TabProps) {
 
   const headings = !isExternal ? bookContent.headings : [];
 
-  const chapterIndexToPageIndex =
-    bookContent.source === "turath"
-      ? bookContent.chapterIndexToPageIndex
-      : null;
-
   if (isExternal) return null;
 
   let content;
@@ -35,12 +31,12 @@ function ContentTab({ bookResponse }: TabProps) {
   } else {
     content = (
       <>
-        {headings && headings.length > 0 ? (
+        {headings && headings.length > 0 && !isSinglePage ? (
           <SidebarContainer>
             <div className="w-full">
               <PageNavigator
                 range={pagesRange}
-                getVirtuosoIndex={getVirtuosoIndex}
+                getVirtuosoScrollProps={getVirtuosoScrollProps}
               />
             </div>
           </SidebarContainer>
@@ -48,9 +44,9 @@ function ContentTab({ bookResponse }: TabProps) {
 
         <ChaptersList
           headers={headings || []}
-          getVirtuosoIndex={getVirtuosoIndex}
-          chapterIndexToPageIndex={chapterIndexToPageIndex}
+          getVirtuosoScrollProps={getVirtuosoScrollProps}
           pagesRange={pagesRange}
+          isSinglePage={isSinglePage}
         />
       </>
     );

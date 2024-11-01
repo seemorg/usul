@@ -15,16 +15,19 @@ export type ApiBookPageParams = {
   versionId?: string;
   locale?: string;
   includeBook?: boolean;
-} & ({ index: number } | { page: number; volume?: string });
+  index: number;
+};
+
+export type ApiPageIndexParams = {
+  versionId?: string;
+  page: number;
+  volume?: string | number;
+};
 
 export type Turath = {
   source: TurathBookResponse["source"];
   versionId: TurathBookResponse["versionId"];
   pages: TurathBookResponse["turathResponse"]["pages"];
-
-  chapterIndexToPageIndex?: TurathBookResponse["chapterIndexToPageIndex"];
-  pageNumberWithVolumeToIndex?: TurathBookResponse["pageNumberWithVolumeToIndex"];
-
   pdf?: TurathBookResponse["turathResponse"]["pdf"];
   publicationDetails?: TurathBookResponse["turathResponse"]["publicationDetails"];
   headings?: TurathBookResponse["turathResponse"]["headings"];
@@ -41,7 +44,7 @@ export type Openiti = {
   rawUrl: string;
   pages: ParseResult["content"];
   publicationDetails?: ParseResult["metadata"];
-  headings?: ParseResult["chapters"];
+  headings?: (ParseResult["chapters"][number] & { pageIndex?: number })[];
 };
 
 type BookDetails = {
@@ -95,4 +98,8 @@ export type ApiBookPageResponse = {
     total: number;
     size: number; // per page
   };
+};
+
+export type ApiPageIndexResponse = {
+  index: number | null;
 };

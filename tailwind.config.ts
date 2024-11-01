@@ -16,7 +16,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
-        amiri: ["var(--font-amiri)", ...fontFamily.serif],
+        scheherazade: ["var(--font-scheherazade)", ...fontFamily.serif],
         "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
