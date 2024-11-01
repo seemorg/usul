@@ -54,7 +54,6 @@ function ContentTab({ bookResponse, isSinglePage }: TabProps) {
 
   return (
     <>
-      <Separator className="my-4" />
       {content}
       <div className="h-16" />
     </>

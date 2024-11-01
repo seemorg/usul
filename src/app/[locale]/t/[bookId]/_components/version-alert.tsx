@@ -33,7 +33,7 @@ export const VersionAlert = ({
     <Alert className="border-border bg-transparent">
       <InfoIcon className="h-5 w-5" />
       <AlertTitle>
-        {t.rich("reader.version-warning", {
+        {t.rich("reader.edition-warning", {
           feature: t(feature === "search" ? "common.search" : "reader.ask-ai"),
           tooltip: (children) => (
             <Tooltip>
@@ -52,7 +52,7 @@ export const VersionAlert = ({
 
       <AlertDescription className="mt-2">
         <button onClick={switchVersion} className="text-primary underline">
-          {t("reader.switch-version", { version: versionId })}
+          {t("reader.switch-edition", { edition: versionId })}
         </button>
       </AlertDescription>
     </Alert>

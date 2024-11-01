@@ -72,7 +72,7 @@ export default function SourceModal({
   return (
     <>
       <button
-        className="mx-1 inline cursor-pointer rounded-md bg-muted p-1 text-xs transition-opacity hover:opacity-80"
+        className="inline cursor-pointer rounded-md border border-border bg-accent/20 px-2 py-0.5 text-xs transition-opacity hover:bg-accent"
         onClick={() => setIsOpen(true)}
       >
         {t("reader.chat.pg-x-vol", {

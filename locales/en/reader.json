@@ -4,16 +4,16 @@
   "content": "Content",
   "history": "History",
   "ask-ai": "Ask AI",
-  "version-warning": "AI has been trained on a <tooltip>different version of this book</tooltip>. You can still use {feature} but the results might be slightly different.",
-  "switch-version": "Switch to {version}",
+  "edition-warning": "AI has been trained on a <tooltip>different edition of this book</tooltip>. You can still use {feature} but the results might be slightly different.",
+  "switch-edition": "Switch to {edition}",
   "coming-soon": {
     "title": "Coming Soon",
     "message": "This feature is not available yet."
   },
   "e-book": "e-Book",
   "pdf": "PDF",
-  "view-as-e-book": "View as e-Book",
-  "view-as-pdf": "View as PDF",
+  "view-e-book": "View e-Book",
+  "view-pdf": "View PDF",
   "page-navigator": {
     "name": "Page Navigator",
     "title": "Jump to page",
@@ -49,15 +49,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Version",
-  "select-version": "Select a version",
+  "edition": "Edition",
+  "select-edition": "Select an edition",
   "single-page": "Single Page",
   "all-pages": "All Pages",
   "other-titles": "Other titles",
   "more-info": "Book Info",
   "external-book": {
     "title": "Good news!",
-    "description": "This book is not available on Usul but we found a version somewhere else.",
+    "description": "This book is not available on Usul but we found an edition somewhere else.",
     "navigate": "Navigate"
   },
   "download-pdf": "Download PDF",
