@@ -12,6 +12,8 @@
   },
   "e-book": "کتاب الکترونیکی",
   "pdf": "PDF",
+  "view-as-e-book": "مشاهده به عنوان کتاب الکترونیکی",
+  "view-as-pdf": "مشاهده به عنوان PDF",
   "page-navigator": {
     "name": "ناوبری صفحه",
     "title": "پرش به صفحه",
@@ -49,6 +51,8 @@
   },
   "version": "نسخه",
   "select-version": "انتخاب یک نسخه",
+  "single-page": "صفحه واحد",
+  "all-pages": "همه صفحات",
   "other-titles": "عناوین دیگر",
   "more-info": "اطلاعات کتاب",
   "external-book": {

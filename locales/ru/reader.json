@@ -12,6 +12,8 @@
   },
   "e-book": "e-Book",
   "pdf": "PDF",
+  "view-as-e-book": "Просмотр в виде электронной книги",
+  "view-as-pdf": "Просмотр в виде PDF",
   "page-navigator": {
     "name": "Навигатор по страницам",
     "title": "Перейти на страницу",
@@ -49,6 +51,8 @@
   },
   "version": "Версия",
   "select-version": "Выберите версию",
+  "single-page": "Одна страница",
+  "all-pages": "Все страницы",
   "other-titles": "Другие названия",
   "more-info": "Информация о книге",
   "external-book": {

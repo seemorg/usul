@@ -12,6 +12,8 @@
   },
   "e-book": "e-Kitap",
   "pdf": "PDF",
+  "view-as-e-book": "e-Kitap olarak görüntüle",
+  "view-as-pdf": "PDF olarak Görüntüle",
   "page-navigator": {
     "name": "Sayfa Yönlendirici",
     "title": "Sayfaya Git",
@@ -49,6 +51,8 @@
   },
   "version": "Versiyon",
   "select-version": "Bir versiyon seçin",
+  "single-page": "Tek Sayfa",
+  "all-pages": "Tüm Sayfalar",
   "other-titles": "Diğer başlıklar",
   "more-info": "Kitap Bilgisi",
   "external-book": {

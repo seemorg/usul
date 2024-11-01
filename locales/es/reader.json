@@ -12,6 +12,8 @@
   },
   "e-book": "e-Book",
   "pdf": "PDF",
+  "view-as-e-book": "Ver como e-Book",
+  "view-as-pdf": "Ver como PDF",
   "page-navigator": {
     "name": "Navegador de Páginas",
     "title": "Saltar a la página",
@@ -49,6 +51,8 @@
   },
   "version": "Versión",
   "select-version": "Seleccione una versión",
+  "single-page": "Página Única",
+  "all-pages": "Todas las Páginas",
   "other-titles": "Otros títulos",
   "more-info": "Información del libro",
   "external-book": {

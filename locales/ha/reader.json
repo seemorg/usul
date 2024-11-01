@@ -12,6 +12,8 @@
   },
   "e-book": "e-Littafi",
   "pdf": "PDF",
+  "view-as-e-book": "Duba azaman littafi na lantarki",
+  "view-as-pdf": "Duba azaman PDF",
   "page-navigator": {
     "name": "Mai Naviga Shafi",
     "title": "Tsallaka zuwa shafi",
@@ -49,6 +51,8 @@
   },
   "version": "Sigar",
   "select-version": "Zabi wata siga",
+  "single-page": "Shafi ɗaya",
+  "all-pages": "Dukkan Shafuka",
   "other-titles": "Sauran taken",
   "more-info": "Bayanin Littafi",
   "external-book": {
