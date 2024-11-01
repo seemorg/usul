@@ -4,7 +4,7 @@
   "content": "مواد",
   "history": "تاریخ",
   "ask-ai": "AI سے پوچھیں",
-  "edition-warning": "اے آئی کو اس کتاب کے <tooltip>مختلف ایڈیشن</tooltip> پر تربیت دی گئی ہے۔ آپ اب بھی {feature} استعمال کرسکتے ہیں لیکن نتائج تھوڑا مختلف ہوسکتے ہیں۔",
+  "edition-warning": "{feature} آپ جس ایڈیشن کو دیکھ رہے ہیں اس میں سپورٹ نہیں کیا گیا ہے۔",
   "switch-edition": "{edition} پر سوئچ کریں",
   "coming-soon": {
     "title": "جلد آ رہا ہے",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "ای-بک دیکھیں",
   "view-pdf": "پی ڈی ایف دیکھیں",
+  "go-to-page-x": "صفحہ پر جائیں {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "صفحہ نیویگیٹر",
     "title": "صفحہ پر جائیں",

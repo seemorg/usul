@@ -4,7 +4,7 @@
   "content": "Abun ciki",
   "history": "Tarihi",
   "ask-ai": "Tambayi AI",
-  "edition-warning": "An horar da AI a kan <tooltip>wani juzu'i daban na wannan littafi</tooltip>. Har yanzu kuna iya amfani da {feature} amma sakamakon na iya samun dan bambanci.",
+  "edition-warning": "{feature} bai dace da ƙirarren da kake kallo ba.",
   "switch-edition": "Sauya zuwa {edition}",
   "coming-soon": {
     "title": "Da zuwa",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "Duba e-Littafi",
   "view-pdf": "Duba PDF",
+  "go-to-page-x": "Je zuwa shafi {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "Mai Naviga Shafi",
     "title": "Tsallaka zuwa shafi",

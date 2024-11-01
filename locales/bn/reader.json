@@ -4,7 +4,7 @@
   "content": "বিষয়বস্তু",
   "history": "ইতিহাস",
   "ask-ai": "এআইকে জিজ্ঞাসা করুন",
-  "edition-warning": "এআই এই বইয়ের <tooltip>ভিন্ন সংস্করণ</tooltip> সম্পর্কে প্রশিক্ষিত হয়েছে। আপনি এখনও {feature} ব্যবহার করতে পারেন তবে ফলাফল সামান্য ভিন্ন হতে পারে।",
+  "edition-warning": "আপনি যে সংস্করণটি দেখছেন, তাতে {feature} সমর্থিত নয়।",
   "switch-edition": "{edition} এ পরিবর্তন করুন",
   "coming-soon": {
     "title": "শীঘ্রই আসছে",
@@ -14,6 +14,7 @@
   "pdf": "পিডিএফ",
   "view-e-book": "ই-বুক দেখুন",
   "view-pdf": "পিডিএফ দেখুন",
+  "go-to-page-x": "পৃষ্ঠা {vol}/{page, number, nogroup}-এ যান",
   "page-navigator": {
     "name": "পাতা নেভিগেটর",
     "title": "পাতায় যান",

@@ -4,7 +4,7 @@
   "content": "Contenu",
   "history": "Historique",
   "ask-ai": "Demander à l'IA",
-  "edition-warning": "L'IA a été formée sur une <tooltip>édition différente de ce livre</tooltip>. Vous pouvez toujours utiliser {feature} mais les résultats pourraient être légèrement différents.",
+  "edition-warning": "{feature} n'est pas pris en charge sur l'édition que vous consultez.",
   "switch-edition": "Passer à {edition}",
   "coming-soon": {
     "title": "Prochainement",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "Voir l'e-book",
   "view-pdf": "Voir le PDF",
+  "go-to-page-x": "Aller à la page {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "Navigateur de Page",
     "title": "Aller à la page",

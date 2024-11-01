@@ -4,7 +4,7 @@
   "content": "المحتوى",
   "history": "التاريخ",
   "ask-ai": "اسأل الذكاء الاصطناعي",
-  "edition-warning": "تم تدريب الذكاء الاصطناعي على <tooltip>إصدار مختلف من هذا الكتاب</tooltip>. يمكنك استخدام {feature} ولكن قد تكون النتائج مختلفة قليلًا.",
+  "edition-warning": "الميزة {feature} غير مدعومة في النسخة التي تشاهدها.",
   "switch-edition": "التبديل إلى {edition}",
   "coming-soon": {
     "title": "قريبًا",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "عرض الكتاب الإلكتروني",
   "view-pdf": "عرض PDF",
+  "go-to-page-x": "اذهب إلى الصفحة {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "تصفح الصفحات",
     "title": "انتقل إلى صفحة",

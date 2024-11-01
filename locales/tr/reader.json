@@ -4,7 +4,7 @@
   "content": "İçerik",
   "history": "Geçmiş",
   "ask-ai": "AI Sormak",
-  "edition-warning": "Yapay zeka <tooltip>bu kitabın farklı bir sürümü</tooltip> üzerinde eğitildi. {feature} kullanabilirsiniz ancak sonuçlar biraz farklı olabilir.",
+  "edition-warning": "{feature} görüntülemekte olduğunuz sürümde desteklenmiyor.",
   "switch-edition": "{edition} sürümüne geç",
   "coming-soon": {
     "title": "Yakında",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "e-Kitabı Görüntüle",
   "view-pdf": "PDF Görüntüle",
+  "go-to-page-x": "Sayfaya git {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "Sayfa Yönlendirici",
     "title": "Sayfaya Git",
