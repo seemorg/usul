@@ -12,6 +12,8 @@
   },
   "e-book": "e-Book",
   "pdf": "PDF",
+  "view-as-e-book": "Lihat sebagai e-Buku",
+  "view-as-pdf": "Lihat sebagai PDF",
   "page-navigator": {
     "name": "Navigator Halaman",
     "title": "Lompat ke halaman",
@@ -49,6 +51,8 @@
   },
   "version": "Versi",
   "select-version": "Pilih sebuah versi",
+  "single-page": "Halaman Tunggal",
+  "all-pages": "Semua Halaman",
   "other-titles": "Tajuk lain",
   "more-info": "Maklumat Buku",
   "external-book": {
