@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
+import { useBookDetailsStore } from "../../_stores/book-details";
 
 export default function BookInfoHeader({
   bookResponse,
@@ -23,6 +24,7 @@ export default function BookInfoHeader({
 }) {
   const dir = useDirection();
   const t = useTranslations();
+  const { isOpen, setIsOpen } = useBookDetailsStore();
 
   const book = bookResponse.book;
   const {
@@ -116,6 +118,8 @@ export default function BookInfoHeader({
       collapsible
       className="relative mx-auto border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl"
       dir={dir}
+      defaultValue={isOpen ? "header" : undefined}
+      onValueChange={(value) => setIsOpen(!!value && value === "header")}
     >
       <AccordionPrimitive.Item value="header">
         <AccordionPrimitive.Header asChild>

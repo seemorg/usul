@@ -28,12 +28,13 @@ import { usePageNavigation } from "../usePageNavigation";
 import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRightIcon } from "lucide-react";
+import { useSearchStore } from "../../_stores/search";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
-  const [value, setValue] = useState("");
-  const [results, setResults] = useState<SemanticSearchBookNode[] | null>(null);
+  const { value, setValue, results, setResults } = useSearchStore();
+
   const isVersionMismatch =
     bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
 

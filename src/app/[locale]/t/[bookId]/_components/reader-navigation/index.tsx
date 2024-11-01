@@ -81,8 +81,8 @@ export default function ReaderNavigation({
             </ReaderNavigationButton>
           </div>
 
-          <div className="flex items-center gap-1 md:hidden">
-            {tabs.reverse().map((tab) => (
+          <div className="flex flex-row-reverse items-center gap-1 md:hidden">
+            {tabs.map((tab) => (
               <ReaderNavigationButton
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}

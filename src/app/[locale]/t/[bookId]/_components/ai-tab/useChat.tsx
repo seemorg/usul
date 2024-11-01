@@ -1,8 +1,8 @@
 import { chatWithBook, parseSourceNode } from "@/server/services/chat";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
-import { useCallback, useState } from "react";
-import { useBoolean } from "usehooks-ts";
+import { useCallback } from "react";
+import { useChatStore } from "../../_stores/chat";
 
 type ChatMessage = {
   id?: string;
@@ -77,13 +77,20 @@ export default function useChat({
 }: {
   bookSlug: string;
 }): UseChatResult {
-  const [question, setQuestion] = useState("");
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [error, setError] = useState<Error | undefined>();
-  const isPending = useBoolean(false);
+  const {
+    messages,
+    setMessages,
+    question,
+    setQuestion,
+    isPending,
+    setIsPending,
+    error,
+    setError,
+    reset,
+  } = useChatStore();
 
   const sendQuestion = useCallback(async () => {
-    isPending.setTrue();
+    setIsPending(true);
 
     const q = question.trim();
     const newMessages = [...messages, { role: "user", text: q } as ChatMessage];
@@ -110,16 +117,9 @@ export default function useChat({
       setError(err as Error);
     }
 
-    isPending.setFalse();
+    setIsPending(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookSlug, question]);
-
-  const clearChat = useCallback(() => {
-    setMessages([]);
-    setError(undefined);
-    setQuestion("");
-    isPending.setFalse();
-  }, []);
 
   const regenerateResponse = useCallback(
     async (messageIndex?: number) => {
@@ -145,7 +145,7 @@ export default function useChat({
         question = newMessages.at(-1)!;
       }
 
-      isPending.setTrue();
+      setIsPending(true);
 
       try {
         const { eventSource, messageId } = await chatWithBook({
@@ -165,7 +165,7 @@ export default function useChat({
         setError(err as Error);
       }
 
-      isPending.setFalse();
+      setIsPending(false);
     },
     [bookSlug, messages],
   );
@@ -176,9 +176,9 @@ export default function useChat({
     messages,
     question,
     setQuestion,
-    clearChat,
+    clearChat: reset,
     sendQuestion,
-    isPending: isPending.value,
+    isPending,
     regenerateResponse,
   };
 }

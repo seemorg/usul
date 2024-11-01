@@ -1,10 +1,10 @@
-import ReaderContextProviders from "./_components/context";
+import Providers from "./providers";
 
 function ReaderLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ReaderContextProviders>
-      <div className="bg-reader max-h-screen overflow-hidden">{children}</div>
-    </ReaderContextProviders>
+    <Providers>
+      <div className="max-h-screen overflow-hidden bg-reader">{children}</div>
+    </Providers>
   );
 }
 
