@@ -122,8 +122,8 @@ export default function BookInfoHeader({
       defaultValue={isOpen ? "header" : undefined}
       onValueChange={(value) => setIsOpen(!!value && value === "header")}
     >
-      <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl">
-        <AccordionPrimitive.Item value="header">
+      <Container className="relative mx-auto flex items-center justify-between border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl">
+        <AccordionPrimitive.Item value="header" className="w-full">
           <AccordionPrimitive.Header asChild>
             <div className="[&[data-state=open]>div]:pointer-events-none [&[data-state=open]>div]:-translate-y-full [&[data-state=open]>div]:opacity-0">
               <AccordionPrimitive.Trigger asChild>
