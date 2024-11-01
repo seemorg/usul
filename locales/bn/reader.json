@@ -4,16 +4,16 @@
   "content": "বিষয়বস্তু",
   "history": "ইতিহাস",
   "ask-ai": "এআইকে জিজ্ঞাসা করুন",
-  "version-warning": "AI একটি <tooltip>এই বইটির অন্য সংস্করণ</tooltip> এর উপর প্রশিক্ষিত হয়েছে। আপনি এখনও {feature} ব্যবহার করতে পারেন কিন্তু ফলাফল সামান্য ভিন্ন হতে পারে।",
-  "switch-version": "{version}-এ স্যুইচ করুন",
+  "edition-warning": "এআই এই বইয়ের <tooltip>ভিন্ন সংস্করণ</tooltip> সম্পর্কে প্রশিক্ষিত হয়েছে। আপনি এখনও {feature} ব্যবহার করতে পারেন তবে ফলাফল সামান্য ভিন্ন হতে পারে।",
+  "switch-edition": "{edition} এ পরিবর্তন করুন",
   "coming-soon": {
     "title": "শীঘ্রই আসছে",
     "message": "এই বৈশিষ্ট্যটি এখনও উপলব্ধ নয়।"
   },
   "e-book": "ই-বই",
   "pdf": "পিডিএফ",
-  "view-as-e-book": "ই-বুক হিসেবে দেখুন",
-  "view-as-pdf": "পিডিএফ হিসেবে দেখুন",
+  "view-e-book": "ই-বুক দেখুন",
+  "view-pdf": "পিডিএফ দেখুন",
   "page-navigator": {
     "name": "পাতা নেভিগেটর",
     "title": "পাতায় যান",
@@ -49,15 +49,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "সংস্করণ",
-  "select-version": "একটি সংস্করণ নির্বাচন করুন",
+  "edition": "সংস্করণ",
+  "select-edition": "একটি সংস্করণ নির্বাচন করুন",
   "single-page": "একক পৃষ্ঠা",
   "all-pages": "সব পৃষ্ঠা",
   "other-titles": "অন্যান্য শিরোনাম",
   "more-info": "বইয়ের তথ্য",
   "external-book": {
     "title": "সুসংবাদ!",
-    "description": "এই বইটি উসুলে পাওয়া যাচ্ছে না তবে আমরা অন্য কোথাও একটি সংস্করণ পেয়েছি।",
+    "description": "এই বইটি Usul-এ উপলব্ধ নয়, তবে আমরা একটি সংস্করণ অন্য কোথাও পেয়েছি।",
     "navigate": "নেভিগেট করুন"
   },
   "download-pdf": "PDF ডাউনলোড করুন",

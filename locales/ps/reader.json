@@ -4,16 +4,16 @@
   "content": "مندنه",
   "history": "تاریخ",
   "ask-ai": "AI څخه وپوښتئ",
-  "version-warning": "AI په دې کتاب کې په یو <tooltip>مختلفه بڼه</tooltip> روزل شوی دی. تاسو لا هم {feature} کارولی شئ خو پایلې ممکن یو څه توپیر ولري.",
-  "switch-version": "{version} ته بدل کړئ",
+  "edition-warning": "AI په دې کتاب کې په <tooltip>مختلفه څپرکه</tooltip> روزل شوی دی. تاسو لا هم {feature} استعمالولی شئ خو پایلې ممکن یو څه مختلفې وي.",
+  "switch-edition": "{edition} ته واړوه",
   "coming-soon": {
     "title": "ژر به راشي",
     "message": "دا بڼه اوس مهال شتون نلري."
   },
   "e-book": "برېښنايي کتاب",
   "pdf": "PDF",
-  "view-as-e-book": "د ای-کتاب په توګه وګورئ",
-  "view-as-pdf": "د پی ډي ایف په توګه وګورئ",
+  "view-e-book": "ای - کتاب وګورئ",
+  "view-pdf": "PDF وګورئ",
   "page-navigator": {
     "name": "پاڼه نیویګی",
     "title": "په پاڼه ورځه",
@@ -49,15 +49,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "نسخه",
-  "select-version": "یوه نسخه وټاکئ",
+  "edition": "څپرکی",
+  "select-edition": "یوه څپرکه وټاکئ",
   "single-page": "یوه پاڼه",
   "all-pages": "ټولې پاڼې",
   "other-titles": "نور عنوانونه",
   "more-info": "د کتاب معلومات",
   "external-book": {
     "title": "ښه خبر!",
-    "description": "دا کتاب په اصول کې شتون نلري خو موږ بل ځای کې یوه نسخه موندلې ده.",
+    "description": "دا کتاب په اصول کې موجود نه دی، خو موږ یوه نسخه په بل ځای کې موندلې ده.",
     "navigate": "لارښوونه"
   },
   "download-pdf": "پي ډي ایف ډاونلوډ کړئ",

@@ -4,16 +4,16 @@
   "content": "Содержание",
   "history": "История",
   "ask-ai": "Спросить AI",
-  "version-warning": "ИИ был обучен на <tooltip>другой версии этой книги</tooltip>. Вы всё же можете использовать {feature}, но результаты могут немного отличаться.",
-  "switch-version": "Переключиться на {version}",
+  "edition-warning": "ИИ был обучен на <tooltip>другом издании этой книги</tooltip>. Вы можете по-прежнему использовать {feature}, но результаты могут немного отличаться.",
+  "switch-edition": "Переключиться на {edition}",
   "coming-soon": {
     "title": "Скоро будет",
     "message": "Эта функция пока недоступна."
   },
   "e-book": "e-Book",
   "pdf": "PDF",
-  "view-as-e-book": "Просмотр в виде электронной книги",
-  "view-as-pdf": "Просмотр в виде PDF",
+  "view-e-book": "Просмотреть e-книгу",
+  "view-pdf": "Просмотреть PDF",
   "page-navigator": {
     "name": "Навигатор по страницам",
     "title": "Перейти на страницу",
@@ -49,15 +49,15 @@
     "pg-x": "Страница {page, number, nogroup}",
     "pg-x-vol": "Том {vol, number, nogroup}/Страница {page, number, nogroup}"
   },
-  "version": "Версия",
-  "select-version": "Выберите версию",
+  "edition": "Издание",
+  "select-edition": "Выберите издание",
   "single-page": "Одна страница",
   "all-pages": "Все страницы",
   "other-titles": "Другие названия",
   "more-info": "Информация о книге",
   "external-book": {
     "title": "Хорошие новости!",
-    "description": "Эта книга недоступна на Usul, но мы нашли ее версию в другом месте.",
+    "description": "Эта книга недоступна на Usul, но мы нашли издание в другом месте.",
     "navigate": "Перейти"
   },
   "download-pdf": "Скачать PDF",

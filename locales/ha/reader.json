@@ -4,16 +4,16 @@
   "content": "Abun ciki",
   "history": "Tarihi",
   "ask-ai": "Tambayi AI",
-  "version-warning": "AI an horar da shi akan <tooltip>sabanin sigar wannan littafi</tooltip>. Har yanzu zaka iya amfani da {feature} amma sakamakon na iya zama dan bambanta.",
-  "switch-version": "Canja zuwa {version}",
+  "edition-warning": "An horar da AI a kan <tooltip>wani juzu'i daban na wannan littafi</tooltip>. Har yanzu kuna iya amfani da {feature} amma sakamakon na iya samun dan bambanci.",
+  "switch-edition": "Sauya zuwa {edition}",
   "coming-soon": {
     "title": "Da zuwa",
     "message": "Wannan fasalin ba ya samuwa tukuna."
   },
   "e-book": "e-Littafi",
   "pdf": "PDF",
-  "view-as-e-book": "Duba azaman littafi na lantarki",
-  "view-as-pdf": "Duba azaman PDF",
+  "view-e-book": "Duba e-Littafi",
+  "view-pdf": "Duba PDF",
   "page-navigator": {
     "name": "Mai Naviga Shafi",
     "title": "Tsallaka zuwa shafi",
@@ -49,15 +49,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Sigar",
-  "select-version": "Zabi wata siga",
+  "edition": "Juzu'i",
+  "select-edition": "Zaɓi wani juzu'i",
   "single-page": "Shafi ɗaya",
   "all-pages": "Dukkan Shafuka",
   "other-titles": "Sauran taken",
   "more-info": "Bayanin Littafi",
   "external-book": {
     "title": "Labarai masu dadi!",
-    "description": "Wannan littafin baya nan a Usul amma mun samu wani sigar a wani wuri.",
+    "description": "Wannan littafin ba ya samuwa a kan Usul amma mun samo wani juzu'i a wani wuri.",
     "navigate": "Navegate"
   },
   "download-pdf": "Zazzage PDF",
