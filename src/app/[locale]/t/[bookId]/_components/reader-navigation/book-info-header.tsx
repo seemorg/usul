@@ -16,6 +16,7 @@ import { Fragment } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 import { useBookDetailsStore } from "../../_stores/book-details";
+import Container from "@/components/ui/container";
 
 export default function BookInfoHeader({
   bookResponse,
@@ -116,62 +117,35 @@ export default function BookInfoHeader({
     <AccordionPrimitive.Root
       type="single"
       collapsible
-      className="relative mx-auto border-b border-border px-5 py-5 lg:px-8 2xl:max-w-5xl"
       dir={dir}
+      asChild
       defaultValue={isOpen ? "header" : undefined}
       onValueChange={(value) => setIsOpen(!!value && value === "header")}
     >
-      <AccordionPrimitive.Item value="header">
-        <AccordionPrimitive.Header asChild>
-          <div className="[&[data-state=open]>div]:pointer-events-none [&[data-state=open]>div]:-translate-y-full [&[data-state=open]>div]:opacity-0">
-            <AccordionPrimitive.Trigger asChild>
-              <Button
-                size="icon"
-                variant="outline"
-                className="absolute bottom-0 left-1/2 z-10 size-8 -translate-x-1/2 translate-y-2/3 hover:bg-accent focus:bg-accent [&[data-state=open]>svg]:rotate-180"
-              >
-                <ChevronDownIcon className="size-4 transition-transform" />
-              </Button>
-            </AccordionPrimitive.Trigger>
+      <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl">
+        <AccordionPrimitive.Item value="header">
+          <AccordionPrimitive.Header asChild>
+            <div className="[&[data-state=open]>div]:pointer-events-none [&[data-state=open]>div]:-translate-y-full [&[data-state=open]>div]:opacity-0">
+              <AccordionPrimitive.Trigger asChild>
+                <Button
+                  size="icon"
+                  variant="outline"
+                  className="absolute bottom-0 left-1/2 z-10 size-8 -translate-x-1/2 translate-y-2/3 hover:bg-accent focus:bg-accent [&[data-state=open]>svg]:rotate-180"
+                >
+                  <ChevronDownIcon className="size-4 transition-transform" />
+                </Button>
+              </AccordionPrimitive.Trigger>
 
-            <div className="flex justify-between transition-all">
-              <div
-                className={cn(
-                  "flex items-center gap-3 text-base font-semibold",
-                  book.secondaryName && "md:flex-1",
-                )}
-              >
-                {[
-                  // eslint-disable-next-line react/jsx-key
-                  <p>{book.primaryName}</p>,
-                  // eslint-disable-next-line react/jsx-key
-                  <bdi>
-                    <Link
-                      href={navigation.authors.bySlug(book.author.slug)}
-                      className="text-primary underline underline-offset-4"
-                      prefetch
-                    >
-                      {book.author.primaryName}
-                      {book.author.year
-                        ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
-                        : ""}
-                    </Link>
-                  </bdi>,
-                ]
-                  .filter(Boolean)
-                  .map((item, index, arr) => (
-                    <Fragment key={index}>
-                      {item}
-                      {index < arr.length - 1 && (
-                        <Separator orientation="vertical" className="h-6" />
-                      )}
-                    </Fragment>
-                  ))}
-              </div>
-
-              {book.secondaryName && (
-                <div className="hidden items-center justify-end gap-3 text-base font-semibold md:flex md:flex-1">
+              <div className="flex justify-between transition-all">
+                <div
+                  className={cn(
+                    "flex items-center gap-3 text-base font-semibold",
+                    book.secondaryName && "md:flex-1",
+                  )}
+                >
                   {[
+                    // eslint-disable-next-line react/jsx-key
+                    <p>{book.primaryName}</p>,
                     // eslint-disable-next-line react/jsx-key
                     <bdi>
                       <Link
@@ -179,13 +153,12 @@ export default function BookInfoHeader({
                         className="text-primary underline underline-offset-4"
                         prefetch
                       >
-                        {book.author.secondaryName}
+                        {book.author.primaryName}
                         {book.author.year
                           ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
                           : ""}
                       </Link>
                     </bdi>,
-                    book.secondaryName ? <p>{book.secondaryName}</p> : null,
                   ]
                     .filter(Boolean)
                     .map((item, index, arr) => (
@@ -197,90 +170,122 @@ export default function BookInfoHeader({
                       </Fragment>
                     ))}
                 </div>
+
+                {book.secondaryName && (
+                  <div className="hidden items-center justify-end gap-3 text-base font-semibold md:flex md:flex-1">
+                    {[
+                      // eslint-disable-next-line react/jsx-key
+                      <bdi>
+                        <Link
+                          href={navigation.authors.bySlug(book.author.slug)}
+                          className="text-primary underline underline-offset-4"
+                          prefetch
+                        >
+                          {book.author.secondaryName}
+                          {book.author.year
+                            ? ` - ${t("common.year-format.ah.value", { year: book.author.year })}`
+                            : ""}
+                        </Link>
+                      </bdi>,
+                      book.secondaryName ? <p>{book.secondaryName}</p> : null,
+                    ]
+                      .filter(Boolean)
+                      .map((item, index, arr) => (
+                        <Fragment key={index}>
+                          {item}
+                          {index < arr.length - 1 && (
+                            <Separator orientation="vertical" className="h-6" />
+                          )}
+                        </Fragment>
+                      ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </AccordionPrimitive.Header>
+
+          <AccordionPrimitive.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+            <div className="flex justify-between">
+              <bdi className="flex-1">
+                <h2 className="text-3xl font-bold">{primaryName}</h2>
+              </bdi>
+
+              {secondaryName && (
+                <bdi className="flex-1">
+                  <h2 className="text-3xl font-bold">{secondaryName}</h2>
+                </bdi>
               )}
             </div>
-          </div>
-        </AccordionPrimitive.Header>
 
-        <AccordionPrimitive.Content className="overflow-hidden text-sm data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
-          <div className="flex justify-between">
-            <bdi className="flex-1">
-              <h2 className="text-3xl font-bold">{primaryName}</h2>
-            </bdi>
-
-            {secondaryName && (
-              <bdi className="flex-1">
-                <h2 className="text-3xl font-bold">{secondaryName}</h2>
-              </bdi>
-            )}
-          </div>
-
-          <div className="mt-5 flex justify-between">
-            <div>
-              <AuthorHoverCard>
-                <Link
-                  href={navigation.authors.bySlug(book.author.slug)}
-                  className="text-primary underline underline-offset-4"
-                  prefetch
-                >
-                  {authorPrimaryName} -{" "}
-                  {t("common.year-format.ah.value", { year })}
-                </Link>
-              </AuthorHoverCard>
-            </div>
-
-            {authorSecondaryName && (
-              <bdi>
+            <div className="mt-5 flex justify-between">
+              <div>
                 <AuthorHoverCard>
                   <Link
                     href={navigation.authors.bySlug(book.author.slug)}
                     className="text-primary underline underline-offset-4"
                     prefetch
                   >
-                    {authorSecondaryName} -{" "}
+                    {authorPrimaryName} -{" "}
                     {t("common.year-format.ah.value", { year })}
                   </Link>
                 </AuthorHoverCard>
-              </bdi>
+              </div>
+
+              {authorSecondaryName && (
+                <bdi>
+                  <AuthorHoverCard>
+                    <Link
+                      href={navigation.authors.bySlug(book.author.slug)}
+                      className="text-primary underline underline-offset-4"
+                      prefetch
+                    >
+                      {authorSecondaryName} -{" "}
+                      {t("common.year-format.ah.value", { year })}
+                    </Link>
+                  </AuthorHoverCard>
+                </bdi>
+              )}
+            </div>
+
+            {publicationDetails && (
+              <div className="relative mt-10 flex flex-wrap items-center gap-5 text-sm">
+                {renderPublicationDetails()!.map((item, index, arr) => (
+                  <Fragment key={index}>
+                    <div>
+                      <p>{item.title}</p>
+                      <bdi className="mt-1 block font-semibold">
+                        {item.text}
+                      </bdi>
+                    </div>
+
+                    {index < arr.length - 1 && (
+                      <Separator orientation="vertical" className="h-12" />
+                    )}
+                  </Fragment>
+                ))}
+              </div>
             )}
-          </div>
 
-          {publicationDetails && (
-            <div className="relative mt-10 flex flex-wrap items-center gap-5 text-sm">
-              {renderPublicationDetails()!.map((item, index, arr) => (
-                <Fragment key={index}>
-                  <div>
-                    <p>{item.title}</p>
-                    <bdi className="mt-1 block font-semibold">{item.text}</bdi>
-                  </div>
+            <div className="mt-10 flex justify-between">
+              <div className="flex flex-wrap gap-2">
+                {genres.map((genre) => (
+                  <Link
+                    key={genre.id}
+                    href={navigation.genres.bySlug(genre.slug)}
+                    prefetch
+                  >
+                    <Badge variant="outline" className="text-sm">
+                      {genre.name}
+                    </Badge>
+                  </Link>
+                ))}
+              </div>
 
-                  {index < arr.length - 1 && (
-                    <Separator orientation="vertical" className="h-12" />
-                  )}
-                </Fragment>
-              ))}
+              {/* <ToggleButton /> */}
             </div>
-          )}
-
-          <div className="mt-10 flex justify-between">
-            <div className="flex flex-wrap gap-2">
-              {genres.map((genre) => (
-                <Link
-                  key={genre.id}
-                  href={navigation.genres.bySlug(genre.slug)}
-                  prefetch
-                >
-                  <Badge variant="outline" className="text-sm">
-                    {genre.name}
-                  </Badge>
-                </Link>
-              ))}
-            </div>
-
-            {/* <ToggleButton /> */}
-          </div>
-        </AccordionPrimitive.Content>
-      </AccordionPrimitive.Item>
+          </AccordionPrimitive.Content>
+        </AccordionPrimitive.Item>
+      </Container>
     </AccordionPrimitive.Root>
   );
 }
