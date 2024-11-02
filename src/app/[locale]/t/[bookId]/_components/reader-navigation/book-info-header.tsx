@@ -109,8 +109,8 @@ export default function BookInfoHeader({
   };
 
   return (
-    <div className={cn("relative z-[10] w-full bg-reader px-5 lg:px-8")}>
-      <Container className="relative mx-auto flex items-center justify-between border-b border-border px-0 py-5 2xl:max-w-5xl">
+    <div className="relative w-full bg-reader px-5 lg:px-8">
+      <Container className="flex items-center justify-between border-b border-border px-0 py-5 2xl:max-w-5xl">
         <AccordionPrimitive.Root
           type="single"
           collapsible

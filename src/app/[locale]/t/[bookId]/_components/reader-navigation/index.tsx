@@ -45,13 +45,13 @@ export default function ReaderNavigation({
     <>
       <div
         className={cn(
-          "relative z-[10] w-full bg-reader px-5 transition will-change-transform lg:px-8",
+          "relative w-full bg-reader px-5 transition will-change-transform lg:px-8",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",
         )}
       >
-        <Container className="mx-auto flex items-center justify-between border-b border-border px-0 py-2.5 2xl:max-w-5xl">
+        <Container className="flex items-center justify-between border-b border-border px-0 py-2.5 2xl:max-w-5xl">
           <div className="flex flex-1 items-center gap-2">
             <ReaderNavigationMobileActions
               isSinglePage={isSinglePage ?? false}

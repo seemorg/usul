@@ -88,7 +88,11 @@ const useFetchPage = (
   perPage: number,
   defaultPages: DefaultPages,
 ) => {
-  const slug = useParams().bookId as string;
+  const params = useParams();
+  const slug = params.bookId as string;
+
+  const pageNumber = params.pageNumber as string | undefined;
+  const isSinglePage = !!pageNumber;
 
   const pageInfo = useMemo(() => {
     const page = Math.floor(index / perPage);
@@ -116,12 +120,15 @@ const useFetchPage = (
 
       return (response.content as any).pages as DefaultPages;
     },
-    enabled: !shouldUseDefaultPages,
+    enabled: !isSinglePage && !shouldUseDefaultPages,
   });
 
-  const defaultPage = shouldUseDefaultPages
-    ? defaultPages[pageInfo.relativeIndex]
-    : null;
+  const defaultPage = isSinglePage
+    ? defaultPages[0]
+    : shouldUseDefaultPages
+      ? defaultPages[pageInfo.relativeIndex]
+      : null;
+
   const page = data ? data[pageInfo.relativeIndex] : defaultPage;
 
   return {

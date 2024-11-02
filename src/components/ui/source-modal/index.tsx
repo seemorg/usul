@@ -21,6 +21,7 @@ import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_com
 import { useQuery } from "@tanstack/react-query";
 import { getBookPageIndex } from "@/lib/api";
 import { useParams, useSearchParams } from "next/navigation";
+import { ScrollArea } from "../scroll-area";
 
 export default function SourceModal({
   source,
@@ -81,8 +82,6 @@ export default function SourceModal({
         })}
       </button>
 
-      {/* TODO: add scrollbar styles */}
-
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogPortal>
           <DialogOverlay>
@@ -94,26 +93,19 @@ export default function SourceModal({
                 </RawDialogClose>
 
                 <div className="flex items-center gap-2 text-base text-muted-foreground">
-                  {/* <p>
-                    Page {page?.vol} / {page?.page}
-                  </p>
-                  <Separator
-                    orientation="vertical"
-                    className="h-1.5 w-1.5 rounded-full"
-                  /> */}
                   <p dir="rtl">{chapter}</p>
                 </div>
               </div>
 
               <Separator className="mb-6 mt-4" />
 
-              <div
-                className="max-h-96 w-full overflow-y-auto pl-5"
-                dir="rtl"
-                dangerouslySetInnerHTML={{
-                  __html: source.text.replaceAll("\n", "<br>"),
-                }}
-              />
+              <ScrollArea className="h-96 w-full pl-5" dir="rtl">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: source.text.replaceAll("\n", "<br>"),
+                  }}
+                />
+              </ScrollArea>
 
               <Separator className="my-4" />
 

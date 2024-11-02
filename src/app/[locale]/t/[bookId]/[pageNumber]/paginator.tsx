@@ -7,6 +7,7 @@ import { Link } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { useBookDetailsStore } from "../_stores/book-details";
 
 export default function Paginator({
   totalPages,
@@ -18,6 +19,7 @@ export default function Paginator({
   slug: string;
 }) {
   const showNavbar = useNavbarStore((s) => s.showNavbar);
+  const isDetailsOpen = useBookDetailsStore((s) => s.isOpen);
   const searchParams = useSearchParams();
 
   const makeUrl = (url: string) => {
@@ -31,8 +33,9 @@ export default function Paginator({
   return (
     <div
       className={cn(
-        "sticky left-0 right-0 top-[80vh] z-10 m-0 flex w-full items-center justify-center transition",
-        showNavbar ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
+        "sticky left-0 right-0 top-[80vh] z-10 m-0 flex w-full items-center justify-center transition will-change-transform",
+        // showNavbar ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
+        isDetailsOpen || showNavbar ? "-translate-y-[10vh]" : "",
       )}
       dir="ltr"
     >

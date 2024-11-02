@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 const ReaderNavigationButton = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, className, ...props }, ref) => {
     return (
-      <button
+      <Button
         ref={ref}
         variant="outline"
         size="icon"
@@ -17,7 +17,7 @@ const ReaderNavigationButton = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {children}
-      </button>
+      </Button>
     );
   },
 );
