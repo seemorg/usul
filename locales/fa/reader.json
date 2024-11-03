@@ -10,11 +10,14 @@
     "title": "به زودی",
     "message": "این قابلیت هنوز در دسترس نیست."
   },
+  "copy": "کپی",
+  "share": "اشتراک گذاری",
   "e-book": "کتاب الکترونیکی",
   "pdf": "PDF",
   "view-e-book": "مشاهده e-Book",
   "view-pdf": "مشاهده PDF",
   "go-to-page-x": "برو به صفحه {vol}/{page, number, nogroup}",
+  "match-rate-x": "نرخ تطابق ({matchRate, number}%)",
   "page-navigator": {
     "name": "ناوبری صفحه",
     "title": "پرش به صفحه",

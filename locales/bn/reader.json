@@ -10,11 +10,14 @@
     "title": "শীঘ্রই আসছে",
     "message": "এই বৈশিষ্ট্যটি এখনও উপলব্ধ নয়।"
   },
+  "copy": "কপি",
+  "share": "শেয়ার",
   "e-book": "ই-বই",
   "pdf": "পিডিএফ",
   "view-e-book": "ই-বুক দেখুন",
   "view-pdf": "পিডিএফ দেখুন",
   "go-to-page-x": "পৃষ্ঠা {vol}/{page, number, nogroup}-এ যান",
+  "match-rate-x": "ম্যাচ রেট ({matchRate, number}%)",
   "page-navigator": {
     "name": "পাতা নেভিগেটর",
     "title": "পাতায় যান",

@@ -10,11 +10,14 @@
     "title": "Próximamente",
     "message": "Esta función aún no está disponible."
   },
+  "copy": "Copiar",
+  "share": "Compartir",
   "e-book": "e-Book",
   "pdf": "PDF",
   "view-e-book": "Ver e-Book",
   "view-pdf": "Ver PDF",
   "go-to-page-x": "Ir a la página {vol}/{page, number, nogroup}",
+  "match-rate-x": "Tasa de coincidencia ({matchRate, number}%)",
   "page-navigator": {
     "name": "Navegador de Páginas",
     "title": "Saltar a la página",

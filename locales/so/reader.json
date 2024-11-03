@@ -10,11 +10,14 @@
     "title": "Dhawaan Imaanaysa",
     "message": "Astaantan hadda lama heli karo."
   },
+  "copy": "Nuqul",
+  "share": "La wadaag",
   "e-book": "e-Buug",
   "pdf": "PDF",
   "view-e-book": "Daawo e-Book",
   "view-pdf": "Daawo PDF",
   "go-to-page-x": "Tag bogga {vol}/{page, number, nogroup}",
+  "match-rate-x": "Xaddiga Isbarbardhiga ee ({matchRate, number}%)",
   "page-navigator": {
     "name": "Sawir-qaade Bogga",
     "title": "U bood bogga",

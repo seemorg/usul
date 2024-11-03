@@ -10,11 +10,14 @@
     "title": "جلد آ رہا ہے",
     "message": "یہ خصوصیت ابھی دستیاب نہیں ہے۔"
   },
+  "copy": "کاپی",
+  "share": "اشتراک",
   "e-book": "ای-کتاب",
   "pdf": "PDF",
   "view-e-book": "ای-بک دیکھیں",
   "view-pdf": "پی ڈی ایف دیکھیں",
   "go-to-page-x": "صفحہ پر جائیں {vol}/{page, number, nogroup}",
+  "match-rate-x": "میچ کی شرح ({matchRate, number}%)",
   "page-navigator": {
     "name": "صفحہ نیویگیٹر",
     "title": "صفحہ پر جائیں",

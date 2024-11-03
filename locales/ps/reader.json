@@ -10,11 +10,14 @@
     "title": "ژر به راشي",
     "message": "دا بڼه اوس مهال شتون نلري."
   },
+  "copy": "کاپي",
+  "share": "شریک کړئ",
   "e-book": "برېښنايي کتاب",
   "pdf": "PDF",
   "view-e-book": "ای - کتاب وګورئ",
   "view-pdf": "PDF وګورئ",
   "go-to-page-x": "صفحه ته لاړ شئ {vol}/{page, number, nogroup}",
+  "match-rate-x": "د برابرولو درجه ({matchRate, number}%)",
   "page-navigator": {
     "name": "پاڼه نیویګی",
     "title": "په پاڼه ورځه",
