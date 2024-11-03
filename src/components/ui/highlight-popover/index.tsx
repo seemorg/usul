@@ -7,10 +7,12 @@ import React, {
   useContext,
   useCallback,
   createContext,
+  forwardRef,
 } from "react";
 import { cn } from "@/lib/utils";
 
-const POPOVER_WIDTH = 285;
+const SIDE_PADDING = 30; // Adjust this value as needed
+const POPOVER_DELAY = 150; // Delay in ms before showing popover
 
 /**
  * Represents the position of the popover.
@@ -96,26 +98,25 @@ export function useHighlightPopover() {
  * Memoized component for rendering the popover content.
  */
 const PopoverContent = memo(
-  ({
-    renderPopover,
-    position,
-    selection,
-    style,
-  }: {
-    renderPopover: HighlightPopoverProps["renderPopover"];
-    position: Position;
-    selection: string;
-    style: React.CSSProperties;
-  }) => (
+  forwardRef<
+    HTMLDivElement,
+    {
+      renderPopover: HighlightPopoverProps["renderPopover"];
+      position: Position;
+      selection: string;
+      style: React.CSSProperties;
+    }
+  >(({ renderPopover, position, selection, style }, ref) => (
     <div
+      ref={ref}
       style={style}
       role="tooltip"
       aria-live="polite"
-      className="select-none"
+      className="relative select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent after:border-b-[#232324]"
     >
       {renderPopover({ position, selection })}
     </div>
-  ),
+  )),
 );
 
 PopoverContent.displayName = "PopoverContent";
@@ -128,7 +129,7 @@ export const HighlightPopover = memo(function HighlightPopover({
   renderPopover,
   className = "",
   offset = { x: 0, y: 0 },
-  zIndex = 40,
+  zIndex = 99999,
   alignment = "center",
   minSelectionLength = 1,
   onSelectionStart,
@@ -144,6 +145,9 @@ export const HighlightPopover = memo(function HighlightPopover({
   const [currentSelection, setCurrentSelection] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const selectionRangeRef = useRef<Range | null>(null);
+  const showPopoverTimeoutRef = useRef<NodeJS.Timeout>();
+
+  const popoverRef = useRef<HTMLDivElement>(null);
 
   /**
    * Checks if the current selection is within the HighlightPopover container.
@@ -197,6 +201,11 @@ export const HighlightPopover = memo(function HighlightPopover({
    * Handles the text selection and popover positioning.
    */
   const handleSelection = useCallback(() => {
+    // Clear any existing timeout
+    if (showPopoverTimeoutRef.current) {
+      clearTimeout(showPopoverTimeoutRef.current);
+    }
+
     const selection = window.getSelection();
     if (
       selection &&
@@ -209,9 +218,13 @@ export const HighlightPopover = memo(function HighlightPopover({
 
       updatePopoverPosition();
       setCurrentSelection(selection.toString());
-      setShowPopover(true);
-      onPopoverShow?.();
-      onSelectionEnd?.(selection.toString());
+
+      // Set timeout to show popover after delay
+      showPopoverTimeoutRef.current = setTimeout(() => {
+        setShowPopover(true);
+        onPopoverShow?.();
+        onSelectionEnd?.(selection.toString());
+      }, POPOVER_DELAY);
     } else {
       setShowPopover(false);
       onPopoverHide?.();
@@ -235,6 +248,9 @@ export const HighlightPopover = memo(function HighlightPopover({
     document.addEventListener("selectionchange", handleSelectionChange);
     return () => {
       document.removeEventListener("selectionchange", handleSelectionChange);
+      if (showPopoverTimeoutRef.current) {
+        clearTimeout(showPopoverTimeoutRef.current);
+      }
     };
   }, [handleSelection]);
 
@@ -250,41 +266,69 @@ export const HighlightPopover = memo(function HighlightPopover({
   );
 
   const popoverStyle = useMemo(() => {
-    // Ensure popover stays within viewport bounds
-    const left = Math.min(
-      Math.max(POPOVER_WIDTH / 2, popoverPosition.left),
-      (window?.innerWidth ?? 0) - POPOVER_WIDTH / 2,
-    );
+    const isClient = typeof window !== "undefined";
+    const windowWidth = isClient ? window.innerWidth : 0;
 
-    return {
+    const popoverWidth = popoverRef.current?.clientWidth;
+    const styles: React.CSSProperties = {
       zIndex,
       width: "max-content",
-      position: "absolute" as const,
+      position: "absolute",
       top: `${popoverPosition.top}px`,
-      ...(alignment === "left" && { left: `${left}px` }),
-      ...(alignment === "center" && {
-        left: `${left}px`,
-        transform: "translateX(-50%)",
-      }),
-      ...(alignment === "right" && {
-        right: `calc(100% - ${left}px)`,
-      }),
+      opacity: showPopover ? 1 : 0,
     };
-  }, [zIndex, popoverPosition.top, popoverPosition.left, alignment]);
+
+    if (!popoverWidth) return styles;
+
+    const halfWidth = popoverWidth / 2;
+    let left = popoverPosition.left;
+
+    if (alignment === "left") {
+      // Adjust 'left' to prevent overflow with side padding
+      left = Math.min(
+        Math.max(SIDE_PADDING, left),
+        windowWidth - popoverWidth - SIDE_PADDING,
+      );
+      styles.left = `${left}px`;
+    } else if (alignment === "center") {
+      // Center the popover and prevent overflow on both sides with padding
+      left = Math.min(
+        Math.max(halfWidth + SIDE_PADDING, left),
+        windowWidth - halfWidth - SIDE_PADDING,
+      );
+      styles.left = `${left}px`;
+      styles.transform = "translateX(-50%)";
+    } else if (alignment === "right") {
+      // Adjust 'left' for right alignment with side padding
+      left = Math.min(
+        Math.max(popoverWidth + SIDE_PADDING, left),
+        windowWidth - SIDE_PADDING,
+      );
+      styles.left = `${left}px`;
+      styles.transform = "translateX(-100%)";
+    }
+
+    return styles;
+  }, [
+    zIndex,
+    popoverPosition.top,
+    popoverPosition.left,
+    alignment,
+    showPopover,
+  ]);
 
   return (
     <HighlightPopoverContext.Provider value={contextValue}>
       <div className={cn("relative", className)} ref={containerRef}>
         {children}
 
-        {showPopover && (
-          <PopoverContent
-            renderPopover={renderPopover}
-            position={popoverPosition}
-            selection={currentSelection}
-            style={popoverStyle}
-          />
-        )}
+        <PopoverContent
+          ref={popoverRef}
+          renderPopover={renderPopover}
+          position={popoverPosition}
+          selection={currentSelection}
+          style={popoverStyle}
+        />
       </div>
     </HighlightPopoverContext.Provider>
   );

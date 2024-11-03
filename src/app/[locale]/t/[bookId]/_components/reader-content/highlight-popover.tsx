@@ -6,6 +6,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { navigation } from "@/lib/urls";
 import { useParams, useSearchParams } from "next/navigation";
 import { defaultLocale } from "~/i18n.config";
+import { useChatStore } from "../../_stores/chat";
+import { useTabNavigate } from "../sidebar/useTabNavigate";
 
 function ReaderHighlightPopover({
   selection,
@@ -18,6 +20,9 @@ function ReaderHighlightPopover({
   const t = useTranslations();
   const pathLocale = usePathLocale();
   const locale = useLocale();
+  const { handleNavigate } = useTabNavigate();
+
+  const setQuestion = useChatStore((s) => s.setQuestion);
 
   const bookSlug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId") as string;
@@ -43,35 +48,41 @@ function ReaderHighlightPopover({
     toast({ description: t("reader.chat.copied") });
   };
 
+  const handleAskAI = () => {
+    handleNavigate("ai");
+    setQuestion(`> ${selection}\n\n`);
+  };
+
   return (
     <div
-      className="overflow-hidden rounded-md border border-border bg-background font-sans shadow-lg"
+      className="overflow-hidden rounded-lg bg-[#232324] font-sans text-[#E5E5E6] shadow-lg"
       dir={dir}
     >
       <Button
         variant="ghost"
-        className="h-10 gap-2 hover:bg-accent focus:bg-accent"
+        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
         onClick={handleCopy}
       >
         <ClipboardIcon className="size-4" />
-        Copy
+        {t("reader.copy")}
       </Button>
 
       <Button
         variant="ghost"
-        className="h-10 gap-2 hover:bg-accent focus:bg-accent"
+        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
         onClick={handleShare}
       >
         <ShareIcon className="size-4" />
-        Share
+        {t("reader.share")}
       </Button>
 
       <Button
         variant="ghost"
-        className="h-10 gap-2 hover:bg-accent focus:bg-accent"
+        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
+        onClick={handleAskAI}
       >
         <SparklesIcon className="size-4" />
-        Ask AI
+        {t("reader.ask-ai")}
       </Button>
     </div>
   );

@@ -10,11 +10,6 @@ import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
 
 import { TabContent } from "../tab-content";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 
 const TabButton = ({
   tab,
@@ -54,7 +49,7 @@ export default function ReaderSidebar({
 
   return (
     <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 @container dark:bg-card sm:pt-4">
-      <Tabs defaultValue={activeTab}>
+      <Tabs value={activeTab}>
         <SidebarContainer className="hidden sm:block">
           <TabsList className="w-full font-sans">
             {tabs.map((tab) => (
