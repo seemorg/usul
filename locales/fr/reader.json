@@ -4,16 +4,16 @@
   "content": "Contenu",
   "history": "Historique",
   "ask-ai": "Demander à l'IA",
-  "version-warning": "L'IA a été formée sur une <tooltip>version différente de ce livre</tooltip>. Vous pouvez toujours utiliser {feature} mais les résultats pourraient être légèrement différents.",
-  "switch-version": "Passer à {version}",
+  "edition-warning": "L'IA a été formée sur une <tooltip>édition différente de ce livre</tooltip>. Vous pouvez toujours utiliser {feature} mais les résultats pourraient être légèrement différents.",
+  "switch-edition": "Passer à {edition}",
   "coming-soon": {
     "title": "Prochainement",
     "message": "Cette fonctionnalité n'est pas encore disponible."
   },
   "e-book": "e-Book",
   "pdf": "PDF",
-  "view-as-e-book": "Voir en tant que livre numérique",
-  "view-as-pdf": "Voir en tant que PDF",
+  "view-e-book": "Voir l'e-book",
+  "view-pdf": "Voir le PDF",
   "page-navigator": {
     "name": "Navigateur de Page",
     "title": "Aller à la page",
@@ -49,15 +49,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Version",
-  "select-version": "Sélectionnez une version",
+  "edition": "Édition",
+  "select-edition": "Sélectionner une édition",
   "single-page": "Page unique",
   "all-pages": "Toutes les pages",
   "other-titles": "Autres titres",
   "more-info": "Informations sur le livre",
   "external-book": {
     "title": "Bonne nouvelle !",
-    "description": "Ce livre n'est pas disponible sur Usul mais nous avons trouvé une version ailleurs.",
+    "description": "Ce livre n'est pas disponible sur Usul mais nous avons trouvé une édition ailleurs.",
     "navigate": "Naviguer"
   },
   "download-pdf": "Télécharger le PDF",

@@ -4,16 +4,16 @@
   "content": "مواد",
   "history": "تاریخ",
   "ask-ai": "AI سے پوچھیں",
-  "version-warning": "AI کو اس کتاب کے <tooltip>مختلف ورژن</tooltip> پر تربیت دی گئی ہے۔ آپ {feature} کو استعمال کر سکتے ہیں لیکن نتائج تھوڑے مختلف ہو سکتے ہیں۔",
-  "switch-version": "{version} پر سوئچ کریں",
+  "edition-warning": "اے آئی کو اس کتاب کے <tooltip>مختلف ایڈیشن</tooltip> پر تربیت دی گئی ہے۔ آپ اب بھی {feature} استعمال کرسکتے ہیں لیکن نتائج تھوڑا مختلف ہوسکتے ہیں۔",
+  "switch-edition": "{edition} پر سوئچ کریں",
   "coming-soon": {
     "title": "جلد آ رہا ہے",
     "message": "یہ خصوصیت ابھی دستیاب نہیں ہے۔"
   },
   "e-book": "ای-کتاب",
   "pdf": "PDF",
-  "view-as-e-book": "ای بک کے طور پر دیکھیں",
-  "view-as-pdf": "PDF کے طور پر دیکھیں",
+  "view-e-book": "ای-بک دیکھیں",
+  "view-pdf": "پی ڈی ایف دیکھیں",
   "page-navigator": {
     "name": "صفحہ نیویگیٹر",
     "title": "صفحہ پر جائیں",
@@ -49,15 +49,15 @@
     "pg-x": "ص{page, number, nogroup}",
     "pg-x-vol": "ص{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "ورژن",
-  "select-version": "ایک ورژن منتخب کریں",
+  "edition": "ایڈیشن",
+  "select-edition": "ایک ایڈیشن منتخب کریں",
   "single-page": "واحد صفحہ",
   "all-pages": "تمام صفحات",
   "other-titles": "دیگر عنوانات",
   "more-info": "کتاب معلومات",
   "external-book": {
     "title": "اچھی خبر!",
-    "description": "یہ کتاب اصول پر دستیاب نہیں ہے لیکن ہمیں کہیں اور اس کا ایک ورژن ملا ہے۔",
+    "description": "یہ کتاب اصول پر دستیاب نہیں ہے لیکن ہمیں ایک ایڈیشن کہیں اور ملا ہے۔",
     "navigate": "تشریف لے جائیں"
   },
   "download-pdf": "پی ڈی ایف ڈاؤن لوڈ کریں",
