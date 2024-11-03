@@ -21,6 +21,9 @@ import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_com
 import { useQuery } from "@tanstack/react-query";
 import { getBookPageIndex } from "@/lib/api";
 import { useParams, useSearchParams } from "next/navigation";
+import { ScrollArea } from "../scroll-area";
+import { useBookShareUrl } from "@/lib/share";
+import Spinner from "../spinner";
 
 export default function SourceModal({
   source,
@@ -32,6 +35,7 @@ export default function SourceModal({
   const [isOpen, setIsOpen] = useState(false);
   const slug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId");
+  const { copyUrl: copyShareUrl } = useBookShareUrl();
 
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
@@ -60,6 +64,16 @@ export default function SourceModal({
     });
   };
 
+  const handleShare = async () => {
+    if (!data || data.index === null) return;
+
+    await copyShareUrl({
+      slug,
+      pageIndex: data.index,
+      versionId: versionId ?? undefined,
+    });
+  };
+
   const handleGoToPage = () => {
     if (!data || data.index === null) return;
 
@@ -72,7 +86,7 @@ export default function SourceModal({
   return (
     <>
       <button
-        className="mx-1 inline cursor-pointer rounded-md bg-muted p-1 text-xs transition-opacity hover:opacity-80"
+        className="inline cursor-pointer rounded-md bg-muted p-1 text-xs"
         onClick={() => setIsOpen(true)}
       >
         {t("reader.chat.pg-x-vol", {
@@ -84,34 +98,27 @@ export default function SourceModal({
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogPortal>
           <DialogOverlay>
-            <RawDialogContent className="relative z-50 flex w-full max-w-xl flex-col bg-background p-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+            <RawDialogContent className="relative z-50 flex w-full max-w-xl flex-col bg-background px-6 py-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-base text-muted-foreground">
-                  <p dir="rtl">{chapter}</p>
-                  <Separator
-                    orientation="vertical"
-                    className="h-1.5 w-1.5 rounded-full"
-                  />
-                  <p>
-                    Page {page?.vol} / {page?.page}
-                  </p>
-                </div>
-
                 <RawDialogClose className="rounded-sm p-2 text-muted-foreground ring-offset-background transition-colors hover:bg-accent/70 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
                   <XIcon className="size-5" />
                   <span className="sr-only">Close</span>
                 </RawDialogClose>
+
+                <div className="flex items-center gap-2 text-base text-muted-foreground">
+                  <p dir="rtl">{chapter}</p>
+                </div>
               </div>
 
               <Separator className="mb-6 mt-4" />
 
-              <div
-                className="max-h-96 w-full overflow-y-auto px-8"
-                dir="rtl"
-                dangerouslySetInnerHTML={{
-                  __html: source.text.replaceAll("\n", "<br>"),
-                }}
-              />
+              <ScrollArea className="h-96 w-full pl-5" dir="rtl">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: source.text.replaceAll("\n", "<br>"),
+                  }}
+                />
+              </ScrollArea>
 
               <Separator className="my-4" />
 
@@ -121,7 +128,12 @@ export default function SourceModal({
                   onClick={handleGoToPage}
                   disabled={isPending}
                 >
-                  {isPending ? "Loading..." : "Go to page"}
+                  {isPending
+                    ? "Loading..."
+                    : t("reader.go-to-page-x", {
+                        vol: page.vol,
+                        page: page.page,
+                      })}
                 </Button>
 
                 <div className="flex">
@@ -138,8 +150,14 @@ export default function SourceModal({
                     size="icon"
                     variant="ghost"
                     tooltip={t("reader.chat.share-chat")}
+                    onClick={handleShare}
+                    disabled={isPending}
                   >
-                    <ArrowUpOnSquareIcon className="size-5" />
+                    {isPending ? (
+                      <Spinner className="size-5" />
+                    ) : (
+                      <ArrowUpOnSquareIcon className="size-5" />
+                    )}
                   </Button>
                 </div>
               </div>

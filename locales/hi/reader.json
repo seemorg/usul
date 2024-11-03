@@ -4,16 +4,20 @@
   "content": "सामग्री",
   "history": "इतिहास",
   "ask-ai": "AI से पूछें",
-  "version-warning": "एआई को इस पुस्तक के <tooltip>अलग संस्करण</tooltip> पर प्रशिक्षित किया गया है। आप अभी भी {feature} का उपयोग कर सकते हैं लेकिन परिणाम थोड़े अलग हो सकते हैं।",
-  "switch-version": "{version} पर स्विच करें",
+  "edition-warning": "आप जिस संस्करण को देख रहे हैं, उस पर {feature} समर्थित नहीं है।",
+  "switch-edition": "{edition} में स्विच करें",
   "coming-soon": {
     "title": "जल्द आ रहा है",
     "message": "यह सुविधा अभी उपलब्ध नहीं है।"
   },
+  "copy": "प्रतिलिपि",
+  "share": "साझा करें",
   "e-book": "ई-पुस्तक",
   "pdf": "पीडीएफ",
-  "view-as-e-book": "ई-पुस्तक के रूप में देखें",
-  "view-as-pdf": "पीडीएफ के रूप में देखें",
+  "view-e-book": "ई-बुक देखें",
+  "view-pdf": "पीडीएफ देखें",
+  "go-to-page-x": "पृष्ठ पर जाएं {vol}/{page, number, nogroup}",
+  "match-rate-x": "मेल दर ({matchRate, number}%)",
   "page-navigator": {
     "name": "पृष्ठ नेविगेटर",
     "title": "पृष्ठ पर जाएँ",
@@ -49,15 +53,15 @@
     "pg-x": "पृष्ठ {page, number, nogroup}",
     "pg-x-vol": "मात्रा {vol, number, nogroup}/पृष्ठ {page, number, nogroup}"
   },
-  "version": "संस्करण",
-  "select-version": "एक संस्करण चुनें",
+  "edition": "संस्करण",
+  "select-edition": "एक संस्करण चुनें",
   "single-page": "एकल पृष्ठ",
   "all-pages": "सभी पृष्ठ",
   "other-titles": "अन्य शीर्षक",
   "more-info": "पुस्तक जानकारी",
   "external-book": {
     "title": "अच्छी खबर!",
-    "description": "यह पुस्तक उसूल पर उपलब्ध नहीं है, लेकिन हमें कहीं और एक संस्करण मिला है।",
+    "description": "यह पुस्तक उसूल पर उपलब्ध नहीं है लेकिन हमें कहीं और एक संस्करण मिला है।",
     "navigate": "नेविगेट करें"
   },
   "download-pdf": "PDF डाउनलोड करें",

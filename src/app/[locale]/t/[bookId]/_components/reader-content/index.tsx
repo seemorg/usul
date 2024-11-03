@@ -10,6 +10,8 @@ import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";
 import Paginator from "../../[pageNumber]/paginator";
+import { HighlightPopover } from "@/components/ui/highlight-popover";
+import ReaderHighlightPopover from "./highlight-popover";
 
 export default function ReaderContent({
   response,
@@ -78,7 +80,7 @@ export default function ReaderContent({
           .map((_, index) => (
             <Page
               key={index}
-              index={index}
+              index={isSinglePage ? currentPage! - 1 : index}
               defaultPages={defaultPages}
               perPage={response.pagination.size}
             />
@@ -92,7 +94,6 @@ export default function ReaderContent({
   );
 }
 
-// eslint-disable-next-line react/display-name
 const Page = memo(
   ({
     index,
@@ -104,12 +105,19 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <Container className="font-scheherazade mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 lg:px-8 xl:px-16 2xl:max-w-5xl">
-        <ReaderPage
-          index={index}
-          defaultPages={defaultPages}
-          perPage={perPage}
-        />
+      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 font-scheherazade lg:px-8 xl:px-16 2xl:max-w-5xl">
+        <HighlightPopover
+          renderPopover={({ selection }) => (
+            <ReaderHighlightPopover selection={selection} pageIndex={index} />
+          )}
+          offset={{ x: 0, y: 100 }}
+        >
+          <ReaderPage
+            index={index}
+            defaultPages={defaultPages}
+            perPage={perPage}
+          />
+        </HighlightPopover>
       </Container>
     );
   },
@@ -117,3 +125,5 @@ const Page = memo(
     return prevProps.index === nextProps.index;
   },
 );
+
+Page.displayName = "Page";

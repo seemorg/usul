@@ -61,6 +61,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
         <SidebarContainer className="my-4">
           <VersionAlert
             versionId={bookResponse.book.flags.aiVersion!}
+            versions={bookResponse.book.versions}
             feature="ask-ai"
           />
         </SidebarContainer>
@@ -72,7 +73,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
           <Badge variant="tertiary">{t("common.beta")}</Badge>
         </div>
         <div className="flex">
-          <Button
+          {/* <Button
             size="icon"
             variant="ghost"
             className="size-9 text-muted-foreground hover:bg-secondary"
@@ -81,7 +82,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
             tooltip={t("reader.history")}
           >
             <HistoryIcon className="size-4" />
-          </Button>
+          </Button> */}
 
           <Button
             size="icon"

@@ -23,7 +23,7 @@ export default function DownloadButton({
     return (
       <ReaderNavigationButton {...commonProps} asChild>
         <a href={pdf?.finalUrl} download={slug + ".pdf"} target="_blank">
-          <ArrowDownTrayIcon className="h-4 w-4" />
+          <ArrowDownTrayIcon />
         </a>
       </ReaderNavigationButton>
     );
@@ -31,7 +31,7 @@ export default function DownloadButton({
 
   return (
     <ReaderNavigationButton {...commonProps} disabled>
-      <ArrowDownTrayIcon className="h-4 w-4" />
+      <ArrowDownTrayIcon />
     </ReaderNavigationButton>
   );
 }

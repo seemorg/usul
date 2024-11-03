@@ -4,16 +4,20 @@
   "content": "Contenido",
   "history": "Historial",
   "ask-ai": "Preguntar a la IA",
-  "version-warning": "La IA se ha entrenado en una <tooltip>versión diferente de este libro</tooltip>. Aun así, puedes usar {feature} pero los resultados podrían ser ligeramente diferentes.",
-  "switch-version": "Cambiar a {version}",
+  "edition-warning": "{feature} no es compatible con la edición que estás viendo.",
+  "switch-edition": "Cambiar a {edition}",
   "coming-soon": {
     "title": "Próximamente",
     "message": "Esta función aún no está disponible."
   },
+  "copy": "Copiar",
+  "share": "Compartir",
   "e-book": "e-Book",
   "pdf": "PDF",
-  "view-as-e-book": "Ver como e-Book",
-  "view-as-pdf": "Ver como PDF",
+  "view-e-book": "Ver e-Book",
+  "view-pdf": "Ver PDF",
+  "go-to-page-x": "Ir a la página {vol}/{page, number, nogroup}",
+  "match-rate-x": "Tasa de coincidencia ({matchRate, number}%)",
   "page-navigator": {
     "name": "Navegador de Páginas",
     "title": "Saltar a la página",
@@ -49,15 +53,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Versión",
-  "select-version": "Seleccione una versión",
+  "edition": "Edición",
+  "select-edition": "Selecciona una edición",
   "single-page": "Página Única",
   "all-pages": "Todas las Páginas",
   "other-titles": "Otros títulos",
   "more-info": "Información del libro",
   "external-book": {
     "title": "¡Buenas noticias!",
-    "description": "Este libro no está disponible en Usul, pero encontramos una versión en otro lugar.",
+    "description": "Este libro no está disponible en Usul, pero encontramos una edición en otro lugar.",
     "navigate": "Navegar"
   },
   "download-pdf": "Descargar PDF",

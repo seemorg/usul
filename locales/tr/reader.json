@@ -4,16 +4,20 @@
   "content": "İçerik",
   "history": "Geçmiş",
   "ask-ai": "AI Sormak",
-  "version-warning": "Yapay zeka, bu kitabın <tooltip>farklı bir versiyonu</tooltip> üzerinde eğitildi. {feature} kullanabilirsiniz ancak sonuçlar biraz farklı olabilir.",
-  "switch-version": "{version} sürümüne geç",
+  "edition-warning": "{feature} görüntülemekte olduğunuz sürümde desteklenmiyor.",
+  "switch-edition": "{edition} sürümüne geç",
   "coming-soon": {
     "title": "Yakında",
     "message": "Bu özellik henüz kullanılamıyor."
   },
+  "copy": "Kopyala",
+  "share": "Paylaş",
   "e-book": "e-Kitap",
   "pdf": "PDF",
-  "view-as-e-book": "e-Kitap olarak görüntüle",
-  "view-as-pdf": "PDF olarak Görüntüle",
+  "view-e-book": "e-Kitabı Görüntüle",
+  "view-pdf": "PDF Görüntüle",
+  "go-to-page-x": "Sayfaya git {vol}/{page, number, nogroup}",
+  "match-rate-x": "Eşleşme Oranı ({matchRate, number}%)",
   "page-navigator": {
     "name": "Sayfa Yönlendirici",
     "title": "Sayfaya Git",
@@ -49,15 +53,15 @@
     "pg-x": "S{page, number, nogroup}",
     "pg-x-vol": "S{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Versiyon",
-  "select-version": "Bir versiyon seçin",
+  "edition": "Sürüm",
+  "select-edition": "Bir sürüm seç",
   "single-page": "Tek Sayfa",
   "all-pages": "Tüm Sayfalar",
   "other-titles": "Diğer başlıklar",
   "more-info": "Kitap Bilgisi",
   "external-book": {
     "title": "İyi haber!",
-    "description": "Bu kitap Usul'da mevcut değil ancak başka bir yerde bir versiyon bulduk.",
+    "description": "Bu kitap Usul'de mevcut değil, ancak başka bir yerde bir sürümünü bulduk.",
     "navigate": "Gözat"
   },
   "download-pdf": "PDF İndir",

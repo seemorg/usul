@@ -34,7 +34,7 @@ export default function ReaderNavigationMobileActions({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <ReaderNavigationButton className="md:hidden">
-          <EllipsisIcon className="size-4" />
+          <EllipsisIcon />
         </ReaderNavigationButton>
       </DropdownMenuTrigger>
 
@@ -46,7 +46,7 @@ export default function ReaderNavigationMobileActions({
             className="gap-2"
           >
             <FileText className="h-4 w-4" />
-            <span>{t(view === "pdf" ? "view-as-e-book" : "view-as-pdf")}</span>
+            <span>{t(view === "pdf" ? "view-e-book" : "view-pdf")}</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild className="gap-2">

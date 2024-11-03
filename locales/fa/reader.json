@@ -4,16 +4,20 @@
   "content": "محتوا",
   "history": "تاریخچه",
   "ask-ai": "پرسیدن از هوش مصنوعی",
-  "version-warning": "هوش مصنوعی روی <tooltip>نسخه متفاوتی از این کتاب</tooltip> آموزش دیده است. شما همچنان می‌توانید از {feature} استفاده کنید اما نتایج ممکن است کمی متفاوت باشد.",
-  "switch-version": "تغییر به {version}",
+  "edition-warning": "{feature} در نسخه‌ای که در حال مشاهده آن هستید پشتیبانی نمی‌شود.",
+  "switch-edition": "تغییر به {edition}",
   "coming-soon": {
     "title": "به زودی",
     "message": "این قابلیت هنوز در دسترس نیست."
   },
+  "copy": "کپی",
+  "share": "اشتراک گذاری",
   "e-book": "کتاب الکترونیکی",
   "pdf": "PDF",
-  "view-as-e-book": "مشاهده به عنوان کتاب الکترونیکی",
-  "view-as-pdf": "مشاهده به عنوان PDF",
+  "view-e-book": "مشاهده e-Book",
+  "view-pdf": "مشاهده PDF",
+  "go-to-page-x": "برو به صفحه {vol}/{page, number, nogroup}",
+  "match-rate-x": "نرخ تطابق ({matchRate, number}%)",
   "page-navigator": {
     "name": "ناوبری صفحه",
     "title": "پرش به صفحه",
@@ -49,15 +53,15 @@
     "pg-x": "ص{page, number, nogroup}",
     "pg-x-vol": "ج{vol, number, nogroup}/ص{page, number, nogroup}"
   },
-  "version": "نسخه",
-  "select-version": "انتخاب یک نسخه",
+  "edition": "نسخه",
+  "select-edition": "انتخاب یک نسخه",
   "single-page": "صفحه واحد",
   "all-pages": "همه صفحات",
   "other-titles": "عناوین دیگر",
   "more-info": "اطلاعات کتاب",
   "external-book": {
     "title": "خبر خوب!",
-    "description": "این کتاب در اسول موجود نیست، اما نسخه‌ای از آن را در جای دیگری پیدا کردیم.",
+    "description": "این کتاب در اصل موجود نیست اما ما نسخه‌ای را در جای دیگری پیدا کرده‌ایم.",
     "navigate": "ناوبری"
   },
   "download-pdf": "دانلود PDF",

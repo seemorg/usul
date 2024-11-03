@@ -4,16 +4,20 @@
   "content": "المحتوى",
   "history": "التاريخ",
   "ask-ai": "اسأل الذكاء الاصطناعي",
-  "version-warning": "تم تدريب الذكاء الاصطناعي على <tooltip>نسخة مختلفة من هذا الكتاب</tooltip>. يمكنك استخدام {feature} ولكن قد تكون النتائج مختلفة قليلًا.",
-  "switch-version": "التبديل إلى {version}",
+  "edition-warning": "الميزة {feature} غير مدعومة في النسخة التي تشاهدها.",
+  "switch-edition": "التبديل إلى {edition}",
   "coming-soon": {
     "title": "قريبًا",
     "message": "هذه الميزة غير متوفرة بعد."
   },
+  "copy": "نسخ",
+  "share": "مشاركة",
   "e-book": "كتاب إلكتروني",
   "pdf": "PDF",
-  "view-as-e-book": "عرض ككتاب إلكتروني",
-  "view-as-pdf": "عرض كملف PDF",
+  "view-e-book": "عرض الكتاب الإلكتروني",
+  "view-pdf": "عرض PDF",
+  "go-to-page-x": "اذهب إلى الصفحة {vol}/{page, number, nogroup}",
+  "match-rate-x": "نسبة التطابق ({matchRate, number}%)",
   "page-navigator": {
     "name": "تصفح الصفحات",
     "title": "انتقل إلى صفحة",
@@ -49,15 +53,15 @@
     "pg-x": "صفحة {page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/صفحة {page, number, nogroup}"
   },
-  "version": "النسخة",
-  "select-version": "اختيار النسخة",
+  "edition": "الإصدار",
+  "select-edition": "اختر إصدارًا",
   "single-page": "صفحة واحدة",
   "all-pages": "جميع الصفحات",
   "other-titles": "عناوين أخرى",
   "more-info": "معلومات الكتاب",
   "external-book": {
     "title": "أخبار جيدة!",
-    "description": "هذا الكتاب غير متوفر على أصول لكن وجدنا نسخة في مكان آخر.",
+    "description": "هذا الكتاب غير متوفر على أصول لكن وجدنا إصدارًا في مكان آخر.",
     "navigate": "انتقل"
   },
   "download-pdf": "تحميل PDF",

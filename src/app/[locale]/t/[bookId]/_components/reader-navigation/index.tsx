@@ -45,14 +45,14 @@ export default function ReaderNavigation({
     <>
       <div
         className={cn(
-          "relative z-[10] w-full bg-reader transition will-change-transform",
+          "relative w-full bg-reader px-5 transition will-change-transform lg:px-8",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",
         )}
       >
-        <Container className="mx-auto flex items-center justify-between border-b border-border px-5 py-2.5 lg:px-8 2xl:max-w-5xl">
-          <div className="flex items-center gap-2">
+        <Container className="flex items-center justify-between border-b border-border px-0 py-2.5 2xl:max-w-5xl">
+          <div className="flex flex-1 items-center gap-2">
             <ReaderNavigationMobileActions
               isSinglePage={isSinglePage ?? false}
               pdf={pdf}
@@ -65,9 +65,11 @@ export default function ReaderNavigation({
             />
           </div>
 
-          <ViewTabs hasPdf={!!pdf?.finalUrl} />
+          <div className="flex flex-1 justify-center">
+            <ViewTabs hasPdf={!!pdf?.finalUrl} />
+          </div>
 
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden flex-1 items-center gap-2 md:flex md:justify-end">
             <DownloadButton pdf={pdf} slug={bookSlug} />
 
             <ReaderNavigationButton
@@ -76,7 +78,7 @@ export default function ReaderNavigation({
               asChild
             >
               <Link href={bookUrl}>
-                <SinglePageIcon className="size-4" />
+                <SinglePageIcon />
               </Link>
             </ReaderNavigationButton>
           </div>
@@ -87,7 +89,7 @@ export default function ReaderNavigation({
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
               >
-                <tab.icon className="size-4" />
+                <tab.icon />
               </ReaderNavigationButton>
             ))}
 

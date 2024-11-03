@@ -4,16 +4,20 @@
   "content": "Kandungan",
   "history": "Sejarah",
   "ask-ai": "Tanya AI",
-  "version-warning": "AI telah dilatih pada <tooltip>versi berbeza buku ini</tooltip>. Anda masih boleh menggunakan {feature} tetapi hasilnya mungkin sedikit berbeza.",
-  "switch-version": "Tukar kepada {version}",
+  "edition-warning": "{feature} tidak disokong pada edisi yang anda lihat.",
+  "switch-edition": "Tukar ke {edition}",
   "coming-soon": {
     "title": "Akan Datang",
     "message": "Ciri ini belum tersedia."
   },
+  "copy": "Salin",
+  "share": "Kongsi",
   "e-book": "e-Book",
   "pdf": "PDF",
-  "view-as-e-book": "Lihat sebagai e-Buku",
-  "view-as-pdf": "Lihat sebagai PDF",
+  "view-e-book": "Lihat e-Book",
+  "view-pdf": "Lihat PDF",
+  "go-to-page-x": "Pergi ke halaman {vol}/{page, number, nogroup}",
+  "match-rate-x": "Kadar Padanan ({matchRate, number}%)",
   "page-navigator": {
     "name": "Navigator Halaman",
     "title": "Lompat ke halaman",
@@ -49,15 +53,15 @@
     "pg-x": "P{page, number, nogroup}",
     "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
   },
-  "version": "Versi",
-  "select-version": "Pilih sebuah versi",
+  "edition": "Edisi",
+  "select-edition": "Pilih edisi",
   "single-page": "Halaman Tunggal",
   "all-pages": "Semua Halaman",
   "other-titles": "Tajuk lain",
   "more-info": "Maklumat Buku",
   "external-book": {
     "title": "Berita baik!",
-    "description": "Buku ini tidak tersedia di Usul tetapi kami menemui versi di tempat lain.",
+    "description": "Buku ini tidak tersedia di Usul tetapi kami menemui edisi di tempat lain.",
     "navigate": "Navigasi"
   },
   "download-pdf": "Muat Turun PDF",
