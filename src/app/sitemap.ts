@@ -1,3 +1,4 @@
+import { env } from "@/env";
 import { localesWithoutDefault, relativeUrl } from "@/lib/sitemap";
 import { navigation } from "@/lib/urls";
 import { db } from "@/server/db";
@@ -27,6 +28,10 @@ const generateEntryFromUrl = (url: string) => ({
 });
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const isProd = env.VERCEL_ENV === "production";
+
+  if (!isProd) return [];
+
   const regions = await db.region.findMany({
     select: { slug: true },
   });

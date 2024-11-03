@@ -114,7 +114,7 @@ export default function ChaptersList({
 
   if (headers.length === 0) {
     return (
-      <div className="mt-5">
+      <div className="mt-5 px-6">
         <PageNavigator
           popover={false}
           range={pagesRange}
