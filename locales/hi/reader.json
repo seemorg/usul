@@ -4,7 +4,7 @@
   "content": "सामग्री",
   "history": "इतिहास",
   "ask-ai": "AI से पूछें",
-  "edition-warning": "एआई को इस पुस्तक के <tooltip>विभिन्न संस्करण</tooltip> पर प्रशिक्षित किया गया है। आप अभी भी {feature} का उपयोग कर सकते हैं लेकिन परिणाम थोड़े भिन्न हो सकते हैं।",
+  "edition-warning": "आप जिस संस्करण को देख रहे हैं, उस पर {feature} समर्थित नहीं है।",
   "switch-edition": "{edition} में स्विच करें",
   "coming-soon": {
     "title": "जल्द आ रहा है",
@@ -14,6 +14,7 @@
   "pdf": "पीडीएफ",
   "view-e-book": "ई-बुक देखें",
   "view-pdf": "पीडीएफ देखें",
+  "go-to-page-x": "पृष्ठ पर जाएं {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "पृष्ठ नेविगेटर",
     "title": "पृष्ठ पर जाएँ",

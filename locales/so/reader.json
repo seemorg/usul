@@ -4,7 +4,7 @@
   "content": "Mawduuc",
   "history": "Taariikhda",
   "ask-ai": "Weydiiso AI",
-  "edition-warning": "AI waxaa lagu tababaray <tooltip>daabacad kale oo buuggan ka mid ah</tooltip>. Weli waad u adeegsan kartaa {feature} laakiin natiijooyinka waxa laga yaabaa inay yara duwan yihiin.",
+  "edition-warning": "{feature} looma taageero nuqulka aad daawaneyso.",
   "switch-edition": "Beddel {edition}",
   "coming-soon": {
     "title": "Dhawaan Imaanaysa",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "Daawo e-Book",
   "view-pdf": "Daawo PDF",
+  "go-to-page-x": "Tag bogga {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "Sawir-qaade Bogga",
     "title": "U bood bogga",

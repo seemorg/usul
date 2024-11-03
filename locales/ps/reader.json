@@ -4,7 +4,7 @@
   "content": "مندنه",
   "history": "تاریخ",
   "ask-ai": "AI څخه وپوښتئ",
-  "edition-warning": "AI په دې کتاب کې په <tooltip>مختلفه څپرکه</tooltip> روزل شوی دی. تاسو لا هم {feature} استعمالولی شئ خو پایلې ممکن یو څه مختلفې وي.",
+  "edition-warning": "د {feature} په نسخه کې چې تاسو یې ګورئ، ملاتړ نه کیږي.",
   "switch-edition": "{edition} ته واړوه",
   "coming-soon": {
     "title": "ژر به راشي",
@@ -14,6 +14,7 @@
   "pdf": "PDF",
   "view-e-book": "ای - کتاب وګورئ",
   "view-pdf": "PDF وګورئ",
+  "go-to-page-x": "صفحه ته لاړ شئ {vol}/{page, number, nogroup}",
   "page-navigator": {
     "name": "پاڼه نیویګی",
     "title": "په پاڼه ورځه",
