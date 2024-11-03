@@ -10,11 +10,14 @@
     "title": "Akan Datang",
     "message": "Ciri ini belum tersedia."
   },
+  "copy": "Salin",
+  "share": "Kongsi",
   "e-book": "e-Book",
   "pdf": "PDF",
   "view-e-book": "Lihat e-Book",
   "view-pdf": "Lihat PDF",
   "go-to-page-x": "Pergi ke halaman {vol}/{page, number, nogroup}",
+  "match-rate-x": "Kadar Padanan ({matchRate, number}%)",
   "page-navigator": {
     "name": "Navigator Halaman",
     "title": "Lompat ke halaman",

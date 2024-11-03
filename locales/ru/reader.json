@@ -10,11 +10,14 @@
     "title": "Скоро будет",
     "message": "Эта функция пока недоступна."
   },
+  "copy": "Копировать",
+  "share": "Поделиться",
   "e-book": "e-Book",
   "pdf": "PDF",
   "view-e-book": "Просмотреть e-книгу",
   "view-pdf": "Просмотреть PDF",
   "go-to-page-x": "Перейти на страницу {vol}/{page, number, nogroup}",
+  "match-rate-x": "Уровень совпадения ({matchRate, number}%)",
   "page-navigator": {
     "name": "Навигатор по страницам",
     "title": "Перейти на страницу",

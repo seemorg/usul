@@ -10,11 +10,14 @@
     "title": "Da zuwa",
     "message": "Wannan fasalin ba ya samuwa tukuna."
   },
+  "copy": "Kwafi",
+  "share": "Raba",
   "e-book": "e-Littafi",
   "pdf": "PDF",
   "view-e-book": "Duba e-Littafi",
   "view-pdf": "Duba PDF",
   "go-to-page-x": "Je zuwa shafi {vol}/{page, number, nogroup}",
+  "match-rate-x": "Kimar Daidaitawa ({matchRate, number}%)",
   "page-navigator": {
     "name": "Mai Naviga Shafi",
     "title": "Tsallaka zuwa shafi",

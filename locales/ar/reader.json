@@ -10,11 +10,14 @@
     "title": "قريبًا",
     "message": "هذه الميزة غير متوفرة بعد."
   },
+  "copy": "نسخ",
+  "share": "مشاركة",
   "e-book": "كتاب إلكتروني",
   "pdf": "PDF",
   "view-e-book": "عرض الكتاب الإلكتروني",
   "view-pdf": "عرض PDF",
   "go-to-page-x": "اذهب إلى الصفحة {vol}/{page, number, nogroup}",
+  "match-rate-x": "نسبة التطابق ({matchRate, number}%)",
   "page-navigator": {
     "name": "تصفح الصفحات",
     "title": "انتقل إلى صفحة",
