@@ -1,13 +1,12 @@
 import { ClipboardIcon, ShareIcon, SparklesIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useDirection, usePathLocale } from "@/lib/locale/utils";
+import { useDirection } from "@/lib/locale/utils";
 import { toast } from "@/components/ui/use-toast";
-import { useLocale, useTranslations } from "next-intl";
-import { navigation } from "@/lib/urls";
+import { useTranslations } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
-import { defaultLocale } from "~/i18n.config";
 import { useChatStore } from "../../_stores/chat";
 import { useTabNavigate } from "../sidebar/useTabNavigate";
+import { useBookShareUrl } from "@/lib/share";
 
 function ReaderHighlightPopover({
   selection,
@@ -18,8 +17,8 @@ function ReaderHighlightPopover({
 }) {
   const dir = useDirection();
   const t = useTranslations();
-  const pathLocale = usePathLocale();
-  const locale = useLocale();
+  const { copyUrl: copyShareUrl } = useBookShareUrl();
+
   const { handleNavigate } = useTabNavigate();
 
   const setQuestion = useChatStore((s) => s.setQuestion);
@@ -33,19 +32,12 @@ function ReaderHighlightPopover({
   };
 
   const handleShare = async () => {
-    let url =
-      window.location.origin +
-      navigation.books.pageReader(bookSlug, pageIndex + 1);
-
-    if (locale !== defaultLocale) url = pathLocale + url;
-    if (versionId) url = url + `?versionId=${versionId}`;
-
-    // add selection to url via browser query params
-    url = url + `#:~:text=${encodeURIComponent(selection)}`;
-
-    await navigator.clipboard.writeText(url);
-
-    toast({ description: t("reader.chat.copied") });
+    await copyShareUrl({
+      slug: bookSlug,
+      pageIndex,
+      versionId,
+      selection,
+    });
   };
 
   const handleAskAI = () => {

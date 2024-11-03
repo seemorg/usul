@@ -17,6 +17,7 @@
   "view-e-book": "View e-Book",
   "view-pdf": "View PDF",
   "go-to-page-x": "Go to page {vol}/{page, number, nogroup}",
+  "match-rate-x": "Match Rate ({matchRate, number}%)",
   "page-navigator": {
     "name": "Page Navigator",
     "title": "Jump to page",

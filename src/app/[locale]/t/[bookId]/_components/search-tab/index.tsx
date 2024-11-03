@@ -103,7 +103,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
       );
 
     return (
-      <div className="flex flex-col">
+      <div className="mt-9 flex flex-col">
         {results.map((r, idx) => (
           <SearchResult
             key={idx}

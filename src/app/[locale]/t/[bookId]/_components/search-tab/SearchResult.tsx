@@ -2,19 +2,17 @@ import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useReaderVirtuoso } from "../context";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import { removeDiacritics } from "@/lib/diacritics";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useMutation } from "@tanstack/react-query";
 import { getBookPageIndex } from "@/lib/api";
 import { useParams, useSearchParams } from "next/navigation";
+import { ShareIcon } from "lucide-react";
+import { useBookShareUrl } from "@/lib/share";
+import Spinner from "@/components/ui/spinner";
+import { useRouter } from "@/navigation";
+import { navigation } from "@/lib/urls";
 
 const SearchResult = ({
   result,
@@ -26,10 +24,17 @@ const SearchResult = ({
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
   const t = useTranslations();
-  const slug = useParams().bookId as string;
-  const versionId = useSearchParams().get("versionId");
+  const router = useRouter();
+  const params = useParams();
+  const slug = params.bookId as string;
+  const isSinglePage = !!(params.pageNumber as string | undefined);
 
-  const { isPending, mutateAsync } = useMutation({
+  const searchParams = useSearchParams();
+  const versionId = searchParams.get("versionId");
+
+  const { copyUrl: copySearchResultUrl } = useBookShareUrl();
+
+  const { isPending, mutateAsync, data } = useMutation({
     mutationKey: ["page"],
     mutationFn: (args: { page: number; vol?: string }) => {
       return getBookPageIndex(slug, {
@@ -49,40 +54,64 @@ const SearchResult = ({
 
     if (result.index === null) return;
 
-    const props = getVirtuosoScrollProps(result.index);
-    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    if (isSinglePage) {
+      router.push(
+        `${navigation.books.pageReader(slug, result.index + 1)}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`,
+      );
+    } else {
+      const props = getVirtuosoScrollProps(result.index);
+      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    }
 
     if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+  };
+
+  const handleShare = async () => {
+    if (!page || page.page === -1 || isPending) return;
+
+    let idx: number;
+    if (data) {
+      if (data.index === null) return;
+      idx = data.index;
+    } else {
+      const result = await mutateAsync({ page: page.page, vol: page.vol });
+      if (result.index === null) return;
+      idx = result.index;
+    }
+
+    await copySearchResultUrl({
+      slug,
+      pageIndex: idx,
+      versionId: versionId ?? undefined,
+    });
   };
 
   const content = removeDiacritics(result.text);
 
   return (
     <div
-      className="border-t border-border px-8 pb-6 pt-3 transition-colors hover:cursor-pointer hover:bg-gray-100"
+      className="border-b border-border px-6 py-4 transition-colors hover:cursor-pointer hover:bg-accent/50"
       onClick={handleNavigate}
     >
-      <div className="flex items-center justify-between text-xs text-gray-500">
-        <DropdownMenu>
-          <DropdownMenuTrigger
-            asChild
-            className="btn z-10 hover:bg-gray-200 data-[state=open]:bg-gray-200"
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <div className="flex">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="size-9 hover:bg-accent focus:bg-accent"
+            onClick={(e) => {
+              e.stopPropagation(); // don't trigger navigate
+              handleShare();
+            }}
+            disabled={isPending}
           >
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <EllipsisHorizontalIcon className="h-5 w-5" />
-            </Button>
-          </DropdownMenuTrigger>
-
-          <DropdownMenuContent>
-            <DropdownMenuItem>Share</DropdownMenuItem>
-            <DropdownMenuItem>Bookmark</DropdownMenuItem>
-            <DropdownMenuItem>Navigate</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+            {isPending ? (
+              <Spinner className="size-4" />
+            ) : (
+              <ShareIcon className="size-4" />
+            )}
+          </Button>
+        </div>
 
         <div className="flex gap-2">
           <p>{result.metadata.chapters.at(-1)}</p>
@@ -91,15 +120,21 @@ const SearchResult = ({
 
       <p
         dir="rtl"
-        className="mt-2 font-scheherazade text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
+        className="mt-4 font-scheherazade text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
         dangerouslySetInnerHTML={{
           __html: content,
         }}
       />
 
-      <div className="mt-5 flex items-center justify-between text-xs text-gray-500">
+      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+        {result.score ? (
+          <span>
+            {t("reader.match-rate-x", {
+              matchRate: Math.floor(result.score * 100),
+            })}
+          </span>
+        ) : null}
         <p> {t("common.pagination.page-x", { page: page ? page.page : -1 })}</p>
-        {result.score ? <span>{(result.score * 100).toFixed(0)}%</span> : null}
       </div>
     </div>
   );

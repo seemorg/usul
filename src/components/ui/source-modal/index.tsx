@@ -22,6 +22,8 @@ import { useQuery } from "@tanstack/react-query";
 import { getBookPageIndex } from "@/lib/api";
 import { useParams, useSearchParams } from "next/navigation";
 import { ScrollArea } from "../scroll-area";
+import { useBookShareUrl } from "@/lib/share";
+import Spinner from "../spinner";
 
 export default function SourceModal({
   source,
@@ -33,6 +35,7 @@ export default function SourceModal({
   const [isOpen, setIsOpen] = useState(false);
   const slug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId");
+  const { copyUrl: copyShareUrl } = useBookShareUrl();
 
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
@@ -58,6 +61,16 @@ export default function SourceModal({
     await navigator.clipboard.writeText(source.text);
     toast({
       title: t("reader.chat.copied"),
+    });
+  };
+
+  const handleShare = async () => {
+    if (!data || data.index === null) return;
+
+    await copyShareUrl({
+      slug,
+      pageIndex: data.index,
+      versionId: versionId ?? undefined,
     });
   };
 
@@ -137,8 +150,14 @@ export default function SourceModal({
                     size="icon"
                     variant="ghost"
                     tooltip={t("reader.chat.share-chat")}
+                    onClick={handleShare}
+                    disabled={isPending}
                   >
-                    <ArrowUpOnSquareIcon className="size-5" />
+                    {isPending ? (
+                      <Spinner className="size-5" />
+                    ) : (
+                      <ArrowUpOnSquareIcon className="size-5" />
+                    )}
                   </Button>
                 </div>
               </div>
