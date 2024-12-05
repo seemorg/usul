@@ -3,54 +3,54 @@ import { db } from "@/server/db";
 import { getLocaleWhereClause } from "@/server/db/localization";
 
 export const popularBooks = [
-  { slug: "sahih" },
-  { slug: "sahih-1" },
-  { slug: "sunan-4" },
-  { slug: "sunan-3" },
-  { slug: "sahih-wa-dacif-sunan-tirmidhi" },
-  { slug: "sunan-sughra" },
-  { slug: "muwatta" },
-  { slug: "riyad-salihin" },
-  { slug: "ihya-culum-din" },
-  { slug: "tafsir-jalalayn" },
-  { slug: "tafsir-quran-6" },
-  { slug: "fath-bari" },
+  { id: "0256Bukhari.Sahih" },
+  { id: "0261Muslim.Sahih" },
+  { id: "0275AbuDawudSijistani.Sunan" },
+  { id: "0273IbnMaja.Sunan" },
+  { id: "0303Nasai.SunanSughra" },
+  { id: "1420MuhammadNasirDinAlbani.SahihWaDacifSunanTirmidhi" },
+  { id: "0179MalikIbnAnas.Muwatta" },
+  { id: "0676Nawawi.RiyadSalihin" },
+  { id: "0505Ghazali.IhyaCulumDin" },
+  { id: "0911Suyuti.TafsirJalalayn" },
+  { id: "0774IbnKathir.TafsirQuran" },
+  { id: "0852IbnHajarCasqalani.FathBari" },
 ];
 
 export const popularIslamicLawBooks = [
-  { slug: "muwatta" },
-  { slug: "mughni" },
-  { slug: "hidaya-fi-sharh-bidaya" },
-  { slug: "bidayat-mujtahid" },
-  { slug: "umm" },
-  { slug: "mukhtasar-4" },
-  { slug: "risala" },
-  { slug: "mukhtasar-sahih-bukhari" },
-  { slug: "mabsut-1" },
-  { slug: "radd-muhtar" },
-  { slug: "muhalla-bi-athar" },
+  { id: "0179MalikIbnAnas.Muwatta" },
+  { id: "0620IbnQudamaMaqdisi.Mughni" },
+  { id: "0593BurhanDinFarghaniMarghinani.HidayaFiSharhBidaya" },
+  { id: "0595IbnRushdHafid.BidayatMujtahid" },
+  { id: "0204Shafici.Umm" },
+  { id: "0428AbuHusaynQuduri.Mukhtasar" },
+  { id: "0204Shafici.Risala" },
+  { id: "0695IbnAbiJamra.MukhtasarSahihBukhari" },
+  { id: "0483IbnAhmadSarakhsi.Mabsut" },
+  { id: "1252IbnCabidinDimashqi.RaddMuhtar" },
+  { id: "0456IbnHazm.MuhallaBiAthar" },
 ];
 
 export const popularIslamicHistoryBooks = [
-  { slug: "sira-nabawiyya" },
-  { slug: "sira" },
-  { slug: "zad-macad" },
-  { slug: "bidaya-1" },
-  { slug: "tarikh-5" },
-  { slug: "fadail-sahaba" },
-  { slug: "sira-1" },
-  { slug: "wafat" },
-  { slug: "jawamic-sira" },
-  { slug: "qisas-anbiya-1" },
+  { id: "0213IbnHisham.SiraNabawiyya" },
+  { id: "0151IbnIshaq.Sira" },
+  { id: "0751IbnQayyimJawziyya.ZadMacad" },
+  { id: "0774IbnKathir.Bidaya" },
+  { id: "0310Tabari.Tarikh" },
+  { id: "0241IbnHanbal.FadailSahaba" },
+  { id: "0354IbnHibbanBusti.Sira" },
+  { id: "0303Nasai.Wafat" },
+  { id: "0456IbnHazm.JawamicSira" },
+  { id: "0774IbnKathir.QisasAnbiya" },
 ];
 
-const fetchBooksBySlugs = (slugs: string[], locale: PathLocale) => {
+const fetchBooksByIds = async (ids: string[], locale: PathLocale) => {
   const localeWhere = getLocaleWhereClause(locale);
 
-  return db.book.findMany({
+  const books = await db.book.findMany({
     where: {
-      slug: {
-        in: slugs,
+      id: {
+        in: ids,
       },
     },
     include: {
@@ -67,25 +67,32 @@ const fetchBooksBySlugs = (slugs: string[], locale: PathLocale) => {
       },
     },
   });
+
+  // Order books by their index in the ids array to maintain specified order
+  return books.sort((a, b) => {
+    const aIndex = ids.indexOf(a.id);
+    const bIndex = ids.indexOf(b.id);
+    return aIndex - bIndex;
+  });
 };
 
 export const fetchPopularBooks = async (locale: PathLocale) => {
-  return fetchBooksBySlugs(
-    popularBooks.map((s) => s.slug),
+  return fetchBooksByIds(
+    popularBooks.map((s) => s.id),
     locale,
   );
 };
 
 export const fetchPopularIslamicLawBooks = async (locale: PathLocale) => {
-  return fetchBooksBySlugs(
-    popularIslamicLawBooks.map((b) => b.slug),
+  return fetchBooksByIds(
+    popularIslamicLawBooks.map((b) => b.id),
     locale,
   );
 };
 
 export const fetchPopularIslamicHistoryBooks = async (locale: PathLocale) => {
-  return fetchBooksBySlugs(
-    popularIslamicHistoryBooks.map((b) => b.slug),
+  return fetchBooksByIds(
+    popularIslamicHistoryBooks.map((b) => b.id),
     locale,
   );
 };

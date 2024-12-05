@@ -72,11 +72,12 @@ export const getMetadata = async ({
       ...newDescription,
       keywords,
       authors,
+
       openGraph: {
         type: "website",
         siteName,
         url: "/",
-        locale,
+        locale: locale ?? "en_US",
         ...newTitle,
         ...newDescription,
         ...newImages,
@@ -117,7 +118,7 @@ export const getMetadata = async ({
       siteName,
       url: "/",
       title,
-      locale,
+      locale: locale ?? "en_US",
       description: description ?? defaultDescription,
       images,
     },

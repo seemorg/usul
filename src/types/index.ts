@@ -1,29 +1,50 @@
+interface PublicationDetails {
+  investigator?: string;
+  publisher?: string;
+  publisherLocation?: string;
+  editionNumber?: string;
+  publicationYear?: number; // hijri
+}
+
+type SplitsData = { start: number; end: number }[];
+
 declare global {
   namespace PrismaJson {
-    interface BookVersion {
-      source: "openiti" | "turath" | "external" | "pdf";
+    type BookVersion = (
+      | {
+          source: "openiti" | "turath" | "external";
+        }
+      | {
+          source: "pdf";
+          ocrBookId?: string;
+          splitsData?: SplitsData;
+        }
+    ) & {
+      id: string;
       value: string;
-      publicationDetails?: {
-        investigator?: string;
-        publisher?: string;
-        editionNumber?: string;
-        publicationYear?: number; // hijri
-      };
-    }
-
-    interface BookFlags {
+      publicationDetails?: PublicationDetails;
       aiSupported?: boolean;
-      aiVersion?: string;
-    }
+      keywordSupported?: boolean;
+    };
 
     interface AuthorExtraProperties {
       _airtableReference?: string;
     }
 
     interface BookExtraProperties {
-      splitsData?: { start: number; end: number }[];
       _airtableReference?: string;
     }
+
+    type BookPhysicalDetails = (
+      | {
+          type: "manuscript";
+        }
+      | ({
+          type: "published";
+        } & PublicationDetails)
+    ) & {
+      notes?: string;
+    };
 
     interface GenreExtraProperties {
       _airtableReference?: string;

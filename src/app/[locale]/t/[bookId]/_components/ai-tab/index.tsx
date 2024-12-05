@@ -53,14 +53,14 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const isLoading = isPending;
 
   const isVersionMismatch =
-    bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
+    bookResponse.book.aiVersion !== bookResponse.content.versionId;
 
   return (
     <div className="pb-2">
       {isVersionMismatch && (
         <SidebarContainer className="my-4">
           <VersionAlert
-            versionId={bookResponse.book.flags.aiVersion!}
+            versionId={bookResponse.book.aiVersion!}
             versions={bookResponse.book.versions}
             feature="ask-ai"
           />

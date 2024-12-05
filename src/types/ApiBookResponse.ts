@@ -63,9 +63,10 @@ type BookDetails = {
     bio: string;
   };
   transliteration: string;
+  aiSupported: boolean;
+  aiVersion: string;
   versions: PrismaJson.BookVersion[];
   numberOfVersions: number;
-  flags: PrismaJson.BookFlags;
   primaryName: string;
   otherNames: string[];
   secondaryName?: string | null;

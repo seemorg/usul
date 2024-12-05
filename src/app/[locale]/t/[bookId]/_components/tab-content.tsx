@@ -10,7 +10,7 @@ export const TabContent = ({
 }: TabProps & {
   tabId: keyof typeof tabIdToComponent;
 }) => {
-  const isSupported = props.bookResponse.book.flags.aiSupported;
+  const isSupported = props.bookResponse.book.aiSupported;
 
   if (
     (props.bookResponse.content.source === "external" || !isSupported) &&
