@@ -36,7 +36,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { value, setValue, results, setResults } = useSearchStore();
 
   const isVersionMismatch =
-    bookResponse.book.flags.aiVersion !== bookResponse.content.versionId;
+    bookResponse.book.aiVersion !== bookResponse.content.versionId;
 
   const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],
@@ -120,7 +120,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
       {isVersionMismatch && (
         <SidebarContainer className="my-4">
           <VersionAlert
-            versionId={bookResponse.book.flags.aiVersion!}
+            versionId={bookResponse.book.aiVersion!}
             versions={bookResponse.book.versions}
             feature="search"
           />
