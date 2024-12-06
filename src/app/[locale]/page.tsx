@@ -121,6 +121,7 @@ export default async function HomePage({
                   {
                     document: {
                       ...text,
+                      coverUrl: text.coverImageUrl,
                       primaryNames: text.primaryNameTranslations,
                     },
                   } as any
@@ -142,6 +143,7 @@ export default async function HomePage({
                   {
                     document: {
                       ...text,
+                      coverUrl: text.coverImageUrl,
                       primaryNames: text.primaryNameTranslations,
                     },
                   } as any
@@ -163,6 +165,7 @@ export default async function HomePage({
                   {
                     document: {
                       ...text,
+                      coverUrl: text.coverImageUrl,
                       primaryNames: text.primaryNameTranslations,
                     },
                   } as any

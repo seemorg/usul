@@ -27,16 +27,22 @@ const prepareParams = (params: ApiBookParams) => {
 };
 
 export const getBook = cache(async (slug: string, params: ApiBookParams) => {
-  const response = await fetch(
-    `${API_BASE}/book/${slug}${prepareParams(params)}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
+  try {
+    const response = await fetch(
+      `${API_BASE}/book/${slug}${prepareParams(params)}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
-    },
-  );
+    );
 
-  return response.json() as Promise<ApiBookResponse>;
+    if (!response.ok || response.status >= 300) return null;
+
+    return response.json() as Promise<ApiBookResponse>;
+  } catch (e) {
+    return null;
+  }
 });
 
 const prepareBookPageParams = (params: ApiBookPageParams) => {
@@ -53,16 +59,22 @@ const prepareBookPageParams = (params: ApiBookPageParams) => {
 
 export const getBookPage = cache(
   async (slug: string, params: ApiBookPageParams) => {
-    const response = await fetch(
-      `${API_BASE}/book/page/${slug}${prepareBookPageParams(params)}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
+    try {
+      const response = await fetch(
+        `${API_BASE}/book/page/${slug}${prepareBookPageParams(params)}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      },
-    );
+      );
 
-    return response.json() as Promise<ApiBookPageResponse>;
+      if (!response.ok || response.status >= 300) return null;
+
+      return response.json() as Promise<ApiBookPageResponse>;
+    } catch (e) {
+      return null;
+    }
   },
 );
 

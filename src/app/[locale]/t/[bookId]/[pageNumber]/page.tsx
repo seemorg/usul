@@ -3,13 +3,10 @@ import { notFound } from "next/navigation";
 import ReaderContent from "../_components/reader-content";
 import SidebarResizer from "../_components/sidebar/sidebar-resizer";
 import ReaderSidebar from "../_components/sidebar";
-import { MobileSidebarProvider } from "../_components/mobile-sidebar-provider";
-import { tabs } from "../_components/sidebar/tabs";
 import { getBookPage } from "@/lib/api";
 import ReaderNavigation from "../_components/reader-navigation";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import Paginator from "./paginator";
 
 export const generateMetadata = async ({
   params: { bookId, pageNumber },
@@ -38,7 +35,7 @@ export const generateMetadata = async ({
     index: parsedNumber - 1,
   });
 
-  if (!response.book) return {};
+  if (!response) return {};
 
   const book = response.book;
 
@@ -79,18 +76,15 @@ async function SidebarContent({
     notFound();
   }
 
-  let response: Awaited<ReturnType<typeof getBookPage>> | null = null;
-  try {
-    response = await getBookPage(bookId, {
-      locale: pathLocale,
-      versionId,
-      includeBook: true,
-      fields: ["pdf", "headings", "indices", "publication_details"],
-      index: parsedNumber - 1,
-    });
-  } catch (e) {}
+  const response = await getBookPage(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+    index: parsedNumber - 1,
+  });
 
-  if (response === null) {
+  if (!response) {
     notFound();
   }
 
@@ -105,26 +99,8 @@ async function SidebarContent({
     notFound();
   }
 
-  const mobile = tabs.map((tab) => {
-    return (
-      <MobileSidebarProvider
-        key={tab.id}
-        icon={<tab.icon className="h-5 w-5 dark:text-white" />}
-        tabId={tab.id}
-        bookSlug={bookId}
-        versionId={versionId}
-        bookResponse={response as any}
-      />
-    );
-  });
-
   return (
     <SidebarResizer
-      // secondNav={
-      //   <div className="relative flex w-full items-center justify-between bg-slate-50 dark:bg-card lg:hidden">
-      //     {mobile}
-      //   </div>
-      // }
       sidebar={
         <ReaderSidebar
           bookSlug={bookId}
@@ -140,7 +116,6 @@ async function SidebarContent({
         <ReaderContent
           response={response}
           currentPage={parsedNumber}
-          // slug={bookId}
           isSinglePage
         />
       </article>

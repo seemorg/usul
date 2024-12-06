@@ -118,6 +118,8 @@ const useFetchPage = (
         size: perPage,
       });
 
+      if (!response) return null;
+
       return (response.content as any).pages as DefaultPages;
     },
     enabled: !isSinglePage && !shouldUseDefaultPages,

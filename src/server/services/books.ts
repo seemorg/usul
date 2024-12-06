@@ -2,13 +2,10 @@ import { cache } from "react";
 
 import { db } from "@/server/db";
 
-import type { PathLocale } from "@/lib/locale/utils";
 import { getLocaleWhereClause } from "../db/localization";
-import { fetchTurathBook } from "./book-fetchers/turath";
-import { fetchOpenitiBook } from "./book-fetchers/openiti";
-import { log } from "next-axiom";
+import type { fetchTurathBook } from "./book-fetchers/turath";
+import type { fetchOpenitiBook } from "./book-fetchers/openiti";
 import { unstable_cache } from "next/cache";
-import { notFound } from "next/navigation";
 
 export type TurathBookResponse = {
   source: "turath";
@@ -57,83 +54,6 @@ const getBook = async (id: string, locale: string) => {
 
   return record;
 };
-
-type FetchBookResponse =
-  | TurathBookResponse
-  | OpenitiBookResponse
-  | ExternalBookResponse;
-
-export const fetchBook = cache(
-  async (
-    id: string,
-    locale: PathLocale = "en",
-    versionId?: string,
-  ): Promise<FetchBookResponse> => {
-    const record = await getBook(id, locale);
-
-    const allVersions = record.versions;
-
-    let version: PrismaJson.BookVersion | undefined;
-    if (versionId) {
-      version = allVersions.find((v) => v.value === versionId);
-    }
-
-    if (!version) {
-      // if the first 2 versions are turath, use the 2nd one
-      // otherwise, just use the first version
-      if (
-        allVersions[0]?.source === "turath" &&
-        allVersions[1]?.source === "turath"
-      ) {
-        version = allVersions[1];
-      } else {
-        version = allVersions[0];
-      }
-    }
-
-    if (!version) {
-      throw new Error("Book not found");
-    }
-
-    const baseResponse = {
-      // source: "external",
-      // versionId: "https://app.turath.com/book/735",
-      source: version.source,
-      versionId: version.value,
-      book: record,
-    };
-
-    if (version.source === "external") {
-      return {
-        ...baseResponse,
-      } as ExternalBookResponse;
-    }
-
-    if (version.source === "turath") {
-      const turathBook = await fetchTurathBook(version.value);
-      return {
-        ...baseResponse,
-        ...turathBook,
-      } as TurathBookResponse;
-    }
-
-    try {
-      const openitiBook = await fetchOpenitiBook({
-        authorId: record.author.id,
-        bookId: record.id,
-        versionId: version.value,
-      });
-      return {
-        ...baseResponse,
-        ...openitiBook,
-      } as OpenitiBookResponse;
-    } catch (e) {
-      log.error("book_not_found", { slug: id, versionId });
-      await log.flush();
-      throw notFound();
-    }
-  },
-);
 
 export const countAllBooks = cache(
   unstable_cache(
