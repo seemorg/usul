@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import ReaderContent from "./_components/reader-content";
 import SidebarResizer from "./_components/sidebar/sidebar-resizer";
 import ReaderSidebar from "./_components/sidebar";
-import { MobileSidebarProvider } from "./_components/mobile-sidebar-provider";
-import { tabs } from "./_components/sidebar/tabs";
 import { ArrowUpRightIcon, FileQuestionIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
@@ -40,7 +38,7 @@ export const generateMetadata = async ({
     size: READER_PAGINATION_SIZE,
   });
 
-  if (!response.book) return {};
+  if (!response) return {};
 
   const book = response.book;
 
@@ -77,18 +75,15 @@ export default async function SidebarContent({
   const pathLocale = await getPathLocale();
   const t = await getTranslations("reader");
 
-  let response: Awaited<ReturnType<typeof getBook>> | null = null;
-  try {
-    response = await getBook(bookId, {
-      locale: pathLocale,
-      versionId,
-      includeBook: true,
-      fields: ["pdf", "headings", "indices", "publication_details"],
-      size: READER_PAGINATION_SIZE,
-    });
-  } catch (e) {}
+  const response = await getBook(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+    size: READER_PAGINATION_SIZE,
+  });
 
-  if (response === null) {
+  if (!response) {
     notFound();
   }
 
@@ -101,26 +96,8 @@ export default async function SidebarContent({
     pages = null;
   }
 
-  const mobile = tabs.map((tab) => {
-    return (
-      <MobileSidebarProvider
-        key={tab.id}
-        icon={<tab.icon className="h-5 w-5 dark:text-white" />}
-        tabId={tab.id}
-        bookSlug={bookId}
-        versionId={versionId}
-        bookResponse={response as any}
-      />
-    );
-  });
-
   return (
     <SidebarResizer
-      // secondNav={
-      //   <div className="relative flex w-full items-center justify-between bg-slate-50 dark:bg-card lg:hidden">
-      //     {mobile}
-      //   </div>
-      // }
       sidebar={
         <ReaderSidebar
           bookSlug={bookId}

@@ -58,14 +58,18 @@ const BookSearchResult = ({
 
         <Link href={navigation.books.reader(document.slug)} prefetch={prefetch}>
           <div className={cn("overflow-hidden rounded-md bg-muted")}>
-            <CloudflareImage
-              src={`https://assets.usul.ai/covers/${document.slug}.png`}
-              alt={title}
-              width={320}
-              height={460}
-              className="aspect-[1600/2300] w-full object-cover"
-              placeholder="empty"
-            />
+            {document.coverUrl ? (
+              <CloudflareImage
+                src={document.coverUrl}
+                alt={title}
+                width={320}
+                height={460}
+                className="aspect-[1600/2300] w-full object-cover"
+                placeholder="empty"
+              />
+            ) : (
+              <div className="aspect-[1600/2300] w-full bg-muted" />
+            )}
           </div>
 
           <div className="mt-2">
