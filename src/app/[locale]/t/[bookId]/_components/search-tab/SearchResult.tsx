@@ -36,12 +36,18 @@ const SearchResult = ({
 
   const { isPending, mutateAsync, data } = useMutation({
     mutationKey: ["page"],
-    mutationFn: (args: { page: number; vol?: string }) => {
-      return getBookPageIndex(slug, {
+    mutationFn: async (args: { page: number; vol?: string }) => {
+      const result = await getBookPageIndex(slug, {
         page: args.page,
         volume: args.vol,
         versionId: versionId ?? undefined,
       });
+
+      if (!result || "type" in result) {
+        return null;
+      }
+
+      return result;
     },
   });
 
@@ -52,7 +58,7 @@ const SearchResult = ({
 
     const result = await mutateAsync({ page: page.page, vol: page.vol });
 
-    if (result.index === null) return;
+    if (!result || result.index === null) return;
 
     if (isSinglePage) {
       router.push(
@@ -75,7 +81,7 @@ const SearchResult = ({
       idx = data.index;
     } else {
       const result = await mutateAsync({ page: page.page, vol: page.vol });
-      if (result.index === null) return;
+      if (!result || result.index === null) return;
       idx = result.index;
     }
 

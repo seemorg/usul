@@ -12,6 +12,7 @@ import { READER_PAGINATION_SIZE } from "@/lib/constants";
 import ReaderNavigation from "./_components/reader-navigation";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { permanentRedirect } from "@/navigation";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -38,7 +39,7 @@ export const generateMetadata = async ({
     size: READER_PAGINATION_SIZE,
   });
 
-  if (!response) return {};
+  if (!response || "type" in response) return {};
 
   const book = response.book;
 
@@ -85,6 +86,11 @@ export default async function SidebarContent({
 
   if (!response) {
     notFound();
+  }
+
+  if ("type" in response) {
+    permanentRedirect(navigation.books.reader(response.primarySlug));
+    return;
   }
 
   let pages;

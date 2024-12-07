@@ -118,7 +118,7 @@ const useFetchPage = (
         size: perPage,
       });
 
-      if (!response) return null;
+      if (!response || "type" in response) return null;
 
       return (response.content as any).pages as DefaultPages;
     },

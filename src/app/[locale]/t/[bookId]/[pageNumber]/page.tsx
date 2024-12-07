@@ -7,6 +7,7 @@ import { getBookPage } from "@/lib/api";
 import ReaderNavigation from "../_components/reader-navigation";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { permanentRedirect } from "@/navigation";
 
 export const generateMetadata = async ({
   params: { bookId, pageNumber },
@@ -35,7 +36,7 @@ export const generateMetadata = async ({
     index: parsedNumber - 1,
   });
 
-  if (!response) return {};
+  if (!response || "type" in response) return {};
 
   const book = response.book;
 
@@ -86,6 +87,11 @@ async function SidebarContent({
 
   if (!response) {
     notFound();
+  }
+
+  if ("type" in response) {
+    permanentRedirect(navigation.books.reader(response.primarySlug));
+    return;
   }
 
   let page;
