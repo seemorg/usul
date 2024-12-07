@@ -81,6 +81,11 @@ type BookDetails = {
   }[];
 };
 
+export type AlternateSlugResponse = {
+  type: "alternate-slug";
+  primarySlug: string;
+};
+
 export type ApiBookResponse = {
   book: BookDetails;
   content: Turath | External | Openiti;

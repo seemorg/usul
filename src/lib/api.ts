@@ -5,11 +5,23 @@ import type {
   ApiBookPageResponse,
   ApiPageIndexParams,
   ApiPageIndexResponse,
+  AlternateSlugResponse,
 } from "@/types/ApiBookResponse";
 import { cache } from "react";
 
 const API_BASE = "https://api.usul.ai";
-// const API_BASE = "http://0.0.0.0:8080";
+
+const apiFetch = async <T>(url: string): Promise<T | null> => {
+  const response = await fetch(`${API_BASE}${url}`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (!response.ok || response.status >= 300) return null;
+
+  return response.json() as Promise<T>;
+};
 
 const prepareParams = (params: ApiBookParams) => {
   const queryParams = new URLSearchParams();
@@ -27,22 +39,9 @@ const prepareParams = (params: ApiBookParams) => {
 };
 
 export const getBook = cache(async (slug: string, params: ApiBookParams) => {
-  try {
-    const response = await fetch(
-      `${API_BASE}/book/${slug}${prepareParams(params)}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!response.ok || response.status >= 300) return null;
-
-    return response.json() as Promise<ApiBookResponse>;
-  } catch (e) {
-    return null;
-  }
+  return await apiFetch<ApiBookResponse | AlternateSlugResponse>(
+    `/book/${slug}${prepareParams(params)}`,
+  );
 });
 
 const prepareBookPageParams = (params: ApiBookPageParams) => {
@@ -59,22 +58,9 @@ const prepareBookPageParams = (params: ApiBookPageParams) => {
 
 export const getBookPage = cache(
   async (slug: string, params: ApiBookPageParams) => {
-    try {
-      const response = await fetch(
-        `${API_BASE}/book/page/${slug}${prepareBookPageParams(params)}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
-
-      if (!response.ok || response.status >= 300) return null;
-
-      return response.json() as Promise<ApiBookPageResponse>;
-    } catch (e) {
-      return null;
-    }
+    return await apiFetch<ApiBookPageResponse | AlternateSlugResponse>(
+      `/book/page/${slug}${prepareBookPageParams(params)}`,
+    );
   },
 );
 
@@ -90,15 +76,8 @@ const preparePageIndexParams = (params: ApiPageIndexParams) => {
 
 export const getBookPageIndex = cache(
   async (slug: string, params: ApiPageIndexParams) => {
-    const response = await fetch(
-      `${API_BASE}/book/page_index/${slug}${preparePageIndexParams(params)}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
+    return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>(
+      `/book/page_index/${slug}${preparePageIndexParams(params)}`,
     );
-
-    return response.json() as Promise<ApiPageIndexResponse>;
   },
 );

@@ -45,14 +45,20 @@ export default function SourceModal({
 
   const { isPending, data } = useQuery({
     queryKey: ["page", page.page, page.vol, versionId] as const,
-    queryFn: ({ queryKey }) => {
+    queryFn: async ({ queryKey }) => {
       const [, pg, vol, version] = queryKey;
 
-      return getBookPageIndex(slug, {
+      const result = await getBookPageIndex(slug, {
         page: pg,
         volume: vol,
         versionId: version ?? undefined,
       });
+
+      if (!result || "type" in result) {
+        return null;
+      }
+
+      return result;
     },
     enabled: isOpen && !!page,
   });
