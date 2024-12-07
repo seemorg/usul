@@ -59,7 +59,7 @@ export const generateMetadata = async ({
 
 async function SidebarContent({
   params: { bookId, pageNumber },
-  searchParams: { tab: _tabId, versionId },
+  searchParams,
 }: {
   params: {
     bookId: string;
@@ -70,6 +70,7 @@ async function SidebarContent({
     tab: string;
   };
 }) {
+  const { versionId } = searchParams;
   const pathLocale = await getPathLocale();
 
   const parsedNumber = Number(pageNumber);
@@ -90,7 +91,12 @@ async function SidebarContent({
   }
 
   if ("type" in response) {
-    permanentRedirect(navigation.books.reader(response.primarySlug));
+    const params = new URLSearchParams(searchParams);
+    const paramsString = params.size > 0 ? `?${params.toString()}` : "";
+
+    permanentRedirect(
+      `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
+    );
     return;
   }
 

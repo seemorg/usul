@@ -62,7 +62,7 @@ export const generateMetadata = async ({
 
 export default async function SidebarContent({
   params: { bookId },
-  searchParams: { tab: _tabId, versionId, view },
+  searchParams,
 }: {
   params: {
     bookId: string;
@@ -73,6 +73,8 @@ export default async function SidebarContent({
     view: "pdf" | "default";
   };
 }) {
+  const { versionId, view } = searchParams;
+
   const pathLocale = await getPathLocale();
   const t = await getTranslations("reader");
 
@@ -89,7 +91,12 @@ export default async function SidebarContent({
   }
 
   if ("type" in response) {
-    permanentRedirect(navigation.books.reader(response.primarySlug));
+    const params = new URLSearchParams(searchParams);
+    const paramsString = params.size > 0 ? `?${params.toString()}` : "";
+
+    permanentRedirect(
+      `${navigation.books.reader(response.primarySlug)}${paramsString}`,
+    );
     return;
   }
 
