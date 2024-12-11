@@ -3,7 +3,7 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { versionToName } from "@/lib/version";
 import { usePathname, useRouter } from "@/navigation";
-import type { ApiBookResponse } from "@/types/ApiBookResponse";
+import type { ApiBookResponse } from "@/types/api/book";
 import { InfoIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
@@ -22,7 +22,7 @@ export const VersionAlert = ({
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const versionObj = versions.find((v) => v.value === versionId);
+  const versionObj = versions.find((v) => v.id === versionId);
 
   if (!versionObj) {
     return null;

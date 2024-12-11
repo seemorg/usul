@@ -1,21 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
-import { useState } from "react";
-import {
-  getLocaleFullName,
-  pathLocaleToAppLocale,
-  usePathLocale,
-} from "@/lib/locale/utils";
+// import { Button } from "@/components/ui/button";
+// import { useState } from "react";
+// import {
+//   getLocaleFullName,
+//   pathLocaleToAppLocale,
+//   usePathLocale,
+// } from "@/lib/locale/utils";
 
 export default function VideoModal() {
-  const pathLocale = usePathLocale();
-  const [activeLanguage, setActiveLanguage] = useState<"ar" | "en">(
-    pathLocale === "ar" ? "ar" : "en",
-  );
+  // const pathLocale = usePathLocale();
+  // const [activeLanguage, setActiveLanguage] = useState<"ar" | "en">(
+  //   pathLocale === "ar" ? "ar" : "en",
+  // );
 
   return (
     <>

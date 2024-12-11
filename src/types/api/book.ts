@@ -1,5 +1,7 @@
-import type { TurathBookResponse } from "@/server/services/books";
-import type { ParseResult } from "@openiti/markdown-parser";
+import type { ExternalContent } from "./content/external";
+import type { OpenitiContent } from "./content/openiti";
+import type { PdfContent } from "./content/pdf";
+import type { TurathContent } from "./content/turath";
 
 export type ApiBookParams = {
   fields?: ("indices" | "pdf" | "publication_details" | "headings")[];
@@ -24,29 +26,6 @@ export type ApiPageIndexParams = {
   volume?: string | number;
 };
 
-export type Turath = {
-  source: TurathBookResponse["source"];
-  versionId: TurathBookResponse["versionId"];
-  pages: TurathBookResponse["turathResponse"]["pages"];
-  pdf?: TurathBookResponse["turathResponse"]["pdf"];
-  publicationDetails?: TurathBookResponse["turathResponse"]["publicationDetails"];
-  headings?: TurathBookResponse["turathResponse"]["headings"];
-};
-
-export type External = {
-  source: "external";
-  versionId: string;
-};
-
-export type Openiti = {
-  source: "openiti";
-  versionId: string;
-  rawUrl: string;
-  pages: ParseResult["content"];
-  publicationDetails?: ParseResult["metadata"];
-  headings?: (ParseResult["chapters"][number] & { pageIndex?: number })[];
-};
-
 type BookDetails = {
   id: string;
   slug: string;
@@ -65,6 +44,8 @@ type BookDetails = {
   transliteration: string;
   aiSupported: boolean;
   aiVersion: string;
+  keywordSupported: boolean;
+  keywordVersion: string;
   versions: PrismaJson.BookVersion[];
   numberOfVersions: number;
   primaryName: string;
@@ -88,7 +69,7 @@ export type AlternateSlugResponse = {
 
 export type ApiBookResponse = {
   book: BookDetails;
-  content: Turath | External | Openiti;
+  content: TurathContent | ExternalContent | OpenitiContent | PdfContent;
   pagination: {
     startIndex: number;
     total: number;
@@ -98,7 +79,7 @@ export type ApiBookResponse = {
 
 export type ApiBookPageResponse = {
   book: BookDetails;
-  content: Turath | Openiti;
+  content: TurathContent | OpenitiContent;
   pagination: {
     startIndex: number;
     total: number;

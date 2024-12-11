@@ -36,7 +36,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { value, setValue, results, setResults } = useSearchStore();
 
   const isVersionMismatch =
-    bookResponse.book.aiVersion !== bookResponse.content.versionId;
+    bookResponse.book.aiVersion !== bookResponse.content.id;
 
   const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],

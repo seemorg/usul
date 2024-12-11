@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
-import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
+import { InfoIcon, SquarePenIcon } from "lucide-react";
 import { config } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
@@ -53,7 +53,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
   const isLoading = isPending;
 
   const isVersionMismatch =
-    bookResponse.book.aiVersion !== bookResponse.content.versionId;
+    bookResponse.book.aiVersion !== bookResponse.content.id;
 
   return (
     <div className="pb-2">

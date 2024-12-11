@@ -3,13 +3,16 @@
 import RenderBlock from "@/components/render-markdown";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getBook } from "@/lib/api";
-import type { Openiti, Turath } from "@/types/ApiBookResponse";
+import type { OpenitiContent } from "@/types/api/content/openiti";
+import type { TurathContent } from "@/types/api/content/turath";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { type PropsWithChildren, useMemo } from "react";
 
-type DefaultPages = NonNullable<Turath["pages"] | Openiti["pages"]>;
+type DefaultPages = NonNullable<
+  TurathContent["pages"] | OpenitiContent["pages"]
+>;
 
 const PageLabel = (props: PropsWithChildren) => (
   <p

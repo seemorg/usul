@@ -2,7 +2,7 @@
 
 import Container from "@/components/ui/container";
 import VersionSelector from "./version-selector";
-import type { ApiBookResponse } from "@/types/ApiBookResponse";
+import type { ApiBookResponse } from "@/types/api/book";
 import DownloadButton from "./download-button";
 import ViewTabs from "./view-tabs";
 import BookInfoHeader from "./book-info-header";
@@ -34,7 +34,7 @@ export default function ReaderNavigation({
     (typeof tabs)[number]["id"] | null
   >(null);
 
-  const versionId = bookResponse.content.versionId;
+  const versionId = bookResponse.content.id;
 
   const pdf =
     bookResponse.content.source === "turath"
@@ -61,12 +61,12 @@ export default function ReaderNavigation({
 
             <VersionSelector
               versions={bookResponse.book.versions}
-              versionId={bookResponse.content.versionId}
+              versionId={bookResponse.content.id}
             />
           </div>
 
           <div className="flex flex-1 justify-center">
-            <ViewTabs hasPdf={!!pdf?.finalUrl} />
+            <ViewTabs hasPdf={!!pdf && "fullBookUrl" in pdf} />
           </div>
 
           <div className="hidden flex-1 items-center gap-2 md:flex md:justify-end">

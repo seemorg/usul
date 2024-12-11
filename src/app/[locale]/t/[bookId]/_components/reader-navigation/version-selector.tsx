@@ -29,12 +29,12 @@ export default function VersionSelector({
 
   const [selectedVersion, setSelectedVersion] = useState(() => {
     const version = versionId
-      ? versions.find((v) => v.value === versionId)?.value ?? versions[0]?.value
-      : versions[0]?.value;
+      ? versions.find((v) => v.id === versionId)?.id ?? versions[0]?.id
+      : versions[0]?.id;
 
     return version;
   });
-  const selectedVersionObj = versions.find((v) => v.value === selectedVersion);
+  const selectedVersionObj = versions.find((v) => v.id === selectedVersion);
 
   const handleVersionChange = (newVersion: string) => {
     setSelectedVersion(newVersion);
@@ -71,7 +71,7 @@ export default function VersionSelector({
 
         <SelectContent>
           {versions.map((version, idx) => (
-            <SelectItem key={idx} value={version.value}>
+            <SelectItem key={idx} value={version.id}>
               {versionToName(version)}
             </SelectItem>
           ))}
