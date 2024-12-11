@@ -1,4 +1,4 @@
-interface PublicationDetails {
+interface _PublicationDetails {
   investigator?: string;
   publisher?: string;
   publisherLocation?: string;
@@ -10,6 +10,8 @@ type SplitsData = { start: number; end: number }[];
 
 declare global {
   namespace PrismaJson {
+    type PublicationDetails = _PublicationDetails;
+
     type BookVersion = (
       | {
           source: "openiti" | "turath" | "external";

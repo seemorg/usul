@@ -10,15 +10,14 @@ import { Separator } from "@/components/ui/separator";
 import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import type { ApiBookResponse } from "@/types/ApiBookResponse";
-import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
+import type { ApiBookResponse } from "@/types/api/book";
+import { ChevronDownIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 import { useBookDetailsStore } from "../../_stores/book-details";
 import Container from "@/components/ui/container";
-// import { useNavbarStore } from "@/stores/navbar";
 
 export default function BookInfoHeader({
   bookResponse,
@@ -63,18 +62,17 @@ export default function BookInfoHeader({
   );
 
   const bookContent = bookResponse.content;
-  const isExternal = bookContent.source === "external";
-  const publicationDetails = !isExternal ? bookContent.publicationDetails : {};
+  const publicationDetails = bookContent.publicationDetails;
 
   const renderPublicationDetails = () => {
     if (!publicationDetails) return null;
 
     const final: { title: string; text: string | React.ReactNode }[] = [];
 
-    if (publicationDetails.editor)
+    if (publicationDetails.investigator)
       final.push({
         title: t("reader.publication-details.editor"),
-        text: publicationDetails.editor,
+        text: publicationDetails.investigator,
       });
 
     if (publicationDetails.publisher)
@@ -83,26 +81,10 @@ export default function BookInfoHeader({
         text: publicationDetails.publisher,
       });
 
-    if (publicationDetails.printVersion)
+    if (publicationDetails.editionNumber)
       final.push({
         title: t("reader.publication-details.print-version"),
-        text: publicationDetails.printVersion,
-      });
-
-    if (publicationDetails.volumes)
-      final.push({
-        title: t("reader.publication-details.volumes"),
-        text: publicationDetails.volumes,
-      });
-
-    if (publicationDetails.pageNumbersMatchPrint !== undefined)
-      final.push({
-        title: t("reader.publication-details.page-numbers-match-print"),
-        text: publicationDetails.pageNumbersMatchPrint ? (
-          <CheckIcon className="size-4" />
-        ) : (
-          <XIcon className="size-4" />
-        ),
+        text: publicationDetails.editionNumber,
       });
 
     return final;

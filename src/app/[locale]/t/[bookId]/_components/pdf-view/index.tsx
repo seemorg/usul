@@ -1,6 +1,5 @@
 "use client";
 
-import type { TurathBookResponse } from "@/server/services/books";
 import type {
   Core,
   WebViewerInstance,
@@ -14,13 +13,14 @@ import { useTheme } from "next-themes";
 import { env } from "@/env";
 import { makePdfViewerButtons } from "./buttons";
 import { useNavbarStore } from "@/stores/navbar";
+import type { TurathContent } from "@/types/api/content/turath";
 
 const isInitializedByUrl = new Map<string, boolean>();
 
 export default function PdfView({
   pdf: pdfSource,
 }: {
-  pdf: TurathBookResponse["turathResponse"]["pdf"];
+  pdf: TurathContent["pdf"];
 }) {
   const { resolvedTheme = "light" } = useTheme();
   const viewerRef = useRef<HTMLDivElement>(null);
@@ -33,16 +33,18 @@ export default function PdfView({
 
   useEffect(() => {
     const initialize = async () => {
-      if (isInitializedByUrl.get(pdfSource.finalUrl!)) return;
+      if (!pdfSource || !("fullBookUrl" in pdfSource)) return;
 
-      isInitializedByUrl.set(pdfSource.finalUrl!, true);
+      if (isInitializedByUrl.get(pdfSource.fullBookUrl)) return;
+
+      isInitializedByUrl.set(pdfSource.fullBookUrl, true);
       setIsLoading(true);
       setChapters([]);
 
       const instance: WebViewerInstance = await WebViewer(
         {
           path: "/pdf-express", // point to where the files you copied are served from
-          initialDoc: pdfSource.finalUrl!, // path to your document
+          initialDoc: pdfSource.fullBookUrl, // path to your document
           enableAnnotations: false,
           disabledElements: [
             // "selectToolButton",
@@ -89,7 +91,7 @@ export default function PdfView({
     if (typeof window !== "undefined") {
       initialize();
     }
-  }, [pdfSource.finalUrl]);
+  }, [pdfSource]);
 
   // when theme changes, update the theme of the viewer
   useEffect(() => {

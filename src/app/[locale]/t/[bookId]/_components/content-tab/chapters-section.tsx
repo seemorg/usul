@@ -3,14 +3,16 @@ import PageNavigator from "./page-navigator";
 import { useMobileSidebar } from "../mobile-sidebar-provider";
 import React, { useMemo } from "react";
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
-import type { Openiti, Turath } from "@/types/ApiBookResponse";
+import type { OpenitiContent } from "@/types/api/content/openiti";
+import type { TurathContent } from "@/types/api/content/turath";
+
 import { type TreeDataItem, TreeView } from "@/components/tree-view";
 import { useRouter } from "@/navigation";
 import { useParams, useSearchParams } from "next/navigation";
 import { navigation } from "@/lib/urls";
 
-type OpenitiChapter = NonNullable<Openiti["headings"]>[number];
-type TurathChapter = NonNullable<Turath["headings"]>[number];
+type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
+type TurathChapter = NonNullable<TurathContent["headings"]>[number];
 
 type BookDataItem = TreeDataItem & {
   level: number;
@@ -78,7 +80,7 @@ export default function ChaptersList({
   getVirtuosoScrollProps,
   isSinglePage,
 }: {
-  headers: NonNullable<Openiti["headings"] | Turath["headings"]>;
+  headers: NonNullable<OpenitiContent["headings"] | TurathContent["headings"]>;
   pagesRange: UsePageNavigationReturnType["pagesRange"];
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
   isSinglePage?: boolean;

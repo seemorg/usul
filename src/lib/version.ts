@@ -23,6 +23,10 @@ export const versionToName = (version: PrismaJson.BookVersion) => {
     return "External";
   }
 
+  if (version.source === "pdf") {
+    return "PDF";
+  }
+
   // openiti version handling
   const parts = version.value.split(".");
   const name = parts[parts.length - 1]?.split("-")[0]?.replace("Vols", "");

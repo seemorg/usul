@@ -1,6 +1,5 @@
 "use client";
 
-import { Separator } from "@/components/ui/separator";
 import SidebarContainer from "../sidebar/sidebar-container";
 import PageNavigator from "./page-navigator";
 import ChaptersList from "./chapters-section";
@@ -13,22 +12,22 @@ function ContentTab({ bookResponse, isSinglePage }: TabProps) {
   const { pagesRange, getVirtuosoScrollProps } =
     usePageNavigation(bookResponse);
 
-  const view = (useSearchParams().get("view") ?? "default") as
+  const _view = (useSearchParams().get("view") ?? "default") as
     | "pdf"
     | "default";
+  const view = bookResponse.content.source === "pdf" ? "pdf" : _view;
 
   const bookContent = bookResponse.content;
 
   const isExternal = bookContent.source === "external";
-
-  const headings = !isExternal ? bookContent.headings : [];
-
   if (isExternal) return null;
 
   let content;
   if (view === "pdf") {
     content = <PdfChaptersList />;
   } else {
+    const headings = "headings" in bookContent ? bookContent.headings : [];
+
     content = (
       <>
         {headings && headings.length > 0 && !isSinglePage ? (

@@ -1,4 +1,4 @@
-import type { ApiBookResponse } from "@/types/ApiBookResponse";
+import type { ApiBookResponse } from "@/types/api/book";
 
 import {
   MagnifyingGlassIcon,

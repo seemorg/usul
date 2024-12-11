@@ -5,7 +5,7 @@ import { Virtualizer } from "virtua";
 import React, { forwardRef, memo, useMemo, useRef } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import Footer from "@/app/_components/footer";
-import type { ApiBookResponse } from "@/types/ApiBookResponse";
+import type { ApiBookResponse } from "@/types/api/book";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";

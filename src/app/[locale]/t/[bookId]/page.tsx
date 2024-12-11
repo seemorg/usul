@@ -100,13 +100,45 @@ export default async function SidebarContent({
     return;
   }
 
-  let pages;
-  if (response.content.source === "turath") {
-    pages = response.content.pages;
-  } else if (response.content.source === "openiti") {
-    pages = response.content;
+  let readerContent;
+
+  if (response.content.source === "external") {
+    readerContent = (
+      <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16">
+        <div className="flex flex-col items-center justify-center py-20">
+          <FileQuestionIcon className="h-16 w-16 text-muted-foreground" />
+
+          <h3 className="mt-4 text-xl font-medium">
+            {t("external-book.title")}
+          </h3>
+
+          <p className="mt-2 text-secondary-foreground">
+            {t("external-book.description")}
+          </p>
+
+          <Button asChild variant="default" className="mt-6 gap-2">
+            <a href={response.content.url}>
+              {t("external-book.navigate")}
+              <ArrowUpRightIcon className="h-4 w-4" />
+            </a>
+          </Button>
+        </div>
+      </div>
+    );
+  } else if (response.content.source === "pdf") {
+    readerContent = (
+      <article>
+        <h1>Coming Soon</h1>
+      </article>
+    );
+  } else if (view === "pdf" && "pdf" in response.content) {
+    readerContent = <PdfView pdf={response.content.pdf} />;
   } else {
-    pages = null;
+    readerContent = (
+      <article>
+        <ReaderContent response={response} />
+      </article>
+    );
   }
 
   return (
@@ -121,38 +153,7 @@ export default async function SidebarContent({
     >
       <ReaderNavigation bookResponse={response} />
 
-      {pages ? (
-        view === "pdf" &&
-        response.content.source === "turath" &&
-        response.content.pdf ? (
-          <PdfView pdf={response.content.pdf} />
-        ) : (
-          <article>
-            <ReaderContent response={response} />
-          </article>
-        )
-      ) : (
-        <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16">
-          <div className="flex flex-col items-center justify-center py-20">
-            <FileQuestionIcon className="h-16 w-16 text-muted-foreground" />
-
-            <h3 className="mt-4 text-xl font-medium">
-              {t("external-book.title")}
-            </h3>
-
-            <p className="mt-2 text-secondary-foreground">
-              {t("external-book.description")}
-            </p>
-
-            <Button asChild variant="default" className="mt-6 gap-2">
-              <a href={response.content.versionId}>
-                {t("external-book.navigate")}
-                <ArrowUpRightIcon className="h-4 w-4" />
-              </a>
-            </Button>
-          </div>
-        </div>
-      )}
+      {readerContent}
     </SidebarResizer>
   );
 }

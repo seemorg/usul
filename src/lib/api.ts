@@ -6,7 +6,7 @@ import type {
   ApiPageIndexParams,
   ApiPageIndexResponse,
   AlternateSlugResponse,
-} from "@/types/ApiBookResponse";
+} from "@/types/api/book";
 import { cache } from "react";
 
 const API_BASE = "https://api.usul.ai";
