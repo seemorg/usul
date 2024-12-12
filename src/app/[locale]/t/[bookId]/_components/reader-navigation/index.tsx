@@ -19,6 +19,18 @@ import { tabs } from "../sidebar/tabs";
 import { useState } from "react";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
 
+const getPdfUrl = (bookResponse: ApiBookResponse) => {
+  if (bookResponse.content.source === "pdf") {
+    return bookResponse.content.url;
+  }
+
+  if ("pdfUrl" in bookResponse.content) {
+    return bookResponse.content.pdfUrl;
+  }
+
+  return undefined;
+};
+
 export default function ReaderNavigation({
   bookResponse,
   isSinglePage,
@@ -35,9 +47,7 @@ export default function ReaderNavigation({
   >(null);
 
   const versionId = bookResponse.content.id;
-
-  const pdf =
-    "pdfUrl" in bookResponse.content ? bookResponse.content.pdfUrl : undefined;
+  const pdf = getPdfUrl(bookResponse);
 
   return (
     <>
@@ -64,21 +74,30 @@ export default function ReaderNavigation({
           </div>
 
           <div className="flex flex-1 justify-center">
-            <ViewTabs hasPdf={!!pdf} />
+            <ViewTabs
+              hasPdf={!!pdf}
+              contentSource={bookResponse.content.source}
+            />
           </div>
 
           <div className="hidden flex-1 items-center gap-2 md:flex md:justify-end">
             <DownloadButton pdf={pdf} slug={bookSlug} />
 
-            <ReaderNavigationButton
-              tooltip={t(isSinglePage ? "all-pages" : "single-page")}
-              tooltipProps={{ side: "bottom" }}
-              asChild
-            >
-              <Link href={bookUrl}>
+            {bookResponse.content.source === "pdf" ||
+            bookResponse.content.source === "external" ? (
+              <ReaderNavigationButton disabled>
                 <SinglePageIcon />
+              </ReaderNavigationButton>
+            ) : (
+              <Link href={bookUrl}>
+                <ReaderNavigationButton
+                  tooltip={t(isSinglePage ? "all-pages" : "single-page")}
+                  tooltipProps={{ side: "bottom" }}
+                >
+                  <SinglePageIcon />
+                </ReaderNavigationButton>
               </Link>
-            </ReaderNavigationButton>
+            )}
           </div>
 
           <div className="flex flex-row-reverse items-center gap-1 md:hidden">
