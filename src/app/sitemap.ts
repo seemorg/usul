@@ -27,54 +27,63 @@ const generateEntryFromUrl = (url: string) => ({
   },
 });
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const isProd = env.VERCEL_ENV === "production";
+const isProd = env.VERCEL_ENV === "production";
 
+export function generateSitemaps() {
+  // TODO: for now we have only 2 sitemaps, change that later to be dynamic
+  return [{ id: 1 }, { id: 2 }] as const;
+}
+
+export default async function sitemap(
+  params: ReturnType<typeof generateSitemaps>[number],
+): Promise<MetadataRoute.Sitemap> {
   if (!isProd) return [];
 
-  const regions = await db.region.findMany({
-    select: { slug: true },
-  });
+  if (params.id === 1) {
+    const regions = await db.region.findMany({
+      select: { slug: true },
+    });
+    const centuries = await findAllYearRanges();
+    const authors = await db.author.findMany({
+      select: { slug: true },
+    });
+    const genres = await db.genre.findMany({
+      select: { slug: true },
+    });
 
-  const centuries = await findAllYearRanges();
+    return [
+      // home page
+      generateEntryFromUrl("/"),
+      // about page
+      generateEntryFromUrl("/about"),
+      // team page
+      generateEntryFromUrl("/team"),
+      // root entities
+      ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
+      ...authors.map((author) =>
+        generateEntryFromUrl(navigation.authors.bySlug(author.slug)),
+      ),
+      ...centuries.map((century) =>
+        generateEntryFromUrl(
+          navigation.centuries.byNumber(century.centuryNumber),
+        ),
+      ),
+      ...regions.map((region) =>
+        generateEntryFromUrl(navigation.regions.bySlug(region.slug)),
+      ),
+      ...genres.map((genre) =>
+        generateEntryFromUrl(navigation.genres.bySlug(genre.slug)),
+      ),
+    ];
+  }
 
   const books = await db.book.findMany({
     select: { slug: true },
   });
 
-  const authors = await db.author.findMany({
-    select: { slug: true },
-  });
-
-  const genres = await db.genre.findMany({
-    select: { slug: true },
-  });
-
   return [
-    // home page
-    generateEntryFromUrl("/"),
-    // about page
-    generateEntryFromUrl("/about"),
-    // team page
-    generateEntryFromUrl("/team"),
-    // root entities
-    ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
     ...books.map((book) =>
       generateEntryFromUrl(navigation.books.reader(book.slug)),
-    ),
-    ...authors.map((author) =>
-      generateEntryFromUrl(navigation.authors.bySlug(author.slug)),
-    ),
-    ...centuries.map((century) =>
-      generateEntryFromUrl(
-        navigation.centuries.byNumber(century.centuryNumber),
-      ),
-    ),
-    ...regions.map((region) =>
-      generateEntryFromUrl(navigation.regions.bySlug(region.slug)),
-    ),
-    ...genres.map((genre) =>
-      generateEntryFromUrl(navigation.genres.bySlug(genre.slug)),
     ),
   ];
 }
