@@ -27,8 +27,6 @@ const generateEntryFromUrl = (url: string) => ({
   },
 });
 
-const isProd = env.VERCEL_ENV === "production";
-
 export function generateSitemaps() {
   // TODO: for now we have only 2 sitemaps, change that later to be dynamic
   return [{ id: 1 }, { id: 2 }] as const;
@@ -37,6 +35,7 @@ export function generateSitemaps() {
 export default async function sitemap(
   params: ReturnType<typeof generateSitemaps>[number],
 ): Promise<MetadataRoute.Sitemap> {
+  const isProd = env.VERCEL_ENV === "production";
   if (!isProd) return [];
 
   if (params.id === 1) {
