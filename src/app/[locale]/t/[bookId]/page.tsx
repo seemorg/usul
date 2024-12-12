@@ -131,8 +131,12 @@ export default async function SidebarContent({
         <h1>Coming Soon</h1>
       </article>
     );
-  } else if (view === "pdf" && "pdf" in response.content) {
-    readerContent = <PdfView pdf={response.content.pdf} />;
+  } else if (view === "pdf") {
+    if (!("pdfUrl" in response.content) || !response.content.pdfUrl) {
+      notFound();
+    }
+
+    readerContent = <PdfView pdf={response.content.pdfUrl} />;
   } else {
     readerContent = (
       <article>

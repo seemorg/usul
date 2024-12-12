@@ -37,9 +37,7 @@ export default function ReaderNavigation({
   const versionId = bookResponse.content.id;
 
   const pdf =
-    bookResponse.content.source === "turath"
-      ? bookResponse.content.pdf
-      : undefined;
+    "pdfUrl" in bookResponse.content ? bookResponse.content.pdfUrl : undefined;
 
   return (
     <>
@@ -66,7 +64,7 @@ export default function ReaderNavigation({
           </div>
 
           <div className="flex flex-1 justify-center">
-            <ViewTabs hasPdf={!!pdf && "fullBookUrl" in pdf} />
+            <ViewTabs hasPdf={!!pdf} />
           </div>
 
           <div className="hidden flex-1 items-center gap-2 md:flex md:justify-end">
