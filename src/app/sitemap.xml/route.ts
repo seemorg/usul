@@ -1,5 +1,5 @@
 import { relativeUrl } from "@/lib/sitemap";
-import { generateSitemaps } from "../sitemap/sitemap";
+import { generateSitemaps } from "../sitemap";
 import { env } from "@/env";
 
 export const revalidate = 60 * 60 * 24 * 7; // cache for 7 days
