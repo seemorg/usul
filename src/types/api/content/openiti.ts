@@ -1,11 +1,9 @@
 import type { ParseResult } from "@openiti/markdown-parser";
+import type { BaseContentWithPdf } from "./base";
 
-export type OpenitiContent = {
-  id: string;
-  version: string;
+export type OpenitiContent = BaseContentWithPdf & {
   source: "openiti";
+  version: string;
   pages: ParseResult["content"];
-  publicationDetails?: PrismaJson.PublicationDetails;
   headings?: (ParseResult["chapters"][number] & { pageIndex?: number })[];
-  pdfUrl?: string;
 };

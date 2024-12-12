@@ -1,19 +1,10 @@
+import type { BaseContentWithPdf } from "./base";
+
 interface TurathPage {
   text: string;
   vol: string;
   page: number;
 }
-
-type TurathPdf =
-  | {
-      fullBookUrl: string;
-      sizeInMb?: string;
-    }
-  | {
-      volume: string;
-      url: string;
-    }[]
-  | null;
 
 type TurathHeading = {
   page:
@@ -27,13 +18,9 @@ type TurathHeading = {
   pageIndex?: number | undefined;
 };
 
-export type TurathContent = {
-  id: string;
-  version: string;
+export type TurathContent = BaseContentWithPdf & {
   source: "turath";
+  version: string;
   pages: TurathPage[];
-  pdf?: TurathPdf;
-  publicationDetails?: PrismaJson.PublicationDetails;
   headings?: TurathHeading[];
-  pdfUrl?: string;
 };

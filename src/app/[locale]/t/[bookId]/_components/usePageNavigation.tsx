@@ -2,9 +2,8 @@ import type { TabProps } from "./sidebar/tabs";
 
 export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
   const source = bookResponse.content.source;
-  const total = bookResponse.pagination.total;
 
-  if (source === "external") {
+  if (source === "external" || source === "pdf") {
     return {
       pagesRange: {
         start: 0,
@@ -17,6 +16,8 @@ export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
       }),
     };
   }
+
+  const total = bookResponse.pagination.total;
 
   const firstPage = 1;
   const lastPage = total;

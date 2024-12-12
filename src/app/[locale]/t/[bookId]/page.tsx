@@ -47,7 +47,7 @@ export const generateMetadata = async ({
     title: book.primaryName,
     pagePath: navigation.books.reader(bookId),
     keywords: [
-      ...book.otherNames,
+      ...(book.otherNames ? book.otherNames : []),
       ...(book.secondaryName ? [book.secondaryName] : []),
       ...(book.secondaryOtherNames ?? []),
     ],
@@ -90,6 +90,7 @@ export default async function SidebarContent({
     notFound();
   }
 
+  // if it's an alternate slug, redirect to the primary slug
   if ("type" in response) {
     const params = new URLSearchParams(searchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
@@ -126,13 +127,13 @@ export default async function SidebarContent({
       </div>
     );
   } else if (response.content.source === "pdf") {
-    readerContent = (
-      <article>
-        <h1>Coming Soon</h1>
-      </article>
-    );
-  } else if (view === "pdf" && "pdf" in response.content) {
-    readerContent = <PdfView pdf={response.content.pdf} />;
+    readerContent = <PdfView pdf={response.content.url} />;
+  } else if (view === "pdf") {
+    if (!("pdfUrl" in response.content) || !response.content.pdfUrl) {
+      notFound();
+    }
+
+    readerContent = <PdfView pdf={response.content.pdfUrl} />;
   } else {
     readerContent = (
       <article>

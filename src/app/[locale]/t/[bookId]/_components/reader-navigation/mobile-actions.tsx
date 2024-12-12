@@ -13,14 +13,13 @@ import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
 import { useTranslations } from "next-intl";
 import { Link } from "@/navigation";
-import type { TurathContent } from "@/types/api/content/turath";
 
 export default function ReaderNavigationMobileActions({
   pdf,
   slug,
   isSinglePage,
 }: {
-  pdf?: TurathContent["pdf"];
+  pdf?: string;
   slug: string;
   isSinglePage?: boolean;
 }) {
@@ -28,7 +27,7 @@ export default function ReaderNavigationMobileActions({
   const t = useTranslations("reader");
   const bookUrl = useGetBookUrl(isSinglePage ? undefined : 1);
 
-  const hasPdfView = !!pdf && "fullBookUrl" in pdf;
+  const hasPdfView = !!pdf;
 
   return (
     <DropdownMenu>
@@ -62,11 +61,7 @@ export default function ReaderNavigationMobileActions({
         <DropdownMenuGroup>
           {hasPdfView ? (
             <DropdownMenuItem asChild className="gap-2">
-              <a
-                href={pdf.fullBookUrl}
-                download={slug + ".pdf"}
-                target="_blank"
-              >
+              <a href={pdf} download={slug + ".pdf"} target="_blank">
                 <ArrowDownTrayIcon className="h-4 w-4" />
                 <span>{t("download-pdf")}</span>
               </a>
