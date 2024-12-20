@@ -8,6 +8,7 @@ import ReaderNavigation from "../_components/reader-navigation";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
+import { BookDetailsProvider } from "../_contexts/book-details.context";
 
 export const generateMetadata = async ({
   params: { bookId, pageNumber },
@@ -112,27 +113,19 @@ async function SidebarContent({
   }
 
   return (
-    <SidebarResizer
-      sidebar={
-        <ReaderSidebar
-          bookSlug={bookId}
-          versionId={versionId}
-          bookResponse={response}
-          isSinglePage
-        />
-      }
-    >
-      <ReaderNavigation bookResponse={response} isSinglePage />
+    <BookDetailsProvider bookResponse={response}>
+      <SidebarResizer
+        sidebar={
+          <ReaderSidebar bookSlug={bookId} versionId={versionId} isSinglePage />
+        }
+      >
+        <ReaderNavigation isSinglePage />
 
-      <article>
-        <ReaderContent
-          response={response}
-          currentPage={parsedNumber}
-          isSinglePage
-        />
-      </article>
-    </SidebarResizer>
+        <article>
+          <ReaderContent currentPage={parsedNumber} isSinglePage />
+        </article>
+      </SidebarResizer>
+    </BookDetailsProvider>
   );
 }
-
 export default SidebarContent;

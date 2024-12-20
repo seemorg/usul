@@ -22,7 +22,6 @@ import { searchBook } from "@/server/services/chat";
 import SearchResult from "./SearchResult";
 import { useTranslations } from "next-intl";
 // import ComingSoonModal from "@/components/coming-soon-modal";
-import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 
 import { VersionAlert } from "../version-alert";
@@ -33,8 +32,10 @@ import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { SparklesIcon } from "@heroicons/react/24/outline";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
-export default function SearchTab({ bookResponse }: TabProps) {
+export default function SearchTab() {
+  const { bookResponse } = useBookDetails();
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const { value, setValue, results, setResults } = useSearchStore();
@@ -149,12 +150,14 @@ export default function SearchTab({ bookResponse }: TabProps) {
 
           <div className="flex items-center gap-3">
             <Label className="flex items-center gap-1" htmlFor="ai-search">
-              <SparklesIcon className="size-4" /> AI
+              <SparklesIcon className="size-4" /> Semantic
             </Label>
             <Switch
               id="ai-search"
               checked={type === "semantic"}
-              onCheckedChange={() => setType("semantic")}
+              onCheckedChange={(checked) =>
+                setType(checked ? "semantic" : "keyword")
+              }
             />
           </div>
         </div>

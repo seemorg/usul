@@ -1,5 +1,3 @@
-import type { ApiBookResponse } from "@/types/api/book";
-
 import {
   MagnifyingGlassIcon,
   ListBulletIcon,
@@ -7,7 +5,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 export type TabProps = {
-  bookResponse: ApiBookResponse;
   bookSlug: string;
   versionId?: string;
   isSinglePage?: boolean;

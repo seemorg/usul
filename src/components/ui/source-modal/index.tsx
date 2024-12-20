@@ -24,6 +24,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { ScrollArea } from "../scroll-area";
 import { useBookShareUrl } from "@/lib/share";
 import Spinner from "../spinner";
+import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
 
 export default function SourceModal({
   source,
@@ -32,6 +33,7 @@ export default function SourceModal({
   source: SemanticSearchBookNode;
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
+  const { bookResponse } = useBookDetails();
   const [isOpen, setIsOpen] = useState(false);
   const slug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId");
@@ -40,7 +42,12 @@ export default function SourceModal({
   const t = useTranslations();
   const virtuosoRef = useReaderVirtuoso();
 
-  const chapter = source.metadata.chapters[0];
+  const chapterIndex = source.metadata.chapters[0];
+  const chapter =
+    chapterIndex !== undefined && "headings" in bookResponse.content
+      ? bookResponse.content.headings?.[chapterIndex]?.title
+      : undefined;
+
   const page = source.metadata.pages[0]!;
 
   const { isPending, data } = useQuery({
