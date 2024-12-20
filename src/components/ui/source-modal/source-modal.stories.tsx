@@ -21,7 +21,6 @@ export const Basic: Story = {
     <SourceModal
       source={{
         metadata: {
-          bookSlug: "sahih",
           chapters: ["Chapter 1"],
           pages: [{ vol: "1", page: 1 }],
         },
