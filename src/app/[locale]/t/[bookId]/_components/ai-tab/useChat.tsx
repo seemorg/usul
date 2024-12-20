@@ -72,11 +72,7 @@ const handleEventSource = async (
   });
 };
 
-export default function useChat({
-  bookSlug,
-}: {
-  bookSlug: string;
-}): UseChatResult {
+export default function useChat({ bookId }: { bookId: string }): UseChatResult {
   const {
     messages,
     setMessages,
@@ -100,7 +96,7 @@ export default function useChat({
 
     try {
       const { eventSource, messageId } = await chatWithBook({
-        bookSlug,
+        bookId,
         question: q,
         messages,
       });
@@ -119,7 +115,7 @@ export default function useChat({
 
     setIsPending(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookSlug, question]);
+  }, [bookId, question]);
 
   const regenerateResponse = useCallback(
     async (messageIndex?: number) => {
@@ -149,7 +145,7 @@ export default function useChat({
 
       try {
         const { eventSource, messageId } = await chatWithBook({
-          bookSlug,
+          bookId,
           question: question.text,
           messages: previousMessages,
         });
@@ -167,7 +163,7 @@ export default function useChat({
 
       setIsPending(false);
     },
-    [bookSlug, messages],
+    [bookId, messages],
   );
 
   return {

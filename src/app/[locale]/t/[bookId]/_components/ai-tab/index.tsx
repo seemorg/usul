@@ -18,7 +18,7 @@ import SidebarContainer from "../sidebar/sidebar-container";
 import { Badge } from "@/components/ui/badge";
 import { OpenAILogo } from "@/components/Icons";
 
-export default function AITab({ bookSlug, bookResponse }: TabProps) {
+export default function AITab({ bookResponse }: TabProps) {
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const {
@@ -38,7 +38,7 @@ export default function AITab({ bookSlug, bookResponse }: TabProps) {
     messages,
     clearChat,
     regenerateResponse,
-  } = useChat({ bookSlug: bookSlug });
+  } = useChat({ bookId: bookResponse.book.id });
 
   const onSubmit = useCallback(async () => {
     await sendQuestion();

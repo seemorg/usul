@@ -29,14 +29,27 @@ import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
 import { ChevronRightIcon } from "lucide-react";
 import { useSearchStore } from "../../_stores/search";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
+import { SparklesIcon } from "@heroicons/react/24/outline";
 
 export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const { value, setValue, results, setResults } = useSearchStore();
+  const [type, setType] = useState<"semantic" | "keyword">("keyword");
 
   const isVersionMismatch =
-    bookResponse.book.aiVersion !== bookResponse.content.id;
+    type === "semantic"
+      ? bookResponse.book.aiVersion !== bookResponse.content.id
+      : bookResponse.book.keywordVersion !== bookResponse.content.id;
+
+  const bookContent = bookResponse.content;
+  const isExternal =
+    bookContent.source === "external" || bookContent.source === "pdf";
+  const headings = !isExternal ? bookContent.headings : [];
 
   const { mutateAsync, isPending, error } = useMutation<
     SemanticSearchBookNode[],
@@ -46,7 +59,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
     mutationKey: ["search"],
     mutationFn: async (q: string) => {
       if (!q) return [];
-      return await searchBook(bookSlug, q);
+      return await searchBook(bookSlug, q, type);
     },
   });
 
@@ -109,6 +122,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
             key={idx}
             result={r}
             getVirtuosoScrollProps={getVirtuosoScrollProps}
+            headings={headings}
           />
         ))}
       </div>
@@ -128,9 +142,22 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
       )}
 
       <SidebarContainer>
-        <div className="flex gap-2">
-          {t("common.search")}{" "}
-          <Badge variant="tertiary">{t("common.beta")}</Badge>
+        <div className="flex justify-between">
+          <div className="flex gap-2">
+            {t("common.search")}{" "}
+            <Badge variant="tertiary">{t("common.beta")}</Badge>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Label className="flex items-center gap-1" htmlFor="ai-search">
+              <SparklesIcon className="size-4" /> AI
+            </Label>
+            <Switch
+              id="ai-search"
+              checked={type === "semantic"}
+              onCheckedChange={() => setType("semantic")}
+            />
+          </div>
         </div>
 
         <div className="mt-5 flex items-center gap-2">
