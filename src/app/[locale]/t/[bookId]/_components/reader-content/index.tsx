@@ -5,36 +5,35 @@ import { Virtualizer } from "virtua";
 import React, { forwardRef, memo, useMemo, useRef } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import Footer from "@/app/_components/footer";
-import type { ApiBookResponse } from "@/types/api/book";
 import ReaderPage from "./reader-page";
 import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";
 import Paginator from "../../[pageNumber]/paginator";
 import { HighlightPopover } from "@/components/ui/highlight-popover";
 import ReaderHighlightPopover from "./highlight-popover";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
 export default function ReaderContent({
-  response,
   isSinglePage,
   currentPage,
 }: {
-  response: ApiBookResponse;
   isSinglePage?: boolean;
   currentPage?: number;
 }) {
+  const { bookResponse } = useBookDetails();
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
   const containerEl = useRef<HTMLElement>(null);
 
   const defaultPages = useMemo(() => {
-    if (response.content.source === "turath") {
-      return response.content.pages;
-    } else if (response.content.source === "openiti") {
-      return response.content.pages;
+    if (bookResponse.content.source === "turath") {
+      return bookResponse.content.pages;
+    } else if (bookResponse.content.source === "openiti") {
+      return bookResponse.content.pages;
     } else {
       return [];
     }
-  }, [response]);
+  }, [bookResponse]);
 
   return (
     <div
@@ -50,14 +49,14 @@ export default function ReaderContent({
     >
       {isSinglePage && (
         <Paginator
-          totalPages={response.pagination.total}
+          totalPages={bookResponse.pagination.total}
           currentPage={currentPage!}
-          slug={response.book.slug}
+          slug={bookResponse.book.slug}
         />
       )}
 
       <Virtualizer
-        count={isSinglePage ? 1 : response.pagination.total}
+        count={isSinglePage ? 1 : bookResponse.pagination.total}
         ssrCount={
           isSinglePage
             ? 1
@@ -75,14 +74,14 @@ export default function ReaderContent({
           />
         ))}
       >
-        {new Array(isSinglePage ? 1 : response.pagination.total)
+        {new Array(isSinglePage ? 1 : bookResponse.pagination.total)
           .fill(null)
           .map((_, index) => (
             <Page
               key={index}
               index={isSinglePage ? currentPage! - 1 : index}
               defaultPages={defaultPages}
-              perPage={response.pagination.size}
+              perPage={bookResponse.pagination.size}
             />
           ))}
       </Virtualizer>

@@ -51,7 +51,7 @@
     "sources": "Sources",
     "error": "Something went wrong. <retry>Try again</retry> or <contact>contact us</contact> if it persists.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Pg {page, number, nogroup}"
   },
   "edition": "Edition",
   "select-edition": "Select an edition",

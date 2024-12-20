@@ -13,6 +13,7 @@ import ReaderNavigation from "./_components/reader-navigation";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
+import { BookDetailsProvider } from "./_contexts/book-details.context";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -137,24 +138,20 @@ export default async function SidebarContent({
   } else {
     readerContent = (
       <article>
-        <ReaderContent response={response} />
+        <ReaderContent />
       </article>
     );
   }
 
   return (
-    <SidebarResizer
-      sidebar={
-        <ReaderSidebar
-          bookSlug={bookId}
-          versionId={versionId}
-          bookResponse={response}
-        />
-      }
-    >
-      <ReaderNavigation bookResponse={response} />
+    <BookDetailsProvider bookResponse={response}>
+      <SidebarResizer
+        sidebar={<ReaderSidebar bookSlug={bookId} versionId={versionId} />}
+      >
+        <ReaderNavigation />
 
-      {readerContent}
-    </SidebarResizer>
+        {readerContent}
+      </SidebarResizer>
+    </BookDetailsProvider>
   );
 }

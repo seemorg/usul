@@ -37,7 +37,6 @@ const TabButton = ({
 };
 
 export default function ReaderSidebar({
-  bookResponse,
   bookSlug,
   versionId,
   isSinglePage,
@@ -70,7 +69,6 @@ export default function ReaderSidebar({
                 bookSlug={bookSlug}
                 versionId={versionId}
                 isSinglePage={isSinglePage}
-                bookResponse={bookResponse}
               />
             </TabsContent>
           ))}

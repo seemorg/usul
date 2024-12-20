@@ -10,7 +10,6 @@ import { Separator } from "@/components/ui/separator";
 import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import type { ApiBookResponse } from "@/types/api/book";
 import { ChevronDownIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
@@ -18,12 +17,10 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cn } from "@/lib/utils";
 import { useBookDetailsStore } from "../../_stores/book-details";
 import Container from "@/components/ui/container";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
-export default function BookInfoHeader({
-  bookResponse,
-}: {
-  bookResponse: ApiBookResponse;
-}) {
+export default function BookInfoHeader() {
+  const { bookResponse } = useBookDetails();
   const dir = useDirection();
   const t = useTranslations();
   const { isOpen, setIsOpen } = useBookDetailsStore();
