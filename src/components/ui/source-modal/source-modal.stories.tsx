@@ -22,7 +22,7 @@ export const Basic: Story = {
       source={{
         metadata: {
           chapters: ["Chapter 1"],
-          pages: [{ vol: "1", page: 1 }],
+          pages: [{ volume: "1", page: 1 }],
         },
         text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
       }}

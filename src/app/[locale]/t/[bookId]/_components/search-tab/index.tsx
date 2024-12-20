@@ -30,12 +30,11 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronRightIcon } from "lucide-react";
 import { useSearchStore } from "../../_stores/search";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 import { SparklesIcon } from "@heroicons/react/24/outline";
 
-export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
+export default function SearchTab({ bookResponse }: TabProps) {
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
   const { value, setValue, results, setResults } = useSearchStore();
@@ -59,7 +58,7 @@ export default function SearchTab({ bookSlug, bookResponse }: TabProps) {
     mutationKey: ["search"],
     mutationFn: async (q: string) => {
       if (!q) return [];
-      return await searchBook(bookSlug, q, type);
+      return await searchBook(bookResponse.book.id, q, type);
     },
   });
 

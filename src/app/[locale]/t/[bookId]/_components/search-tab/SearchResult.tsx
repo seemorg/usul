@@ -64,7 +64,7 @@ const SearchResult = ({
     if ("index" in page) {
       index = page.index as number;
     } else {
-      const result = await mutateAsync({ page: page.page, vol: page.vol });
+      const result = await mutateAsync({ page: page.page, vol: page.volume });
       if (!result || result.index === null) return;
       index = result.index;
     }
@@ -92,7 +92,7 @@ const SearchResult = ({
       if (data.index === null) return;
       idx = data.index;
     } else {
-      const result = await mutateAsync({ page: page.page, vol: page.vol });
+      const result = await mutateAsync({ page: page.page, vol: page.volume });
       if (!result || result.index === null) return;
       idx = result.index;
     }
@@ -104,9 +104,10 @@ const SearchResult = ({
     });
   };
 
-  const content = result.highlights
-    ? result.highlights.join("<br>...<br>")
-    : removeDiacritics(result.text);
+  const content =
+    result.highlights && result.highlights.length > 0
+      ? result.highlights.join("<br>...<br>")
+      : removeDiacritics(result.text);
 
   const chapter = result.metadata.chapters.at(-1);
   // const volume =

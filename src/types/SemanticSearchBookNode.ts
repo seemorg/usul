@@ -2,7 +2,7 @@ export interface SemanticSearchBookNode {
   metadata: {
     chapters: string[];
     pages: {
-      vol: string;
+      volume: string;
       page: number;
     }[];
   };
