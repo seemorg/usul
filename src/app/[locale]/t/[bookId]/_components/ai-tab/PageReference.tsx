@@ -14,8 +14,8 @@ function PageReference({
   ...props
 }: PageReferenceProps) {
   const number = props["data-number"];
-  const idx = Number(number) - 1;
 
+  const idx = Number(number) - 1;
   const sourceNode = sourceNodes[idx]!;
 
   return (

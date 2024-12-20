@@ -32,24 +32,38 @@ const BookSearchResult = ({
 
   const { primaryNames, author } = document;
 
-  const title =
+  const title = (
     document.transliteration && pathLocale === "en"
       ? document.transliteration
-      : getPrimaryLocalizedText(primaryNames, pathLocale) ?? "";
+      : "primaryName" in document
+        ? document.primaryName
+        : primaryNames
+          ? getPrimaryLocalizedText(primaryNames, pathLocale) ?? ""
+          : ""
+  ) as string;
+
   const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
   const authorPrimaryNames =
     author?.primaryNames ?? (author as any)?.primaryNameTranslations;
 
-  const authorName =
+  const authorName = (
     author.transliteration && pathLocale === "en"
       ? author.transliteration
-      : authorPrimaryNames
-        ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
-        : undefined;
-  const authorSecondaryName = author?.primaryNames
-    ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
-    : undefined;
+      : "primaryName" in author
+        ? author.primaryName
+        : authorPrimaryNames
+          ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
+          : undefined
+  ) as string | undefined;
+
+  const authorSecondaryName = (
+    "secondaryName" in author
+      ? author.secondaryName
+      : author?.primaryNames
+        ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
+        : undefined
+  ) as string | undefined;
 
   if (view === "grid") {
     return (

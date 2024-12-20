@@ -44,7 +44,7 @@ export default function SourceModal({
   const page = source.metadata.pages[0]!;
 
   const { isPending, data } = useQuery({
-    queryKey: ["page", page.page, page.vol, versionId] as const,
+    queryKey: ["page", page.page, page.volume, versionId] as const,
     queryFn: async ({ queryKey }) => {
       const [, pg, vol, version] = queryKey;
 
@@ -97,7 +97,7 @@ export default function SourceModal({
       >
         {t("reader.chat.pg-x-vol", {
           page: page.page,
-          vol: page.vol,
+          vol: page.volume,
         })}
       </button>
 
@@ -137,7 +137,7 @@ export default function SourceModal({
                   {isPending
                     ? "Loading..."
                     : t("reader.go-to-page-x", {
-                        vol: page.vol,
+                        vol: page.volume,
                         page: page.page,
                       })}
                 </Button>

@@ -13,13 +13,17 @@ import { useBookShareUrl } from "@/lib/share";
 import Spinner from "@/components/ui/spinner";
 import { useRouter } from "@/navigation";
 import { navigation } from "@/lib/urls";
+import type { OpenitiContent } from "@/types/api/content/openiti";
+import type { TurathContent } from "@/types/api/content/turath";
 
 const SearchResult = ({
   result,
   getVirtuosoScrollProps,
+  headings,
 }: {
   result: SemanticSearchBookNode;
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
+  headings: OpenitiContent["headings"] | TurathContent["headings"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
   const mobileSidebar = useMobileSidebar();
@@ -56,16 +60,21 @@ const SearchResult = ({
   const handleNavigate = async () => {
     if (!page || page.page === -1 || isPending) return;
 
-    const result = await mutateAsync({ page: page.page, vol: page.vol });
-
-    if (!result || result.index === null) return;
+    let index: number;
+    if ("index" in page) {
+      index = page.index as number;
+    } else {
+      const result = await mutateAsync({ page: page.page, vol: page.volume });
+      if (!result || result.index === null) return;
+      index = result.index;
+    }
 
     if (isSinglePage) {
       router.push(
-        `${navigation.books.pageReader(slug, result.index + 1)}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`,
+        `${navigation.books.pageReader(slug, index + 1)}${searchParams.size > 0 ? `?${searchParams.toString()}` : ""}`,
       );
     } else {
-      const props = getVirtuosoScrollProps(result.index);
+      const props = getVirtuosoScrollProps(index);
       virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
     }
 
@@ -76,11 +85,14 @@ const SearchResult = ({
     if (!page || page.page === -1 || isPending) return;
 
     let idx: number;
-    if (data) {
+
+    if ("index" in page) {
+      idx = page.index as number;
+    } else if (data) {
       if (data.index === null) return;
       idx = data.index;
     } else {
-      const result = await mutateAsync({ page: page.page, vol: page.vol });
+      const result = await mutateAsync({ page: page.page, vol: page.volume });
       if (!result || result.index === null) return;
       idx = result.index;
     }
@@ -92,7 +104,14 @@ const SearchResult = ({
     });
   };
 
-  const content = removeDiacritics(result.text);
+  const content =
+    result.highlights && result.highlights.length > 0
+      ? result.highlights.join("<br>...<br>")
+      : removeDiacritics(result.text);
+
+  const chapter = result.metadata.chapters.at(-1);
+  // const volume =
+  //   page && (("volume" in page ? page.volume : page.vol) as string | undefined);
 
   return (
     <div
@@ -119,9 +138,15 @@ const SearchResult = ({
           </Button>
         </div>
 
-        <div className="flex gap-2">
-          <p>{result.metadata.chapters.at(-1)}</p>
-        </div>
+        {chapter && (
+          <div className="flex max-w-[80%] gap-2" dir="rtl">
+            <p>
+              {typeof chapter === "number"
+                ? headings?.[chapter]?.title
+                : chapter}
+            </p>
+          </div>
+        )}
       </div>
 
       <p
@@ -139,8 +164,11 @@ const SearchResult = ({
               matchRate: Math.floor(result.score * 100),
             })}
           </span>
-        ) : null}
-        <p> {t("common.pagination.page-x", { page: page ? page.page : -1 })}</p>
+        ) : (
+          <span />
+        )}
+
+        <p>{t("common.pagination.page-x", { page: page ? page.page : -1 })}</p>
       </div>
     </div>
   );

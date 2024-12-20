@@ -30,13 +30,13 @@ const baseRequest = async <T>(
 };
 
 export const chatWithBook = async (body: {
-  bookSlug: string;
+  bookId: string;
   question: string;
   messages: any[];
 }) => {
   const response = await baseRequest<{ chatId: string }>(
     "POST",
-    `/chat/${body.bookSlug}`,
+    `/chat/${body.bookId}`,
     {
       question: body.question,
       messages: body.messages,
@@ -66,10 +66,14 @@ export const sendFeedback = async (body: {
   return response;
 };
 
-export const searchBook = async (bookSlug: string, query: string) => {
+export const searchBook = async (
+  bookId: string,
+  query: string,
+  type: "semantic" | "keyword" = "semantic",
+) => {
   const results = (await baseRequest(
     "GET",
-    `/search?q=${query}&bookSlug=${bookSlug}`,
+    `/search?q=${query}&bookId=${bookId}&type=${type}`,
   )) as SemanticSearchBookNode[];
 
   return results.map(parseSourceNode);
@@ -82,7 +86,6 @@ export const parseSourceNode = (sourceNode: SemanticSearchBookNode) => {
   return {
     ...sourceNode,
     metadata: {
-      bookSlug: sourceNode.metadata.bookSlug,
       chapters,
       pages,
     },
