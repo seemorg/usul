@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 
 import "@/styles/globals.css";
 
@@ -60,8 +59,23 @@ export default function LocaleLayout({
 const Analytics = () => {
   return (
     <>
-      <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
-      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
+      {/* <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
+      <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} /> */}
+
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}`}
+        strategy="lazyOnload"
+        id="google-analytics-script-url"
+      />
+
+      <Script id="google-analytics-script-code" strategy="lazyOnload">
+        {`window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', '${env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID}', {
+            page_path: window.location.pathname,
+         });`}
+      </Script>
 
       {env.NEXT_PUBLIC_ENABLE_CLARITY === "true" && (
         <Script
