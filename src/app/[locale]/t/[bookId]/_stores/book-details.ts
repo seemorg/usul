@@ -6,6 +6,6 @@ interface BookDetailsStore {
 }
 
 export const useBookDetailsStore = create<BookDetailsStore>((set) => ({
-  isOpen: true,
+  isOpen: false,
   setIsOpen: (isOpen: boolean) => set({ isOpen }),
 }));

@@ -7,6 +7,7 @@ await import("./src/env.js");
 import createNextIntlPlugin from "next-intl/plugin";
 import { withAxiom } from "next-axiom";
 import createMDX from "@next/mdx";
+import createBundleAnalyzer from "@next/bundle-analyzer";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -57,12 +58,16 @@ const config = {
 };
 
 const withNextIntl = createNextIntlPlugin();
-
 const withMDX = createMDX({
   options: {
     remarkPlugins: [],
     rehypePlugins: [],
   },
 });
+const withBundleAnalyzer = createBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
 
-export default withMDX(withNextIntl(withAxiom(config)));
+const plugins = [withBundleAnalyzer, withMDX, withNextIntl, withAxiom];
+
+export default plugins.reduce((acc, plugin) => plugin(acc), config);

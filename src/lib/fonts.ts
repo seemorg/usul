@@ -1,7 +1,7 @@
 import { Plus_Jakarta_Sans, Scheherazade_New } from "next/font/google";
 import localFont from "next/font/local";
 
-const inter = Plus_Jakarta_Sans({
+const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -60,19 +60,20 @@ const rubik = localFont({
   ],
 });
 
-const uthmanicHafs = localFont({
-  variable: "--font-uthmanic-hafs",
-  src: [
-    {
-      path: "../fonts/uthmanic-hafs/uthmanic-hafs.ttf",
-    },
-  ],
-});
+// TODO: 290kb HUGE FONT, bring back later if needed
+// const uthmanicHafs = localFont({
+//   variable: "--font-uthmanic-hafs",
+//   src: [
+//     {
+//       path: "../fonts/uthmanic-hafs/uthmanic-hafs.ttf",
+//     },
+//   ],
+// });
 
 export const getFontsClassnames = () =>
   [
-    inter.variable,
+    plusJakartaSans.variable,
     rubik.variable,
     scheherazade.variable,
-    uthmanicHafs.variable,
+    // uthmanicHafs.variable,
   ].join(" ");

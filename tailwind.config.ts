@@ -17,7 +17,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
         scheherazade: ["var(--font-scheherazade)", ...fontFamily.serif],
-        "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
+        // "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
         border: "hsl(var(--border))",

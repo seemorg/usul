@@ -19,30 +19,11 @@ import { useBookDetailsStore } from "../../_stores/book-details";
 import Container from "@/components/ui/container";
 import { useBookDetails } from "../../_contexts/book-details.context";
 
-export default function BookInfoHeader() {
+const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => {
   const { bookResponse } = useBookDetails();
-  const dir = useDirection();
-  const t = useTranslations();
-  const { isOpen, setIsOpen } = useBookDetailsStore();
-  // const showNavbar = useNavbarStore((s) => s.showNavbar);
-
   const book = bookResponse.book;
-  const {
-    primaryName,
-    secondaryName,
-    author: {
-      primaryName: authorPrimaryName,
-      secondaryName: authorSecondaryName,
-      year,
-    },
-    genres,
-  } = book;
 
-  // useEffect(() => {
-  //   if (!showNavbar) setIsOpen(false);
-  // }, [showNavbar, setIsOpen]);
-
-  const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => (
+  return (
     <HoverCard>
       <HoverCardTrigger asChild>
         <span>{children}</span>
@@ -57,35 +38,70 @@ export default function BookInfoHeader() {
       </HoverCardContent>
     </HoverCard>
   );
+};
 
-  const bookContent = bookResponse.content;
-  const publicationDetails = bookContent.publicationDetails;
+const PublicationDetails = () => {
+  const { bookResponse } = useBookDetails();
+  const publicationDetails = bookResponse.content.publicationDetails;
+  const t = useTranslations();
 
-  const renderPublicationDetails = () => {
-    if (!publicationDetails) return null;
+  if (!publicationDetails) return null;
 
-    const final: { title: string; text: string | React.ReactNode }[] = [];
+  const final: { title: string; text: string | React.ReactNode }[] = [];
 
-    if (publicationDetails.investigator)
-      final.push({
-        title: t("reader.publication-details.editor"),
-        text: publicationDetails.investigator,
-      });
+  if (publicationDetails.investigator)
+    final.push({
+      title: t("reader.publication-details.editor"),
+      text: publicationDetails.investigator,
+    });
 
-    if (publicationDetails.publisher)
-      final.push({
-        title: t("reader.publication-details.publisher"),
-        text: publicationDetails.publisher,
-      });
+  if (publicationDetails.publisher)
+    final.push({
+      title: t("reader.publication-details.publisher"),
+      text: publicationDetails.publisher,
+    });
 
-    if (publicationDetails.editionNumber)
-      final.push({
-        title: t("reader.publication-details.print-version"),
-        text: publicationDetails.editionNumber,
-      });
+  if (publicationDetails.editionNumber)
+    final.push({
+      title: t("reader.publication-details.print-version"),
+      text: publicationDetails.editionNumber,
+    });
 
-    return final;
-  };
+  return (
+    <div className="relative mt-5 flex flex-wrap items-center gap-5 text-sm">
+      {final.map((item, index, arr) => (
+        <Fragment key={index}>
+          <div>
+            <p>{item.title}</p>
+            <bdi className="mt-1 block font-semibold">{item.text}</bdi>
+          </div>
+
+          {index < arr.length - 1 && (
+            <Separator orientation="vertical" className="h-12" />
+          )}
+        </Fragment>
+      ))}
+    </div>
+  );
+};
+
+export default function BookInfoHeader() {
+  const { bookResponse } = useBookDetails();
+  const dir = useDirection();
+  const t = useTranslations();
+  const { isOpen, setIsOpen } = useBookDetailsStore();
+
+  const book = bookResponse.book;
+  const {
+    primaryName,
+    secondaryName,
+    author: {
+      primaryName: authorPrimaryName,
+      secondaryName: authorSecondaryName,
+      year,
+    },
+    genres,
+  } = book;
 
   return (
     <div className="relative w-full bg-reader px-5 lg:px-8">
@@ -127,7 +143,6 @@ export default function BookInfoHeader() {
                         <Link
                           href={navigation.authors.bySlug(book.author.slug)}
                           className="text-primary underline underline-offset-4"
-                          prefetch
                         >
                           {book.author.primaryName}
                           {book.author.year ? ` d. ${book.author.year}` : ""}
@@ -150,7 +165,6 @@ export default function BookInfoHeader() {
                           <Link
                             href={navigation.authors.bySlug(book.author.slug)}
                             className="text-primary underline underline-offset-4"
-                            prefetch
                           >
                             {book.author.secondaryName}
                             {book.author.year ? ` d. ${book.author.year}` : ""}
@@ -190,7 +204,6 @@ export default function BookInfoHeader() {
                     <Link
                       href={navigation.authors.bySlug(book.author.slug)}
                       className="text-primary underline underline-offset-4"
-                      prefetch
                     >
                       {authorPrimaryName} -{" "}
                       {t("common.year-format.ah.value", { year })}
@@ -204,7 +217,6 @@ export default function BookInfoHeader() {
                       <Link
                         href={navigation.authors.bySlug(book.author.slug)}
                         className="text-primary underline underline-offset-4"
-                        prefetch
                       >
                         {authorSecondaryName} -{" "}
                         {t("common.year-format.ah.value", { year })}
@@ -214,24 +226,7 @@ export default function BookInfoHeader() {
                 )}
               </div>
 
-              {publicationDetails && (
-                <div className="relative mt-5 flex flex-wrap items-center gap-5 text-sm">
-                  {renderPublicationDetails()!.map((item, index, arr) => (
-                    <Fragment key={index}>
-                      <div>
-                        <p>{item.title}</p>
-                        <bdi className="mt-1 block font-semibold">
-                          {item.text}
-                        </bdi>
-                      </div>
-
-                      {index < arr.length - 1 && (
-                        <Separator orientation="vertical" className="h-12" />
-                      )}
-                    </Fragment>
-                  ))}
-                </div>
-              )}
+              <PublicationDetails />
 
               <div className="mt-10 flex justify-between">
                 <div className="flex flex-wrap gap-2">
@@ -239,7 +234,6 @@ export default function BookInfoHeader() {
                     <Link
                       key={genre.id}
                       href={navigation.genres.bySlug(genre.slug)}
-                      prefetch
                     >
                       <Badge
                         variant="outline"

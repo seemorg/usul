@@ -50,7 +50,6 @@ export default function ReaderPage({
   if (isTurath) {
     return (
       <>
-        <div className="flex flex-col" />
         {/* [&_span[data-type='title']:first-child]:mt-0 */}
         <div
           className="text-2xl leading-[45px] [&_a]:text-primary [&_a]:underline [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:mb-12 [&_span[data-type='title']]:mt-28 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:text-3xl [&_span[data-type='title']]:font-bold [&_span[data-type='title']]:leading-[40px]"

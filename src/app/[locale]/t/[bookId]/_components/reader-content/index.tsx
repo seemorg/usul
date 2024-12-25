@@ -6,7 +6,7 @@ import React, { forwardRef, memo, useMemo, useRef } from "react";
 import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import Footer from "@/app/_components/footer";
 import ReaderPage from "./reader-page";
-import { READER_OVERSCAN_SIZE, READER_PAGINATION_SIZE } from "@/lib/constants";
+import { READER_OVERSCAN_SIZE, READER_SSR_SIZE } from "@/lib/constants";
 import Container from "@/components/ui/container";
 import Paginator from "../../[pageNumber]/paginator";
 import { HighlightPopover } from "@/components/ui/highlight-popover";
@@ -58,9 +58,7 @@ export default function ReaderContent({
       <Virtualizer
         count={isSinglePage ? 1 : bookResponse.pagination.total}
         ssrCount={
-          isSinglePage
-            ? 1
-            : Math.min(defaultPages.length, READER_PAGINATION_SIZE)
+          isSinglePage ? 1 : Math.min(defaultPages.length, READER_SSR_SIZE)
         }
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}

@@ -37,10 +37,10 @@ export default function RenderBlock({ block }: { block: Block }) {
 
   if (block.type === "blockquote") {
     return (
-      <p className="font-uthmanic-hafs px-2 text-2xl">
-        <span className="ml-2">ﵟ</span>
+      <p className="px-2 text-2xl">
+        <span className="ml-2">﴾</span>
         {block.content}
-        <span className="mr-2">ﵞ</span>
+        <span className="mr-2">﴿</span>
       </p>
     );
   }
