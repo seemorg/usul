@@ -18,7 +18,7 @@ export const env = createEnv({
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY: z.string().min(1),
     NEXT_PUBLIC_SEMANTIC_SEARCH_URL: z.string().min(1),
     NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().min(1),
-    NEXT_PUBLIC_ENABLE_CLARITY: z.coerce.boolean().default(false),
+    NEXT_PUBLIC_ENABLE_CLARITY: z.string().optional().default("false"),
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string().min(1),
     VERCEL_ENV: z

@@ -63,7 +63,7 @@ const Analytics = () => {
       <GoogleAnalytics gaId={env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID} />
       <GoogleTagManager gtmId={env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID} />
 
-      {env.NEXT_PUBLIC_ENABLE_CLARITY && (
+      {env.NEXT_PUBLIC_ENABLE_CLARITY === "true" && (
         <Script
           id="clarity-script"
           strategy="afterInteractive"
