@@ -60,6 +60,7 @@ const rubik = localFont({
   ],
 });
 
+// TODO: 290kb HUGE FONT, bring back later if needed
 // const uthmanicHafs = localFont({
 //   variable: "--font-uthmanic-hafs",
 //   src: [
