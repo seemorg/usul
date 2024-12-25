@@ -143,7 +143,6 @@ export default function BookInfoHeader() {
                         <Link
                           href={navigation.authors.bySlug(book.author.slug)}
                           className="text-primary underline underline-offset-4"
-                          prefetch
                         >
                           {book.author.primaryName}
                           {book.author.year ? ` d. ${book.author.year}` : ""}
@@ -166,7 +165,6 @@ export default function BookInfoHeader() {
                           <Link
                             href={navigation.authors.bySlug(book.author.slug)}
                             className="text-primary underline underline-offset-4"
-                            prefetch
                           >
                             {book.author.secondaryName}
                             {book.author.year ? ` d. ${book.author.year}` : ""}
@@ -206,7 +204,6 @@ export default function BookInfoHeader() {
                     <Link
                       href={navigation.authors.bySlug(book.author.slug)}
                       className="text-primary underline underline-offset-4"
-                      prefetch
                     >
                       {authorPrimaryName} -{" "}
                       {t("common.year-format.ah.value", { year })}
@@ -220,7 +217,6 @@ export default function BookInfoHeader() {
                       <Link
                         href={navigation.authors.bySlug(book.author.slug)}
                         className="text-primary underline underline-offset-4"
-                        prefetch
                       >
                         {authorSecondaryName} -{" "}
                         {t("common.year-format.ah.value", { year })}
@@ -238,7 +234,6 @@ export default function BookInfoHeader() {
                     <Link
                       key={genre.id}
                       href={navigation.genres.bySlug(genre.slug)}
-                      prefetch
                     >
                       <Badge
                         variant="outline"
