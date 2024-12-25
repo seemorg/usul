@@ -66,28 +66,26 @@ export const sendFeedback = async (body: {
   return response;
 };
 
+export type SearchBookResponse = {
+  total: number;
+  totalPages: number;
+  perPage: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  results: SemanticSearchBookNode[];
+};
+
 export const searchBook = async (
   bookId: string,
   query: string,
   type: "semantic" | "keyword" = "semantic",
+  page: number = 1,
 ) => {
-  const results = (await baseRequest(
+  const results = await baseRequest<SearchBookResponse>(
     "GET",
-    `/search?q=${query}&bookId=${bookId}&type=${type}`,
-  )) as SemanticSearchBookNode[];
+    `/search?q=${query}&bookId=${bookId}&type=${type}&page=${page}`,
+  );
 
-  return results.map(parseSourceNode);
-};
-
-export const parseSourceNode = (sourceNode: SemanticSearchBookNode) => {
-  const chapters = sourceNode.metadata.chapters;
-  const pages = sourceNode.metadata.pages;
-
-  return {
-    ...sourceNode,
-    metadata: {
-      chapters,
-      pages,
-    },
-  };
+  return results;
 };

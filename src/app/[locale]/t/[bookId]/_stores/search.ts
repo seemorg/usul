@@ -1,18 +1,23 @@
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { create } from "zustand";
 
 interface SearchStore {
   value: string;
-  setValue: (value: string) => void;
-  results: SemanticSearchBookNode[] | null;
-  setResults: (results: SemanticSearchBookNode[] | null) => void;
+  page: number;
+  type: "semantic" | "keyword";
+
+  setValue: (value: string, page: number) => void;
+  setType: (type: "semantic" | "keyword", page: number) => void;
+  setPage: (page: number) => void;
+
   reset: () => void;
 }
 
 export const useSearchStore = create<SearchStore>((set) => ({
   value: "",
-  setValue: (value: string) => set({ value }),
-  results: null,
-  setResults: (results: SemanticSearchBookNode[] | null) => set({ results }),
-  reset: () => set({ value: "", results: null }),
+  page: 1,
+  type: "keyword",
+  setValue: (value: string, page: number) => set({ value, page }),
+  setType: (type: "semantic" | "keyword", page: number) => set({ type, page }),
+  setPage: (page: number) => set({ page }),
+  reset: () => set({ value: "", page: 1, type: "keyword" }),
 }));

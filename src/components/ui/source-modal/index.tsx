@@ -51,11 +51,11 @@ export default function SourceModal({
   const page = source.metadata.pages[0]!;
 
   const { isPending, data } = useQuery({
-    queryKey: ["page", page.page, page.volume, versionId] as const,
+    queryKey: ["page", slug, page.page, page.volume, versionId] as const,
     queryFn: async ({ queryKey }) => {
-      const [, pg, vol, version] = queryKey;
+      const [, _slug, pg, vol, version] = queryKey;
 
-      const result = await getBookPageIndex(slug, {
+      const result = await getBookPageIndex(_slug, {
         page: pg,
         volume: vol,
         versionId: version ?? undefined,

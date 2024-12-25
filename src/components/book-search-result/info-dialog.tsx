@@ -48,10 +48,10 @@ export default function InfoDialog({
   const shouldFetch = open;
 
   const { data: author, isFetching } = useQuery({
-    queryKey: ["author", document.authorId] as const,
+    queryKey: ["author", document.authorId, pathLocale] as const,
     queryFn: ({ queryKey }) => {
-      const [, authorId] = queryKey;
-      return findAuthorBySlug(authorId, pathLocale);
+      const [, authorId, locale] = queryKey;
+      return findAuthorBySlug(authorId, locale);
     },
     enabled: shouldFetch,
   });

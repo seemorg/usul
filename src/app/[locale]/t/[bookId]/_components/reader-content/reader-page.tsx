@@ -7,7 +7,7 @@ import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { TurathContent } from "@/types/api/content/turath";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import { type PropsWithChildren, useMemo } from "react";
 
 type DefaultPages = NonNullable<
@@ -92,6 +92,7 @@ const useFetchPage = (
   defaultPages: DefaultPages,
 ) => {
   const params = useParams();
+  const versionId = useSearchParams().get("versionId");
   const slug = params.bookId as string;
 
   const pageNumber = params.pageNumber as string | undefined;
@@ -112,16 +113,19 @@ const useFetchPage = (
   const shouldUseDefaultPages = pageInfo.startIndex < defaultPages.length;
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["reader", pageInfo.startIndex],
+    queryKey: ["reader", slug, versionId, pageInfo.startIndex] as const,
     queryFn: async ({ queryKey }) => {
-      const startIndex = queryKey[1] as number;
+      const [, _bookSlug, _versionId, startIndex] = queryKey;
 
-      const response = await getBook(slug, {
+      const response = await getBook(_bookSlug, {
         startIndex: startIndex,
         size: perPage,
+        versionId: _versionId ?? undefined,
       });
 
-      if (!response || "type" in response) return null;
+      if (!response || "type" in response) {
+        return null;
+      }
 
       return (response.content as any).pages as DefaultPages;
     },

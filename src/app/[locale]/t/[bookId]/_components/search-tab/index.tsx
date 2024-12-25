@@ -16,9 +16,8 @@ import { Button } from "@/components/ui/button";
 //   SelectValue,
 // } from "@/components/ui/select";
 import Spinner from "@/components/ui/spinner";
-import { useMutation } from "@tanstack/react-query";
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { searchBook } from "@/server/services/chat";
+import { useQuery } from "@tanstack/react-query";
+import { type SearchBookResponse, searchBook } from "@/server/services/chat";
 import SearchResult from "./SearchResult";
 import { useTranslations } from "next-intl";
 // import ComingSoonModal from "@/components/coming-soon-modal";
@@ -26,7 +25,7 @@ import { usePageNavigation } from "../usePageNavigation";
 
 import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useSearchStore } from "../../_stores/search";
 import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
@@ -38,8 +37,9 @@ export default function SearchTab() {
   const { bookResponse } = useBookDetails();
   const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
   const t = useTranslations();
-  const { value, setValue, results, setResults } = useSearchStore();
-  const [type, setType] = useState<"semantic" | "keyword">("keyword");
+
+  const { value, setValue, page, setPage, type, setType } = useSearchStore();
+  const [inputValue, setInputValue] = useState(value);
 
   const isVersionMismatch =
     type === "semantic"
@@ -51,40 +51,36 @@ export default function SearchTab() {
     bookContent.source === "external" || bookContent.source === "pdf";
   const headings = !isExternal ? bookContent.headings : [];
 
-  const { mutateAsync, isPending, error } = useMutation<
-    SemanticSearchBookNode[],
-    Error,
-    string
-  >({
-    mutationKey: ["search"],
-    mutationFn: async (q: string) => {
-      if (!q) return [];
-      return await searchBook(bookResponse.book.id, q, type);
+  const {
+    data: results,
+    isLoading,
+    error,
+  } = useQuery({
+    queryKey: ["search", bookResponse.book.id, value, type, page] as const,
+    queryFn: async ({ queryKey }) => {
+      const [, _bookId, _q, _type, _page] = queryKey;
+      if (!_q) return null;
+
+      return await searchBook(_bookId, _q, _type, _page);
     },
   });
 
-  const handleSearch = async (q: string) => {
-    if (!q) {
-      setResults(null);
-      return;
-    }
-
-    const data = await mutateAsync(q);
-    setResults(data);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    setValue(newValue);
+    setInputValue(newValue);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    handleSearch(value);
+    setValue(inputValue, 1);
+  };
+
+  const toggleType = (checked: boolean) => {
+    setType(checked ? "semantic" : "keyword", 1);
   };
 
   const renderResults = () => {
-    if (results === null)
+    if (!results)
       return (
         // TODO: change fixed height
         <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
@@ -108,7 +104,7 @@ export default function SearchTab() {
       );
     }
 
-    if (results.length === 0)
+    if (results.total === 0 || results.results.length === 0)
       return (
         <div className="flex h-[71vh] flex-col items-center justify-center gap-5">
           <p className="text-gray-500">{t("common.search-bar.no-results")}</p>
@@ -116,15 +112,46 @@ export default function SearchTab() {
       );
 
     return (
-      <div className="mt-9 flex flex-col">
-        {results.map((r, idx) => (
-          <SearchResult
-            key={idx}
-            result={r}
-            getVirtuosoScrollProps={getVirtuosoScrollProps}
-            headings={headings}
-          />
-        ))}
+      <div className="mt-9">
+        <div className="flex flex-col">
+          {results.results.map((r, idx) => (
+            <SearchResult
+              key={idx}
+              result={r}
+              getVirtuosoScrollProps={getVirtuosoScrollProps}
+              headings={headings}
+            />
+          ))}
+        </div>
+
+        <SidebarContainer className="mt-4 flex items-center justify-between">
+          <p className="text-sm text-muted-foreground">
+            {results.total} Results - Page {results.currentPage} /{" "}
+            {results.totalPages}
+          </p>
+
+          <div className="flex">
+            <Button
+              variant="ghost"
+              disabled={!results.hasPreviousPage}
+              onClick={() => setPage(page - 1)}
+              size="sm"
+            >
+              <ChevronLeftIcon className="size-4" />
+              Previous
+            </Button>
+
+            <Button
+              variant="ghost"
+              disabled={!results.hasNextPage}
+              onClick={() => setPage(page + 1)}
+              size="sm"
+            >
+              Next
+              <ChevronRightIcon className="size-4" />
+            </Button>
+          </div>
+        </SidebarContainer>
       </div>
     );
   };
@@ -155,9 +182,7 @@ export default function SearchTab() {
             <Switch
               id="ai-search"
               checked={type === "semantic"}
-              onCheckedChange={(checked) =>
-                setType(checked ? "semantic" : "keyword")
-              }
+              onCheckedChange={toggleType}
             />
           </div>
         </div>
@@ -178,7 +203,7 @@ export default function SearchTab() {
 
           <form className="flex w-full items-center" onSubmit={handleSubmit}>
             <div className="relative flex-1">
-              {isPending ? (
+              {isLoading ? (
                 <Spinner className="absolute top-3 h-4 w-4 ltr:left-3 rtl:right-3" />
               ) : (
                 <MagnifyingGlassIcon className="absolute top-3 h-4 w-4 ltr:left-3 rtl:right-3" />
@@ -186,7 +211,7 @@ export default function SearchTab() {
 
               <Input
                 type="text"
-                value={value}
+                value={inputValue}
                 onChange={handleChange}
                 placeholder={t("reader.search.placeholder")}
                 className="mr-10 h-10 w-full flex-1 border border-gray-300 bg-white pl-9 shadow-none focus:outline-none focus:ring-inset dark:border-border dark:bg-transparent ltr:rounded-r-none rtl:rounded-l-none"
@@ -196,7 +221,7 @@ export default function SearchTab() {
             <Button
               size="icon"
               className="size-10 flex-shrink-0 ltr:rounded-l-none rtl:rounded-r-none"
-              disabled={isPending}
+              disabled={isLoading}
             >
               <ChevronRightIcon className="size-5" />
             </Button>
