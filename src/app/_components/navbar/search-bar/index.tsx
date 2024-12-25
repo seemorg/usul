@@ -104,7 +104,7 @@ export default function SearchBar({
         open={isModalOpen.value}
         onOpenChange={isModalOpen.setValue}
       />
-      <label htmlFor="search" className="sr-only">
+      <label htmlFor="global-search-input" className="sr-only">
         Search
       </label>
 
@@ -128,6 +128,7 @@ export default function SearchBar({
         ref={parentRef}
       >
         <CommandInput
+          id="global-search-input"
           placeholder={`${t("search-bar.placeholder")}...${mobile ? "" : " (⌘ + K)"}`}
           value={value}
           onValueChange={setValue}
