@@ -11,8 +11,7 @@ import { useBookDetails } from "../../_contexts/book-details.context";
 
 function ContentTab({ isSinglePage }: TabProps) {
   const { bookResponse } = useBookDetails();
-  const { pagesRange, getVirtuosoScrollProps } =
-    usePageNavigation(bookResponse);
+  const { pagesRange, getVirtuosoScrollProps } = usePageNavigation();
 
   const _view = (useSearchParams().get("view") ?? "default") as
     | "pdf"

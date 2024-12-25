@@ -1,6 +1,7 @@
-import type { TabProps } from "./sidebar/tabs";
+import { useBookDetails } from "../_contexts/book-details.context";
 
-export const usePageNavigation = (bookResponse: TabProps["bookResponse"]) => {
+export const usePageNavigation = () => {
+  const { bookResponse } = useBookDetails();
   const source = bookResponse.content.source;
 
   if (source === "external" || source === "pdf") {

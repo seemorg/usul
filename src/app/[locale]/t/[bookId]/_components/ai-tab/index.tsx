@@ -20,7 +20,7 @@ import { useBookDetails } from "../../_contexts/book-details.context";
 
 export default function AITab() {
   const { bookResponse } = useBookDetails();
-  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
+  const { getVirtuosoScrollProps } = usePageNavigation();
   const t = useTranslations();
   const {
     messagesRef,

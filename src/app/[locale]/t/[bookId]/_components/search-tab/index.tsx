@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 // } from "@/components/ui/select";
 import Spinner from "@/components/ui/spinner";
 import { useQuery } from "@tanstack/react-query";
-import { type SearchBookResponse, searchBook } from "@/server/services/chat";
+import { searchBook } from "@/server/services/chat";
 import SearchResult from "./SearchResult";
 import { useTranslations } from "next-intl";
 // import ComingSoonModal from "@/components/coming-soon-modal";
@@ -35,7 +35,7 @@ import { useBookDetails } from "../../_contexts/book-details.context";
 
 export default function SearchTab() {
   const { bookResponse } = useBookDetails();
-  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
+  const { getVirtuosoScrollProps } = usePageNavigation();
   const t = useTranslations();
 
   const { value, setValue, page, setPage, type, setType } = useSearchStore();
