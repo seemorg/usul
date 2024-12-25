@@ -22,7 +22,6 @@ export function MobileSidebarProvider({
   tabId,
   bookSlug,
   versionId,
-  bookResponse,
 }: {
   icon: React.ReactNode;
   tabId: string;
@@ -55,7 +54,6 @@ export function MobileSidebarProvider({
         <SheetContent className="w-full overflow-y-auto bg-slate-50 pb-10 pt-16 dark:bg-card [&>div]:p-0">
           <TabContent
             tabId={activeTabId}
-            bookResponse={bookResponse}
             bookSlug={bookSlug}
             versionId={versionId}
           />

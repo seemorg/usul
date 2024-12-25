@@ -7,10 +7,11 @@ import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import { useSearchParams } from "next/navigation";
 import PdfChaptersList from "./pdf-chapters-section";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
-function ContentTab({ bookResponse, isSinglePage }: TabProps) {
-  const { pagesRange, getVirtuosoScrollProps } =
-    usePageNavigation(bookResponse);
+function ContentTab({ isSinglePage }: TabProps) {
+  const { bookResponse } = useBookDetails();
+  const { pagesRange, getVirtuosoScrollProps } = usePageNavigation();
 
   const _view = (useSearchParams().get("view") ?? "default") as
     | "pdf"

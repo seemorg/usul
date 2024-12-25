@@ -51,7 +51,7 @@
     "sources": "مصادر",
     "error": "حدث خطأ ما. <retry>حاول مرة أخرى</retry> أو <contact>اتصل بنا</contact> إذا استمرت المشكلة.",
     "pg-x": "صفحة {page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/صفحة {page, number, nogroup}"
+    "pg-x-vol": "المجلد {vol, number, nogroup}، صفحة {page, number, nogroup}"
   },
   "edition": "الإصدار",
   "select-edition": "اختر إصدارًا",

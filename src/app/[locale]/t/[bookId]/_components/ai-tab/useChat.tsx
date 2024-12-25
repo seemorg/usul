@@ -1,4 +1,4 @@
-import { chatWithBook, parseSourceNode } from "@/server/services/chat";
+import { chatWithBook } from "@/server/services/chat";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
 import { useCallback } from "react";
@@ -48,7 +48,7 @@ const handleEventSource = async (
           id,
           role: "ai",
           text: allContent,
-          sourceNodes: (sources ?? []).map(parseSourceNode),
+          sourceNodes: sources ?? [],
         });
       }
 

@@ -8,7 +8,6 @@ import ChatMessage from "./ChatMessage";
 import { useCallback } from "react";
 import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
-import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
 import { InfoIcon, SquarePenIcon } from "lucide-react";
@@ -17,9 +16,11 @@ import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
 import { Badge } from "@/components/ui/badge";
 import { OpenAILogo } from "@/components/Icons";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
-export default function AITab({ bookResponse }: TabProps) {
-  const { getVirtuosoScrollProps } = usePageNavigation(bookResponse);
+export default function AITab() {
+  const { bookResponse } = useBookDetails();
+  const { getVirtuosoScrollProps } = usePageNavigation();
   const t = useTranslations();
   const {
     messagesRef,

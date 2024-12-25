@@ -18,6 +18,7 @@ import { TabContent } from "../tab-content";
 import { tabs } from "../sidebar/tabs";
 import { useState } from "react";
 import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {
@@ -32,12 +33,11 @@ const getPdfUrl = (bookResponse: ApiBookResponse) => {
 };
 
 export default function ReaderNavigation({
-  bookResponse,
   isSinglePage,
 }: {
-  bookResponse: ApiBookResponse;
   isSinglePage?: boolean;
 }) {
+  const { bookResponse } = useBookDetails();
   const showNavbar = useNavbarStore((s) => s.showNavbar);
   const bookSlug = bookResponse.book.slug;
   const t = useTranslations("reader");
@@ -126,7 +126,6 @@ export default function ReaderNavigation({
                       bookSlug={bookSlug}
                       versionId={versionId}
                       isSinglePage={isSinglePage}
-                      bookResponse={bookResponse}
                     />
                   </div>
                 )}
@@ -136,7 +135,7 @@ export default function ReaderNavigation({
         </Container>
       </div>
 
-      <BookInfoHeader bookResponse={bookResponse} />
+      <BookInfoHeader />
     </>
   );
 }
