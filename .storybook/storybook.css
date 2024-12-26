@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
 
 :root {
-  --font-rubik: "Rubik";
-  --font-amiri: "Inter";
-  --font-sans: "Inter";
+  --font-ibm-plex-sans-arabic: "Rubik";
+  --font-plus-jakarta-sans: "Inter";
+  --font-scheherazade: "Rubik";
 }

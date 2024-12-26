@@ -15,7 +15,11 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-rubik)", "var(--font-sans)", ...fontFamily.sans],
+        sans: [
+          "var(--font-ibm-plex-sans-arabic)",
+          "var(--font-plus-jakarta-sans)",
+          ...fontFamily.sans,
+        ],
         scheherazade: ["var(--font-scheherazade)", ...fontFamily.serif],
         // "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },

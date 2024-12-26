@@ -1,19 +1,23 @@
 import { Plus_Jakarta_Sans, Scheherazade_New } from "next/font/google";
 import localFont from "next/font/local";
 
+const scheherazade = Scheherazade_New({
+  subsets: ["arabic"],
+  style: "normal",
+  variable: "--font-scheherazade",
+  weight: ["400", "700"],
+});
+
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  variable: "--font-sans",
+  style: "normal",
+  variable: "--font-plus-jakarta-sans",
+  weight: ["400", "500", "600", "700"],
 });
 
-const scheherazade = Scheherazade_New({
-  variable: "--font-scheherazade",
-  weight: ["400", "500", "700"],
-  subsets: ["arabic", "latin"],
-});
-
-const rubik = localFont({
-  variable: "--font-rubik",
+const ibmPlexSansArabic = localFont({
+  variable: "--font-ibm-plex-sans-arabic",
+  style: "normal",
   src: [
     // {
     //   path: "../fonts/rubik/rubik-variable-font.ttf",
@@ -34,25 +38,28 @@ const rubik = localFont({
       path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Regular.ttf",
       weight: "400",
     },
-    {
-      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Light.ttf",
-      weight: "300",
-    },
-    {
-      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-ExtraLight.ttf",
-      weight: "200",
-    },
-    {
-      path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Thin.ttf",
-      weight: "100",
-    },
+    // {
+    //   path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Light.ttf",
+    //   weight: "300",
+    // },
+    // {
+    //   path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-ExtraLight.ttf",
+    //   weight: "200",
+    // },
+    // {
+    //   path: "../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-Thin.ttf",
+    //   weight: "100",
+    // },
   ],
   adjustFontFallback: false,
+
   declarations: [
     {
+      // make this font only apply for arabic character so that we can make 1 font for all locales
       prop: "unicode-range",
       value: "U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF",
     },
+    // the arabic font is a bit smaller than the other fonts so we need to adjust it
     {
       prop: "size-adjust",
       value: "110%",
@@ -73,7 +80,7 @@ const rubik = localFont({
 export const getFontsClassnames = () =>
   [
     plusJakartaSans.variable,
-    rubik.variable,
+    ibmPlexSansArabic.variable,
     scheherazade.variable,
     // uthmanicHafs.variable,
   ].join(" ");
