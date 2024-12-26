@@ -68,7 +68,7 @@ export default async function HomePage({
             {t("headline")}
           </h1>
 
-          <p className="mt-5 text-center text-xl font-light text-white/80">
+          <p className="mt-5 text-center text-xl text-white/80">
             {t("subheadline")}
           </p>
 
