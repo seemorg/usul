@@ -13,15 +13,26 @@ import {
 
 import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
-import SearchBar from "./search-bar";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
-import HomepageNavigationMenu from "./navigation-menu";
+
+// import HomepageNavigationMenu from "./navigation-menu";
+// import SearchBar from "./search-bar";
+
+const SearchBar = dynamic(() => import("./search-bar"), {
+  ssr: false,
+});
+
+const HomepageNavigationMenu = dynamic(() => import("./navigation-menu"), {
+  ssr: false,
+});
+
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import { useTranslations } from "next-intl";
 import { useDirection } from "@/lib/locale/utils";
+import dynamic from "next/dynamic";
 
 interface NavbarProps {
   layout?: "home" | "reader";

@@ -1,16 +1,17 @@
 "use client";
 
 import * as React from "react";
-import {
-  CaretSortIcon,
-  CheckIcon,
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@radix-ui/react-icons";
+
 import * as SelectPrimitive from "@radix-ui/react-select";
 
 import { cn } from "@/lib/utils";
 import Spinner from "../spinner";
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ChevronsUpDownIcon,
+} from "lucide-react";
 
 const Select = SelectPrimitive.Root;
 
@@ -54,7 +55,7 @@ const SelectTrigger = React.forwardRef<
           {isLoading ? (
             <Spinner className="h-4 w-4" />
           ) : (
-            icon ?? <CaretSortIcon className="h-4 w-4 opacity-50" />
+            icon ?? <ChevronsUpDownIcon className="h-4 w-4 opacity-50" />
           )}
         </div>
       </SelectPrimitive.Icon>
