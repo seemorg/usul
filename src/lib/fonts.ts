@@ -1,5 +1,12 @@
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Scheherazade_New } from "next/font/google";
 import localFont from "next/font/local";
+
+const scheherazade = Scheherazade_New({
+  subsets: ["arabic"],
+  style: "normal",
+  variable: "--font-scheherazade",
+  weight: ["400", "700"],
+});
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -71,4 +78,8 @@ const ibmPlexSansArabic = localFont({
 // });
 
 export const getFontsClassnames = () =>
-  [plusJakartaSans.variable, ibmPlexSansArabic.variable].join(" ");
+  [
+    plusJakartaSans.variable,
+    ibmPlexSansArabic.variable,
+    scheherazade.variable,
+  ].join(" ");
