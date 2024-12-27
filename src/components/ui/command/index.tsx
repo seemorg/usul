@@ -2,12 +2,12 @@
 
 import * as React from "react";
 import { type DialogProps } from "@radix-ui/react-dialog";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { Command as CommandPrimitive } from "cmdk";
 
 import { cn } from "@/lib/utils";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import Spinner from "../spinner";
+import { SearchIcon } from "lucide-react";
 
 const Command = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive>,
@@ -53,7 +53,7 @@ const CommandInput = React.forwardRef<
     {isLoading ? (
       <Spinner className="h-4 w-4 shrink-0" />
     ) : (
-      <MagnifyingGlassIcon className="h-4 w-4 shrink-0 opacity-50" />
+      <SearchIcon className="h-4 w-4 shrink-0 opacity-50" />
     )}
 
     <CommandPrimitive.Input

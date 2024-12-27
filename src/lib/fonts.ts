@@ -82,5 +82,4 @@ export const getFontsClassnames = () =>
     plusJakartaSans.variable,
     ibmPlexSansArabic.variable,
     scheherazade.variable,
-    // uthmanicHafs.variable,
   ].join(" ");
