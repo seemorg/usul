@@ -124,6 +124,16 @@ export const getMetadata = async ({
     },
     alternates: {
       canonical: "/",
+      languages: {
+        ...PATH_LOCALES.reduce(
+          (acc, locale) => {
+            acc[locale] = relativeUrl(`/${locale}`);
+            return acc;
+          },
+          {} as Record<string, string>,
+        ),
+        "x-default": relativeUrl("/"),
+      },
     },
     robots: {
       index: true,

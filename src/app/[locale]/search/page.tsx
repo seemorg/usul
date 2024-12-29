@@ -25,7 +25,7 @@ import Navbar from "@/app/_components/navbar";
 import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
 import GlobalSearchResult from "@/components/global-search-result";
-
+import { AppLocale } from "~/i18n.config";
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
   loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
@@ -33,10 +33,15 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) {
   return getMetadata({
     title: (await getTranslations("entities"))("texts"),
     pagePath: navigation.books.all(),
+    locale,
   });
 }
 

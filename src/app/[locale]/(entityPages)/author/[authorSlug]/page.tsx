@@ -14,7 +14,7 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import DottedList from "@/components/ui/dotted-list";
-import { getPathLocale } from "@/lib/locale/server";
+import { getLocale, getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
@@ -22,6 +22,7 @@ import {
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -30,7 +31,9 @@ export const generateMetadata = async ({
 }: {
   params: { authorSlug: string };
 }) => {
-  const pathLocale = await getPathLocale();
+  const locale = await getLocale();
+  const pathLocale = appLocaleToPathLocale(locale);
+
   const author = await findAuthorBySlug(authorSlug, pathLocale);
   if (!author) return;
 
@@ -66,6 +69,7 @@ export const generateMetadata = async ({
   return getMetadata({
     concatTitle: false,
     hasImage: true,
+    locale,
     pagePath: navigation.authors.bySlug(authorSlug),
     title: t("author-page.title", {
       author: name,

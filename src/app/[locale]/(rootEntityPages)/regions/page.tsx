@@ -10,13 +10,18 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { InfoIcon } from "lucide-react";
-
+import { AppLocale } from "~/i18n.config";
 type PageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) {
   return getMetadata({
     title: (await getTranslations("entities"))("regions"),
     pagePath: navigation.regions.all(),
+    locale,
   });
 }
 

@@ -14,23 +14,26 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "./_contexts/book-details.context";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { AppLocale } from "~/i18n.config";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
 });
 
 export const generateMetadata = async ({
-  params: { bookId },
+  params: { bookId, locale },
   searchParams: { versionId },
 }: {
   params: {
     bookId: string;
+    locale: AppLocale;
   };
   searchParams: {
     versionId?: string;
   };
 }) => {
-  const pathLocale = await getPathLocale();
+  const pathLocale = appLocaleToPathLocale(locale);
 
   const response = await getBook(bookId, {
     locale: pathLocale,
@@ -46,6 +49,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     title: book.primaryName,
+    locale,
     pagePath: navigation.books.reader(bookId),
     keywords: [
       ...(book.otherNames ? book.otherNames : []),

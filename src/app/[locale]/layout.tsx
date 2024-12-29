@@ -12,10 +12,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env";
 import DemoModalProvider from "../_components/video-modal/provider";
 import Analytics from "./analytics";
+import { getLocale } from "@/lib/locale/server";
 
 export async function generateMetadata() {
+  const locale = await getLocale();
   return getMetadata({
     all: true,
+    locale,
   });
 }
 

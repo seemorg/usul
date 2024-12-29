@@ -9,13 +9,19 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { AppLocale } from "~/i18n.config";
 
 type PageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata() {
+export async function generateMetadata({
+  params: { locale },
+}: {
+  params: { locale: AppLocale };
+}) {
   return getMetadata({
     title: (await getTranslations("entities"))("genres"),
     pagePath: navigation.genres.all(),
+    locale,
   });
 }
 

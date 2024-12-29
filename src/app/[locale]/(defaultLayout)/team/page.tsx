@@ -6,10 +6,18 @@ import { boardMembers, members } from "./members";
 import { config, getMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { VOLUNTEER_EMAIL } from "@/lib/constants";
+import type { AppLocale } from "~/i18n.config";
+import { navigation } from "@/lib/urls";
 
-export const generateMetadata = async () => {
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { locale: AppLocale };
+}) => {
   const t = await getTranslations("meta");
   return getMetadata({
+    locale: params.locale,
+    pagePath: navigation.team(),
     title: t("team-page.title"),
     description: t("team-page.description"),
   });
