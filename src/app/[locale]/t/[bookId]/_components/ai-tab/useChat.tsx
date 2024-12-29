@@ -72,18 +72,23 @@ const handleEventSource = async (
   });
 };
 
-export default function useChat({ bookId }: { bookId: string }): UseChatResult {
-  const {
-    messages,
-    setMessages,
-    question,
-    setQuestion,
-    isPending,
-    setIsPending,
-    error,
-    setError,
-    reset,
-  } = useChatStore();
+export default function useChat({
+  bookId,
+  versionId,
+}: {
+  bookId: string;
+  versionId: string;
+}): UseChatResult {
+  const messages = useChatStore((s) => s.messages);
+  const setMessages = useChatStore((s) => s.setMessages);
+  const question = useChatStore((s) => s.question);
+  const setQuestion = useChatStore((s) => s.setQuestion);
+  const isPending = useChatStore((s) => s.isPending);
+  const setIsPending = useChatStore((s) => s.setIsPending);
+  const error = useChatStore((s) => s.error);
+  const setError = useChatStore((s) => s.setError);
+  const initializeChat = useChatStore((s) => s.initializeChat);
+  const syncHistory = useChatStore((s) => s.syncHistory);
 
   const sendQuestion = useCallback(async () => {
     setIsPending(true);
@@ -108,6 +113,7 @@ export default function useChat({ bookId }: { bookId: string }): UseChatResult {
       });
 
       setMessages([...newMessages, result]);
+      syncHistory();
     } catch (err) {
       setMessages(newMessages);
       setError(err as Error);
@@ -156,6 +162,7 @@ export default function useChat({ bookId }: { bookId: string }): UseChatResult {
           },
         });
         setMessages([...newMessages, result]);
+        syncHistory();
       } catch (err) {
         setMessages(newMessages);
         setError(err as Error);
@@ -166,13 +173,17 @@ export default function useChat({ bookId }: { bookId: string }): UseChatResult {
     [bookId, messages],
   );
 
+  const clearChat = useCallback(() => {
+    initializeChat({ bookId, versionId });
+  }, [initializeChat, bookId, versionId]);
+
   return {
     isError: !!error,
     error,
     messages,
     question,
     setQuestion,
-    clearChat: reset,
+    clearChat,
     sendQuestion,
     isPending,
     regenerateResponse,

@@ -12,6 +12,7 @@ import Paginator from "../../[pageNumber]/paginator";
 import { HighlightPopover } from "@/components/ui/highlight-popover";
 import ReaderHighlightPopover from "./highlight-popover";
 import { useBookDetails } from "../../_contexts/book-details.context";
+import BookInfo from "./book-info";
 
 export default function ReaderContent({
   isSinglePage,
@@ -54,6 +55,10 @@ export default function ReaderContent({
           slug={bookResponse.book.slug}
         />
       )}
+
+      <div className="w-full px-5 lg:px-8">
+        <BookInfo className="mx-auto max-w-5xl py-8" />
+      </div>
 
       <Virtualizer
         count={isSinglePage ? 1 : bookResponse.pagination.total}

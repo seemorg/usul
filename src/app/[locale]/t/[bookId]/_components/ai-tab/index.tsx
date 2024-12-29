@@ -5,18 +5,19 @@ import { cn } from "@/lib/utils";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
 import useChat from "./useChat";
 import ChatMessage from "./ChatMessage";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useScrollAnchor } from "./useScrollAnchor";
 import { useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
-import { InfoIcon, SquarePenIcon } from "lucide-react";
+import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
 import { config } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
 import { Badge } from "@/components/ui/badge";
 import { OpenAILogo } from "@/components/Icons";
 import { useBookDetails } from "../../_contexts/book-details.context";
+import { ChatHistory } from "./ChatHistory";
 
 export default function AITab() {
   const { bookResponse } = useBookDetails();
@@ -39,7 +40,11 @@ export default function AITab() {
     messages,
     clearChat,
     regenerateResponse,
-  } = useChat({ bookId: bookResponse.book.id });
+  } = useChat({
+    bookId: bookResponse.book.id,
+    versionId: bookResponse.content.id,
+  });
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 
   const onSubmit = useCallback(async () => {
     await sendQuestion();
@@ -68,130 +73,143 @@ export default function AITab() {
         </SidebarContainer>
       )}
 
-      <div className="flex items-center justify-between px-6">
-        <div className="flex gap-2">
-          {t("reader.ask-ai")}{" "}
-          <Badge variant="tertiary">{t("common.beta")}</Badge>
-        </div>
-        <div className="flex">
-          {/* <Button
-            size="icon"
-            variant="ghost"
-            className="size-9 text-muted-foreground hover:bg-secondary"
-            // onClick={handleShareChat}
-            disabled={isLoading}
-            tooltip={t("reader.history")}
-          >
-            <HistoryIcon className="size-4" />
-          </Button> */}
-
-          <Button
-            size="icon"
-            variant="ghost"
-            className="size-9 text-muted-foreground hover:bg-secondary"
-            onClick={onClearChat}
-            disabled={isLoading}
-            tooltip={t("reader.chat.new-chat")}
-          >
-            <SquarePenIcon className="size-4" />
-          </Button>
-        </div>
-      </div>
-
-      <div
-        className={cn(
-          "will flex flex-col justify-between",
-          isVersionMismatch
-            ? "h-[calc(100vh-330px)] md:h-[calc(100vh-370px)]"
-            : "h-[calc(100vh-200px)] md:h-[calc(100vh-240px)]",
-        )}
-      >
-        <div className="relative flex-1 overflow-hidden">
-          {!isAtBottom && (
-            <div className="absolute bottom-0 left-1/2 right-1/2 -translate-x-1/2">
+      {isHistoryOpen ? (
+        <ChatHistory
+          onOpenChange={setIsHistoryOpen}
+          bookId={bookResponse.book.id}
+          versionId={bookResponse.content.id}
+        />
+      ) : (
+        <>
+          <div className="flex items-center justify-between px-6">
+            <div className="flex gap-2">
+              <p className="font-semibold">{t("reader.ask-ai")}</p>
+              <Badge variant="tertiary">{t("common.beta")}</Badge>
+            </div>
+            <div className="flex">
               <Button
                 size="icon"
-                className="size-8 rounded-full"
-                onClick={scrollToBottom}
+                variant="ghost"
+                className="size-9 text-muted-foreground hover:bg-secondary"
+                onClick={() => setIsHistoryOpen(true)}
+                disabled={isLoading}
+                tooltip={t("reader.history.title")}
               >
-                <ArrowDownIcon className="size-4" />
+                <HistoryIcon className="size-4" />
+              </Button>
+
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-9 text-muted-foreground hover:bg-secondary"
+                onClick={onClearChat}
+                disabled={isLoading}
+                tooltip={t("reader.chat.new-chat")}
+              >
+                <SquarePenIcon className="size-4" />
               </Button>
             </div>
-          )}
-
-          <div className="h-full w-full overflow-y-auto px-6" ref={scrollRef}>
-            <div
-              ref={messagesRef}
-              className="flex flex-col gap-5 pb-[30px] pt-4"
-            >
-              {messages.length === 0 && (
-                <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
-                    <OpenAILogo className="h-auto w-7" />
-                  </div>
-
-                  <p className="mt-4">{t("reader.chat.empty-state")}</p>
-                </div>
-              )}
-
-              {messages.map((message, idx) => (
-                <ChatMessage
-                  key={idx}
-                  id={message.id}
-                  role={message.role}
-                  text={message.text}
-                  sourceNodes={message.sourceNodes}
-                  isLast={idx === messages.length - 1}
-                  hasActions={
-                    idx === messages.length - 1 && isPending ? false : true
-                  }
-                  onRegenerate={() => regenerateResponse(idx)}
-                  getVirtuosoScrollProps={getVirtuosoScrollProps}
-                />
-              ))}
-
-              {isError && (
-                <div
-                  className="flex items-start gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
-                  role="alert"
-                >
-                  <InfoIcon className="size-4" />
-                  <p>
-                    {t.rich("reader.chat.error", {
-                      retry: (children) => (
-                        <button
-                          onClick={() => regenerateResponse()}
-                          className="inline underline"
-                        >
-                          {children}
-                        </button>
-                      ),
-                      contact: (children) => (
-                        <a
-                          href={`mailto:${config.contactEmail}`}
-                          target="_blank"
-                          className="inline underline"
-                        >
-                          {children}
-                        </a>
-                      ),
-                    })}
-                  </p>
-                </div>
-              )}
-
-              <div className="h-px w-full" ref={visibilityRef} />
-            </div>
           </div>
-        </div>
 
-        <ChatForm
-          input={question}
-          setInput={setQuestion}
-          onSubmit={onSubmit}
-          isPending={isPending}
-        />
-      </div>
+          <div
+            className={cn(
+              "will flex flex-col justify-between",
+              isVersionMismatch
+                ? "h-[calc(100vh-330px)] md:h-[calc(100vh-370px)]"
+                : "h-[calc(100vh-200px)] md:h-[calc(100vh-240px)]",
+            )}
+          >
+            <div className="relative flex-1 overflow-hidden">
+              {!isAtBottom && (
+                <div className="absolute bottom-0 left-1/2 right-1/2 -translate-x-1/2">
+                  <Button
+                    size="icon"
+                    className="size-8 rounded-full"
+                    onClick={scrollToBottom}
+                  >
+                    <ArrowDownIcon className="size-4" />
+                  </Button>
+                </div>
+              )}
+
+              <div
+                className="h-full w-full overflow-y-auto px-6"
+                ref={scrollRef}
+              >
+                <div
+                  ref={messagesRef}
+                  className="flex flex-col gap-5 pb-[30px] pt-4"
+                >
+                  {messages.length === 0 && (
+                    <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
+                      <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
+                        <OpenAILogo className="h-auto w-7" />
+                      </div>
+
+                      <p className="mt-4">{t("reader.chat.empty-state")}</p>
+                    </div>
+                  )}
+
+                  {messages.map((message, idx) => (
+                    <ChatMessage
+                      key={idx}
+                      id={message.id}
+                      role={message.role}
+                      text={message.text}
+                      sourceNodes={message.sourceNodes}
+                      isLast={idx === messages.length - 1}
+                      hasActions={
+                        idx === messages.length - 1 && isPending ? false : true
+                      }
+                      onRegenerate={() => regenerateResponse(idx)}
+                      getVirtuosoScrollProps={getVirtuosoScrollProps}
+                    />
+                  ))}
+
+                  {isError && (
+                    <div
+                      className="flex items-start gap-2 rounded-md border border-red-500 bg-red-100 px-4 py-2 text-sm text-red-500"
+                      role="alert"
+                    >
+                      <InfoIcon className="size-4" />
+                      <p>
+                        {t.rich("reader.chat.error", {
+                          retry: (children) => (
+                            <button
+                              onClick={() => regenerateResponse()}
+                              className="inline underline"
+                            >
+                              {children}
+                            </button>
+                          ),
+                          contact: (children) => (
+                            <a
+                              href={`mailto:${config.contactEmail}`}
+                              target="_blank"
+                              className="inline underline"
+                            >
+                              {children}
+                            </a>
+                          ),
+                        })}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="h-px w-full" ref={visibilityRef} />
+                </div>
+              </div>
+            </div>
+
+            <ChatForm
+              input={question}
+              setInput={setQuestion}
+              onSubmit={onSubmit}
+              isPending={isPending}
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }

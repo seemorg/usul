@@ -2,7 +2,11 @@
   "notes": "Notlar",
   "bookmarks": "Yer İşaretleri",
   "content": "İçerik",
-  "history": "Geçmiş",
+  "history": {
+    "title": "Geçmiş",
+    "empty-state": "Henüz geçmiş yok",
+    "delete": "Sil"
+  },
   "ask-ai": "AI Sormak",
   "edition-warning": "{feature} görüntülemekte olduğunuz sürümde desteklenmiyor.",
   "switch-edition": "{edition} sürümüne geç",
@@ -14,6 +18,8 @@
   "share": "Paylaş",
   "e-book": "e-Kitap",
   "pdf": "PDF",
+  "select": "Seç",
+  "selected": "Seçildi",
   "view-e-book": "e-Kitabı Görüntüle",
   "view-pdf": "PDF Görüntüle",
   "go-to-page-x": "Sayfaya git {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Kaynaklar",
     "error": "Bir şeyler ters gitti. <retry>Tekrar deneyin</retry> veya devam ederse <contact>bize ulaşın</contact>.",
     "pg-x": "S{page, number, nogroup}",
-    "pg-x-vol": "S{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Cilt {vol, number, nogroup}, Sf {page, number, nogroup}"
   },
   "edition": "Sürüm",
+  "editions-modal": {
+    "title": "Baskılar",
+    "description": "İstediğiniz baskıyı seçin"
+  },
   "select-edition": "Bir sürüm seç",
   "single-page": "Tek Sayfa",
   "all-pages": "Tüm Sayfalar",
@@ -67,13 +77,11 @@
   "download-pdf": "PDF İndir",
   "publication-details": {
     "title": "Yayın Ayrıntıları",
-    "book-title": "Başlık",
-    "author": "Yazar",
-    "editor": "Editör",
+    "investigator": "Araştırmacı",
     "publisher": "Yayıncı",
-    "print-version": "Baskı Versiyonu",
-    "volumes": "Ciltler",
-    "page-numbers-match-print": "Sayfa numaraları baskıyla uyumlu"
+    "publication-year": "Yayın Yılı",
+    "publisher-location": "Yayın Yeri",
+    "edition-number": "Baskı Numarası"
   },
   "feedback-submitted": "Geri bildirim gönderildi!"
 }

@@ -9,20 +9,23 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "../_contexts/book-details.context";
+import { AppLocale } from "~/i18n.config";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 export const generateMetadata = async ({
-  params: { bookId, pageNumber },
+  params: { bookId, pageNumber, locale },
   searchParams: { versionId },
 }: {
   params: {
     bookId: string;
     pageNumber: string;
+    locale: AppLocale;
   };
   searchParams: {
     versionId?: string;
   };
 }) => {
-  const pathLocale = await getPathLocale();
+  const pathLocale = appLocaleToPathLocale(locale);
 
   const parsedNumber = Number(pageNumber);
   if (isNaN(parsedNumber) || parsedNumber <= 0) {
@@ -43,6 +46,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     title: book.primaryName,
+    locale,
     pagePath: navigation.books.reader(bookId),
     keywords: [
       ...(book.otherNames ? book.otherNames : []),

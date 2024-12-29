@@ -23,6 +23,7 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { getMetadata } from "@/lib/seo";
+import { AppLocale } from "~/i18n.config";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -30,9 +31,9 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { regionSlug },
+  params: { regionSlug, locale },
 }: {
-  params: { regionSlug: string };
+  params: { regionSlug: string; locale: AppLocale };
 }) => {
   const pathLocale = await getPathLocale();
 
@@ -47,6 +48,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     hasImage: true,
+    locale,
     pagePath: navigation.regions.bySlug(regionSlug),
     title: name ?? undefined,
     description: overview ?? undefined,

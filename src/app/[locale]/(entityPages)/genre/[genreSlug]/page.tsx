@@ -16,6 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { getPathLocale } from "@/lib/locale/server";
+import { AppLocale } from "~/i18n.config";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -23,18 +24,22 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { genreSlug },
+  params: { genreSlug, locale },
 }: {
-  params: { genreSlug: string };
+  params: { genreSlug: string; locale: AppLocale };
 }) => {
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return;
 
-  const locale = await getPathLocale();
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, locale);
+  const pathLocale = await getPathLocale();
+  const primaryText = getPrimaryLocalizedText(
+    genre.nameTranslations,
+    pathLocale,
+  );
 
   return getMetadata({
     hasImage: true,
+    locale,
     pagePath: navigation.genres.bySlug(genreSlug),
     title: primaryText ?? "",
   });

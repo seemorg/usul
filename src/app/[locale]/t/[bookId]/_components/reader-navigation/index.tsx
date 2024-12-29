@@ -135,7 +135,9 @@ export default function ReaderNavigation({
         </Container>
       </div>
 
-      <BookInfoHeader />
+      <div className="relative">
+        <BookInfoHeader />
+      </div>
     </>
   );
 }

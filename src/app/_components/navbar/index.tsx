@@ -15,36 +15,13 @@ import React, { useEffect, useState } from "react";
 import { ThemeToggle } from "./theme-toggle";
 import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
-
-// import HomepageNavigationMenu from "./navigation-menu";
-// import SearchBar from "./search-bar";
-
-const SearchBar = dynamic(() => import("./search-bar"), {
-  ssr: false,
-});
-
-const HomepageNavigationMenu = dynamic(() => import("./navigation-menu"), {
-  ssr: false,
-});
-
+import SearchBar from "./search-bar";
+import HomepageNavigationMenu from "./navigation-menu";
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import { useTranslations } from "next-intl";
 import { useDirection } from "@/lib/locale/utils";
-import dynamic from "next/dynamic";
-import { useIsClient } from "usehooks-ts";
-
-const RenderWhenMounted = ({ children }: { children: React.ReactNode }) => {
-  const [isMounted, setIsMounted] = useState(false);
-  const isClient = useIsClient();
-
-  useEffect(() => {
-    if (isClient) setIsMounted(true);
-  }, [isClient]);
-
-  return isMounted ? children : null;
-};
 
 interface NavbarProps {
   layout?: "home" | "reader";
@@ -114,9 +91,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
           </div>
         ) : (
           <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-8 xl:px-0">
-            <RenderWhenMounted>
-              <SearchBar />
-            </RenderWhenMounted>
+            <SearchBar />
           </div>
         )}
 

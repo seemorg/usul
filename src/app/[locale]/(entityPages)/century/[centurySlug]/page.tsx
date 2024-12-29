@@ -13,13 +13,14 @@ import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
+import type { AppLocale } from "~/i18n.config";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { centurySlug },
+  params: { centurySlug, locale },
 }: {
-  params: { centurySlug: string };
+  params: { centurySlug: string; locale: AppLocale };
 }) => {
   const yearRange = await findYearRangeBySlug(centurySlug);
   if (!yearRange) return;
@@ -29,6 +30,7 @@ export const generateMetadata = async ({
 
   return getMetadata({
     hasImage: true,
+    locale,
     pagePath: navigation.centuries.byNumber(yearRange.centuryNumber),
     title,
     description: yearRange.description,

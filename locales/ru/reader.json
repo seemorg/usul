@@ -2,7 +2,11 @@
   "notes": "Заметки",
   "bookmarks": "Закладки",
   "content": "Содержание",
-  "history": "История",
+  "history": {
+    "title": "История",
+    "empty-state": "Истории пока нет",
+    "delete": "Удалить"
+  },
   "ask-ai": "Спросить AI",
   "edition-warning": "{feature} не поддерживается в редакции, которую вы просматриваете.",
   "switch-edition": "Переключиться на {edition}",
@@ -14,6 +18,8 @@
   "share": "Поделиться",
   "e-book": "e-Book",
   "pdf": "PDF",
+  "select": "Выбрать",
+  "selected": "Выбрано",
   "view-e-book": "Просмотреть e-книгу",
   "view-pdf": "Просмотреть PDF",
   "go-to-page-x": "Перейти на страницу {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Источники",
     "error": "Что-то пошло не так. <retry>Попробуйте снова</retry> или <contact>свяжитесь с нами</contact>, если проблема сохраняется.",
     "pg-x": "Страница {page, number, nogroup}",
-    "pg-x-vol": "Том {vol, number, nogroup}/Страница {page, number, nogroup}"
+    "pg-x-vol": "Том {vol, number, nogroup}, Стр {page, number, nogroup}"
   },
   "edition": "Издание",
+  "editions-modal": {
+    "title": "Издания",
+    "description": "Выберите нужное издание"
+  },
   "select-edition": "Выберите издание",
   "single-page": "Одна страница",
   "all-pages": "Все страницы",
@@ -67,13 +77,11 @@
   "download-pdf": "Скачать PDF",
   "publication-details": {
     "title": "Детали публикации",
-    "book-title": "Название",
-    "author": "Автор",
-    "editor": "Редактор",
+    "investigator": "Исследователь",
     "publisher": "Издатель",
-    "print-version": "Печатная версия",
-    "volumes": "{count, plural, one {Том} few {Тома} many {Томов} other {Тома}}",
-    "page-numbers-match-print": "Номера страниц совпадают с печатной версией"
+    "publication-year": "Год публикации",
+    "publisher-location": "Место издания",
+    "edition-number": "Номер издания"
   },
   "feedback-submitted": "Отзыв отправлен!"
 }

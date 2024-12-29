@@ -1,7 +1,8 @@
 "use client";
 
 import type { ApiBookResponse } from "@/types/api/book";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
+import { useChatStore } from "../_stores/chat";
 
 interface BookDetailsContextValue {
   bookResponse: ApiBookResponse;
@@ -16,6 +17,15 @@ export function BookDetailsProvider({
   children: React.ReactNode;
   bookResponse: ApiBookResponse;
 }) {
+  const initializeChat = useChatStore((s) => s.initializeChat);
+
+  useEffect(() => {
+    initializeChat({
+      bookId: bookResponse.book.id,
+      versionId: bookResponse.content.id,
+    });
+  }, [bookResponse, initializeChat]);
+
   return (
     <BookDetailsContext.Provider value={{ bookResponse }}>
       {children}
