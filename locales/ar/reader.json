@@ -2,7 +2,11 @@
   "notes": "الملاحظات",
   "bookmarks": "العلامات",
   "content": "المحتوى",
-  "history": "التاريخ",
+  "history": {
+    "title": "التاريخ",
+    "empty-state": "لا يوجد تاريخ بعد",
+    "delete": "حذف"
+  },
   "ask-ai": "اسأل الذكاء الاصطناعي",
   "edition-warning": "الميزة {feature} غير مدعومة في النسخة التي تشاهدها.",
   "switch-edition": "التبديل إلى {edition}",
@@ -14,6 +18,8 @@
   "share": "مشاركة",
   "e-book": "كتاب إلكتروني",
   "pdf": "PDF",
+  "select": "اختر",
+  "selected": "محدد",
   "view-e-book": "عرض الكتاب الإلكتروني",
   "view-pdf": "عرض PDF",
   "go-to-page-x": "اذهب إلى الصفحة {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "مصادر",
     "error": "حدث خطأ ما. <retry>حاول مرة أخرى</retry> أو <contact>اتصل بنا</contact> إذا استمرت المشكلة.",
     "pg-x": "صفحة {page, number, nogroup}",
-    "pg-x-vol": "المجلد {vol, number, nogroup}، صفحة {page, number, nogroup}"
+    "pg-x-vol": "المجلد {vol, number, nogroup}, الصفحة {page, number, nogroup}"
   },
   "edition": "الإصدار",
+  "editions-modal": {
+    "title": "الإصدارات",
+    "description": "اختر الإصدار المطلوب"
+  },
   "select-edition": "اختر إصدارًا",
   "single-page": "صفحة واحدة",
   "all-pages": "جميع الصفحات",
@@ -67,13 +77,11 @@
   "download-pdf": "تحميل PDF",
   "publication-details": {
     "title": "تفاصيل النشر",
-    "book-title": "العنوان",
-    "author": "مؤلف",
-    "editor": "محرر",
+    "investigator": "محقق",
     "publisher": "الناشر",
-    "print-version": "نسخة الطباعة",
-    "volumes": "المجلدات",
-    "page-numbers-match-print": "أرقام الصفحات تتطابق مع الطباعة"
+    "publication-year": "سنة النشر",
+    "publisher-location": "مكان النشر",
+    "edition-number": "رقم الإصدار"
   },
   "feedback-submitted": "تم إرسال التعليق!"
 }

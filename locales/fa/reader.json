@@ -2,7 +2,11 @@
   "notes": "یادداشت‌ها",
   "bookmarks": "نشانک‌ها",
   "content": "محتوا",
-  "history": "تاریخچه",
+  "history": {
+    "title": "تاریخ",
+    "empty-state": "هنوز تاریخی موجود نیست",
+    "delete": "حذف"
+  },
   "ask-ai": "پرسیدن از هوش مصنوعی",
   "edition-warning": "{feature} در نسخه‌ای که در حال مشاهده آن هستید پشتیبانی نمی‌شود.",
   "switch-edition": "تغییر به {edition}",
@@ -14,6 +18,8 @@
   "share": "اشتراک گذاری",
   "e-book": "کتاب الکترونیکی",
   "pdf": "PDF",
+  "select": "انتخاب",
+  "selected": "انتخاب شد",
   "view-e-book": "مشاهده e-Book",
   "view-pdf": "مشاهده PDF",
   "go-to-page-x": "برو به صفحه {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "منابع",
     "error": "مشکلی پیش آمد. <retry>دوباره امتحان کنید</retry> یا <contact>با ما تماس بگیرید</contact> اگر ادامه پیدا کرد.",
     "pg-x": "ص{page, number, nogroup}",
-    "pg-x-vol": "ج{vol, number, nogroup}/ص{page, number, nogroup}"
+    "pg-x-vol": "جلد {vol, number, nogroup}، صفحه {page, number, nogroup}"
   },
   "edition": "نسخه",
+  "editions-modal": {
+    "title": "نسخه‌ها",
+    "description": "نسخه مورد نظر را انتخاب کنید"
+  },
   "select-edition": "انتخاب یک نسخه",
   "single-page": "صفحه واحد",
   "all-pages": "همه صفحات",
@@ -67,13 +77,11 @@
   "download-pdf": "دانلود PDF",
   "publication-details": {
     "title": "جزئیات انتشار",
-    "book-title": "عنوان",
-    "author": "نویسنده",
-    "editor": "ویرایشگر",
+    "investigator": "پژوهشگر",
     "publisher": "ناشر",
-    "print-version": "نسخه چاپی",
-    "volumes": "جلدها",
-    "page-numbers-match-print": "شماره صفحات مطابق چاپ"
+    "publication-year": "سال انتشار",
+    "publisher-location": "محل انتشار",
+    "edition-number": "شماره نسخه"
   },
   "feedback-submitted": "بازخورد ارسال شد!"
 }

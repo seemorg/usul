@@ -2,7 +2,11 @@
   "notes": "Nota",
   "bookmarks": "Penanda Buku",
   "content": "Kandungan",
-  "history": "Sejarah",
+  "history": {
+    "title": "Sejarah",
+    "empty-state": "Tiada sejarah lagi",
+    "delete": "Padam"
+  },
   "ask-ai": "Tanya AI",
   "edition-warning": "{feature} tidak disokong pada edisi yang anda lihat.",
   "switch-edition": "Tukar ke {edition}",
@@ -14,6 +18,8 @@
   "share": "Kongsi",
   "e-book": "e-Book",
   "pdf": "PDF",
+  "select": "Pilih",
+  "selected": "Dipilih",
   "view-e-book": "Lihat e-Book",
   "view-pdf": "Lihat PDF",
   "go-to-page-x": "Pergi ke halaman {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Sumber",
     "error": "Sesuatu telah berlaku. <retry>Cuba lagi</retry> atau <contact>hubungi kami</contact> jika ia berterusan.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Jilid {vol, number, nogroup}, Hal {page, number, nogroup}"
   },
   "edition": "Edisi",
+  "editions-modal": {
+    "title": "Edisi",
+    "description": "Pilih edisi yang dikehendaki"
+  },
   "select-edition": "Pilih edisi",
   "single-page": "Halaman Tunggal",
   "all-pages": "Semua Halaman",
@@ -67,13 +77,11 @@
   "download-pdf": "Muat Turun PDF",
   "publication-details": {
     "title": "Butiran Penerbitan",
-    "book-title": "Tajuk",
-    "author": "Pengarang",
-    "editor": "Penyunting",
+    "investigator": "Penyiasat",
     "publisher": "Penerbit",
-    "print-version": "Versi Cetak",
-    "volumes": "Jilid",
-    "page-numbers-match-print": "Nombor halaman sama seperti cetakan"
+    "publication-year": "Tahun Penerbitan",
+    "publisher-location": "Lokasi Penerbit",
+    "edition-number": "Nombor Edisi"
   },
   "feedback-submitted": "Maklum balas dihantar!"
 }

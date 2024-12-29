@@ -2,7 +2,11 @@
   "notes": "یاداښتونه",
   "bookmarks": "لانچینی",
   "content": "مندنه",
-  "history": "تاریخ",
+  "history": {
+    "title": "تاریخ",
+    "empty-state": "تر اوسه تاریخ نشته",
+    "delete": "ړنګه کړه"
+  },
   "ask-ai": "AI څخه وپوښتئ",
   "edition-warning": "د {feature} په نسخه کې چې تاسو یې ګورئ، ملاتړ نه کیږي.",
   "switch-edition": "{edition} ته واړوه",
@@ -14,6 +18,8 @@
   "share": "شریک کړئ",
   "e-book": "برېښنايي کتاب",
   "pdf": "PDF",
+  "select": "وټاکئ",
+  "selected": "منتخب شو",
   "view-e-book": "ای - کتاب وګورئ",
   "view-pdf": "PDF وګورئ",
   "go-to-page-x": "صفحه ته لاړ شئ {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "سرچینې",
     "error": "یوه ستونزه پېښه شوه. <retry>بیا هڅه وکړئ</retry> یا که دا دوام لري <contact>موږ سره اړیکه ونیسئ</contact>.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "جلد {vol, number, nogroup}، مخ {page, number, nogroup}"
   },
   "edition": "څپرکی",
+  "editions-modal": {
+    "title": "چاپونه",
+    "description": "دلخواه چاپ وټاکئ"
+  },
   "select-edition": "یوه څپرکه وټاکئ",
   "single-page": "یوه پاڼه",
   "all-pages": "ټولې پاڼې",
@@ -67,13 +77,11 @@
   "download-pdf": "پي ډي ایف ډاونلوډ کړئ",
   "publication-details": {
     "title": "د خپرونې جزئيات",
-    "book-title": "سرليک",
-    "author": "ليکوال",
-    "editor": "مدير",
+    "investigator": "پوهندوی",
     "publisher": "خپرندوی",
-    "print-version": "طباعتي نسخه",
-    "volumes": "جلدونه",
-    "page-numbers-match-print": "د پاڼو شمېرې چاپ سره متناسب دي"
+    "publication-year": "د چاپ کال",
+    "publisher-location": "د خپرونکي ځای",
+    "edition-number": "د ایډیشن شمېره"
   },
   "feedback-submitted": "نظر مو واستول شو!"
 }

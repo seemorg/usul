@@ -2,7 +2,11 @@
   "notes": "Notes",
   "bookmarks": "Signets",
   "content": "Contenu",
-  "history": "Historique",
+  "history": {
+    "title": "Historique",
+    "empty-state": "Aucun historique pour le moment",
+    "delete": "Supprimer"
+  },
   "ask-ai": "Demander à l'IA",
   "edition-warning": "{feature} n'est pas pris en charge sur l'édition que vous consultez.",
   "switch-edition": "Passer à {edition}",
@@ -14,6 +18,8 @@
   "share": "Partager",
   "e-book": "e-Book",
   "pdf": "PDF",
+  "select": "Sélectionner",
+  "selected": "Sélectionné",
   "view-e-book": "Voir l'e-book",
   "view-pdf": "Voir le PDF",
   "go-to-page-x": "Aller à la page {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Sources",
     "error": "Quelque chose s'est mal passé. <retry>Réessayez</retry> ou <contact>contactez-nous</contact> si le problème persiste.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Pg {page, number, nogroup}"
   },
   "edition": "Édition",
+  "editions-modal": {
+    "title": "Éditions",
+    "description": "Sélectionnez l'édition souhaitée"
+  },
   "select-edition": "Sélectionner une édition",
   "single-page": "Page unique",
   "all-pages": "Toutes les pages",
@@ -67,13 +77,11 @@
   "download-pdf": "Télécharger le PDF",
   "publication-details": {
     "title": "Détails de la publication",
-    "book-title": "Titre",
-    "author": "Auteur",
-    "editor": "Éditeur",
+    "investigator": "Chercheur",
     "publisher": "Maison d'édition",
-    "print-version": "Version imprimée",
-    "volumes": "Volumes",
-    "page-numbers-match-print": "Les numéros de page correspondent à l'imprimé"
+    "publication-year": "Année de publication",
+    "publisher-location": "Lieu d'édition",
+    "edition-number": "Numéro d'édition"
   },
   "feedback-submitted": "Commentaires soumis !"
 }

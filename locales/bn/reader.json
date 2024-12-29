@@ -2,7 +2,11 @@
   "notes": "নোট",
   "bookmarks": "বুকমার্কস",
   "content": "বিষয়বস্তু",
-  "history": "ইতিহাস",
+  "history": {
+    "title": "ইতিহাস",
+    "empty-state": "এখনও কোন ইতিহাস নেই",
+    "delete": "মুছে ফেলুন"
+  },
   "ask-ai": "এআইকে জিজ্ঞাসা করুন",
   "edition-warning": "আপনি যে সংস্করণটি দেখছেন, তাতে {feature} সমর্থিত নয়।",
   "switch-edition": "{edition} এ পরিবর্তন করুন",
@@ -14,6 +18,8 @@
   "share": "শেয়ার",
   "e-book": "ই-বই",
   "pdf": "পিডিএফ",
+  "select": "নির্বাচন করুন",
+  "selected": "নির্বাচিত",
   "view-e-book": "ই-বুক দেখুন",
   "view-pdf": "পিডিএফ দেখুন",
   "go-to-page-x": "পৃষ্ঠা {vol}/{page, number, nogroup}-এ যান",
@@ -51,9 +57,13 @@
     "sources": "উৎস",
     "error": "কিছু ভুল হয়েছে। <retry>আবার চেষ্টা করুন</retry> অথবা যদি এটি অব্যাহত থাকে, <contact>আমাদের সাথে যোগাযোগ করুন</contact>.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "ভলিউম {vol, number, nogroup}, পৃষ্ঠা {page, number, nogroup}"
   },
   "edition": "সংস্করণ",
+  "editions-modal": {
+    "title": "সংস্করণসমূহ",
+    "description": "পছন্দের সংস্করণ নির্বাচন করুন"
+  },
   "select-edition": "একটি সংস্করণ নির্বাচন করুন",
   "single-page": "একক পৃষ্ঠা",
   "all-pages": "সব পৃষ্ঠা",
@@ -67,13 +77,11 @@
   "download-pdf": "PDF ডাউনলোড করুন",
   "publication-details": {
     "title": "প্রকাশনার বিবরণ",
-    "book-title": "শিরোনাম",
-    "author": "লেখক",
-    "editor": "সম্পাদক",
+    "investigator": "তদারক",
     "publisher": "প্রকাশক",
-    "print-version": "মুদ্রিত সংস্করণ",
-    "volumes": "খণ্ড",
-    "page-numbers-match-print": "পৃষ্ঠা সংখ্যা মুদ্রণের সাথে মেলে"
+    "publication-year": "প্রকাশনার বছর",
+    "publisher-location": "প্রকাশনার স্থান",
+    "edition-number": "সংস্করণের সংখ্যা"
   },
   "feedback-submitted": "প্রতিক্রিয়া জমা দেওয়া হয়েছে!"
 }
