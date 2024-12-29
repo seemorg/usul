@@ -27,6 +27,7 @@ declare global {
       publicationDetails?: PublicationDetails;
       aiSupported?: boolean;
       keywordSupported?: boolean;
+      pdfUrl?: string;
     };
 
     interface AuthorExtraProperties {

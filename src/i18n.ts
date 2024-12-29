@@ -31,7 +31,9 @@ export default getRequestConfig(async ({ locale }) => {
   };
 });
 
-export const getSharedConfig = () => {
+export const getSharedConfig = (): Awaited<
+  ReturnType<Parameters<typeof getRequestConfig>[0]>
+> => {
   return {
     timeZone: "UTC",
     formats: {

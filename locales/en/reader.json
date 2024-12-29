@@ -2,7 +2,11 @@
   "notes": "Notes",
   "bookmarks": "Bookmarks",
   "content": "Content",
-  "history": "History",
+  "history": {
+    "title": "History",
+    "empty-state": "No history yet",
+    "delete": "Delete"
+  },
   "ask-ai": "Ask AI",
   "edition-warning": "{feature} is not supported on the edition you're viewing.",
   "switch-edition": "Switch to {edition}",
@@ -14,6 +18,8 @@
   "share": "Share",
   "e-book": "e-Book",
   "pdf": "PDF",
+  "select": "Select",
+  "selected": "Selected",
   "view-e-book": "View e-Book",
   "view-pdf": "View PDF",
   "go-to-page-x": "Go to page {vol}/{page, number, nogroup}",
@@ -54,6 +60,10 @@
     "pg-x-vol": "Vol {vol, number, nogroup}, Pg {page, number, nogroup}"
   },
   "edition": "Edition",
+  "editions-modal": {
+    "title": "Editions",
+    "description": "Select the desired edition"
+  },
   "select-edition": "Select an edition",
   "single-page": "Single Page",
   "all-pages": "All Pages",
@@ -67,13 +77,11 @@
   "download-pdf": "Download PDF",
   "publication-details": {
     "title": "Publication Details",
-    "book-title": "Title",
-    "author": "Author",
-    "editor": "Editor",
+    "investigator": "Investigator",
     "publisher": "Publisher",
-    "print-version": "Print Version",
-    "volumes": "Volumes",
-    "page-numbers-match-print": "Page numbers match print"
+    "publication-year": "Publication Year",
+    "publisher-location": "Publisher Location",
+    "edition-number": "Edition Number"
   },
   "feedback-submitted": "Feedback submitted!"
 }
