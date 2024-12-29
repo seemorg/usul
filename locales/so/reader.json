@@ -2,7 +2,11 @@
   "notes": "Qoraallo",
   "bookmarks": "Xusuus-qoryo",
   "content": "Mawduuc",
-  "history": "Taariikhda",
+  "history": {
+    "title": "Taariikh",
+    "empty-state": "Weli taariikh lama helin",
+    "delete": "Tirtir"
+  },
   "ask-ai": "Weydiiso AI",
   "edition-warning": "{feature} looma taageero nuqulka aad daawaneyso.",
   "switch-edition": "Beddel {edition}",
@@ -14,6 +18,8 @@
   "share": "La wadaag",
   "e-book": "e-Buug",
   "pdf": "PDF",
+  "select": "Xulo",
+  "selected": "La xulay",
   "view-e-book": "Daawo e-Book",
   "view-pdf": "Daawo PDF",
   "go-to-page-x": "Tag bogga {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Ilo",
     "error": "Waxbaa qaldamay. <retry>Mar kale isku day</retry> ama <contact>nala soo xidhiidh</contact> haddii ay sii socoto.",
     "pg-x": "B{page, number, nogroup}",
-    "pg-x-vol": "B{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Bog {page, number, nogroup}"
   },
   "edition": "Daabacad",
+  "editions-modal": {
+    "title": "Daabacaadaha",
+    "description": "Xulo daabacaadda aad rabto"
+  },
   "select-edition": "Dooro daabacad",
   "single-page": "Bogga Keli",
   "all-pages": "Dhamaan Bogagga",
@@ -67,13 +77,11 @@
   "download-pdf": "Soo dejiso PDF",
   "publication-details": {
     "title": "Faahfaahinta Daabacaadda",
-    "book-title": "Cinwaan",
-    "author": "Qoraa",
-    "editor": "Tifaftire",
+    "investigator": "Baare",
     "publisher": "Daabacaha",
-    "print-version": "Nooca Daabacaadda",
-    "volumes": "Mugga",
-    "page-numbers-match-print": "Tirada Bogagga waxay la siman yihiin Daabacaadda"
+    "publication-year": "Sanadka Daabacaadda",
+    "publisher-location": "Goobta Daabacaadda",
+    "edition-number": "Lambarka Daabacaadda"
   },
   "feedback-submitted": "Jawaab-celin diray!"
 }
