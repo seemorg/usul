@@ -22,7 +22,7 @@ export default function LocaleSwitcher() {
   const currentUrl = `${pathname}${params.size > 0 ? `?` + params.toString() : ""}`;
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
