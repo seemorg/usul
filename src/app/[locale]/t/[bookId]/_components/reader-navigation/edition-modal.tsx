@@ -28,7 +28,7 @@ const EditionItem = ({
   onSelect: () => void;
   isLoading: boolean;
 }) => {
-  const t = useTranslations("reader");
+  const t = useTranslations();
 
   return (
     <div className="px-6 py-6">
@@ -37,11 +37,11 @@ const EditionItem = ({
           <h4 className="text-xl font-semibold">{versionToName(version)}</h4>
 
           {version.source === "openiti" || version.source === "turath" ? (
-            <Badge variant="muted">{t("e-book")}</Badge>
+            <Badge variant="muted">{t("common.e-book")}</Badge>
           ) : null}
 
           {version.source === "pdf" || version.pdfUrl ? (
-            <Badge variant="muted">{t("pdf")}</Badge>
+            <Badge variant="muted">{t("common.pdf")}</Badge>
           ) : null}
         </div>
 
@@ -54,7 +54,7 @@ const EditionItem = ({
           {isLoading && isSelected ? (
             <Spinner className="h-4 w-4 text-current" />
           ) : null}
-          {isSelected ? t("selected") : t("select")}
+          {isSelected ? t("reader.selected") : t("reader.select")}
         </Button>
       </div>
 

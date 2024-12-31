@@ -10,7 +10,7 @@ export default function ViewTabs({
   hasPdf: boolean;
   contentSource: ApiBookResponse["content"]["source"];
 }) {
-  const t = useTranslations("reader");
+  const t = useTranslations();
   const { view, setView } = useReaderView();
   const isPdfSource = contentSource === "pdf";
 
@@ -22,11 +22,11 @@ export default function ViewTabs({
     >
       <TabsList>
         <TabsTrigger value="ebook" disabled={isPdfSource}>
-          {t("e-book")}
+          {t("common.e-book")}
         </TabsTrigger>
 
         <TabsTrigger value="pdf" disabled={!hasPdf}>
-          {t("pdf")}
+          {t("common.pdf")}
         </TabsTrigger>
       </TabsList>
     </Tabs>

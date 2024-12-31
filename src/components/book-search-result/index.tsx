@@ -1,12 +1,8 @@
-/* eslint-disable react/jsx-key */
-"use client";
-
 import type { searchBooks } from "@/server/typesense/book";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import InfoDialog from "./info-dialog";
-import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
 import { CloudflareImage } from "../cloudflare-image";
 import { useTranslations } from "next-intl";
@@ -15,6 +11,7 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { Badge } from "../ui/badge";
 
 const BookSearchResult = ({
   result,
@@ -109,41 +106,81 @@ const BookSearchResult = ({
     );
   }
 
-  const deathYearString = author.year ? ` (d. ${author.year})` : "";
+  const deathYearString =
+    author.year && author.year > 0
+      ? ` (d. ${author.year} AH)`
+      : " (d. Unknown)";
+  let hasPdf = false;
+  let hasEbook = false;
+  let hasExternal = false;
+
+  for (const version of document.versions) {
+    if (version.source === "pdf" || !!version.pdfUrl) {
+      hasPdf = true;
+    }
+
+    if (version.source === "openiti" || version.source === "turath") {
+      hasEbook = true;
+    }
+
+    if (version.source === "external") {
+      hasExternal = true;
+    }
+  }
 
   return (
     <Link
       href={navigation.books.reader(document.slug)}
       prefetch={false}
-      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary dark:hover:bg-secondary/20 sm:px-6"
+      className="w-full border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary/50 dark:hover:bg-secondary/20 sm:px-3"
     >
-      <div className="flex-1 text-xl">
-        <h3
-          className="text-lg font-semibold"
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
+      <div className="flex w-full items-start justify-between gap-3">
+        <div className="flex-1">
+          <h3
+            className="text-lg font-bold"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
 
-        <DottedList
-          className="mt-2 text-xs text-muted-foreground"
-          items={[
-            secondaryTitle && (
-              <p dangerouslySetInnerHTML={{ __html: secondaryTitle }} />
-            ),
-            <p>
-              {authorName}
-              {deathYearString}
-            </p>,
-            authorSecondaryName && (
-              <p>
-                {authorSecondaryName}
-                {deathYearString}
-              </p>
-            ),
-          ]}
-        />
+          {authorName && (
+            <bdi className="mt-2 block text-base text-muted-foreground">
+              {authorName} {deathYearString}
+            </bdi>
+          )}
+        </div>
+
+        {secondaryTitle && (
+          <div className="flex-1" dir="rtl">
+            <h3
+              className="text-lg font-bold"
+              dangerouslySetInnerHTML={{ __html: secondaryTitle }}
+            />
+
+            {authorSecondaryName && (
+              <bdi className="mt-2 block text-base text-muted-foreground">
+                {authorSecondaryName} {deathYearString}
+              </bdi>
+            )}
+          </div>
+        )}
       </div>
 
-      <p>{t("common.year-format.ah.value", { year: document.year })}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {hasPdf && (
+          <Badge variant="muted" className="font-normal">
+            {t("common.pdf")}
+          </Badge>
+        )}
+        {hasEbook && (
+          <Badge variant="muted" className="font-normal">
+            {t("common.e-book")}
+          </Badge>
+        )}
+        {hasExternal && (
+          <Badge variant="muted" className="font-normal">
+            {t("common.url")}
+          </Badge>
+        )}
+      </div>
     </Link>
   );
 };
