@@ -107,6 +107,7 @@ export default function EditionModal({
 
     startTransition(() => {
       push(newUrl);
+      onOpenChange?.(false);
     });
   };
 
