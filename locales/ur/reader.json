@@ -2,7 +2,11 @@
   "notes": "نوٹس",
   "bookmarks": "بُک مارکس",
   "content": "مواد",
-  "history": "تاریخ",
+  "history": {
+    "title": "تاریخ",
+    "empty-state": "ابھی تک کوئی تاریخ نہیں",
+    "delete": "حذف کریں"
+  },
   "ask-ai": "AI سے پوچھیں",
   "edition-warning": "{feature} آپ جس ایڈیشن کو دیکھ رہے ہیں اس میں سپورٹ نہیں کیا گیا ہے۔",
   "switch-edition": "{edition} پر سوئچ کریں",
@@ -14,6 +18,8 @@
   "share": "اشتراک",
   "e-book": "ای-کتاب",
   "pdf": "PDF",
+  "select": "منتخب کریں",
+  "selected": "منتخب شدہ",
   "view-e-book": "ای-بک دیکھیں",
   "view-pdf": "پی ڈی ایف دیکھیں",
   "go-to-page-x": "صفحہ پر جائیں {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "ماخذ",
     "error": "کچھ غلط ہو گیا ہے۔ <retry>دوبارہ کوشش کریں</retry> یا اگر یہ مسئلہ برقرار رہے تو <contact>ہم سے رابطہ کریں</contact>۔",
     "pg-x": "ص{page, number, nogroup}",
-    "pg-x-vol": "ص{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "حجم {vol, number, nogroup}, صفحہ {page, number, nogroup}"
   },
   "edition": "ایڈیشن",
+  "editions-modal": {
+    "title": "ایڈیشنز",
+    "description": "منتخب کریں مطلوبہ ایڈیشن"
+  },
   "select-edition": "ایک ایڈیشن منتخب کریں",
   "single-page": "واحد صفحہ",
   "all-pages": "تمام صفحات",
@@ -67,13 +77,11 @@
   "download-pdf": "پی ڈی ایف ڈاؤن لوڈ کریں",
   "publication-details": {
     "title": "اشاعت کی تفصیلات",
-    "book-title": "عنوان",
-    "author": "مصنف",
-    "editor": "مدیر",
+    "investigator": "تحقیق کنندہ",
     "publisher": "ناشر",
-    "print-version": "طباعت کا ورژن",
-    "volumes": "جلدیں",
-    "page-numbers-match-print": "صفحہ نمبر طباعت سے مطابقت رکھتے ہیں"
+    "publication-year": "اشاعت کا سال",
+    "publisher-location": "پبلشر کا مقام",
+    "edition-number": "ایڈیشن نمبر"
   },
   "feedback-submitted": "فیڈبیک جمع کر دیا گیا!"
 }

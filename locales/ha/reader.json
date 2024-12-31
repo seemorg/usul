@@ -2,7 +2,11 @@
   "notes": "Bayanai",
   "bookmarks": "Alamomin Shafi",
   "content": "Abun ciki",
-  "history": "Tarihi",
+  "history": {
+    "title": "Tarihi",
+    "empty-state": "Babu tarihi tukuna",
+    "delete": "Goge"
+  },
   "ask-ai": "Tambayi AI",
   "edition-warning": "{feature} bai dace da ƙirarren da kake kallo ba.",
   "switch-edition": "Sauya zuwa {edition}",
@@ -14,6 +18,8 @@
   "share": "Raba",
   "e-book": "e-Littafi",
   "pdf": "PDF",
+  "select": "Zaɓi",
+  "selected": "An zaɓa",
   "view-e-book": "Duba e-Littafi",
   "view-pdf": "Duba PDF",
   "go-to-page-x": "Je zuwa shafi {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "Tushen",
     "error": "Wani abu ya faru ba daidai ba. <retry>Sake gwadawa</retry> ko <contact>saduwa damu</contact> idan ya ci gaba.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "P{vol, number, nogroup}/{page, number, nogroup}"
+    "pg-x-vol": "Juzu'i {vol, number, nogroup}, Shafi {page, number, nogroup}"
   },
   "edition": "Juzu'i",
+  "editions-modal": {
+    "title": "Fassara",
+    "description": "Zaɓi fassarar da ake so"
+  },
   "select-edition": "Zaɓi wani juzu'i",
   "single-page": "Shafi ɗaya",
   "all-pages": "Dukkan Shafuka",
@@ -67,13 +77,11 @@
   "download-pdf": "Zazzage PDF",
   "publication-details": {
     "title": "Cikakkun Bayanai na Bugu",
-    "book-title": "Suna",
-    "author": "Mawallafi",
-    "editor": "Mai Shirya Bugu",
+    "investigator": "Bincike",
     "publisher": "Mai Buga Littafi",
-    "print-version": "Nau'in Bugu",
-    "volumes": "Juzu'i",
-    "page-numbers-match-print": "Lambobin shafi sun yi daidai da bugu"
+    "publication-year": "Shekarar Bugawa",
+    "publisher-location": "Inda aka buga",
+    "edition-number": "Lambar Fassara"
   },
   "feedback-submitted": "An tura ra'ayi!"
 }

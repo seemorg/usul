@@ -2,7 +2,11 @@
   "notes": "नोट्स",
   "bookmarks": "बुकमार्क्स",
   "content": "सामग्री",
-  "history": "इतिहास",
+  "history": {
+    "title": "इतिहास",
+    "empty-state": "अभी तक कोई इतिहास नहीं",
+    "delete": "हटाएँ"
+  },
   "ask-ai": "AI से पूछें",
   "edition-warning": "आप जिस संस्करण को देख रहे हैं, उस पर {feature} समर्थित नहीं है।",
   "switch-edition": "{edition} में स्विच करें",
@@ -14,6 +18,8 @@
   "share": "साझा करें",
   "e-book": "ई-पुस्तक",
   "pdf": "पीडीएफ",
+  "select": "चुनें",
+  "selected": "चयनित",
   "view-e-book": "ई-बुक देखें",
   "view-pdf": "पीडीएफ देखें",
   "go-to-page-x": "पृष्ठ पर जाएं {vol}/{page, number, nogroup}",
@@ -51,9 +57,13 @@
     "sources": "स्रोत",
     "error": "कुछ गलत हो गया। <retry>फिर से प्रयास करें</retry> या अगर यह समस्या बनी रहती है तो <contact>हमसे संपर्क करें</contact>.",
     "pg-x": "पृष्ठ {page, number, nogroup}",
-    "pg-x-vol": "मात्रा {vol, number, nogroup}/पृष्ठ {page, number, nogroup}"
+    "pg-x-vol": "खंड {vol, number, nogroup}, पृष्ठ {page, number, nogroup}"
   },
   "edition": "संस्करण",
+  "editions-modal": {
+    "title": "संस्करण",
+    "description": "वांछित संस्करण चुनें"
+  },
   "select-edition": "एक संस्करण चुनें",
   "single-page": "एकल पृष्ठ",
   "all-pages": "सभी पृष्ठ",
@@ -67,13 +77,11 @@
   "download-pdf": "PDF डाउनलोड करें",
   "publication-details": {
     "title": "प्रकाशन विवरण",
-    "book-title": "शीर्षक",
-    "author": "लेखक",
-    "editor": "संपादक",
+    "investigator": "अन्वेषक",
     "publisher": "प्रकाशक",
-    "print-version": "प्रिंट संस्करण",
-    "volumes": "खंड",
-    "page-numbers-match-print": "पृष्ठ संख्याएँ प्रिंट से मेल खाती हैं"
+    "publication-year": "प्रकाशन वर्ष",
+    "publisher-location": "प्रकाशक स्थान",
+    "edition-number": "संस्करण संख्या"
   },
   "feedback-submitted": "प्रतिक्रिया जमा की गई!"
 }
