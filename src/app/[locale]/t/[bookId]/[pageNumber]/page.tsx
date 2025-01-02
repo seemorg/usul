@@ -47,7 +47,7 @@ export const generateMetadata = async ({
   return getMetadata({
     title: book.primaryName,
     locale,
-    pagePath: navigation.books.reader(bookId),
+    pagePath: navigation.books.pageReader(bookId, parsedNumber),
     keywords: [
       ...(book.otherNames ? book.otherNames : []),
       ...(book.secondaryName ? [book.secondaryName] : []),

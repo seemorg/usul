@@ -7,11 +7,14 @@ import { cn } from "@/lib/utils";
 import Container from "@/components/ui/container";
 import { useBookDetails } from "../../_contexts/book-details.context";
 import { useReaderScroller } from "../context";
+import { formatDeathYear } from "@/lib/date";
+import { usePathLocale } from "@/lib/locale/utils";
 
 export default function BookInfoHeader() {
   const { bookResponse } = useBookDetails();
   const [isVisible, setIsVisible] = useState(false);
   const readerScroller = useReaderScroller();
+  const pathLocale = usePathLocale();
 
   useEffect(() => {
     if (!readerScroller?.element) return;
@@ -53,8 +56,8 @@ export default function BookInfoHeader() {
                   className="text-primary underline underline-offset-4"
                   prefetch
                 >
-                  {book.author.primaryName}
-                  {book.author.year ? ` d. ${book.author.year}` : ""}
+                  {book.author.primaryName}{" "}
+                  {formatDeathYear(book.author.year, pathLocale)}
                 </Link>
               </bdi>,
             ].map((item, index, arr) => (
@@ -76,8 +79,8 @@ export default function BookInfoHeader() {
                     className="text-primary underline underline-offset-4"
                     prefetch
                   >
-                    {book.author.secondaryName}
-                    {book.author.year ? ` d. ${book.author.year}` : ""}
+                    {book.author.secondaryName}{" "}
+                    {formatDeathYear(book.author.year, "ar")}
                   </Link>
                 </bdi>,
                 <p className="line-clamp-1">{book.secondaryName}</p>,

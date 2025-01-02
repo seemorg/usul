@@ -11,9 +11,10 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import { Badge } from "../ui/badge";
+import EntityCard from "../entity-card";
+import { formatDeathYear } from "@/lib/date";
 
-const BookSearchResult = ({
+export default function BookSearchResult({
   result,
   view,
   prefetch = true,
@@ -21,7 +22,7 @@ const BookSearchResult = ({
   view?: View;
   result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
   prefetch?: boolean;
-}) => {
+}) {
   const t = useTranslations();
   const dir = useDirection();
   const pathLocale = usePathLocale();
@@ -106,10 +107,6 @@ const BookSearchResult = ({
     );
   }
 
-  const deathYearString =
-    author.year && author.year > 0
-      ? ` (d. ${author.year} AH)`
-      : " (d. Unknown)";
   let hasPdf = false;
   let hasEbook = false;
   let hasExternal = false;
@@ -129,60 +126,26 @@ const BookSearchResult = ({
   }
 
   return (
-    <Link
+    <EntityCard
       href={navigation.books.reader(document.slug)}
-      prefetch={false}
-      className="w-full border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary/50 dark:hover:bg-secondary/20 sm:px-3"
-    >
-      <div className="flex w-full items-start justify-between gap-3">
-        <div className="flex-1">
-          <h3
-            className="text-lg font-bold"
-            dangerouslySetInnerHTML={{ __html: title }}
-          />
-
-          {authorName && (
-            <bdi className="mt-2 block text-base text-muted-foreground">
-              {authorName} {deathYearString}
-            </bdi>
-          )}
-        </div>
-
-        {secondaryTitle && (
-          <div className="flex-1" dir="rtl">
-            <h3
-              className="text-lg font-bold"
-              dangerouslySetInnerHTML={{ __html: secondaryTitle }}
-            />
-
-            {authorSecondaryName && (
-              <bdi className="mt-2 block text-base text-muted-foreground">
-                {authorSecondaryName} {deathYearString}
-              </bdi>
-            )}
-          </div>
-        )}
-      </div>
-
-      <div className="mt-3 flex flex-wrap gap-2">
-        {hasPdf && (
-          <Badge variant="muted" className="font-normal">
-            {t("common.pdf")}
-          </Badge>
-        )}
-        {hasEbook && (
-          <Badge variant="muted" className="font-normal">
-            {t("common.e-book")}
-          </Badge>
-        )}
-        {hasExternal && (
-          <Badge variant="muted" className="font-normal">
-            {t("common.url")}
-          </Badge>
-        )}
-      </div>
-    </Link>
+      prefetch={prefetch}
+      primaryTitle={title}
+      secondaryTitle={secondaryTitle}
+      primarySubtitle={
+        authorName
+          ? `${authorName} (${formatDeathYear(author.year, pathLocale)})`
+          : undefined
+      }
+      secondarySubtitle={
+        authorSecondaryName
+          ? `${authorSecondaryName} (${formatDeathYear(author.year, "ar")})`
+          : undefined
+      }
+      tags={[
+        hasPdf && t("common.pdf"),
+        hasEbook && t("common.e-book"),
+        hasExternal && t("common.url"),
+      ]}
+    />
   );
-};
-
-export default BookSearchResult;
+}

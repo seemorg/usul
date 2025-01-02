@@ -1,78 +1,66 @@
 import type { searchAuthors } from "@/server/typesense/author";
-import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import { Badge } from "./ui/badge";
 import { usePathLocale } from "@/lib/locale/utils";
 import { useTranslations } from "next-intl";
+import EntityCard from "./entity-card";
+import { formatDeathYear } from "@/lib/date";
 
-const AuthorSearchResult = ({
+export default function AuthorSearchResult({
   result,
   prefetch = true,
 }: {
   result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
   prefetch?: boolean;
-}) => {
+}) {
   const t = useTranslations();
   const pathLocale = usePathLocale();
 
   const { document } = result;
 
-  const primaryName =
+  const transliteration =
     document.transliteration && pathLocale === "en"
       ? document.transliteration
-      : getPrimaryLocalizedText(document.primaryNames, pathLocale);
+      : undefined;
+  const primaryName =
+    transliteration ??
+    getPrimaryLocalizedText(document.primaryNames, pathLocale);
 
   const secondaryName = getSecondaryLocalizedText(
     document.primaryNames,
     pathLocale,
   );
 
-  const deathYearString =
-    document.year && document.year > 0
-      ? ` (d. ${document.year} AH)`
-      : ` (d. Unknown)`;
+  const primaryOtherNames = getPrimaryLocalizedText(
+    document.otherNames,
+    pathLocale,
+  );
+
+  const secondaryOtherNames = getSecondaryLocalizedText(
+    document.otherNames,
+    pathLocale,
+  );
 
   return (
-    <Link
+    <EntityCard
       href={navigation.authors.bySlug(document.slug)}
       prefetch={prefetch}
-      className="w-full border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary/50 sm:px-3"
-    >
-      <div className="flex w-full items-center justify-between gap-3">
-        {primaryName && (
-          <div className="flex-1">
-            <h3
-              className="text-lg font-bold"
-              dangerouslySetInnerHTML={{
-                __html: primaryName + deathYearString,
-              }}
-            />
-          </div>
-        )}
-
-        {secondaryName && (
-          <div className="flex-1" dir="rtl">
-            <h3
-              className="text-lg font-bold"
-              dangerouslySetInnerHTML={{
-                __html: secondaryName + deathYearString,
-              }}
-            />
-          </div>
-        )}
-      </div>
-
-      <div className="mt-2 flex items-center gap-2">
-        <Badge variant="muted">
-          <p>{t("entities.x-texts", { count: document.booksCount })}</p>
-        </Badge>
-      </div>
-    </Link>
+      primaryTitle={primaryName!}
+      secondaryTitle={secondaryName}
+      primarySubtitle={
+        primaryOtherNames && primaryOtherNames.length > 0
+          ? `${formatDeathYear(document.year, pathLocale)} - ${primaryOtherNames[0]}`
+          : undefined
+      }
+      secondarySubtitle={
+        secondaryOtherNames && secondaryOtherNames.length > 0
+          ? `${formatDeathYear(document.year, "ar")} - ${secondaryOtherNames[0]}`
+          : undefined
+      }
+      tags={[t("entities.x-texts", { count: document.booksCount })]}
+    />
   );
-};
-
-export default AuthorSearchResult;
+}

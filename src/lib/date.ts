@@ -1,3 +1,5 @@
+import { PathLocale } from "./locale/utils";
+
 // Refer original code
 // https://github.com/OpenSID/OpenSID/blob/master/donjo-app/libraries/Date_conv.php#L44
 const hijriToJulian = (year: number, month: number, day: number) => {
@@ -120,3 +122,17 @@ export function hijriYearToGregorianYear(hijriYear: number): number {
 
   return gregorianDate.year;
 }
+
+export const formatDeathYear = (
+  year?: number | null,
+  locale: PathLocale = "en",
+) => {
+  const isUnknown = !year || year <= 0;
+  const format = isUnknown ? "" : locale === "ar" ? " هجري" : " AH";
+
+  if (locale === "ar") {
+    return `ت. ${isUnknown ? "غير معلوم" : year}${format}`;
+  }
+
+  return `d. ${isUnknown ? "Unknown" : year}${format}`;
+};

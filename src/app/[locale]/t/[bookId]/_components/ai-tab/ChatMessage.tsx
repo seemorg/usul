@@ -123,10 +123,10 @@ const ChatMessage = ({
     >
       <div
         className={cn(
-          "chat-message max-w-[90%] text-wrap",
+          "chat-message max-w-full text-wrap @sm:max-w-[90%]",
           "group text-foreground",
           role === "ai"
-            ? "flex items-start gap-3"
+            ? "flex flex-col items-start gap-3 @sm:flex-row"
             : "rounded-2xl bg-gray-200 px-4 dark:bg-accent",
           role === "user"
             ? isScreenshot

@@ -42,7 +42,7 @@ export default function LocaleLayout({
     >
       <body
         className={cn(
-          "relative min-h-screen w-full bg-background font-sans",
+          "relative min-h-screen w-full bg-background font-sans antialiased",
           getFontsClassnames(),
         )}
       >
