@@ -21,11 +21,19 @@ export default function ViewTabs({
       className="hidden md:inline-flex"
     >
       <TabsList>
-        <TabsTrigger value="ebook" disabled={isPdfSource}>
+        <TabsTrigger
+          value="ebook"
+          disabled={isPdfSource}
+          className="disabled:opacity-40"
+        >
           {t("common.e-book")}
         </TabsTrigger>
 
-        <TabsTrigger value="pdf" disabled={!hasPdf}>
+        <TabsTrigger
+          value="pdf"
+          disabled={!hasPdf}
+          className="disabled:opacity-40"
+        >
           {t("common.pdf")}
         </TabsTrigger>
       </TabsList>
