@@ -50,12 +50,12 @@ export default function BookInfo({ className }: { className?: string }) {
     <div className={className} dir={dir}>
       <div className="flex justify-between">
         <bdi className="flex-1">
-          <h1 className="text-3xl font-bold">{primaryName}</h1>
+          <h1 className="text-4xl font-bold">{primaryName}</h1>
         </bdi>
 
         {secondaryName && (
           <bdi className="flex-1">
-            <h1 className="text-3xl font-bold">{secondaryName}</h1>
+            <h1 className="text-4xl font-bold">{secondaryName}</h1>
           </bdi>
         )}
       </div>
@@ -65,7 +65,7 @@ export default function BookInfo({ className }: { className?: string }) {
           <AuthorHoverCard>
             <Link
               href={navigation.authors.bySlug(book.author.slug)}
-              className="text-primary underline underline-offset-4"
+              className="text-base text-primary underline underline-offset-4"
               prefetch
             >
               {authorPrimaryName} - {t("common.year-format.ah.value", { year })}
@@ -78,7 +78,7 @@ export default function BookInfo({ className }: { className?: string }) {
             <AuthorHoverCard>
               <Link
                 href={navigation.authors.bySlug(book.author.slug)}
-                className="text-primary underline underline-offset-4"
+                className="text-base text-primary underline underline-offset-4"
                 prefetch
               >
                 {authorSecondaryName} -{" "}
@@ -99,7 +99,7 @@ export default function BookInfo({ className }: { className?: string }) {
 
         {genres.map((genre) => (
           <Link key={genre.id} href={navigation.genres.bySlug(genre.slug)}>
-            <Badge variant="outline" className="text-xs hover:bg-accent">
+            <Badge variant="outline" className="text-sm hover:bg-accent">
               {genre.name}
             </Badge>
           </Link>

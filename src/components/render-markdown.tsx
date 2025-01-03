@@ -16,34 +16,34 @@ export default function RenderBlock({ block }: { block: Block }) {
     block.type === "title" ||
     (block.type === "header" && block.level === 1)
   ) {
-    return <h1 className="text-3xl font-bold">{block.content}</h1>;
+    return <h1>{block.content}</h1>;
   }
 
   if (block.type === "header" && block.level === 2) {
-    return <h2 className="text-2xl font-bold">{block.content}</h2>;
+    return <h2>{block.content}</h2>;
   }
 
   if (block.type === "header" && block.level === 3) {
-    return <h3 className="text-xl font-semibold">{block.content}</h3>;
+    return <h3>{block.content}</h3>;
   }
 
   if (block.type === "header" && block.level === 4) {
-    return <h4 className="text-xl font-semibold">{block.content}</h4>;
+    return <h4>{block.content}</h4>;
   }
 
   if (block.type === "header" && block.level >= 5) {
-    return <h5 className="text-xl font-medium">{block.content}</h5>;
+    return <h5>{block.content}</h5>;
   }
 
   if (block.type === "blockquote") {
     return (
-      <p className="px-2 text-2xl">
-        <span className="ml-2">﴾</span>
+      <p className="my-4 text-2xl font-semibold">
+        <span className="ml-2">﴿</span>
         {block.content}
-        <span className="mr-2">﴿</span>
+        <span className="mr-2">﴾</span>
       </p>
     );
   }
 
-  return <p className="text-2xl leading-[2.3]">{block.content}</p>;
+  return <p>{block.content}</p>;
 }

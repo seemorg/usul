@@ -50,9 +50,8 @@ export default function ReaderPage({
   if (isTurath) {
     return (
       <>
-        {/* [&_span[data-type='title']:first-child]:mt-0 */}
         <div
-          className="text-2xl leading-[45px] [&_a]:text-primary [&_a]:underline [&_span[data-type='title']]:mx-auto [&_span[data-type='title']]:mb-12 [&_span[data-type='title']]:mt-28 [&_span[data-type='title']]:block [&_span[data-type='title']]:text-center [&_span[data-type='title']]:text-3xl [&_span[data-type='title']]:font-bold [&_span[data-type='title']]:leading-[40px]"
+          className="reader-page"
           dangerouslySetInnerHTML={{
             __html: page.text.replaceAll("</span>.", "</span>"),
           }}
@@ -70,7 +69,7 @@ export default function ReaderPage({
   const { blocks, page: pageNumber } = page;
 
   return (
-    <>
+    <div className="reader-page">
       {blocks.map((block, blockIndex) => (
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         <RenderBlock key={blockIndex} block={block as any} />
@@ -81,7 +80,7 @@ export default function ReaderPage({
           ? t("pagination.page-x", { page: pageNumber })
           : t("pagination.page-unknown")}
       </PageLabel>
-    </>
+    </div>
   );
 }
 
