@@ -82,9 +82,15 @@ export const searchBook = async (
   type: "semantic" | "keyword" = "semantic",
   page: number = 1,
 ) => {
+  const queryParams = new URLSearchParams();
+  queryParams.set("q", query);
+  queryParams.set("bookId", bookId);
+  queryParams.set("type", type);
+  queryParams.set("page", page.toString());
+
   const results = await baseRequest<SearchBookResponse>(
     "GET",
-    `/search?q=${query}&bookId=${bookId}&type=${type}&page=${page}`,
+    `/search?${queryParams.toString()}`,
   );
 
   return results;

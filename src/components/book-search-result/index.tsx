@@ -1,12 +1,8 @@
-/* eslint-disable react/jsx-key */
-"use client";
-
 import type { searchBooks } from "@/server/typesense/book";
 import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import InfoDialog from "./info-dialog";
-import DottedList from "../ui/dotted-list";
 import type { View } from "@/validation/view";
 import { CloudflareImage } from "../cloudflare-image";
 import { useTranslations } from "next-intl";
@@ -15,8 +11,10 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import EntityCard from "../entity-card";
+import { formatDeathYear } from "@/lib/date";
 
-const BookSearchResult = ({
+export default function BookSearchResult({
   result,
   view,
   prefetch = true,
@@ -24,7 +22,7 @@ const BookSearchResult = ({
   view?: View;
   result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
   prefetch?: boolean;
-}) => {
+}) {
   const t = useTranslations();
   const dir = useDirection();
   const pathLocale = usePathLocale();
@@ -109,43 +107,45 @@ const BookSearchResult = ({
     );
   }
 
-  const deathYearString = author.year ? ` (d. ${author.year})` : "";
+  let hasPdf = false;
+  let hasEbook = false;
+  let hasExternal = false;
+
+  for (const version of document.versions) {
+    if (version.source === "pdf" || !!version.pdfUrl) {
+      hasPdf = true;
+    }
+
+    if (version.source === "openiti" || version.source === "turath") {
+      hasEbook = true;
+    }
+
+    if (version.source === "external") {
+      hasExternal = true;
+    }
+  }
 
   return (
-    <Link
+    <EntityCard
       href={navigation.books.reader(document.slug)}
-      prefetch={false}
-      className="flex w-full items-center justify-between gap-4 border-b border-border bg-transparent px-2 py-6 transition-colors hover:bg-secondary dark:hover:bg-secondary/20 sm:px-6"
-    >
-      <div className="flex-1 text-xl">
-        <h3
-          className="text-lg font-semibold"
-          dangerouslySetInnerHTML={{ __html: title }}
-        />
-
-        <DottedList
-          className="mt-2 text-xs text-muted-foreground"
-          items={[
-            secondaryTitle && (
-              <p dangerouslySetInnerHTML={{ __html: secondaryTitle }} />
-            ),
-            <p>
-              {authorName}
-              {deathYearString}
-            </p>,
-            authorSecondaryName && (
-              <p>
-                {authorSecondaryName}
-                {deathYearString}
-              </p>
-            ),
-          ]}
-        />
-      </div>
-
-      <p>{t("common.year-format.ah.value", { year: document.year })}</p>
-    </Link>
+      prefetch={prefetch}
+      primaryTitle={title}
+      secondaryTitle={secondaryTitle}
+      primarySubtitle={
+        authorName
+          ? `${authorName} (${formatDeathYear(author.year, pathLocale)})`
+          : undefined
+      }
+      secondarySubtitle={
+        authorSecondaryName
+          ? `${authorSecondaryName} (${formatDeathYear(author.year, "ar")})`
+          : undefined
+      }
+      tags={[
+        hasPdf && t("common.pdf"),
+        hasEbook && t("common.e-book"),
+        hasExternal && t("common.url"),
+      ]}
+    />
   );
-};
-
-export default BookSearchResult;
+}

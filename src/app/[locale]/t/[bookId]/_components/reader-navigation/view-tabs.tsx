@@ -10,7 +10,7 @@ export default function ViewTabs({
   hasPdf: boolean;
   contentSource: ApiBookResponse["content"]["source"];
 }) {
-  const t = useTranslations("reader");
+  const t = useTranslations();
   const { view, setView } = useReaderView();
   const isPdfSource = contentSource === "pdf";
 
@@ -21,12 +21,20 @@ export default function ViewTabs({
       className="hidden md:inline-flex"
     >
       <TabsList>
-        <TabsTrigger value="ebook" disabled={isPdfSource}>
-          {t("e-book")}
+        <TabsTrigger
+          value="ebook"
+          disabled={isPdfSource}
+          className="disabled:opacity-40"
+        >
+          {t("common.e-book")}
         </TabsTrigger>
 
-        <TabsTrigger value="pdf" disabled={!hasPdf}>
-          {t("pdf")}
+        <TabsTrigger
+          value="pdf"
+          disabled={!hasPdf}
+          className="disabled:opacity-40"
+        >
+          {t("common.pdf")}
         </TabsTrigger>
       </TabsList>
     </Tabs>

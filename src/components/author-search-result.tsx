@@ -1,74 +1,66 @@
-/* eslint-disable react/jsx-key */
 import type { searchAuthors } from "@/server/typesense/author";
-import { Link } from "@/navigation";
 import { navigation } from "@/lib/urls";
-import DottedList from "./ui/dotted-list";
-import { getTranslations } from "next-intl/server";
-import { getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { usePathLocale } from "@/lib/locale/utils";
+import { useTranslations } from "next-intl";
+import EntityCard from "./entity-card";
+import { formatDeathYear } from "@/lib/date";
 
-const AuthorSearchResult = async ({
+export default function AuthorSearchResult({
   result,
   prefetch = true,
 }: {
   result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
   prefetch?: boolean;
-}) => {
-  const t = await getTranslations();
-  const pathLocale = await getPathLocale();
+}) {
+  const t = useTranslations();
+  const pathLocale = usePathLocale();
 
   const { document } = result;
 
-  const primaryName =
+  const transliteration =
     document.transliteration && pathLocale === "en"
       ? document.transliteration
-      : getPrimaryLocalizedText(document.primaryNames, pathLocale);
+      : undefined;
+  const primaryName =
+    transliteration ??
+    getPrimaryLocalizedText(document.primaryNames, pathLocale);
+
   const secondaryName = getSecondaryLocalizedText(
     document.primaryNames,
     pathLocale,
   );
 
+  const primaryOtherNames = getPrimaryLocalizedText(
+    document.otherNames,
+    pathLocale,
+  );
+
+  const secondaryOtherNames = getSecondaryLocalizedText(
+    document.otherNames,
+    pathLocale,
+  );
+
   return (
-    <Link
+    <EntityCard
       href={navigation.authors.bySlug(document.slug)}
       prefetch={prefetch}
-      className="w-full border-b border-border bg-transparent px-6 py-4 transition-colors hover:bg-secondary"
-    >
-      <div className="flex items-center justify-between">
-        <div className="max-w-[70%]">
-          {primaryName && (
-            <h2
-              className="text-lg font-semibold"
-              dangerouslySetInnerHTML={{
-                __html: primaryName,
-              }}
-            />
-          )}
-
-          <DottedList
-            className="mt-2 text-xs text-muted-foreground"
-            items={[
-              secondaryName && (
-                <h2
-                  dangerouslySetInnerHTML={{
-                    __html: secondaryName,
-                  }}
-                />
-              ),
-              <p>{t("entities.x-texts", { count: document.booksCount })}</p>,
-            ]}
-          />
-        </div>
-
-        <div className="text-center">
-          {t("common.year-format.ah.value", { year: document.year })}
-        </div>
-      </div>
-    </Link>
+      primaryTitle={primaryName!}
+      secondaryTitle={secondaryName}
+      primarySubtitle={
+        primaryOtherNames && primaryOtherNames.length > 0
+          ? `${formatDeathYear(document.year, pathLocale)} - ${primaryOtherNames[0]}`
+          : undefined
+      }
+      secondarySubtitle={
+        secondaryOtherNames && secondaryOtherNames.length > 0
+          ? `${formatDeathYear(document.year, "ar")} - ${secondaryOtherNames[0]}`
+          : undefined
+      }
+      tags={[t("entities.x-texts", { count: document.booksCount })]}
+    />
   );
-};
-
-export default AuthorSearchResult;
+}

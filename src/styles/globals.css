@@ -135,3 +135,32 @@
   content: "—";
   @apply left-0 mr-2 w-auto opacity-50;
 }
+
+.reader-page {
+  @apply text-2xl leading-10;
+
+  a {
+    @apply text-primary underline;
+  }
+
+  h1,
+  span[data-type="title"] {
+    @apply mx-auto my-12 block text-center text-3xl font-bold leading-10;
+  }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-semibold;
+  }
+
+  h4 {
+    @apply text-xl font-semibold;
+  }
+
+  h5 {
+    @apply text-xl font-medium;
+  }
+}
