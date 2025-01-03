@@ -276,6 +276,7 @@ export const HighlightPopover = memo(function HighlightPopover({
       position: "absolute",
       top: `${popoverPosition.top}px`,
       opacity: showPopover ? 1 : 0,
+      pointerEvents: showPopover ? "auto" : "none",
     };
 
     if (!popoverWidth) return styles;

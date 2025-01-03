@@ -64,8 +64,8 @@ const PublicationDetails = ({
       {final.map((item, index, arr) => (
         <Fragment key={index}>
           <div>
-            <p className="text-muted-foreground">{item.title}</p>
-            <p className="mt-2 block">{item.text}</p>
+            <p className="font-medium text-muted-foreground">{item.title}</p>
+            <p className="mt-2 block font-semibold">{item.text}</p>
           </div>
 
           {index < arr.length - 1 && (
