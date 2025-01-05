@@ -31,7 +31,7 @@ const config = {
     // disable indexing on non-production environments
     if (env.env.VERCEL_ENV !== "production") {
       headers.push({
-        source: "*",
+        source: "/:path*",
         headers: [
           {
             key: "X-Robots-Tag",
