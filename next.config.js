@@ -2,7 +2,7 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-await import("./src/env.js");
+const env = await import("./src/env.js");
 
 import createNextIntlPlugin from "next-intl/plugin";
 import { withAxiom } from "next-axiom";
@@ -13,7 +13,8 @@ import createBundleAnalyzer from "@next/bundle-analyzer";
 const config = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   headers: async () => {
-    return [
+    /** @type {Awaited<ReturnType<NonNullable<import("next").NextConfig["headers"]>>>} */
+    const headers = [
       {
         // Cache sitemap
         source: "/sitemap.xml",
@@ -26,6 +27,21 @@ const config = {
         ],
       },
     ];
+
+    // disable indexing on non-production environments
+    if (env.env.VERCEL_ENV !== "production") {
+      headers.push({
+        source: "*",
+        headers: [
+          {
+            key: "X-Robots-Tag",
+            value: "noindex, nofollow",
+          },
+        ],
+      });
+    }
+
+    return headers;
   },
   redirects: async () => {
     return [
