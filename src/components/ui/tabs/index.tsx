@@ -4,6 +4,8 @@ import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "@/lib/utils";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import { TooltipPortal } from "@radix-ui/react-tooltip";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -24,17 +26,43 @@ TabsList.displayName = TabsPrimitive.List.displayName;
 
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
->(({ className, ...props }, ref) => (
-  <TabsPrimitive.Trigger
-    ref={ref}
-    className={cn(
-      "inline-flex h-full items-center justify-center whitespace-nowrap rounded px-3 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow",
-      className,
-    )}
-    {...props}
-  />
-));
+  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
+    tooltip?: string;
+    tooltipProps?: React.ComponentPropsWithoutRef<typeof TooltipContent>;
+  }
+>(({ className, tooltip, tooltipProps, children, ...props }, ref) => {
+  const showTooltip = !!tooltip;
+
+  const trigger = (
+    <TabsPrimitive.Trigger
+      ref={ref}
+      className={cn(
+        "inline-flex h-full items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow",
+        !showTooltip && "px-3 disabled:pointer-events-none",
+        className,
+      )}
+      {...props}
+    >
+      {showTooltip ? (
+        <Tooltip>
+          <TooltipTrigger
+            className="flex h-full w-full items-center justify-center px-3"
+            asChild
+          >
+            <span>{children}</span>
+          </TooltipTrigger>
+          <TooltipPortal>
+            <TooltipContent {...tooltipProps}>{tooltip}</TooltipContent>
+          </TooltipPortal>
+        </Tooltip>
+      ) : (
+        children
+      )}
+    </TabsPrimitive.Trigger>
+  );
+
+  return trigger;
+});
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
 
 const TabsContent = React.forwardRef<
