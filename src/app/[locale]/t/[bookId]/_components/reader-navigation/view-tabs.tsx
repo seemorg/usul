@@ -23,8 +23,10 @@ export default function ViewTabs({
       <TabsList>
         <TabsTrigger
           value="ebook"
-          disabled={isPdfSource}
           className="disabled:opacity-40"
+          disabled={isPdfSource}
+          tooltip={isPdfSource ? t("reader.not-available") : undefined}
+          tooltipProps={{ side: "bottom" }}
         >
           {t("common.e-book")}
         </TabsTrigger>
@@ -33,6 +35,8 @@ export default function ViewTabs({
           value="pdf"
           disabled={!hasPdf}
           className="disabled:opacity-40"
+          tooltip={!hasPdf ? t("reader.not-available") : undefined}
+          tooltipProps={{ side: "bottom" }}
         >
           {t("common.pdf")}
         </TabsTrigger>
