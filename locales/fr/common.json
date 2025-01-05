@@ -4,6 +4,9 @@
   "clear-all": "Effacer tout",
   "beta": "Bêta",
   "search": "Chercher",
+  "e-book": "Livre numérique",
+  "pdf": "PDF",
+  "url": "URL",
   "pagination": {
     "previous": "Précédent",
     "next": "Suivant",

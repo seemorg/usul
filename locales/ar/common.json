@@ -4,6 +4,9 @@
   "clear-all": "مسح الكل",
   "beta": "بيتا",
   "search": "البحث",
+  "e-book": "كتاب إلكتروني",
+  "pdf": "ملف PDF",
+  "url": "رابط",
   "pagination": {
     "previous": "السابق",
     "next": "التالي",
