@@ -1,0 +1,83 @@
+{
+  "hero": {
+    "title": "Unlocking the Treasures of Islamic Knowledge",
+    "subtitle": "Help us spread the light of Islamic learning and understanding.",
+    "description": "🎉 Alhamdulillah, with your support, Usul has reached thousands of seekers of knowledge, bridging the gap between tradition and modernity.",
+    "donate-widget": {
+      "month-raised": "Month raised",
+      "goal": "Goal ${goal, number} Monthly",
+      "active-monthly-donors": "<strong>{donors, number}</strong> active monthly donors",
+      "become-a-donor": "Become a Donor"
+    }
+  },
+  "achievements": {
+    "title": "Achievements",
+    "one": {
+      "title": "Unmatched Access to Islamic Texts.",
+      "features": {
+        "0": "Over <strong>8,000 classical and modern Islamic texts</strong> available at your fingertips.",
+        "1": "<strong>Advanced search</strong> tools to help researchers and learners uncover insights with ease."
+      }
+    },
+    "two": {
+      "title": "Empowering Scholars and Learners",
+      "features": {
+        "0": "Provided <strong>tools that facilitate deep study</strong>, whether you’re researching fiqh, history, or philosophy.",
+        "1": "Fostered collaboration among students, scholars, and institutions worldwide."
+      }
+    },
+    "three": {
+      "title": "Empowering Scholars and Learners",
+      "description": "Introduced <strong>user-friendly features</strong>, from personalized reading lists to detailed annotations, making every study session more productive and engaging."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Our Roadmap</strong>, Usul’s Vision for the Future",
+    "description": "Your donations will help us achieve the following goals, inshaAllah:",
+    "items": {
+      "0": {
+        "title": "Expand the Text Library",
+        "features": {
+          "0": "Digitize and add rare manuscripts and hard-to-find works.",
+          "1": "Ensure comprehensive representation of various Islamic disciplines and schools of thought."
+        }
+      },
+      "1": {
+        "title": "Refine Research Tools",
+        "features": {
+          "0": "Introduce AI-powered search capabilities to help users uncover connections across texts.",
+          "1": "Develop advanced features like side-by-side text comparisons and interactive commentaries."
+        }
+      },
+      "2": {
+        "title": "Global Accessibility",
+        "features": {
+          "0": "Translate key texts and resources into multiple languages.",
+          "1": "Launch offline access for users in areas with limited connectivity, ensuring no learner is left behind."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Be a Part of Usul’s Journey",
+    "description": " Your monthly support drives innovation, sustains our growth, and ensures that Usul remains a vital resource for generations to come.",
+    "why-support": {
+      "title": "Why support Usul?",
+      "features": {
+        "0": "Transparent quarterly updates on how your donation is making a difference",
+        "1": "Flexibility to cancel or adjust your contribution anytime",
+        "2": "A chance to be part of a groundbreaking mission to preserve and share Islamic knowledge"
+      }
+    },
+    "choose-amount": {
+      "title": "Choose your donation amount:",
+      "interval": {
+        "one-time": "One Time",
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      },
+      "note": "Donations are collected by Usul Foundation, a 501(c)(3) nonprofit organization (EIN: [Insert EIN]). All donations are tax-deductible in the US. For any inquiries, please contact us at donors@usul.ai.",
+      "continue": "Continue"
+    }
+  }
+}

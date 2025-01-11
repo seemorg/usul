@@ -137,7 +137,7 @@
 }
 
 .reader-page {
-  @apply text-2xl leading-10;
+  @apply text-2xl leading-[3rem];
 
   a {
     @apply text-primary underline;
