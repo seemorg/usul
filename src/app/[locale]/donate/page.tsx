@@ -1,7 +1,4 @@
 import Container from "@/components/ui/container";
-import Navbar from "../../_components/navbar";
-
-import Footer from "../../_components/footer";
 import { navigation } from "@/lib/urls";
 import {
   getFormatter,
@@ -19,11 +16,20 @@ import { Input } from "@/components/ui/input";
 import { MoonStarIcon } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
   params: { locale },
 }: {
   params: { locale: AppLocale };
-}) => getMetadata({ pagePath: navigation.donate(), locale });
+}) => {
+  const t = await getTranslations({ locale, namespace: "meta" });
+
+  return getMetadata({
+    pagePath: navigation.donate(),
+    locale,
+    title: t("donate-page.title"),
+    description: t("donate-page.description"),
+  });
+};
 
 export const dynamic = "force-static";
 
@@ -76,8 +82,8 @@ export default async function HomePage({
 
   return (
     <>
-      <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[600px]">
-        <div className="absolute inset-0 z-0 h-full w-full bg-primary [clip-path:ellipse(130%_100%_at_50%_0%)]" />
+      <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
+        <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
 
         <Container className="z-[1] flex flex-col lg:flex-row lg:gap-12">
           <div className="flex-1">
@@ -91,7 +97,7 @@ export default async function HomePage({
           </div>
 
           <div className="flex-1 sm:px-10 lg:px-0">
-            <div className="flex h-[500px] translate-y-[15%] flex-col justify-between rounded-2xl bg-white p-16 text-foreground shadow-lg shadow-black/5 lg:translate-y-[5%]">
+            <div className="flex translate-y-[15%] flex-col justify-between rounded-2xl bg-white p-10 text-foreground shadow-xl shadow-black/5 sm:p-16 lg:translate-y-[5%]">
               <div>
                 <p className="text-7xl font-bold text-primary">
                   ${formatter.number(52_182.54)}
@@ -108,6 +114,8 @@ export default async function HomePage({
                   <Progress value={50} className="h-1" />
                 </div>
               </div>
+
+              <div className="h-24" />
 
               <div>
                 <p className="text-lg">
@@ -131,6 +139,7 @@ export default async function HomePage({
       <Container className="mt-40 flex flex-col gap-40 pb-12">
         <div>
           <h2 className="text-5xl font-bold">{t("achievements.title")}</h2>
+
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             <BentoCard>
               <h3 className="text-3xl font-semibold">
