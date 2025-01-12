@@ -97,10 +97,10 @@ export default async function HomePage({
           </div>
 
           <div className="flex-1 sm:px-10 lg:px-0">
-            <div className="flex translate-y-[15%] flex-col justify-between rounded-2xl bg-white p-10 text-foreground shadow-xl shadow-black/5 sm:p-16 lg:translate-y-[5%]">
+            <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-16 lg:translate-y-[5%]">
               <div>
                 <p className="text-7xl font-bold text-primary">
-                  ${formatter.number(52_182.54)}
+                  ${formatter.number(52_182)}
                 </p>
 
                 <div className="mt-7 flex gap-5">
@@ -304,7 +304,7 @@ const BentoCard = ({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
-    className={cn("rounded-2xl bg-white p-12 shadow-md", className)}
+    className={cn("rounded-2xl bg-card p-12 shadow-md", className)}
     {...props}
   />
 );

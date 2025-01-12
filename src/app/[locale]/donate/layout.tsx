@@ -7,7 +7,7 @@ export default function DonateLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-[#F8F6F6]">
+    <div className="bg-[#F8F6F6] dark:bg-background">
       <Navbar layout="home" />
 
       {children}
