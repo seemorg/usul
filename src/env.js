@@ -16,8 +16,11 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: z.string().min(1),
     UPSTASH_REDIS_REST_URL: z.string().url().min(1),
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
+    VERIFY_RIGHT_API_KEY: z.string().min(1),
   },
-  client: {},
+  client: {
+    NEXT_PUBLIC_STRIPE_PORTAL_URL: z.string().url().min(1),
+  },
   shared: {
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY: z.string().min(1),
@@ -55,6 +58,8 @@ export const env = createEnv({
     STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
     UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
     UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
+    VERIFY_RIGHT_API_KEY: process.env.VERIFY_RIGHT_API_KEY,
+    NEXT_PUBLIC_STRIPE_PORTAL_URL: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

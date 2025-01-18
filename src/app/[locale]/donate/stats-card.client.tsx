@@ -8,6 +8,8 @@ import { getMonthlyStats } from "@/server/services/donations";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { HandCoinsIcon } from "lucide-react";
+import { env } from "@/env";
 
 const GOAL = 75_000;
 
@@ -63,12 +65,12 @@ export function DonationStatsCard() {
     : 0;
 
   return (
-    <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-[5%]">
+    <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-0 ">
       <div>
         {isLoading ? (
           <Skeleton className="h-[48px] w-full sm:h-[72px]" />
         ) : (
-          <p className="text-5xl font-bold text-primary sm:text-7xl">
+          <p className="xs:text-6xl text-5xl font-bold text-primary sm:text-7xl">
             {formattedDonations}
           </p>
         )}
@@ -87,7 +89,7 @@ export function DonationStatsCard() {
         </div>
       </div>
 
-      <div className="h-24" />
+      <div className="h-12 sm:h-24" />
 
       <div>
         {isLoading ? (
@@ -101,12 +103,27 @@ export function DonationStatsCard() {
         )}
 
         <Button
-          className="mt-5 h-12 w-full bg-teal-700 text-base font-bold text-white hover:bg-teal-600"
+          className="mt-5 h-12 w-full gap-2 bg-teal-700 text-base font-bold text-white hover:bg-teal-600"
           size="lg"
           asChild
         >
-          <a href="#donate-form">{t("hero.donate-widget.become-a-donor")}</a>
+          <a href="#donate-form">
+            {t("hero.donate-widget.become-a-donor")}
+
+            <HandCoinsIcon className="size-5" />
+          </a>
         </Button>
+
+        <p className="mt-5 text-sm text-muted-foreground">
+          {t("already-donor.title")}{" "}
+          <a
+            href={env.NEXT_PUBLIC_STRIPE_PORTAL_URL}
+            target="_blank"
+            className="text-primary underline"
+          >
+            {t("already-donor.manage")}
+          </a>
+        </p>
       </div>
     </div>
   );

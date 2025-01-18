@@ -92,7 +92,7 @@ export default async function HomePage({
             <p className="mt-8">{t("hero.description")}</p>
           </div>
 
-          <div className="flex-1 sm:px-10 lg:px-0">
+          <div className="flex-1 sm:px-10 lg:px-0 ltr:lg:pl-10 rtl:lg:pr-10">
             <DonationStatsCard />
           </div>
         </Container>

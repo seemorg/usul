@@ -8,9 +8,19 @@ import { useFormatter, useTranslations } from "next-intl";
 
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { createCheckoutSession } from "@/server/services/donations";
+import {
+  createCheckoutSession,
+  generateAndSendDonationCode,
+} from "@/server/services/donations";
 import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 type Frequency = "one-time" | "monthly" | "yearly";
 const presetAmounts = [25, 50, 100, 500];
@@ -20,15 +30,26 @@ function DonateForm() {
   const formatter = useFormatter();
   const [frequency, setFrequency] = useState<Frequency>("one-time");
   const [amount, setAmount] = useState<number>(100);
+  const [showEmailVerification, setShowEmailVerification] = useState(false);
 
   const { mutateAsync: createCheckoutUrl, isPending } = useMutation({
-    mutationFn: (data: { amount: number; frequency: Frequency }) => {
-      return createCheckoutSession(data.amount, data.frequency);
+    mutationFn: (data: {
+      email: string;
+      code: string;
+      amount: number;
+      frequency: Frequency;
+    }) => {
+      return createCheckoutSession(
+        data.email,
+        data.code,
+        data.amount,
+        data.frequency,
+      );
     },
     onError: (error) => {
       console.error(error);
       toast({
-        title: "An error occurred while creating the checkout URL",
+        title: "Failed to verify!",
         variant: "destructive",
       });
     },
@@ -41,8 +62,13 @@ function DonateForm() {
       maximumFractionDigits: 0,
     });
 
-  const handleSubmit = async () => {
-    const url = await createCheckoutUrl({ amount, frequency });
+  const handleSubmit = () => {
+    setShowEmailVerification(true);
+  };
+
+  const handleVerify = async (email: string, code: string) => {
+    const url = await createCheckoutUrl({ email, code, amount, frequency });
+
     if (url) {
       window.location.href = url;
     }
@@ -115,10 +141,98 @@ function DonateForm() {
         onClick={handleSubmit}
         disabled={isPending}
       >
-        {t("be-part.choose-amount.continue")}
+        {isPending ? "Loading..." : t("be-part.choose-amount.continue")}
       </Button>
+
+      <EmailVerification
+        open={showEmailVerification}
+        onClose={() => setShowEmailVerification(false)}
+        onVerify={handleVerify}
+      />
     </BentoCard>
   );
 }
+
+const EmailVerification = ({
+  open,
+  onClose,
+  onVerify,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onVerify: (email: string, code: string) => void;
+}) => {
+  const [step, setStep] = useState<"email" | "code">("email");
+  const t = useTranslations("donate.verification");
+
+  const { mutateAsync: sendCode, isPending: isSendingCode } = useMutation({
+    mutationFn: (email: string) => generateAndSendDonationCode(email),
+    onError: (error) => {
+      console.log(error);
+      toast({
+        title: "Failed to send code!",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (step === "email") {
+      if (!email) return;
+
+      await sendCode(email);
+      setStep("code");
+
+      return;
+    }
+
+    onVerify(email, code.trim());
+  };
+
+  return (
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{t("title")}</DialogTitle>
+        </DialogHeader>
+        <DialogDescription>{t("description")}</DialogDescription>
+
+        <form onSubmit={handleSubmit}>
+          {step === "email" ? (
+            <Input
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          ) : (
+            <>
+              <p>{t("sent-code")}</p>
+
+              <Input
+                placeholder="Code"
+                className="mt-2"
+                value={code}
+                onChange={(e) => setCode(e.target.value)}
+              />
+            </>
+          )}
+
+          <Button type="submit" className="mt-5" disabled={isSendingCode}>
+            {isSendingCode
+              ? "Loading..."
+              : step === "email"
+                ? t("send-code")
+                : t("verify")}
+          </Button>
+        </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
 
 export default DonateForm;
