@@ -106,7 +106,7 @@ export default async function HomePage({
           <div className="flex-1 sm:px-10 lg:px-0">
             <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-[5%]">
               <div>
-                <p className="text-7xl font-extrabold text-primary">
+                <p className="text-7xl font-bold text-primary">
                   {formatter.number(currentMonthDonations, {
                     style: "currency",
                     currency: "USD",
