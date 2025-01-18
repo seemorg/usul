@@ -141,9 +141,12 @@ export const createCheckoutSession = async (
   // Convert amount (in USD) to cents
   const amountInCents = validatedData.amountInUsd * 100;
 
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
+  const baseUrl =
+    env.VERCEL_ENV === "production"
+      ? "https://usul.ai"
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "http://localhost:3000";
 
   let session: Stripe.Checkout.Session;
 
