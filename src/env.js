@@ -10,7 +10,12 @@ export const env = createEnv({
     TYPESENSE_API_KEY: z.string().min(1),
     DATABASE_URL: z.string().url().min(1),
     RESEND_AUDIENCE_ID: z.string().min(1),
+    // RESEND_DONORS_AUDIENCE_ID: z.string().min(1),
     RESEND_API_KEY: z.string().min(1),
+    STRIPE_API_KEY: z.string().min(1),
+    STRIPE_WEBHOOK_SECRET: z.string().min(1),
+    UPSTASH_REDIS_REST_URL: z.string().url().min(1),
+    UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
   },
   client: {},
   shared: {
@@ -31,6 +36,7 @@ export const env = createEnv({
     TYPESENSE_API_KEY: process.env.TYPESENSE_API_KEY,
     DATABASE_URL: process.env.DATABASE_URL,
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
+    // RESEND_DONORS_AUDIENCE_ID: process.env.RESEND_DONORS_AUDIENCE_ID,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT:
       process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
@@ -45,6 +51,10 @@ export const env = createEnv({
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:
       process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID,
     VERCEL_ENV: process.env.VERCEL_ENV,
+    STRIPE_API_KEY: process.env.STRIPE_API_KEY,
+    STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET,
+    UPSTASH_REDIS_REST_URL: process.env.UPSTASH_REDIS_REST_URL,
+    UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

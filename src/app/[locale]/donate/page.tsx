@@ -8,13 +8,17 @@ import {
 import { getMetadata } from "@/lib/seo";
 import { type AppLocale, locales } from "~/i18n.config";
 import { cn } from "@/lib/utils";
-import { CheckCircleIcon } from "@heroicons/react/24/solid";
+
 import Image from "next/image";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { MoonStarIcon } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
+import { getMonthlyDonations, getMonthlyDonors } from "@/lib/upstash";
+import DonateForm from "./donate-form";
+import BentoCard from "./bento-card";
+import FeaturesList from "./features-list";
+
+const GOAL = 75_000;
 
 export const generateMetadata = async ({
   params: { locale },
@@ -46,6 +50,9 @@ export default async function HomePage({
 
   const t = await getTranslations({ locale, namespace: "donate" });
   const formatter = await getFormatter({ locale });
+
+  const currentMonthDonations = await getMonthlyDonations();
+  const currentMonthDonors = await getMonthlyDonors();
 
   const getMarkup = (
     key: Parameters<typeof t.rich>[0],
@@ -97,21 +104,28 @@ export default async function HomePage({
           </div>
 
           <div className="flex-1 sm:px-10 lg:px-0">
-            <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-16 lg:translate-y-[5%]">
+            <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-[5%]">
               <div>
-                <p className="text-7xl font-bold text-primary">
-                  ${formatter.number(52_182)}
+                <p className="text-7xl font-extrabold text-primary">
+                  {formatter.number(currentMonthDonations, {
+                    style: "currency",
+                    currency: "USD",
+                    maximumFractionDigits: 2,
+                    minimumFractionDigits: 2,
+                  })}
                 </p>
 
                 <div className="mt-7 flex gap-5">
-                  <p>{t("hero.donate-widget.month-raised")}</p>
                   <p className="font-bold">
-                    {t("hero.donate-widget.goal", { goal: 75_000 })}
+                    {t("hero.donate-widget.goal", { goal: GOAL })}
                   </p>
                 </div>
 
                 <div className="mt-5">
-                  <Progress value={50} className="h-1" />
+                  <Progress
+                    value={Math.min((currentMonthDonations / GOAL) * 100, 100)}
+                    className="h-1"
+                  />
                 </div>
               </div>
 
@@ -120,15 +134,18 @@ export default async function HomePage({
               <div>
                 <p className="text-lg">
                   {getMarkup("hero.donate-widget.active-monthly-donors", {
-                    donors: 3600,
+                    donors: currentMonthDonors,
                   })}
                 </p>
 
                 <Button
-                  className="mt-5 h-12 w-full text-base font-bold"
+                  className="mt-5 h-12 w-full bg-teal-700 text-base font-bold text-white hover:bg-teal-600"
                   size="lg"
+                  asChild
                 >
-                  {t("hero.donate-widget.become-a-donor")}
+                  <a href="#donate-form">
+                    {t("hero.donate-widget.become-a-donor")}
+                  </a>
                 </Button>
               </div>
             </div>
@@ -232,96 +249,10 @@ export default async function HomePage({
               />
             </BentoCard>
 
-            <BentoCard className="flex-1 p-8">
-              <h3 className="text-3xl font-semibold">
-                {t("be-part.choose-amount.title")}
-              </h3>
-
-              <Tabs value="one-time">
-                <TabsList className="mt-5">
-                  <TabsTrigger value="one-time">
-                    {t("be-part.choose-amount.interval.one-time")}
-                  </TabsTrigger>
-                  <TabsTrigger value="monthly">
-                    {t("be-part.choose-amount.interval.monthly")}
-                  </TabsTrigger>
-                  <TabsTrigger value="yearly">
-                    {t("be-part.choose-amount.interval.yearly")}
-                  </TabsTrigger>
-                </TabsList>
-              </Tabs>
-
-              <div className="mt-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
-                <div className="flex items-center gap-3">
-                  <Button variant="outline" className="shadow-none">
-                    $25
-                  </Button>
-                  <Button variant="outline" className="shadow-none">
-                    $50
-                  </Button>
-                  <Button variant="default" className="shadow-none">
-                    $100
-                  </Button>
-                  <Button variant="outline" className="shadow-none">
-                    $500
-                  </Button>
-                </div>
-
-                <div className="flex items-center rounded-md border border-border">
-                  <label
-                    className="border-r border-border px-3 text-center text-sm"
-                    htmlFor="other-amount"
-                  >
-                    USD
-                  </label>
-                  <Input
-                    id="other-amount"
-                    placeholder="Other Amount"
-                    type="number"
-                    className="min-w-[130px] border-none shadow-none ltr:pl-2 rtl:pr-2"
-                  />
-                </div>
-              </div>
-
-              <p className="mt-5 text-xs">{t("be-part.choose-amount.note")}</p>
-
-              <Button
-                className="mt-8 h-12 w-full text-base font-bold"
-                size="lg"
-              >
-                {t("be-part.choose-amount.continue")}
-              </Button>
-            </BentoCard>
+            <DonateForm />
           </div>
         </div>
       </Container>
     </>
   );
 }
-
-const BentoCard = ({
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("rounded-2xl bg-card p-12 shadow-md", className)}
-    {...props}
-  />
-);
-
-const FeaturesList = ({
-  className,
-  features,
-}: {
-  features: React.ReactNode[];
-  className?: string;
-}) => (
-  <div className={cn("flex flex-col gap-4", className)}>
-    {features.map((feature, idx) => (
-      <div className="flex items-start gap-4" key={idx}>
-        <CheckCircleIcon className="mt-1 size-6 flex-shrink-0 text-teal-700" />
-        <p className="text-lg">{feature}</p>
-      </div>
-    ))}
-  </div>
-);

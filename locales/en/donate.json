@@ -4,7 +4,7 @@
     "subtitle": "Help us spread the light of Islamic learning and understanding.",
     "description": "🎉 Alhamdulillah, with your support, Usul has reached thousands of seekers of knowledge, bridging the gap between tradition and modernity.",
     "donate-widget": {
-      "month-raised": "Month raised",
+      "month-raised": "Raised",
       "goal": "Goal ${goal, number} Monthly",
       "active-monthly-donors": "<strong>{donors, number}</strong> active monthly donors",
       "become-a-donor": "Become a Donor"

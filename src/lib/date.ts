@@ -136,3 +136,5 @@ export const formatDeathYear = (
 
   return `d. ${isUnknown ? "Unknown" : year}${format}`;
 };
+
+export const secondsToMsDate = (seconds: number) => new Date(seconds * 1000);
