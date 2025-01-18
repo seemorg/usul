@@ -16,5 +16,9 @@
   "team-page": {
     "title": "Kooxda",
     "description": "La kulan kooxda Usul"
+  },
+  "donate-page": {
+    "title": "Ku deeq",
+    "description": "Ku deeq Usul"
   }
 }

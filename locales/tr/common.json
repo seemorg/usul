@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Katkıda Bulun",
+      "donate": {
+        "title": "Bağış Yap",
+        "description": "Usul'e Destek Ol"
+      },
       "add-text": {
         "title": "Metin Ekle",
         "description": "Kitap veya PDF Yükleyin"

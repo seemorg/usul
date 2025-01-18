@@ -16,5 +16,9 @@
   "team-page": {
     "title": "Equipo",
     "description": "Conoce al equipo de Usul"
+  },
+  "donate-page": {
+    "title": "Donar",
+    "description": "Donar a Usul"
   }
 }

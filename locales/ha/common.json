@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Gudumawa",
+      "donate": {
+        "title": "Ba da gudummawa",
+        "description": "Tallafa Usul"
+      },
       "add-text": {
         "title": "Ƙara Rubutu",
         "description": "Loda Littafi ko PDF"

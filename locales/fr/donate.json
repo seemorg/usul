@@ -1,1 +1,98 @@
-{}
+{
+  "hero": {
+    "title": "L'avenir du savoir islamique, propulsé par l'IA",
+    "subtitle": "Aidez-nous à rendre le savoir islamique plus accessible et sa récupération beaucoup plus facile.",
+    "description": "🎉 Alhamdoulillah, avec votre soutien, Usul a touché des milliers de chercheurs de savoir, comblant le fossé entre tradition et modernité.",
+    "donate-widget": {
+      "month-raised": "Collecté",
+      "goal": "Objectif ${goal, number} par mois",
+      "active-monthly-donors": "<strong>{donors, number}</strong> donateurs mensuels actifs",
+      "become-a-donor": "Devenir un Donateur"
+    }
+  },
+  "achievements": {
+    "title": "Réalisations",
+    "one": {
+      "title": "Accès inégalé aux textes islamiques.",
+      "features": {
+        "0": "Plus de <strong>10 000 textes islamiques classiques et modernes</strong> disponibles gratuitement.",
+        "1": "<strong>Outils de recherche avancés</strong> pour aider les chercheurs et les apprenants à découvrir facilement des informations."
+      }
+    },
+    "two": {
+      "title": "Autonomiser les érudits et les apprenants",
+      "features": {
+        "0": "Outils <strong>d'IA à la pointe de la technologie</strong> qui permettent aux utilisateurs de trouver et d'extraire rapidement des informations à partir de textes classiques.",
+        "1": "<strong>Pièce jointe PDF</strong> téléchargée sur de nombreux livres pour permettre aux utilisateurs de valider la source."
+      }
+    },
+    "three": {
+      "title": "Belle expérience utilisateur",
+      "description": "Nous nous efforçons de rendre notre travail <strong>beau et apprécié</strong> tant par les étudiants débutants en connaissance que par les érudits avancés. De l'expérience de lecture, à l'interface de recherche, à l'expérience mobile."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Notre Feuille de Route</strong>, Vision d'Usul pour l'avenir",
+    "description": "Vos dons nous aideront à atteindre les objectifs suivants, inshaAllah :",
+    "items": {
+      "0": {
+        "title": "Étendre la bibliothèque de textes",
+        "features": {
+          "0": "Numériser et ajouter des milliers d'autres livres supplémentaires à la plateforme.",
+          "1": "Assurer une représentation complète des diverses disciplines islamiques et des écoles de pensée."
+        }
+      },
+      "1": {
+        "title": "Affiner les outils de recherche",
+        "features": {
+          "0": "Introduire des capacités avancées alimentées par l'IA pour permettre aux utilisateurs de trouver des insights dans les textes ou un corpus entier.",
+          "1": "Développer des fonctionnalités telles que la comparaison de textes côte à côte et la recherche de sources de citations."
+        }
+      },
+      "2": {
+        "title": "Accessibilité mondiale",
+        "features": {
+          "0": "Traduire les textes en utilisant l'IA en anglais et dans de nombreuses autres langues pour ouvrir l'accès au savoir islamique.",
+          "1": "Améliorer la performance du site pour les utilisateurs dans les zones avec une connectivité limitée, afin de garantir qu'aucun apprenant ne soit laissé pour compte."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Faites partie du voyage d'Usul",
+    "description": " Votre soutien mensuel stimule l'innovation, soutient notre croissance, et garantit qu'Usul reste une ressource vitale pour les générations futures.",
+    "why-support": {
+      "title": "Pourquoi soutenir Usul ?",
+      "features": {
+        "0": "Mises à jour trimestrielles transparentes sur la manière dont votre don fait la différence",
+        "1": "Flexibilité pour annuler ou ajuster votre contribution à tout moment",
+        "2": "Une occasion de faire partie d'une mission innovante pour préserver et partager le savoir islamique"
+      }
+    },
+    "choose-amount": {
+      "title": "Choisissez le montant de votre don :",
+      "interval": {
+        "one-time": "Une seule fois",
+        "monthly": "Mensuel",
+        "yearly": "Annuel"
+      },
+      "note": "Les dons sont collectés par Usul Foundation, une organisation à but non lucratif 501(c)(3). Tous les dons sont déductibles des impôts aux États-Unis. Pour toute question, veuillez nous contacter à donors@usul.ai.",
+      "continue": "Continuer"
+    }
+  },
+  "success": {
+    "title": "Merci pour votre don !",
+    "description": "Votre générosité fait une réelle différence. Nous apprécions votre soutien dans notre mission."
+  },
+  "verification": {
+    "title": "Quelle est votre adresse email ?",
+    "description": "L'email est requis pour vous envoyer des reçus et des mises à jour pour les donateurs.",
+    "sent-code": "Nous avons envoyé un code à votre email. Veuillez l'entrer ci-dessous pour compléter le don.",
+    "verify": "Vérifier",
+    "send-code": "Envoyer le code"
+  },
+  "already-donor": {
+    "title": "Déjà donateur ?",
+    "manage": "Gérer votre don"
+  }
+}

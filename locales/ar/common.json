@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "ساهم",
+      "donate": {
+        "title": "تبرع",
+        "description": "ادعم Usul"
+      },
       "add-text": {
         "title": "إضافة نص",
         "description": "تحميل كتاب أو PDF"

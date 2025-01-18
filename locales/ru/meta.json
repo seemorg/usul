@@ -16,5 +16,9 @@
   "team-page": {
     "title": "Команда",
     "description": "Познакомьтесь с командой Usul"
+  },
+  "donate-page": {
+    "title": "Пожертвовать",
+    "description": "Пожертвовать на Усуль"
   }
 }

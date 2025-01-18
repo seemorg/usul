@@ -16,5 +16,9 @@
   "team-page": {
     "title": "टीम",
     "description": "Usul टीम से मिलें"
+  },
+  "donate-page": {
+    "title": "दान करें",
+    "description": "उसूल को दान करें"
   }
 }
