@@ -87,6 +87,14 @@ export default async function HomePage({
     },
   ];
 
+  const formattedDonations = formatter.number(currentMonthDonations, {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 2,
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
+  });
+
   return (
     <>
       <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
@@ -106,13 +114,8 @@ export default async function HomePage({
           <div className="flex-1 sm:px-10 lg:px-0">
             <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-[5%]">
               <div>
-                <p className="text-7xl font-bold text-primary">
-                  {formatter.number(currentMonthDonations, {
-                    style: "currency",
-                    currency: "USD",
-                    maximumFractionDigits: 2,
-                    minimumFractionDigits: 2,
-                  })}
+                <p className="text-5xl font-bold text-primary sm:text-7xl">
+                  {formattedDonations}
                 </p>
 
                 <div className="mt-7 flex gap-5">
@@ -199,7 +202,7 @@ export default async function HomePage({
                 </p>
               </div>
 
-              <div className="h-[250px] lg:hidden" />
+              <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
 
               <Image
                 src="/images/features-screenshot.png"
@@ -241,6 +244,7 @@ export default async function HomePage({
 
               <FeaturesList
                 className="mt-8"
+                style="list"
                 features={[
                   t("be-part.why-support.features.0"),
                   t("be-part.why-support.features.1"),
