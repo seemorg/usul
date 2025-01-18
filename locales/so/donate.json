@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "title": "Mustaqbalka aqoonta Islaamka, oo ay taageerayaan AI",
+    "subtitle": "Naga caawi inaan ka dhigno aqoonta Islaamka mid si fudud loo heli karo oo fudud in dib loo soo celiyo.",
+    "description": "🎉 Alxamdulillah, taageeradaada awgeed, Usul waxay gaadhay kumanaan raadinaya aqoon, iyagoo buuxinaya farqiga udhaxeeya dhaqanka iyo casriyeynta.",
+    "donate-widget": {
+      "month-raised": "La ururiyey",
+      "goal": "Hadafka ${goal, number} Bil kasta",
+      "active-monthly-donors": "<strong>{donors, number}</strong> tabarucaad joogto ah oo bil walba ah",
+      "become-a-donor": "Noqo tabaruce"
+    }
+  },
+  "achievements": {
+    "title": "Guulaha",
+    "one": {
+      "title": "Helitaan aan caadi ahayn oo loo maro qoraallo Islaami ah.",
+      "features": {
+        "0": "In ka badan <strong>10,000 qoraallo Islaami caadi iyo casri ah</strong> ayaa si bilaash ah lagu heli karaa.",
+        "1": "<strong>Qalabaynta cilmi baaris casri ah</strong> si ay ugu sahlayso cilmi-baarayaasha iyo kuwa wax baranaya inay si fudud u soo bandhigaan aragtiyo."
+      }
+    },
+    "two": {
+      "title": "Xoojinta Culimada iyo Ardayda",
+      "features": {
+        "0": "Qalab casri ah oo <strong>AI</strong> oo u suurtagelisa isticmaalayaasha inay si dhaqso leh u helaan oo uga soo saaraan macluumaadka qoraallada caadiga ah.",
+        "1": "<strong>Ku lifaaqyada PDF</strong> oo loo soo geliyay buugaag badan si ay isticmaalehu u xaqiijiyaan isha."
+      }
+    },
+    "three": {
+      "title": "Khibrad isticmaale oo qurux badan",
+      "description": "Waxaan ku dadaalaynaa in shaqadeena ay ahaato <strong>qurux iyo jacayl</strong> oo ay jeclaadaan ardayda bilowga ah kuwa aqoonta iyo culimada sare Si lamid ah Khibrada akhriska, interface-ka raadinta, iyo khibrada mobilada."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Khariidadda Wadadeena</strong>, Himilada Usul ee Mustaqbalka",
+    "description": "Ku deeq bixintaadu waxay naga caawin doontaa inaan gaarno yoolalka soo socda, inshaAllah:",
+    "items": {
+      "0": {
+        "title": "Kordhi Maktabadda Qoraalka",
+        "features": {
+          "0": "Dijitaan gareynta iyo kumanaan buugaagda kale ee dheeraadka ah ku dar madasha.",
+          "1": "Hubi matalaad dhameystiran oo loo dhigo culuumta kala duwan ee Islaamka iyo fikirka thoughtschools."
+        }
+      },
+      "1": {
+        "title": "Soo Qurxin Qalabada Cilmi-baarista",
+        "features": {
+          "0": "Soo bandhig awoodaha AI ee horumarsan si ay u oggolaadaan isticmaalayaasha inay helaan aragtiyo qoraallada ama guud ahaan qoraalka.",
+          "1": "Horumarinta astaamo sida isbarbardhigga qoraallada dhinac-dhinac iyo helida ilaha sheegashada."
+        }
+      },
+      "2": {
+        "title": "Helitaanka Caalamka",
+        "features": {
+          "0": "Tarjumaadda qoraallada adoo adeegsanaya AI luuqadaha Ingiriisiga iyo kuwo badan oo kale si aad uga faa'iidaysato aqoonta Islaamka.",
+          "1": "Sii deynta website gaar ahaan isticmaalayaasha meelo xitaa leh xariir xadidan, hubi inaan la hilmaanin."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Ka qayb ka noqo Safarka Usul",
+    "description": " Taageeradaada bil kasta waxay kordhisaa hal-abuurka, waxay sii wadaa koritaankayaga, waxayna hubisaa in Usul uu yahay il muhiim ah oo jiilalka soo socda.",
+    "why-support": {
+      "title": "Maxaad u taageeraysaa Usul?",
+      "features": {
+        "0": "Warbixinno furan oo saddex-biloodle ah oo ku saabsan sida tabarucaaddaadu u beddeshay",
+        "1": "Fudud u jignow inaad joojiso ama habbooniso tabarucaaddaada wakhti kasta",
+        "2": "Fursad inaad ka mid noqoto misiyaan cusub oo lagu ilaaliyo oo lagu wadaago aqoonta Islamka"
+      }
+    },
+    "choose-amount": {
+      "title": "Dooro qadarka deeqdaada:",
+      "interval": {
+        "one-time": "Hal mar",
+        "monthly": "Bil kasta",
+        "yearly": "Sannad kasta"
+      },
+      "note": "Deeqaha waxaa uruuriya Usul Foundation, oo ah hay'ad aan faa'iido doon ahayn oo 501(c)(3). Dhammaan deeqaha waxaa laga jarayaa cashuurta gudaha Maraykanka. Wixii su'aalo ah, fadlan nala soo xiriir donors@usul.ai.",
+      "continue": "Sii Soco"
+    }
+  },
+  "success": {
+    "title": "Mahadsanid Deeqdaada!",
+    "description": "Deeqsinimadaan waxay keentaa farqi dhab ah. Waxaan ku qadarinayaa taageerada aad noogu siiyeeyso howsha."
+  },
+  "verification": {
+    "title": "Waa maxay email-kaaga?",
+    "description": "Email waxaa loo baahan yahay in laguugu diro rasiidhada iyo cusbooneysiinta daneeyaha.",
+    "sent-code": "Waxaan kaaga soo dirnay kood email-kaaga. Fadlan geli hoose si aad u dhammaystirto deeqda.",
+    "verify": "Hubi",
+    "send-code": "Soo Dir Code"
+  },
+  "already-donor": {
+    "title": "Hore ma u ahayd dhibbanaha?",
+    "manage": "Maamul Deeqdaada"
+  }
+}

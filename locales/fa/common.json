@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "مشارکت",
+      "donate": {
+        "title": "اهدا",
+        "description": "حمایت از Usul"
+      },
       "add-text": {
         "title": "افزودن متن",
         "description": "کتاب یا PDF بارگذاری کنید"

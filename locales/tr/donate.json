@@ -1,0 +1,98 @@
+{
+  "hero": {
+    "title": "İslam bilgisi geleceği, yapay zekâ ile destekleniyor",
+    "subtitle": "İslam bilgisini daha erişilebilir hale getirmemize ve daha kolay geri alınmasını sağlamamıza yardım edin.",
+    "description": "🎉 Elhamdülillah, desteğinizle Usul, binlerce bilgi arayışında olan kişiye ulaştı ve gelenek ile modernite arasında köprü kurdu.",
+    "donate-widget": {
+      "month-raised": "Toplam",
+      "goal": "Hedef ${goal, number} Aylık",
+      "active-monthly-donors": "<strong>{donors, number}</strong> aktif aylık bağışçı",
+      "become-a-donor": "Bağışçı Olun"
+    }
+  },
+  "achievements": {
+    "title": "Başarılar",
+    "one": {
+      "title": "İslam Metinlerine Benzersiz Erişim.",
+      "features": {
+        "0": "'den fazla <strong>10.000 klasik ve modern İslam metni</strong> ücretsiz olarak sunulmuştur.",
+        "1": "Araştırmacılar ve öğrenenlerin kolaylıkla içgörüler elde etmesine yardımcı olacak <strong>gelişmiş arama araçları</strong>."
+      }
+    },
+    "two": {
+      "title": "Akademisyenleri ve Öğrenenleri Güçlendirme",
+      "features": {
+        "0": "Kullanıcıların klasik metinlerden hızlıca bilgi bulmalarını ve çıkarmalarını sağlayan en son <strong>yapay zekâ araçları</strong>.",
+        "1": "Birçok kitaba yüklenen kullanıcıların kaynağı doğrulaması için <strong>PDF Ekleri</strong>."
+      }
+    },
+    "three": {
+      "title": "Güzel Kullanıcı Deneyimi",
+      "description": "Çalışmamızı, başlangıç seviyesindeki bilgi öğrenicilerinden ileri düzey akademisyenlere kadar <strong>güzel ve sevilen</strong> hale getirmeye çalışıyoruz. Okuma deneyiminden, arama arayüzüne, mobil deneyime kadar."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Yol Haritamız</strong>, Usul'un Gelecek Vizyonu",
+    "description": "Bağışlarınız, inşaAllah aşağıdaki hedeflere ulaşmamıza yardımcı olacaktır:",
+    "items": {
+      "0": {
+        "title": "Metin Kütüphanesini Genişletin",
+        "features": {
+          "0": "Platforma ek olarak binlerce ek kitabı dijitalleştirin ve ekleyin.",
+          "1": "Çeşitli İslami disiplinlerin ve düşünce okullarının kapsamlı temsiliyetini sağlayın."
+        }
+      },
+      "1": {
+        "title": "Araştırma Araçlarını İyileştirin",
+        "features": {
+          "0": "Kullanıcıların metinler veya tüm bir külliyat boyunca içgörü bulmalarını sağlamak için daha gelişmiş yapay zekâ destekli yetenekler ekleyin.",
+          "1": "Yan yana metin karşılaştırmaları ve alıntı kaynaklarını bulma gibi özellikler geliştirin."
+        }
+      },
+      "2": {
+        "title": "Küresel Erişilebilirlik",
+        "features": {
+          "0": "İslam bilgisine erişimi açmak için yapay zekâ kullanarak metinleri İngilizce ve diğer birçok dile çevirin.",
+          "1": "Sınırlı bağlantılı alanlarda kullanıcılar için web sitesi performansını geliştirin, hiçbir öğrenicinin geride kalmamasını sağlayın."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Usul'un Yolculuğunun Bir Parçası Olun",
+    "description": " Aylık desteğiniz inovasyonu yönlendirir, büyümemizi sürdürülebilir kılar ve Usul'un gelecek nesiller için önemli bir kaynak olarak kalmasını sağlar.",
+    "why-support": {
+      "title": "Usul'a neden destek verilmeli?",
+      "features": {
+        "0": "Bağışınızın nasıl bir fark yarattığını gösteren şeffaf üç aylık güncellemeler",
+        "1": "Katkınızı iptal etme veya ayarlama esnekliği",
+        "2": "İslam bilgisini koruma ve paylaşma konusunda öncü bir misyona dahil olma fırsatı"
+      }
+    },
+    "choose-amount": {
+      "title": "Bağış miktarınızı seçin:",
+      "interval": {
+        "one-time": "Tek Seferlik",
+        "monthly": "Aylık",
+        "yearly": "Yıllık"
+      },
+      "note": "Bağışlar, 501(c)(3) kâr amacı gütmeyen bir kuruluş olan Usul Vakfı tarafından toplanır. Tüm bağışlar, ABD'de vergiden düşülebilir. Herhangi bir soru için lütfen bizimle donors@usul.ai adresinden iletişime geçin.",
+      "continue": "Devam Et"
+    }
+  },
+  "success": {
+    "title": "Bağışınız İçin Teşekkür Ederiz!",
+    "description": "Cömertliğiniz gerçek bir fark yaratıyor. Misyonumuzu desteklediğiniz için teşekkür ederiz."
+  },
+  "verification": {
+    "title": "E-posta adresiniz nedir?",
+    "description": "Makbuzları ve bağışçı güncellemelerini size göndermek için e-posta gereklidir.",
+    "sent-code": "E-posta adresinize bir kod gönderdik. Bağışı tamamlamak için lütfen aşağıya girin.",
+    "verify": "Doğrula",
+    "send-code": "Kod Gönder"
+  },
+  "already-donor": {
+    "title": "Zaten bağışçı mısınız?",
+    "manage": "Bağışınızı yönetin"
+  }
+}

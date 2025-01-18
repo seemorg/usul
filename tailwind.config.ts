@@ -92,6 +92,9 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         gradient: "gradient 8s linear infinite",
       },
+      screens: {
+        xs: "480px",
+      },
     },
   },
   plugins: [

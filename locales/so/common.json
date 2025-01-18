@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Ku Biiri",
+      "donate": {
+        "title": "Tabbaruca",
+        "description": "Nagu taageer"
+      },
       "add-text": {
         "title": "Ku Dar Qoraal",
         "description": "Soo geli Buug ama PDF"

@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Contribute",
+      "donate": {
+        "title": "Donate",
+        "description": "Support Usul"
+      },
       "add-text": {
         "title": "Add Text",
         "description": "Upload Book or PDF"

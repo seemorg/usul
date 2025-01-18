@@ -136,3 +136,10 @@ export const formatDeathYear = (
 
   return `d. ${isUnknown ? "Unknown" : year}${format}`;
 };
+
+export const secondsToMsDate = (seconds: number) => new Date(seconds * 1000);
+
+export const getCurrentMonth = () => {
+  const now = new Date();
+  return `${now.getFullYear()}-${now.getMonth() + 1}`;
+};

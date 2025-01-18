@@ -10,6 +10,7 @@ import {
   BookOpenIcon,
   CirclePlusIcon,
   FileTextIcon,
+  HandCoinsIcon,
   HeartHandshakeIcon,
   ListIcon,
   MailIcon,
@@ -84,6 +85,12 @@ export const aboutItems: NavItem[] = [
 ];
 
 export const contributeItems: NavItem[] = [
+  {
+    title: "navigation.contribute.donate.title",
+    description: "navigation.contribute.donate.description",
+    href: navigation.donate(),
+    icon: HandCoinsIcon,
+  },
   {
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",

@@ -16,5 +16,9 @@
   "team-page": {
     "title": "Ƙungiya",
     "description": "Koyi da Ƙungiyar Usul"
+  },
+  "donate-page": {
+    "title": "Ba da Gudunmawa",
+    "description": "Ba da gudunmawa ga Usul"
   }
 }

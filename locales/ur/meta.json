@@ -16,5 +16,9 @@
   "team-page": {
     "title": "ٹیم",
     "description": "اسول کی ٹیم سے ملیں"
+  },
+  "donate-page": {
+    "title": "عطیہ کریں",
+    "description": "اُصول کو عطیہ کریں"
   }
 }

@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "योगदान दें",
+      "donate": {
+        "title": "दान करें",
+        "description": "Usul का समर्थन करें"
+      },
       "add-text": {
         "title": "पाठ जोड़ें",
         "description": "पुस्तक या PDF अपलोड करें"

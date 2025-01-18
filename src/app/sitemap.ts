@@ -57,6 +57,8 @@ export default async function sitemap(
       generateEntryFromUrl("/about"),
       // team page
       generateEntryFromUrl("/team"),
+      // donate page
+      generateEntryFromUrl("/donate"),
       // root entities
       ...rootEntityPages.map((entityUrl) => generateEntryFromUrl(entityUrl)),
       ...authors.map((author) =>

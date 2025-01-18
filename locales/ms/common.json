@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Sumbang",
+      "donate": {
+        "title": "Derma",
+        "description": "Sokong Usul"
+      },
       "add-text": {
         "title": "Tambah Teks",
         "description": "Muat Naik Buku atau PDF"
