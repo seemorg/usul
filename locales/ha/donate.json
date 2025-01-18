@@ -1,1 +1,98 @@
-{}
+{
+  "hero": {
+    "title": "Makomar ilmin Musulunci, ƙarƙashin taimakon AI",
+    "subtitle": "Ka taimaka mana don sanya ilmin Musulunci ya fi samun sauƙi kuma a samu da sauƙi.",
+    "description": "🎉 Alhamdulillah, da goyon bayan ku, Usul ya kai dubbai na masu neman ilmi, yana haɗa tazara tsakanin al'ada da zamani.",
+    "donate-widget": {
+      "month-raised": "An tara",
+      "goal": "Manufa ${goal, number} Kowane wata",
+      "active-monthly-donors": "<strong>{donors, number}</strong> masu bayar da gudummawa na kowane wata",
+      "become-a-donor": "Kasance Mai Bayar da Gudummawa"
+    }
+  },
+  "achievements": {
+    "title": "Nasarori",
+    "one": {
+      "title": "Samun damar karanta littattafan Musulunci marasa tamka.",
+      "features": {
+        "0": "Sama da <strong>littattafan Musulunci 10,000 na gargajiya da zamani</strong> ana samun su kyauta.",
+        "1": "<strong>Kayayyakin neman bayanai na ci gaba</strong> don taimakawa masu bincike da masu koyo su gano ilimi cikin sauƙi."
+      }
+    },
+    "two": {
+      "title": "Karfafawa Malamai da Masu Koyo",
+      "features": {
+        "0": "Kayayyakin <strong>AI na zamani</strong> da suke baiwa masu amfani damar samun da fitar da bayanai daga abubuwan karatu tare da sauri.",
+        "1": "<strong>Mana'ikan PDF</strong> da aka ɗora wa littattafai da yawa don masu amfani su tabbatar da tushen."
+      }
+    },
+    "three": {
+      "title": "Kwarewar Mai amfani Mai Kyau",
+      "description": "Muna ƙoƙari don sanya aikin mu <strong>mai kyau da kuma soyuwa</strong> ga ɗaliban ilmi na farko da ƙwararrun malamai ma. Daga kwarewar karatu, zuwa ga yanayin neman bayanai, zuwa kwarewar wayar hannu."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Taswirar Hanyar mu</strong>, Vision na Usul domin Makomar",
+    "description": "Gudummawarku za ta taimaka mana wajen cimma waɗannan manufofin, inshaAllah:",
+    "items": {
+      "0": {
+        "title": "Faɗaɗa Makarantar Rubutu",
+        "features": {
+          "0": "Dijitaliza da ƙarin dubban littattafai zuwa dandalin.",
+          "1": "Tabbatar da cikakken wakilcin fannoni daban-daban na Musulunci da makaranto na tunani."
+        }
+      },
+      "1": {
+        "title": "Inganta Kayan Bincike",
+        "features": {
+          "0": "Gabatar da karin fasali na AI da zai baiwa masu amfani damar samun bayanai tsakanin rubuce-rubucen ko dukkan corpus.",
+          "1": "Ƙirƙiri fasali irin su kwatancen rubutu bisa fuska da fuska da nemo tushe mai faɗar magana."
+        }
+      },
+      "2": {
+        "title": "Samun Damar Duk Duniya",
+        "features": {
+          "0": "Fassara rubuce-rubucen da ke amfani da AI zuwa Ingilishi da yawancin ɗaiɗaikun harsuna don buɗe damar samun ilimin Musulunci.",
+          "1": "Inganta aiki na gidan yanar for masu amfani a wuraren da aka iyakance, yana tabbatar da babu wani mai koyo da aka bar a baya."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Kasance Sashin Tafiyar Usul",
+    "description": " Tallafin ku na kowane wata yana tsugar da kirkira, yana tallafawa ci gaban mu, kuma yana tabbatar da cewa Usul zai ci gaba da kasancewa muhimmiyar tushe ga tsararrakki masu zuwa.",
+    "why-support": {
+      "title": "Me ya sa za a tallafi Usul?",
+      "features": {
+        "0": "Bayani na kowane kwata akan yadda gudummawar ku ke kawo canji",
+        "1": "Yancin bayar da gudummawa tare da damar soke ko gyara duk lokacin da kake so",
+        "2": "Damar zama wani bangare na babban aiki na kiyaye da raba ilimin Musulunci"
+      }
+    },
+    "choose-amount": {
+      "title": "Zaɓi adadin gudummawar ku:",
+      "interval": {
+        "one-time": "Sau ɗaya",
+        "monthly": "Kowanne wata",
+        "yearly": "Kowanne shekara"
+      },
+      "note": "Gudummawa ana tara su ne ta Usul Foundation, wata kungiya mara riba 501(c)(3). Duk gudummawar tana iya samun rangwamen haraji a Amurka. Don kowanne tambaya, da fatan za a tuntube mu a donors@usul.ai.",
+      "continue": "Ci gaba"
+    }
+  },
+  "success": {
+    "title": "Na gode da gudummawarku!",
+    "description": "Gatan ku yana kawo bambanci na hakika. Muna yaba tallafinku a aikin mu."
+  },
+  "verification": {
+    "title": "Menene imel ɗinka?",
+    "description": "Ana buƙatar imel don aika maka da takaddun shaidar ku da sabunta gudummawa.",
+    "sent-code": "Mun aika da lambar zuwa imel ɗinka. Da fatan za a shigar da shi a ƙasa don kammala gudummawa.",
+    "verify": "Tabbatarwa",
+    "send-code": "Aika Lambar"
+  },
+  "already-donor": {
+    "title": "Ka riga ka zama mai bayarwa?",
+    "manage": "Sarrafa gudummawarku"
+  }
+}

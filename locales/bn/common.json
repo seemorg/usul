@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "অবদান",
+      "donate": {
+        "title": "দান করুন",
+        "description": "Usul কে সমর্থন করুন"
+      },
       "add-text": {
         "title": "টেক্সট যোগ করুন",
         "description": "বই বা PDF আপলোড করুন"

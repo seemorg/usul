@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "ونډه ورکول",
+      "donate": {
+        "title": "بسپارئ",
+        "description": "له Usul سره ملاتړ وکړئ‎"
+      },
       "add-text": {
         "title": "متن اضافه کول",
         "description": "کتاب یا پی‌ډی‌اف پورته کړئ"

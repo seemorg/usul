@@ -16,5 +16,9 @@
   "team-page": {
     "title": "দল",
     "description": "Usul দলের সাথে পরিচিত হন"
+  },
+  "donate-page": {
+    "title": "দান করুন",
+    "description": "আমাদের উসুলে দান করুন"
   }
 }
