@@ -1,5 +1,7 @@
+import { revalidateTag } from "next/cache";
 import { env } from "@/env";
 import { Redis } from "@upstash/redis";
+import { getCurrentMonth } from "./date";
 
 export const redis = new Redis({
   url: env.UPSTASH_REDIS_REST_URL,
@@ -13,13 +15,10 @@ export type DonationRecord = {
   timestamp: number; // in milliseconds
 };
 
-const getCurrentMonth = () => {
-  const now = new Date();
-  return `${now.getFullYear()}-${now.getMonth() + 1}`;
-};
-
-const makeCurrentMonthTotalKey = () => `donations:totals:${getCurrentMonth()}`;
-const makeCurrentMonthDonorsKey = () => `donations:donors:${getCurrentMonth()}`;
+export const makeCurrentMonthTotalKey = () =>
+  `donations:totals:${getCurrentMonth()}`;
+export const makeCurrentMonthDonorsKey = () =>
+  `donations:donors:${getCurrentMonth()}`;
 
 export async function storeDonation(
   obj: { sessionId: string } | { invoiceId: string },
@@ -61,22 +60,16 @@ export async function storeDonation(
   const donorsKey = makeCurrentMonthDonorsKey();
   await redis.incr(donorsKey);
 
+  invalidateMonthlyStats();
+
   return true;
 }
 
-export async function getDonations(): Promise<DonationRecord[]> {
-  const data = await redis.json.get<DonationRecord[]>("donations", "items");
-  return data ?? [];
-}
+// export async function getDonations(): Promise<DonationRecord[]> {
+//   const data = await redis.json.get<DonationRecord[]>("donations", "items");
+//   return data ?? [];
+// }
 
-export async function getMonthlyDonations(): Promise<number> {
-  const monthKey = makeCurrentMonthTotalKey();
-  const total = await redis.get<number>(monthKey);
-  return total ?? 0;
-}
-
-export async function getMonthlyDonors(): Promise<number> {
-  const donorsKey = makeCurrentMonthDonorsKey();
-  const total = await redis.get<number>(donorsKey);
-  return total ?? 0;
-}
+export const invalidateMonthlyStats = () => {
+  revalidateTag("monthly-stats");
+};

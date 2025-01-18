@@ -1,29 +1,21 @@
 import Container from "@/components/ui/container";
 import { navigation } from "@/lib/urls";
-import {
-  getFormatter,
-  getTranslations,
-  unstable_setRequestLocale,
-} from "next-intl/server";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { type AppLocale, locales } from "~/i18n.config";
+import { type AppLocale } from "~/i18n.config";
 import { cn } from "@/lib/utils";
 
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { MoonStarIcon } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-import { getMonthlyDonations, getMonthlyDonors } from "@/lib/upstash";
 import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
 import dynamicImport from "next/dynamic";
+import { DonationStatsCard } from "./stats-card.client";
 
 const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
   ssr: false,
 });
-
-const GOAL = 75_000;
 
 export const generateMetadata = async ({
   params: { locale },
@@ -40,12 +32,6 @@ export const generateMetadata = async ({
   });
 };
 
-export const dynamic = "force-static";
-
-export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
-}
-
 export default async function HomePage({
   params: { locale },
 }: {
@@ -54,10 +40,6 @@ export default async function HomePage({
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "donate" });
-  const formatter = await getFormatter({ locale });
-
-  const currentMonthDonations = await getMonthlyDonations();
-  const currentMonthDonors = await getMonthlyDonors();
 
   const getMarkup = (
     key: Parameters<typeof t.rich>[0],
@@ -92,14 +74,6 @@ export default async function HomePage({
     },
   ];
 
-  const formattedDonations = formatter.number(currentMonthDonations, {
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
-    style: "currency",
-    currency: "USD",
-    currencyDisplay: "narrowSymbol",
-  });
-
   return (
     <>
       <SuccessModal />
@@ -119,46 +93,7 @@ export default async function HomePage({
           </div>
 
           <div className="flex-1 sm:px-10 lg:px-0">
-            <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-[5%]">
-              <div>
-                <p className="text-5xl font-bold text-primary sm:text-7xl">
-                  {formattedDonations}
-                </p>
-
-                <div className="mt-7 flex gap-5">
-                  <p className="font-bold">
-                    {t("hero.donate-widget.goal", { goal: GOAL })}
-                  </p>
-                </div>
-
-                <div className="mt-5">
-                  <Progress
-                    value={Math.min((currentMonthDonations / GOAL) * 100, 100)}
-                    className="h-1"
-                  />
-                </div>
-              </div>
-
-              <div className="h-24" />
-
-              <div>
-                <p className="text-lg">
-                  {getMarkup("hero.donate-widget.active-monthly-donors", {
-                    donors: currentMonthDonors,
-                  })}
-                </p>
-
-                <Button
-                  className="mt-5 h-12 w-full bg-teal-700 text-base font-bold text-white hover:bg-teal-600"
-                  size="lg"
-                  asChild
-                >
-                  <a href="#donate-form">
-                    {t("hero.donate-widget.become-a-donor")}
-                  </a>
-                </Button>
-              </div>
-            </div>
+            <DonationStatsCard />
           </div>
         </Container>
       </div>

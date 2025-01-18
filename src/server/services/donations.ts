@@ -2,6 +2,13 @@
 
 import type Stripe from "stripe";
 import stripe from "../stripe";
+import { unstable_cache } from "next/cache";
+import { getCurrentMonth } from "@/lib/date";
+import {
+  makeCurrentMonthDonorsKey,
+  makeCurrentMonthTotalKey,
+  redis,
+} from "@/lib/upstash";
 
 export const createCheckoutSession = async (
   amountInUsd: number,
@@ -89,4 +96,25 @@ export const createCheckoutSession = async (
   }
 
   return session.url;
+};
+
+export const getMonthlyStats = async () => {
+  const currentMonth = getCurrentMonth();
+
+  return unstable_cache(
+    async () => {
+      const monthKey = makeCurrentMonthTotalKey();
+      const total = (await redis.get<number>(monthKey)) ?? 0;
+
+      const donorsKey = makeCurrentMonthDonorsKey();
+      const donors = (await redis.get<number>(donorsKey)) ?? 0;
+
+      return {
+        total,
+        donors,
+      };
+    },
+    [`monthly-stats-${currentMonth}`],
+    { revalidate: 60 * 60 * 24, tags: ["monthly-stats"] },
+  )();
 };
