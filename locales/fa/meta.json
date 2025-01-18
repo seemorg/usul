@@ -16,5 +16,9 @@
   "team-page": {
     "title": "تیم",
     "description": "با تیم اصول آشنا شوید"
+  },
+  "donate-page": {
+    "title": "اهدا",
+    "description": "به اصول اهدا کنید"
   }
 }

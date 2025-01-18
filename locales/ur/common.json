@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "تعاون کریں",
+      "donate": {
+        "title": "عطیہ دیں",
+        "description": "Usul کی حمایت کریں"
+      },
       "add-text": {
         "title": "متن شامل کریں",
         "description": "کتاب یا پی ڈی ایف اپ لوڈ کریں"

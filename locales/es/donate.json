@@ -1,1 +1,98 @@
-{}
+{
+  "hero": {
+    "title": "El futuro del conocimiento islámico, impulsado por IA",
+    "subtitle": "Ayúdanos a hacer el conocimiento islámico más accesible y su recuperación mucho más fácil.",
+    "description": "🎉 Alhamdulillah, con su apoyo, Usul ha llegado a miles de buscadores de conocimiento, cerrando la brecha entre la tradición y la modernidad.",
+    "donate-widget": {
+      "month-raised": "Recaudado",
+      "goal": "Meta ${goal, number} Mensual",
+      "active-monthly-donors": "<strong>{donors, number}</strong> donantes activos mensuales",
+      "become-a-donor": "Hazte Donante"
+    }
+  },
+  "achievements": {
+    "title": "Logros",
+    "one": {
+      "title": "Acceso Inigualable a Textos Islámicos.",
+      "features": {
+        "0": "Más de <strong>10.000 textos islámicos clásicos y modernos</strong> disponibles gratuitamente.",
+        "1": "<strong>Herramientas avanzadas de búsqueda</strong> para ayudar a los investigadores y alumnos a descubrir fácilmente conocimientos."
+      }
+    },
+    "two": {
+      "title": "Empoderando a Académicos y Estudiantes",
+      "features": {
+        "0": "Herramientas de <strong>IA de última generación</strong> que permiten a los usuarios encontrar y extraer rápidamente información de textos clásicos.",
+        "1": "<strong>Adjunto PDF</strong> cargado en muchos libros para que los usuarios puedan validar la fuente."
+      }
+    },
+    "three": {
+      "title": "Hermosa Experiencia de Usuario",
+      "description": "Nos esforzamos por hacer que nuestro trabajo sea <strong>hermoso y apreciado</strong> tanto por estudiantes principiantes del conocimiento como por académicos avanzados. Desde la experiencia de lectura, hasta la interfaz de búsqueda, hasta la experiencia móvil."
+    }
+  },
+  "roadmap": {
+    "title": "<strong>Nuestra Hoja de Ruta</strong>, la Visión de Usul para el Futuro",
+    "description": "Sus donaciones nos ayudarán a alcanzar los siguientes objetivos, inshaAllah:",
+    "items": {
+      "0": {
+        "title": "Expandir la Biblioteca de Textos",
+        "features": {
+          "0": "Digitalizar y agregar miles de libros adicionales a la plataforma.",
+          "1": "Asegurar una representación integral de diversas disciplinas islámicas y escuelas de pensamiento."
+        }
+      },
+      "1": {
+        "title": "Refinar Herramientas de Investigación",
+        "features": {
+          "0": "Introducir capacidades más avanzadas impulsadas por IA para permitir a los usuarios encontrar conocimientos en textos o en un corpus completo.",
+          "1": "Desarrollar funciones como comparaciones de textos lado a lado y encontrar fuentes de citas."
+        }
+      },
+      "2": {
+        "title": "Accesibilidad Global",
+        "features": {
+          "0": "Traducir textos usando IA al inglés y a muchos otros idiomas para abrir el acceso al conocimiento islámico.",
+          "1": "Mejorar el rendimiento del sitio web para usuarios en áreas con conectividad limitada, asegurando que ningún estudiante se quede atrás."
+        }
+      }
+    }
+  },
+  "be-part": {
+    "title": "Sé parte del Viaje de Usul",
+    "description": " Tu apoyo mensual impulsa la innovación, sostiene nuestro crecimiento y garantiza que Usul siga siendo un recurso vital para las generaciones venideras.",
+    "why-support": {
+      "title": "¿Por qué apoyar a Usul?",
+      "features": {
+        "0": "Actualizaciones trimestrales transparentes sobre cómo tu donación está haciendo la diferencia",
+        "1": "Flexibilidad para cancelar o ajustar tu contribución en cualquier momento",
+        "2": "Una oportunidad para ser parte de una misión innovadora para preservar y compartir el conocimiento islámico"
+      }
+    },
+    "choose-amount": {
+      "title": "Elige el monto de tu donación:",
+      "interval": {
+        "one-time": "Una vez",
+        "monthly": "Mensual",
+        "yearly": "Anual"
+      },
+      "note": "Las donaciones son recaudadas por Usul Foundation, una organización sin fines de lucro 501(c)(3). Todas las donaciones son deducibles de impuestos en los EE.UU. Para cualquier consulta, por favor contáctenos en donors@usul.ai.",
+      "continue": "Continuar"
+    }
+  },
+  "success": {
+    "title": "¡Gracias por tu donación!",
+    "description": "Tu generosidad marca una verdadera diferencia. Apreciamos tu apoyo en nuestra misión."
+  },
+  "verification": {
+    "title": "¿Cuál es tu correo electrónico?",
+    "description": "El correo electrónico es necesario para enviarle recibos y actualizaciones de donantes.",
+    "sent-code": "Hemos enviado un código a tu correo electrónico. Por favor, ingrésalo abajo para completar la donación.",
+    "verify": "Verificar",
+    "send-code": "Enviar Código"
+  },
+  "already-donor": {
+    "title": "¿Ya eres donante?",
+    "manage": "Administra tu donación"
+  }
+}

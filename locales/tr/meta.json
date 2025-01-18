@@ -16,5 +16,9 @@
   "team-page": {
     "title": "Ekip",
     "description": "Usul ekibiyle tanışın"
+  },
+  "donate-page": {
+    "title": "Bağış Yap",
+    "description": "Usul'e Bağış Yap"
   }
 }

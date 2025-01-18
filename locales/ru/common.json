@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Внести вклад",
+      "donate": {
+        "title": "Пожертвовать",
+        "description": "Поддержать Usul"
+      },
       "add-text": {
         "title": "Добавить текст",
         "description": "Загрузите книгу или PDF"

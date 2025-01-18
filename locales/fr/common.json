@@ -93,6 +93,10 @@
     },
     "contribute": {
       "title": "Contribuer",
+      "donate": {
+        "title": "Faire un don",
+        "description": "Soutenir Usul"
+      },
       "add-text": {
         "title": "Ajouter Texte",
         "description": "Télécharger un livre ou PDF"

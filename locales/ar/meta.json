@@ -16,5 +16,9 @@
   "team-page": {
     "title": "فريق العمل",
     "description": "تعرف على فريق أصول"
+  },
+  "donate-page": {
+    "title": "تبرع",
+    "description": "تبرع لأوسول"
   }
 }
