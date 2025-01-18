@@ -14,9 +14,14 @@ import { Button } from "@/components/ui/button";
 import { MoonStarIcon } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { getMonthlyDonations, getMonthlyDonors } from "@/lib/upstash";
-import DonateForm from "./donate-form";
+import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
+import dynamicImport from "next/dynamic";
+
+const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
+  ssr: false,
+});
 
 const GOAL = 75_000;
 
@@ -97,6 +102,8 @@ export default async function HomePage({
 
   return (
     <>
+      <SuccessModal />
+
       <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
         <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
 

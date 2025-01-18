@@ -27,6 +27,11 @@ export async function storeDonation(
   email: string | null | undefined,
   interval: "one-time" | "monthly" | "yearly" | null,
 ) {
+  // on staging environments, don't store anything to redis and just return
+  if (env.VERCEL_ENV !== "production") {
+    return true;
+  }
+
   if (!amountInCents) return false;
 
   // store in dollars

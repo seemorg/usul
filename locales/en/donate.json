@@ -79,5 +79,9 @@
       "note": "Donations are collected by Usul Foundation, a 501(c)(3) nonprofit organization (EIN: [Insert EIN]). All donations are tax-deductible in the US. For any inquiries, please contact us at donors@usul.ai.",
       "continue": "Continue"
     }
+  },
+  "success": {
+    "title": "Thank You for Your Donation!",
+    "description": "Your generosity makes a real difference. We appreciate your support in our mission."
   }
 }
