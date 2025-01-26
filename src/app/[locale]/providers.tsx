@@ -84,7 +84,6 @@ function Providers({
         <NextThemesProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
           disableTransitionOnChange
         >
           <QueryClientProvider client={queryClient}>

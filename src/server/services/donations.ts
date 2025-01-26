@@ -13,6 +13,7 @@ import { env } from "@/env";
 import { z } from "zod";
 import { nanoid } from "nanoid";
 import { resend } from "@/lib/resend";
+import { verifyEmail } from "@/lib/email-verifier";
 
 const presetDonations = [
   {
@@ -64,14 +65,9 @@ const presetDonations = [
 const productEnv = env.VERCEL_ENV === "production" ? "production" : "test";
 
 export const generateAndSendDonationCode = async (email: string) => {
-  const response = await fetch(
-    `https://verifyright.co/verify/${email}?token=${env.VERIFY_RIGHT_API_KEY}`,
-  );
-  const data = (await response.json()) as {
-    status: boolean;
-  };
+  const isValidEmail = await verifyEmail(email);
 
-  if (!data.status) {
+  if (!isValidEmail) {
     throw new Error("Failed to verify email");
   }
 

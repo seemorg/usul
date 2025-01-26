@@ -21,15 +21,16 @@ const config = {
           ...fontFamily.sans,
         ],
         scheherazade: ["var(--font-scheherazade)", ...fontFamily.serif],
-        // "uthmanic-hafs": ["var(--font-uthmanic-hafs)"],
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         reader: "hsl(var(--reader))",
         ring: "hsl(var(--ring))",
+        link: "hsl(var(--link))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "muted-primary": "hsl(var(--muted-primary))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

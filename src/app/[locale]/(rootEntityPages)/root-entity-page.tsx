@@ -11,7 +11,7 @@ export default function RootEntityPage({
 }) {
   return (
     <>
-      <div className="flex h-[250px] w-full items-center justify-center bg-primary pt-16 text-white sm:h-[300px] sm:pt-24">
+      <div className="bg-muted-primary flex h-[250px] w-full items-center justify-center pt-16 text-white sm:h-[300px] sm:pt-24">
         <Container className="flex flex-col items-center">
           <h1 className="text-6xl font-bold sm:text-7xl">{title}</h1>
           {description && (

@@ -65,7 +65,7 @@ export default function BookInfo({ className }: { className?: string }) {
           <AuthorHoverCard>
             <Link
               href={navigation.authors.bySlug(book.author.slug)}
-              className="text-base text-primary underline underline-offset-4"
+              className="link text-base"
               prefetch
             >
               {authorPrimaryName} - {t("common.year-format.ah.value", { year })}
@@ -78,7 +78,7 @@ export default function BookInfo({ className }: { className?: string }) {
             <AuthorHoverCard>
               <Link
                 href={navigation.authors.bySlug(book.author.slug)}
-                className="text-base text-primary underline underline-offset-4"
+                className="link text-base"
                 prefetch
               >
                 {authorSecondaryName} -{" "}

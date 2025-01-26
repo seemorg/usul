@@ -60,7 +60,7 @@ export default async function HomePage({
       <Navbar layout="home" />
 
       <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
-        <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
+        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
