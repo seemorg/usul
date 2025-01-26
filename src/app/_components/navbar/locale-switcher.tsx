@@ -8,15 +8,16 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { locales } from "~/i18n.config";
+import { type AppLocale, locales } from "~/i18n.config";
 import { Link, usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { getLocaleFullName } from "@/lib/locale/utils";
 import { useLocale } from "next-intl";
 
 export default function LocaleSwitcher() {
-  const selectedLocale = useLocale();
+  const selectedLocale = useLocale() as AppLocale;
   const pathname = usePathname();
+
   const params = useSearchParams();
 
   const currentUrl = `${pathname}${params.size > 0 ? `?` + params.toString() : ""}`;
@@ -24,15 +25,9 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          className="gap-1"
-          dir={selectedLocale === "ar-SA" ? "ltr" : "rtl"}
-          // onMouseEnter={() => setOpen(true)}
-          // onMouseLeave={() => setOpen(false)}
-        >
+        <Button variant="ghost" className="gap-1">
           {/* <LanguageIcon className="h-4 w-4" /> */}
-          {getLocaleFullName(selectedLocale === "ar-SA" ? "en-US" : "ar-SA")}
+          {getLocaleFullName(selectedLocale)}
           <ChevronDownIcon className="size-3" />
         </Button>
       </DropdownMenuTrigger>

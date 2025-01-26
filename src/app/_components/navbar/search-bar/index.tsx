@@ -135,7 +135,7 @@ export default function SearchBar({
           ref={inputRef}
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
-          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14 ")}
+          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
           wrapperClassName={cn(size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6")}
         />
 
