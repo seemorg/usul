@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronRightIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
+import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react";
@@ -213,7 +213,7 @@ const CarouselPrevious = React.forwardRef<
       onClick={scrollPrev}
       {...props}
     >
-      <ChevronLeftIcon className="h-5 w-5 rtl:rotate-180" />
+      <ArrowLeftIcon className="h-5 w-5 rtl:rotate-180" />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -236,7 +236,7 @@ const CarouselNext = React.forwardRef<
       onClick={scrollNext}
       {...props}
     >
-      <ChevronRightIcon className="h-5 w-5 rtl:rotate-180" />
+      <ArrowRightIcon className="h-5 w-5 rtl:rotate-180" />
       <span className="sr-only">Next slide</span>
     </Button>
   );

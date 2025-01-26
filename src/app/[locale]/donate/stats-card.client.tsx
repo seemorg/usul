@@ -70,7 +70,7 @@ export function DonationStatsCard() {
         {isLoading ? (
           <Skeleton className="h-[48px] w-full sm:h-[72px]" />
         ) : (
-          <p className="xs:text-6xl text-5xl font-bold text-primary sm:text-7xl">
+          <p className="text-5xl font-bold text-primary xs:text-6xl sm:text-7xl">
             {formattedDonations}
           </p>
         )}
@@ -119,7 +119,7 @@ export function DonationStatsCard() {
           <a
             href={env.NEXT_PUBLIC_STRIPE_PORTAL_URL}
             target="_blank"
-            className="text-primary underline"
+            className="link"
           >
             {t("already-donor.manage")}
           </a>

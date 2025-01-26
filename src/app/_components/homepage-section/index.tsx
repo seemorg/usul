@@ -49,8 +49,8 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="hover:bg-accent/80 focus:bg-accent/80 disabled:bg-transparent disabled:opacity-50" />
-          <CarouselNext className="hover:bg-accent/80 focus:bg-accent/80 disabled:bg-transparent disabled:opacity-50" />
+          <CarouselPrevious className="hover:bg-accent/80 focus:bg-accent/80 disabled:opacity-40 dark:bg-accent/50" />
+          <CarouselNext className="hover:bg-accent/80 focus:bg-accent/80 disabled:opacity-40 dark:bg-accent/50" />
         </div>
       </div>
 
