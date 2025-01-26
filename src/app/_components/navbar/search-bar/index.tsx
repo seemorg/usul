@@ -160,7 +160,7 @@ export default function SearchBar({
         <CommandList
           itemID="cmd-list"
           className={cn(
-            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-white text-sm text-foreground dark:bg-background",
+            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-popover text-sm text-foreground",
             !mobile && "border border-border shadow",
             showList || mobile
               ? "opacity-100"
