@@ -37,7 +37,7 @@ export default function LocaleLayout({
     <html
       lang={locale}
       dir={getLocaleDirection(locale as AppLocale)}
-      className="bg-primary"
+      className="bg-muted-primary"
       suppressHydrationWarning
     >
       <body

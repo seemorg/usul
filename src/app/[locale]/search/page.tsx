@@ -123,7 +123,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
       <Navbar />
 
       <main className="flex min-h-screen w-full flex-col bg-background pb-24">
-        <div className="flex h-[250px] w-full items-center justify-center bg-primary pt-16 text-white sm:h-[300px] sm:pt-24">
+        <div className="bg-muted-primary flex h-[250px] w-full items-center justify-center pt-16 text-white sm:h-[300px] sm:pt-24">
           <Container className="flex flex-col items-center">
             <h1 className="text-6xl font-bold sm:text-7xl">{t("texts")}</h1>
 

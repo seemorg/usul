@@ -30,6 +30,7 @@ const config = {
         link: "hsl(var(--link))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        "muted-primary": "hsl(var(--muted-primary))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

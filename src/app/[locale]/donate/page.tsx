@@ -79,7 +79,7 @@ export default async function HomePage({
       <SuccessModal />
 
       <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
-        <div className="absolute inset-0 z-0 h-full w-full bg-primary" />
+        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
 
         <Container className="z-[1] flex flex-col lg:flex-row lg:gap-12">
           <div className="flex-1">
@@ -144,7 +144,7 @@ export default async function HomePage({
                 </p>
               </div>
 
-              <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
+              <div className="h-[200px] xs:h-[250px] md:h-[280px] lg:hidden" />
 
               <Image
                 src="/images/features-screenshot.png"
