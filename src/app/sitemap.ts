@@ -28,8 +28,8 @@ const generateEntryFromUrl = (url: string) => ({
 });
 
 export function generateSitemaps() {
-  // TODO: for now we have only 2 sitemaps, change that later to be dynamic
-  return [{ id: 1 }, { id: 2 }] as const;
+  // TODO: for now we have only 3 sitemaps, change that later to be dynamic
+  return [{ id: 1 }, { id: 2 }, { id: 3 }] as const;
 }
 
 export default async function sitemap(
@@ -80,10 +80,13 @@ export default async function sitemap(
 
   const books = await db.book.findMany({
     select: { slug: true },
+    orderBy: { createdAt: "desc", id: "desc" },
   });
 
+  const portion = params.id === 2 ? books.slice(0, 7000) : books.slice(7000);
+
   return [
-    ...books.map((book) =>
+    ...portion.map((book) =>
       generateEntryFromUrl(navigation.books.reader(book.slug)),
     ),
   ];

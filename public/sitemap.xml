@@ -2,11 +2,16 @@
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://usul.ai/sitemap/1.xml</loc>
-    <lastmod>2024-12-19T12:00:00Z</lastmod>
+    <lastmod>2025-02-01T12:00:00Z</lastmod>
   </sitemap>
 
   <sitemap>
     <loc>https://usul.ai/sitemap/2.xml</loc>
-    <lastmod>2024-12-19T12:00:00Z</lastmod>
+    <lastmod>2024-02-01T12:00:00Z</lastmod>
+  </sitemap>
+
+   <sitemap>
+    <loc>https://usul.ai/sitemap/3.xml</loc>
+    <lastmod>2025-02-01T12:00:00Z</lastmod>
   </sitemap>
 </sitemapindex>
