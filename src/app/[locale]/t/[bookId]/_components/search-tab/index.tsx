@@ -16,7 +16,7 @@ import { VersionAlert } from "../version-alert";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { useSearchStore } from "../../_stores/search";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { useBookDetails } from "../../_contexts/book-details.context";
 import { AzureSearchFilter, buildQuery } from "./search-filters";
@@ -45,6 +45,21 @@ export default function SearchTab() {
   } = useSearchStore();
   const [inputValue, setInputValue] = useState(value);
 
+  const searchVersion = useMemo(() => {
+    const currentVersion = bookResponse.book.versions.find(
+      (v) => v.id === bookResponse.content.id,
+    );
+
+    if (type === "semantic") {
+      // check ai version
+      if (currentVersion?.aiSupported) return currentVersion.id;
+      return bookResponse.book.aiVersion;
+    }
+
+    if (currentVersion?.keywordSupported) return currentVersion.id;
+    return bookResponse.book.keywordVersion;
+  }, [type, bookResponse]);
+
   const isVersionMismatch =
     type === "semantic"
       ? bookResponse.book.aiVersion !== bookResponse.content.id
@@ -60,13 +75,21 @@ export default function SearchTab() {
     isLoading,
     error,
   } = useQuery({
-    queryKey: ["search", bookResponse.book.id, value, type, page] as const,
+    queryKey: [
+      "search",
+      bookResponse.book.id,
+      searchVersion,
+      value,
+      type,
+      page,
+    ] as const,
     queryFn: async ({ queryKey }) => {
-      const [, _bookId, _q, _type, _page] = queryKey;
+      const [, _bookId, _versionId, _q, _type, _page] = queryKey;
       if (!_q) return null;
 
       return await searchBook(
         _bookId,
+        _versionId,
         _q,
         _type === "simple" || _type === "advanced" ? "keyword" : "semantic",
         _page,
