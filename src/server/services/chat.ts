@@ -31,12 +31,13 @@ const baseRequest = async <T>(
 
 export const chatWithBook = async (body: {
   bookId: string;
+  versionId: string;
   question: string;
   messages: any[];
 }) => {
   const response = await baseRequest<{ chatId: string }>(
     "POST",
-    `/chat/${body.bookId}`,
+    `/chat/${body.bookId}/${body.versionId}`,
     {
       question: body.question,
       messages: body.messages,
@@ -78,6 +79,7 @@ export type SearchBookResponse = {
 
 export const searchBook = async (
   bookId: string,
+  versionId: string,
   query: string,
   type: "semantic" | "keyword" = "semantic",
   page: number = 1,
@@ -85,6 +87,7 @@ export const searchBook = async (
   const queryParams = new URLSearchParams();
   queryParams.set("q", query);
   queryParams.set("bookId", bookId);
+  queryParams.set("versionId", versionId);
   queryParams.set("type", type);
   queryParams.set("page", page.toString());
 

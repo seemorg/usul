@@ -1,8 +1,9 @@
 import { chatWithBook } from "@/server/services/chat";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useChatStore } from "../../_stores/chat";
+import { useBookDetails } from "../../_contexts/book-details.context";
 
 type ChatMessage = {
   id?: string;
@@ -79,6 +80,16 @@ export default function useChat({
   bookId: string;
   versionId: string;
 }): UseChatResult {
+  const { bookResponse } = useBookDetails();
+  const aiVersion = useMemo(() => {
+    const currentVersion = bookResponse.book.versions.find(
+      (v) => v.id === versionId,
+    );
+
+    if (currentVersion?.aiSupported) return currentVersion.id;
+    return bookResponse.book.aiVersion;
+  }, [bookId, versionId, bookResponse]);
+
   const messages = useChatStore((s) => s.messages);
   const setMessages = useChatStore((s) => s.setMessages);
   const question = useChatStore((s) => s.question);
@@ -102,6 +113,7 @@ export default function useChat({
     try {
       const { eventSource, messageId } = await chatWithBook({
         bookId,
+        versionId: aiVersion,
         question: q,
         messages,
       });
@@ -121,7 +133,7 @@ export default function useChat({
 
     setIsPending(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [bookId, question]);
+  }, [bookId, question, aiVersion]);
 
   const regenerateResponse = useCallback(
     async (messageIndex?: number) => {
@@ -152,6 +164,7 @@ export default function useChat({
       try {
         const { eventSource, messageId } = await chatWithBook({
           bookId,
+          versionId: aiVersion,
           question: question.text,
           messages: previousMessages,
         });
@@ -170,7 +183,7 @@ export default function useChat({
 
       setIsPending(false);
     },
-    [bookId, messages],
+    [bookId, messages, aiVersion],
   );
 
   const clearChat = useCallback(() => {
