@@ -80,7 +80,7 @@ export default async function sitemap(
 
   const books = await db.book.findMany({
     select: { slug: true },
-    orderBy: { createdAt: "desc", id: "desc" },
+    orderBy: [{ createdAt: "desc" }, { id: "desc" }],
   });
 
   const portion = params.id === 2 ? books.slice(0, 7000) : books.slice(7000);
