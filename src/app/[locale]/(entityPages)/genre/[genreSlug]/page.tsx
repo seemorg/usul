@@ -38,7 +38,6 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
-    hasImage: true,
     locale,
     pagePath: navigation.genres.bySlug(genreSlug),
     title: primaryText ?? "",

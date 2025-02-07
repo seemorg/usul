@@ -29,7 +29,6 @@ export const generateMetadata = async ({
   const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
 
   return getMetadata({
-    hasImage: true,
     locale,
     pagePath: navigation.centuries.byNumber(yearRange.centuryNumber),
     title,

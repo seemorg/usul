@@ -47,7 +47,6 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
-    hasImage: true,
     locale,
     pagePath: navigation.regions.bySlug(regionSlug),
     title: name ?? undefined,
