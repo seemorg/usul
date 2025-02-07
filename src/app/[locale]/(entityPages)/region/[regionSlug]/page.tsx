@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { findRegionBySlug } from "@/server/services/regions";
 import SearchResults from "@/components/search-results";
 import { navigation, yearsSorts } from "@/lib/urls";
 import BookSearchResult from "@/components/book-search-result";
@@ -23,7 +22,9 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { getMetadata } from "@/lib/seo";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
+import { getRegion } from "@/lib/api";
+import { findRegionBySlug } from "@/server/services/regions";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -37,20 +38,19 @@ export const generateMetadata = async ({
 }) => {
   const pathLocale = await getPathLocale();
 
-  const region = await findRegionBySlug(regionSlug);
+  const region = await getRegion(regionSlug, { locale: pathLocale });
   if (!region) return {};
-
-  const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
-  const overview = getPrimaryLocalizedText(
-    region.overviewTranslations,
-    pathLocale,
-  );
 
   return getMetadata({
     locale,
+    image: {
+      url: `/api/og/region/${regionSlug}`,
+      width: 1200,
+      height: 720,
+    },
     pagePath: navigation.regions.bySlug(regionSlug),
-    title: name ?? undefined,
-    description: overview ?? undefined,
+    title: region.name,
+    description: region.overview,
   });
 };
 

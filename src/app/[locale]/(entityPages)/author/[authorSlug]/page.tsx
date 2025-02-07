@@ -71,7 +71,7 @@ export const generateMetadata = async ({
     image: {
       url: `/api/og/author/${authorSlug}`,
       width: 1200,
-      height: 630,
+      height: 720,
     },
     locale,
     pagePath: navigation.authors.bySlug(authorSlug),

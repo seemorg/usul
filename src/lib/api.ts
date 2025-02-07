@@ -1,4 +1,4 @@
-import { ApiAuthor } from "@/types/api/author";
+import type { ApiAuthor } from "@/types/api/author";
 import type {
   ApiBookPageParams,
   ApiBookParams,
@@ -9,7 +9,9 @@ import type {
   AlternateSlugResponse,
 } from "@/types/api/book";
 import { cache } from "react";
-import { PathLocale } from "./locale/utils";
+import type { PathLocale } from "./locale/utils";
+import type { ApiGenre } from "@/types/api/genre";
+import type { ApiRegion } from "@/types/api/region";
 
 const API_BASE = "https://api.usul.ai";
 
@@ -96,6 +98,22 @@ export const getAuthorBySlug = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
     return await apiFetch<ApiAuthor>(
       `/author/${slug}${prepareAuthorParams(params)}`,
+    );
+  },
+);
+
+export const getGenre = cache(
+  async (slug: string, params: { locale?: PathLocale } = {}) => {
+    return await apiFetch<ApiGenre>(
+      `/genre/${slug}${prepareAuthorParams(params)}`,
+    );
+  },
+);
+
+export const getRegion = cache(
+  async (slug: string, params: { locale?: PathLocale } = {}) => {
+    return await apiFetch<ApiRegion>(
+      `/region/${slug}${prepareAuthorParams(params)}`,
     );
   },
 );

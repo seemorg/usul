@@ -2,8 +2,8 @@ import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import type { NextRequest } from "next/server";
 import { findYearRangeBySlug } from "@/server/services/years";
-import { getTranslations } from "next-intl/server";
 
 export const runtime = "edge";
 
@@ -23,40 +23,29 @@ const fonts = {
   ),
 };
 
-export async function generateImageMetadata({
-  params: { centurySlug },
-}: {
-  params: { centurySlug: string };
-}) {
-  const yearRange = await findYearRangeBySlug(centurySlug);
-  if (!yearRange) return [];
-
-  const t = await getTranslations();
-  const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
-
-  return [
-    {
-      id: "main",
-      alt: title,
-      contentType: "image/png",
-      size,
-    },
-  ];
-}
-
 // Image generation
-export default async function Image({
-  params: { centurySlug },
-}: {
-  params: { centurySlug: string };
-}) {
-  const yearRange = await findYearRangeBySlug(centurySlug);
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: { slug: string } },
+) {
+  const slug = params.slug;
+
+  if (!slug) {
+    notFound();
+  }
+
+  const yearRange = await findYearRangeBySlug(slug);
   if (!yearRange) {
     notFound();
   }
 
-  const t = await getTranslations();
-  const title = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
+  // make the name look like "10th century"
+  const name = `${yearRange.centuryNumber}${yearRange.centuryNumber === 11 ? "th" : yearRange.centuryNumber % 10 === 1 ? "st" : yearRange.centuryNumber % 10 === 2 ? "nd" : yearRange.centuryNumber % 10 === 3 ? "rd" : "th"} Century`;
+
+  const trimmedOverview =
+    yearRange.description.length > 330
+      ? yearRange.description.slice(0, 330) + "..."
+      : yearRange.description;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -64,52 +53,35 @@ export default async function Image({
     loadFileOnEdge.asArrayBuffer(fonts.family),
   ]);
 
-  const overview = yearRange.description ?? "";
-  const trimmedOverview =
-    overview.length > 330 ? overview.slice(0, 330) + "..." : overview;
-
   return new ImageResponse(
     (
-      <div
-        tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-[80px]"
-        style={{
-          position: "relative",
-        }}
-      >
+      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-20 relative items-start">
         <h1
           style={{
             fontSize: 84,
             fontFamily: "Cal Sans",
           }}
         >
-          {title}
+          {name}
         </h1>
 
         <p
           style={{
             fontSize: 38,
             fontFamily: "Family",
+            textAlign: "left",
             marginTop: 40,
           }}
         >
           {trimmedOverview}
         </p>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: 50,
-            left: 80,
-            display: "flex",
-            alignItems: "flex-end",
-            gap: 20,
-          }}
-        >
+        <div tw="absolute bottom-0 left-0 right-0 text-white flex items-center px-20 py-8">
           {/* w:26 h:10 */}
           <Logo style={{ height: 40, width: 104 }} />
 
           {/* w:65 h:37 */}
-          <ArabicLogo style={{ height: 50, width: 88 }} />
+          <ArabicLogo style={{ height: 50, width: 88, marginLeft: 20 }} />
         </div>
       </div>
     ),
@@ -122,6 +94,7 @@ export default async function Image({
           weight: 600,
           style: "normal",
         },
+
         {
           name: "Family",
           data: family,

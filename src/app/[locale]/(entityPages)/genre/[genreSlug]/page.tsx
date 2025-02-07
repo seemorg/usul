@@ -16,7 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { getPathLocale } from "@/lib/locale/server";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -38,6 +38,11 @@ export const generateMetadata = async ({
   );
 
   return getMetadata({
+    image: {
+      url: `/api/og/genre/${genreSlug}`,
+      width: 1200,
+      height: 720,
+    },
     locale,
     pagePath: navigation.genres.bySlug(genreSlug),
     title: primaryText ?? "",

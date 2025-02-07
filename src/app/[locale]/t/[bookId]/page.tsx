@@ -15,7 +15,7 @@ import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "./_contexts/book-details.context";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -48,6 +48,11 @@ export const generateMetadata = async ({
   const book = response.book;
 
   return getMetadata({
+    image: {
+      url: `/api/og/book/${bookId}`,
+      width: 1200,
+      height: 720,
+    },
     title: book.primaryName,
     locale,
     pagePath: navigation.books.reader(bookId),
