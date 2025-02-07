@@ -13,6 +13,7 @@ import { HighlightPopover } from "@/components/ui/highlight-popover";
 import ReaderHighlightPopover from "./highlight-popover";
 import { useBookDetails } from "../../_contexts/book-details.context";
 import BookInfo from "./book-info";
+import { Separator } from "@/components/ui/separator";
 
 export default function ReaderContent({
   isSinglePage,
@@ -58,6 +59,8 @@ export default function ReaderContent({
 
       <div className="w-full px-5 lg:px-8">
         <BookInfo className="mx-auto max-w-5xl py-8" />
+
+        <Separator />
       </div>
 
       <Virtualizer
@@ -69,13 +72,13 @@ export default function ReaderContent({
         ref={virtuosoRef}
         startMargin={80}
         // eslint-disable-next-line react/display-name
-        as={forwardRef((props, ref) => (
-          <div
-            className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
-            ref={ref}
-            {...props}
-          />
-        ))}
+        // as={forwardRef((props, ref) => (
+        //   <div
+        //     className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
+        //     ref={ref}
+        //     {...props}
+        //   />
+        // ))}
       >
         {new Array(isSinglePage ? 1 : bookResponse.pagination.total)
           .fill(null)
@@ -107,7 +110,7 @@ const Page = memo(
     perPage: number;
   }) => {
     return (
-      <Container className="mx-auto flex flex-col gap-8 px-5 pb-5 pt-7 font-scheherazade lg:px-8 xl:px-16 2xl:max-w-5xl">
+      <Container className="mx-auto flex flex-col gap-8 border-b-2 border-border px-5 pb-5 pt-7 font-scheherazade lg:px-8 xl:px-16 2xl:max-w-5xl">
         <HighlightPopover
           renderPopover={({ selection }) => (
             <ReaderHighlightPopover selection={selection} pageIndex={index} />

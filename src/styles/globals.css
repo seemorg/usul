@@ -142,7 +142,7 @@
 }
 
 .reader-page {
-  @apply text-2xl leading-[3rem];
+  @apply flex flex-col gap-6 text-2xl leading-[3rem];
 
   a {
     @apply text-primary underline;
@@ -168,8 +168,12 @@
   h5 {
     @apply text-xl font-medium;
   }
+
+  .footnotes {
+    @apply mt-3 text-lg text-muted-foreground;
+  }
 }
 
 .link {
-  @apply text-link hover:text-link/90 underline underline-offset-4;
+  @apply text-link underline underline-offset-4 hover:text-link/90;
 }

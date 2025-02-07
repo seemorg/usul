@@ -21,6 +21,8 @@ const PageLabel = (props: PropsWithChildren) => (
   />
 );
 
+const footnotesChar = "_________";
+
 export default function ReaderPage({
   index,
   perPage = 10,
@@ -48,12 +50,29 @@ export default function ReaderPage({
   const isTurath = "text" in page;
 
   if (isTurath) {
+    let text = page.text
+      .replaceAll("</span>.", "</span>")
+      .split(`<br>`)
+      .map((block) => {
+        let final = block;
+
+        const footnotesIndex = block.indexOf(footnotesChar);
+        if (footnotesIndex > -1) {
+          const txt = block.slice(0, footnotesIndex);
+          const footnotes = block.slice(footnotesIndex + footnotesChar.length);
+
+          final = txt + `<p class="footnotes">${footnotes}</p>`;
+        }
+
+        return `<div class="block">${final}</div>`;
+      });
+
     return (
       <>
         <div
           className="reader-page"
           dangerouslySetInnerHTML={{
-            __html: page.text.replaceAll("</span>.", "</span>"),
+            __html: text.join(""),
           }}
         />
 
@@ -65,6 +84,19 @@ export default function ReaderPage({
       </>
     );
   }
+
+  /**
+   * return No(t,
+   * [
+   * ["<br><span class=indent></span>","\n"],
+   * ["<hr class=fnote-sep>","\n__________\n"],
+   * [/<.*?>/g,""]
+   * ])}()
+   */
+
+  /**
+   * {const t=e.indexOf("_________");return t > -1 &&(e=e.slice(0,t)),((" "+e.replaceAll("\n"," ")).match(/."/g)||[]).reduce(((e,t,n)=>e+((n%2?" "!==t[0]:" "===t[0])?.1:-.1)),0)<0}(e=No(e,[[': " ',': "'],[' ".\n','".\n'],[' ". ','". '],[' ": " ','": "'],[/ و" /g,' و "']])
+   */
 
   const { blocks, page: pageNumber } = page;
 

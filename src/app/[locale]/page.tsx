@@ -17,7 +17,7 @@ import {
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { type AppLocale, locales } from "~/i18n.config";
+import { type AppLocale, routing } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { PlayIcon } from "@heroicons/react/24/solid";
@@ -34,7 +34,7 @@ export const generateMetadata = ({
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function HomePage({
@@ -60,7 +60,7 @@ export default async function HomePage({
       <Navbar layout="home" />
 
       <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
-        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
+        <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">

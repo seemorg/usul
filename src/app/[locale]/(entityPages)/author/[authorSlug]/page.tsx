@@ -68,7 +68,11 @@ export const generateMetadata = async ({
 
   return getMetadata({
     concatTitle: false,
-    hasImage: true,
+    image: {
+      url: `/api/og/author/${authorSlug}`,
+      width: 1200,
+      height: 630,
+    },
     locale,
     pagePath: navigation.authors.bySlug(authorSlug),
     title: t("author-page.title", {

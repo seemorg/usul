@@ -4,10 +4,7 @@ const BentoCard = ({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn("rounded-2xl bg-card p-12 shadow-md", className)}
-    {...props}
-  />
+  <div className={cn("rounded-3xl bg-card p-12", className)} {...props} />
 );
 
 export default BentoCard;

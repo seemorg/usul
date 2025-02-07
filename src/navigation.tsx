@@ -1,18 +1,9 @@
-import {
-  type AppLocale,
-  defaultLocale,
-  locales,
-  localePrefix,
-} from "~/i18n.config";
+import { type AppLocale, routing } from "~/i18n.config";
 import { createSharedPathnamesNavigation } from "next-intl/navigation";
 import { isSameURL } from "./lib/utils";
 import NProgress from "nprogress";
 
-const result = createSharedPathnamesNavigation({
-  locales,
-  localePrefix,
-  defaultLocale,
-});
+const result = createSharedPathnamesNavigation(routing);
 
 export const Link = result.Link;
 export const usePathname = result.usePathname;

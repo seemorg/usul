@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { usePathLocale } from "./locale/utils";
 import { navigation } from "./urls";
-import { defaultLocale } from "~/i18n.config";
+import { routing } from "~/i18n.config";
 import { toast } from "@/components/ui/use-toast";
 
 export const useBookShareUrl = () => {
@@ -23,7 +23,7 @@ export const useBookShareUrl = () => {
     let url =
       window.location.origin + navigation.books.pageReader(slug, pageIndex + 1);
 
-    if (locale !== defaultLocale) url = pathLocale + url;
+    if (locale !== routing.defaultLocale) url = pathLocale + url;
     if (versionId) url = url + `?versionId=${versionId}`;
 
     if (selection) {

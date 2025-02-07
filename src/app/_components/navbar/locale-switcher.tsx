@@ -8,7 +8,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type AppLocale, locales } from "~/i18n.config";
+import { type AppLocale, routing } from "~/i18n.config";
 import { Link, usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { getLocaleFullName } from "@/lib/locale/utils";
@@ -33,7 +33,7 @@ export default function LocaleSwitcher() {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        {locales.map((locale) => (
+        {routing.locales.map((locale) => (
           <Link href={currentUrl} key={locale} locale={locale as any}>
             <DropdownMenuCheckboxItem checked={selectedLocale === locale}>
               {getLocaleFullName(locale)}

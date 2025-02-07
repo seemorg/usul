@@ -1,3 +1,4 @@
+import { ApiAuthor } from "@/types/api/author";
 import type {
   ApiBookPageParams,
   ApiBookParams,
@@ -8,6 +9,7 @@ import type {
   AlternateSlugResponse,
 } from "@/types/api/book";
 import { cache } from "react";
+import { PathLocale } from "./locale/utils";
 
 const API_BASE = "https://api.usul.ai";
 
@@ -78,6 +80,22 @@ export const getBookPageIndex = cache(
   async (slug: string, params: ApiPageIndexParams) => {
     return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>(
       `/book/page_index/${slug}${preparePageIndexParams(params)}`,
+    );
+  },
+);
+
+const prepareAuthorParams = (params: { locale?: PathLocale }) => {
+  const queryParams = new URLSearchParams();
+
+  if (params.locale) queryParams.set("locale", params.locale);
+
+  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
+};
+
+export const getAuthorBySlug = cache(
+  async (slug: string, params: { locale?: PathLocale } = {}) => {
+    return await apiFetch<ApiAuthor>(
+      `/author/${slug}${prepareAuthorParams(params)}`,
     );
   },
 );
