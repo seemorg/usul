@@ -2,10 +2,8 @@ import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
-import { NextApiRequest } from "next";
+import type { NextApiRequest } from "next";
 import { getAuthorBySlug } from "@/lib/api";
-import type { AppLocale } from "~/i18n.config";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 export const runtime = "edge";
 
@@ -16,15 +14,11 @@ const size = {
 
 const fonts = {
   calSans: new URL(
-    "../../../../../../fonts/cal-sans/cal-sans-semibold.ttf",
-    import.meta.url,
-  ),
-  arabic: new URL(
-    "../../../../../../fonts/ibm-plex-sans-arabic/IBMPlexSansArabic-SemiBold.ttf",
+    "../../../../../fonts/cal-sans/cal-sans-semibold.ttf",
     import.meta.url,
   ),
   family: new URL(
-    "../../../../../../fonts/family/family-regular.ttf",
+    "../../../../../fonts/family/family-regular.ttf",
     import.meta.url,
   ),
 };
@@ -32,7 +26,7 @@ const fonts = {
 // Image generation
 export async function GET(
   _request: NextApiRequest,
-  { params }: { params: { slug: string; locale: AppLocale } },
+  { params }: { params: { slug: string } },
 ) {
   const slug = params.slug;
 
@@ -40,8 +34,7 @@ export async function GET(
     notFound();
   }
 
-  const pathLocale = appLocaleToPathLocale(params.locale);
-  const author = await getAuthorBySlug(slug, { locale: pathLocale });
+  const author = await getAuthorBySlug(slug, { locale: "en" });
 
   if (!author) {
     notFound();
@@ -51,72 +44,40 @@ export async function GET(
     author.bio.length > 330 ? author.bio.slice(0, 330) + "..." : author.bio;
 
   // Font
-  const [calSans, family, arabic] = await Promise.all([
+  const [calSans, family] = await Promise.all([
     loadFileOnEdge.asArrayBuffer(fonts.calSans),
     loadFileOnEdge.asArrayBuffer(fonts.family),
-    loadFileOnEdge.asArrayBuffer(fonts.arabic),
   ]);
-
-  const isArabic = pathLocale === "ar";
 
   return new ImageResponse(
     (
-      <div
-        tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-[80px]"
-        style={{
-          position: "relative",
-          alignItems: isArabic ? "flex-end" : "flex-start",
-        }}
-      >
+      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-20 relative items-start">
         <h1
           style={{
             fontSize: 84,
-            fontFamily: isArabic ? "Arabic" : "Cal Sans",
+            fontFamily: "Cal Sans",
           }}
         >
-          {author.primaryName
-            .split(" ")
-            .reverse()
-            .map((name, idx) => (
-              <span key={idx}>{name}</span>
-            ))}
+          {author.primaryName}
         </h1>
 
         <p
-          className="flex flex-col flex-wrap"
           style={{
-            fontSize: isArabic ? 28 : 38,
-            fontFamily: isArabic ? "Arabic" : "Family",
-            textAlign: isArabic ? "right" : "left",
+            fontSize: 38,
+            fontFamily: "Family",
+            textAlign: "left",
             marginTop: 40,
           }}
-          dir={isArabic ? "rtl" : "ltr"}
         >
-          {trimmedOverview
-            .split(" ")
-            .reverse()
-            .map((word, idx) => (
-              <span key={idx} className="block">
-                {word}
-              </span>
-            ))}
+          {trimmedOverview}
         </p>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: 50,
-            left: 80,
-            display: "flex",
-            alignItems: "flex-end",
-            gap: 20,
-          }}
-        >
+        <div tw="absolute bottom-0 left-0 right-0 text-white flex items-center px-20 py-8">
           {/* w:26 h:10 */}
           <Logo style={{ height: 40, width: 104 }} />
 
           {/* w:65 h:37 */}
-          <ArabicLogo style={{ height: 50, width: 88 }} />
+          <ArabicLogo style={{ height: 50, width: 88, marginLeft: 20 }} />
         </div>
       </div>
     ),
@@ -129,12 +90,7 @@ export async function GET(
           weight: 600,
           style: "normal",
         },
-        {
-          name: "Arabic",
-          data: arabic,
-          weight: 600,
-          style: "normal",
-        },
+
         {
           name: "Family",
           data: family,
