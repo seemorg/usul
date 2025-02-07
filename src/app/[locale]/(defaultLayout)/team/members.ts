@@ -1,6 +1,5 @@
 import abdellatif from "~/public/team/abdellatif.png";
 import ahmedRiad from "~/public/team/ahmed-riad.png";
-import ahmedNoor from "~/public/team/ahmed-noor.png";
 import ryad from "~/public/team/ryad.png";
 import rahma from "~/public/team/rahma.png";
 import ahmedKhan from "~/public/team/ahmed-khan.png";
@@ -33,12 +32,6 @@ export const members = [
     roleKey: "localization-lead",
     image: rahma.src,
     blurDataUrl: rahma.blurDataURL,
-  },
-  {
-    key: "ahmed-noor",
-    roleKey: "researcher",
-    image: ahmedNoor.src,
-    blurDataUrl: ahmedNoor.blurDataURL,
   },
   {
     key: "ahmed-khan",
