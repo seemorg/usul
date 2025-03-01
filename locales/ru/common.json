@@ -57,19 +57,19 @@
       "title": "Обзор",
       "texts": {
         "title": "Тексты",
-        "description": "8,646 текстов"
+        "description": "{books, number} Тексты"
       },
       "authors": {
         "title": "Авторы",
-        "description": "3,646 текстов"
+        "description": "{authors, number} Авторы"
       },
       "regions": {
         "title": "Регионы",
-        "description": "40 регионов"
+        "description": "{regions, number} Регионы"
       },
       "genres": {
         "title": "Жанры",
-        "description": "40 жанров"
+        "description": "{genres, number} Жанры"
       }
     },
     "about": {

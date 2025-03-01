@@ -1,24 +1,12 @@
 {
-  "headline": "Изучайте более 8 000 исламских текстов",
-  "subheadline": "Читать, искать и исследовать тексты из Shamela и OpenITI",
+  "headline": "Инструмент исследования исламских текстов",
+  "subheadline": "Доступ с поддержкой ИИ к более чем 15 000 текстам, включая всю Shamela",
   "try": "Попробуйте: ",
   "sections": {
     "collections": "Коллекции",
     "popular-texts": "Популярные тексты",
     "islamic-law": "Исламское право",
     "islamic-history": "Исламская история"
-  },
-  "collections": {
-    "quranic-sciences": "Науки Корана",
-    "hadith-sciences": "Науки Хадисов",
-    "fiqh": "Фикх",
-    "islamic-theology": "Исламская теология",
-    "islamic-history": "Исламская история",
-    "islamic-ethics": "Исламская этика",
-    "islamic-philosophy": "Исламская философия",
-    "islamic-finance": "Исламские финансы",
-    "literature": "Литература",
-    "medicine": "Медицина"
   },
   "how-usul-works": "Как работает Усул"
 }

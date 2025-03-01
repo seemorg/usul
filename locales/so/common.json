@@ -57,19 +57,19 @@
       "title": "Baadh",
       "texts": {
         "title": "Qoraallo",
-        "description": "8,646 Qoraallada"
+        "description": "{books, number} Qoraallo"
       },
       "authors": {
         "title": "Qorayaal",
-        "description": "3,646 Qoraallada"
+        "description": "{authors, number} Qorayaal"
       },
       "regions": {
         "title": "Gobollada",
-        "description": "40 Gobollo"
+        "description": "{regions, number} Gobollo"
       },
       "genres": {
         "title": "Noocyo",
-        "description": "40 Noocyada"
+        "description": "{genres, number} Noocyada"
       }
     },
     "about": {

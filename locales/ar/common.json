@@ -2,7 +2,7 @@
   "advanced-search": "بحث متقدم",
   "load-more": "تحميل المزيد",
   "clear-all": "مسح الكل",
-  "beta": "بيتا",
+  "beta": "تجريبي",
   "search": "البحث",
   "e-book": "كتاب إلكتروني",
   "pdf": "ملف PDF",
@@ -57,19 +57,19 @@
       "title": "تصفح",
       "texts": {
         "title": "النصوص",
-        "description": "٨٦٤٦ نص"
+        "description": "{books, number} نصوص"
       },
       "authors": {
         "title": "المؤلفون",
-        "description": "٣٦٤٦ نص"
+        "description": "{authors, number} مؤلفون"
       },
       "regions": {
         "title": "المناطق",
-        "description": "٤٠ منطقة"
+        "description": "{regions, number} مناطق"
       },
       "genres": {
         "title": "تصانيف",
-        "description": "٤٠ تصنيف"
+        "description": "{genres, number} تصنيفات"
       }
     },
     "about": {

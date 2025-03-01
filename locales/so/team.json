@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Abdellatif wuxuu aasaasay Tarteel AI, wuxuu hogaaminayey injineernimada Quran.com, wuxuuna ka shaqeeyay Twitter."
     },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed wuxuu ahaa hormuudka naqshadeynta ee Thmanyah, waxa uu talo siinayaa bilowga ganacsiyada si ay u sameeyaan alaabo cusub laga bilaabo 0 ilaa 1."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ahmed wuxuu aasaasay Remail AI, Betterbook, wuxuuna ahaa injineer ka shaqeeya Quran.com."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Rahma Fateen",
       "description": "Rahma waxay hoggaamisaa tarjumada Carabiga ee Tarteel AI. Waxay ahayd turjubaan Hay’adda Xuquuqda Aadanaha."
-    },
-    "ahmed-noor": {
-      "name": "Ahmed Noor",
-      "description": "Ahmed waa arday cilmiga diinta Islaamka ah oo wax ka barta İZÜ. Wuxuu ku hadlaa Af-Carabi, Ingiriisi, iyo Urdu."
     },
     "ahmed-khan": {
       "name": "Ahmed Khan",
@@ -54,6 +54,7 @@
     "founding-engineer": "Injineer Aasaasaye",
     "researcher": "Baarayaasha",
     "localization-lead": "Hormuudka Meeleeyaha",
-    "digitization-lead": "Hormuudka Dhijitaleynta"
+    "digitization-lead": "Hormuudka Dhijitaleynta",
+    "head-of-design": "Madaxa Naqshadeynta"
   }
 }

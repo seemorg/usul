@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Абделлатиф коосновал Tarteel AI, возглавлял инженерное подразделение в Quran.com и работал в Twitter."
     },
+    "mohamed-lamine": {
+      "name": "Мохамед Ламин",
+      "description": "Мохамед был ведущим дизайнером в Thmanyah, он консультирует стартапы по созданию продуктов с <b>0</b> до <b>1</b>."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ахмед коосновал Remail AI, Betterbook и был инженером в Quran.com."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Рахма Фатин",
       "description": "Рахма руководила арабской локализацией в Tarteel AI. Она была переводчицей в Human Rights Watch."
-    },
-    "ahmed-noor": {
-      "name": "Ахмед Нур",
-      "description": "Ахмед - студент исламской теологии в İZÜ. Он свободно владеет арабским, английским и урду."
     },
     "ahmed-khan": {
       "name": "Ахмед Хан",
@@ -54,6 +54,7 @@
     "founding-engineer": "Основной инженер",
     "researcher": "Исследователь",
     "localization-lead": "Руководитель локализации",
-    "digitization-lead": "Руководитель оцифровки"
+    "digitization-lead": "Руководитель оцифровки",
+    "head-of-design": "Руководитель отдела дизайна"
   }
 }

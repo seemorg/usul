@@ -57,19 +57,19 @@
       "title": "Gözat",
       "texts": {
         "title": "Metinler",
-        "description": "8.646 Metin"
+        "description": "{books, number} Metinler"
       },
       "authors": {
         "title": "Yazarlar",
-        "description": "3.646 Metin"
+        "description": "{authors, number} Yazarlar"
       },
       "regions": {
         "title": "Bölgeler",
-        "description": "40 Bölge"
+        "description": "{regions, number} Bölgeler"
       },
       "genres": {
         "title": "Türler",
-        "description": "40 Tür"
+        "description": "{genres, number} Türler"
       }
     },
     "about": {

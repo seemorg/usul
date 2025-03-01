@@ -1,24 +1,12 @@
 {
-  "headline": "8,000+ İslami Metni Keşfedin",
-  "subheadline": "Shamela ve OpenITI'den Metinleri Okuyun, Arayın ve Araştırın",
+  "headline": "İslami Metinler için Araştırma Aracı",
+  "subheadline": "Shamela'nın tamamı dahil olmak üzere 15.000'den fazla metne yapay zeka destekli erişim",
   "try": "Deneyin: ",
   "sections": {
     "collections": "Koleksiyonlar",
     "popular-texts": "Popüler Metinler",
     "islamic-law": "İslam Hukuku",
     "islamic-history": "İslam Tarihi"
-  },
-  "collections": {
-    "quranic-sciences": "Kur'an İlimleri",
-    "hadith-sciences": "Hadis İlimleri",
-    "fiqh": "Fıkıh",
-    "islamic-theology": "İslam Teolojisi",
-    "islamic-history": "İslam Tarihi",
-    "islamic-ethics": "İslam Ahlakı",
-    "islamic-philosophy": "İslam Felsefesi",
-    "islamic-finance": "İslam Finans",
-    "literature": "Edebiyat",
-    "medicine": "Tıp"
   },
   "how-usul-works": "Usul Nasıl Çalışır"
 }

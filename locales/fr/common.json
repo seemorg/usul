@@ -57,19 +57,19 @@
       "title": "Parcourir",
       "texts": {
         "title": "Textes",
-        "description": "8 646 Textes"
+        "description": "{books, number} Textes"
       },
       "authors": {
         "title": "Auteurs",
-        "description": "3 646 Textes"
+        "description": "{authors, number} Auteurs"
       },
       "regions": {
         "title": "Régions",
-        "description": "40 Régions"
+        "description": "{regions, number} Régions"
       },
       "genres": {
         "title": "Genres",
-        "description": "40 Genres"
+        "description": "{genres, number} Genres"
       }
     },
     "about": {

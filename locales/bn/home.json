@@ -1,24 +1,12 @@
 {
-  "headline": "৮,০০০+ ইসলামিক টেক্সট অন্বেষণ করুন",
-  "subheadline": "শামেলা এবং ওপেনআইটিআই থেকে পাঠসমূহ পড়ুন, অনুসন্ধান করুন এবং গবেষণা করুন",
+  "headline": "ইসলামিক গ্রন্থের জন্য গবেষণা সরঞ্জাম",
+  "subheadline": "এআই দ্বারা চালিত ১৫,০০০-এর বেশি গ্রন্থের অ্যাক্সেস সহ সমস্ত শামেলা অন্তর্ভুক্ত।",
   "try": "চেষ্টা করুন: ",
   "sections": {
     "collections": "সংগ্রহসমূহ",
     "popular-texts": "জনপ্রিয় টেক্সটসমূহ",
     "islamic-law": "ইসলামিক আইন",
     "islamic-history": "ইসলামিক ইতিহাস"
-  },
-  "collections": {
-    "quranic-sciences": "কুরআনিক বিজ্ঞান",
-    "hadith-sciences": "হাদিস বিজ্ঞান",
-    "fiqh": "ফিকহ",
-    "islamic-theology": "ইসলামিক থিওলজি",
-    "islamic-history": "ইসলামিক ইতিহাস",
-    "islamic-ethics": "ইসলামিক নৈতিকতা",
-    "islamic-philosophy": "ইসলামিক দর্শন",
-    "islamic-finance": "ইসলামিক ফাইন্যান্স",
-    "literature": "সাহিত্য",
-    "medicine": "চিকিৎসা"
   },
   "how-usul-works": "উসুল কীভাবে কাজ করে"
 }
