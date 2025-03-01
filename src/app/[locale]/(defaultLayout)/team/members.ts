@@ -7,6 +7,7 @@ import ahmedAktan from "~/public/team/ahmed-aktan.png";
 import adnan from "~/public/team/adnan.png";
 import intisar from "~/public/team/intisar.png";
 import zeki from "~/public/team/zeki.png";
+import lamine from "~/public/team/lamine.png";
 
 export const members = [
   {
@@ -20,6 +21,12 @@ export const members = [
     roleKey: "founding-engineer",
     image: ahmedRiad.src,
     blurDataUrl: ahmedRiad.blurDataURL,
+  },
+  {
+    key: "mohamed-lamine",
+    roleKey: "head-of-design",
+    image: lamine.src,
+    blurDataUrl: lamine.blurDataURL,
   },
   {
     key: "ryad-ramo",

@@ -13,7 +13,7 @@ import ReaderNavigationMobileActions from "./mobile-actions";
 import { SinglePageIcon } from "@/components/Icons";
 import ReaderNavigationButton from "./navigation-button";
 import { useTranslations } from "next-intl";
-import { useGetBookUrl } from "./utils";
+import { useGetBookUrl, useReaderView } from "./utils";
 import { TabContent } from "../tab-content";
 import { tabs } from "../sidebar/tabs";
 import { useState } from "react";
@@ -49,6 +49,8 @@ export default function ReaderNavigation({
   const versionId = bookResponse.content.id;
   const pdf = getPdfUrl(bookResponse);
 
+  const { hasEbook } = useReaderView();
+
   return (
     <>
       <div
@@ -74,17 +76,13 @@ export default function ReaderNavigation({
           </div>
 
           <div className="flex flex-1 justify-center">
-            <ViewTabs
-              hasPdf={!!pdf}
-              contentSource={bookResponse.content.source}
-            />
+            <ViewTabs />
           </div>
 
           <div className="hidden flex-1 items-center gap-2 md:flex md:justify-end">
             <DownloadButton pdf={pdf} slug={bookSlug} />
 
-            {bookResponse.content.source === "pdf" ||
-            bookResponse.content.source === "external" ? (
+            {!hasEbook ? (
               <ReaderNavigationButton disabled>
                 <SinglePageIcon />
               </ReaderNavigationButton>

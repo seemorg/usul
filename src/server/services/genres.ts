@@ -41,10 +41,12 @@ export const findAllGenresWithBooksCount = cache(
   async ({
     yearRange,
     authorId,
+    bookIds,
     regionId,
     locale = "en",
   }: {
     yearRange?: [number, number];
+    bookIds?: string[];
     authorId?: string;
     regionId?: string;
     locale?: PathLocale;
@@ -57,6 +59,11 @@ export const findAllGenresWithBooksCount = cache(
           select: {
             books: {
               where: {
+                ...(bookIds && {
+                  id: {
+                    in: bookIds,
+                  },
+                }),
                 ...(yearRange && {
                   AND: {
                     author: {

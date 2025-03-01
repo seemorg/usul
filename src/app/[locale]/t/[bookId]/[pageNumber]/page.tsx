@@ -9,7 +9,7 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "../_contexts/book-details.context";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 export const generateMetadata = async ({
@@ -109,6 +109,8 @@ async function SidebarContent({
   if (response.content.source === "turath") {
     page = response.content.pages[0];
   } else if (response.content.source === "openiti") {
+    page = response.content.pages[0];
+  } else if (response.content.source === "pdf" && response.content.pages) {
     page = response.content.pages[0];
   }
 

@@ -7,7 +7,6 @@ import { Link } from "@/navigation";
 import BookSearchResult from "@/components/book-search-result";
 
 import Footer from "../_components/footer";
-import { collections } from "@/data/collections";
 import { navigation } from "@/lib/urls";
 import {
   fetchPopularBooks,
@@ -24,6 +23,8 @@ import { PlayIcon } from "@heroicons/react/24/solid";
 
 import { cn } from "@/lib/utils";
 import { DemoButton } from "./demo-button";
+import { getHomepageGenres } from "@/lib/api";
+import { collections } from "@/data/collections";
 
 export const generateMetadata = ({
   params: { locale },
@@ -46,14 +47,19 @@ export default async function HomePage({
 
   const pathLocale = appLocaleToPathLocale(locale);
 
-  const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
-    await Promise.all([
-      fetchPopularBooks(pathLocale),
-      fetchPopularIslamicLawBooks(pathLocale),
-      fetchPopularIslamicHistoryBooks(pathLocale),
-    ]);
+  const [
+    genres,
+    popularBooks,
+    popularIslamicLawBooks,
+    popularIslamicHistoryBooks,
+  ] = await Promise.all([
+    getHomepageGenres({ locale: pathLocale }),
+    fetchPopularBooks(pathLocale),
+    fetchPopularIslamicLawBooks(pathLocale),
+    fetchPopularIslamicHistoryBooks(pathLocale),
+  ]);
 
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale });
 
   return (
     <>
@@ -65,17 +71,17 @@ export default async function HomePage({
 
         <Container className="z-[1] flex flex-col items-center">
           <h1 className="text-center text-4xl font-bold sm:text-5xl">
-            {t("headline")}
+            {t("home.headline")}
           </h1>
 
           <p className="mt-5 text-center text-xl text-white/80">
-            {t("subheadline")}
+            {t("home.subheadline")}
           </p>
 
           <div className="mt-7 flex w-full justify-center">
             <DemoButton>
               <PlayIcon className="size-4" />
-              {t("how-usul-works")} - 2:40
+              {t("home.how-usul-works")} - 2:40
             </DemoButton>
           </div>
 
@@ -91,27 +97,44 @@ export default async function HomePage({
         <div>
           <HomepageSection
             isBooks={false}
-            title={t("sections.collections")}
-            items={collections.map((collection) => (
-              <Link
-                href={navigation.genres.bySlug(collection.genre)}
-                key={collection.genre}
-                prefetch
-              >
-                <CollectionCard
-                  title={t(`collections.${collection.name}`)}
-                  numberOfBooks={collection.numberOfBooks}
-                  pattern={collection.pattern}
-                  color={collection.color}
-                />
-              </Link>
-            ))}
+            title={t("home.sections.collections")}
+            items={(genres || [])
+              .map((genre) => (
+                <Link
+                  key={genre.id}
+                  href={navigation.genres.bySlug(genre.slug)}
+                  prefetch
+                >
+                  <CollectionCard
+                    title={genre.name}
+                    numberOfBooks={genre.numberOfBooks}
+                    pattern={genre.pattern}
+                    color={genre.color}
+                  />
+                </Link>
+              ))
+              .concat(
+                collections.map((collection) => (
+                  <Link
+                    key={collection.slug}
+                    href={navigation.collections.bySlug(collection.slug)}
+                    prefetch
+                  >
+                    <CollectionCard
+                      title={t(`collections.${collection.title}`)}
+                      numberOfBooks={collection.bookIds.length}
+                      pattern={collection.pattern}
+                      color={collection.color}
+                    />
+                  </Link>
+                )),
+              )}
           />
         </div>
 
         <div>
           <HomepageSection
-            title={t("sections.popular-texts")}
+            title={t("home.sections.popular-texts")}
             href="/texts"
             constraintWidth
             items={popularBooks.map((text) => (
@@ -134,7 +157,7 @@ export default async function HomePage({
 
         <div>
           <HomepageSection
-            title={t("sections.islamic-law")}
+            title={t("home.sections.islamic-law")}
             constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
@@ -156,7 +179,7 @@ export default async function HomePage({
 
         <div>
           <HomepageSection
-            title={t("sections.islamic-history")}
+            title={t("home.sections.islamic-history")}
             constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult

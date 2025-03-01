@@ -21,6 +21,9 @@ export const navigation = {
     all: () => "/genres",
     bySlug: (genreSlug: string) => `/genre/${genreSlug}`,
   },
+  collections: {
+    bySlug: (collectionSlug: string) => `/collection/${collectionSlug}`,
+  },
   regions: {
     all: () => "/regions",
     bySlug: (slug: string) => `/region/${slug}`,

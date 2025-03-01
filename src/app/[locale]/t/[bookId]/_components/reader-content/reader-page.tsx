@@ -4,6 +4,7 @@ import RenderBlock from "@/components/render-markdown";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getBook } from "@/lib/api";
 import type { OpenitiContent } from "@/types/api/content/openiti";
+import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
@@ -11,7 +12,9 @@ import { useParams, useSearchParams } from "next/navigation";
 import { type PropsWithChildren, useMemo } from "react";
 
 type DefaultPages = NonNullable<
-  TurathContent["pages"] | OpenitiContent["pages"]
+  | TurathContent["pages"]
+  | OpenitiContent["pages"]
+  | NonNullable<PdfContent["pages"]>
 >;
 
 const PageLabel = (props: PropsWithChildren) => (
@@ -27,10 +30,12 @@ export default function ReaderPage({
   index,
   perPage = 10,
   defaultPages,
+  source,
 }: {
   index: number;
   perPage?: number;
   defaultPages: DefaultPages;
+  source: "turath" | "openiti" | "pdf";
 }) {
   const t = useTranslations("common");
   const { page, isLoading, isError } = useFetchPage(
@@ -47,10 +52,9 @@ export default function ReaderPage({
     return <Skeleton className="h-[500px] w-full" />;
   }
 
-  const isTurath = "text" in page;
-
-  if (isTurath) {
-    let text = page.text
+  if (source === "turath") {
+    const typedPage = page as TurathContent["pages"][number];
+    let text = typedPage.text
       .replaceAll("</span>.", "</span>")
       .split(`<br>`)
       .map((block) => {
@@ -77,43 +81,67 @@ export default function ReaderPage({
         />
 
         <PageLabel>
-          {page.page
-            ? `${page.vol} / ${page.page}`
+          {typedPage.page
+            ? `${typedPage.vol} / ${typedPage.page}`
             : t("pagination.page-unknown")}
         </PageLabel>
       </>
     );
   }
 
-  /**
-   * return No(t,
-   * [
-   * ["<br><span class=indent></span>","\n"],
-   * ["<hr class=fnote-sep>","\n__________\n"],
-   * [/<.*?>/g,""]
-   * ])}()
-   */
+  if (source === "pdf") {
+    const typedPage = page as NonNullable<PdfContent["pages"]>[number];
+    let text = (typedPage.content ?? "-")
+      .split("<br>")
+      .map((block) => {
+        return `<div class="block">${block}</div>`;
+      })
+      .join("");
 
-  /**
-   * {const t=e.indexOf("_________");return t > -1 &&(e=e.slice(0,t)),((" "+e.replaceAll("\n"," ")).match(/."/g)||[]).reduce(((e,t,n)=>e+((n%2?" "!==t[0]:" "===t[0])?.1:-.1)),0)<0}(e=No(e,[[': " ',': "'],[' ".\n','".\n'],[' ". ','". '],[' ": " ','": "'],[/ و" /g,' و "']])
-   */
+    if (typedPage.footnotes) {
+      text += `<p class="footnotes">${typedPage.footnotes}</p>`;
+    }
 
-  const { blocks, page: pageNumber } = page;
+    // TODO: show editorial notes
 
-  return (
-    <div className="reader-page">
-      {blocks.map((block, blockIndex) => (
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        <RenderBlock key={blockIndex} block={block as any} />
-      ))}
+    return (
+      <>
+        <div
+          className="reader-page"
+          dangerouslySetInnerHTML={{
+            __html: text,
+          }}
+        />
 
-      <PageLabel>
-        {pageNumber && !isNaN(pageNumber)
-          ? t("pagination.page-x", { page: pageNumber })
-          : t("pagination.page-unknown")}
-      </PageLabel>
-    </div>
-  );
+        <PageLabel>
+          {typedPage.page
+            ? typedPage.volume
+              ? `${typedPage.volume} / ${typedPage.page}`
+              : typedPage.page
+            : t("pagination.page-unknown")}
+        </PageLabel>
+      </>
+    );
+  }
+
+  if (source === "openiti") {
+    const typedPage = page as OpenitiContent["pages"][number];
+
+    return (
+      <div className="reader-page">
+        {typedPage.blocks.map((block, blockIndex) => (
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+          <RenderBlock key={blockIndex} block={block as any} />
+        ))}
+
+        <PageLabel>
+          {typedPage.page && !isNaN(typedPage.page)
+            ? t("pagination.page-x", { page: typedPage.page })
+            : t("pagination.page-unknown")}
+        </PageLabel>
+      </div>
+    );
+  }
 }
 
 const useFetchPage = (

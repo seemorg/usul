@@ -36,7 +36,9 @@ const EditionItem = ({
         <div className="flex items-center gap-2">
           <h4 className="text-xl font-semibold">{versionToName(version)}</h4>
 
-          {version.source === "openiti" || version.source === "turath" ? (
+          {version.source === "openiti" ||
+          version.source === "turath" ||
+          (version.source === "pdf" && version.ocrBookId) ? (
             <Badge variant="muted">{t("common.e-book")}</Badge>
           ) : null}
 

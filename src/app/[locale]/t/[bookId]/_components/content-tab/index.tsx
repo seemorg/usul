@@ -5,19 +5,14 @@ import PageNavigator from "./page-navigator";
 import ChaptersList from "./chapters-section";
 import type { TabProps } from "../sidebar/tabs";
 import { usePageNavigation } from "../usePageNavigation";
-import { useSearchParams } from "next/navigation";
 import PdfChaptersList from "./pdf-chapters-section";
 import { useBookDetails } from "../../_contexts/book-details.context";
+import { useReaderView } from "../reader-navigation/utils";
 
 function ContentTab({ isSinglePage }: TabProps) {
   const { bookResponse } = useBookDetails();
   const { pagesRange, getVirtuosoScrollProps } = usePageNavigation();
-
-  const _view = (useSearchParams().get("view") ?? "default") as
-    | "pdf"
-    | "default";
-  const view = bookResponse.content.source === "pdf" ? "pdf" : _view;
-
+  const { view } = useReaderView();
   const bookContent = bookResponse.content;
 
   const isExternal = bookContent.source === "external";

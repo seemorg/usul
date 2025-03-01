@@ -11,6 +11,7 @@ import { DirectionProvider } from "@radix-ui/react-direction";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { getSharedConfig } from "@/i18n";
 import { useMemo } from "react";
+import { TotalEntitiesProvider } from "@/contexts/total-entities.context";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,10 +26,17 @@ function Providers({
   children,
   locale,
   messages,
+  total,
 }: {
   children: React.ReactNode;
   locale: string;
   messages: AbstractIntlMessages;
+  total: {
+    books: number;
+    authors: number;
+    regions: number;
+    genres: number;
+  };
 }) {
   const pathname = usePathname();
 
@@ -73,24 +81,26 @@ function Providers({
       locale={locale as AppLocale}
       {...getSharedConfig()}
     >
-      <DirectionProvider dir={dir}>
-        <AppProgressBar
-          height="4px"
-          color="#fff"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
+      <TotalEntitiesProvider value={total}>
+        <DirectionProvider dir={dir}>
+          <AppProgressBar
+            height="4px"
+            color="#fff"
+            options={{ showSpinner: false }}
+            shallowRouting
+          />
 
-        <NextThemesProvider
-          attribute="class"
-          defaultTheme="light"
-          disableTransitionOnChange
-        >
-          <QueryClientProvider client={queryClient}>
-            <TooltipProvider>{children}</TooltipProvider>
-          </QueryClientProvider>
-        </NextThemesProvider>
-      </DirectionProvider>
+          <NextThemesProvider
+            attribute="class"
+            defaultTheme="light"
+            disableTransitionOnChange
+          >
+            <QueryClientProvider client={queryClient}>
+              <TooltipProvider>{children}</TooltipProvider>
+            </QueryClientProvider>
+          </NextThemesProvider>
+        </DirectionProvider>
+      </TotalEntitiesProvider>
     </NextIntlClientProvider>
   );
 }

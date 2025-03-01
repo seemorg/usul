@@ -10,13 +10,25 @@ import type {
 } from "@/types/api/book";
 import { cache } from "react";
 import type { PathLocale } from "./locale/utils";
-import type { ApiGenre } from "@/types/api/genre";
+import type { ApiGenre, ApiGenreCollection } from "@/types/api/genre";
 import type { ApiRegion } from "@/types/api/region";
+import { unstable_cache } from "next/cache";
 
 const API_BASE = "https://api.usul.ai";
 
-const apiFetch = async <T>(url: string): Promise<T | null> => {
-  const response = await fetch(`${API_BASE}${url}`, {
+const prepareApiParams = (params?: Record<string, string>) => {
+  if (!params) return "";
+
+  const queryParams = new URLSearchParams(params);
+  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
+};
+
+const apiFetch = async <T>(
+  url: string,
+  params?: Record<string, string>,
+): Promise<T | null> => {
+  const finalUrl = `${API_BASE}${url}${prepareApiParams(params)}`;
+  const response = await fetch(finalUrl, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -27,93 +39,90 @@ const apiFetch = async <T>(url: string): Promise<T | null> => {
   return response.json() as Promise<T>;
 };
 
-const prepareParams = (params: ApiBookParams) => {
-  const queryParams = new URLSearchParams();
-
-  if (params.fields) queryParams.set("fields", params.fields.join(","));
-  if (params.versionId) queryParams.set("versionId", params.versionId);
-  if (params.locale) queryParams.set("locale", params.locale);
-  if (params.startIndex)
-    queryParams.set("startIndex", params.startIndex.toString());
-
-  if (params.size) queryParams.set("size", params.size.toString());
-  if (params.includeBook) queryParams.set("includeBook", "true");
-
-  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
-};
-
 export const getBook = cache(async (slug: string, params: ApiBookParams) => {
   return await apiFetch<ApiBookResponse | AlternateSlugResponse>(
-    `/book/${slug}${prepareParams(params)}`,
+    `/book/${slug}`,
+    {
+      ...(params.fields && { fields: params.fields.join(",") }),
+      ...(params.versionId && { versionId: params.versionId }),
+      ...(params.locale && { locale: params.locale }),
+      ...(params.startIndex && { startIndex: params.startIndex.toString() }),
+      ...(params.size && { size: params.size.toString() }),
+      ...(params.includeBook && { includeBook: "true" }),
+    },
   );
 });
-
-const prepareBookPageParams = (params: ApiBookPageParams) => {
-  const queryParams = new URLSearchParams();
-
-  queryParams.set("index", params.index.toString());
-  if (params.fields) queryParams.set("fields", params.fields.join(","));
-  if (params.versionId) queryParams.set("versionId", params.versionId);
-  if (params.locale) queryParams.set("locale", params.locale);
-  if (params.includeBook) queryParams.set("includeBook", "true");
-
-  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
-};
 
 export const getBookPage = cache(
   async (slug: string, params: ApiBookPageParams) => {
     return await apiFetch<ApiBookPageResponse | AlternateSlugResponse>(
-      `/book/page/${slug}${prepareBookPageParams(params)}`,
+      `/book/page/${slug}`,
+      {
+        index: params.index.toString(),
+        ...(params.fields && { fields: params.fields.join(",") }),
+        ...(params.versionId && { versionId: params.versionId }),
+        ...(params.locale && { locale: params.locale }),
+        ...(params.includeBook && { includeBook: "true" }),
+      },
     );
   },
 );
-
-const preparePageIndexParams = (params: ApiPageIndexParams) => {
-  const queryParams = new URLSearchParams();
-
-  queryParams.set("page", params.page.toString());
-  if (params.versionId) queryParams.set("versionId", params.versionId);
-  if (params.volume) queryParams.set("volume", params.volume.toString());
-
-  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
-};
 
 export const getBookPageIndex = cache(
   async (slug: string, params: ApiPageIndexParams) => {
     return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>(
-      `/book/page_index/${slug}${preparePageIndexParams(params)}`,
+      `/book/page_index/${slug}`,
+      {
+        page: params.page.toString(),
+        ...(params.versionId && { versionId: params.versionId }),
+        ...(params.volume && { volume: params.volume.toString() }),
+      },
     );
   },
 );
 
-const prepareAuthorParams = (params: { locale?: PathLocale }) => {
-  const queryParams = new URLSearchParams();
-
-  if (params.locale) queryParams.set("locale", params.locale);
-
-  return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
-};
-
 export const getAuthorBySlug = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiAuthor>(
-      `/author/${slug}${prepareAuthorParams(params)}`,
-    );
+    return await apiFetch<ApiAuthor>(`/author/${slug}`, params);
   },
 );
 
 export const getGenre = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiGenre>(
-      `/genre/${slug}${prepareAuthorParams(params)}`,
-    );
+    return await apiFetch<ApiGenre>(`/genre/${slug}`, params);
   },
 );
 
 export const getRegion = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiRegion>(
-      `/region/${slug}${prepareAuthorParams(params)}`,
-    );
+    return await apiFetch<ApiRegion>(`/region/${slug}`, params);
   },
 );
+
+export const getHomepageGenres = cache(
+  async (params: { locale?: PathLocale } = {}) => {
+    return await apiFetch<ApiGenreCollection[]>(`/genre/homepage`, params);
+  },
+);
+
+export const getTotalEntities = cache(async () => {
+  return unstable_cache(
+    async () =>
+      (await apiFetch<{
+        books: number;
+        authors: number;
+        regions: number;
+        genres: number;
+      }>(`/total`)) || {
+        books: 0,
+        authors: 0,
+        regions: 0,
+        genres: 0,
+      },
+    ["total"],
+    {
+      revalidate: false, // make this static
+      tags: ["total"],
+    },
+  )();
+});

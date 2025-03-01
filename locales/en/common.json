@@ -57,19 +57,19 @@
       "title": "Browse",
       "texts": {
         "title": "Texts",
-        "description": "8,646 Texts"
+        "description": "{books, number} Texts"
       },
       "authors": {
         "title": "Authors",
-        "description": "3,646 Texts"
+        "description": "{authors, number} Authors"
       },
       "regions": {
         "title": "Regions",
-        "description": "40 Regions"
+        "description": "{regions, number} Regions"
       },
       "genres": {
         "title": "Genres",
-        "description": "40 Genres"
+        "description": "{genres, number} Genres"
       }
     },
     "about": {

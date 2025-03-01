@@ -3,7 +3,6 @@ import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 import Providers from "./providers";
-import { useMessages } from "next-intl";
 import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
@@ -13,6 +12,8 @@ import { env } from "@/env";
 import DemoModalProvider from "../_components/video-modal/provider";
 import Analytics from "./analytics";
 import { getLocale } from "@/lib/locale/server";
+import { getTotalEntities } from "@/lib/api";
+import { getMessages } from "next-intl/server";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -24,14 +25,17 @@ export async function generateMetadata() {
 
 export const viewport = getViewport();
 
-export default function LocaleLayout({
+export default async function LocaleLayout({
   children,
   params: { locale },
 }: {
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const messages = useMessages();
+  const [messages, total] = await Promise.all([
+    getMessages({ locale }),
+    getTotalEntities(),
+  ]);
 
   return (
     <html
@@ -46,7 +50,7 @@ export default function LocaleLayout({
           getFontsClassnames(),
         )}
       >
-        <Providers locale={locale} messages={messages}>
+        <Providers locale={locale} messages={messages} total={total}>
           {children}
 
           <Toaster />

@@ -66,14 +66,16 @@ const config = {
     "about",
     "team",
     "donate",
+    "collections",
   ] as const,
   namespacedRoutes: {
     "*": ["common", "entities", "meta", "reader"],
-    "/": ["home"],
+    "/": ["home", "collections"],
     "/t/*": ["reader"],
     "/about": ["about"],
     "/team": ["team"],
     "/donate": ["donate"],
+    "/collections/*": ["collections"],
     // "/chat/*": ["reader"],
   },
 };

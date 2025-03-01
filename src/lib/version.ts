@@ -24,7 +24,7 @@ export const versionToName = (version: PrismaJson.BookVersion) => {
   }
 
   if (version.source === "pdf") {
-    return "PDF";
+    return "Usul";
   }
 
   // openiti version handling
