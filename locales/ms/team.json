@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Abdellatif mengasaskan bersama Tarteel AI, memimpin kejuruteraan di Quran.com, dan bekerja di Twitter."
     },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed adalah ketua reka bentuk di Thmanyah, dia memberi nasihat kepada syarikat permulaan untuk membina produk dari 0 ke 1."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ahmed mengasaskan bersama Remail AI, Betterbook, dan pernah menjadi jurutera di Quran.com."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Rahma Fateen",
       "description": "Rahma memimpin pemperibumian Bahasa Arab di Tarteel AI. Beliau pernah menjadi penterjemah di Human Rights Watch."
-    },
-    "ahmed-noor": {
-      "name": "Ahmed Noor",
-      "description": "Ahmed adalah pelajar teologi Islam di İZÜ. Dia fasih dalam Bahasa Arab, Inggeris, dan Urdu."
     },
     "ahmed-khan": {
       "name": "Ahmed Khan",
@@ -54,6 +54,7 @@
     "founding-engineer": "Jurutera Pengasas",
     "researcher": "Penyelidik",
     "localization-lead": "Ketua Lokaliti",
-    "digitization-lead": "Ketua Digitalisasi"
+    "digitization-lead": "Ketua Digitalisasi",
+    "head-of-design": "Ketua Reka Bentuk"
   }
 }

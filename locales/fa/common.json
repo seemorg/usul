@@ -57,19 +57,19 @@
       "title": "مرور",
       "texts": {
         "title": "متون",
-        "description": "۸٬۶۴۶ متن"
+        "description": "{books, number} متون"
       },
       "authors": {
         "title": "نویسندگان",
-        "description": "۳٬۶۴۶ متن"
+        "description": "{authors, number} نویسندگان"
       },
       "regions": {
         "title": "مناطق",
-        "description": "۴۰ منطقه"
+        "description": "{regions, number} مناطق"
       },
       "genres": {
         "title": "ژانرها",
-        "description": "۴۰ ژانر"
+        "description": "{genres, number} ژانرها"
       }
     },
     "about": {

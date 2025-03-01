@@ -8,7 +8,7 @@
     "delete": "حذف"
   },
   "ask-ai": "اسأل الذكاء الاصطناعي",
-  "edition-warning": "الميزة {feature} غير مدعومة في النسخة التي تشاهدها.",
+  "edition-warning": "الميزة {feature} غير مدعومة في النسخة التي تستخدمها.",
   "switch-edition": "التبديل إلى {edition}",
   "coming-soon": {
     "title": "قريبًا",

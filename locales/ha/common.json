@@ -57,19 +57,19 @@
       "title": "Duba",
       "texts": {
         "title": "Rubutun",
-        "description": "8,646 Rubuce-rubuce"
+        "description": "{books, number} Rubutu"
       },
       "authors": {
         "title": "Marubuta",
-        "description": "3,646 Rubuce-rubuce"
+        "description": "{authors, number} Marubuta"
       },
       "regions": {
         "title": "Yankuna",
-        "description": "40 Yankuna"
+        "description": "{regions, number} Yankuna"
       },
       "genres": {
         "title": "Nau'o'i",
-        "description": "40 Nau'o'i"
+        "description": "{genres, number} Nau'ikan"
       }
     },
     "about": {

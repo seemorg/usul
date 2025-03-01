@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Abdellatif, Tarteel AI'yı kurdu, Quran.com'da mühendislik liderliği yaptı ve Twitter'da çalıştı."
     },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed, Thmanyah'da tasarım lideriydi, girişimlerle 0'dan 1'e ürünler geliştirmek için danışmanlık yapıyor."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ahmed, Remail AI ve Betterbook’u kurdu ve Quran.com'da mühendis olarak çalıştı."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Rahma Fateen",
       "description": "Rahma, Tarteel AI'de Arapça yerelleştirme çalışmalarını yönetti. Human Rights Watch'ta çevirmen olarak çalıştı."
-    },
-    "ahmed-noor": {
-      "name": "Ahmed Noor",
-      "description": "Ahmed, İZÜ'de İslami teoloji öğrencisidir. Arapça, İngilizce ve Urduca dillerinde akıcıdır."
     },
     "ahmed-khan": {
       "name": "Ahmed Khan",
@@ -54,6 +54,7 @@
     "founding-engineer": "Kurucu Mühendis",
     "researcher": "Araştırmacı",
     "localization-lead": "Yerelleştirme Lideri",
-    "digitization-lead": "Dijitalleştirme Lideri"
+    "digitization-lead": "Dijitalleştirme Lideri",
+    "head-of-design": "Tasarım Müdürü"
   }
 }

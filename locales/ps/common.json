@@ -57,19 +57,19 @@
       "title": "ګورئ",
       "texts": {
         "title": "متنونه",
-        "description": "۸,۶۴۶ متنونه"
+        "description": "{books, number} متنونه"
       },
       "authors": {
         "title": "لیکوالان",
-        "description": "۳,۶۴۶ متنونه"
+        "description": "{authors, number} لیکوالان"
       },
       "regions": {
         "title": "سیمې",
-        "description": "۴۰ سیمې"
+        "description": "{regions, number} سیمې"
       },
       "genres": {
         "title": "ژانرونه",
-        "description": "۴۰ ژانرونه"
+        "description": "{genres, number} ژانرونه"
       }
     },
     "about": {

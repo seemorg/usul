@@ -1,24 +1,12 @@
 {
-  "headline": "Bincika 8,000+ Rubuce-rubucen Musulunci",
-  "subheadline": "Karanta, nema, da bincika Rubutu daga Shamela da OpenITI",
+  "headline": "Kayan Bincike don Rubutun Musulunci",
+  "subheadline": "Samun ikon AI zuwa fiye da rubuce-rubuce 15,000 ciki har da duk Shamela",
   "try": "Gwada: ",
   "sections": {
     "collections": "Tattara",
     "popular-texts": "Rubuce-rubuce Masu Shahara",
     "islamic-law": "Shari'ar Musulunci",
     "islamic-history": "Tarihin Musulunci"
-  },
-  "collections": {
-    "quranic-sciences": "Kimiyar Alkur'ani",
-    "hadith-sciences": "Kimiyar Hadisi",
-    "fiqh": "Fiqh",
-    "islamic-theology": "Ilimin Tauhidi na Musulunci",
-    "islamic-history": "Tarihin Musulunci",
-    "islamic-ethics": "Dabi'un Musulunci",
-    "islamic-philosophy": "Falsafar Musulunci",
-    "islamic-finance": "Kudin Musulunci",
-    "literature": "Adabin zube",
-    "medicine": "Magani"
   },
   "how-usul-works": "Yadda Usul ke Aiki"
 }
