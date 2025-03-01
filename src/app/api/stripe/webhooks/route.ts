@@ -3,7 +3,7 @@ import type { Stripe } from "stripe";
 import stripe from "@/server/stripe";
 import { env } from "@/env";
 import handleStripeEvent from "@/server/stripe/events";
-import { NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 /**
  * Syncs Stripe's payment state to our database via their webhooks

@@ -18,11 +18,13 @@ import {
   aboutItems,
 } from "./links";
 import { useDemo } from "../video-modal/provider";
+import { useTotalEntities } from "@/contexts/total-entities.context";
 
 export default function HomepageNavigationMenu() {
   const t = useTranslations("common");
   const setDemo = useDemo((s) => s.setIsOpen);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const total = useTotalEntities();
 
   const renderItem = (item: NavItem, idx: number) => {
     if (item.href) {
@@ -34,7 +36,7 @@ export default function HomepageNavigationMenu() {
           title={t(item.title)}
           target={item.href.startsWith("mailto:") ? "_blank" : undefined}
         >
-          {t(item.description)}
+          {t(item.description, total)}
         </ListItem>
       );
     }
@@ -48,7 +50,7 @@ export default function HomepageNavigationMenu() {
           title={t(item.title)}
           className="cursor-pointer"
         >
-          {t(item.description)}
+          {t(item.description, total)}
         </ListItem>
       );
     }
@@ -62,7 +64,7 @@ export default function HomepageNavigationMenu() {
         onClick={() => setIsModalOpen(true)}
         className="cursor-pointer"
       >
-        {t(item.description)}
+        {t(item.description, total)}
       </ListItem>
     );
   };

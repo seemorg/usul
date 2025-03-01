@@ -2,8 +2,8 @@ import { ArabicLogo, Logo } from "@/components/Icons";
 import { loadFileOnEdge } from "@/lib/edge";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
-import { findGenreBySlug } from "@/server/services/genres";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { getAuthorBySlug } from "@/lib/api";
+import type { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
@@ -23,38 +23,25 @@ const fonts = {
   ),
 };
 
-export async function generateImageMetadata({
-  params: { genreSlug },
-}: {
-  params: { genreSlug: string };
-}) {
-  const genre = await findGenreBySlug(genreSlug);
-  if (!genre) return [];
-
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "ar");
-
-  return [
-    {
-      id: "main",
-      alt: primaryText,
-      contentType: "image/png",
-      size,
-    },
-  ];
-}
-
 // Image generation
-export default async function Image({
-  params: { genreSlug },
-}: {
-  params: { genreSlug: string };
-}) {
-  const genre = await findGenreBySlug(genreSlug);
-  if (!genre) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: { slug: string } },
+) {
+  const slug = params.slug;
+
+  if (!slug) {
     notFound();
   }
 
-  const primaryText = getPrimaryLocalizedText(genre.nameTranslations, "en");
+  const author = await getAuthorBySlug(slug, { locale: "en" });
+
+  if (!author) {
+    notFound();
+  }
+
+  const trimmedOverview =
+    author.bio.length > 330 ? author.bio.slice(0, 330) + "..." : author.bio;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -64,46 +51,33 @@ export default async function Image({
 
   return new ImageResponse(
     (
-      <div
-        tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-[80px]"
-        style={{
-          position: "relative",
-        }}
-      >
+      <div tw="w-full h-full flex flex-col text-white bg-[#9E5048] pt-[50px] px-20 relative items-start">
         <h1
           style={{
             fontSize: 84,
             fontFamily: "Cal Sans",
           }}
         >
-          {primaryText}
+          {author.primaryName}
         </h1>
 
-        {/* <p
+        <p
           style={{
             fontSize: 38,
             fontFamily: "Family",
+            textAlign: "left",
             marginTop: 40,
           }}
         >
           {trimmedOverview}
-        </p> */}
+        </p>
 
-        <div
-          style={{
-            position: "absolute",
-            bottom: 50,
-            left: 80,
-            display: "flex",
-            alignItems: "flex-end",
-            gap: 20,
-          }}
-        >
+        <div tw="absolute bottom-0 left-0 right-0 text-white flex items-center px-20 py-8">
           {/* w:26 h:10 */}
           <Logo style={{ height: 40, width: 104 }} />
 
           {/* w:65 h:37 */}
-          <ArabicLogo style={{ height: 50, width: 88 }} />
+          <ArabicLogo style={{ height: 50, width: 88, marginLeft: 20 }} />
         </div>
       </div>
     ),
@@ -116,6 +90,7 @@ export default async function Image({
           weight: 600,
           style: "normal",
         },
+
         {
           name: "Family",
           data: family,

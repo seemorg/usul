@@ -57,19 +57,19 @@
       "title": "Semak",
       "texts": {
         "title": "Teks",
-        "description": "8,646 Teks"
+        "description": "{books, number} Teks"
       },
       "authors": {
         "title": "Penulis",
-        "description": "3,646 Teks"
+        "description": "{authors, number} Penulis"
       },
       "regions": {
         "title": "Wilayah",
-        "description": "40 Wilayah"
+        "description": "{regions, number} Wilayah"
       },
       "genres": {
         "title": "Genre",
-        "description": "40 Genre"
+        "description": "{genres, number} Genre"
       }
     },
     "about": {

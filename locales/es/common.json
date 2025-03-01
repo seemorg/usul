@@ -57,19 +57,19 @@
       "title": "Explorar",
       "texts": {
         "title": "Textos",
-        "description": "8,646 Textos"
+        "description": "{books, number} Textos"
       },
       "authors": {
         "title": "Autores",
-        "description": "3,646 Textos"
+        "description": "{authors, number} Autores"
       },
       "regions": {
         "title": "Regiones",
-        "description": "40 Regiones"
+        "description": "{regions, number} Regiones"
       },
       "genres": {
         "title": "Géneros",
-        "description": "40 Géneros"
+        "description": "{genres, number} Géneros"
       }
     },
     "about": {

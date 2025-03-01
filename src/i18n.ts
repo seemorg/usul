@@ -1,11 +1,11 @@
 import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
-import config, { locales, type AppLocale } from "i18n.config";
+import config, { routing, type AppLocale } from "~/i18n.config";
 import { appLocaleToPathLocale } from "./lib/locale/utils";
 
 export default getRequestConfig(async ({ locale }) => {
   // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as AppLocale)) notFound();
+  if (!routing.locales.includes(locale as AppLocale)) notFound();
 
   const pathLocale = appLocaleToPathLocale(locale as AppLocale);
 

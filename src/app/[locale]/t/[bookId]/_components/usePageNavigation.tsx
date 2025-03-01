@@ -4,7 +4,10 @@ export const usePageNavigation = () => {
   const { bookResponse } = useBookDetails();
   const source = bookResponse.content.source;
 
-  if (source === "external" || source === "pdf") {
+  if (
+    source === "external" ||
+    (source === "pdf" && !bookResponse.content.pages)
+  ) {
     return {
       pagesRange: {
         start: 0,

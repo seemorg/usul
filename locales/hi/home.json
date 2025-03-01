@@ -1,24 +1,12 @@
 {
-  "headline": "8,000+ इस्लामी पाठों की खोज करें",
-  "subheadline": "शमेला और OpenITI से पाठ पढ़ें, खोजें और शोध करें",
+  "headline": "इस्लामी पाठों के लिए अनुसंधान उपकरण",
+  "subheadline": "शामिला सहित 15,000 से अधिक पाठों तक AI-संचालित पहुंच",
   "try": "कोशिश करें: ",
   "sections": {
     "collections": "संग्रह",
     "popular-texts": "लोकप्रिय पाठ",
     "islamic-law": "इस्लामी कानून",
     "islamic-history": "इस्लामी इतिहास"
-  },
-  "collections": {
-    "quranic-sciences": "क़ुरआनिक विज्ञान",
-    "hadith-sciences": "हदीस विज्ञान",
-    "fiqh": "फिक़ह",
-    "islamic-theology": "इस्लामी धर्मशास्त्र",
-    "islamic-history": "इस्लामी इतिहास",
-    "islamic-ethics": "इस्लामी नैतिकता",
-    "islamic-philosophy": "इस्लामी दर्शन",
-    "islamic-finance": "इस्लामी वित्त",
-    "literature": "साहित्य",
-    "medicine": "चिकित्सा"
   },
   "how-usul-works": "Usul कैसे काम करता है"
 }

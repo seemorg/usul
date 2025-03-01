@@ -1,24 +1,12 @@
 {
-  "headline": "Explore 8,000+ Islamic Texts",
-  "subheadline": "Read, search, and research Texts from Shamela and OpenITI",
+  "headline": "The Research Tool for Islamic Texts",
+  "subheadline": "AI-powered access to over 15,000 texts including all of Shamela",
   "try": "Try: ",
   "sections": {
     "collections": "Collections",
     "popular-texts": "Popular Texts",
     "islamic-law": "Islamic Law",
     "islamic-history": "Islamic History"
-  },
-  "collections": {
-    "quranic-sciences": "Qur'anic Sciences",
-    "hadith-sciences": "Hadith Sciences",
-    "fiqh": "Fiqh",
-    "islamic-theology": "Islamic Theology",
-    "islamic-history": "Islamic History",
-    "islamic-ethics": "Islamic Ethics",
-    "islamic-philosophy": "Islamic Philosophy",
-    "islamic-finance": "Islamic Finance",
-    "literature": "Literature",
-    "medicine": "Medicine"
   },
   "how-usul-works": "How Usul Works"
 }

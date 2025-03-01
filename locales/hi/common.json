@@ -57,19 +57,19 @@
       "title": "ब्राउज़",
       "texts": {
         "title": "पाठ",
-        "description": "8,646 ग्रंथ"
+        "description": "{books, number} पाठों"
       },
       "authors": {
         "title": "लेखक",
-        "description": "3,646 ग्रंथ"
+        "description": "{authors, number} लेखकों"
       },
       "regions": {
         "title": "क्षेत्र",
-        "description": "40 क्षेत्र"
+        "description": "{regions, number} क्षेत्रों"
       },
       "genres": {
         "title": "शैली",
-        "description": "40 विधाएँ"
+        "description": "{genres, number} शैलियों"
       }
     },
     "about": {

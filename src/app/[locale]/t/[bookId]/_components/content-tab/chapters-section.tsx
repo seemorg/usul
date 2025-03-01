@@ -10,10 +10,11 @@ import { type TreeDataItem, TreeView } from "@/components/tree-view";
 import { useRouter } from "@/navigation";
 import { useParams, useSearchParams } from "next/navigation";
 import { navigation } from "@/lib/urls";
+import { PdfContent } from "@/types/api/content/pdf";
 
 type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
 type TurathChapter = NonNullable<TurathContent["headings"]>[number];
-
+type PdfChapter = NonNullable<PdfContent["headings"]>[number];
 type BookDataItem = TreeDataItem & {
   level: number;
   volume?: number | string;
@@ -21,7 +22,7 @@ type BookDataItem = TreeDataItem & {
 };
 
 function prepareChapter(
-  chapter: OpenitiChapter | TurathChapter,
+  chapter: OpenitiChapter | TurathChapter | PdfChapter,
   idx: number,
 ): BookDataItem {
   const isTurath = !(typeof chapter.page === "number");
@@ -42,7 +43,7 @@ function prepareChapter(
 
 // Function to build hierarchy
 function buildHierarchy(
-  chapters: (OpenitiChapter | TurathChapter)[],
+  chapters: (OpenitiChapter | TurathChapter | PdfChapter)[],
 ): TreeDataItem[] {
   const result: BookDataItem[] = [];
   const stack: BookDataItem[] = [];
@@ -80,7 +81,11 @@ export default function ChaptersList({
   getVirtuosoScrollProps,
   isSinglePage,
 }: {
-  headers: NonNullable<OpenitiContent["headings"] | TurathContent["headings"]>;
+  headers: NonNullable<
+    | OpenitiContent["headings"]
+    | TurathContent["headings"]
+    | NonNullable<PdfContent["headings"]>
+  >;
   pagesRange: UsePageNavigationReturnType["pagesRange"];
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
   isSinglePage?: boolean;

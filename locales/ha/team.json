@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
     },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed ya kasance jagoran zane a Thmanyah, yana ba da shawara ga farawa don ƙirƙirar samfura daga 0 zuwa 1."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ahmed ya kafa Remail AI, Betterbook, kuma ya kasance injiniya a Quran.com."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Rahma Fateen",
       "description": "Rahma ta jagoranci aikin lokalisar da harshen larabci a Tarteel AI. Ta kasance mai fassara a Human Rights Watch."
-    },
-    "ahmed-noor": {
-      "name": "Ahmed Noor",
-      "description": "Ahmed dalibi ne na ilmin addinin Musulunci a İZÜ. Yana iya magana da Harshen Larabci, Turanci, da Urdu sosai."
     },
     "ahmed-khan": {
       "name": "Ahmed Khan",
@@ -54,6 +54,7 @@
     "founding-engineer": "Injiniya Mai Kafa Kamfanin",
     "researcher": "Masu Bincike",
     "localization-lead": "Jagoran Lokaliyasa",
-    "digitization-lead": "Jagoran Digitization"
+    "digitization-lead": "Jagoran Digitization",
+    "head-of-design": "Shugaban Tsara"
   }
 }

@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { HandCoinsIcon } from "lucide-react";
 import { env } from "@/env";
 
-const GOAL = 75_000;
+const GOAL = 10_000;
 
 export function DonationStatsCard() {
   const t = useTranslations("donate");

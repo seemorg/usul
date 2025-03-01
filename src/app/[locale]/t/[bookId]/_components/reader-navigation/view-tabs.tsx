@@ -1,22 +1,14 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
 import { useReaderView } from "./utils";
-import type { ApiBookResponse } from "@/types/api/book";
 
-export default function ViewTabs({
-  hasPdf,
-  contentSource,
-}: {
-  hasPdf: boolean;
-  contentSource: ApiBookResponse["content"]["source"];
-}) {
+export default function ViewTabs() {
   const t = useTranslations();
-  const { view, setView } = useReaderView();
-  const isPdfSource = contentSource === "pdf";
+  const { view, setView, hasEbook, hasPdf } = useReaderView();
 
   return (
     <Tabs
-      value={isPdfSource || view === "pdf" ? "pdf" : "ebook"}
+      value={view}
       onValueChange={setView as any}
       className="hidden md:inline-flex"
     >
@@ -24,8 +16,8 @@ export default function ViewTabs({
         <TabsTrigger
           value="ebook"
           className="disabled:opacity-40"
-          disabled={isPdfSource}
-          tooltip={isPdfSource ? t("reader.not-available") : undefined}
+          disabled={!hasEbook}
+          tooltip={!hasEbook ? t("reader.not-available") : undefined}
           tooltipProps={{ side: "bottom" }}
         >
           {t("common.e-book")}

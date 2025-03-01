@@ -23,7 +23,15 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
   const regions = (options?.filters?.regions ?? null) as string[] | null;
   const yearRange = (options?.filters?.yearRange ?? null) as number[] | null;
 
+  // limit search to specific ids
+  const ids = (options?.filters?.ids ?? null) as string[] | null;
+
   const filters: string[] = [];
+
+  if (ids && ids.length > 0) {
+    filters.push(`id:[${ids.map((id) => `\`${id}\``).join(", ")}]`);
+  }
+
   if (yearRange) filters.push(`year:[${yearRange[0]}..${yearRange[1]}]`);
   if (genres && genres.length > 0) {
     filters.push(

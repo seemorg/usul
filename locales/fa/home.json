@@ -1,24 +1,12 @@
 {
-  "headline": "کاوش در بیش از ۸۰۰۰ متن اسلامی",
-  "subheadline": "خواندن، جستجو و پژوهش در متون شامله و OpenITI",
+  "headline": "ابزار پژوهش برای متون اسلامی",
+  "subheadline": "دسترسی با هوش مصنوعی به بیش از ۱۵٬۰۰۰ متن شامل تمامی کتابخانه شاملہ",
   "try": "تلاش: ",
   "sections": {
     "collections": "مجموعه‌ها",
     "popular-texts": "متون محبوب",
     "islamic-law": "فقه اسلامی",
     "islamic-history": "تاریخ اسلام"
-  },
-  "collections": {
-    "quranic-sciences": "علوم قرآنی",
-    "hadith-sciences": "علوم حدیث",
-    "fiqh": "فقه",
-    "islamic-theology": "کلام اسلامی",
-    "islamic-history": "تاریخ اسلام",
-    "islamic-ethics": "اخلاق اسلامی",
-    "islamic-philosophy": "فلسفه اسلامی",
-    "islamic-finance": "تأمين مالی اسلامی",
-    "literature": "ادبیات",
-    "medicine": "پزشکی"
   },
   "how-usul-works": "چگونه اصول کار می‌کند"
 }

@@ -1,24 +1,12 @@
 {
-  "headline": "Terokai 8,000+ Teks Islam",
-  "subheadline": "Baca, cari, dan kaji Teks dari Shamela dan OpenITI",
+  "headline": "Alat Penyelidikan untuk Teks Islam",
+  "subheadline": "Akses dikuasakan AI kepada lebih 15,000 teks termasuk semua Shamela",
   "try": "Cuba: ",
   "sections": {
     "collections": "Koleksi",
     "popular-texts": "Teks Popular",
     "islamic-law": "Undang-Undang Islam",
     "islamic-history": "Sejarah Islam"
-  },
-  "collections": {
-    "quranic-sciences": "Sains Qur'an",
-    "hadith-sciences": "Sains Hadith",
-    "fiqh": "Fiqh",
-    "islamic-theology": "Teologi Islam",
-    "islamic-history": "Sejarah Islam",
-    "islamic-ethics": "Etika Islam",
-    "islamic-philosophy": "Falsafah Islam",
-    "islamic-finance": "Kewangan Islam",
-    "literature": "Sastera",
-    "medicine": "Perubatan"
   },
   "how-usul-works": "Cara Usul Berfungsi"
 }

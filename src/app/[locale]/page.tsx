@@ -7,7 +7,6 @@ import { Link } from "@/navigation";
 import BookSearchResult from "@/components/book-search-result";
 
 import Footer from "../_components/footer";
-import { collections } from "@/data/collections";
 import { navigation } from "@/lib/urls";
 import {
   fetchPopularBooks,
@@ -17,13 +16,15 @@ import {
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { type AppLocale, locales } from "~/i18n.config";
+import { type AppLocale, routing } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { PlayIcon } from "@heroicons/react/24/solid";
 
 import { cn } from "@/lib/utils";
 import { DemoButton } from "./demo-button";
+import { getHomepageGenres } from "@/lib/api";
+import { collections } from "@/data/collections";
 
 export const generateMetadata = ({
   params: { locale },
@@ -34,7 +35,7 @@ export const generateMetadata = ({
 export const dynamic = "force-static";
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return routing.locales.map((locale) => ({ locale }));
 }
 
 export default async function HomePage({
@@ -46,36 +47,41 @@ export default async function HomePage({
 
   const pathLocale = appLocaleToPathLocale(locale);
 
-  const [popularBooks, popularIslamicLawBooks, popularIslamicHistoryBooks] =
-    await Promise.all([
-      fetchPopularBooks(pathLocale),
-      fetchPopularIslamicLawBooks(pathLocale),
-      fetchPopularIslamicHistoryBooks(pathLocale),
-    ]);
+  const [
+    genres,
+    popularBooks,
+    popularIslamicLawBooks,
+    popularIslamicHistoryBooks,
+  ] = await Promise.all([
+    getHomepageGenres({ locale: pathLocale }),
+    fetchPopularBooks(pathLocale),
+    fetchPopularIslamicLawBooks(pathLocale),
+    fetchPopularIslamicHistoryBooks(pathLocale),
+  ]);
 
-  const t = await getTranslations({ locale, namespace: "home" });
+  const t = await getTranslations({ locale });
 
   return (
     <>
       <Navbar layout="home" />
 
       <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
-        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
+        <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-[1] flex flex-col items-center">
           <h1 className="text-center text-4xl font-bold sm:text-5xl">
-            {t("headline")}
+            {t("home.headline")}
           </h1>
 
           <p className="mt-5 text-center text-xl text-white/80">
-            {t("subheadline")}
+            {t("home.subheadline")}
           </p>
 
           <div className="mt-7 flex w-full justify-center">
             <DemoButton>
               <PlayIcon className="size-4" />
-              {t("how-usul-works")} - 2:40
+              {t("home.how-usul-works")} - 2:40
             </DemoButton>
           </div>
 
@@ -91,27 +97,44 @@ export default async function HomePage({
         <div>
           <HomepageSection
             isBooks={false}
-            title={t("sections.collections")}
-            items={collections.map((collection) => (
-              <Link
-                href={navigation.genres.bySlug(collection.genre)}
-                key={collection.genre}
-                prefetch
-              >
-                <CollectionCard
-                  title={t(`collections.${collection.name}`)}
-                  numberOfBooks={collection.numberOfBooks}
-                  pattern={collection.pattern}
-                  color={collection.color}
-                />
-              </Link>
-            ))}
+            title={t("home.sections.collections")}
+            items={(genres || [])
+              .map((genre) => (
+                <Link
+                  key={genre.id}
+                  href={navigation.genres.bySlug(genre.slug)}
+                  prefetch
+                >
+                  <CollectionCard
+                    title={genre.name}
+                    numberOfBooks={genre.numberOfBooks}
+                    pattern={genre.pattern}
+                    color={genre.color}
+                  />
+                </Link>
+              ))
+              .concat(
+                collections.map((collection) => (
+                  <Link
+                    key={collection.slug}
+                    href={navigation.collections.bySlug(collection.slug)}
+                    prefetch
+                  >
+                    <CollectionCard
+                      title={t(`collections.${collection.title}`)}
+                      numberOfBooks={collection.bookIds.length}
+                      pattern={collection.pattern}
+                      color={collection.color}
+                    />
+                  </Link>
+                )),
+              )}
           />
         </div>
 
         <div>
           <HomepageSection
-            title={t("sections.popular-texts")}
+            title={t("home.sections.popular-texts")}
             href="/texts"
             constraintWidth
             items={popularBooks.map((text) => (
@@ -134,7 +157,7 @@ export default async function HomePage({
 
         <div>
           <HomepageSection
-            title={t("sections.islamic-law")}
+            title={t("home.sections.islamic-law")}
             constraintWidth
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
@@ -156,7 +179,7 @@ export default async function HomePage({
 
         <div>
           <HomepageSection
-            title={t("sections.islamic-history")}
+            title={t("home.sections.islamic-history")}
             constraintWidth
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult

@@ -25,7 +25,8 @@ import Navbar from "@/app/_components/navbar";
 import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
 import GlobalSearchResult from "@/components/global-search-result";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
+
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
   loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
@@ -123,7 +124,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
       <Navbar />
 
       <main className="flex min-h-screen w-full flex-col bg-background pb-24">
-        <div className="bg-muted-primary flex h-[250px] w-full items-center justify-center pt-16 text-white sm:h-[300px] sm:pt-24">
+        <div className="flex h-[250px] w-full items-center justify-center bg-muted-primary pt-16 text-white sm:h-[300px] sm:pt-24">
           <Container className="flex flex-col items-center">
             <h1 className="text-6xl font-bold sm:text-7xl">{t("texts")}</h1>
 

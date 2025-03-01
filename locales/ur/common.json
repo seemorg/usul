@@ -57,19 +57,19 @@
       "title": "براؤز",
       "texts": {
         "title": "متون",
-        "description": "8,646 متون"
+        "description": "{books, number} متون"
       },
       "authors": {
         "title": "مصنفین",
-        "description": "3,646 متون"
+        "description": "{authors, number} مصنفین"
       },
       "regions": {
         "title": "علاقے",
-        "description": "40 خطے"
+        "description": "{regions, number} علاقے"
       },
       "genres": {
         "title": "اصناف",
-        "description": "40 اصناف"
+        "description": "{genres, number} اصناف"
       }
     },
     "about": {

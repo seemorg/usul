@@ -1,23 +1,43 @@
-import { type LocalePrefix } from "next-intl/routing";
+import { defineRouting } from "next-intl/routing";
 
-export const locales = [
-  "en-US", // english
-  "ar-SA", // arabic
-  "bn-BD", // bengali
-  "fr-FR", // french
-  "hi-IN", // hindi
-  "ha-NG", // hausa
-  "ms-MY", // malay
-  "ps-AF", // pashto
-  "fa-IR", // persian
-  "ru-RU", // russian
-  "so-SO", // somali
-  "es-ES", // spanish
-  "tr-TR", // turkish
-  "ur-PK", // urdu
-] as const;
-
-export const defaultLocale = "en-US" as const;
+export const routing = defineRouting({
+  locales: [
+    "en-US", // english
+    "ar-SA", // arabic
+    "bn-BD", // bengali
+    "fr-FR", // french
+    "hi-IN", // hindi
+    "ha-NG", // hausa
+    "ms-MY", // malay
+    "ps-AF", // pashto
+    "fa-IR", // persian
+    "ru-RU", // russian
+    "so-SO", // somali
+    "es-ES", // spanish
+    "tr-TR", // turkish
+    "ur-PK", // urdu
+  ],
+  localePrefix: {
+    mode: "as-needed" as const,
+    prefixes: {
+      "en-US": "/en",
+      "ar-SA": "/ar",
+      "bn-BD": "/bn",
+      "fr-FR": "/fr",
+      "hi-IN": "/hi",
+      "ha-NG": "/ha",
+      "ms-MY": "/ms",
+      "ps-AF": "/ps",
+      "fa-IR": "/fa",
+      "ru-RU": "/ru",
+      "so-SO": "/so",
+      "es-ES": "/es",
+      "tr-TR": "/tr",
+      "ur-PK": "/ur",
+    },
+  },
+  defaultLocale: "en-US",
+});
 
 export const pathLocaleToSupportedBcp47LocaleMap = {
   en: "en-US",
@@ -36,26 +56,6 @@ export const pathLocaleToSupportedBcp47LocaleMap = {
   ur: "ur-PK",
 } as const;
 
-export const localePrefix = {
-  mode: "as-needed" as const,
-  prefixes: {
-    "en-US": "/en",
-    "ar-SA": "/ar",
-    "bn-BD": "/bn",
-    "fr-FR": "/fr",
-    "hi-IN": "/hi",
-    "ha-NG": "/ha",
-    "ms-MY": "/ms",
-    "ps-AF": "/ps",
-    "fa-IR": "/fa",
-    "ru-RU": "/ru",
-    "so-SO": "/so",
-    "es-ES": "/es",
-    "tr-TR": "/tr",
-    "ur-PK": "/ur",
-  },
-} satisfies LocalePrefix<typeof locales>;
-
 const config = {
   namespaces: [
     "common",
@@ -66,21 +66,23 @@ const config = {
     "about",
     "team",
     "donate",
+    "collections",
   ] as const,
   namespacedRoutes: {
     "*": ["common", "entities", "meta", "reader"],
-    "/": ["home"],
+    "/": ["home", "collections"],
     "/t/*": ["reader"],
     "/about": ["about"],
     "/team": ["team"],
     "/donate": ["donate"],
+    "/collections/*": ["collections"],
     // "/chat/*": ["reader"],
   },
 };
 
 export default config;
 
-export type AppLocale = (typeof locales)[number];
+export type AppLocale = (typeof routing)["locales"][number];
 
 export const localeToFullName: Record<AppLocale, string> = {
   "en-US": "English",

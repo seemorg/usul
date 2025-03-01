@@ -10,6 +10,10 @@
       "name": "Abdellatif Abdelfattah",
       "description": "Abdellatif co-founded Tarteel AI, lead engineering at Quran.com, and worked at Twitter."
     },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed was the design lead at Thmanyah, he consults with startups to build 0 to 1 products."
+    },
     "ahmed-riad": {
       "name": "Ahmed Riad",
       "description": "Ahmed co-founded Remail AI, Betterbook, and was an engineer at Quran.com."
@@ -21,10 +25,6 @@
     "rahma-fateen": {
       "name": "Rahma Fateen",
       "description": "Rahma lead Arabic localization at Tarteel AI. She was a translator at Human Rights Watch."
-    },
-    "ahmed-noor": {
-      "name": "Ahmed Noor",
-      "description": "Ahmed is an Islamic theology student at İZÜ. He's fluent in Arabic, English, and in Urdu."
     },
     "ahmed-khan": {
       "name": "Ahmed Khan",
@@ -54,6 +54,7 @@
     "founding-engineer": "Founding Engineer",
     "researcher": "Researcher",
     "localization-lead": "Localization Lead",
-    "digitization-lead": "Digitization Lead"
+    "digitization-lead": "Digitization Lead",
+    "head-of-design": "Head of Design"
   }
 }

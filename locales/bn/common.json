@@ -57,19 +57,19 @@
       "title": "ব্রাউজ",
       "texts": {
         "title": "পাঠ্যসমূহ",
-        "description": "৮,৬৪৬ লেখা"
+        "description": "{books, number} পাঠ্য"
       },
       "authors": {
         "title": "লেখকগণ",
-        "description": "৩,৬৪৬ লেখা"
+        "description": "{authors, number} লেখক"
       },
       "regions": {
         "title": "অঞ্চলসমূহ",
-        "description": "৪০ অঞ্চল"
+        "description": "{regions, number} অঞ্চলসমূহ"
       },
       "genres": {
         "title": "বিষয়সমূহ",
-        "description": "৪০ ধরণ"
+        "description": "{genres, number} ঘরানা"
       }
     },
     "about": {

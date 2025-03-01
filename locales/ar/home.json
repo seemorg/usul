@@ -1,24 +1,12 @@
 {
-  "headline": "استكشف ٨٠٠٠+ من النصوص الإسلامية",
-  "subheadline": "اقرأ وابحث وادرس النصوص من المكتبة الشاملة و المبادرة المفتوحة للنصوص الإسلامية (OpenITI)",
+  "headline": "أداة البحث في النصوص الإسلامية",
+  "subheadline": "الوصول المدعوم بالذكاء الاصطناعي إلى أكثر من 15,000 نص بما في ذلك جميع الشاملة",
   "try": "جرّب: ",
   "sections": {
     "collections": "مجموعات",
     "popular-texts": "النصوص الشائعة",
     "islamic-law": "الشريعة الإسلامية",
     "islamic-history": "التاريخ الإسلامي"
-  },
-  "collections": {
-    "quranic-sciences": "علوم القرآن",
-    "hadith-sciences": "علوم الحديث",
-    "fiqh": "الفقه",
-    "islamic-theology": "العقيدة الإسلامية",
-    "islamic-history": "التاريخ الإسلامي",
-    "islamic-ethics": "الأخلاق الإسلامية",
-    "islamic-philosophy": "الفلسفة الإسلامية",
-    "islamic-finance": "الاقتصاد الإسلامي",
-    "literature": "الأدب",
-    "medicine": "الطب"
   },
   "how-usul-works": "كيف يعمل موقع أصول"
 }

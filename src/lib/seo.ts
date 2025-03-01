@@ -23,7 +23,7 @@ export const getMetadata = async ({
   all = false,
   concatTitle = true,
   pagePath,
-  hasImage = false,
+  image,
   keywords,
   authors,
   locale,
@@ -33,7 +33,7 @@ export const getMetadata = async ({
   all?: boolean;
   concatTitle?: boolean;
   pagePath?: string;
-  hasImage?: boolean;
+  image?: { url: string; width: number; height: number; alt?: string };
   keywords?: string[];
   authors?: Metadata["authors"];
   locale?: AppLocale;
@@ -58,7 +58,7 @@ export const getMetadata = async ({
     const newTitle = title !== defaultTitle ? { title } : {};
     const newDescription =
       description && description !== defaultDescription ? { description } : {};
-    const newImages = hasImage ? {} : { images };
+    const newImages = image ? { images: [image] } : { images };
 
     const canonical =
       pagePath && pathLocale
@@ -72,7 +72,6 @@ export const getMetadata = async ({
       ...newDescription,
       keywords,
       authors,
-
       openGraph: {
         type: "website",
         siteName,
