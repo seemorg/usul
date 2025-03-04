@@ -25,7 +25,7 @@ import {
 type Frequency = "one-time" | "monthly" | "yearly";
 const presetAmounts = [25, 50, 100, 500];
 
-function DonateForm() {
+function DonateForm({ layout }: { layout?: "hero" }) {
   const t = useTranslations("donate");
   const formatter = useFormatter();
   const [frequency, setFrequency] = useState<Frequency>("one-time");
@@ -75,16 +75,25 @@ function DonateForm() {
   };
 
   return (
-    <BentoCard className="flex-1 p-8" id="donate-form">
-      <h3 className="text-3xl font-semibold">
-        {t("be-part.choose-amount.title")}
-      </h3>
+    <BentoCard
+      className={cn(
+        "flex-1 p-8",
+        layout === "hero" &&
+          "translate-y-[30%] text-foreground shadow-xl shadow-black/5 lg:translate-y-0 ",
+      )}
+      id={layout === "hero" ? "donate-form-hero" : "donate-form"}
+    >
+      {layout !== "hero" && (
+        <h3 className="text-3xl font-semibold">
+          {t("be-part.choose-amount.title")}
+        </h3>
+      )}
 
       <Tabs
         value={frequency}
         onValueChange={(value) => setFrequency(value as Frequency)}
       >
-        <TabsList className="mt-5">
+        <TabsList className={cn(layout !== "hero" && "mt-5")}>
           <TabsTrigger value="one-time">
             {t("be-part.choose-amount.interval.one-time")}
           </TabsTrigger>
@@ -97,7 +106,12 @@ function DonateForm() {
         </TabsList>
       </Tabs>
 
-      <div className="mt-5 flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
+      <div
+        className={cn(
+          "mt-5 flex flex-col justify-between gap-3",
+          layout !== "hero" && "sm:flex-row sm:items-center",
+        )}
+      >
         <div className="flex items-center gap-3">
           {presetAmounts.map((presetAmount) => (
             <Button
@@ -106,6 +120,7 @@ function DonateForm() {
               className={cn(
                 "shadow-none",
                 amount === presetAmount && "border border-transparent",
+                layout === "hero" && "w-full",
               )}
               onClick={() => setAmount(presetAmount)}
             >
@@ -125,7 +140,10 @@ function DonateForm() {
             id="other-amount"
             placeholder="Other Amount"
             type="number"
-            className="min-w-[130px] border-none shadow-none ltr:pl-2 rtl:pr-2"
+            className={cn(
+              "border-none shadow-none ltr:pl-2 rtl:pr-2",
+              layout !== "hero" && "min-w-[130px]",
+            )}
             min={1}
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}

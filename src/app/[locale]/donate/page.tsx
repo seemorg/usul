@@ -11,7 +11,7 @@ import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
 import dynamicImport from "next/dynamic";
-import { DonationStatsCard } from "./stats-card.client";
+// import { DonationStatsCard } from "./stats-card.client";
 
 const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
   ssr: false,
@@ -79,7 +79,7 @@ export default async function HomePage({
       <SuccessModal />
 
       <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
-        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
+        <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
 
         <Container className="z-[1] flex flex-col lg:flex-row lg:gap-12">
           <div className="flex-1">
@@ -92,8 +92,9 @@ export default async function HomePage({
             <p className="mt-8">{t("hero.description")}</p>
           </div>
 
-          <div className="flex-1 sm:px-10 lg:px-0 ltr:lg:pl-10 rtl:lg:pr-10">
-            <DonationStatsCard />
+          <div className="flex-1 text-black sm:px-10 lg:px-0 ">
+            {/* <DonationStatsCard /> */}
+            <DonateForm layout="hero" />
           </div>
         </Container>
       </div>
