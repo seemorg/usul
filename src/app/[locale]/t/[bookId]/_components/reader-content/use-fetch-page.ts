@@ -13,7 +13,8 @@ export type DefaultPages = NonNullable<
   | NonNullable<PdfContent["pages"]>
 >;
 
-const alternateSlugsMap = new Map<string, string>();
+// Use a plain object for lighter memory usage compared to Map
+const alternateSlugsMap: Record<string, string> = {};
 
 const useFetchPage = (
   index: number,
@@ -51,13 +52,14 @@ const useFetchPage = (
         size: perPage,
         versionId: _versionId ?? undefined,
       };
-      const alternateSlug = alternateSlugsMap.get(_bookSlug);
+
+      const alternateSlug = alternateSlugsMap[_bookSlug];
       let response = await getBook(alternateSlug ?? _bookSlug, bookParams);
       if (!response) return null;
 
       if ("type" in response) {
         const newAlternateSlug = response.primarySlug;
-        alternateSlugsMap.set(_bookSlug, newAlternateSlug);
+        alternateSlugsMap[_bookSlug] = newAlternateSlug;
         response = await getBook(newAlternateSlug, bookParams);
 
         // safety check, should never happen
