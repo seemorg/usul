@@ -2,20 +2,12 @@
 
 import RenderBlock from "@/components/render-markdown";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getBook } from "@/lib/api";
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import { useParams, useSearchParams } from "next/navigation";
-import { type PropsWithChildren, useMemo } from "react";
-
-type DefaultPages = NonNullable<
-  | TurathContent["pages"]
-  | OpenitiContent["pages"]
-  | NonNullable<PdfContent["pages"]>
->;
+import { type PropsWithChildren } from "react";
+import useFetchPage, { type DefaultPages } from "./use-fetch-page";
 
 const PageLabel = (props: PropsWithChildren) => (
   <p
@@ -143,64 +135,3 @@ export default function ReaderPage({
     );
   }
 }
-
-const useFetchPage = (
-  index: number,
-  perPage: number,
-  defaultPages: DefaultPages,
-) => {
-  const params = useParams();
-  const versionId = useSearchParams().get("versionId");
-  const slug = params.bookId as string;
-
-  const pageNumber = params.pageNumber as string | undefined;
-  const isSinglePage = !!pageNumber;
-
-  const pageInfo = useMemo(() => {
-    const page = Math.floor(index / perPage);
-    const startIndex = page * perPage;
-    const relativeIndex = index - startIndex;
-
-    return {
-      page,
-      startIndex,
-      relativeIndex,
-    };
-  }, [index, perPage]);
-
-  const shouldUseDefaultPages = pageInfo.startIndex < defaultPages.length;
-
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["reader", slug, versionId, pageInfo.startIndex] as const,
-    queryFn: async ({ queryKey }) => {
-      const [, _bookSlug, _versionId, startIndex] = queryKey;
-
-      const response = await getBook(_bookSlug, {
-        startIndex: startIndex,
-        size: perPage,
-        versionId: _versionId ?? undefined,
-      });
-
-      if (!response || "type" in response) {
-        return null;
-      }
-
-      return (response.content as any).pages as DefaultPages;
-    },
-    enabled: !isSinglePage && !shouldUseDefaultPages,
-  });
-
-  const defaultPage = isSinglePage
-    ? defaultPages[0]
-    : shouldUseDefaultPages
-      ? defaultPages[pageInfo.relativeIndex]
-      : null;
-
-  const page = data ? data[pageInfo.relativeIndex] : defaultPage;
-
-  return {
-    page,
-    isLoading,
-    isError,
-  };
-};
