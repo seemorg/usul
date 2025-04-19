@@ -159,8 +159,11 @@ export default function SearchTab() {
 
         <SidebarContainer className="mt-4 flex items-center justify-between">
           <p className="text-sm text-muted-foreground">
-            {results.total} Results - Page {results.currentPage} /{" "}
-            {results.totalPages}
+            {t("reader.search.results", {
+              total: results.total,
+              currentPage: results.currentPage,
+              totalPages: results.totalPages,
+            })}
           </p>
 
           <div className="flex">
@@ -171,7 +174,7 @@ export default function SearchTab() {
               size="sm"
             >
               <ChevronLeftIcon className="size-4" />
-              Previous
+              {t("common.pagination.previous")}
             </Button>
 
             <Button
@@ -180,7 +183,7 @@ export default function SearchTab() {
               onClick={() => setPage(page + 1)}
               size="sm"
             >
-              Next
+              {t("common.pagination.next")}
               <ChevronRightIcon className="size-4" />
             </Button>
           </div>
@@ -211,13 +214,19 @@ export default function SearchTab() {
           <div className="flex items-center gap-3">
             <Select value={type} onValueChange={(t) => setType(t as any, 1)}>
               <SelectTrigger className="w-32">
-                <SelectValue placeholder="Select type" />
+                <SelectValue />
               </SelectTrigger>
 
               <SelectContent>
-                <SelectItem value="simple">Simple</SelectItem>
-                <SelectItem value="advanced">Advanced</SelectItem>
-                <SelectItem value="semantic">Semantic</SelectItem>
+                <SelectItem value="simple">
+                  {t("reader.search.simple")}
+                </SelectItem>
+                <SelectItem value="advanced">
+                  {t("reader.search.advanced")}
+                </SelectItem>
+                <SelectItem value="semantic">
+                  {t("reader.search.semantic")}
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -259,7 +268,7 @@ export default function SearchTab() {
 
               <div>
                 <Button disabled={isLoading} onClick={() => handleSubmit()}>
-                  Apply
+                  {t("reader.search.apply")}
                 </Button>
               </div>
             </>

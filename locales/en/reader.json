@@ -40,7 +40,12 @@
     "portion": "Portion",
     "entire-book": "Entire Book",
     "book": "Book",
-    "book-select-description": "Searching multiple books isn't supported yet"
+    "book-select-description": "Searching multiple books isn't supported yet",
+    "results": "{total, number} Results - Page {currentPage, number} / {totalPages, number}",
+    "apply": "Apply",
+    "simple": "Simple",
+    "advanced": "Advanced",
+    "semantic": "Semantic"
   },
   "chat": {
     "empty-state": "Use the power of AI to search within the book, start by writing what you’re looking for...",
