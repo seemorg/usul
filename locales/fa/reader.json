@@ -40,7 +40,12 @@
     "portion": "بخش",
     "entire-book": "تمام کتاب",
     "book": "کتاب",
-    "book-select-description": "جستجوی همزمان در چند کتاب هنوز پشتیبانی نمی‌شود"
+    "book-select-description": "جستجوی همزمان در چند کتاب هنوز پشتیبانی نمی‌شود",
+    "results": "{total, number} نتیجه \n \n - \n \n صفحه {currentPage, number} / {totalPages, number}",
+    "apply": "اعمال",
+    "simple": "ساده",
+    "advanced": "پیشرفته",
+    "semantic": "معنایی"
   },
   "chat": {
     "empty-state": "از قدرت هوش مصنوعی برای جستجو در کتاب استفاده کنید، با نوشتن چیزی که به‌دنبال آن هستید شروع کنید...",

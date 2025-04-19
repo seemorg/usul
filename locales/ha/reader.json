@@ -40,7 +40,12 @@
     "portion": "Sashe",
     "entire-book": "Dukkan Littafi",
     "book": "Littafi",
-    "book-select-description": "Binciken littattafai da yawa ba a goyan bayan shi ba tukuna"
+    "book-select-description": "Binciken littattafai da yawa ba a goyan bayan shi ba tukuna",
+    "results": "{total, number} Sakamako - Shafi {currentPage, number} / {totalPages, number}",
+    "apply": "Aiwatar",
+    "simple": "Sauki",
+    "advanced": "Ci gaba",
+    "semantic": "Dabara"
   },
   "chat": {
     "empty-state": "Yi amfani da ƙarfin AI don bincika cikin littafin, fara da rubuta abin da kake nema...",

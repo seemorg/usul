@@ -40,7 +40,12 @@
     "portion": "Bahagian",
     "entire-book": "Buku Keseluruhan",
     "book": "Buku",
-    "book-select-description": "Carian untuk pelbagai buku belum disokong lagi"
+    "book-select-description": "Carian untuk pelbagai buku belum disokong lagi",
+    "results": "{total, number} Keputusan - Halaman {currentPage, number} / {totalPages, number}",
+    "apply": "Guna",
+    "simple": "Ringkas",
+    "advanced": "Lanjutan",
+    "semantic": "Semantik"
   },
   "chat": {
     "empty-state": "Gunakan kuasa AI untuk mencari dalam buku, mula dengan menulis apa yang anda cari...",
