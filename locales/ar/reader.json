@@ -40,7 +40,12 @@
     "portion": "جزء",
     "entire-book": "الكتاب بأكمله",
     "book": "كتاب",
-    "book-select-description": "البحث في عدة كتب غير مدعوم بعد"
+    "book-select-description": "البحث في عدة كتب غير مدعوم بعد",
+    "results": "{total, number} النتائج - الصفحة {currentPage, number} / {totalPages, number}",
+    "apply": "تطبيق",
+    "simple": "بسيط",
+    "advanced": "متقدم",
+    "semantic": "دلالي"
   },
   "chat": {
     "empty-state": "استخدم قوة الذكاء الاصطناعي للبحث داخل الكتاب، ابدأ بكتابة ما تبحث عنه...",

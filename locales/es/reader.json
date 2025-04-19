@@ -40,7 +40,12 @@
     "portion": "Porción",
     "entire-book": "Libro Entero",
     "book": "Libro",
-    "book-select-description": "La búsqueda en varios libros no está soportada todavía"
+    "book-select-description": "La búsqueda en varios libros no está soportada todavía",
+    "results": "{total, number} Resultados - Página {currentPage, number} / {totalPages, number}",
+    "apply": "Aplicar",
+    "simple": "Simple",
+    "advanced": "Avanzado",
+    "semantic": "Semántico"
   },
   "chat": {
     "empty-state": "Utiliza el poder de la IA para buscar dentro del libro, comienza escribiendo lo que buscas...",

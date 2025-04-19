@@ -40,7 +40,12 @@
     "portion": "حصہ",
     "entire-book": "پوری کتاب",
     "book": "کتاب",
-    "book-select-description": "متعدد کتابوں کی تلاش کی ابھی تک حمایت نہیں ہے"
+    "book-select-description": "متعدد کتابوں کی تلاش کی ابھی تک حمایت نہیں ہے",
+    "results": "{total, number} نتائج - صفحہ {currentPage, number} / {totalPages, number}",
+    "apply": "لگائیں",
+    "simple": "سادہ",
+    "advanced": "اعلیٰ",
+    "semantic": "لفظی"
   },
   "chat": {
     "empty-state": "کتاب کے اندر تلاش کرنے کے لئے AI کی طاقت کا استعمال کریں، وہ لکھ کر شروع کریں جسے آپ تلاش کر رہے ہیں...",

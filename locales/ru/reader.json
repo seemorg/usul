@@ -40,7 +40,12 @@
     "portion": "Часть",
     "entire-book": "Вся книга",
     "book": "Книга",
-    "book-select-description": "Поиск в нескольких книгах пока не поддерживается"
+    "book-select-description": "Поиск в нескольких книгах пока не поддерживается",
+    "results": "{total, number} Результаты - Страница {currentPage, number} / {totalPages, number}",
+    "apply": "Применить",
+    "simple": "Простой",
+    "advanced": "Расширенный",
+    "semantic": "Семантический"
   },
   "chat": {
     "empty-state": "Используйте мощь AI для поиска внутри книги, начните с ввода того, что вы ищете...",

@@ -40,7 +40,12 @@
     "portion": "Bölüm",
     "entire-book": "Tüm Kitap",
     "book": "Kitap",
-    "book-select-description": "Birden fazla kitap aramak henüz desteklenmiyor"
+    "book-select-description": "Birden fazla kitap aramak henüz desteklenmiyor",
+    "results": "{total, number} Sonuçlar - Sayfa {currentPage, number} / {totalPages, number}",
+    "apply": "Uygula",
+    "simple": "Basit",
+    "advanced": "Gelişmiş",
+    "semantic": "Semantik"
   },
   "chat": {
     "empty-state": "Kitap içinde arama yapmak için yapay zekanın gücünü kullanın, aradığınız şeyi yazarak başlayın...",
