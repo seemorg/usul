@@ -173,7 +173,7 @@ export default function SearchTab() {
               onClick={() => setPage(page - 1)}
               size="sm"
             >
-              <ChevronLeftIcon className="size-4" />
+              <ChevronLeftIcon className="size-4 rtl:rotate-180" />
               {t("common.pagination.previous")}
             </Button>
 
@@ -184,7 +184,7 @@ export default function SearchTab() {
               size="sm"
             >
               {t("common.pagination.next")}
-              <ChevronRightIcon className="size-4" />
+              <ChevronRightIcon className="size-4 rtl:rotate-180" />
             </Button>
           </div>
         </SidebarContainer>
@@ -247,7 +247,7 @@ export default function SearchTab() {
                   value={inputValue}
                   onChange={handleChange}
                   placeholder={t("reader.search.placeholder")}
-                  className="mr-10 h-10 w-full flex-1 border border-gray-300 bg-white pl-9 shadow-none focus:outline-none focus:ring-inset dark:border-border dark:bg-transparent ltr:rounded-r-none rtl:rounded-l-none"
+                  className="h-10 w-full flex-1 border border-gray-300 bg-white shadow-none focus:outline-none focus:ring-inset dark:border-border dark:bg-transparent ltr:mr-10 ltr:rounded-r-none ltr:pl-9 rtl:ml-10 rtl:rounded-l-none rtl:pr-9"
                 />
               </div>
 
@@ -256,7 +256,7 @@ export default function SearchTab() {
                 className="size-10 flex-shrink-0 ltr:rounded-l-none rtl:rounded-r-none"
                 disabled={isLoading}
               >
-                <ChevronRightIcon className="size-5" />
+                <ChevronRightIcon className="size-5 rtl:rotate-180" />
               </Button>
             </form>
           ) : (
