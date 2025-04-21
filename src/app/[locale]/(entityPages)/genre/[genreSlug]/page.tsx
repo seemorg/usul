@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts, navigation } from "@/lib/urls";
+import { yearsSorts, navigation } from "@/lib/urls";
 import { findGenreBySlug } from "@/server/services/genres";
 import AuthorsFilter from "@/components/authors-filter";
 import dynamic from "next/dynamic";
@@ -69,7 +69,7 @@ async function GenrePage({
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort,
+    sortBy: sort.typesenseValue,
     filters: {
       genres: [genre.id],
       regions,
@@ -111,8 +111,8 @@ async function GenrePage({
           placeholder={t("search-within", {
             entity: primaryName,
           })}
-          sorts={booksSorts as any}
-          currentSort={sort}
+          sorts={yearsSorts as any}
+          currentSort={sort.raw}
           view={view}
           currentQuery={q}
           filters={
