@@ -5,7 +5,7 @@ import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts, navigation } from "@/lib/urls";
+import { yearsSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
@@ -15,7 +15,8 @@ import { getTranslations } from "next-intl/server";
 import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import dynamic from "next/dynamic";
 import { getMetadata } from "@/lib/seo";
-import { AppLocale } from "~/i18n.config";
+import type { AppLocale } from "~/i18n.config";
+
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
   loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
@@ -43,7 +44,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
     searchBooks(q, {
       limit: 20,
       page,
-      sortBy: sort,
+      sortBy: sort.typesenseValue,
       filters: {
         genres,
         authors,
@@ -72,8 +73,8 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         placeholder={t("search-within", {
           entity: t("texts"),
         })}
-        sorts={booksSorts as any}
-        currentSort={sort}
+        sorts={yearsSorts as any}
+        currentSort={sort.raw}
         currentQuery={q}
         view={view}
         filters={

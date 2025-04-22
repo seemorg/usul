@@ -40,7 +40,12 @@
     "portion": "Qayb",
     "entire-book": "Buugga Oo Dhan",
     "book": "Buug",
-    "book-select-description": "Baadhista buugaag badan weli lama taageerin"
+    "book-select-description": "Baadhista buugaag badan weli lama taageerin",
+    "results": "{total, number} Natiijooyin - Bogga {currentPage, number} / {totalPages, number}",
+    "apply": "Codso",
+    "simple": "Fudud",
+    "advanced": "Horumarsan",
+    "semantic": "Eray-bixin"
   },
   "chat": {
     "empty-state": "Ka faa'ideyso awoodda AI si aad ugu dhex baadho buugga, ku bilow qorista waxa aad raadineyso...",

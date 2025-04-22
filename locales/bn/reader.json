@@ -40,7 +40,12 @@
     "portion": "অংশ",
     "entire-book": "সম্পূর্ণ বই",
     "book": "বই",
-    "book-select-description": "একাধিক বই অনুসন্ধান করার সুবিধা এখনও সমর্থিত নয়"
+    "book-select-description": "একাধিক বই অনুসন্ধান করার সুবিধা এখনও সমর্থিত নয়",
+    "results": "{total, number} ফলাফল - পৃষ্ঠা {currentPage, number} / {totalPages, number}",
+    "apply": "প্রয়োগ",
+    "simple": "সাধারণ",
+    "advanced": "অগ্রসর",
+    "semantic": "অর্থবোধক"
   },
   "chat": {
     "empty-state": "বইয়ের মধ্যে অনুসন্ধানের জন্য এআই-এর শক্তি ব্যবহার করুন, আপনি যা খুঁজছেন তা লিখে শুরু করুন...",

@@ -40,7 +40,12 @@
     "portion": "भाग",
     "entire-book": "पूरी किताब",
     "book": "किताब",
-    "book-select-description": "एकाधिक पुस्तकों की खोज अभी तक समर्थित नहीं है"
+    "book-select-description": "एकाधिक पुस्तकों की खोज अभी तक समर्थित नहीं है",
+    "results": "{total, number} परिणाम - पृष्ठ {currentPage, number} / {totalPages, number}",
+    "apply": "लागू करें",
+    "simple": "सरल",
+    "advanced": "उन्नत",
+    "semantic": "अर्थपूर्ण"
   },
   "chat": {
     "empty-state": "पुस्तक के अंदर खोज करने के लिए AI की शक्ति का उपयोग करें, ऐसा लिखकर शुरुआत करें जिसकी आप तलाश कर रहे हैं...",

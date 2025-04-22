@@ -40,7 +40,12 @@
     "portion": "برخه",
     "entire-book": "پوره کتاب",
     "book": "کتاب",
-    "book-select-description": "د څو کتابونو لټون لا تر اوسه نه دي ملاتړ شوی"
+    "book-select-description": "د څو کتابونو لټون لا تر اوسه نه دي ملاتړ شوی",
+    "results": "{total, number} پایلې - پاڼه {currentPage, number} / {totalPages, number}",
+    "apply": "کارول",
+    "simple": "ساده",
+    "advanced": "پرمختللی",
+    "semantic": "سمانتیک"
   },
   "chat": {
     "empty-state": "د کتاب دننه د لټون لپاره د AI ځواک وکاروئ، د هغې لیکلو څخه پیل وکړئ چې تاسو یې په لټه کې یاست...",

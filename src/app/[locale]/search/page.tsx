@@ -5,7 +5,7 @@ import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { Route, type SearchType, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts, navigation } from "@/lib/urls";
+import { navigation, yearsSorts } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
@@ -60,7 +60,7 @@ async function search(params: TextsPageProps["searchParams"]) {
     return searchBooks(q, {
       limit: 20,
       page,
-      sortBy: sort,
+      sortBy: sort.typesenseValue,
       filters: {
         genres,
         authors,
@@ -74,7 +74,7 @@ async function search(params: TextsPageProps["searchParams"]) {
     return searchAuthors(q, {
       limit: 20,
       page,
-      sortBy: sort,
+      sortBy: sort.typesenseValue,
       filters: {
         yearRange: year,
         regions,
@@ -86,7 +86,7 @@ async function search(params: TextsPageProps["searchParams"]) {
   return searchGenres(q, {
     limit: 20,
     page,
-    sortBy: sort,
+    // sortBy: sort,
   });
 }
 
@@ -147,8 +147,8 @@ async function SearchPage({ searchParams }: TextsPageProps) {
             placeholder={t("search-within", {
               entity: t("texts"),
             })}
-            sorts={booksSorts as any}
-            currentSort={sort}
+            sorts={yearsSorts as any}
+            currentSort={sort.raw}
             currentQuery={q}
             view={view}
             filters={
