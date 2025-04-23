@@ -1,3 +1,4 @@
+import { Locale } from "next-intl";
 import { defineRouting } from "next-intl/routing";
 
 export const routing = defineRouting({
@@ -37,6 +38,7 @@ export const routing = defineRouting({
     },
   },
   defaultLocale: "en-US",
+  localeDetection: false,
 });
 
 export const pathLocaleToSupportedBcp47LocaleMap = {
@@ -82,9 +84,7 @@ const config = {
 
 export default config;
 
-export type AppLocale = (typeof routing)["locales"][number];
-
-export const localeToFullName: Record<AppLocale, string> = {
+export const localeToFullName: Record<Locale, string> = {
   "en-US": "English",
   "ar-SA": "العربية",
   "bn-BD": "বাংলা",
@@ -101,7 +101,7 @@ export const localeToFullName: Record<AppLocale, string> = {
   "ur-PK": "اردو",
 };
 
-export const localeToDirection: Record<AppLocale, "ltr" | "rtl"> = {
+export const localeToDirection: Record<Locale, "ltr" | "rtl"> = {
   "en-US": "ltr",
   "ar-SA": "rtl",
   "bn-BD": "ltr",

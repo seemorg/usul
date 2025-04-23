@@ -15,14 +15,14 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { collections } from "@/data/collections";
 import TruncatedText from "@/components/ui/truncated-text";
-import { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 type CollectionPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ slug: string; locale: AppLocale }>;
+  params: Promise<{ slug: string; locale: Locale }>;
 }) => {
   const { slug, locale } = await params;
 

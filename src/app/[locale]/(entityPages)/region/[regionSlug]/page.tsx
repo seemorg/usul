@@ -22,9 +22,10 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { getMetadata } from "@/lib/seo";
-import type { AppLocale } from "~/i18n.config";
+
 import { getRegion } from "@/lib/api";
 import { findRegionBySlug } from "@/server/services/regions";
+import { Locale } from "next-intl";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -34,7 +35,7 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ regionSlug: string; locale: AppLocale }>;
+  params: Promise<{ regionSlug: string; locale: Locale }>;
 }) => {
   const { regionSlug, locale } = await params;
 
@@ -149,7 +150,7 @@ async function RegionPage({
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
           currentSort={sort.raw}

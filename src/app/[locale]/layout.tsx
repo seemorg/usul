@@ -6,14 +6,13 @@ import Providers from "./providers";
 import { getFontsClassnames } from "@/lib/fonts";
 import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import type { AppLocale } from "~/i18n.config";
 import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env";
 import DemoModalProvider from "../_components/video-modal/provider";
 import Analytics from "./analytics";
 import { getLocale } from "@/lib/locale/server";
 import { getTotalEntities } from "@/lib/api";
-import { getMessages } from "next-intl/server";
+import type { Locale } from "next-intl";
 
 export async function generateMetadata() {
   const locale = await getLocale();
@@ -30,19 +29,15 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-
-  const [messages, total] = await Promise.all([
-    getMessages({ locale }),
-    getTotalEntities(),
-  ]);
+  const total = await getTotalEntities();
 
   return (
     <html
       lang={locale}
-      dir={getLocaleDirection(locale as AppLocale)}
+      dir={getLocaleDirection(locale)}
       className="bg-muted-primary"
       suppressHydrationWarning
     >
@@ -52,7 +47,7 @@ export default async function LocaleLayout({
           getFontsClassnames(),
         )}
       >
-        <Providers locale={locale} messages={messages} total={total}>
+        <Providers locale={locale} total={total}>
           {children}
 
           <Toaster />

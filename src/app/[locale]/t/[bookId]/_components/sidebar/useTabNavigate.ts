@@ -4,11 +4,11 @@ import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { usePathname } from "@/navigation";
 import { useLocale } from "next-intl";
 import { useSearchParams } from "next/navigation";
-import { type AppLocale, routing } from "~/i18n.config";
+import { routing } from "~/i18n.config";
 
 export const useTabNavigate = () => {
   const pathname = usePathname();
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
 
   const searchParams = useSearchParams();
   const activeTabId = searchParams.get("tab") ?? "content";

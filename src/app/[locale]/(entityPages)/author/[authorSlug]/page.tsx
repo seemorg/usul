@@ -14,7 +14,7 @@ import TruncatedText from "@/components/ui/truncated-text";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import DottedList from "@/components/ui/dotted-list";
-import { getLocale, getPathLocale } from "@/lib/locale/server";
+import { getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
@@ -23,14 +23,14 @@ import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ authorSlug: string; locale: AppLocale }>;
+  params: Promise<{ authorSlug: string; locale: Locale }>;
 }) => {
   const { authorSlug, locale } = await params;
   const pathLocale = appLocaleToPathLocale(locale);
@@ -233,7 +233,7 @@ async function AuthorPage({
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={booksSorts as any}
           currentSort={sort}

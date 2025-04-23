@@ -6,13 +6,14 @@ import { boardMembers, members } from "./members";
 import { config, getMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { VOLUNTEER_EMAIL } from "@/lib/constants";
-import type { AppLocale } from "~/i18n.config";
+
 import { navigation } from "@/lib/urls";
+import { Locale } from "next-intl";
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) => {
   const { locale } = await params;
   const t = await getTranslations("meta");

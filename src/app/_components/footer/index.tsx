@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
-import type { AppLocale } from "~/i18n.config";
 import FooterDemoButton from "./demo-button";
 
 import type { JSX } from "react";
@@ -137,7 +136,7 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
 };
 
 export default function Footer() {
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
   const t = useTranslations("common");
 
   return (

@@ -9,14 +9,14 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
 

@@ -3,12 +3,11 @@
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { useLocale, useTranslations } from "next-intl";
-import type { AppLocale } from "~/i18n.config";
 import SidebarContainer from "./sidebar/sidebar-container";
 
 export const ComingSoonAlert = () => {
   const t = useTranslations("reader");
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
 
   return (
     <SidebarContainer>

@@ -15,7 +15,7 @@ import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "./_contexts/book-details.context";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import type { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 const PdfView = dynamic(() => import("./_components/pdf-view"), {
   ssr: false,
@@ -27,7 +27,7 @@ export const generateMetadata = async ({
 }: {
   params: Promise<{
     bookId: string;
-    locale: AppLocale;
+    locale: Locale;
   }>;
   searchParams: Promise<{
     versionId?: string;
@@ -79,6 +79,7 @@ export default async function SidebarContent({
 }: {
   params: Promise<{
     bookId: string;
+    locale: Locale;
   }>;
   searchParams: Promise<{
     versionId?: string;
@@ -86,7 +87,7 @@ export default async function SidebarContent({
     view: "pdf" | "default";
   }>;
 }) {
-  const { bookId } = await params;
+  const { bookId, locale } = await params;
   const resolvedSearchParams = await searchParams;
   const { versionId, view } = resolvedSearchParams;
 
@@ -110,9 +111,10 @@ export default async function SidebarContent({
     const params = new URLSearchParams(resolvedSearchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
 
-    permanentRedirect(
-      `${navigation.books.reader(response.primarySlug)}${paramsString}`,
-    );
+    permanentRedirect({
+      href: `${navigation.books.reader(response.primarySlug)}${paramsString}`,
+      locale,
+    });
     return;
   }
 

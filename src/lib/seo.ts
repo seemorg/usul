@@ -1,8 +1,8 @@
 import { PATH_LOCALES, appLocaleToPathLocale } from "./locale/utils";
 import { type Metadata, type Viewport } from "next";
 import { relativeUrl } from "./sitemap";
-import type { AppLocale } from "~/i18n.config";
 import { getTranslations } from "next-intl/server";
+import type { Locale } from "next-intl";
 
 export const config = {
   themeColor: "#AA4A44",
@@ -36,7 +36,7 @@ export const getMetadata = async ({
   image?: { url: string; width: number; height: number; alt?: string };
   keywords?: string[];
   authors?: Metadata["authors"];
-  locale?: AppLocale;
+  locale?: Locale;
 } = {}): Promise<Metadata> => {
   const t = await getTranslations("meta.global");
 

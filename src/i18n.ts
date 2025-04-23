@@ -1,13 +1,15 @@
-import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
-import config, { routing, type AppLocale } from "~/i18n.config";
+import config, { routing } from "~/i18n.config";
 import { appLocaleToPathLocale } from "./lib/locale/utils";
+import { hasLocale } from "next-intl";
 
-export default getRequestConfig(async ({ locale }) => {
-  // Validate that the incoming `locale` parameter is valid
-  if (!routing.locales.includes(locale as AppLocale)) notFound();
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale = hasLocale(routing.locales, requested)
+    ? requested
+    : routing.defaultLocale;
 
-  const pathLocale = appLocaleToPathLocale(locale as AppLocale);
+  const pathLocale = appLocaleToPathLocale(locale);
 
   const messages = (
     await Promise.all(
@@ -27,12 +29,14 @@ export default getRequestConfig(async ({ locale }) => {
 
   return {
     messages,
+    locale,
     ...getSharedConfig(),
   };
 });
 
-export const getSharedConfig = (): Awaited<
-  ReturnType<Parameters<typeof getRequestConfig>[0]>
+export const getSharedConfig = (): Omit<
+  Awaited<ReturnType<Parameters<typeof getRequestConfig>[0]>>,
+  "locale"
 > => {
   return {
     timeZone: "UTC",

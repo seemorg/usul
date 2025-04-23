@@ -1,9 +1,10 @@
-import { type AppLocale, routing } from "~/i18n.config";
-import { createSharedPathnamesNavigation } from "next-intl/navigation";
+import { routing } from "~/i18n.config";
+import { createNavigation } from "next-intl/navigation";
 import { isSameURL } from "./lib/utils";
 import NProgress from "nprogress";
+import type { Locale } from "next-intl";
 
-const result = createSharedPathnamesNavigation(routing);
+const result = createNavigation(routing);
 
 export const Link = result.Link;
 export const usePathname = result.usePathname;
@@ -16,7 +17,7 @@ export const useRouter = () => {
 
   function push(
     href: string,
-    options?: Parameters<typeof router.push>[1] & { locale?: AppLocale },
+    options?: Parameters<typeof router.push>[1] & { locale?: Locale },
     NProgressOptions?: { showProgressBar?: boolean },
   ) {
     if (NProgressOptions?.showProgressBar === false)
@@ -34,7 +35,7 @@ export const useRouter = () => {
 
   function replace(
     href: string,
-    options?: Parameters<typeof router.replace>[1] & { locale?: AppLocale },
+    options?: Parameters<typeof router.replace>[1] & { locale?: Locale },
     NProgressOptions?: { showProgressBar?: boolean },
   ) {
     if (NProgressOptions?.showProgressBar === false)

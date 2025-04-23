@@ -16,7 +16,7 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { getPathLocale } from "@/lib/locale/server";
-import type { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -26,7 +26,7 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ genreSlug: string; locale: AppLocale }>;
+  params: Promise<{ genreSlug: string; locale: Locale }>;
 }) => {
   const { genreSlug, locale } = await params;
 
@@ -111,7 +111,7 @@ async function GenrePage({
           )}
           emptyMessage={t("no-entity", { entity: t("texts") })}
           placeholder={t("search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
           currentSort={sort.raw}

@@ -2,14 +2,14 @@ import Container from "@/components/ui/container";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { Locale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import type { AppLocale } from "~/i18n.config";
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) => {
   const { locale } = await params;
   const t = await getTranslations("meta");
@@ -25,7 +25,7 @@ export const generateMetadata = async ({
 export default async function AboutPage({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale: localeFromParams } = await params;
   const locale = appLocaleToPathLocale(localeFromParams);

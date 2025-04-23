@@ -1,8 +1,7 @@
 import Container from "@/components/ui/container";
 import { navigation } from "@/lib/urls";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { type AppLocale } from "~/i18n.config";
 import { cn } from "@/lib/utils";
 
 import Image from "next/image";
@@ -11,6 +10,7 @@ import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
 import dynamicImport from "next/dynamic";
+import { Locale } from "next-intl";
 // import { DonationStatsCard } from "./stats-card.client";
 
 const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
@@ -20,7 +20,7 @@ const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) => {
   const { locale } = await params;
 
@@ -37,11 +37,10 @@ export const generateMetadata = async ({
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "donate" });
 

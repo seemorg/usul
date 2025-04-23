@@ -14,9 +14,9 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import HomepageSection from "../_components/homepage-section";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { type AppLocale, routing } from "~/i18n.config";
+import { routing } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { PlayIcon } from "@heroicons/react/24/solid";
@@ -25,11 +25,12 @@ import { cn } from "@/lib/utils";
 import { DemoButton } from "./demo-button";
 import { getHomepageGenres } from "@/lib/api";
 import { collections } from "@/data/collections";
+import type { Locale } from "next-intl";
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) => {
   const { locale } = await params;
   return getMetadata({ pagePath: "/", locale });
@@ -44,11 +45,11 @@ export function generateStaticParams() {
 export default async function HomePage({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
 
-  unstable_setRequestLocale(locale);
+  setRequestLocale(locale);
 
   const pathLocale = appLocaleToPathLocale(locale);
 

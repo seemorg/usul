@@ -25,7 +25,7 @@ import Navbar from "@/app/_components/navbar";
 import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
 import GlobalSearchResult from "@/components/global-search-result";
-import type { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 const YearFilter = dynamic(() => import("@/components/year-filter"), {
   ssr: false,
@@ -37,7 +37,7 @@ type TextsPageProps = InferPagePropsType<RouteType>;
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: AppLocale }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
 

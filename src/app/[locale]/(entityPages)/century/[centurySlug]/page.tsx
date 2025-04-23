@@ -13,14 +13,14 @@ import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import type { AppLocale } from "~/i18n.config";
+import { Locale } from "next-intl";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
   params,
 }: {
-  params: Promise<{ centurySlug: string; locale: AppLocale }>;
+  params: Promise<{ centurySlug: string; locale: Locale }>;
 }) => {
   const { centurySlug, locale } = await params;
 

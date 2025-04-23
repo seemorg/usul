@@ -9,8 +9,9 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "../_contexts/book-details.context";
-import type { AppLocale } from "~/i18n.config";
+
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { Locale } from "next-intl";
 
 export const generateMetadata = async ({
   params,
@@ -19,7 +20,7 @@ export const generateMetadata = async ({
   params: Promise<{
     bookId: string;
     pageNumber: string;
-    locale: AppLocale;
+    locale: Locale;
   }>;
   searchParams: Promise<{
     versionId?: string;
@@ -73,6 +74,7 @@ async function SidebarContent({
   params: Promise<{
     bookId: string;
     pageNumber: string;
+    locale: Locale;
   }>;
   searchParams: Promise<{
     versionId?: string;
@@ -80,7 +82,7 @@ async function SidebarContent({
   }>;
 }) {
   const resolvedSearchParams = await searchParams;
-  const { bookId, pageNumber } = await params;
+  const { bookId, pageNumber, locale } = await params;
   const { versionId } = resolvedSearchParams;
 
   const pathLocale = await getPathLocale();
@@ -106,9 +108,10 @@ async function SidebarContent({
     const params = new URLSearchParams(resolvedSearchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
 
-    permanentRedirect(
-      `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
-    );
+    permanentRedirect({
+      href: `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
+      locale,
+    });
     return;
   }
 
