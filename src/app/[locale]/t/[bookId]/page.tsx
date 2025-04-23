@@ -22,17 +22,20 @@ const PdfView = dynamic(() => import("./_components/pdf-view"), {
 });
 
 export const generateMetadata = async ({
-  params: { bookId, locale },
-  searchParams: { versionId },
+  params,
+  searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
     locale: AppLocale;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     versionId?: string;
-  };
+  }>;
 }) => {
+  const { bookId, locale } = await params;
+  const { versionId } = await searchParams;
+
   const pathLocale = appLocaleToPathLocale(locale);
 
   const response = await getBook(bookId, {
@@ -71,19 +74,21 @@ export const generateMetadata = async ({
 };
 
 export default async function SidebarContent({
-  params: { bookId },
+  params,
   searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     versionId?: string;
     tab: string;
     view: "pdf" | "default";
-  };
+  }>;
 }) {
-  const { versionId, view } = searchParams;
+  const { bookId } = await params;
+  const resolvedSearchParams = await searchParams;
+  const { versionId, view } = resolvedSearchParams;
 
   const pathLocale = await getPathLocale();
   const t = await getTranslations("reader");
@@ -102,7 +107,7 @@ export default async function SidebarContent({
 
   // if it's an alternate slug, redirect to the primary slug
   if ("type" in response) {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(resolvedSearchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
 
     permanentRedirect(

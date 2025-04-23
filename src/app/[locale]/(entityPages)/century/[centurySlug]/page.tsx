@@ -18,10 +18,12 @@ import type { AppLocale } from "~/i18n.config";
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { centurySlug, locale },
+  params,
 }: {
-  params: { centurySlug: string; locale: AppLocale };
+  params: Promise<{ centurySlug: string; locale: AppLocale }>;
 }) => {
+  const { centurySlug, locale } = await params;
+
   const yearRange = await findYearRangeBySlug(centurySlug);
   if (!yearRange) return;
 

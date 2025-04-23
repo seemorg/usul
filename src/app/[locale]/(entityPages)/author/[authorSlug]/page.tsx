@@ -23,15 +23,16 @@ import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { AppLocale } from "~/i18n.config";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { authorSlug },
+  params,
 }: {
-  params: { authorSlug: string };
+  params: Promise<{ authorSlug: string; locale: AppLocale }>;
 }) => {
-  const locale = await getLocale();
+  const { authorSlug, locale } = await params;
   const pathLocale = appLocaleToPathLocale(locale);
 
   const author = await findAuthorBySlug(authorSlug, pathLocale);

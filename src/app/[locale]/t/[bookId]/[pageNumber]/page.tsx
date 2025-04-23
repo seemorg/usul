@@ -13,18 +13,22 @@ import type { AppLocale } from "~/i18n.config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 export const generateMetadata = async ({
-  params: { bookId, pageNumber, locale },
-  searchParams: { versionId },
+  params,
+  searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
     pageNumber: string;
     locale: AppLocale;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     versionId?: string;
-  };
+  }>;
 }) => {
+  const { bookId, locale, pageNumber } = await params;
+  const resolvedSearchParams = await searchParams;
+  const { versionId } = resolvedSearchParams;
+
   const pathLocale = appLocaleToPathLocale(locale);
 
   const parsedNumber = Number(pageNumber);
@@ -63,19 +67,22 @@ export const generateMetadata = async ({
 };
 
 async function SidebarContent({
-  params: { bookId, pageNumber },
+  params,
   searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
     pageNumber: string;
-  };
-  searchParams: {
+  }>;
+  searchParams: Promise<{
     versionId?: string;
     tab: string;
-  };
+  }>;
 }) {
-  const { versionId } = searchParams;
+  const resolvedSearchParams = await searchParams;
+  const { bookId, pageNumber } = await params;
+  const { versionId } = resolvedSearchParams;
+
   const pathLocale = await getPathLocale();
 
   const parsedNumber = Number(pageNumber);
@@ -96,7 +103,7 @@ async function SidebarContent({
   }
 
   if ("type" in response) {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(resolvedSearchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
 
     permanentRedirect(

@@ -18,10 +18,12 @@ const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
 });
 
 export const generateMetadata = async ({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) => {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "meta" });
 
   return getMetadata({
@@ -33,10 +35,12 @@ export const generateMetadata = async ({
 };
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) {
+  const { locale } = await params;
+
   unstable_setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "donate" });

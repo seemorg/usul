@@ -14,10 +14,12 @@ import { AppLocale } from "~/i18n.config";
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) {
+  const { locale } = await params;
+
   return getMetadata({
     title: (await getTranslations("entities"))("genres"),
     pagePath: navigation.genres.all(),

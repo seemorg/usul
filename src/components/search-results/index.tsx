@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense, Fragment, type JSX } from "react";
 import Paginator from "@/components/ui/pagination";
 import type { Pagination } from "@/types/pagination";
 import type { TypesenseResponse } from "@/server/typesense/utils";
@@ -145,9 +145,9 @@ export default function SearchResults<T extends object & { id: string }>({
               )}
             >
               {response.hits!.map((result) => (
-                <React.Fragment key={result.document.id}>
+                <Fragment key={result.document.id}>
                   {renderResult(result)}
-                </React.Fragment>
+                </Fragment>
               ))}
             </div>
           ) : (

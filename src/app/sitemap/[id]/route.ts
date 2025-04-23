@@ -39,19 +39,20 @@ export async function generateStaticParams() {
 
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   // const isProd = env.VERCEL_ENV === "production";
   // if (!isProd) {
   //   return new Response("Not found", { status: 404 });
   // }
 
-  const partId = params.id.split(".")[0];
+  const partId = id.split(".")[0];
   const partNumber = Number(partId);
 
   if (
     !partId ||
-    !params.id.endsWith(".xml") ||
+    !id.endsWith(".xml") ||
     isNaN(partNumber) ||
     partNumber < 1 ||
     partNumber > 3

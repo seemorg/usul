@@ -6,7 +6,7 @@ import type { RefObject } from "react";
 import type { ImperativePanelHandle } from "react-resizable-panels";
 
 interface CollapsedSidebarProps {
-  sidebarRef: RefObject<ImperativePanelHandle>;
+  sidebarRef: RefObject<ImperativePanelHandle | null>;
 }
 
 export default function CollapsedSidebar({

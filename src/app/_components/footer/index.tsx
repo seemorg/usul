@@ -16,6 +16,8 @@ import { useLocale, useTranslations } from "next-intl";
 import type { AppLocale } from "~/i18n.config";
 import FooterDemoButton from "./demo-button";
 
+import type { JSX } from "react";
+
 type NavItem = {
   label: NamespaceTranslations<"common">;
   href?: string;

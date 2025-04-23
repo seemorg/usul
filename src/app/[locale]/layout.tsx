@@ -27,11 +27,13 @@ export const viewport = getViewport();
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
+  const { locale } = await params;
+
   const [messages, total] = await Promise.all([
     getMessages({ locale }),
     getTotalEntities(),

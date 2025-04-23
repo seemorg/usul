@@ -9,12 +9,13 @@ import type { AppLocale } from "~/i18n.config";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) => {
+  const { locale } = await params;
   const t = await getTranslations("meta");
 
   return getMetadata({
-    locale: params.locale,
+    locale,
     pagePath: navigation.about(),
     title: t("about-page.title"),
     description: t("about-page.description"),
@@ -24,9 +25,10 @@ export const generateMetadata = async ({
 export default async function AboutPage({
   params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) {
-  const locale = appLocaleToPathLocale(params.locale);
+  const { locale: localeFromParams } = await params;
+  const locale = appLocaleToPathLocale(localeFromParams);
   const t = await getTranslations("about");
 
   try {

@@ -25,10 +25,12 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 type TextsPageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) {
+  const { locale } = await params;
+
   return getMetadata({
     title: (await getTranslations("entities"))("texts"),
     pagePath: navigation.books.all(),

@@ -24,10 +24,12 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { genreSlug, locale },
+  params,
 }: {
-  params: { genreSlug: string; locale: AppLocale };
+  params: Promise<{ genreSlug: string; locale: AppLocale }>;
 }) => {
+  const { genreSlug, locale } = await params;
+
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return;
 

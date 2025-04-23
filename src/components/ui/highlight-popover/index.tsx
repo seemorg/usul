@@ -145,7 +145,7 @@ export const HighlightPopover = memo(function HighlightPopover({
   const [currentSelection, setCurrentSelection] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const selectionRangeRef = useRef<Range | null>(null);
-  const showPopoverTimeoutRef = useRef<NodeJS.Timeout>();
+  const showPopoverTimeoutRef = useRef<NodeJS.Timeout>(undefined);
 
   const popoverRef = useRef<HTMLDivElement>(null);
 

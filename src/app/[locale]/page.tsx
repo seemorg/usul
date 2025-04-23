@@ -26,11 +26,14 @@ import { DemoButton } from "./demo-button";
 import { getHomepageGenres } from "@/lib/api";
 import { collections } from "@/data/collections";
 
-export const generateMetadata = ({
-  params: { locale },
+export const generateMetadata = async ({
+  params,
 }: {
-  params: { locale: AppLocale };
-}) => getMetadata({ pagePath: "/", locale });
+  params: Promise<{ locale: AppLocale }>;
+}) => {
+  const { locale } = await params;
+  return getMetadata({ pagePath: "/", locale });
+};
 
 export const dynamic = "force-static";
 
@@ -39,10 +42,12 @@ export function generateStaticParams() {
 }
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) {
+  const { locale } = await params;
+
   unstable_setRequestLocale(locale);
 
   const pathLocale = appLocaleToPathLocale(locale);

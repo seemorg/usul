@@ -32,10 +32,12 @@ const YearFilter = dynamic(() => import("@/components/year-filter"), {
 });
 
 export const generateMetadata = async ({
-  params: { regionSlug, locale },
+  params,
 }: {
-  params: { regionSlug: string; locale: AppLocale };
+  params: Promise<{ regionSlug: string; locale: AppLocale }>;
 }) => {
+  const { regionSlug, locale } = await params;
+
   const pathLocale = await getPathLocale();
 
   const region = await getRegion(regionSlug, { locale: pathLocale });

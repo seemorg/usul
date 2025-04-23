@@ -10,21 +10,21 @@ import type { InferPagePropsType } from "next-typesafe-url";
 import { yearsSorts, navigation } from "@/lib/urls";
 
 import DottedList from "@/components/ui/dotted-list";
-import { getLocale } from "@/lib/locale/server";
 
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { collections } from "@/data/collections";
 import TruncatedText from "@/components/ui/truncated-text";
+import { AppLocale } from "~/i18n.config";
 
 type CollectionPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string; locale: AppLocale }>;
 }) => {
-  const locale = await getLocale();
+  const { slug, locale } = await params;
 
   const collection = collections.find((c) => c.slug === slug);
   if (!collection) return;

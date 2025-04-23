@@ -12,11 +12,12 @@ import { navigation } from "@/lib/urls";
 export const generateMetadata = async ({
   params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: AppLocale }>;
 }) => {
+  const { locale } = await params;
   const t = await getTranslations("meta");
   return getMetadata({
-    locale: params.locale,
+    locale,
     pagePath: navigation.team(),
     title: t("team-page.title"),
     description: t("team-page.description"),
