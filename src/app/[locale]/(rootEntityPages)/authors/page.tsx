@@ -2,8 +2,6 @@ import SearchResults from "@/components/search-results";
 import { Route, sorts, type RouteType } from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
-import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
@@ -14,11 +12,7 @@ import { searchAuthors } from "@/server/typesense/author";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { Locale } from "next-intl";
-
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import YearFilterClient from "@/components/year-filter/client";
 
 type PageProps = InferPagePropsType<RouteType>;
 
@@ -76,7 +70,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
         hasViews={false}
         filters={
           <>
-            <YearFilter
+            <YearFilterClient
               defaultRange={year}
               maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
             />

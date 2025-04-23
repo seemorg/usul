@@ -12,15 +12,9 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import { countAllBooks } from "@/server/services/books";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import dynamic from "next/dynamic";
 import { getMetadata } from "@/lib/seo";
 import { Locale } from "next-intl";
-
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import YearFilterClient from "@/components/year-filter/client";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -82,7 +76,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         view={view}
         filters={
           <>
-            <YearFilter
+            <YearFilterClient
               maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
               defaultRange={year}
             />

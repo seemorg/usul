@@ -8,8 +8,6 @@ import type { InferPagePropsType } from "next-typesafe-url";
 import { yearsSorts, navigation } from "@/lib/urls";
 import { findGenreBySlug } from "@/server/services/genres";
 import AuthorsFilter from "@/components/authors-filter";
-import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import RegionsFilter from "@/components/regions-filter";
 import { getTranslations } from "next-intl/server";
@@ -17,11 +15,7 @@ import { getMetadata } from "@/lib/seo";
 import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { getPathLocale } from "@/lib/locale/server";
 import { Locale } from "next-intl";
-
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import YearFilterClient from "@/components/year-filter/client";
 
 export const generateMetadata = async ({
   params,
@@ -117,7 +111,7 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
           currentQuery={q}
           filters={
             <>
-              <YearFilter
+              <YearFilterClient
                 maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
                 defaultRange={year}
               />

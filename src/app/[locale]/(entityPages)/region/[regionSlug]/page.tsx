@@ -8,9 +8,7 @@ import SearchResults from "@/components/search-results";
 import { navigation, yearsSorts } from "@/lib/urls";
 import BookSearchResult from "@/components/book-search-result";
 import AuthorsFilter from "@/components/authors-filter";
-import dynamic from "next/dynamic";
 import { gregorianYearToHijriYear } from "@/lib/date";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
 import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { ExpandibleList } from "@/components/ui/expandible-list";
@@ -26,11 +24,7 @@ import { getMetadata } from "@/lib/seo";
 import { getRegion } from "@/lib/api";
 import { findRegionBySlug } from "@/server/services/regions";
 import { Locale } from "next-intl";
-
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import YearFilterClient from "@/components/year-filter/client";
 
 export const generateMetadata = async ({
   params,
@@ -156,7 +150,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
           view={view}
           filters={
             <>
-              <YearFilter
+              <YearFilterClient
                 maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
                 defaultRange={year}
               />

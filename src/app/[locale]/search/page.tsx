@@ -10,8 +10,7 @@ import RegionsFilter from "@/components/regions-filter";
 import AuthorsFilter from "@/components/authors-filter";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getTranslations } from "next-intl/server";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import dynamic from "next/dynamic";
+
 import { getMetadata } from "@/lib/seo";
 import Container from "@/components/ui/container";
 import { searchAllCollections } from "@/server/typesense/global";
@@ -26,11 +25,7 @@ import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
 import GlobalSearchResult from "@/components/global-search-result";
 import { Locale } from "next-intl";
-
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import YearFilterClient from "@/components/year-filter/client";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -161,7 +156,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
               type === "regions" ? null : (
                 <>
                   {type === "texts" || type === "authors" ? (
-                    <YearFilter
+                    <YearFilterClient
                       maxYear={gregorianYearToHijriYear(
                         new Date().getFullYear(),
                       )}

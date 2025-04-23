@@ -9,13 +9,8 @@ import { MoonStarIcon } from "lucide-react";
 import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
-import dynamicImport from "next/dynamic";
 import { Locale } from "next-intl";
-// import { DonationStatsCard } from "./stats-card.client";
-
-const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
-  ssr: false,
-});
+import SuccessModal from "./success-modal.client";
 
 export const generateMetadata = async ({
   params,

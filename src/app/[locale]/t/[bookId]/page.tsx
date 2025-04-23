@@ -16,10 +16,7 @@ import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "./_contexts/book-details.context";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { Locale } from "next-intl";
-
-const PdfView = dynamic(() => import("./_components/pdf-view"), {
-  ssr: false,
-});
+import PdfViewClient from "./_components/pdf-view/client";
 
 export const generateMetadata = async ({
   params,
@@ -122,7 +119,7 @@ export default async function SidebarContent({
 
   if (response.content.source === "external") {
     readerContent = (
-      <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:px-8! xl:px-16!">
+      <div className="lg:px-8! xl:px-16! mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5">
         <div className="flex flex-col items-center justify-center py-20">
           <FileQuestionIcon className="h-16 w-16 text-muted-foreground" />
 
@@ -157,7 +154,7 @@ export default async function SidebarContent({
       notFound();
     }
 
-    readerContent = <PdfView pdf={pdfUrl} />;
+    readerContent = <PdfViewClient pdf={pdfUrl} />;
   } else {
     readerContent = (
       <article>
