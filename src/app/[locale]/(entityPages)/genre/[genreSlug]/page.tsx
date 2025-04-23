@@ -53,10 +53,8 @@ export const generateMetadata = async ({
 
 type GenrePageProps = InferPagePropsType<RouteType>;
 
-async function GenrePage({
-  routeParams: { genreSlug },
-  searchParams,
-}: GenrePageProps) {
+async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
+  const { genreSlug } = await routeParams;
   const locale = await getPathLocale();
   const genre = await findGenreBySlug(decodeURIComponent(genreSlug));
 
@@ -66,7 +64,7 @@ async function GenrePage({
 
   const t = await getTranslations("entities");
 
-  const { q, sort, page, authors, regions, year, view } = searchParams;
+  const { q, sort, page, authors, regions, year, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,

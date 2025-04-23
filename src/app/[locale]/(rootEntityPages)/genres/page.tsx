@@ -28,7 +28,7 @@ export async function generateMetadata({
 }
 
 async function GenresPage({ searchParams }: PageProps) {
-  const { q, sort, page } = searchParams;
+  const { q, sort, page } = await searchParams;
 
   const t = await getTranslations("entities");
 

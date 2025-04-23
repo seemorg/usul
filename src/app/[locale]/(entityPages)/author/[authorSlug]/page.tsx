@@ -87,10 +87,8 @@ export const generateMetadata = async ({
   });
 };
 
-async function AuthorPage({
-  routeParams: { authorSlug },
-  searchParams,
-}: AuthorPageProps) {
+async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
+  const { authorSlug } = await routeParams;
   const pathLocale = await getPathLocale();
 
   const author = await findAuthorBySlug(
@@ -103,7 +101,7 @@ async function AuthorPage({
     notFound();
   }
 
-  const { q, sort, page, genres, view } = searchParams;
+  const { q, sort, page, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,

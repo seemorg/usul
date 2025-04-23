@@ -28,7 +28,7 @@ export async function generateMetadata({
 }
 
 async function CenturiesPage({ searchParams }: PageProps) {
-  const { q, sort } = searchParams;
+  const { q, sort } = await searchParams;
   const qString = String(q);
 
   const t = await getTranslations("entities");

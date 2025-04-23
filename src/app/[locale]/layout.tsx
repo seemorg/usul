@@ -10,12 +10,17 @@ import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env";
 import DemoModalProvider from "../_components/video-modal/provider";
 import Analytics from "./analytics";
-import { getLocale } from "@/lib/locale/server";
+
 import { getTotalEntities } from "@/lib/api";
 import type { Locale } from "next-intl";
 
-export async function generateMetadata() {
-  const locale = await getLocale();
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: Locale }>;
+}) {
+  const { locale } = await params;
+
   return getMetadata({
     all: true,
     locale,

@@ -67,7 +67,7 @@
     "next-axiom": "^1.1.1",
     "next-intl": "^4.0.3",
     "next-themes": "^0.2.1",
-    "next-typesafe-url": "^4.0.7",
+    "next-typesafe-url": "^5.1.7",
     "nprogress": "^0.2.0",
     "plyr-react": "^5.3.0",
     "prisma-json-types-generator": "^3.0.4",

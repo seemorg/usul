@@ -28,7 +28,7 @@ export async function generateMetadata({
 }
 
 async function RegionsPage({ searchParams }: PageProps) {
-  const { q, page, sort } = searchParams;
+  const { q, page, sort } = await searchParams;
 
   const t = await getTranslations("entities");
 

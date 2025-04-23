@@ -39,7 +39,8 @@ export async function generateMetadata({
 }
 
 async function TextsPage({ searchParams }: TextsPageProps) {
-  const { q, sort, page, genres, authors, regions, year, view } = searchParams;
+  const { q, sort, page, genres, authors, regions, year, view } =
+    await searchParams;
   const t = await getTranslations("entities");
 
   const [results, totalBooks] = await Promise.all([

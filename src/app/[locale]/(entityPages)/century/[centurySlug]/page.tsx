@@ -43,10 +43,8 @@ export const generateMetadata = async ({
   });
 };
 
-async function CenturyPage({
-  routeParams: { centurySlug },
-  searchParams,
-}: CenturyPageProps) {
+async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
+  const { centurySlug } = await routeParams;
   const yearRange = await findYearRangeBySlug(centurySlug);
 
   if (!yearRange) {
@@ -55,7 +53,7 @@ async function CenturyPage({
 
   const t = await getTranslations();
 
-  const { q, sort, page, authors, regions, genres, view } = searchParams;
+  const { q, sort, page, authors, regions, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,

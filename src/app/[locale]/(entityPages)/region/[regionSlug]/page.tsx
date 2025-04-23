@@ -59,10 +59,8 @@ export const generateMetadata = async ({
 
 type RegionPageProps = InferPagePropsType<RouteType>;
 
-async function RegionPage({
-  routeParams: { regionSlug },
-  searchParams,
-}: RegionPageProps) {
+async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
+  const { regionSlug } = await routeParams;
   const pathLocale = await getPathLocale();
   const region = await findRegionBySlug(regionSlug, pathLocale);
 
@@ -72,7 +70,7 @@ async function RegionPage({
 
   const t = await getTranslations();
 
-  const { q, sort, page, year, authors, genres, view } = searchParams;
+  const { q, sort, page, year, authors, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,

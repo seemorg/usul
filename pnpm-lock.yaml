@@ -159,8 +159,8 @@ importers:
         specifier: ^0.2.1
         version: 0.2.1(next@15.3.1(@babel/core@7.25.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-typesafe-url:
-        specifier: ^4.0.7
-        version: 4.0.7(next@15.3.1(@babel/core@7.25.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(zod@3.22.4)
+        specifier: ^5.1.7
+        version: 5.1.7(next@15.3.1(@babel/core@7.25.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(zod@3.22.4)
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -5575,12 +5575,12 @@ packages:
       react: '*'
       react-dom: '*'
 
-  next-typesafe-url@4.0.7:
-    resolution: {integrity: sha512-AdQmEteC9jb4UPG5JdI/r8U4RkFgNAUSSuLTVuV78lcTtPuwrA/nAQIJUkqoShbo8LTJdVK/gQT3atE+Iy2KDg==}
+  next-typesafe-url@5.1.7:
+    resolution: {integrity: sha512-RJRhRygT1WGpq6w52CoN0iXMhSj87ap/4VOpDiNhFSmp9TBYMXf0HOf0ygY6L/puDxKw8J1FqaIOb2+78DfuGQ==}
     hasBin: true
     peerDependencies:
-      next: ^13.4.12  || ^14.0.0
-      react: ^18.2.0
+      next: ^13.4.12  || ^14.0.0 || ^15.0.0
+      react: ^18.2.0 || ^19.0.0
       zod: ^3.21.4
 
   next@15.3.1:
@@ -13812,7 +13812,7 @@ snapshots:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
-  next-typesafe-url@4.0.7(next@15.3.1(@babel/core@7.25.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(zod@3.22.4):
+  next-typesafe-url@5.1.7(next@15.3.1(@babel/core@7.25.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(zod@3.22.4):
     dependencies:
       chokidar: 3.6.0
       meow: 9.0.0
@@ -13899,8 +13899,8 @@ snapshots:
   normalize-package-data@3.0.3:
     dependencies:
       hosted-git-info: 4.1.0
-      is-core-module: 2.13.1
-      semver: 7.6.0
+      is-core-module: 2.16.1
+      semver: 7.7.1
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -14839,8 +14839,7 @@ snapshots:
 
   semver@7.6.3: {}
 
-  semver@7.7.1:
-    optional: true
+  semver@7.7.1: {}
 
   send@0.19.0:
     dependencies:

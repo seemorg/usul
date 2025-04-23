@@ -48,7 +48,7 @@ export async function generateMetadata({
   });
 }
 
-async function search(params: TextsPageProps["searchParams"]) {
+async function search(params: Awaited<TextsPageProps["searchParams"]>) {
   const { type, q, sort, page, genres, authors, regions, year } = params;
 
   if (type === "all") {
@@ -116,10 +116,12 @@ const renderResult = (type: SearchType, view: View) => (result: any) => {
 };
 
 async function SearchPage({ searchParams }: TextsPageProps) {
-  const { type, q, sort, genres, authors, regions, year, view } = searchParams;
+  const resolvedSearchParams = await searchParams;
+  const { type, q, sort, genres, authors, regions, year, view } =
+    resolvedSearchParams;
   const t = await getTranslations("entities");
 
-  const results = await search(searchParams);
+  const results = await search(resolvedSearchParams);
 
   return (
     <div>

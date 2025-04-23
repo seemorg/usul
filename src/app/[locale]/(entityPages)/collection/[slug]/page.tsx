@@ -40,10 +40,11 @@ export const generateMetadata = async ({
 };
 
 async function CollectionPage({
-  routeParams: { slug },
+  routeParams,
   searchParams,
 }: CollectionPageProps) {
-  const { q, sort, page, genres, view } = searchParams;
+  const { slug } = await routeParams;
+  const { q, sort, page, genres, view } = await searchParams;
   const collection = collections.find((c) => c.slug === slug);
 
   if (!collection) {
