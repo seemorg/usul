@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 
 import { cn } from "@/lib/utils";
@@ -27,22 +26,21 @@ const tooltipVariants = cva(
   },
 );
 
-type TooltipContentProps = React.ComponentPropsWithoutRef<
-  typeof TooltipPrimitive.Content
-> &
-  VariantProps<typeof tooltipVariants>;
+interface TooltipContentProps
+  extends React.ComponentProps<typeof TooltipPrimitive.Content>,
+    VariantProps<typeof tooltipVariants> {}
 
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  TooltipContentProps
->(({ className, sideOffset = 4, variant, ...props }, ref) => (
+const TooltipContent = ({
+  className,
+  sideOffset = 4,
+  variant,
+  ...props
+}: TooltipContentProps) => (
   <TooltipPrimitive.Content
-    ref={ref}
     sideOffset={sideOffset}
     className={cn(tooltipVariants({ variant, className }))}
     {...props}
   />
-));
-TooltipContent.displayName = TooltipPrimitive.Content.displayName;
+);
 
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider };

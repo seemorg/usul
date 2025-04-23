@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
 
 import { cn } from "@/lib/utils";
@@ -9,35 +8,35 @@ import { TooltipPortal } from "@radix-ui/react-tooltip";
 
 const Tabs = TabsPrimitive.Root;
 
-const TabsList = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.List>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.List>
->(({ className, ...props }, ref) => (
+const TabsList = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List>) => (
   <TabsPrimitive.List
-    ref={ref}
     className={cn(
-      "inline-flex h-[38px] items-center justify-center rounded-lg border border-border bg-muted p-[3px] text-muted-foreground dark:bg-accent/80",
+      "border-border bg-muted text-muted-foreground dark:bg-accent/80 inline-flex h-[38px] items-center justify-center rounded-lg border p-[3px]",
       className,
     )}
     {...props}
   />
-));
-TabsList.displayName = TabsPrimitive.List.displayName;
+);
 
-const TabsTrigger = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger> & {
-    tooltip?: string;
-    tooltipProps?: React.ComponentPropsWithoutRef<typeof TooltipContent>;
-  }
->(({ className, tooltip, tooltipProps, children, ...props }, ref) => {
+const TabsTrigger = ({
+  className,
+  tooltip,
+  tooltipProps,
+  children,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger> & {
+  tooltip?: string;
+  tooltipProps?: React.ComponentProps<typeof TooltipContent>;
+}) => {
   const showTooltip = !!tooltip;
 
   const trigger = (
     <TabsPrimitive.Trigger
-      ref={ref}
       className={cn(
-        "inline-flex h-full items-center justify-center whitespace-nowrap rounded text-sm font-medium ring-offset-background transition-all focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+        "ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex h-full items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 data-[state=active]:shadow-sm",
         !showTooltip && "px-3 disabled:pointer-events-none",
         className,
       )}
@@ -62,22 +61,19 @@ const TabsTrigger = React.forwardRef<
   );
 
   return trigger;
-});
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+};
 
-const TabsContent = React.forwardRef<
-  React.ElementRef<typeof TabsPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
->(({ className, ...props }, ref) => (
+const TabsContent = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content>) => (
   <TabsPrimitive.Content
-    ref={ref}
     className={cn(
-      "mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring mt-2 focus-visible:ring-2 focus-visible:ring-offset-2",
       className,
     )}
     {...props}
   />
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
+);
 
 export { Tabs, TabsList, TabsTrigger, TabsContent };

@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -43,38 +42,31 @@ export interface ButtonProps
   tooltipProps?: React.ComponentProps<typeof TooltipContent>;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  (
-    {
-      className,
-      variant,
-      size,
-      asChild = false,
-      tooltip,
-      tooltipProps = {},
-      ...props
-    },
-    ref,
-  ) => {
-    const Comp = asChild ? Slot : "button";
-    const result = (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    );
+const Button = ({
+  className,
+  variant,
+  size,
+  asChild = false,
+  tooltip,
+  tooltipProps = {},
+  ...props
+}: ButtonProps) => {
+  const Comp = asChild ? Slot : "button";
+  const result = (
+    <Comp
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
 
-    if (!tooltip) return result;
+  if (!tooltip) return result;
 
-    return (
-      <Tooltip>
-        <TooltipTrigger asChild>{result}</TooltipTrigger>
-        <TooltipContent {...tooltipProps}>{tooltip}</TooltipContent>
-      </Tooltip>
-    );
-  },
-);
-Button.displayName = "Button";
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>{result}</TooltipTrigger>
+      <TooltipContent {...tooltipProps}>{tooltip}</TooltipContent>
+    </Tooltip>
+  );
+};
 
 export { Button, buttonVariants };

@@ -1,4 +1,4 @@
-import React, {
+import {
   memo,
   useRef,
   useMemo,
@@ -7,7 +7,7 @@ import React, {
   useContext,
   useCallback,
   createContext,
-  forwardRef,
+  RefObject,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -98,25 +98,27 @@ export function useHighlightPopover() {
  * Memoized component for rendering the popover content.
  */
 const PopoverContent = memo(
-  forwardRef<
-    HTMLDivElement,
-    {
-      renderPopover: HighlightPopoverProps["renderPopover"];
-      position: Position;
-      selection: string;
-      style: React.CSSProperties;
-    }
-  >(({ renderPopover, position, selection, style }, ref) => (
+  ({
+    renderPopover,
+    position,
+    selection,
+    ...props
+  }: {
+    renderPopover: HighlightPopoverProps["renderPopover"];
+    position: Position;
+    selection: string;
+    style: React.CSSProperties;
+    ref?: RefObject<HTMLDivElement | null>;
+  }) => (
     <div
-      ref={ref}
-      style={style}
+      {...props}
       role="tooltip"
       aria-live="polite"
       className="relative select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent after:border-b-[#232324]"
     >
       {renderPopover({ position, selection })}
     </div>
-  )),
+  ),
 );
 
 PopoverContent.displayName = "PopoverContent";
