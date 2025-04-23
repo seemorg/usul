@@ -22,7 +22,7 @@ const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => {
       </HoverCardTrigger>
 
       <HoverCardContent
-        className="w-full max-w-[400px] text-muted-foreground"
+        className="text-muted-foreground w-full max-w-[400px]"
         avoidCollisions
         side="left"
       >
@@ -46,6 +46,10 @@ export default function BookInfo({ className }: { className?: string }) {
   const authorPrimaryName = author.primaryName;
   const authorSecondaryName = author.secondaryName;
 
+  const formattedYear = year
+    ? `- ${t("common.year-format.ah.value", { year })}`
+    : "";
+
   return (
     <div className={className} dir={dir}>
       <div className="flex justify-between">
@@ -68,7 +72,7 @@ export default function BookInfo({ className }: { className?: string }) {
               className="link text-base"
               prefetch
             >
-              {authorPrimaryName} - {t("common.year-format.ah.value", { year })}
+              {authorPrimaryName} {formattedYear}
             </Link>
           </AuthorHoverCard>
         </div>
@@ -81,8 +85,7 @@ export default function BookInfo({ className }: { className?: string }) {
                 className="link text-base"
                 prefetch
               >
-                {authorSecondaryName} -{" "}
-                {t("common.year-format.ah.value", { year })}
+                {authorSecondaryName} {formattedYear}
               </Link>
             </AuthorHoverCard>
           </bdi>
@@ -95,11 +98,11 @@ export default function BookInfo({ className }: { className?: string }) {
       />
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
-        <p className="text-sm text-muted-foreground">{t("entities.genres")}</p>
+        <p className="text-muted-foreground text-sm">{t("entities.genres")}</p>
 
         {genres.map((genre) => (
           <Link key={genre.id} href={navigation.genres.bySlug(genre.slug)}>
-            <Badge variant="outline" className="text-sm hover:bg-accent">
+            <Badge variant="outline" className="hover:bg-accent text-sm">
               {genre.name}
             </Badge>
           </Link>
