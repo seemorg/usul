@@ -38,9 +38,9 @@ const sheetVariants = cva(
         top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
           "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 ltr:left-0 h-full w-3/4 border-r ltr:data-[state=closed]:slide-out-to-left ltr:data-[state=open]:slide-in-from-left sm:max-w-sm rtl:right-0 rtl:data-[state=closed]:slide-out-to-right rtl:data-[state=open]:slide-in-from-right",
+        left: "inset-y-0 ltr:left-0 h-full w-3/4 border-r data-[state=closed]:ltr:slide-out-to-left data-[state=open]:ltr:slide-in-from-left sm:max-w-sm rtl:right-0 data-[state=closed]:rtl:slide-out-to-right data-[state=open]:rtl:slide-in-from-right",
         right:
-          "inset-y-0 ltr:right-0 h-full w-3/4 border-l ltr:data-[state=closed]:slide-out-to-right ltr:data-[state=open]:slide-in-from-right sm:max-w-sm rtl:left-0 rtl:data-[state=closed]:slide-out-to-left rtl:data-[state=open]:slide-in-from-left",
+          "inset-y-0 ltr:right-0 h-full w-3/4 border-l data-[state=closed]:ltr:slide-out-to-right data-[state=open]:ltr:slide-in-from-right sm:max-w-sm rtl:left-0 data-[state=closed]:rtl:slide-out-to-left data-[state=open]:rtl:slide-in-from-left",
       },
     },
     defaultVariants: {
@@ -65,7 +65,7 @@ const SheetContent = React.forwardRef<
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary ltr:left-4 rtl:right-4">
+      <SheetPrimitive.Close className="absolute top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary ltr:left-4 rtl:right-4">
         <XIcon className="h-5 w-5" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>

@@ -24,7 +24,7 @@ const FeaturesList = ({
       >
         {style === "check" ? (
           <>
-            <CheckCircleIcon className="mt-1 size-6 flex-shrink-0 text-teal-700" />
+            <CheckCircleIcon className="mt-1 size-6 shrink-0 text-teal-700" />
             <p>{feature}</p>
           </>
         ) : (

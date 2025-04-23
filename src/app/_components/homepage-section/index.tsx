@@ -56,17 +56,17 @@ const HomepageSection = ({
 
       <CarouselContent className="mt-6">
         {items.map((item, idx) => (
-          <CarouselItem className="flex-shrink-0 basis-auto" key={idx}>
+          <CarouselItem className="shrink-0 basis-auto" key={idx}>
             <div
               className={cn(
                 constraintWidth &&
-                  "w-[140px] flex-shrink-0 sm:w-[160px] md:w-[180px]",
+                  "w-[140px] shrink-0 sm:w-[160px] md:w-[180px]",
               )}
             >
               {item}
             </div>
             {idx !== items.length - 1 && (
-              <div className="w-3 flex-shrink-0 sm:w-5" />
+              <div className="w-3 shrink-0 sm:w-5" />
             )}
           </CarouselItem>
         ))}

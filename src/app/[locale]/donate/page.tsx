@@ -84,7 +84,7 @@ export default async function HomePage({
       <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
         <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
 
-        <Container className="z-[1] flex flex-col lg:flex-row lg:gap-12">
+        <Container className="z-1 flex flex-col lg:flex-row lg:gap-12">
           <div className="flex-1">
             <h1 className="text-4xl font-bold sm:text-5xl">
               {t("hero.title")}

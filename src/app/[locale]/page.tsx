@@ -75,7 +75,7 @@ export default async function HomePage({
         <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
-        <Container className="z-[1] flex flex-col items-center">
+        <Container className="z-1 flex flex-col items-center">
           <h1 className="text-center text-4xl font-bold sm:text-5xl">
             {t("home.headline")}
           </h1>

@@ -115,7 +115,7 @@ export default function SearchBar({
           size === "lg" && "rounded-[10px]",
           showList && "rounded-b-none",
           // focusedState.value &&
-          //   "outline-none ring-2 ring-white ring-offset-2 ring-offset-primary",
+          //   "outline-hidden ring-2 ring-white ring-offset-2 ring-offset-primary",
         )}
         loop
         onKeyDown={(e) => {
@@ -136,7 +136,7 @@ export default function SearchBar({
           autoFocus={autoFocus}
           onFocus={focusedState.setTrue}
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
-          wrapperClassName={cn(size === "lg" && "[&_svg]:!h-6 [&_svg]:!w-6")}
+          wrapperClassName={cn(size === "lg" && "[&_svg]:h-6! [&_svg]:w-6!")}
         />
 
         {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
@@ -161,7 +161,7 @@ export default function SearchBar({
           itemID="cmd-list"
           className={cn(
             "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-popover text-sm text-foreground",
-            !mobile && "border border-border shadow",
+            !mobile && "border border-border shadow-sm",
             showList || mobile
               ? "opacity-100"
               : "pointer-events-none opacity-0",

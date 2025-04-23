@@ -27,7 +27,7 @@ export default function NewsletterForm() {
 
   if (isSuccess) {
     return (
-      <div className="relative flex w-full items-center rounded-lg border bg-background px-4 py-3 text-sm text-foreground [&>svg]:text-foreground ltr:[&>svg~*]:pl-4 rtl:[&>svg~*]:pr-4">
+      <div className="relative flex w-full items-center rounded-lg border bg-background px-4 py-3 text-sm text-foreground [&>svg]:text-foreground [&>svg~*]:ltr:pl-4 [&>svg~*]:rtl:pr-4">
         <CheckCircleIcon className="h-5 w-5" />
         <AlertTitle className="mb-0">{t("coming-soon.success")}</AlertTitle>
       </div>
@@ -36,7 +36,7 @@ export default function NewsletterForm() {
 
   if (isError) {
     return (
-      <div className="relative flex w-full items-center rounded-lg border bg-background px-4 py-3 text-sm text-foreground [&>svg]:text-foreground ltr:[&>svg~*]:pl-4 rtl:[&>svg~*]:pr-4">
+      <div className="relative flex w-full items-center rounded-lg border bg-background px-4 py-3 text-sm text-foreground [&>svg]:text-foreground [&>svg~*]:ltr:pl-4 [&>svg~*]:rtl:pr-4">
         <XCircleIcon className="h-5 w-5" />
         <AlertTitle>{t("coming-soon.error")}</AlertTitle>
       </div>
@@ -64,7 +64,7 @@ export default function NewsletterForm() {
           className="w-full flex-1 rounded-none border border-none border-border bg-background"
         />
 
-        <div className="flex-shrink-0">
+        <div className="shrink-0">
           <Button
             variant="secondary"
             disabled={isPending}

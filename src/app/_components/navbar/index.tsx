@@ -69,7 +69,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       <header
         className={cn(
           layout === "reader" ? "relative" : "fixed",
-          "top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-muted-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          "top-0 z-41 flex h-16 w-full items-center justify-between gap-4 bg-muted-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -164,7 +164,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       )}
 
       {isSearchOpen && (
-        <MobileMenu className="z-[42] pt-10">
+        <MobileMenu className="z-42 pt-10">
           <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
             <Button
               size="icon"

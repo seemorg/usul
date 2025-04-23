@@ -76,11 +76,11 @@ export default function BookSearchResult({
                 alt={title}
                 width={320}
                 height={460}
-                className="aspect-[1600/2300] w-full object-cover"
+                className="aspect-1600/2300 w-full object-cover"
                 placeholder="empty"
               />
             ) : (
-              <div className="aspect-[1600/2300] w-full bg-muted" />
+              <div className="aspect-1600/2300 w-full bg-muted" />
             )}
           </div>
 

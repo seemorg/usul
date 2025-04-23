@@ -58,7 +58,7 @@ const ConditionComponent: React.FC<{
       value={condition.value}
       onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
       placeholder="Enter value"
-      className="flex-grow"
+      className="grow"
     />
 
     <div className="flex items-center space-x-2">

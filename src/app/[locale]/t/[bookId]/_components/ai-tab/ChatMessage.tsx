@@ -40,7 +40,6 @@ const makeComponents = (
   sourceNodes: SemanticSearchBookNode[],
   getVirtuosoScrollProps: ChatMessageProps["getVirtuosoScrollProps"],
 ): Components => ({
-  // @ts-expect-error
   "page-reference": (props) => (
     <PageReference
       getVirtuosoScrollProps={getVirtuosoScrollProps}
@@ -123,11 +122,11 @@ const ChatMessage = ({
     >
       <div
         className={cn(
-          "chat-message max-w-full text-wrap @sm:max-w-[90%]",
-          "group text-foreground",
+          "chat-message @sm:max-w-[90%] max-w-full text-wrap",
+          "text-foreground group",
           role === "ai"
-            ? "flex flex-col items-start gap-3 @sm:flex-row"
-            : "rounded-2xl bg-gray-200 px-4 dark:bg-accent",
+            ? "@sm:flex-row flex flex-col items-start gap-3"
+            : "dark:bg-accent rounded-2xl bg-gray-200 px-4",
           role === "user"
             ? isScreenshot
               ? "flex items-center justify-center py-3"
@@ -136,7 +135,7 @@ const ChatMessage = ({
         )}
       >
         {role === "ai" && (
-          <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white dark:bg-accent dark:text-white">
+          <div className="dark:bg-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white dark:text-white">
             <OpenAILogo className="size-5 shrink-0" />
           </div>
         )}
@@ -163,7 +162,7 @@ const ChatMessage = ({
           {role === "ai" && hasActions && (
             <div
               className={cn(
-                "message-actions mt-2 flex gap-1 text-muted-foreground",
+                "message-actions text-muted-foreground mt-2 flex gap-1",
                 !isLast &&
                   "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100",
               )}
@@ -171,7 +170,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 hover:bg-secondary"
+                className="hover:bg-secondary size-7"
                 disabled={isLoading.value}
                 onClick={handleCopy}
                 tooltip={t("reader.chat.copy")}
@@ -182,7 +181,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 hover:bg-secondary"
+                className="hover:bg-secondary size-7"
                 disabled={isLoading.value}
                 onClick={handleRegenerate}
                 tooltip={t("reader.chat.regenerate")}
@@ -193,7 +192,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 hover:bg-secondary"
+                className="hover:bg-secondary size-7"
                 disabled={isLoading.value || isPending}
                 onClick={() => handleFeedback("positive")}
                 tooltip={t("reader.chat.mark-as-correct")}
@@ -208,7 +207,7 @@ const ChatMessage = ({
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-7 hover:bg-secondary"
+                className="hover:bg-secondary size-7"
                 disabled={isLoading.value || isPending}
                 onClick={() => handleFeedback("negative")}
                 tooltip={t("reader.chat.report-as-incorrect")}

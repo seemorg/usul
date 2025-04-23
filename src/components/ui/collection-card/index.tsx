@@ -61,14 +61,14 @@ export const CollectionCard = ({
     >
       <div
         className={clsx(
-          "absolute inset-0 -z-[2] bg-gradient-to-t to-transparent",
+          "absolute inset-0 -z-2 bg-linear-to-t to-transparent",
           variant.gradientFrom,
         )}
       />
 
       <div
         className={clsx(
-          "absolute bottom-0 left-0 right-0 -z-[1] h-20 bg-gradient-to-t to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black,transparent)]",
+          "absolute bottom-0 left-0 right-0 -z-1 h-20 bg-linear-to-t to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black,transparent)]",
           variant.gradientFrom10,
         )}
       />

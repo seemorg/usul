@@ -57,14 +57,14 @@ function ChatForm({
         onSubmit(value);
       }}
     >
-      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden rounded-md bg-input ltr:pr-8 ltr:sm:pr-12 rtl:pl-8 rtl:sm:pl-12">
+      <div className="relative flex max-h-60 w-full grow flex-col overflow-hidden rounded-md bg-input ltr:pr-8 sm:ltr:pr-12 rtl:pl-8 sm:rtl:pl-12">
         <Textarea
           ref={inputRef}
           tabIndex={0}
           onKeyDown={onKeyDown}
           placeholder={t("chat.placeholder")}
-          // className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-none sm:text-sm"
-          className="min-h-[2.5rem] w-full resize-none bg-transparent px-5 py-3 text-base text-secondary-foreground focus-within:outline-none"
+          // className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-hidden sm:text-sm"
+          className="min-h-[2.5rem] w-full resize-none bg-transparent px-5 py-3 text-base text-secondary-foreground focus-within:outline-hidden"
           autoFocus
           spellCheck={false}
           autoComplete="off"

@@ -206,7 +206,7 @@ export default function SearchTab() {
 
       <SidebarContainer>
         <div className="flex items-center justify-between">
-          <div className="flex flex-grow-0 gap-2">
+          <div className="flex grow-0 gap-2">
             {t("common.search")}{" "}
             <Badge variant="tertiary">{t("common.beta")}</Badge>
           </div>
@@ -247,13 +247,13 @@ export default function SearchTab() {
                   value={inputValue}
                   onChange={handleChange}
                   placeholder={t("reader.search.placeholder")}
-                  className="h-10 w-full flex-1 border border-gray-300 bg-white shadow-none focus:outline-none focus:ring-inset dark:border-border dark:bg-transparent ltr:mr-10 ltr:rounded-r-none ltr:pl-9 rtl:ml-10 rtl:rounded-l-none rtl:pr-9"
+                  className="h-10 w-full flex-1 border border-gray-300 bg-white shadow-none focus:outline-hidden focus:ring-inset dark:border-border dark:bg-transparent ltr:mr-10 ltr:rounded-r-none ltr:pl-9 rtl:ml-10 rtl:rounded-l-none rtl:pr-9"
                 />
               </div>
 
               <Button
                 size="icon"
-                className="size-10 flex-shrink-0 ltr:rounded-l-none rtl:rounded-r-none"
+                className="size-10 shrink-0 ltr:rounded-l-none rtl:rounded-r-none"
                 disabled={isLoading}
               >
                 <ChevronRightIcon className="size-5 rtl:rotate-180" />

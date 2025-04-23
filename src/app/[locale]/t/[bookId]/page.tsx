@@ -122,7 +122,7 @@ export default async function SidebarContent({
 
   if (response.content.source === "external") {
     readerContent = (
-      <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:!px-8 xl:!px-16">
+      <div className="mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5 lg:px-8! xl:px-16!">
         <div className="flex flex-col items-center justify-center py-20">
           <FileQuestionIcon className="h-16 w-16 text-muted-foreground" />
 

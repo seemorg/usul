@@ -309,7 +309,7 @@ const TreeLeaf = React.forwardRef<
           isSelected={selectedItemId === item.id}
           default={defaultLeafIcon}
         />
-        <span className="flex-grow truncate text-base" title={item.name}>
+        <span className="grow truncate text-base" title={item.name}>
           {item.name}
         </span>
         <TreeActions isSelected={selectedItemId === item.id}>
@@ -330,7 +330,7 @@ const AccordionTrigger = React.forwardRef<
       <AccordionPrimitive.Trigger
         ref={ref}
         className={cn(
-          "flex w-full flex-1 items-center py-3 text-base transition-all first:[&[data-state=open]>svg]:rotate-90",
+          "flex w-full flex-1 items-center py-3 text-base transition-all [&[data-state=open]>svg]:first:rotate-90",
           className,
         )}
         {...props}

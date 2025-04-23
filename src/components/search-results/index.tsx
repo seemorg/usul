@@ -66,7 +66,7 @@ export default function SearchResults<T extends object & { id: string }>({
       <div
         className={cn(
           "col-span-4",
-          filters ? "sm:col-span-3 ltr:sm:pl-1 rtl:sm:pr-1" : "",
+          filters ? "sm:col-span-3 sm:ltr:pl-1 sm:rtl:pr-1" : "",
         )}
       >
         <div className="relative w-full">
@@ -128,7 +128,7 @@ export default function SearchResults<T extends object & { id: string }>({
             </div>
           </div>
 
-          {/* <p className="mt-3 flex-shrink-0 text-sm text-muted-foreground">
+          {/* <p className="mt-3 shrink-0 text-sm text-muted-foreground">
             {response.found} results in {response.search_time_ms}ms
           </p> */}
         </div>

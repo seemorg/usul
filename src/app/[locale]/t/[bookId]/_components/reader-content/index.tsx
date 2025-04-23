@@ -46,7 +46,7 @@ export default function ReaderContent({
 
   return (
     <div
-      className="relative !h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
+      className="relative h-screen! w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
