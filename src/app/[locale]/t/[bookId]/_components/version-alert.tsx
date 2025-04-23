@@ -45,7 +45,9 @@ export const VersionAlert = ({
 
       <AlertDescription className="mt-2">
         <button onClick={switchVersion} className="text-primary underline">
-          {t("reader.switch-edition", { edition: versionToName(versionObj) })}
+          {t("reader.switch-edition", {
+            edition: versionToName(versionObj) ?? "",
+          })}
         </button>
       </AlertDescription>
     </Alert>

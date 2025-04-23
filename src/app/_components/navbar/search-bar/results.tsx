@@ -27,20 +27,20 @@ const ResultsSkeleton = () => (
       >
         <div className="hidden items-center gap-4 md:flex">
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![0] }}
           />
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![1] }}
           />
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![2] }}
           />
         </div>
 
-        <Skeleton className="h-6 w-full bg-accent md:w-12" />
+        <Skeleton className="bg-accent h-6 w-full md:w-12" />
       </div>
     ))}
   </div>
@@ -114,10 +114,10 @@ export default function SearchBarResults({
         {showSeeMore && (
           <Link
             href={navigation.search.index({ type: searchType, query: value })}
-            className="mt-3 hidden text-primary underline sm:mt-0 sm:block"
+            className="text-primary mt-3 hidden underline sm:mt-0 sm:block"
           >
             {t("common.search-bar.all-results", {
-              results: results?.found,
+              results: results?.found ?? 0,
             })}
           </Link>
         )}
@@ -135,7 +135,7 @@ export default function SearchBarResults({
               href={navigation.search.index({ type: searchType, query: value })}
             >
               {t("common.search-bar.all-results", {
-                results: results?.found,
+                results: results?.found ?? 0,
               })}
             </Link>
           </Button>
