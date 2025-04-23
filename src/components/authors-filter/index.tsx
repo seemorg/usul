@@ -1,10 +1,10 @@
 import type { ComponentProps } from "react";
-import _AuthorsFilter from "./client";
+import AuthorsFilterClient from "./client";
 import { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { searchAuthors } from "@/server/typesense/author";
 
 type Props = Omit<
-  ComponentProps<typeof _AuthorsFilter>,
+  ComponentProps<typeof AuthorsFilterClient>,
   "initialAuthorsResponse" | "booksCount"
 >;
 
@@ -20,7 +20,7 @@ export default async function AuthorsFilter(props: Props) {
   ]);
 
   return (
-    <_AuthorsFilter
+    <AuthorsFilterClient
       {...props}
       initialAuthorsResponse={initialAuthors}
       booksCount={booksCount}

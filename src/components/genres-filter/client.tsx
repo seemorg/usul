@@ -38,7 +38,7 @@ const getGenresFilterUrlParams = (
   return params;
 };
 
-export default function _GenresFilter({
+export default function GenresFilterClient({
   currentGenres,
   genres,
 }: GenresFilterProps) {

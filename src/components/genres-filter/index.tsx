@@ -1,8 +1,8 @@
 import type { ComponentProps } from "react";
-import _GenresFilter from "./client";
+import GenresFilterClient from "./client";
 import { findAllGenresWithBooksCount } from "@/server/services/genres";
 
-type Props = Omit<ComponentProps<typeof _GenresFilter>, "genres"> & {
+type Props = Omit<ComponentProps<typeof GenresFilterClient>, "genres"> & {
   filters?: Parameters<typeof findAllGenresWithBooksCount>[0];
 };
 
@@ -11,5 +11,5 @@ export default async function GenresFilter(props: Props) {
     (g) => !!g.id,
   );
 
-  return <_GenresFilter {...props} genres={genres as any} />;
+  return <GenresFilterClient {...props} genres={genres as any} />;
 }

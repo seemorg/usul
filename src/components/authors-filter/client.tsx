@@ -43,7 +43,7 @@ interface AuthorsFilterProps {
   filters?: Record<string, any>;
 }
 
-export default function _AuthorsFilter({
+export default function AuthorsFilterClient({
   currentAuthors,
   initialAuthorsResponse,
   selectedAuthorsResponse,

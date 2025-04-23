@@ -37,7 +37,7 @@ interface RegionsFilterProps {
   regions: Awaited<ReturnType<typeof findAllRegionsWithBooksCount>>;
 }
 
-export default function _RegionsFilter({
+export default function RegionsFilterClient({
   currentRegions,
   regions,
 }: RegionsFilterProps) {
