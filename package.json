@@ -58,10 +58,10 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cmdk": "^0.2.1",
-    "embla-carousel-react": "^8.0.0",
+    "embla-carousel-react": "^8.6.0",
     "fuse.js": "^7.0.0",
     "html2canvas": "^1.4.1",
-    "lucide-react": "^0.356.0",
+    "lucide-react": "^0.503.0",
     "nanoid": "^5.0.9",
     "next": "15.3.1",
     "next-axiom": "^1.1.1",
@@ -89,11 +89,11 @@
     "unist-util-flatmap": "^1.0.0",
     "unist-util-visit": "^5.0.0",
     "use-intl": "^3.9.5",
-    "usehooks-ts": "^2.15.1",
-    "vaul": "^0.9.0",
+    "usehooks-ts": "^3.1.1",
+    "vaul": "^1.1.2",
     "virtua": "^0.34.2",
     "zod": "^3.22.4",
-    "zustand": "^4.5.1"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@crowdin/crowdin-api-client": "^1.36.0",
