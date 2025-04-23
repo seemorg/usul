@@ -8,7 +8,7 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { routing } from "~/i18n.config";
+import { routing } from "@/i18n/config";
 import { Link, usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { getLocaleFullName } from "@/lib/locale/utils";

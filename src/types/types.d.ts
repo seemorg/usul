@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/consistent-type-imports */
-
-import { routing } from "~/i18n.config";
+import { routing } from "@/i18n/config";
 
 declare module "next-intl" {
   interface AppConfig {
@@ -18,15 +16,4 @@ declare module "next-intl" {
     // Formats: typeof formats;
     Locale: (typeof routing.locales)[number];
   }
-}
-
-declare module "*.svg" {
-  import { FC, SVGProps } from "react";
-  const content: FC<SVGProps<SVGElement>>;
-  export default content;
-}
-
-declare module "*.svg?url" {
-  const content: any;
-  export default content;
 }

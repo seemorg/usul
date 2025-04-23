@@ -3,9 +3,10 @@
 import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
 
-type SlideProps = React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>;
-
-const Slider = ({ className, ...props }: SlideProps) => {
+const Slider = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof SliderPrimitive.Root>) => {
   const value = props.value ?? props.defaultValue;
 
   return (

@@ -3,7 +3,7 @@ import {
   pathLocaleToSupportedBcp47LocaleMap,
   localeToFullName,
   localeToDirection,
-} from "~/i18n.config";
+} from "@/i18n/config";
 
 export const PATH_LOCALES = Object.keys(
   pathLocaleToSupportedBcp47LocaleMap,

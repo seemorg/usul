@@ -16,7 +16,7 @@ import {
 import HomepageSection from "../_components/homepage-section";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { routing } from "~/i18n.config";
+import { routing } from "@/i18n/config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { CollectionCard } from "@/components/ui/collection-card";
 import { PlayIcon } from "@heroicons/react/24/solid";

@@ -1,4 +1,4 @@
-import { routing } from "~/i18n.config";
+import { routing } from "@/i18n/config";
 import { createNavigation } from "next-intl/navigation";
 import { isSameURL } from "./lib/utils";
 import NProgress from "nprogress";

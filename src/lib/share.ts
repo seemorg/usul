@@ -1,7 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { usePathLocale } from "./locale/utils";
 import { navigation } from "./urls";
-import { routing } from "~/i18n.config";
+import { routing } from "@/i18n/config";
 import { toast } from "@/components/ui/use-toast";
 
 export const useBookShareUrl = () => {

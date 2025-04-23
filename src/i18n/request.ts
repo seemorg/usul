@@ -1,6 +1,6 @@
 import { getRequestConfig } from "next-intl/server";
-import config, { routing } from "~/i18n.config";
-import { appLocaleToPathLocale } from "./lib/locale/utils";
+import config, { routing } from "./config";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { hasLocale } from "next-intl";
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -30,15 +30,6 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     messages,
     locale,
-    ...getSharedConfig(),
-  };
-});
-
-export const getSharedConfig = (): Omit<
-  Awaited<ReturnType<Parameters<typeof getRequestConfig>[0]>>,
-  "locale"
-> => {
-  return {
     timeZone: "UTC",
     formats: {
       number: {
@@ -48,4 +39,4 @@ export const getSharedConfig = (): Omit<
       },
     },
   };
-};
+});
