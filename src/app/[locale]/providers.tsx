@@ -1,6 +1,6 @@
 "use client";
 
-import { type Locale, NextIntlClientProvider } from "next-intl";
+import { type Locale } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -36,28 +36,26 @@ function Providers({
   const dir = getLocaleDirection(locale);
 
   return (
-    <NextIntlClientProvider>
-      <TotalEntitiesProvider value={total}>
-        <DirectionProvider dir={dir}>
-          <AppProgressBar
-            height="4px"
-            color="#fff"
-            options={{ showSpinner: false }}
-            shallowRouting
-          />
+    <TotalEntitiesProvider value={total}>
+      <DirectionProvider dir={dir}>
+        <AppProgressBar
+          height="4px"
+          color="#fff"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
 
-          <NextThemesProvider
-            attribute="class"
-            defaultTheme="light"
-            disableTransitionOnChange
-          >
-            <QueryClientProvider client={queryClient}>
-              <TooltipProvider>{children}</TooltipProvider>
-            </QueryClientProvider>
-          </NextThemesProvider>
-        </DirectionProvider>
-      </TotalEntitiesProvider>
-    </NextIntlClientProvider>
+        <NextThemesProvider
+          attribute="class"
+          defaultTheme="light"
+          disableTransitionOnChange
+        >
+          <QueryClientProvider client={queryClient}>
+            <TooltipProvider>{children}</TooltipProvider>
+          </QueryClientProvider>
+        </NextThemesProvider>
+      </DirectionProvider>
+    </TotalEntitiesProvider>
   );
 }
 

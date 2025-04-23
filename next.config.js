@@ -73,7 +73,7 @@ const config = {
   },
 };
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin("./src/i18n.ts");
 const withMDX = createMDX({
   options: {
     remarkPlugins: [],

@@ -114,15 +114,19 @@ export default function HomepageNavigationMenu() {
   );
 }
 
-const ListItem = React.forwardRef<
-  React.ElementRef<"a">,
-  Omit<React.ComponentPropsWithoutRef<typeof Link>, "href" | "title"> & {
-    href?: string;
-    title?: React.ReactNode;
-    icon?: React.ElementType;
-  }
->(({ className, title, children, icon: Icon, ...props }, ref) => {
-  const Comp = props.href ? Link : "p";
+const ListItem = ({
+  className,
+  title,
+  children,
+  icon: Icon,
+  ref,
+  ...props
+}: Omit<React.ComponentProps<typeof Link>, "href" | "title"> & {
+  href?: string;
+  title?: React.ReactNode;
+  icon?: React.ElementType;
+}) => {
+  const Comp = props.href ? Link : "div";
 
   return (
     <li>
@@ -150,5 +154,4 @@ const ListItem = React.forwardRef<
       </NavigationMenuLink>
     </li>
   );
-});
-ListItem.displayName = "ListItem";
+};

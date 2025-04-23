@@ -13,6 +13,7 @@ import Analytics from "./analytics";
 
 import { getTotalEntities } from "@/lib/api";
 import type { Locale } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 
 export async function generateMetadata({
   params,
@@ -52,12 +53,14 @@ export default async function LocaleLayout({
           getFontsClassnames(),
         )}
       >
-        <Providers locale={locale} total={total}>
-          {children}
+        <NextIntlClientProvider>
+          <Providers locale={locale} total={total}>
+            {children}
 
-          <Toaster />
-          <DemoModalProvider />
-        </Providers>
+            <Toaster />
+            <DemoModalProvider />
+          </Providers>
+        </NextIntlClientProvider>
 
         {env.VERCEL_ENV === "production" && <Analytics />}
       </body>

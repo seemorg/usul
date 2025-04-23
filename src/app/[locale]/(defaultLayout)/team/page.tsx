@@ -3,7 +3,7 @@ import Container from "@/components/ui/container";
 import { HeartHandshakeIcon, MailIcon } from "lucide-react";
 import MemberCard from "./member-card";
 import { boardMembers, members } from "./members";
-import { config, getMetadata } from "@/lib/seo";
+import { SITE_CONFIG, getMetadata } from "@/lib/seo";
 import { getTranslations } from "next-intl/server";
 import { VOLUNTEER_EMAIL } from "@/lib/constants";
 
@@ -41,7 +41,7 @@ export default async function TeamPage() {
           </a>
         </Button>
         <Button className="mt-10 h-9 gap-2" variant="outline" asChild>
-          <a href={`mailto:${config.contactEmail}`} target="_blank">
+          <a href={`mailto:${SITE_CONFIG.contactEmail}`} target="_blank">
             <MailIcon className="size-4" />
             {t("contact-us")}
           </a>

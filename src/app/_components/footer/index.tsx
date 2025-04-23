@@ -7,7 +7,7 @@ import {
   VOLUNTEER_EMAIL,
 } from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import { config } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/seo";
 import { navigation as urls } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -39,7 +39,7 @@ const navigation = {
     },
     {
       label: "navigation.about.contact.title",
-      href: `mailto:${config.contactEmail}`,
+      href: `mailto:${SITE_CONFIG.contactEmail}`,
     },
   ] satisfies NavItem[],
   browse: [
@@ -59,7 +59,7 @@ const navigation = {
     },
     {
       label: "navigation.contribute.feedback.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: `mailto:${SITE_CONFIG.feedbackEmail}`,
     },
     {
       label: "navigation.contribute.volunteer.title",

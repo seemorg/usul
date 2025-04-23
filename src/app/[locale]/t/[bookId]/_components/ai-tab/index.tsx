@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import { usePageNavigation } from "../usePageNavigation";
 import ChatForm from "./ChatForm";
 import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
-import { config } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/seo";
 import { VersionAlert } from "../version-alert";
 import SidebarContainer from "../sidebar/sidebar-container";
 import { Badge } from "@/components/ui/badge";
@@ -184,7 +184,7 @@ export default function AITab() {
                           ),
                           contact: (children) => (
                             <a
-                              href={`mailto:${config.contactEmail}`}
+                              href={`mailto:${SITE_CONFIG.contactEmail}`}
                               target="_blank"
                               className="inline underline"
                             >

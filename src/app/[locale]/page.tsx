@@ -146,6 +146,7 @@ export default async function HomePage({
             items={popularBooks.map((text) => (
               <BookSearchResult
                 prefetch
+                key={text.id}
                 result={
                   {
                     document: {
@@ -168,6 +169,7 @@ export default async function HomePage({
             items={popularIslamicLawBooks.map((text) => (
               <BookSearchResult
                 prefetch
+                key={text.id}
                 result={
                   {
                     document: {
@@ -190,6 +192,7 @@ export default async function HomePage({
             items={popularIslamicHistoryBooks.map((text) => (
               <BookSearchResult
                 prefetch
+                key={text.id}
                 result={
                   {
                     document: {

@@ -1,5 +1,5 @@
 import { env } from "@/env";
-import { config } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/seo";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -13,7 +13,7 @@ export default function robots(): MetadataRoute.Robots {
           disallow: "/",
         },
       ],
-      host: config.url,
+      host: SITE_CONFIG.url,
     };
   }
 
@@ -24,7 +24,7 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: `${config.url}/sitemap.xml`,
-    host: config.url,
+    sitemap: `${SITE_CONFIG.url}/sitemap.xml`,
+    host: SITE_CONFIG.url,
   };
 }

@@ -4,7 +4,7 @@ import { relativeUrl } from "./sitemap";
 import { getTranslations } from "next-intl/server";
 import type { Locale } from "next-intl";
 
-export const config = {
+export const SITE_CONFIG = {
   themeColor: "#AA4A44",
   image: {
     url: "/cover.png",
@@ -42,7 +42,7 @@ export const getMetadata = async ({
 
   const pathLocale = locale ? appLocaleToPathLocale(locale) : undefined;
 
-  const images = [config.image];
+  const images = [SITE_CONFIG.image];
 
   const siteName = t("usul");
   const defaultTitle = `${siteName} - ${t("slogan")}`;
@@ -110,7 +110,7 @@ export const getMetadata = async ({
   return {
     title,
     description: description ?? defaultDescription,
-    metadataBase: new URL(config.url),
+    metadataBase: new URL(SITE_CONFIG.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],
     openGraph: {
       type: "website",
@@ -159,6 +159,6 @@ export const getViewport = (): Viewport => {
     width: "device-width",
     initialScale: 1,
     viewportFit: "cover",
-    themeColor: config.themeColor,
+    themeColor: SITE_CONFIG.themeColor,
   };
 };
