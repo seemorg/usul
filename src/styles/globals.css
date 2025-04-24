@@ -59,6 +59,12 @@
     --reader: 0 0% 99.2%;
 
     --link: 6 37% 45%;
+
+    --sans: var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
+      ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --scheherazade: var(--font-scheherazade-base), ui-serif, Georgia, Cambria,
+      "Times New Roman", Times, serif;
   }
 
   .dark {
@@ -105,11 +111,8 @@
 }
 
 @theme {
-  --font-sans: var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
-    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
-  --font-scheherazade: var(--font-scheherazade), ui-serif, Georgia, Cambria,
-    "Times New Roman", Times, serif;
+  --font-sans: var(--sans);
+  --font-scheherazade: var(--scheherazade);
 
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));

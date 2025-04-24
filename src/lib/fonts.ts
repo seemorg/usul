@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 const scheherazade = Scheherazade_New({
   subsets: ["arabic"],
   style: "normal",
-  variable: "--font-scheherazade",
+  variable: "--font-scheherazade-base",
   weight: ["400", "700"],
 });
 
@@ -52,7 +52,6 @@ const ibmPlexSansArabic = localFont({
     // },
   ],
   adjustFontFallback: false,
-
   declarations: [
     {
       // make this font only apply for arabic character so that we can make 1 font for all locales
