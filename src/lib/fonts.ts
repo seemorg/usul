@@ -17,7 +17,21 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 const ibmPlexSansArabic = localFont({
   variable: "--font-ibm-plex-sans-arabic",
-  style: "normal",
+  style:
+    "normal; unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF; size-adjust: 110%",
+  // TODO: remove the workaround above when nextjs fixes declarations
+  // declarations: [
+  //   {
+  //     // make this font only apply for arabic character so that we can make 1 font for all locales
+  //     prop: "unicode-range",
+  //     value: "U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF",
+  //   },
+  //   // the arabic font is a bit smaller than the other fonts so we need to adjust it
+  //   {
+  //     prop: "size-adjust",
+  //     value: "110%",
+  //   },
+  // ],
   src: [
     // {
     //   path: "../fonts/rubik/rubik-variable-font.ttf",
@@ -52,18 +66,6 @@ const ibmPlexSansArabic = localFont({
     // },
   ],
   adjustFontFallback: false,
-  declarations: [
-    {
-      // make this font only apply for arabic character so that we can make 1 font for all locales
-      prop: "unicode-range",
-      value: "U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF",
-    },
-    // the arabic font is a bit smaller than the other fonts so we need to adjust it
-    {
-      prop: "size-adjust",
-      value: "110%",
-    },
-  ],
 });
 
 // TODO: 290kb HUGE FONT, bring back later if needed
