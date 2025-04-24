@@ -1,5 +1,13 @@
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
+"use client";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { useDemo } from "@/stores/demo";
+
 // import { Button } from "@/components/ui/button";
 // import { useState } from "react";
 // import {
@@ -8,15 +16,20 @@ import "plyr-react/plyr.css";
 //   usePathLocale,
 // } from "@/lib/locale/utils";
 
-export default function VideoModal() {
+export default function DemoModalProvider() {
+  const { isOpen, setIsOpen } = useDemo();
+
   // const pathLocale = usePathLocale();
   // const [activeLanguage, setActiveLanguage] = useState<"ar" | "en">(
   //   pathLocale === "ar" ? "ar" : "en",
   // );
 
   return (
-    <>
-      {/* <div className="flex items-center gap-3">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogContent className="sm:max-w-4xl">
+        <DialogTitle className="text-2xl">Usul Demo</DialogTitle>
+        <DialogDescription>This is a demo of the Usul app.</DialogDescription>
+        {/* <div className="flex items-center gap-3">
         <Button
           variant={activeLanguage === "en" ? "default" : "outline"}
           onClick={() => setActiveLanguage("en")}
@@ -32,25 +45,15 @@ export default function VideoModal() {
         </Button>
       </div> */}
 
-      <div className="mt-5">
-        <Plyr
-          // autoPlay
-          options={{ autoplay: true }}
-          source={{
-            type: "video",
-            sources: [
-              // {
-              //   provider: "youtube",
-              //   src: "nqye02H_H6I",
-              // },
-              {
-                provider: "html5",
-                src: "https://assets.usul.ai/usul%20beta.mp4",
-              },
-            ],
-          }}
-        />
-      </div>
-    </>
+        <div className="mt-5">
+          <video
+            // autoPlay
+            src="https://assets.usul.ai/usul%20beta.mp4"
+            className="w-full"
+            controls
+          />
+        </div>
+      </DialogContent>
+    </Dialog>
   );
 }

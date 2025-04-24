@@ -8,7 +8,7 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env";
-import DemoModalProvider from "../_components/video-modal/provider";
+import DemoModalProvider from "../_components/video-modal";
 import Analytics from "./analytics";
 
 import { getTotalEntities } from "@/lib/api";

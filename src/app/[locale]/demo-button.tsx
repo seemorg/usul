@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useDemo } from "../_components/video-modal/provider";
+import { useDemo } from "@/stores/demo";
 
 export const DemoButton = ({ children }: { children: React.ReactNode }) => {
   const setDemo = useDemo((s) => s.setIsOpen);

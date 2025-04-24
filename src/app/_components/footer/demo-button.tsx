@@ -1,7 +1,7 @@
 "use client";
 
 import type { ButtonHTMLAttributes } from "react";
-import { useDemo } from "../video-modal/provider";
+import { useDemo } from "@/stores/demo";
 
 export default function FooterDemoButton(
   props: ButtonHTMLAttributes<HTMLButtonElement>,
