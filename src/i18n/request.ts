@@ -8,16 +8,14 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const locale = hasLocale(routing.locales, requested)
     ? requested
     : routing.defaultLocale;
-
   const pathLocale = appLocaleToPathLocale(locale);
 
   const messages = (
     await Promise.all(
       config.namespaces.map(async (namespace) => {
         const messages = {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           [namespace]: (
-            (await import(`../locales/${pathLocale}/${namespace}.json`)) as {
+            (await import(`../../locales/${pathLocale}/${namespace}.json`)) as {
               default: Record<string, string>;
             }
           ).default,
