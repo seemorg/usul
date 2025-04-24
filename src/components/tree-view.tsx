@@ -2,7 +2,7 @@
 
 import { useCallback, useMemo, useState } from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronRight } from "lucide-react";
+import { ChevronRightIcon } from "lucide-react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { DirectionProvider, useDirection } from "@radix-ui/react-direction";
@@ -310,7 +310,7 @@ const AccordionTrigger = ({
         )}
         {...props}
       >
-        <ChevronRight
+        <ChevronRightIcon
           className={cn(
             "text-accent-foreground/50 h-4 w-4 shrink-0 transition-transform duration-200",
             dir === "ltr" ? "mr-1" : "ml-1 rotate-180",

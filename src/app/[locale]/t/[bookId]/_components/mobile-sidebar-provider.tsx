@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useSearchParams } from "next/navigation";
-import { createContext, useCallback, useContext } from "react";
+import { createContext, use, useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
 import { useTabNavigate } from "./sidebar/useTabNavigate";
 import { type TabProps, tabs } from "./sidebar/tabs";
@@ -51,7 +51,7 @@ export function MobileSidebarProvider({
           </Button>
         </SheetTrigger>
 
-        <SheetContent className="w-full overflow-y-auto bg-slate-50 pb-10 pt-16 dark:bg-card [&>div]:p-0">
+        <SheetContent className="dark:bg-card w-full overflow-y-auto bg-slate-50 pb-10 pt-16 [&>div]:p-0">
           <TabContent
             tabId={activeTabId}
             bookSlug={bookSlug}
@@ -64,5 +64,5 @@ export function MobileSidebarProvider({
 }
 
 export function useMobileSidebar() {
-  return useContext(MobileSidebarContext);
+  return use(MobileSidebarContext);
 }

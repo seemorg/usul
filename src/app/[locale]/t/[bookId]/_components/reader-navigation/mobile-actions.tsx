@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { EllipsisIcon, FileText } from "lucide-react";
+import { EllipsisIcon, FileTextIcon } from "lucide-react";
 import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
 import { useTranslations } from "next-intl";
@@ -44,7 +44,7 @@ export default function ReaderNavigationMobileActions({
             onClick={() => setView(view === "pdf" ? "ebook" : "pdf")}
             className="gap-2"
           >
-            <FileText className="h-4 w-4" />
+            <FileTextIcon className="h-4 w-4" />
             <span>{t(view === "pdf" ? "view-e-book" : "view-pdf")}</span>
           </DropdownMenuItem>
 

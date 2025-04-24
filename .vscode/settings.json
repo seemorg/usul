@@ -1,8 +1,15 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
   // cva
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
     ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
-  ]
+  ],
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@radix-ui",
+    "next/router",
+    "next/dist",
+    "lucide-react/dist/lucide-react.suffixed"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

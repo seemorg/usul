@@ -4,10 +4,10 @@ import {
   useMemo,
   useState,
   useEffect,
-  useContext,
   useCallback,
   createContext,
   RefObject,
+  use,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -85,7 +85,7 @@ const HighlightPopoverContext =
  * @throws Error if used outside of a HighlightPopover component.
  */
 export function useHighlightPopover() {
-  const context = useContext(HighlightPopoverContext);
+  const context = use(HighlightPopoverContext);
   if (!context) {
     throw new Error(
       "useHighlightPopover must be used within a HighlightPopover",

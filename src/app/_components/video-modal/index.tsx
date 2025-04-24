@@ -1,5 +1,3 @@
-"use client";
-
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 // import { Button } from "@/components/ui/button";
