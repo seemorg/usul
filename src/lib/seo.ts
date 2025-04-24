@@ -158,6 +158,8 @@ export const getViewport = (): Viewport => {
   return {
     width: "device-width",
     initialScale: 1,
+    maximumScale: 1,
+    userScalable: true,
     viewportFit: "cover",
     themeColor: SITE_CONFIG.themeColor,
   };
