@@ -54,7 +54,7 @@
     "@types/mdx": "^2.0.13",
     "@upstash/redis": "^1.34.3",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "embla-carousel-react": "^8.6.0",
     "fuse.js": "^7.0.0",
@@ -80,8 +80,7 @@
     "resend": "^3.2.0",
     "slugify": "^1.6.6",
     "stripe": "^17.5.0",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7",
+    "tailwind-merge": "^3.2.0",
     "typesense": "^1.7.2",
     "unist-util-flatmap": "^1.0.0",
     "unist-util-visit": "^5.0.0",
@@ -121,6 +120,7 @@
     "prisma": "^5.12.1",
     "storybook": "^8.3.2",
     "tailwindcss": "^4.1.4",
+    "tw-animate-css": "^1.2.8",
     "typescript": "^5.3.3"
   },
   "ct3aMetadata": {
