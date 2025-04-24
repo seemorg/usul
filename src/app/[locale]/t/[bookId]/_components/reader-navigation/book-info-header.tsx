@@ -20,8 +20,6 @@ export default function BookInfoHeader() {
     if (!readerScroller?.element) return;
     const containerEl = readerScroller.element;
     const handleScroll = () => {
-      console.log(containerEl.scrollTop);
-
       setIsVisible(containerEl.scrollTop > 500);
     };
 
@@ -34,13 +32,13 @@ export default function BookInfoHeader() {
   return (
     <div
       className={cn(
-        "absolute left-0 top-0 z-2 w-full bg-reader px-5 transition will-change-transform lg:px-8",
+        "z-2 bg-reader absolute left-0 top-0 w-full px-5 transition will-change-transform lg:px-8",
         isVisible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none -translate-y-full opacity-0",
       )}
     >
-      <Container className="relative flex items-center justify-between border-b border-border px-0 py-5 2xl:max-w-5xl">
+      <Container className="border-border relative flex items-center justify-between border-b px-0 py-5 2xl:max-w-5xl">
         <div className="flex w-full justify-between">
           <div
             className={cn(

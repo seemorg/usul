@@ -15,7 +15,12 @@ export default function MobileMenu({
   return (
     <Portal>
       <RemoveScroll as={Slot} allowPinchZoom enabled>
-        <div className={cn("fixed inset-0 z-40 bg-background", className)}>
+        <div
+          className={cn(
+            "bg-background fixed inset-0 z-40 overflow-y-auto",
+            className,
+          )}
+        >
           {children}
         </div>
       </RemoveScroll>
