@@ -81,7 +81,7 @@ const TreeView = ({
       items: TreeDataItem[] | TreeDataItem,
       targetId: string,
     ) {
-      if (items instanceof Array) {
+      if (Array.isArray(items)) {
         for (let i = 0; i < items.length; i++) {
           ids.push(items[i]!.id);
           if (walkTreeItems(items[i]!, targetId) && !expandAll) {
