@@ -30,7 +30,7 @@ export const useExportChat = () => {
       link.click();
 
       toast({ description: "Done!" });
-    } catch (e) {
+    } catch {
       toast({ description: "An error occurred!", variant: "destructive" });
     }
 

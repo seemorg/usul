@@ -1,12 +1,8 @@
 "use server";
 
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
-import {
-  type SearchOptions,
-  makePagination,
-  prepareQuery,
-  prepareResults,
-} from "./utils";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
+import type { SearchOptions } from "./utils";
 import type { AuthorDocument } from "@/types/author";
 import { makeSearchRequest } from "@/lib/typesense";
 import { AUTHORS_COLLECTION } from "./config";

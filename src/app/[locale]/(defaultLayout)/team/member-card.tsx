@@ -33,16 +33,17 @@ export default function MemberCard({
       ) : (
         <div className="bg-primary-foreground aspect-square w-full shrink-0 rounded-md" />
       )}
-      {/* w-44 lg:w-56 */}
 
       <div className="mt-4">
         {role && (
-          <p className="text-muted-foreground mb-1 text-sm font-medium">
+          <p className="text-secondary-foreground mb-1 text-sm font-medium">
             {role}
           </p>
         )}
         <h3 className="text-xl font-medium">{name}</h3>
-        <p className="mt-2 hyphens-auto text-sm text-gray-500">{description}</p>
+        <p className="text-muted-foreground mt-2 text-sm hyphens-auto">
+          {description}
+        </p>
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import Container from "@/components/ui/container";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 
@@ -35,10 +35,10 @@ export default async function AboutPage({
     const Content = (await import(`~/content/about/${locale}.mdx`)).default;
 
     return (
-      <Container className="max-w-4xl pt-16">
-        <h1 className="mb-15 text-5xl font-bold">{t("about")}</h1>
+      <Container className="max-w-4xl pt-8 lg:pt-12 2xl:max-w-4xl">
+        <h1 className="text-4xl font-bold lg:text-5xl">{t("about")}</h1>
 
-        <article className="prose prose-xl mt-14 dark:prose-invert prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 prose-ul:list-none">
+        <article className="prose prose-lg dark:prose-invert prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 prose-ul:list-none mt-10">
           <Content />
         </article>
       </Container>

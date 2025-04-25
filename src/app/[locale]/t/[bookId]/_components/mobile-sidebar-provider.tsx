@@ -6,7 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { createContext, use, useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
 import { useTabNavigate } from "./sidebar/useTabNavigate";
-import { type TabProps, tabs } from "./sidebar/tabs";
+import { tabs } from "./sidebar/tabs";
+import type { TabProps } from "./sidebar/tabs";
 import { TabContent } from "./tab-content";
 
 interface MobileSidebarValue {
@@ -51,7 +52,7 @@ export function MobileSidebarProvider({
           </Button>
         </SheetTrigger>
 
-        <SheetContent className="dark:bg-card w-full overflow-y-auto bg-slate-50 pb-10 pt-16 [&>div]:p-0">
+        <SheetContent className="dark:bg-card w-full overflow-y-auto bg-slate-50 pt-16 pb-10 [&>div]:p-0">
           <TabContent
             tabId={activeTabId}
             bookSlug={bookSlug}

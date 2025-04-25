@@ -1,5 +1,6 @@
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareResults, type SearchOptions } from "./utils";
+import { makePagination, prepareResults } from "./utils";
+import type { SearchOptions } from "./utils";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { RegionDocument } from "@/types/region";
 import { REGIONS_COLLECTION } from "./config";

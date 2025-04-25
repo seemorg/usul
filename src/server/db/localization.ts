@@ -1,29 +1,33 @@
 import type { PathLocale } from "@/lib/locale/utils";
 
+type LocalizedText<T> =
+  | (T extends { text: string } ? string : string[])
+  | undefined;
+
 const getLocalizedText = <
   T extends { locale: string; text?: string; texts?: string[] },
 >(
   entry: T[],
   locale: string,
-): (T extends { text: string } ? string : string[]) | undefined => {
+): LocalizedText<T> => {
   if (locale) {
-    const record = entry?.find((r) => r.locale === locale);
+    const record = entry.find((r) => r.locale === locale);
     if (!record) return undefined;
 
-    return ("text" in record ? record.text : record.texts) as any;
+    return ("text" in record ? record.text : record.texts) as LocalizedText<T>;
   }
 
-  if (entry?.length <= 1) {
+  if (entry.length <= 1) {
     const record = entry[0];
     if (!record) return undefined;
 
-    return ("text" in record ? record.text : record.texts) as any;
+    return ("text" in record ? record.text : record.texts) as LocalizedText<T>;
   }
 
   let record = entry[0]!;
   if (record.locale === "en") record = entry[1]!;
 
-  return ("text" in record ? record.text : record.texts) as any;
+  return ("text" in record ? record.text : record.texts) as LocalizedText<T>;
 };
 
 export const getPrimaryLocalizedText = <

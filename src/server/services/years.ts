@@ -22,7 +22,9 @@ export const findAllYearRanges = cache(async () => {
       yearFrom: i === 0 ? 1 : i,
       yearTo: i + 100,
       centuryNumber: century,
-      description: (descriptions as any)[String(century)]?.summary,
+      description: (descriptions as Record<string, { summary: string }>)[
+        String(century)
+      ]!.summary,
       totalBooks: counts.find((c) => c.century === century)?.count || 0,
     });
   }

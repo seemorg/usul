@@ -1,7 +1,8 @@
 "use server";
 
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareResults, type SearchOptions } from "./utils";
+import { makePagination, prepareResults } from "./utils";
+import type { SearchOptions } from "./utils";
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { GenreDocument } from "@/types/genre";
 import { GENRES_COLLECTION } from "./config";

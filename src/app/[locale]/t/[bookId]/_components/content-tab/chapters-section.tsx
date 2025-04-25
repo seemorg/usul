@@ -6,11 +6,12 @@ import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { TurathContent } from "@/types/api/content/turath";
 
-import { type TreeDataItem, TreeView } from "@/components/tree-view";
+import { TreeView } from "@/components/tree-view";
+import type { TreeDataItem } from "@/components/tree-view";
 import { useRouter } from "@/navigation";
 import { useParams, useSearchParams } from "next/navigation";
 import { navigation } from "@/lib/urls";
-import { PdfContent } from "@/types/api/content/pdf";
+import type { PdfContent } from "@/types/api/content/pdf";
 
 type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
 type TurathChapter = NonNullable<TurathContent["headings"]>[number];

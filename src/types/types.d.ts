@@ -1,4 +1,5 @@
-import { routing } from "@/i18n/config";
+/* eslint-disable @typescript-eslint/consistent-type-imports */
+import type { routing } from "@/i18n/config";
 
 declare module "next-intl" {
   interface AppConfig {

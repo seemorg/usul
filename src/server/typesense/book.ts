@@ -3,12 +3,8 @@
 import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
-import {
-  type SearchOptions,
-  makePagination,
-  prepareQuery,
-  prepareResults,
-} from "./utils";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
+import type { SearchOptions } from "./utils";
 import { makeMultiSearchRequest } from "@/lib/typesense";
 import { AUTHORS_COLLECTION, BOOKS_COLLECTION } from "./config";
 

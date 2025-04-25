@@ -14,6 +14,7 @@ import ReaderHighlightPopover from "./highlight-popover";
 import { useBookDetails } from "../../_contexts/book-details.context";
 import BookInfo from "./book-info";
 import { Separator } from "@/components/ui/separator";
+import type { DefaultPages } from "./use-fetch-page";
 
 export default function ReaderContent({
   isSinglePage,
@@ -46,12 +47,11 @@ export default function ReaderContent({
 
   return (
     <div
-      className="relative h-screen! w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
+      className="text-foreground relative h-screen! w-full overflow-y-auto text-xl [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
           setContainerEl({ element: r });
-          // @ts-ignore
           containerEl.current = r;
         }
       }}
@@ -78,7 +78,7 @@ export default function ReaderContent({
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}
         startMargin={80}
-        // eslint-disable-next-line react/display-name
+
         // as={forwardRef((props, ref) => (
         //   <div
         //     className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
@@ -115,12 +115,12 @@ const Page = memo(
     source,
   }: {
     index: number;
-    defaultPages: any[];
+    defaultPages: DefaultPages;
     perPage: number;
     source: "turath" | "openiti" | "pdf";
   }) => {
     return (
-      <Container className="mx-auto flex flex-col gap-8 border-b-2 border-border px-5 pb-5 pt-7 font-scheherazade lg:px-8 xl:px-16 2xl:max-w-5xl">
+      <Container className="border-border font-scheherazade mx-auto flex flex-col gap-8 border-b-2 px-5 pt-7 pb-5 lg:px-8 xl:px-16 2xl:max-w-5xl">
         <HighlightPopover
           renderPopover={({ selection }) => (
             <ReaderHighlightPopover selection={selection} pageIndex={index} />
