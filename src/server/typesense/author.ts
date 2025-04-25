@@ -38,17 +38,20 @@ export const searchAuthors = async (q: string, options?: SearchOptions) => {
     filters.push(`id:[${ids.map((id) => `\`${id}\``).join(", ")}]`);
   }
 
-  const results = (await makeSearchRequest(AUTHORS_COLLECTION.INDEX, {
-    q: prepareQuery(q),
-    query_by: AUTHORS_COLLECTION.queryBy,
-    query_by_weights: AUTHORS_COLLECTION.queryByWeights,
-    prioritize_token_position: true,
-    limit,
-    page,
-    ...(options?.sortBy &&
-      options.sortBy !== "relevance" && { sort_by: options.sortBy }),
-    ...(filters.length > 0 && { filter_by: filters.join(" && ") }),
-  })) as SearchResponse<AuthorDocument>;
+  const results = await makeSearchRequest<SearchResponse<AuthorDocument>>(
+    AUTHORS_COLLECTION.INDEX,
+    {
+      q: prepareQuery(q),
+      query_by: AUTHORS_COLLECTION.queryBy,
+      query_by_weights: AUTHORS_COLLECTION.queryByWeights,
+      prioritize_token_position: "true",
+      ...(limit && { limit: limit.toString() }),
+      ...(page && { page: page.toString() }),
+      ...(options?.sortBy &&
+        options.sortBy !== "relevance" && { sort_by: options.sortBy }),
+      ...(filters.length > 0 && { filter_by: filters.join(" && ") }),
+    },
+  );
 
   return {
     results: prepareResults(results, "author"),

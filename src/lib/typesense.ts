@@ -1,8 +1,8 @@
 import { env } from "@/env";
 
-export const makeSearchRequest = async (
+export const makeSearchRequest = async <T>(
   collection: string,
-  queryParams?: Record<any, any>,
+  queryParams?: Record<string, string>,
 ) => {
   const searchParams = new URLSearchParams(queryParams);
   const url = `${env.TYPESENSE_URL}/collections/${collection}/documents/search?${searchParams.toString()}`;
@@ -18,11 +18,11 @@ export const makeSearchRequest = async (
     throw new Error(`Failed to fetch ${url}`);
   }
 
-  return res.json();
+  return res.json() as Promise<T>;
 };
 
-export const makeMultiSearchRequest = async (
-  searches: Array<Record<any, any>>,
+export const makeMultiSearchRequest = async <T>(
+  searches: Array<Record<string, string>>,
 ) => {
   const url = `${env.TYPESENSE_URL}/multi_search`;
 
@@ -42,5 +42,5 @@ export const makeMultiSearchRequest = async (
     throw new Error(`Failed to fetch ${url}`);
   }
 
-  return res.json();
+  return res.json() as Promise<T>;
 };
