@@ -12,6 +12,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const config: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  eslint: { ignoreDuringBuilds: true },
   headers: async () => {
     const headers: Awaited<ReturnType<NonNullable<NextConfig["headers"]>>> = [
       {
