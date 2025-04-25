@@ -20,12 +20,13 @@ export default function DottedList({
   itemClassName,
   ...props
 }: DottedListProps) {
-  const filteredItems = items.filter((item) => item); // remove null or undefined items
+  // remove null or undefined items
+  const filteredItems = items.filter((item) => !!item);
 
   return (
     <div
       className={cn(
-        "flex w-full flex-wrap items-center gap-3 gap-y-1",
+        "inline-flex w-full flex-wrap items-center gap-3 gap-y-1",
         className,
       )}
       {...props}
@@ -36,21 +37,16 @@ export default function DottedList({
         return (
           <div
             className={cn(
-              "flex items-center",
+              "inline-block items-center",
               hasText && item.className,
               itemClassName,
             )}
             key={idx}
           >
             {hasText ? item.text : item}
-
+            {"\u00A0"}
             {filteredItems.length !== idx + 1 && (
-              <span
-                className={cn(
-                  "text-muted-foreground ltr:ml-3 rtl:mr-3",
-                  dotClassName,
-                )}
-              >
+              <span className={cn("text-muted-foreground", dotClassName)}>
                 •
               </span>
             )}

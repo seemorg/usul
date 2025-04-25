@@ -16,7 +16,7 @@ import Container from "@/components/ui/container";
 import YearFilterClient from "@/components/year-filter/client";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getMetadata } from "@/lib/seo";
-import { navigation, yearsSorts } from "@/lib/urls";
+import { booksSorts, navigation, yearsSorts } from "@/lib/urls";
 import { searchAuthors } from "@/server/typesense/author";
 import { searchBooks } from "@/server/typesense/book";
 import { searchGenres } from "@/server/typesense/genre";
@@ -27,6 +27,7 @@ import { withParamValidation } from "next-typesafe-url/app/hoc";
 import type { RouteType, SearchType } from "./routeType";
 import { Route } from "./routeType";
 import SearchTypeSwitcher from "./search-type-switcher";
+import { searchRegions } from "@/server/typesense/region";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -80,15 +81,28 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     });
   }
 
-  // if (type === "genres")
-  return searchGenres(q, {
+  if (type === "genres")
+    return searchGenres(q, {
+      limit: 20,
+      page,
+    });
+
+  // type === "regions"
+  return searchRegions(q, {
     limit: 20,
     page,
-    // sortBy: sort,
   });
 }
 
-const renderResult = (type: SearchType, view: View) => (result: any) => {
+const SearchResult = ({
+  type,
+  view,
+  result,
+}: {
+  type: SearchType;
+  view: View;
+  result: any;
+}) => {
   if (type === "all") {
     return <GlobalSearchResult result={result} />;
   }
@@ -105,18 +119,29 @@ const renderResult = (type: SearchType, view: View) => (result: any) => {
     return <GenreSearchResult result={result} />;
   }
 
-  if (type === "regions") {
-    return <RegionSearchResult result={result} />;
-  }
+  // type === "regions"
+  return <RegionSearchResult result={result} />;
 };
 
 async function SearchPage({ searchParams }: TextsPageProps) {
   const resolvedSearchParams = await searchParams;
   const { type, q, sort, genres, authors, regions, year, view } =
     resolvedSearchParams;
-  const t = await getTranslations("entities");
+  const t = await getTranslations();
 
   const results = await search(resolvedSearchParams);
+
+  const entityName = t(
+    (
+      {
+        authors: "entities.authors",
+        texts: "entities.texts",
+        genres: "entities.genres",
+        regions: "entities.regions",
+        all: "entities.texts",
+      } as const
+    )[type],
+  );
 
   return (
     <div>
@@ -125,7 +150,9 @@ async function SearchPage({ searchParams }: TextsPageProps) {
       <main className="bg-background flex min-h-screen w-full flex-col pb-24">
         <div className="bg-muted-primary flex h-[250px] w-full items-center justify-center pt-16 text-white sm:h-[300px] sm:pt-24">
           <Container className="flex flex-col items-center">
-            <h1 className="text-6xl font-bold sm:text-7xl">{t("texts")}</h1>
+            <h1 className="text-6xl font-bold sm:text-7xl">
+              {t("common.advanced-search")}
+            </h1>
 
             {/* <p className="mt-5 text-lg text-secondary dark:text-gray-300">
             {t("search-x", {
@@ -141,12 +168,18 @@ async function SearchPage({ searchParams }: TextsPageProps) {
           <SearchResults
             response={results.results as any}
             pagination={results.pagination}
-            renderResult={renderResult(type, view) as any}
-            emptyMessage={t("no-entity", { entity: t("texts") })}
-            placeholder={t("search-within", {
-              entity: t("texts"),
+            renderResult={(result) => (
+              <SearchResult type={type} view={view} result={result} />
+            )}
+            emptyMessage={t("entities.no-entity", { entity: entityName })}
+            placeholder={t("entities.search-within", {
+              entity: entityName,
             })}
-            sorts={yearsSorts as any}
+            sorts={
+              type === "authors" || type === "texts" || type === "all"
+                ? yearsSorts
+                : booksSorts
+            }
             currentSort={sort.raw}
             currentQuery={q}
             view={view}

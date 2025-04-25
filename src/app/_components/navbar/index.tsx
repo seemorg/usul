@@ -8,12 +8,10 @@ import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
 import {
-  ArrowLeftIcon,
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import { useTranslations } from "next-intl";
 
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
 import LocaleSwitcher from "./locale-switcher";
@@ -29,10 +27,10 @@ interface NavbarProps {
 }
 
 export default function Navbar({ layout, secondNav }: NavbarProps) {
-  const t = useTranslations();
-  const { showNavbar, setShowNavbar } = useNavbarStore();
+  const { showNavbar, setShowNavbar, showSearch, setShowSearch } =
+    useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const containerEl = useReaderScroller();
   const dir = useDirection();
 
@@ -109,7 +107,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
               variant="ghost"
               onClick={() => {
                 setIsMenuOpen(false);
-                setIsSearchOpen(!isSearchOpen);
+                setShowSearch(!showSearch);
               }}
             >
               <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
@@ -122,7 +120,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
             variant="ghost"
             className="relative"
             onClick={() => {
-              setIsSearchOpen(false);
+              setShowSearch(false);
               setIsMenuOpen(!isMenuOpen);
             }}
           >
@@ -164,26 +162,6 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       {isMenuOpen && (
         <MobileMenu>
           <MobileNavigationMenu setIsMenuOpen={setIsMenuOpen} />
-        </MobileMenu>
-      )}
-
-      {isSearchOpen && (
-        <MobileMenu className="z-42 pt-10">
-          <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setIsSearchOpen(false)}
-            >
-              <ArrowLeftIcon className="block h-5 w-5 rtl:rotate-180" />
-            </Button>
-
-            <h1 className="text-lg font-semibold">{t("common.search")}</h1>
-          </div>
-
-          <div className="mt-8">
-            <SearchBar autoFocus mobile />
-          </div>
         </MobileMenu>
       )}
     </>

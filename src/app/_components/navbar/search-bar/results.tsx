@@ -68,26 +68,8 @@ export default function SearchBarResults({
   const hits = results?.hits ?? [];
   const showSeeMore = (results?.found ?? 0) > 5 && hits.length > 0;
 
-  const renderResults = () => {
-    if (isLoading) {
-      return <ResultsSkeleton />;
-    }
-
-    if (hits.length > 0) {
-      return hits.map((hit) => (
-        <SearchBarItem
-          key={hit.document.id}
-          document={hit.document}
-          onSelect={onItemSelect}
-        />
-      ));
-    }
-
-    return <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>;
-  };
-
   return (
-    <div className="p-3 sm:p-6">
+    <>
       <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
         <Tabs
           value={searchType}
@@ -125,23 +107,36 @@ export default function SearchBarResults({
       </div>
 
       <div className="mt-5">
-        {renderResults()}
-        {showSeeMore && (
-          <Button
-            asChild
-            className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
-            variant="link"
-          >
-            <Link
-              href={navigation.search.index({ type: searchType, query: value })}
-            >
-              {t("common.search-bar.all-results", {
-                results: results?.found ?? 0,
-              })}
-            </Link>
-          </Button>
+        {isLoading ? (
+          <ResultsSkeleton />
+        ) : hits.length > 0 ? (
+          hits.map((hit) => (
+            <SearchBarItem
+              key={hit.document.id}
+              document={hit.document}
+              onSelect={onItemSelect}
+            />
+          ))
+        ) : (
+          <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>
         )}
       </div>
-    </div>
+
+      {showSeeMore && (
+        <Button
+          asChild
+          className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
+          variant="link"
+        >
+          <Link
+            href={navigation.search.index({ type: searchType, query: value })}
+          >
+            {t("common.search-bar.all-results", {
+              results: results?.found ?? 0,
+            })}
+          </Link>
+        </Button>
+      )}
+    </>
   );
 }

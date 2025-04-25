@@ -8,6 +8,7 @@ import { getLocaleDirection } from "@/lib/locale/utils";
 import { DirectionProvider } from "@radix-ui/react-direction";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
+import MobileSearch from "../_components/navbar/mobile-search";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -50,7 +51,11 @@ function Providers({
           disableTransitionOnChange
         >
           <QueryClientProvider client={queryClient}>
-            <TooltipProvider>{children}</TooltipProvider>
+            <TooltipProvider>
+              {children}
+
+              <MobileSearch />
+            </TooltipProvider>
           </QueryClientProvider>
         </NextThemesProvider>
       </DirectionProvider>

@@ -16,10 +16,11 @@ import { useSearchHistoryStore } from "@/stores/search-history";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useDetectClickOutside } from "react-detect-click-outside";
-import { useBoolean, useDebounceValue } from "usehooks-ts";
+import { useBoolean, useDebounceValue, useMediaQuery } from "usehooks-ts";
 
 import SearchBarEmptyState from "./empty-state";
 import SearchBarResults from "./results";
+import { useNavbarStore } from "@/stores/navbar";
 
 const typeToMethod = {
   all: searchAllCollections,
@@ -33,13 +34,16 @@ type SearchResults = Awaited<ReturnType<typeof searchAllCollections>>;
 export default function SearchBar({
   autoFocus,
   size = "sm",
-  mobile,
+  isMenu,
 }: {
   autoFocus?: boolean;
   size?: "sm" | "lg";
-  mobile?: boolean;
+  isMenu?: boolean;
 }) {
   const t = useTranslations("common");
+  // const showSearch = useNavbarStore(s => s.showSearch);
+  const setShowSearch = useNavbarStore((s) => s.setShowSearch);
+  const isMobile = useMediaQuery("(max-width: 1024px)");
 
   const [value, setValue] = useState("");
   const [searchType, setSearchType] = useState<SearchType>("all");
@@ -97,7 +101,7 @@ export default function SearchBar({
     }
   };
 
-  const showList = focusedState.value;
+  const showList = focusedState.value || isMenu || isMobile;
 
   return (
     <div className={cn("z-50 w-full")}>
@@ -130,12 +134,19 @@ export default function SearchBar({
       >
         <CommandInput
           id="global-search-input"
-          placeholder={`${t("search-bar.placeholder")}...${mobile ? "" : " (⌘ + K)"}`}
+          placeholder={`${t("search-bar.placeholder")}...${isMenu ? "" : " (⌘ + K)"}`}
           value={value}
           onValueChange={setValue}
           ref={inputRef}
           autoFocus={autoFocus}
-          onFocus={focusedState.setTrue}
+          onFocus={(e) => {
+            if (isMobile && !isMenu) {
+              e.preventDefault();
+              setShowSearch(true);
+            } else {
+              focusedState.setTrue();
+            }
+          }}
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
           wrapperClassName={cn(size === "lg" && "[&_svg]:h-6! [&_svg]:w-6!")}
         />
@@ -162,22 +173,22 @@ export default function SearchBar({
           itemID="cmd-list"
           className={cn(
             "bg-popover text-foreground absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none text-sm",
-            !mobile && "border-border border shadow-sm",
-            showList || mobile
-              ? "opacity-100"
-              : "pointer-events-none opacity-0",
+            !isMenu && "border-border border shadow-sm",
+            showList ? "opacity-100" : "pointer-events-none opacity-0",
             size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
           {debouncedValue ? (
-            <SearchBarResults
-              results={data?.results}
-              isLoading={isLoading}
-              onItemSelect={onItemSelect}
-              searchType={searchType}
-              setSearchType={setSearchType}
-              value={debouncedValue}
-            />
+            <div className={cn(isMenu ? "p-2" : "p-3 sm:p-6")}>
+              <SearchBarResults
+                results={data?.results}
+                isLoading={isLoading}
+                onItemSelect={onItemSelect}
+                searchType={searchType}
+                setSearchType={setSearchType}
+                value={debouncedValue}
+              />
+            </div>
           ) : (
             <SearchBarEmptyState setValue={setValue} />
           )}
