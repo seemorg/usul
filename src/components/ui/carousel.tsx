@@ -72,13 +72,11 @@ const Carousel = ({
   }, []);
 
   const scrollPrev = useCallback(() => {
-    api?.scrollPrev();
-    api?.scrollPrev();
+    api?.scrollTo(api.selectedScrollSnap() - 3);
   }, [api]);
 
   const scrollNext = useCallback(() => {
-    api?.scrollNext();
-    api?.scrollNext();
+    api?.scrollTo(api.selectedScrollSnap() + 3);
   }, [api]);
 
   const handleKeyDown = useCallback(
