@@ -41,7 +41,7 @@ export default function SearchBar({
   isMenu?: boolean;
 }) {
   const t = useTranslations("common");
-  // const showSearch = useNavbarStore(s => s.showSearch);
+  const showSearch = useNavbarStore((s) => s.showSearch);
   const setShowSearch = useNavbarStore((s) => s.setShowSearch);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
@@ -98,6 +98,11 @@ export default function SearchBar({
       focusedState.setFalse();
     } else {
       isModalOpen.setTrue();
+    }
+
+    // if the user is on mobile, we need to close the search bar
+    if (showSearch) {
+      setShowSearch(false);
     }
   };
 
@@ -179,7 +184,7 @@ export default function SearchBar({
           )}
         >
           {debouncedValue ? (
-            <div className={cn(isMenu ? "p-2" : "p-3 sm:p-6")}>
+            <div className={cn(isMenu ? "px-3 py-2" : "p-3 sm:p-6")}>
               <SearchBarResults
                 results={data?.results}
                 isLoading={isLoading}
