@@ -7,6 +7,7 @@ import {
   Dialog,
   DialogOverlay,
   DialogPortal,
+  RawDialogTitle,
   RawDialogClose,
   RawDialogContent,
 } from "@/components/ui/dialog";
@@ -128,20 +129,20 @@ export default function InfoDialog({
 
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogPortal>
-          <DialogOverlay>
+          <DialogOverlay className="place-items-end pt-10 pb-0 sm:place-items-center sm:pt-40 sm:pb-20">
             <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 grid w-full max-w-3xl gap-4 shadow-lg duration-200 sm:rounded-lg">
-              <div className="bg-primary w-full px-8 py-6 text-white sm:rounded-t-lg">
+              <div className="bg-primary w-full px-6 py-6 text-white sm:rounded-t-lg sm:px-8">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-2xl font-bold">
+                  <RawDialogTitle className="text-2xl font-bold">
                     {t("common.text-info")}
-                  </h3>
+                  </RawDialogTitle>
                   <RawDialogClose className="ring-offset-background focus:ring-ring rounded-sm p-2 opacity-70 transition-opacity hover:bg-white/10 hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                     <XIcon className="h-6 w-6" />
                     <span className="sr-only">Close</span>
                   </RawDialogClose>
                 </div>
 
-                <Separator className="my-6 bg-white/10" />
+                <Separator className="my-4 bg-white/10 sm:my-6" />
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
@@ -205,7 +206,7 @@ export default function InfoDialog({
                 )}
               </div>
 
-              <div className="flex flex-col gap-6 px-8 py-6">
+              <div className="flex flex-col gap-4 px-6 py-6 sm:gap-6 sm:px-8">
                 <h3 className="text-2xl font-bold">
                   {t("common.author-info")}
                 </h3>
@@ -238,35 +239,37 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div
-                    className="w-full flex-1"
-                    dir={dir === "ltr" ? "rtl" : "ltr"}
-                  >
-                    <p className="text-secondary-foreground/60 mb-2 text-base font-medium">
-                      {pathLocale === "ar" ? "Name" : "الاسم"}
-                    </p>
+                  {!isLoading && (
+                    <div
+                      className="w-full flex-1"
+                      dir={dir === "ltr" ? "rtl" : "ltr"}
+                    >
+                      <p className="text-secondary-foreground/60 mb-2 text-base font-medium">
+                        {pathLocale === "ar" ? "Name" : "الاسم"}
+                      </p>
 
-                    <div className="w-full">
-                      {isLoading ? (
-                        <>
-                          <Skeleton className="h-8 w-40 max-w-full" />
-                          <Skeleton className="mt-2 h-6 w-64 max-w-full" />
-                        </>
-                      ) : (
-                        <>
-                          <p className="text-xl font-bold">
-                            {authorSecondaryName}
-                          </p>
-
-                          {authorOtherSecondaryNames && (
-                            <p className="text-secondary-foreground mt-3 text-sm">
-                              {authorOtherSecondaryNames.join(", ")}
+                      <div className="w-full">
+                        {isLoading ? (
+                          <>
+                            <Skeleton className="h-8 w-40 max-w-full" />
+                            <Skeleton className="mt-2 h-6 w-64 max-w-full" />
+                          </>
+                        ) : (
+                          <>
+                            <p className="text-xl font-bold">
+                              {authorSecondaryName}
                             </p>
-                          )}
-                        </>
-                      )}
+
+                            {authorOtherSecondaryNames && (
+                              <p className="text-secondary-foreground mt-3 text-sm">
+                                {authorOtherSecondaryNames.join(", ")}
+                              </p>
+                            )}
+                          </>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-2">

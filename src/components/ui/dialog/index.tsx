@@ -26,8 +26,8 @@ const DialogOverlay = ({
 );
 
 export const RawDialogContent = DialogPrimitive.Content;
-
 export const RawDialogClose = DialogPrimitive.Close;
+export const RawDialogTitle = DialogPrimitive.Title;
 
 const DialogContent = ({
   className,
