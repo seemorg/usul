@@ -21,8 +21,8 @@
 
 // export default formatMarkdown;
 
-import { SKIP, visit } from "unist-util-visit";
 import type { Node } from "unist";
+import { SKIP, visit } from "unist-util-visit";
 
 function makeSourcesPlugin(numbers: number[]) {
   return () => {

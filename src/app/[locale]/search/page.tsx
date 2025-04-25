@@ -1,32 +1,32 @@
-import BookSearchResult from "@/components/book-search-result";
-import GenresFilter from "@/components/genres-filter";
-import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route   } from "./routeType";
-import type {SearchType, RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { navigation, yearsSorts } from "@/lib/urls";
-import RegionsFilter from "@/components/regions-filter";
-import AuthorsFilter from "@/components/authors-filter";
-import { gregorianYearToHijriYear } from "@/lib/date";
-import { getTranslations } from "next-intl/server";
-
-import { getMetadata } from "@/lib/seo";
-import Container from "@/components/ui/container";
-import { searchAllCollections } from "@/server/typesense/global";
-import { searchAuthors } from "@/server/typesense/author";
-import { searchGenres } from "@/server/typesense/genre";
-import AuthorSearchResult from "@/components/author-search-result";
 import type { View } from "@/validation/view";
-import GenreSearchResult from "@/components/genre-search-result";
-import RegionSearchResult from "@/components/region-search-result";
-import Navbar from "@/app/_components/navbar";
-import Footer from "@/app/_components/footer";
-import SearchTypeSwitcher from "./search-type-switcher";
-import GlobalSearchResult from "@/components/global-search-result";
 import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import Footer from "@/app/_components/footer";
+import Navbar from "@/app/_components/navbar";
+import AuthorSearchResult from "@/components/author-search-result";
+import AuthorsFilter from "@/components/authors-filter";
+import BookSearchResult from "@/components/book-search-result";
+import GenreSearchResult from "@/components/genre-search-result";
+import GenresFilter from "@/components/genres-filter";
+import GlobalSearchResult from "@/components/global-search-result";
+import RegionSearchResult from "@/components/region-search-result";
+import RegionsFilter from "@/components/regions-filter";
+import SearchResults from "@/components/search-results";
+import Container from "@/components/ui/container";
 import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { searchAuthors } from "@/server/typesense/author";
+import { searchBooks } from "@/server/typesense/book";
+import { searchGenres } from "@/server/typesense/genre";
+import { searchAllCollections } from "@/server/typesense/global";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType, SearchType } from "./routeType";
+import { Route } from "./routeType";
+import SearchTypeSwitcher from "./search-type-switcher";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -88,7 +88,6 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
   });
 }
 
- 
 const renderResult = (type: SearchType, view: View) => (result: any) => {
   if (type === "all") {
     return <GlobalSearchResult result={result} />;
@@ -123,8 +122,8 @@ async function SearchPage({ searchParams }: TextsPageProps) {
     <div>
       <Navbar />
 
-      <main className="flex min-h-screen w-full flex-col bg-background pb-24">
-        <div className="flex h-[250px] w-full items-center justify-center bg-muted-primary pt-16 text-white sm:h-[300px] sm:pt-24">
+      <main className="bg-background flex min-h-screen w-full flex-col pb-24">
+        <div className="bg-muted-primary flex h-[250px] w-full items-center justify-center pt-16 text-white sm:h-[300px] sm:pt-24">
           <Container className="flex flex-col items-center">
             <h1 className="text-6xl font-bold sm:text-7xl">{t("texts")}</h1>
 
@@ -138,7 +137,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
           </Container>
         </div>
 
-        <Container className="mt-10 bg-background sm:mt-20">
+        <Container className="bg-background mt-10 sm:mt-20">
           <SearchResults
             response={results.results as any}
             pagination={results.pagination}

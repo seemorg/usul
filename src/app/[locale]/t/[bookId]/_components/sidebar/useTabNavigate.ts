@@ -1,10 +1,10 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
+import { routing } from "@/i18n/config";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { usePathname } from "@/navigation";
 import { useLocale } from "next-intl";
-import { useSearchParams } from "next/navigation";
-import { routing } from "@/i18n/config";
 
 export const useTabNavigate = () => {
   const pathname = usePathname();

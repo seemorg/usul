@@ -1,5 +1,5 @@
-import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { env } from "@/env";
 
 const baseRequest = async <T>(
   method: "GET" | "POST",

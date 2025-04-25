@@ -1,9 +1,6 @@
 "use client";
 
-import { Link } from "@/navigation";
-import { ChevronRightIcon } from "@heroicons/react/20/solid";
 import ComingSoonModal from "@/components/coming-soon-modal";
-
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +10,8 @@ import {
 } from "@/components/ui/carousel";
 import { useDirection } from "@/lib/locale/utils";
 import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
+import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 const HomepageSection = ({
   title,
@@ -30,9 +29,9 @@ const HomepageSection = ({
   const dir = useDirection();
 
   const sectionTitle = (
-    <h2 className="group flex items-center gap-1 text-2xl font-semibold transition-colors hover:text-primary">
+    <h2 className="group hover:text-primary flex items-center gap-1 text-2xl font-semibold transition-colors">
       {title}{" "}
-      <ChevronRightIcon className="mt-[3px] h-6 w-6 text-gray-400 transition group-hover:text-primary rtl:rotate-180" />
+      <ChevronRightIcon className="group-hover:text-primary mt-[3px] h-6 w-6 text-gray-400 transition rtl:rotate-180" />
     </h2>
   );
 
@@ -49,8 +48,8 @@ const HomepageSection = ({
         )}
 
         <div className="flex items-center gap-2">
-          <CarouselPrevious className="hover:bg-accent/80 focus:bg-accent/80 disabled:opacity-40 dark:bg-accent/50" />
-          <CarouselNext className="hover:bg-accent/80 focus:bg-accent/80 disabled:opacity-40 dark:bg-accent/50" />
+          <CarouselPrevious className="hover:bg-accent/80 focus:bg-accent/80 dark:bg-accent/50 disabled:opacity-40" />
+          <CarouselNext className="hover:bg-accent/80 focus:bg-accent/80 dark:bg-accent/50 disabled:opacity-40" />
         </div>
       </div>
 

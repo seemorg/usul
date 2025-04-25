@@ -1,19 +1,20 @@
-import SearchResults from "@/components/search-results";
-import { Route, sorts  } from "./routeType";
-import type {RouteType} from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { gregorianYearToHijriYear } from "@/lib/date";
 import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
-import { countAllAuthors } from "@/server/services/authors";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
-import { searchAuthors } from "@/server/typesense/author";
+import SearchResults from "@/components/search-results";
+import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { Locale } from "next-intl";
-import YearFilterClient from "@/components/year-filter/client";
+import { countAllAuthors } from "@/server/services/authors";
+import { searchAuthors } from "@/server/typesense/author";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route, sorts } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
 

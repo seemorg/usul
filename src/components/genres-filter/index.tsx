@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
-import GenresFilterClient from "./client";
 import { findAllGenresWithBooksCount } from "@/server/services/genres";
+
+import GenresFilterClient from "./client";
 
 type Props = Omit<ComponentProps<typeof GenresFilterClient>, "genres"> & {
   filters?: Parameters<typeof findAllGenresWithBooksCount>[0];

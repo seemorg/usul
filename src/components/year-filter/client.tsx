@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+
 import YearFilterSkeleton from "./skeleton";
 
 const YearFilterClient = dynamic(() => import("./index"), {

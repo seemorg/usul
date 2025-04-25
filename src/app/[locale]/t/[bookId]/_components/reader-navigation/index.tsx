@@ -1,24 +1,25 @@
 "use client";
 
-import Container from "@/components/ui/container";
-import VersionSelector from "./version-selector";
 import type { ApiBookResponse } from "@/types/api/book";
-import DownloadButton from "./download-button";
-import ViewTabs from "./view-tabs";
-import BookInfoHeader from "./book-info-header";
-import { useNavbarStore } from "@/stores/navbar";
+import { useState } from "react";
+import { SinglePageIcon } from "@/components/Icons";
+import Container from "@/components/ui/container";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import ReaderNavigationMobileActions from "./mobile-actions";
-import { SinglePageIcon } from "@/components/Icons";
-import ReaderNavigationButton from "./navigation-button";
+import { useNavbarStore } from "@/stores/navbar";
 import { useTranslations } from "next-intl";
-import { useGetBookUrl, useReaderView } from "./utils";
-import { TabContent } from "../tab-content";
-import { tabs } from "../sidebar/tabs";
-import { useState } from "react";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
+import { tabs } from "../sidebar/tabs";
+import { TabContent } from "../tab-content";
+import BookInfoHeader from "./book-info-header";
+import DownloadButton from "./download-button";
+import ReaderNavigationMobileActions from "./mobile-actions";
+import ReaderNavigationButton from "./navigation-button";
+import { useGetBookUrl, useReaderView } from "./utils";
+import VersionSelector from "./version-selector";
+import ViewTabs from "./view-tabs";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {
@@ -55,13 +56,13 @@ export default function ReaderNavigation({
     <>
       <div
         className={cn(
-          "relative w-full bg-reader px-5 transition will-change-transform lg:px-8",
+          "bg-reader relative w-full px-5 transition will-change-transform lg:px-8",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",
         )}
       >
-        <Container className="flex items-center justify-between border-b border-border px-0 py-2.5 2xl:max-w-5xl">
+        <Container className="border-border flex items-center justify-between border-b px-0 py-2.5 2xl:max-w-5xl">
           <div className="flex flex-1 items-center gap-2">
             <ReaderNavigationMobileActions
               isSinglePage={isSinglePage ?? false}

@@ -1,22 +1,23 @@
-import BookSearchResult from "@/components/book-search-result";
-import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
-import { findGenreBySlug } from "@/server/services/genres";
-import AuthorsFilter from "@/components/authors-filter";
-import { gregorianYearToHijriYear } from "@/lib/date";
-import RegionsFilter from "@/components/regions-filter";
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { getPathLocale } from "@/lib/locale/server";
 import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
+import AuthorsFilter from "@/components/authors-filter";
+import BookSearchResult from "@/components/book-search-result";
+import RegionsFilter from "@/components/regions-filter";
+import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
+import { getPathLocale } from "@/lib/locale/server";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { findGenreBySlug } from "@/server/services/genres";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 export const generateMetadata = async ({
   params,

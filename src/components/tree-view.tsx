@@ -1,14 +1,14 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { ChevronRightIcon } from "lucide-react";
-import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { DirectionProvider, useDirection } from "@radix-ui/react-direction";
+import { cva } from "class-variance-authority";
+import { ChevronRightIcon } from "lucide-react";
 
 const treeVariants = cva(
-  "group hover:before:opacity-100 before:absolute before:rounded-lg before:w-full before:opacity-0 before:bg-accent/70 before:h-[2.8rem] before:-z-10",
+  "group before:bg-accent/70 before:absolute before:-z-10 before:h-[2.8rem] before:w-full before:rounded-lg before:opacity-0 hover:before:opacity-100",
   {
     variants: {
       dir: {
@@ -20,7 +20,7 @@ const treeVariants = cva(
 );
 
 const selectedTreeVariants = cva(
-  "before:bg-primary-foreground/30 before:opacity-100 text-primary",
+  "before:bg-primary-foreground/30 text-primary before:opacity-100",
 );
 
 interface TreeDataItem {
@@ -334,7 +334,7 @@ const AccordionContent = ({
     )}
     {...props}
   >
-    <div className="pb-1 pt-0">{children}</div>
+    <div className="pt-0 pb-1">{children}</div>
   </AccordionPrimitive.Content>
 );
 

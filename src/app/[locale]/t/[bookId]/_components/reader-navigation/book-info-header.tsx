@@ -1,14 +1,14 @@
- 
-import { Separator } from "@/components/ui/separator";
-import { navigation } from "@/lib/urls";
-import { Link } from "@/navigation";
 import { Fragment, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
 import Container from "@/components/ui/container";
-import { useBookDetails } from "../../_contexts/book-details.context";
-import { useReaderScroller } from "../context";
+import { Separator } from "@/components/ui/separator";
 import { formatDeathYear } from "@/lib/date";
 import { usePathLocale } from "@/lib/locale/utils";
+import { navigation } from "@/lib/urls";
+import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
+
+import { useBookDetails } from "../../_contexts/book-details.context";
+import { useReaderScroller } from "../context";
 
 export default function BookInfoHeader() {
   const { bookResponse } = useBookDetails();
@@ -32,7 +32,7 @@ export default function BookInfoHeader() {
   return (
     <div
       className={cn(
-        "z-2 bg-reader absolute left-0 top-0 w-full px-5 transition will-change-transform lg:px-8",
+        "bg-reader absolute top-0 left-0 z-2 w-full px-5 transition will-change-transform lg:px-8",
         isVisible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none -translate-y-full opacity-0",

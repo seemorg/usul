@@ -1,9 +1,10 @@
 // "use server";
 
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
 import descriptions from "~/data/centuries.json";
 import { db } from "../db";
-import { unstable_cache } from "next/cache";
 
 export const findAllYearRanges = cache(async () => {
   const counts = await countAllBooksByCentury();

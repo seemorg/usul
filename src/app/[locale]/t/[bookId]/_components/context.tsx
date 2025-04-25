@@ -1,7 +1,7 @@
 "use client";
 
-import { createContext, use, useRef, useState } from "react";
 import type { VListHandle } from "virtua";
+import { createContext, use, useRef, useState } from "react";
 
 type VirtuosoContextType = React.RefObject<VListHandle | null>;
 

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentProps } from "react";
 
 import { ScrollArea } from "./index";
-import type { ComponentProps } from "react";
 
 type MetaType = Meta<ComponentProps<typeof ScrollArea>>;
 

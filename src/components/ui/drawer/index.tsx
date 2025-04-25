@@ -1,8 +1,7 @@
 "use client";
 
-import { Drawer as DrawerPrimitive } from "vaul";
-
 import { cn } from "@/lib/utils";
+import { Drawer as DrawerPrimitive } from "vaul";
 
 const Drawer = ({
   shouldScaleBackground = true,
@@ -76,7 +75,7 @@ const DrawerTitle = ({
 }: React.ComponentProps<typeof DrawerPrimitive.Title>) => (
   <DrawerPrimitive.Title
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
+      "text-lg leading-none font-semibold tracking-tight",
       className,
     )}
     {...props}

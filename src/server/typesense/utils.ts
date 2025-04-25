@@ -1,10 +1,10 @@
-import { removeDiacritics } from "@/lib/diacritics";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { Pagination } from "@/types/pagination";
 import type {
   DocumentSchema,
   SearchResponse,
 } from "typesense/lib/Typesense/Documents";
+import { removeDiacritics } from "@/lib/diacritics";
 
 export const makePagination = (
   totalRecords: number,

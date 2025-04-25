@@ -1,12 +1,12 @@
 "use client";
 
-import { versionToName } from "@/lib/version";
-import { useTranslations } from "next-intl";
-import EditionModal from "./edition-modal";
-
-import { cn } from "@/lib/utils";
-import { ChevronsUpDownIcon } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { versionToName } from "@/lib/version";
+import { ChevronsUpDownIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import EditionModal from "./edition-modal";
 
 export default function VersionSelector({
   versions,
@@ -29,14 +29,14 @@ export default function VersionSelector({
       />
 
       <div className="group flex items-center" onClick={() => setIsOpen(true)}>
-        <div className="hidden h-9 items-center justify-center rounded-md border border-border px-4 text-muted-foreground md:flex ltr:rounded-r-none rtl:rounded-l-none">
+        <div className="border-border text-muted-foreground hidden h-9 items-center justify-center rounded-md border px-4 md:flex ltr:rounded-r-none rtl:rounded-l-none">
           <p className="text-sm">{t("edition")}</p>
         </div>
 
         <button
           className={cn(
-            "flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs ring-offset-background placeholder:text-muted-foreground focus:outline-hidden focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-            "w-[170px] overflow-hidden border border-border px-2 shadow-none transition-colors group-hover:bg-accent md:w-[200px] md:px-3 md:ltr:rounded-l-none md:ltr:border-l-0 md:rtl:rounded-r-none md:rtl:border-r-0 [&>span]:min-w-0 [&>span]:max-w-[90%] [&>span]:text-ellipsis [&>span]:break-words",
+            "border-input ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs focus:ring-1 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+            "border-border group-hover:bg-accent w-[170px] overflow-hidden border px-2 shadow-none transition-colors md:w-[200px] md:px-3 md:ltr:rounded-l-none md:ltr:border-l-0 md:rtl:rounded-r-none md:rtl:border-r-0 [&>span]:max-w-[90%] [&>span]:min-w-0 [&>span]:break-words [&>span]:text-ellipsis",
           )}
         >
           {selectedVersionObj ? (

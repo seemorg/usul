@@ -1,10 +1,10 @@
-import {  useLocale } from "next-intl";
-import type {Locale} from "next-intl";
+import type { Locale } from "next-intl";
 import {
-  pathLocaleToSupportedBcp47LocaleMap,
-  localeToFullName,
   localeToDirection,
+  localeToFullName,
+  pathLocaleToSupportedBcp47LocaleMap,
 } from "@/i18n/config";
+import { useLocale } from "next-intl";
 
 export const PATH_LOCALES = Object.keys(
   pathLocaleToSupportedBcp47LocaleMap,

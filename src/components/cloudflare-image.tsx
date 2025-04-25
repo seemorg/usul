@@ -1,7 +1,7 @@
 "use client";
 
+import type { ImageLoader, ImageProps } from "next/image";
 import Image from "next/image";
-import type {ImageProps, ImageLoader} from "next/image";
 
 export const cloudflareImageLoader: ImageLoader = ({ src, width, quality }) => {
   const props = [

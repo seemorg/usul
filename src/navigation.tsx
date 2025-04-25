@@ -1,8 +1,9 @@
+import type { Locale } from "next-intl";
 import { routing } from "@/i18n/config";
 import { createNavigation } from "next-intl/navigation";
-import { isSameURL } from "./lib/utils";
 import NProgress from "nprogress";
-import type { Locale } from "next-intl";
+
+import { isSameURL } from "./lib/utils";
 
 const result = createNavigation(routing);
 

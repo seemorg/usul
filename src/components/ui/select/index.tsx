@@ -1,15 +1,15 @@
 "use client";
 
-import * as SelectPrimitive from "@radix-ui/react-select";
-
 import { cn } from "@/lib/utils";
-import Spinner from "../spinner";
+import * as SelectPrimitive from "@radix-ui/react-select";
 import {
   CheckIcon,
   ChevronDownIcon,
-  ChevronUpIcon,
   ChevronsUpDownIcon,
+  ChevronUpIcon,
 } from "lucide-react";
+
+import Spinner from "../spinner";
 
 const Select = SelectPrimitive.Root;
 
@@ -32,7 +32,7 @@ const SelectTrigger = ({
 }) => (
   <SelectPrimitive.Trigger
     className={cn(
-      "border-input shadow-xs ring-offset-background placeholder:text-muted-foreground focus:outline-hidden focus:ring-ring flex h-9 w-full items-center justify-between whitespace-nowrap rounded-md border bg-transparent px-3 py-2 text-sm focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "border-input ring-offset-background placeholder:text-muted-foreground focus:ring-ring flex h-9 w-full items-center justify-between rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs focus:ring-1 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className,
     )}
     disabled={disabled || isLoading}
@@ -45,7 +45,7 @@ const SelectTrigger = ({
         {isLoading ? (
           <Spinner className="h-4 w-4" />
         ) : (
-          icon ?? <ChevronsUpDownIcon className="h-4 w-4 opacity-50" />
+          (icon ?? <ChevronsUpDownIcon className="h-4 w-4 opacity-50" />)
         )}
       </div>
     </SelectPrimitive.Icon>
@@ -148,7 +148,7 @@ const SelectItem = ({
 }: React.ComponentProps<typeof SelectPrimitive.Item>) => (
   <SelectPrimitive.Item
     className={cn(
-      "outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 relative flex w-full cursor-pointer select-none items-center rounded-sm py-1.5 text-sm ltr:pl-2 ltr:pr-8 rtl:pl-8 rtl:pr-2",
+      "focus:bg-accent focus:text-accent-foreground relative flex w-full cursor-pointer items-center rounded-sm py-1.5 text-sm outline-hidden select-none data-disabled:pointer-events-none data-disabled:opacity-50 ltr:pr-8 ltr:pl-2 rtl:pr-2 rtl:pl-8",
       className,
     )}
     {...props}

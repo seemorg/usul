@@ -1,9 +1,9 @@
-import { error } from "next/dist/build/output/log";
-import type { Stripe } from "stripe";
-import stripe from "@/server/stripe";
-import { env } from "@/env";
-import handleStripeEvent from "@/server/stripe/events";
 import type { NextRequest } from "next/server";
+import type { Stripe } from "stripe";
+import { error } from "next/dist/build/output/log";
+import { env } from "@/env";
+import stripe from "@/server/stripe";
+import handleStripeEvent from "@/server/stripe/events";
 
 /**
  * Syncs Stripe's payment state to our database via their webhooks

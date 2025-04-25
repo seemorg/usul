@@ -1,9 +1,10 @@
-import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareResults } from "./utils";
-import type { SearchOptions } from "./utils";
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { RegionDocument } from "@/types/region";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
+import { makeSearchRequest } from "@/lib/typesense";
+
+import type { SearchOptions } from "./utils";
 import { REGIONS_COLLECTION } from "./config";
+import { makePagination, prepareResults } from "./utils";
 
 export const searchRegions = async (q: string, options?: SearchOptions) => {
   const { limit = REGIONS_COLLECTION.DEFAULT_PER_PAGE, page = 1 } =

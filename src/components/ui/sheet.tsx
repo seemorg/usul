@@ -1,10 +1,9 @@
 "use client";
 
-import * as SheetPrimitive from "@radix-ui/react-dialog";
-import { cva  } from "class-variance-authority";
-import type {VariantProps} from "class-variance-authority";
-
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { cva } from "class-variance-authority";
 import { XIcon } from "lucide-react";
 
 const Sheet = SheetPrimitive.Root;
@@ -21,7 +20,7 @@ const SheetOverlay = ({
 }: React.ComponentProps<typeof SheetPrimitive.Overlay>) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0  fixed inset-0 z-50 bg-black/80",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80",
       className,
     )}
     {...props}
@@ -29,16 +28,16 @@ const SheetOverlay = ({
 );
 
 const sheetVariants = cva(
-  "fixed z-50 gap-4 bg-background p-6 shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
+  "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 gap-4 p-6 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
   {
     variants: {
       side: {
-        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
+        top: "data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 border-b",
         bottom:
-          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-        left: "inset-y-0 ltr:left-0 h-full w-3/4 border-r data-[state=closed]:ltr:slide-out-to-left data-[state=open]:ltr:slide-in-from-left sm:max-w-sm rtl:right-0 data-[state=closed]:rtl:slide-out-to-right data-[state=open]:rtl:slide-in-from-right",
+          "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 border-t",
+        left: "data-[state=closed]:ltr:slide-out-to-left data-[state=open]:ltr:slide-in-from-left data-[state=closed]:rtl:slide-out-to-right data-[state=open]:rtl:slide-in-from-right inset-y-0 h-full w-3/4 border-r sm:max-w-sm ltr:left-0 rtl:right-0",
         right:
-          "inset-y-0 ltr:right-0 h-full w-3/4 border-l data-[state=closed]:ltr:slide-out-to-right data-[state=open]:ltr:slide-in-from-right sm:max-w-sm rtl:left-0 data-[state=closed]:rtl:slide-out-to-left data-[state=open]:rtl:slide-in-from-left",
+          "data-[state=closed]:ltr:slide-out-to-right data-[state=open]:ltr:slide-in-from-right data-[state=closed]:rtl:slide-out-to-left data-[state=open]:rtl:slide-in-from-left inset-y-0 h-full w-3/4 border-l sm:max-w-sm ltr:right-0 rtl:left-0",
       },
     },
     defaultVariants: {
@@ -64,7 +63,7 @@ const SheetContent = ({
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="ring-offset-background focus:outline-hidden focus:ring-ring data-[state=open]:bg-secondary absolute top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none ltr:left-4 rtl:right-4">
+      <SheetPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none ltr:left-4 rtl:right-4">
         <XIcon className="h-5 w-5" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>

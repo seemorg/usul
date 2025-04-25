@@ -1,21 +1,22 @@
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
-import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
-import AuthorsFilter from "@/components/authors-filter";
-import { gregorianYearToHijriYear } from "@/lib/date";
-import { countAllBooks } from "@/server/services/books";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import type { Locale } from "next-intl";
+import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { countAllBooks } from "@/server/services/books";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route } from "./routeType";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 

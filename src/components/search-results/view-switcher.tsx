@@ -1,10 +1,11 @@
 "use client";
 
-import { LayoutGridIcon, Rows3Icon } from "lucide-react";
-import { Button } from "../ui/button";
 import { useSearchParams } from "next/navigation";
 import { usePathname, useRouter } from "@/navigation";
+import { LayoutGridIcon, Rows3Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
+
+import { Button } from "../ui/button";
 
 const defaultView = "list";
 

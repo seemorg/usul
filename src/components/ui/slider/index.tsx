@@ -1,7 +1,7 @@
 "use client";
 
-import * as SliderPrimitive from "@radix-ui/react-slider";
 import { cn } from "@/lib/utils";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 
 const Slider = ({
   className,
@@ -12,7 +12,7 @@ const Slider = ({
   return (
     <SliderPrimitive.Root
       className={cn(
-        "relative flex w-full touch-none select-none items-center",
+        "relative flex w-full touch-none items-center select-none",
         className,
       )}
       {...props}
@@ -24,7 +24,7 @@ const Slider = ({
       {value?.map((_, idx) => (
         <SliderPrimitive.Thumb
           key={idx}
-          className="border-primary bg-background ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring block h-5 w-5 rounded-full border-2 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50"
+          className="border-primary bg-background ring-offset-background focus-visible:ring-ring block h-5 w-5 rounded-full border-2 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>

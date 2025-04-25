@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Alert, AlertDescription, AlertTitle } from "./index";
 import { BellIcon } from "@heroicons/react/24/outline";
+
+import { Alert, AlertDescription, AlertTitle } from "./index";
 
 const meta = {
   title: "Alert",

@@ -1,8 +1,7 @@
 "use client";
 
-import * as DialogPrimitive from "@radix-ui/react-dialog";
-
 import { cn } from "@/lib/utils";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { XIcon } from "lucide-react";
 
 const Dialog = DialogPrimitive.Root;
@@ -19,7 +18,7 @@ const DialogOverlay = ({
 }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => (
   <DialogPrimitive.Overlay
     className={cn(
-      "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/80 pb-20 pt-40",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 grid place-items-center overflow-y-auto bg-black/80 pt-40 pb-20",
       className,
     )}
     {...props}
@@ -48,7 +47,7 @@ const DialogContent = ({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="ring-offset-background focus:outline-hidden focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 disabled:pointer-events-none ltr:right-4 rtl:left-4">
+        <DialogPrimitive.Close className="ring-offset-background focus:ring-ring data-[state=open]:bg-accent data-[state=open]:text-muted-foreground absolute top-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none ltr:right-4 rtl:left-4">
           <XIcon className="h-4 w-4" />
           <span className="sr-only">Close</span>
         </DialogPrimitive.Close>
@@ -83,7 +82,7 @@ const DialogTitle = ({
 }: React.ComponentProps<typeof DialogPrimitive.Title>) => (
   <DialogPrimitive.Title
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight",
+      "text-lg leading-none font-semibold tracking-tight",
       className,
     )}
     {...props}

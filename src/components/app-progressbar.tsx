@@ -1,11 +1,11 @@
 "use client";
 
+import type { NProgressOptions } from "nprogress";
 import React, { useEffect } from "react";
-import NProgress from "nprogress";
-import type {NProgressOptions} from "nprogress";
-import { usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { isSameURL } from "@/lib/utils";
+import { usePathname } from "@/navigation";
+import NProgress from "nprogress";
 
 type PushStateInput = [
   data: any,

@@ -1,6 +1,7 @@
+import { useParams, useSearchParams } from "next/navigation";
 import { navigation } from "@/lib/urls";
 import { usePathname, useRouter } from "@/navigation";
-import { useParams, useSearchParams } from "next/navigation";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
 
 export const useReaderView = () => {

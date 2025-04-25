@@ -1,8 +1,7 @@
 "use client";
 
-import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
-
 import { cn } from "@/lib/utils";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, ChevronRightIcon, DotIcon } from "lucide-react";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
@@ -27,7 +26,7 @@ const DropdownMenuSubTrigger = ({
 }) => (
   <DropdownMenuPrimitive.SubTrigger
     className={cn(
-      "outline-hidden focus:bg-accent data-[state=open]:bg-accent flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm",
+      "focus:bg-accent data-[state=open]:bg-accent flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none",
       inset && "ltr:pl-8 rtl:pr-8",
       className,
     )}
@@ -79,7 +78,7 @@ const DropdownMenuItem = ({
 }) => (
   <DropdownMenuPrimitive.Item
     className={cn(
-      "outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm transition-colors",
+      "focus:bg-accent focus:text-accent-foreground relative flex cursor-pointer items-center rounded-sm px-2 py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50",
       inset && "ltr:pl-8 rtl:pr-8",
       className,
     )}
@@ -95,7 +94,7 @@ const DropdownMenuCheckboxItem = ({
 }: React.ComponentProps<typeof DropdownMenuPrimitive.CheckboxItem>) => (
   <DropdownMenuPrimitive.CheckboxItem
     className={cn(
-      "outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-pointer select-none items-center rounded-sm py-1.5 text-sm transition-colors ltr:pl-8 ltr:pr-2 rtl:pl-2 rtl:pr-8",
+      "focus:bg-accent focus:text-accent-foreground relative flex cursor-pointer items-center rounded-sm py-1.5 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 ltr:pr-2 ltr:pl-8 rtl:pr-8 rtl:pl-2",
       className,
     )}
     checked={checked}
@@ -117,7 +116,7 @@ const DropdownMenuRadioItem = ({
 }: React.ComponentProps<typeof DropdownMenuPrimitive.RadioItem>) => (
   <DropdownMenuPrimitive.RadioItem
     className={cn(
-      "outline-hidden focus:bg-accent focus:text-accent-foreground data-disabled:pointer-events-none data-disabled:opacity-50 relative flex cursor-default select-none items-center rounded-sm py-1.5 pr-2 text-sm transition-colors ltr:pl-8 rtl:pr-8",
+      "focus:bg-accent focus:text-accent-foreground relative flex cursor-default items-center rounded-sm py-1.5 pr-2 text-sm outline-hidden transition-colors select-none data-disabled:pointer-events-none data-disabled:opacity-50 ltr:pl-8 rtl:pr-8",
       className,
     )}
     {...props}

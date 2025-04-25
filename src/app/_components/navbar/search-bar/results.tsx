@@ -1,14 +1,15 @@
-import type { GlobalSearchDocument } from "@/types/global-search-document";
-import { useTranslations } from "next-intl";
-import SearchBarItem from "./item";
 import type { prepareResults } from "@/server/typesense/utils";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { SearchType } from "@/types/search";
+import { Button } from "@/components/ui/button";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from "@/navigation";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { navigation } from "@/lib/urls";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
+
+import SearchBarItem from "./item";
 
 const skeletonWidths = [
   [80, 112, 80],

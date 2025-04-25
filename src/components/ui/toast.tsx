@@ -1,10 +1,9 @@
 "use client";
 
-import * as ToastPrimitives from "@radix-ui/react-toast";
-import { cva  } from "class-variance-authority";
-import type {VariantProps} from "class-variance-authority";
-
+import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import * as ToastPrimitives from "@radix-ui/react-toast";
+import { cva } from "class-variance-authority";
 import { XIcon } from "lucide-react";
 
 const ToastProvider = ToastPrimitives.Provider;
@@ -15,7 +14,7 @@ const ToastViewport = ({
 }: React.ComponentProps<typeof ToastPrimitives.Viewport>) => (
   <ToastPrimitives.Viewport
     className={cn(
-      "z-9999999999 fixed top-0 flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:left-0 sm:top-auto sm:flex-col md:max-w-[420px]",
+      "fixed top-0 z-9999999999 flex max-h-screen w-full flex-col-reverse p-4 sm:top-auto sm:bottom-0 sm:left-0 sm:flex-col md:max-w-[420px]",
       className,
     )}
     {...props}
@@ -23,12 +22,12 @@ const ToastViewport = ({
 );
 
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-left-full data-[state=open]:slide-in-from-top-full sm:data-[state=open]:slide-in-from-bottom-full",
+  "group data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-left-full data-[state=open]:slide-in-from-top-full sm:data-[state=open]:slide-in-from-bottom-full pointer-events-auto relative flex w-full items-center justify-between space-x-2 overflow-hidden rounded-md border p-4 pr-6 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none",
   {
     variants: {
       variant: {
-        primary: "primary group border bg-primary text-white",
-        secondary: "border bg-background text-foreground",
+        primary: "primary group bg-primary border text-white",
+        secondary: "bg-background text-foreground border",
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
       },
@@ -57,7 +56,7 @@ const ToastAction = ({
 }: React.ComponentProps<typeof ToastPrimitives.Action>) => (
   <ToastPrimitives.Action
     className={cn(
-      "hover:bg-secondary focus:outline-hidden focus:ring-ring group-[.destructive]:border-muted/40 hover:group-[.destructive]:border-destructive/30 hover:group-[.destructive]:bg-destructive hover:group-[.destructive]:text-destructive-foreground focus:group-[.destructive]:ring-destructive inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors focus:ring-1 disabled:pointer-events-none disabled:opacity-50",
+      "hover:bg-secondary focus:ring-ring group-[.destructive]:border-muted/40 hover:group-[.destructive]:border-destructive/30 hover:group-[.destructive]:bg-destructive hover:group-[.destructive]:text-destructive-foreground focus:group-[.destructive]:ring-destructive inline-flex h-8 shrink-0 items-center justify-center rounded-md border bg-transparent px-3 text-sm font-medium transition-colors focus:ring-1 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50",
       className,
     )}
     {...props}
@@ -70,7 +69,7 @@ const ToastClose = ({
 }: React.ComponentProps<typeof ToastPrimitives.Close>) => (
   <ToastPrimitives.Close
     className={cn(
-      "text-foreground/50 hover:text-foreground focus:outline-hidden absolute right-1 top-1 rounded-md p-1 focus:ring-1",
+      "text-foreground/50 hover:text-foreground absolute top-1 right-1 rounded-md p-1 focus:ring-1 focus:outline-hidden",
       "group-[.destructive]:text-red-300 hover:group-[.destructive]:text-red-50 focus:group-[.destructive]:ring-red-400 focus:group-[.destructive]:ring-offset-red-600",
       "group-[.primary]:text-white hover:group-[.primary]:text-white/70",
       className,

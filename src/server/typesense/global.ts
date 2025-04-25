@@ -1,11 +1,12 @@
 "use server";
 
+import type { GlobalSearchDocument } from "@/types/global-search-document";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareQuery, prepareResults } from "./utils";
+
 import type { SearchOptions } from "./utils";
 import { GLOBAL_SEARCH_COLLECTION } from "./config";
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
-import type { GlobalSearchDocument } from "@/types/global-search-document";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
 
 export const searchAllCollections = async (
   q: string,

@@ -1,7 +1,7 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { nanoid } from "nanoid";
 
 export type ChatMessage = {
   id?: string;

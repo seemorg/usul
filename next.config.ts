@@ -3,12 +3,12 @@
  * for Docker builds.
  */
 
-import createNextIntlPlugin from "next-intl/plugin";
-import { withAxiom } from "next-axiom";
-import createMDX from "@next/mdx";
-import createBundleAnalyzer from "@next/bundle-analyzer";
 import { NextConfig } from "next";
 import { env } from "@/env";
+import createBundleAnalyzer from "@next/bundle-analyzer";
+import createMDX from "@next/mdx";
+import { withAxiom } from "next-axiom";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const config: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],

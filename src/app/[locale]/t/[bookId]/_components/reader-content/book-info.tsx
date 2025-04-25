@@ -1,14 +1,15 @@
-import { useBookDetails } from "../../_contexts/book-details.context";
-import { useTranslations } from "next-intl";
+import { Badge } from "@/components/ui/badge";
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
-import { Link } from "@/navigation";
-import { navigation } from "@/lib/urls";
-import { Badge } from "@/components/ui/badge";
 import { useDirection } from "@/lib/locale/utils";
+import { navigation } from "@/lib/urls";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
+
+import { useBookDetails } from "../../_contexts/book-details.context";
 import PublicationDetails from "../publication-details";
 
 const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => {
@@ -26,7 +27,7 @@ const AuthorHoverCard = ({ children }: { children: React.ReactNode }) => {
         avoidCollisions
         side="left"
       >
-        <p className="line-clamp-4 text-ellipsis text-sm">{book.author.bio}</p>
+        <p className="line-clamp-4 text-sm text-ellipsis">{book.author.bio}</p>
       </HoverCardContent>
     </HoverCard>
   );

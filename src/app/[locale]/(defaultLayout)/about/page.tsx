@@ -1,10 +1,10 @@
+import type { Locale } from "next-intl";
+import { notFound } from "next/navigation";
 import Container from "@/components/ui/container";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { Locale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
 
 export const generateMetadata = async ({
   params,

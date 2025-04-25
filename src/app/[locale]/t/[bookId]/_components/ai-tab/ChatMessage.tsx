@@ -1,29 +1,30 @@
-import { cn } from "@/lib/utils";
-import ReactMarkdown from "react-markdown";
-import type {Components} from "react-markdown";
-import {
-  DocumentDuplicateIcon,
-  HandThumbUpIcon,
-  HandThumbDownIcon,
-  ArrowPathIcon,
-} from "@heroicons/react/24/outline";
-import {
-  HandThumbUpIcon as SolidHandThumbUpIcon,
-  HandThumbDownIcon as SolidHandThumbDownIcon,
-} from "@heroicons/react/24/solid";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import type { Components } from "react-markdown";
+import { memo, useCallback, useMemo, useState } from "react";
 import { OpenAILogo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
-import { useBoolean } from "usehooks-ts";
-import { useTranslations } from "next-intl";
-import { memo, useCallback, useMemo, useState } from "react";
-import type { UsePageNavigationReturnType } from "../usePageNavigation";
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { useMutation } from "@tanstack/react-query";
+import { cn } from "@/lib/utils";
 import { sendFeedback } from "@/server/services/chat";
-import makeSourcesPlugin from "./sources-plugin";
+import {
+  ArrowPathIcon,
+  DocumentDuplicateIcon,
+  HandThumbDownIcon,
+  HandThumbUpIcon,
+} from "@heroicons/react/24/outline";
+import {
+  HandThumbDownIcon as SolidHandThumbDownIcon,
+  HandThumbUpIcon as SolidHandThumbUpIcon,
+} from "@heroicons/react/24/solid";
+import { useMutation } from "@tanstack/react-query";
+import { useTranslations } from "next-intl";
+import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { useBoolean } from "usehooks-ts";
+
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import PageReference from "./PageReference";
+import makeSourcesPlugin from "./sources-plugin";
 
 type ChatMessageProps = {
   id?: string;
@@ -123,10 +124,10 @@ const ChatMessage = ({
     >
       <div
         className={cn(
-          "chat-message @sm:max-w-[90%] max-w-full text-wrap",
+          "chat-message max-w-full text-wrap @sm:max-w-[90%]",
           "text-foreground group",
           role === "ai"
-            ? "@sm:flex-row flex flex-col items-start gap-3"
+            ? "flex flex-col items-start gap-3 @sm:flex-row"
             : "dark:bg-accent rounded-2xl bg-gray-200 px-4",
           role === "user"
             ? isScreenshot

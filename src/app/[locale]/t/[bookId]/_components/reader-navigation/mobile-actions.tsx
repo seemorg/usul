@@ -7,12 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "@/navigation";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { EllipsisIcon, FileTextIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
-import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
 
 export default function ReaderNavigationMobileActions({
   pdf,

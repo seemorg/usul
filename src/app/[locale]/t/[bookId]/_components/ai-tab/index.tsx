@@ -1,23 +1,24 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
+import { OpenAILogo } from "@/components/Icons";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { SITE_CONFIG } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { ArrowDownIcon } from "@heroicons/react/24/outline";
-import useChat from "./useChat";
-import ChatMessage from "./ChatMessage";
-import { useCallback, useEffect, useState } from "react";
-import { useScrollAnchor } from "./useScrollAnchor";
-import { useTranslations } from "next-intl";
-import { usePageNavigation } from "../usePageNavigation";
-import ChatForm from "./ChatForm";
 import { HistoryIcon, InfoIcon, SquarePenIcon } from "lucide-react";
-import { SITE_CONFIG } from "@/lib/seo";
-import { VersionAlert } from "../version-alert";
-import SidebarContainer from "../sidebar/sidebar-container";
-import { Badge } from "@/components/ui/badge";
-import { OpenAILogo } from "@/components/Icons";
+import { useTranslations } from "next-intl";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
+import SidebarContainer from "../sidebar/sidebar-container";
+import { usePageNavigation } from "../usePageNavigation";
+import { VersionAlert } from "../version-alert";
+import ChatForm from "./ChatForm";
 import { ChatHistory } from "./ChatHistory";
+import ChatMessage from "./ChatMessage";
+import useChat from "./useChat";
+import { useScrollAnchor } from "./useScrollAnchor";
 
 export default function AITab() {
   const { bookResponse } = useBookDetails();
@@ -90,7 +91,7 @@ export default function AITab() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-9 text-muted-foreground hover:bg-secondary"
+                className="text-muted-foreground hover:bg-secondary size-9"
                 onClick={() => setIsHistoryOpen(true)}
                 disabled={isLoading}
                 tooltip={t("reader.history.title")}
@@ -101,7 +102,7 @@ export default function AITab() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="size-9 text-muted-foreground hover:bg-secondary"
+                className="text-muted-foreground hover:bg-secondary size-9"
                 onClick={onClearChat}
                 disabled={isLoading}
                 tooltip={t("reader.chat.new-chat")}
@@ -121,7 +122,7 @@ export default function AITab() {
           >
             <div className="relative flex-1 overflow-hidden">
               {!isAtBottom && (
-                <div className="absolute bottom-0 left-1/2 right-1/2 -translate-x-1/2">
+                <div className="absolute right-1/2 bottom-0 left-1/2 -translate-x-1/2">
                   <Button
                     size="icon"
                     className="size-8 rounded-full"
@@ -138,11 +139,11 @@ export default function AITab() {
               >
                 <div
                   ref={messagesRef}
-                  className="flex flex-col gap-5 pb-[30px] pt-4"
+                  className="flex flex-col gap-5 pt-4 pb-[30px]"
                 >
                   {messages.length === 0 && (
                     <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
-                      <div className="flex size-12 items-center justify-center rounded-full bg-secondary">
+                      <div className="bg-secondary flex size-12 items-center justify-center rounded-full">
                         <OpenAILogo className="h-auto w-7" />
                       </div>
 

@@ -1,13 +1,14 @@
 import type { searchAuthors } from "@/server/typesense/author";
+import { formatDeathYear } from "@/lib/date";
+import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import { usePathLocale } from "@/lib/locale/utils";
 import { useTranslations } from "next-intl";
+
 import EntityCard from "./entity-card";
-import { formatDeathYear } from "@/lib/date";
 
 export default function AuthorSearchResult({
   result,

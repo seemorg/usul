@@ -1,20 +1,21 @@
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import SearchResults from "@/components/search-results";
-import { navigation, yearsSorts } from "@/lib/urls";
-import BookSearchResult from "@/components/book-search-result";
-import { findYearRangeBySlug } from "@/server/services/years";
-import AuthorsFilter from "@/components/authors-filter";
-import RegionsFilter from "@/components/regions-filter";
-import GenresFilter from "@/components/genres-filter";
-import TruncatedText from "@/components/ui/truncated-text";
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
 import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
+import AuthorsFilter from "@/components/authors-filter";
+import BookSearchResult from "@/components/book-search-result";
+import GenresFilter from "@/components/genres-filter";
+import RegionsFilter from "@/components/regions-filter";
+import SearchResults from "@/components/search-results";
+import TruncatedText from "@/components/ui/truncated-text";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { findYearRangeBySlug } from "@/server/services/years";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 

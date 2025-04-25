@@ -1,11 +1,12 @@
 "use client";
 
-import Spinner from "@/components/ui/spinner";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useRef, useState, useTransition } from "react";
-import { Input } from "../ui/input";
-import { usePathname, useRouter } from "@/navigation";
 import { useSearchParams } from "next/navigation";
+import Spinner from "@/components/ui/spinner";
+import { usePathname, useRouter } from "@/navigation";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+
+import { Input } from "../ui/input";
 
 const DEBOUNCE_DELAY = 300;
 
@@ -64,7 +65,7 @@ export default function SearchBar({
   }
 
   return (
-    <div className="relative w-full text-foreground">
+    <div className="text-foreground relative w-full">
       <MagnifyingGlassIcon className="absolute top-1/2 h-3 w-3 -translate-y-1/2 ltr:left-3 rtl:right-3" />
 
       <Input

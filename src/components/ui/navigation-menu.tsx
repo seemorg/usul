@@ -1,9 +1,8 @@
+import { useState } from "react";
+import { cn } from "@/lib/utils";
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu";
 import { cva } from "class-variance-authority";
-
-import { cn } from "@/lib/utils";
 import { ChevronDownIcon } from "lucide-react";
-import { useState } from "react";
 
 const NavigationMenu = ({
   className,
@@ -24,9 +23,9 @@ const NavigationMenu = ({
       {children}
       <NavigationMenuViewport
         containerClassName={cn(
-          "will-change-transform transition-transform",
-          active === 2 && "rtl:-translate-x-20 ltr:translate-x-24",
-          active === 3 && "rtl:-translate-x-40 ltr:translate-x-48",
+          "transition-transform will-change-transform",
+          active === 2 && "ltr:translate-x-24 rtl:-translate-x-20",
+          active === 3 && "ltr:translate-x-48 rtl:-translate-x-40",
         )}
       />
     </NavigationMenuPrimitive.Root>
@@ -49,7 +48,7 @@ const NavigationMenuList = ({
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10 focus:bg-accent/10 focus:outline-hidden disabled:pointer-events-none disabled:opacity-50 data-active:bg-accent/10 data-[state=open]:bg-accent/10",
+  "group hover:bg-accent/10 focus:bg-accent/10 data-active:bg-accent/10 data-[state=open]:bg-accent/10 inline-flex h-9 w-max items-center justify-center rounded-md bg-transparent px-4 py-2 text-sm font-medium transition-colors focus:outline-hidden disabled:pointer-events-none disabled:opacity-50",
 );
 
 const NavigationMenuTrigger = ({
@@ -113,7 +112,7 @@ const NavigationMenuIndicator = ({
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Indicator>) => (
   <NavigationMenuPrimitive.Indicator
     className={cn(
-      "z-1 data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full flex h-1.5 items-end justify-center overflow-hidden",
+      "data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in top-full z-1 flex h-1.5 items-end justify-center overflow-hidden",
       className,
     )}
     {...props}

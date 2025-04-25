@@ -1,20 +1,20 @@
 "use client";
 
+import { memo, useMemo, useRef } from "react";
+import Footer from "@/app/_components/footer";
+import Container from "@/components/ui/container";
+import { HighlightPopover } from "@/components/ui/highlight-popover";
+import { Separator } from "@/components/ui/separator";
+import { READER_OVERSCAN_SIZE, READER_SSR_SIZE } from "@/lib/constants";
 import { Virtualizer } from "virtua";
 
-import { memo, useMemo, useRef } from "react";
-import { useReaderVirtuoso, useSetReaderScroller } from "../context";
-import Footer from "@/app/_components/footer";
-import ReaderPage from "./reader-page";
-import { READER_OVERSCAN_SIZE, READER_SSR_SIZE } from "@/lib/constants";
-import Container from "@/components/ui/container";
-import Paginator from "../../[pageNumber]/paginator";
-import { HighlightPopover } from "@/components/ui/highlight-popover";
-import ReaderHighlightPopover from "./highlight-popover";
-import { useBookDetails } from "../../_contexts/book-details.context";
-import BookInfo from "./book-info";
-import { Separator } from "@/components/ui/separator";
 import type { DefaultPages } from "./use-fetch-page";
+import { useBookDetails } from "../../_contexts/book-details.context";
+import Paginator from "../../[pageNumber]/paginator";
+import { useReaderVirtuoso, useSetReaderScroller } from "../context";
+import BookInfo from "./book-info";
+import ReaderHighlightPopover from "./highlight-popover";
+import ReaderPage from "./reader-page";
 
 export default function ReaderContent({
   isSinglePage,

@@ -1,10 +1,10 @@
 "use client";
 
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-
 import { cn } from "@/lib/utils";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
+import * as TabsPrimitive from "@radix-ui/react-tabs";
 import { TooltipPortal } from "@radix-ui/react-tooltip";
+
+import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 
 const Tabs = TabsPrimitive.Root;
 
@@ -36,7 +36,7 @@ const TabsTrigger = ({
   const trigger = (
     <TabsPrimitive.Trigger
       className={cn(
-        "ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex h-full items-center justify-center whitespace-nowrap rounded text-sm font-medium transition-all focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 data-[state=active]:shadow-sm",
+        "ring-offset-background focus-visible:ring-ring data-[state=active]:bg-background data-[state=active]:text-foreground inline-flex h-full items-center justify-center rounded text-sm font-medium whitespace-nowrap transition-all focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:opacity-50 data-[state=active]:shadow-sm",
         !showTooltip && "px-3 disabled:pointer-events-none",
         className,
       )}
@@ -69,7 +69,7 @@ const TabsContent = ({
 }: React.ComponentProps<typeof TabsPrimitive.Content>) => (
   <TabsPrimitive.Content
     className={cn(
-      "ring-offset-background focus-visible:outline-hidden focus-visible:ring-ring mt-2 focus-visible:ring-2 focus-visible:ring-offset-2",
+      "ring-offset-background focus-visible:ring-ring mt-2 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden",
       className,
     )}
     {...props}

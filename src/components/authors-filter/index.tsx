@@ -1,7 +1,8 @@
 import type { ComponentProps } from "react";
-import AuthorsFilterClient from "./client";
 import { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import { searchAuthors } from "@/server/typesense/author";
+
+import AuthorsFilterClient from "./client";
 
 type Props = Omit<
   ComponentProps<typeof AuthorsFilterClient>,

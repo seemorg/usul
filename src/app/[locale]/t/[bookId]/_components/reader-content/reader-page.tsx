@@ -1,18 +1,19 @@
 "use client";
 
-import RenderBlock from "@/components/render-markdown";
-import { Skeleton } from "@/components/ui/skeleton";
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
+import type { PropsWithChildren } from "react";
+import RenderBlock from "@/components/render-markdown";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslations } from "next-intl";
-import type {PropsWithChildren} from "react";
+
+import type { DefaultPages } from "./use-fetch-page";
 import useFetchPage from "./use-fetch-page";
-import type {DefaultPages} from "./use-fetch-page";
 
 const PageLabel = (props: PropsWithChildren) => (
   <p
-    className="mt-10 text-center font-sans text-sm text-muted-foreground"
+    className="text-muted-foreground mt-10 text-center font-sans text-sm"
     {...props}
   />
 );
@@ -123,7 +124,6 @@ export default function ReaderPage({
     return (
       <div className="reader-page">
         {typedPage.blocks.map((block, blockIndex) => (
-           
           <RenderBlock key={blockIndex} block={block as any} />
         ))}
 

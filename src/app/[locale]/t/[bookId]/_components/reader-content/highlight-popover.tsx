@@ -1,12 +1,13 @@
-import { ClipboardIcon, ShareIcon, SparklesIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useDirection } from "@/lib/locale/utils";
-import { toast } from "@/components/ui/use-toast";
-import { useTranslations } from "next-intl";
 import { useParams, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
+import { useDirection } from "@/lib/locale/utils";
+import { useBookShareUrl } from "@/lib/share";
+import { ClipboardIcon, ShareIcon, SparklesIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import { useChatStore } from "../../_stores/chat";
 import { useTabNavigate } from "../sidebar/useTabNavigate";
-import { useBookShareUrl } from "@/lib/share";
 
 function ReaderHighlightPopover({
   selection,
@@ -52,7 +53,7 @@ function ReaderHighlightPopover({
     >
       <Button
         variant="ghost"
-        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
+        className="hover:bg-accent/10 focus:bg-accent/10 h-10 gap-2 rounded-none"
         onClick={handleCopy}
       >
         <ClipboardIcon className="size-4" />
@@ -61,7 +62,7 @@ function ReaderHighlightPopover({
 
       <Button
         variant="ghost"
-        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
+        className="hover:bg-accent/10 focus:bg-accent/10 h-10 gap-2 rounded-none"
         onClick={handleShare}
       >
         <ShareIcon className="size-4" />
@@ -70,7 +71,7 @@ function ReaderHighlightPopover({
 
       <Button
         variant="ghost"
-        className="h-10 gap-2 rounded-none hover:bg-accent/10 focus:bg-accent/10"
+        className="hover:bg-accent/10 focus:bg-accent/10 h-10 gap-2 rounded-none"
         onClick={handleAskAI}
       >
         <SparklesIcon className="size-4" />

@@ -1,18 +1,19 @@
 import type { ApiAuthor } from "@/types/api/author";
 import type {
+  AlternateSlugResponse,
   ApiBookPageParams,
+  ApiBookPageResponse,
   ApiBookParams,
   ApiBookResponse,
-  ApiBookPageResponse,
   ApiPageIndexParams,
   ApiPageIndexResponse,
-  AlternateSlugResponse,
 } from "@/types/api/book";
-import { cache } from "react";
-import type { PathLocale } from "./locale/utils";
 import type { ApiGenre, ApiGenreCollection } from "@/types/api/genre";
 import type { ApiRegion } from "@/types/api/region";
+import { cache } from "react";
 import { unstable_cache } from "next/cache";
+
+import type { PathLocale } from "./locale/utils";
 
 const API_BASE = "https://api.usul.ai";
 

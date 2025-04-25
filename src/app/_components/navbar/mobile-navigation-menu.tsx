@@ -1,21 +1,16 @@
-import { useTranslations } from "next-intl";
-
-import {
-  
-  browseItems,
-  contributeItems,
-  aboutItems
-} from "./links";
-import type {NavItem} from "./links";
-import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
-import Container from "@/components/ui/container";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Container from "@/components/ui/container";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
+
+import type { NavItem } from "./links";
+import { aboutItems, browseItems, contributeItems } from "./links";
 
 const groups: {
   title: NamespaceTranslations<"common">;

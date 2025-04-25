@@ -1,30 +1,30 @@
- 
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { findAuthorBySlug } from "@/server/services/authors";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts, navigation } from "@/lib/urls";
+import { Button } from "@/components/ui/button";
+import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
-import { Button } from "@/components/ui/button";
-import { Link } from "@/navigation";
-import DottedList from "@/components/ui/dotted-list";
 import { getPathLocale } from "@/lib/locale/server";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { getMetadata } from "@/lib/seo";
+import { booksSorts, navigation } from "@/lib/urls";
+import { Link } from "@/navigation";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { findAuthorBySlug } from "@/server/services/authors";
+import { searchBooks } from "@/server/typesense/book";
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import type { Locale } from "next-intl";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 

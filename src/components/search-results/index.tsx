@@ -1,9 +1,14 @@
-import { Suspense, Fragment  } from "react";
-import type {JSX} from "react";
-import Paginator from "@/components/ui/pagination";
-import type { Pagination } from "@/types/pagination";
 import type { TypesenseResponse } from "@/server/typesense/utils";
-import SearchSort from "./sort";
+import type { Pagination } from "@/types/pagination";
+import type { Sort } from "@/types/sort";
+import type { View } from "@/validation/view";
+import type { JSX } from "react";
+import { Fragment, Suspense } from "react";
+import Paginator from "@/components/ui/pagination";
+import { cn } from "@/lib/utils";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
+
+import { Button } from "../ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -13,13 +18,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-import { Button } from "../ui/button";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./search-bar";
-import { cn } from "@/lib/utils";
+import SearchSort from "./sort";
 import ViewSwitcher from "./view-switcher";
-import type { View } from "@/validation/view";
-import type { Sort } from "@/types/sort";
 
 interface SearchResultsProps<T extends object & { id: string }> {
   response: TypesenseResponse<T>;
@@ -152,7 +153,7 @@ export default function SearchResults<T extends object & { id: string }>({
               ))}
             </div>
           ) : (
-            <p className="text-lg text-muted-foreground">{emptyMessage}</p>
+            <p className="text-muted-foreground text-lg">{emptyMessage}</p>
           )}
         </div>
 

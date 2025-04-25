@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -9,8 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { XIcon, PlusIcon, FolderPlusIcon } from "lucide-react";
+import { FolderPlusIcon, PlusIcon, XIcon } from "lucide-react";
 
 type Operator = "like" | "exact" | "starts-with" | "ends-with";
 

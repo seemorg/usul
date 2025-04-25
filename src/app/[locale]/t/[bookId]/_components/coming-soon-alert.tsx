@@ -1,8 +1,9 @@
 "use client";
 
-import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { useLocale, useTranslations } from "next-intl";
+
 import SidebarContainer from "./sidebar/sidebar-container";
 
 export const ComingSoonAlert = () => {

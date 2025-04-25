@@ -1,9 +1,9 @@
+import type { NextRequest } from "next/server";
+import { notFound } from "next/navigation";
 import { localesWithoutDefault, relativeUrl } from "@/lib/sitemap";
 import { navigation } from "@/lib/urls";
 import { db } from "@/server/db";
 import { findAllYearRanges } from "@/server/services/years";
-import { notFound } from "next/navigation";
-import type { NextRequest } from "next/server";
 
 const rootEntityPages = [
   navigation.books.all(),

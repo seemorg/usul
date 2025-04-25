@@ -1,18 +1,17 @@
 "use client";
 
+import type { ButtonProps } from "@/components/ui/button";
+import { Fragment, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
   EllipsisHorizontalIcon,
 } from "@heroicons/react/20/solid";
-
-import { cn } from "@/lib/utils";
-import {  buttonVariants } from "@/components/ui/button";
-import type {ButtonProps} from "@/components/ui/button";
-import { Link } from "@/navigation";
-import { useSearchParams } from "next/navigation";
 import { useFormatter, useTranslations } from "next-intl";
-import { Fragment, useMemo } from "react";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav

@@ -5,15 +5,16 @@ import type {
   WebViewerInstance,
   WebViewerOptions,
 } from "@pdftron/webviewer";
+import { useEffect, useRef } from "react";
+import { env } from "@/env";
+import { useNavbarStore } from "@/stores/navbar";
 // @ts-expect-error - The PDFJS Express Viewer is not typed
 import WebViewer from "@pdftron/pdfjs-express-viewer";
-import { useEffect, useRef } from "react";
-import { usePdfChapterStore } from "./store";
-import type { PdfChapter } from "./store";
 import { useTheme } from "next-themes";
-import { env } from "@/env";
+
+import type { PdfChapter } from "./store";
 import { makePdfViewerButtons } from "./buttons";
-import { useNavbarStore } from "@/stores/navbar";
+import { usePdfChapterStore } from "./store";
 
 const isInitializedByUrl = new Map<string, boolean>();
 

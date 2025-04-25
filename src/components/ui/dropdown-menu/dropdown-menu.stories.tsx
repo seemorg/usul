@@ -1,5 +1,8 @@
+import type { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 
+import { Button } from "../button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -11,9 +14,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./index";
-import type { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-import { useState } from "react";
-import { Button } from "../button";
 
 const meta = {
   title: "DropdownMenu",

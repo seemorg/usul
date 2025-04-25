@@ -1,16 +1,15 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-import SidebarContainer from "./sidebar-container";
 import React from "react";
-import { useTranslations } from "next-intl";
-import {  tabs } from "./tabs";
-import type {TabProps} from "./tabs";
 import { useSearchParams } from "next/navigation";
-import { useTabNavigate } from "./useTabNavigate";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useTranslations } from "next-intl";
 
+import type { TabProps } from "./tabs";
 import { TabContent } from "../tab-content";
+import SidebarContainer from "./sidebar-container";
+import { tabs } from "./tabs";
+import { useTabNavigate } from "./useTabNavigate";
 
 const TabButton = ({
   tab,
@@ -48,7 +47,7 @@ export default function ReaderSidebar({
     tabs.find((tab) => tab.id === activeTabId)?.id ?? tabs[0]!.id;
 
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col overflow-y-auto bg-background pb-16 pt-10 @container dark:bg-card sm:pt-4">
+    <div className="bg-background dark:bg-card @container sticky top-0 flex h-screen flex-none flex-col overflow-y-auto pt-10 pb-16 sm:pt-4">
       <Tabs value={activeTab}>
         <SidebarContainer className="hidden sm:block">
           <TabsList className="w-full font-sans">

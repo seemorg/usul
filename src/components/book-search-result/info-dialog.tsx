@@ -1,5 +1,8 @@
 "use client";
 
+import type { GenreDocument } from "@/types/genre";
+import type { ComponentProps } from "react";
+import { useMemo, useState } from "react";
 import {
   Dialog,
   DialogOverlay,
@@ -7,26 +10,23 @@ import {
   RawDialogClose,
   RawDialogContent,
 } from "@/components/ui/dialog";
-import { Button } from "../ui/button";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useMemo,  useState } from "react";
-import type {ComponentProps} from "react";
-import type BookSearchResult from ".";
-
-import { Link } from "@/navigation";
-import { useQuery } from "@tanstack/react-query";
-import { navigation } from "@/lib/urls";
-import { findAuthorBySlug } from "@/server/services/authors";
-import { Skeleton } from "../ui/skeleton";
-import { useTranslations } from "next-intl";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
+import { navigation } from "@/lib/urls";
+import { Link } from "@/navigation";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { findAuthorBySlug } from "@/server/services/authors";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
 import { XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import type BookSearchResult from ".";
+import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-import type { GenreDocument } from "@/types/genre";
+import { Skeleton } from "../ui/skeleton";
 
 const order: Record<string, number> = {
   born: 1,
@@ -120,7 +120,7 @@ export default function InfoDialog({
       <Button
         variant="ghost"
         size="icon"
-        className="pointer-events-none absolute top-3 z-10 bg-background opacity-0 hover:bg-background/80 focus:bg-background/80 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
+        className="bg-background hover:bg-background/80 focus:bg-background/80 pointer-events-none absolute top-3 z-10 opacity-0 group-hover:pointer-events-auto group-hover:opacity-100 ltr:right-3 rtl:left-3"
         onClick={() => setOpen(true)}
       >
         <InformationCircleIcon className="h-5 w-5" />
@@ -129,13 +129,13 @@ export default function InfoDialog({
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogPortal>
           <DialogOverlay>
-            <RawDialogContent className="relative z-50 grid w-full max-w-3xl gap-4 bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
-              <div className="w-full bg-primary px-8 py-6 text-white sm:rounded-t-lg">
+            <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 grid w-full max-w-3xl gap-4 shadow-lg duration-200 sm:rounded-lg">
+              <div className="bg-primary w-full px-8 py-6 text-white sm:rounded-t-lg">
                 <div className="flex items-center justify-between">
                   <h3 className="text-2xl font-bold">
                     {t("common.text-info")}
                   </h3>
-                  <RawDialogClose className="rounded-sm p-2 opacity-70 ring-offset-background transition-opacity hover:bg-white/10 hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+                  <RawDialogClose className="ring-offset-background focus:ring-ring rounded-sm p-2 opacity-70 transition-opacity hover:bg-white/10 hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                     <XIcon className="h-6 w-6" />
                     <span className="sr-only">Close</span>
                   </RawDialogClose>
@@ -153,7 +153,7 @@ export default function InfoDialog({
                       <p className="text-xl font-bold">{primaryTitle}</p>
 
                       {otherTitles && (
-                        <p className="mt-3 text-sm text-muted">
+                        <p className="text-muted mt-3 text-sm">
                           {otherTitles.join(", ")}
                         </p>
                       )}
@@ -172,7 +172,7 @@ export default function InfoDialog({
                       <p className="text-xl font-bold">{secondaryTitle}</p>
 
                       {otherSecondaryTitles && (
-                        <p className="mt-3 text-sm text-muted">
+                        <p className="text-muted mt-3 text-sm">
                           {otherSecondaryTitles.join(", ")}
                         </p>
                       )}
@@ -192,7 +192,7 @@ export default function InfoDialog({
                           key={genre.id}
                           href={navigation.genres.bySlug(genre.slug)}
                           // className="rounded-md bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
-                          className="rounded-lg bg-white px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent"
+                          className="text-muted-foreground hover:bg-accent rounded-lg bg-white px-3 py-1.5 text-sm font-medium transition-colors"
                         >
                           {getPrimaryLocalizedText(
                             genre.nameTranslations,
@@ -212,7 +212,7 @@ export default function InfoDialog({
 
                 <div className="flex justify-between">
                   <div className="w-full flex-1">
-                    <p className="mb-2 text-base font-medium text-secondary-foreground/60">
+                    <p className="text-secondary-foreground/60 mb-2 text-base font-medium">
                       {t("common.names")}
                     </p>
 
@@ -229,7 +229,7 @@ export default function InfoDialog({
                           </p>
 
                           {authorOtherPrimaryNames && (
-                            <p className="mt-3 text-sm text-secondary-foreground">
+                            <p className="text-secondary-foreground mt-3 text-sm">
                               {authorOtherPrimaryNames.join(", ")}
                             </p>
                           )}
@@ -242,7 +242,7 @@ export default function InfoDialog({
                     className="w-full flex-1"
                     dir={dir === "ltr" ? "rtl" : "ltr"}
                   >
-                    <p className="mb-2 text-base font-medium text-secondary-foreground/60">
+                    <p className="text-secondary-foreground/60 mb-2 text-base font-medium">
                       {pathLocale === "ar" ? "Name" : "الاسم"}
                     </p>
 
@@ -259,7 +259,7 @@ export default function InfoDialog({
                           </p>
 
                           {authorOtherSecondaryNames && (
-                            <p className="mt-3 text-sm text-secondary-foreground">
+                            <p className="text-secondary-foreground mt-3 text-sm">
                               {authorOtherSecondaryNames.join(", ")}
                             </p>
                           )}
@@ -270,7 +270,7 @@ export default function InfoDialog({
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <p className="text-base font-medium text-secondary-foreground/60">
+                  <p className="text-secondary-foreground/60 text-base font-medium">
                     {t("common.author-bio")}
                   </p>
 
@@ -296,7 +296,7 @@ export default function InfoDialog({
 
                 <div className="flex gap-32">
                   <div className="flex flex-col gap-2">
-                    <p className="text-base font-medium text-secondary-foreground/60">
+                    <p className="text-secondary-foreground/60 text-base font-medium">
                       {t("common.author-regions")}
                     </p>
 
@@ -319,7 +319,7 @@ export default function InfoDialog({
                                 <span>-</span>
 
                                 <Link
-                                  className="ml-2 text-primary hover:underline"
+                                  className="text-primary ml-2 hover:underline"
                                   href={navigation.regions.bySlug(region.slug)}
                                   prefetch
                                 >
@@ -331,14 +331,14 @@ export default function InfoDialog({
                             ))}
                           </ul>
                         ) : (
-                          <p className="text-sm text-muted-foreground">-</p>
+                          <p className="text-muted-foreground text-sm">-</p>
                         )}
                       </div>
                     )}
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <p className="text-base font-medium text-secondary-foreground/60">
+                    <p className="text-secondary-foreground/60 text-base font-medium">
                       {t("entities.year")}
                     </p>
 
@@ -353,7 +353,7 @@ export default function InfoDialog({
                             href={navigation.centuries.byYear(author.year)}
                             prefetch
                             dir="ltr"
-                            className="text-lg text-primary underline-offset-4 hover:underline"
+                            className="text-primary text-lg underline-offset-4 hover:underline"
                           >
                             {t("common.year-format.ah.value", {
                               year: author.year,

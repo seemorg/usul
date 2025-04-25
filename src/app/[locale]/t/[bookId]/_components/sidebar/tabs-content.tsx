@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Spinner from "@/components/ui/spinner";
+
 import type { tabs } from "./tabs";
 
 const Placeholder = () => (

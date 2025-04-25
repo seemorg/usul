@@ -1,4 +1,7 @@
+import { Fragment, useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogOverlay,
@@ -7,15 +10,13 @@ import {
   RawDialogContent,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import Spinner from "@/components/ui/spinner";
+import { versionToName } from "@/lib/version";
+import { usePathname, useRouter } from "@/navigation";
 import { XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment, useState, useTransition } from "react";
+
 import PublicationDetails from "../publication-details";
-import { Button } from "@/components/ui/button";
-import { usePathname, useRouter } from "@/navigation";
-import { useSearchParams } from "next/navigation";
-import { versionToName } from "@/lib/version";
-import Spinner from "@/components/ui/spinner";
 
 const EditionItem = ({
   version,
@@ -92,7 +93,7 @@ export default function EditionModal({
   const searchParams = useSearchParams();
   const [selectedVersion, setSelectedVersion] = useState(() => {
     const version = versionId
-      ? versions.find((v) => v.id === versionId)?.id ?? versions[0]?.id
+      ? (versions.find((v) => v.id === versionId)?.id ?? versions[0]?.id)
       : versions[0]?.id;
 
     return version;
@@ -117,18 +118,18 @@ export default function EditionModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPortal>
         <DialogOverlay>
-          <RawDialogContent className="relative z-50 grid w-full max-w-4xl bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+          <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 grid w-full max-w-4xl shadow-lg duration-200 sm:rounded-lg">
             <div className="flex w-full items-center justify-between px-6 py-5">
               <div>
                 <h3 className="text-lg font-semibold">
                   {t("reader.editions-modal.title")}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <p className="text-muted-foreground mt-1 text-sm">
                   {t("reader.editions-modal.description")}
                 </p>
               </div>
 
-              <RawDialogClose className="rounded-sm p-2 opacity-70 ring-offset-background transition-opacity hover:bg-secondary/50 hover:opacity-100 focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+              <RawDialogClose className="ring-offset-background hover:bg-secondary/50 focus:ring-ring rounded-sm p-2 opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                 <XIcon className="size-5" />
                 <span className="sr-only">Close</span>
               </RawDialogClose>

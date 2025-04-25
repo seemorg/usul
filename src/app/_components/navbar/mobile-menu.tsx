@@ -1,9 +1,9 @@
 "use client";
 
-import { RemoveScroll } from "react-remove-scroll";
+import { cn } from "@/lib/utils";
 import { Slot } from "@radix-ui/react-slot";
 import { Portal } from "@radix-ui/themes";
-import { cn } from "@/lib/utils";
+import { RemoveScroll } from "react-remove-scroll";
 
 export default function MobileMenu({
   children,

@@ -1,15 +1,13 @@
 "use client";
 
-import Textarea from "react-textarea-autosize";
-
-import { Button } from "@/components/ui/button";
-
-import { ArrowRightIcon } from "@heroicons/react/20/solid";
-import { useEnterSubmit } from "@/hooks/useEnterSubmit";
-import { useNavbarStore } from "@/stores/navbar";
-import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { useEnterSubmit } from "@/hooks/useEnterSubmit";
+import { cn } from "@/lib/utils";
+import { useNavbarStore } from "@/stores/navbar";
+import { ArrowRightIcon } from "@heroicons/react/20/solid";
+import { useTranslations } from "next-intl";
+import Textarea from "react-textarea-autosize";
 
 function ChatForm({
   input,
@@ -64,7 +62,7 @@ function ChatForm({
           onKeyDown={onKeyDown}
           placeholder={t("chat.placeholder")}
           // className="min-h-[60px] w-full resize-none bg-transparent px-4 py-[1.3rem] focus-within:outline-hidden sm:text-sm"
-          className="text-secondary-foreground focus-within:outline-hidden min-h-[2.5rem] w-full resize-none bg-transparent px-5 py-3 text-base"
+          className="text-secondary-foreground min-h-[2.5rem] w-full resize-none bg-transparent px-5 py-3 text-base focus-within:outline-hidden"
           autoFocus
           spellCheck={false}
           autoComplete="off"

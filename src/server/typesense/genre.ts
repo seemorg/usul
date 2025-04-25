@@ -1,11 +1,12 @@
 "use server";
 
-import { makeSearchRequest } from "@/lib/typesense";
-import { makePagination, prepareResults } from "./utils";
-import type { SearchOptions } from "./utils";
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { GenreDocument } from "@/types/genre";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
+import { makeSearchRequest } from "@/lib/typesense";
+
+import type { SearchOptions } from "./utils";
 import { GENRES_COLLECTION } from "./config";
+import { makePagination, prepareResults } from "./utils";
 
 export const searchGenres = async (q: string, options?: SearchOptions) => {
   const { limit = GENRES_COLLECTION.DEFAULT_PER_PAGE, page = 1 } =

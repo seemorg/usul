@@ -1,19 +1,7 @@
 "use client";
 
-import BentoCard from "./bento-card";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useFormatter, useTranslations } from "next-intl";
-
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-import {
-  createCheckoutSession,
-  generateAndSendDonationCode,
-} from "@/server/services/donations";
-import { toast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -21,6 +9,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { toast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import {
+  createCheckoutSession,
+  generateAndSendDonationCode,
+} from "@/server/services/donations";
+import { useMutation } from "@tanstack/react-query";
+import { useFormatter, useTranslations } from "next-intl";
+
+import BentoCard from "./bento-card";
 
 type Frequency = "one-time" | "monthly" | "yearly";
 const presetAmounts = [25, 50, 100, 500];
@@ -79,7 +79,7 @@ function DonateForm({ layout }: { layout?: "hero" }) {
       className={cn(
         "flex-1 p-8",
         layout === "hero" &&
-          "translate-y-[30%] text-foreground shadow-xl shadow-black/5 lg:translate-y-0 ",
+          "text-foreground translate-y-[30%] shadow-xl shadow-black/5 lg:translate-y-0",
       )}
       id={layout === "hero" ? "donate-form-hero" : "donate-form"}
     >
@@ -129,9 +129,9 @@ function DonateForm({ layout }: { layout?: "hero" }) {
           ))}
         </div>
 
-        <div className="flex items-center rounded-md border border-border">
+        <div className="border-border flex items-center rounded-md border">
           <label
-            className="border-r border-border px-3 text-center text-sm"
+            className="border-border border-r px-3 text-center text-sm"
             htmlFor="other-amount"
           >
             USD

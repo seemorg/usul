@@ -1,6 +1,6 @@
+import type { MetadataRoute } from "next";
 import { env } from "@/env";
 import { SITE_CONFIG } from "@/lib/seo";
-import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   const isProd = env.VERCEL_ENV === "production";

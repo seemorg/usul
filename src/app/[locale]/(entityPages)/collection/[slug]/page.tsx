@@ -1,22 +1,20 @@
- 
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
-
 import DottedList from "@/components/ui/dotted-list";
-
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { collections } from "@/data/collections";
 import TruncatedText from "@/components/ui/truncated-text";
-import type { Locale } from "next-intl";
+import { collections } from "@/data/collections";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type CollectionPageProps = InferPagePropsType<RouteType>;
 

@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
-import Fuse from "fuse.js";
-import { Button } from "@/components/ui/button";
-import FilterContainer from "@/components/search-results/filter-container";
-import { usePathname, useRouter } from "@/navigation";
-import {  useSearchParams } from "next/navigation";
-import type {ReadonlyURLSearchParams} from "next/navigation";
-import { useFormatter, useTranslations } from "next-intl";
 import type { findAllRegionsWithBooksCount } from "@/server/services/regions";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
+import type { ReadonlyURLSearchParams } from "next/navigation";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+import FilterContainer from "@/components/search-results/filter-container";
+import { Button } from "@/components/ui/button";
 import { usePathLocale } from "@/lib/locale/utils";
+import { usePathname, useRouter } from "@/navigation";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import Fuse from "fuse.js";
+import { useFormatter, useTranslations } from "next-intl";
 
 const DEBOUNCE_DELAY = 300;
 

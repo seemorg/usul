@@ -1,17 +1,17 @@
-import { getPathLocale } from "@/lib/locale/server";
+import type { Locale } from "next-intl";
 import { notFound } from "next/navigation";
-import ReaderContent from "../_components/reader-content";
-import SidebarResizer from "../_components/sidebar/sidebar-resizer";
-import ReaderSidebar from "../_components/sidebar";
 import { getBookPage } from "@/lib/api";
-import ReaderNavigation from "../_components/reader-navigation";
+import { getPathLocale } from "@/lib/locale/server";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
-import { BookDetailsProvider } from "../_contexts/book-details.context";
 
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import type { Locale } from "next-intl";
+import ReaderContent from "../_components/reader-content";
+import ReaderNavigation from "../_components/reader-navigation";
+import ReaderSidebar from "../_components/sidebar";
+import SidebarResizer from "../_components/sidebar/sidebar-resizer";
+import { BookDetailsProvider } from "../_contexts/book-details.context";
 
 export const generateMetadata = async ({
   params,

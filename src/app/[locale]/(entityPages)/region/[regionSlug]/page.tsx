@@ -1,31 +1,30 @@
- 
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route  } from "./routeType";
-import type {RouteType} from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import SearchResults from "@/components/search-results";
-import { navigation, yearsSorts } from "@/lib/urls";
-import BookSearchResult from "@/components/book-search-result";
+import { notFound } from "next/navigation";
 import AuthorsFilter from "@/components/authors-filter";
-import { gregorianYearToHijriYear } from "@/lib/date";
+import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
-import TruncatedText from "@/components/ui/truncated-text";
-import { ExpandibleList } from "@/components/ui/expandible-list";
-import { getTranslations } from "next-intl/server";
+import SearchResults from "@/components/search-results";
 import DottedList from "@/components/ui/dotted-list";
+import { ExpandibleList } from "@/components/ui/expandible-list";
+import TruncatedText from "@/components/ui/truncated-text";
+import YearFilterClient from "@/components/year-filter/client";
+import { getRegion } from "@/lib/api";
+import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import { getMetadata } from "@/lib/seo";
-
-import { getRegion } from "@/lib/api";
 import { findRegionBySlug } from "@/server/services/regions";
-import type { Locale } from "next-intl";
-import YearFilterClient from "@/components/year-filter/client";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 export const generateMetadata = async ({
   params,

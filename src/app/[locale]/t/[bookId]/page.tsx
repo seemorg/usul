@@ -1,22 +1,23 @@
-import { getPathLocale } from "@/lib/locale/server";
-import { notFound } from "next/navigation";
-import ReaderContent from "./_components/reader-content";
-import SidebarResizer from "./_components/sidebar/sidebar-resizer";
-import ReaderSidebar from "./_components/sidebar";
-import { ArrowUpRightIcon, FileQuestionIcon } from "lucide-react";
-import { getTranslations } from "next-intl/server";
-import { Button } from "@/components/ui/button";
+import type { Locale } from "next-intl";
 import dynamic from "next/dynamic";
+import { notFound } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import { getBook } from "@/lib/api";
 import { READER_PAGINATION_SIZE } from "@/lib/constants";
-import ReaderNavigation from "./_components/reader-navigation";
+import { getPathLocale } from "@/lib/locale/server";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
-import { BookDetailsProvider } from "./_contexts/book-details.context";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import type { Locale } from "next-intl";
+import { ArrowUpRightIcon, FileQuestionIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
 import PdfViewClient from "./_components/pdf-view/client";
+import ReaderContent from "./_components/reader-content";
+import ReaderNavigation from "./_components/reader-navigation";
+import ReaderSidebar from "./_components/sidebar";
+import SidebarResizer from "./_components/sidebar/sidebar-resizer";
+import { BookDetailsProvider } from "./_contexts/book-details.context";
 
 export const generateMetadata = async ({
   params,
@@ -119,15 +120,15 @@ export default async function SidebarContent({
 
   if (response.content.source === "external") {
     readerContent = (
-      <div className="lg:px-8! xl:px-16! mx-auto mt-36 w-full min-w-0 max-w-4xl flex-auto divide-y-2 divide-border px-5">
+      <div className="divide-border mx-auto mt-36 w-full max-w-4xl min-w-0 flex-auto divide-y-2 px-5 lg:px-8! xl:px-16!">
         <div className="flex flex-col items-center justify-center py-20">
-          <FileQuestionIcon className="h-16 w-16 text-muted-foreground" />
+          <FileQuestionIcon className="text-muted-foreground h-16 w-16" />
 
           <h3 className="mt-4 text-xl font-medium">
             {t("external-book.title")}
           </h3>
 
-          <p className="mt-2 text-secondary-foreground">
+          <p className="text-secondary-foreground mt-2">
             {t("external-book.description")}
           </p>
 

@@ -1,7 +1,7 @@
+import { Fragment } from "react";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { Fragment } from "react";
 
 const isNumber = (value: string | number) => {
   return !isNaN(Number(value));
@@ -64,7 +64,7 @@ const PublicationDetails = ({
       {final.map((item, index, arr) => (
         <Fragment key={index}>
           <div>
-            <p className="font-medium text-muted-foreground">{item.title}</p>
+            <p className="text-muted-foreground font-medium">{item.title}</p>
             <p className="mt-2 block font-semibold">{item.text}</p>
           </div>
 

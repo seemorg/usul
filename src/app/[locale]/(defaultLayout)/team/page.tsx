@@ -1,14 +1,14 @@
+import type { Locale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
+import { VOLUNTEER_EMAIL } from "@/lib/constants";
+import { getMetadata, SITE_CONFIG } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
 import { HeartHandshakeIcon, MailIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
+
 import MemberCard from "./member-card";
 import { boardMembers, members } from "./members";
-import { SITE_CONFIG, getMetadata } from "@/lib/seo";
-import { getTranslations } from "next-intl/server";
-import { VOLUNTEER_EMAIL } from "@/lib/constants";
-
-import { navigation } from "@/lib/urls";
-import type { Locale } from "next-intl";
 
 export const generateMetadata = async ({
   params,

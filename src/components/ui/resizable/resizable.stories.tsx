@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-
-import { ResizablePanelGroup, ResizablePanel, ResizableHandle } from "./index";
 import type { ComponentProps } from "react";
+
+import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "./index";
 
 type MetaType = Meta<
   ComponentProps<typeof ResizablePanelGroup> & {

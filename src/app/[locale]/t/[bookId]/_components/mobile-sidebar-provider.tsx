@@ -1,13 +1,14 @@
 "use client";
 
+import { createContext, use, useCallback } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { useSearchParams } from "next/navigation";
-import { createContext, use, useCallback } from "react";
 import { useBoolean } from "usehooks-ts";
-import { useTabNavigate } from "./sidebar/useTabNavigate";
-import { tabs } from "./sidebar/tabs";
+
 import type { TabProps } from "./sidebar/tabs";
+import { tabs } from "./sidebar/tabs";
+import { useTabNavigate } from "./sidebar/useTabNavigate";
 import { TabContent } from "./tab-content";
 
 interface MobileSidebarValue {

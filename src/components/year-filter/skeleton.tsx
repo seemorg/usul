@@ -1,8 +1,9 @@
 import FilterContainer from "@/components/search-results/filter-container";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
-import type { YearFilterProps } from "./";
 import { useTranslations } from "next-intl";
+
+import type { YearFilterProps } from "./";
 
 export default function YearFilterSkeleton({
   defaultRange,

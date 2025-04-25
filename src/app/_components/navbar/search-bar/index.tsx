@@ -1,24 +1,25 @@
 "use client";
 
+import type { SearchType } from "@/types/search";
+import React, { useEffect, useRef, useState } from "react";
+import ComingSoonModal from "@/components/coming-soon-modal";
 import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
-import { searchAllCollections } from "@/server/typesense/global";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
+import { searchAuthors } from "@/server/typesense/author";
+import { searchBooks } from "@/server/typesense/book";
+import { searchGenres } from "@/server/typesense/genre";
+import { searchAllCollections } from "@/server/typesense/global";
+import { useSearchHistoryStore } from "@/stores/search-history";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import React, { useEffect, useRef, useState } from "react";
+import { useDetectClickOutside } from "react-detect-click-outside";
 import { useBoolean, useDebounceValue } from "usehooks-ts";
-import ComingSoonModal from "@/components/coming-soon-modal";
+
 import SearchBarEmptyState from "./empty-state";
 import SearchBarResults from "./results";
-import type { SearchType } from "@/types/search";
-import { searchBooks } from "@/server/typesense/book";
-import { searchAuthors } from "@/server/typesense/author";
-import { searchGenres } from "@/server/typesense/genre";
-import { useSearchHistoryStore } from "@/stores/search-history";
-import { useDetectClickOutside } from "react-detect-click-outside";
-import { navigation } from "@/lib/urls";
 
 const typeToMethod = {
   all: searchAllCollections,
@@ -144,7 +145,7 @@ export default function SearchBar({
             </kbd> */}
 
         <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
-          <p className="hidden items-center gap-2 text-sm text-muted-foreground lg:flex">
+          <p className="text-muted-foreground hidden items-center gap-2 text-sm lg:flex">
             <Button
               variant="ghost"
               className="text-primary hover:text-primary"
@@ -160,8 +161,8 @@ export default function SearchBar({
         <CommandList
           itemID="cmd-list"
           className={cn(
-            "absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none bg-popover text-sm text-foreground",
-            !mobile && "border border-border shadow-sm",
+            "bg-popover text-foreground absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none text-sm",
+            !mobile && "border-border border shadow-sm",
             showList || mobile
               ? "opacity-100"
               : "pointer-events-none opacity-0",

@@ -1,31 +1,28 @@
- 
- 
-import Container from "@/components/ui/container";
-import Navbar from "../_components/navbar";
-import SearchBar from "../_components/navbar/search-bar";
-import { Link } from "@/navigation";
+import type { Locale } from "next-intl";
 import BookSearchResult from "@/components/book-search-result";
-
-import Footer from "../_components/footer";
-import { navigation } from "@/lib/urls";
+import { CollectionCard } from "@/components/ui/collection-card";
+import Container from "@/components/ui/container";
+import { collections } from "@/data/collections";
 import {
   fetchPopularBooks,
   fetchPopularIslamicHistoryBooks,
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
-import HomepageSection from "../_components/homepage-section";
-import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
 import { routing } from "@/i18n/config";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import { CollectionCard } from "@/components/ui/collection-card";
-import { PlayIcon } from "@heroicons/react/24/solid";
-
-import { cn } from "@/lib/utils";
-import { DemoButton } from "./demo-button";
 import { getHomepageGenres } from "@/lib/api";
-import { collections } from "@/data/collections";
-import type { Locale } from "next-intl";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { getMetadata } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
+import { cn } from "@/lib/utils";
+import { Link } from "@/navigation";
+import { PlayIcon } from "@heroicons/react/24/solid";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+
+import Footer from "../_components/footer";
+import HomepageSection from "../_components/homepage-section";
+import Navbar from "../_components/navbar";
+import SearchBar from "../_components/navbar/search-bar";
+import { DemoButton } from "./demo-button";
 
 export const generateMetadata = async ({
   params,
@@ -71,8 +68,8 @@ export default async function HomePage({
     <>
       <Navbar layout="home" />
 
-      <div className="relative flex min-h-[470px] w-full pb-10 pt-24 text-white sm:pt-28">
-        <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
+      <div className="relative flex min-h-[470px] w-full pt-24 pb-10 text-white sm:pt-28">
+        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 
         <Container className="z-1 flex flex-col items-center">

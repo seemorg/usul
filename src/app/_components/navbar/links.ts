@@ -1,3 +1,4 @@
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
   ADD_TEXT_URL,
   REPORT_MISTAKE_URL,
@@ -5,7 +6,6 @@ import {
 } from "@/lib/constants";
 import { SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
   BookOpenIcon,
   CirclePlusIcon,

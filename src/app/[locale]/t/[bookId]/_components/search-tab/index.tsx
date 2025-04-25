@@ -1,25 +1,9 @@
 "use client";
 
-import SidebarContainer from "../sidebar/sidebar-container";
-import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
-import Spinner from "@/components/ui/spinner";
-import { useQuery } from "@tanstack/react-query";
-import { searchBook } from "@/server/services/chat";
-import SearchResult from "./SearchResult";
-import { useTranslations } from "next-intl";
-import { usePageNavigation } from "../usePageNavigation";
-
-import { VersionAlert } from "../version-alert";
-import { Badge } from "@/components/ui/badge";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useSearchStore } from "../../_stores/search";
 import { useMemo, useState } from "react";
-
-import { useBookDetails } from "../../_contexts/book-details.context";
-import { AzureSearchFilter, buildQuery } from "./search-filters";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -27,6 +11,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Spinner from "@/components/ui/spinner";
+import { searchBook } from "@/server/services/chat";
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
+import { useQuery } from "@tanstack/react-query";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { useBookDetails } from "../../_contexts/book-details.context";
+import { useSearchStore } from "../../_stores/search";
+import SidebarContainer from "../sidebar/sidebar-container";
+import { usePageNavigation } from "../usePageNavigation";
+import { VersionAlert } from "../version-alert";
+import { AzureSearchFilter, buildQuery } from "./search-filters";
+import SearchResult from "./SearchResult";
 
 export default function SearchTab() {
   const { bookResponse } = useBookDetails();
@@ -158,7 +156,7 @@ export default function SearchTab() {
         </div>
 
         <SidebarContainer className="mt-4 flex items-center justify-between">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-muted-foreground text-sm">
             {t("reader.search.results", {
               total: results.total,
               currentPage: results.currentPage,
@@ -247,7 +245,7 @@ export default function SearchTab() {
                   value={inputValue}
                   onChange={handleChange}
                   placeholder={t("reader.search.placeholder")}
-                  className="h-10 w-full flex-1 border border-gray-300 bg-white shadow-none focus:outline-hidden focus:ring-inset dark:border-border dark:bg-transparent ltr:mr-10 ltr:rounded-r-none ltr:pl-9 rtl:ml-10 rtl:rounded-l-none rtl:pr-9"
+                  className="dark:border-border h-10 w-full flex-1 border border-gray-300 bg-white shadow-none focus:outline-hidden focus:ring-inset ltr:mr-10 ltr:rounded-r-none ltr:pl-9 rtl:ml-10 rtl:rounded-l-none rtl:pr-9 dark:bg-transparent"
                 />
               </div>
 

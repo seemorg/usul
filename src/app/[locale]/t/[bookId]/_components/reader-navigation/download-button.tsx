@@ -1,6 +1,7 @@
 import type { ButtonProps } from "@/components/ui/button";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
+
 import ReaderNavigationButton from "./navigation-button";
 
 export default function DownloadButton({

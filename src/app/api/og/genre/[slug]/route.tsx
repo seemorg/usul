@@ -1,9 +1,9 @@
-import { ArabicLogo, Logo } from "@/components/Icons";
-import { loadFileOnEdge } from "@/lib/edge";
+import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { ArabicLogo, Logo } from "@/components/Icons";
 import { getGenre } from "@/lib/api";
-import type { NextRequest } from "next/server";
+import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";
 

@@ -1,12 +1,13 @@
 "use server";
 
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
-import { makePagination, prepareQuery, prepareResults } from "./utils";
-import type { SearchOptions } from "./utils";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import { makeMultiSearchRequest } from "@/lib/typesense";
+
+import type { SearchOptions } from "./utils";
 import { AUTHORS_COLLECTION, BOOKS_COLLECTION } from "./config";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
 
 export const searchBooks = async (q: string, options?: SearchOptions) => {
   const { limit = BOOKS_COLLECTION.DEFAULT_PER_PAGE, page = 1 } = options ?? {};

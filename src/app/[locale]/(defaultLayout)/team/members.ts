@@ -1,13 +1,13 @@
 import abdellatif from "~/public/team/abdellatif.png";
-import ahmedRiad from "~/public/team/ahmed-riad.png";
-import ryad from "~/public/team/ryad.png";
-import rahma from "~/public/team/rahma.png";
-import ahmedKhan from "~/public/team/ahmed-khan.png";
-import ahmedAktan from "~/public/team/ahmed-aktan.png";
 import adnan from "~/public/team/adnan.png";
+import ahmedAktan from "~/public/team/ahmed-aktan.png";
+import ahmedKhan from "~/public/team/ahmed-khan.png";
+import ahmedRiad from "~/public/team/ahmed-riad.png";
 import intisar from "~/public/team/intisar.png";
-import zeki from "~/public/team/zeki.png";
 import lamine from "~/public/team/lamine.png";
+import rahma from "~/public/team/rahma.png";
+import ryad from "~/public/team/ryad.png";
+import zeki from "~/public/team/zeki.png";
 
 export const members = [
   {

@@ -1,8 +1,9 @@
-import { useMemo } from "react";
-import { usePdfChapterStore } from "../pdf-view/store";
-import type { PdfChapter } from "../pdf-view/store";
-import { TreeView } from "@/components/tree-view";
 import type { TreeDataItem } from "@/components/tree-view";
+import { useMemo } from "react";
+import { TreeView } from "@/components/tree-view";
+
+import type { PdfChapter } from "../pdf-view/store";
+import { usePdfChapterStore } from "../pdf-view/store";
 
 const prepareChapter = (
   chapter: PdfChapter,

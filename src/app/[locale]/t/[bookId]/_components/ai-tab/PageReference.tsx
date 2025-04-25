@@ -1,6 +1,7 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import SourceModal from "@/components/ui/source-modal";
+
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 
 interface PageReferenceProps {
   "data-number": string;

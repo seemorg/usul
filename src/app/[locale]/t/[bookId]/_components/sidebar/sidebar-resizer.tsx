@@ -1,17 +1,18 @@
 "use client";
 
+import type { ImperativePanelHandle } from "react-resizable-panels";
+import React, { useRef, useState } from "react";
+import Navbar from "@/app/_components/navbar";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import React, { useRef, useState } from "react";
-import Navbar from "@/app/_components/navbar";
-import { cn } from "@/lib/utils";
-import type { ImperativePanelHandle } from "react-resizable-panels";
-import CollapsedSidebar from "./collapsed-sidebar";
 import { useDirection } from "@/lib/locale/utils";
+import { cn } from "@/lib/utils";
 import { useNavbarStore } from "@/stores/navbar";
+
+import CollapsedSidebar from "./collapsed-sidebar";
 
 const defaultSizes = [75, 25];
 

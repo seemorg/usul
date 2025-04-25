@@ -1,17 +1,19 @@
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
 import RegionSearchResult from "@/components/region-search-result";
 import SearchResults from "@/components/search-results";
-import { countAllRegions } from "@/server/services/regions";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { Route, sorts  } from "./routeType";
-import type {RouteType} from "./routeType";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { searchRegions } from "@/server/typesense/region";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { countAllRegions } from "@/server/services/regions";
+import { searchRegions } from "@/server/typesense/region";
 import { InfoIcon } from "lucide-react";
-import type { Locale } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route, sorts } from "./routeType";
+
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({

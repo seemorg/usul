@@ -1,14 +1,13 @@
 "use client";
 
 import type { Locale } from "next-intl";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AppProgressBar from "@/components/app-progressbar";
-import { DirectionProvider } from "@radix-ui/react-direction";
-import { getLocaleDirection } from "@/lib/locale/utils";
-
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { TotalEntitiesProvider } from "@/contexts/total-entities.context";
+import { getLocaleDirection } from "@/lib/locale/utils";
+import { DirectionProvider } from "@radix-ui/react-direction";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const queryClient = new QueryClient({
   defaultOptions: {

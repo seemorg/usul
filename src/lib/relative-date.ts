@@ -1,5 +1,5 @@
-import { useLocale, useFormatter } from "next-intl";
 import { useCallback, useState } from "react";
+import { useFormatter, useLocale } from "next-intl";
 
 const _relativeFormatters = new Map<string, Intl.RelativeTimeFormat>();
 const getRelativeFormatterByLocale = (locale: string) => {

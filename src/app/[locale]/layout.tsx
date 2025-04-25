@@ -2,18 +2,18 @@ import { cn } from "@/lib/utils";
 
 import "@/styles/globals.css";
 
-import Providers from "./providers";
-import { getFontsClassnames } from "@/lib/fonts";
-import { getMetadata, getViewport } from "@/lib/seo";
-import { getLocaleDirection } from "@/lib/locale/utils";
+import type { Locale } from "next-intl";
 import { Toaster } from "@/components/ui/toaster";
 import { env } from "@/env";
+import { getTotalEntities } from "@/lib/api";
+import { getFontsClassnames } from "@/lib/fonts";
+import { getLocaleDirection } from "@/lib/locale/utils";
+import { getMetadata, getViewport } from "@/lib/seo";
+import { NextIntlClientProvider } from "next-intl";
+
 import DemoModalProvider from "../_components/video-modal";
 import Analytics from "./analytics";
-
-import { getTotalEntities } from "@/lib/api";
-import type { Locale } from "next-intl";
-import { NextIntlClientProvider } from "next-intl";
+import Providers from "./providers";
 
 export async function generateMetadata({
   params,
@@ -49,7 +49,7 @@ export default async function LocaleLayout({
     >
       <body
         className={cn(
-          "relative min-h-screen w-full bg-background font-sans antialiased",
+          "bg-background relative min-h-screen w-full font-sans antialiased",
           getFontsClassnames(),
         )}
       >

@@ -1,11 +1,12 @@
 "use server";
 
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
-import { makePagination, prepareQuery, prepareResults } from "./utils";
-import type { SearchOptions } from "./utils";
 import type { AuthorDocument } from "@/types/author";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import { makeSearchRequest } from "@/lib/typesense";
+
+import type { SearchOptions } from "./utils";
 import { AUTHORS_COLLECTION } from "./config";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
 
 export const searchAuthors = async (q: string, options?: SearchOptions) => {
   const { limit = AUTHORS_COLLECTION.DEFAULT_PER_PAGE, page = 1 } =

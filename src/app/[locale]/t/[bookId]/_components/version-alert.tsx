@@ -1,12 +1,12 @@
 "use client";
 
+import type { ApiBookResponse } from "@/types/api/book";
+import { useSearchParams } from "next/navigation";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { versionToName } from "@/lib/version";
 import { usePathname, useRouter } from "@/navigation";
-import type { ApiBookResponse } from "@/types/api/book";
 import { InfoIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 
 export const VersionAlert = ({
   versionId,

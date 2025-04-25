@@ -1,15 +1,16 @@
-import type {LinkProps} from "next/link";
-import { Button } from "../ui/button";
-import Spinner from "../ui/spinner";
-import { XMarkIcon } from "@heroicons/react/24/solid";
-import { Link } from "@/navigation";
-import { useTranslations } from "next-intl";
-import { Input  } from "../ui/input";
-import type {InputProps} from "../ui/input";
+import type { LinkProps } from "next/link";
 import { cn } from "@/lib/utils";
-import { Checkbox } from "../ui/checkbox";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Link } from "@/navigation";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { InfoIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import type { InputProps } from "../ui/input";
+import { Button } from "../ui/button";
+import { Checkbox } from "../ui/checkbox";
+import { Input } from "../ui/input";
+import Spinner from "../ui/spinner";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 interface FilterContainerProps {
   title: string;
@@ -31,7 +32,7 @@ function FilterContainer({
   const t = useTranslations("common");
 
   return (
-    <div className="relative rounded-md p-4 sm:border sm:border-input sm:bg-gray-50 dark:sm:bg-card">
+    <div className="sm:border-input dark:sm:bg-card relative rounded-md p-4 sm:border sm:bg-gray-50">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-bold">
           <span className="flex items-center gap-2">
@@ -71,7 +72,7 @@ function FilterContainer({
 FilterContainer.Input = function FilterContainerInput(props: InputProps) {
   return (
     <Input
-      className="border border-gray-300 bg-background shadow-none dark:border-border"
+      className="bg-background dark:border-border border border-gray-300 shadow-none"
       {...props}
     />
   );
@@ -110,7 +111,7 @@ FilterContainer.Checkbox = function FilterContainerCheckbox({
         className="flex w-full items-center justify-between text-sm"
         title={title}
       >
-        <span className="line-clamp-1 min-w-0 max-w-[70%] break-words">
+        <span className="line-clamp-1 max-w-[70%] min-w-0 break-words">
           {children}
         </span>
 

@@ -1,16 +1,17 @@
-import { findAllYearRanges } from "@/server/services/years";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, sorts  } from "./routeType";
-import type {RouteType} from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import Fuse from "fuse.js";
-import SearchResults from "@/components/search-results";
 import CenturySearchResult from "@/components/century-search-result";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
+import SearchResults from "@/components/search-results";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { Locale } from "next-intl";
+import { findAllYearRanges } from "@/server/services/years";
+import Fuse from "fuse.js";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route, sorts } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
 

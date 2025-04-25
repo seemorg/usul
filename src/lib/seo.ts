@@ -1,8 +1,9 @@
-import { PATH_LOCALES, appLocaleToPathLocale } from "./locale/utils";
-import type {Metadata, Viewport} from "next";
-import { relativeUrl } from "./sitemap";
-import { getTranslations } from "next-intl/server";
+import type { Metadata, Viewport } from "next";
 import type { Locale } from "next-intl";
+import { getTranslations } from "next-intl/server";
+
+import { appLocaleToPathLocale, PATH_LOCALES } from "./locale/utils";
+import { relativeUrl } from "./sitemap";
 
 export const SITE_CONFIG = {
   themeColor: "#AA4A44",

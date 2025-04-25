@@ -1,5 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations } from "next-intl";
+
 import { useReaderView } from "./utils";
 
 export default function ViewTabs() {

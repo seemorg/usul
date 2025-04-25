@@ -1,8 +1,8 @@
 import type {
-  NamespaceKeys as NextIntlNamespaceKeys,
-  NestedKeyOf,
-  useTranslations,
   Messages,
+  NestedKeyOf,
+  NamespaceKeys as NextIntlNamespaceKeys,
+  useTranslations,
 } from "next-intl";
 
 export type NamespaceTranslations<

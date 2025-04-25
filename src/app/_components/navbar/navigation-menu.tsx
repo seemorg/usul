@@ -1,3 +1,4 @@
+import React from "react";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import {
   NavigationMenu,
@@ -7,19 +8,14 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { useTotalEntities } from "@/contexts/total-entities.context";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import { useTranslations } from "next-intl";
-import React from "react";
-import {
-  
-  browseItems,
-  contributeItems,
-  aboutItems
-} from "./links";
-import type {NavItem} from "./links";
 import { useDemo } from "@/stores/demo";
-import { useTotalEntities } from "@/contexts/total-entities.context";
+import { useTranslations } from "next-intl";
+
+import type { NavItem } from "./links";
+import { aboutItems, browseItems, contributeItems } from "./links";
 
 export default function HomepageNavigationMenu() {
   const t = useTranslations("common");
@@ -136,7 +132,7 @@ const ListItem = ({
           // @ts-ignore
           ref={ref}
           className={cn(
-            "outline-hidden block select-none rounded-md p-3 leading-none no-underline transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground block rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none",
             className,
           )}
           {...props}
@@ -145,8 +141,8 @@ const ListItem = ({
             {Icon && <Icon className="size-5" strokeWidth={1.5} />}
 
             <div className="space-y-1">
-              <div className="text-sm font-medium leading-none">{title}</div>
-              <p className="line-clamp-2 text-xs leading-snug text-muted-foreground">
+              <div className="text-sm leading-none font-medium">{title}</div>
+              <p className="text-muted-foreground line-clamp-2 text-xs leading-snug">
                 {children}
               </p>
             </div>
