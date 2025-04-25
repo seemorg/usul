@@ -150,8 +150,8 @@ export default function AuthorsFilterClient({
 
   const data = useMemo(() => {
     const allResponses = Object.values(pageToResponse);
-    const hasMore = allResponses[allResponses.length - 1]?.pagination?.hasNext;
-    const items = allResponses.flatMap((r) => r?.results?.hits ?? []);
+    const hasMore = allResponses[allResponses.length - 1]?.pagination.hasNext;
+    const items = allResponses.flatMap((r) => r.results.hits ?? []);
 
     if (!selectedAuthorsResponse) {
       return {

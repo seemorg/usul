@@ -1,7 +1,7 @@
 import { yearsSorts } from "@/lib/urls";
 import type { Sort } from "@/types/sort";
 import { yearRangeSchema } from "@/validation/year-range";
-import { type DynamicRoute } from "next-typesafe-url";
+import type {DynamicRoute} from "next-typesafe-url";
 import { z } from "zod";
 
 export const sorts = [

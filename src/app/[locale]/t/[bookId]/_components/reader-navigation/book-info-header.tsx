@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-key */
+ 
 import { Separator } from "@/components/ui/separator";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";

@@ -30,7 +30,7 @@ export const useReaderView = () => {
     return _view;
   };
 
-  const view = getView() as "pdf" | "ebook";
+  const view = getView();
 
   const setView = (newView: "pdf" | "ebook") => {
     if (newView === view) return;

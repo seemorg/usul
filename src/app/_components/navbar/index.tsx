@@ -46,7 +46,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
 
     const handleScroll = () => {
       // Get the new Value
-      newValue = container?.scrollTop || 0;
+      newValue = container.scrollTop || 0;
 
       //Subtract the two and conclude
       if (newValue <= 100) setShowNavbar(true);
@@ -57,9 +57,9 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       oldValue = newValue;
     };
 
-    container?.addEventListener("scroll", handleScroll, { passive: true });
+    container.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => container?.removeEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerEl]);

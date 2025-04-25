@@ -15,7 +15,7 @@ import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
 import { BookDetailsProvider } from "./_contexts/book-details.context";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import PdfViewClient from "./_components/pdf-view/client";
 
 export const generateMetadata = async ({

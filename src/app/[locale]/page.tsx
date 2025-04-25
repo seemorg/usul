@@ -1,5 +1,5 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react/no-unescaped-entities */
+ 
+ 
 import Container from "@/components/ui/container";
 import Navbar from "../_components/navbar";
 import SearchBar from "../_components/navbar/search-bar";

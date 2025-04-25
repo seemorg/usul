@@ -7,7 +7,8 @@ import {
 } from "@heroicons/react/20/solid";
 
 import { cn } from "@/lib/utils";
-import { type ButtonProps, buttonVariants } from "@/components/ui/button";
+import {  buttonVariants } from "@/components/ui/button";
+import type {ButtonProps} from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { useFormatter, useTranslations } from "next-intl";

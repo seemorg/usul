@@ -12,11 +12,12 @@ import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import React from "react";
 import {
-  type NavItem,
+  
   browseItems,
   contributeItems,
-  aboutItems,
+  aboutItems
 } from "./links";
+import type {NavItem} from "./links";
 import { useDemo } from "@/stores/demo";
 import { useTotalEntities } from "@/contexts/total-entities.context";
 

@@ -9,7 +9,7 @@ import { MoonStarIcon } from "lucide-react";
 import DonateForm from "./donate-form.client";
 import BentoCard from "./bento-card";
 import FeaturesList from "./features-list";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import SuccessModal from "./success-modal.client";
 
 export const generateMetadata = async ({

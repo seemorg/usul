@@ -1,6 +1,6 @@
 import { booksSorts } from "@/lib/urls";
 import { viewSchema } from "@/validation/view";
-import { type DynamicRoute } from "next-typesafe-url";
+import type {DynamicRoute} from "next-typesafe-url";
 import { z } from "zod";
 
 const sorts = booksSorts.map((s) => s.value);

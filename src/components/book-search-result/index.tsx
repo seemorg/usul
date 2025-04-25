@@ -43,7 +43,7 @@ export default function BookSearchResult({
   const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
   const authorPrimaryNames =
-    author?.primaryNames ?? (author as any)?.primaryNameTranslations;
+    author.primaryNames ?? (author as any)?.primaryNameTranslations;
 
   const authorName = (
     author.transliteration && pathLocale === "en"
@@ -58,7 +58,7 @@ export default function BookSearchResult({
   const authorSecondaryName = (
     "secondaryName" in author
       ? author.secondaryName
-      : author?.primaryNames
+      : author.primaryNames
         ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
         : undefined
   ) as string | undefined;

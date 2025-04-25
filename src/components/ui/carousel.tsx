@@ -1,14 +1,13 @@
 "use client";
 
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/20/solid";
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react";
+import useEmblaCarousel from "embla-carousel-react";
+import type {UseEmblaCarouselType} from "embla-carousel-react";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { createContext, use, useCallback, useEffect, useState } from "react";
-import { ButtonProps } from "./button";
+import type { ButtonProps } from "./button";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -113,7 +112,7 @@ const Carousel = ({
     api.on("select", onSelect);
 
     return () => {
-      api?.off("select", onSelect);
+      api.off("select", onSelect);
     };
   }, [api, onSelect]);
 

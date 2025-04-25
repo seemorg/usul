@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import { useMemo, type ComponentProps, useState } from "react";
+import { useMemo,  useState } from "react";
+import type {ComponentProps} from "react";
 import type BookSearchResult from ".";
 
 import { Link } from "@/navigation";
@@ -56,34 +57,34 @@ export default function InfoDialog({
     enabled: shouldFetch,
   });
 
-  const primaryTitle = document?.primaryNames
+  const primaryTitle = document.primaryNames
     ? getPrimaryLocalizedText(document.primaryNames, pathLocale)
     : null;
 
-  const otherTitles = document?.otherNames
+  const otherTitles = document.otherNames
     ? getPrimaryLocalizedText(document.otherNames, pathLocale)
     : null;
 
-  const secondaryTitle = document?.primaryNames
+  const secondaryTitle = document.primaryNames
     ? getSecondaryLocalizedText(document.primaryNames, pathLocale)
     : null;
 
-  const otherSecondaryTitles = document?.otherNames
+  const otherSecondaryTitles = document.otherNames
     ? getSecondaryLocalizedText(document.otherNames, pathLocale)
     : null;
 
   const authorPrimaryName = author
-    ? getPrimaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    ? getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale)
     : null;
   const authorSecondaryName = author
-    ? getSecondaryLocalizedText(author?.primaryNameTranslations, pathLocale)
+    ? getSecondaryLocalizedText(author.primaryNameTranslations, pathLocale)
     : null;
 
   const authorOtherPrimaryNames = author
-    ? getPrimaryLocalizedText(author?.otherNameTranslations, pathLocale)
+    ? getPrimaryLocalizedText(author.otherNameTranslations, pathLocale)
     : null;
   const authorOtherSecondaryNames = author
-    ? getSecondaryLocalizedText(author?.otherNameTranslations, pathLocale)
+    ? getSecondaryLocalizedText(author.otherNameTranslations, pathLocale)
     : null;
 
   const parsedRegions = useMemo(() => {

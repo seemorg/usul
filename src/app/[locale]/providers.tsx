@@ -1,6 +1,6 @@
 "use client";
 
-import { type Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

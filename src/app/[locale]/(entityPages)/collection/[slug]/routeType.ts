@@ -1,6 +1,6 @@
 import { yearsSorts } from "@/lib/urls";
 import { viewSchema } from "@/validation/view";
-import { type DynamicRoute } from "next-typesafe-url";
+import type {DynamicRoute} from "next-typesafe-url";
 import { z } from "zod";
 
 const sorts = yearsSorts.map((s) => s.value);

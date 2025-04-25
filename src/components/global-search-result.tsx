@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-key */
+ 
 import { Link } from "@/navigation";
 import DottedList from "./ui/dotted-list";
 import { getTranslations } from "next-intl/server";

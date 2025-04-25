@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-key */
+ 
 import DottedList from "@/components/ui/dotted-list";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { TrendingUpIcon } from "lucide-react";

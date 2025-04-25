@@ -86,7 +86,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
   }, [defaultRange]);
 
   const handleChange = (newValue: [number, number]) => {
-    if (newValue?.[0] > newValue?.[1]) return;
+    if (newValue[0] > newValue[1]) return;
 
     setValue(newValue);
 

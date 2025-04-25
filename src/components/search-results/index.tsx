@@ -1,4 +1,5 @@
-import { Suspense, Fragment, type JSX } from "react";
+import { Suspense, Fragment  } from "react";
+import type {JSX} from "react";
 import Paginator from "@/components/ui/pagination";
 import type { Pagination } from "@/types/pagination";
 import type { TypesenseResponse } from "@/server/typesense/utils";
@@ -49,7 +50,7 @@ export default function SearchResults<T extends object & { id: string }>({
   view,
   hasViews = true,
 }: SearchResultsProps<T>) {
-  const hasResults = response.hits?.length ?? 0 > 0;
+  const hasResults = response.hits.length ?? 0 > 0;
 
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
@@ -144,7 +145,7 @@ export default function SearchResults<T extends object & { id: string }>({
                 itemsContainerClassName,
               )}
             >
-              {response.hits!.map((result) => (
+              {response.hits.map((result) => (
                 <Fragment key={result.document.id}>
                   {renderResult(result)}
                 </Fragment>

@@ -3,7 +3,8 @@ import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
 import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type SearchType, type RouteType } from "./routeType";
+import { Route   } from "./routeType";
+import type {SearchType, RouteType} from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { navigation, yearsSorts } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
@@ -24,7 +25,7 @@ import Navbar from "@/app/_components/navbar";
 import Footer from "@/app/_components/footer";
 import SearchTypeSwitcher from "./search-type-switcher";
 import GlobalSearchResult from "@/components/global-search-result";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import YearFilterClient from "@/components/year-filter/client";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
@@ -87,7 +88,7 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
   });
 }
 
-// eslint-disable-next-line react/display-name
+ 
 const renderResult = (type: SearchType, view: View) => (result: any) => {
   if (type === "all") {
     return <GlobalSearchResult result={result} />;

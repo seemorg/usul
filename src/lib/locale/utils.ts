@@ -1,4 +1,5 @@
-import { type Locale, useLocale } from "next-intl";
+import {  useLocale } from "next-intl";
+import type {Locale} from "next-intl";
 import {
   pathLocaleToSupportedBcp47LocaleMap,
   localeToFullName,

@@ -1,5 +1,6 @@
 import SearchResults from "@/components/search-results";
-import { Route, sorts, type RouteType } from "./routeType";
+import { Route, sorts  } from "./routeType";
+import type {RouteType} from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { gregorianYearToHijriYear } from "@/lib/date";
@@ -11,7 +12,7 @@ import { getTranslations } from "next-intl/server";
 import { searchAuthors } from "@/server/typesense/author";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import YearFilterClient from "@/components/year-filter/client";
 
 type PageProps = InferPagePropsType<RouteType>;

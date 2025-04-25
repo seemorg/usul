@@ -6,8 +6,9 @@ import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
 import { useTranslations } from "next-intl";
-import { type PropsWithChildren } from "react";
-import useFetchPage, { type DefaultPages } from "./use-fetch-page";
+import type {PropsWithChildren} from "react";
+import useFetchPage from "./use-fetch-page";
+import type {DefaultPages} from "./use-fetch-page";
 
 const PageLabel = (props: PropsWithChildren) => (
   <p
@@ -46,7 +47,7 @@ export default function ReaderPage({
 
   if (source === "turath") {
     const typedPage = page as TurathContent["pages"][number];
-    let text = typedPage.text
+    const text = typedPage.text
       .replaceAll("</span>.", "</span>")
       .split(`<br>`)
       .map((block) => {
@@ -122,7 +123,7 @@ export default function ReaderPage({
     return (
       <div className="reader-page">
         {typedPage.blocks.map((block, blockIndex) => (
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+           
           <RenderBlock key={blockIndex} block={block as any} />
         ))}
 

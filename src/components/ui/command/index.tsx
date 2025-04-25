@@ -1,6 +1,6 @@
 "use client";
 
-import { type DialogProps } from "@radix-ui/react-dialog";
+import type {DialogProps} from "@radix-ui/react-dialog";
 import { Command as CommandPrimitive } from "cmdk";
 
 import { cn } from "@/lib/utils";

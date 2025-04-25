@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import { ComponentProps } from "react";
+import type { ComponentProps } from "react";
 import { Badge } from "./ui/badge";
 
 interface EntityCardProps extends ComponentProps<typeof Link> {

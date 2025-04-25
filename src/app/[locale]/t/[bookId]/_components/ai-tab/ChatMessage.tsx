@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
-import ReactMarkdown, { type Components } from "react-markdown";
+import ReactMarkdown from "react-markdown";
+import type {Components} from "react-markdown";
 import {
   DocumentDuplicateIcon,
   HandThumbUpIcon,

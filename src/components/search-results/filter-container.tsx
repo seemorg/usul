@@ -1,10 +1,11 @@
-import { type LinkProps } from "next/link";
+import type {LinkProps} from "next/link";
 import { Button } from "../ui/button";
 import Spinner from "../ui/spinner";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { Input, type InputProps } from "../ui/input";
+import { Input  } from "../ui/input";
+import type {InputProps} from "../ui/input";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "../ui/checkbox";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";

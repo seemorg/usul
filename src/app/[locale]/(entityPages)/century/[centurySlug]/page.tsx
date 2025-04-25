@@ -1,7 +1,8 @@
 import { searchBooks } from "@/server/typesense/book";
 import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import { Route  } from "./routeType";
+import type {RouteType} from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import SearchResults from "@/components/search-results";
 import { navigation, yearsSorts } from "@/lib/urls";
@@ -13,7 +14,7 @@ import GenresFilter from "@/components/genres-filter";
 import TruncatedText from "@/components/ui/truncated-text";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 

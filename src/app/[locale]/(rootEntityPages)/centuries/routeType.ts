@@ -1,5 +1,5 @@
 import type { Sort } from "@/types/sort";
-import { type DynamicRoute } from "next-typesafe-url";
+import type {DynamicRoute} from "next-typesafe-url";
 import { z } from "zod";
 
 export const sorts = [

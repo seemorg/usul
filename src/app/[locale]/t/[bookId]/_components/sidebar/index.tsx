@@ -5,7 +5,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SidebarContainer from "./sidebar-container";
 import React from "react";
 import { useTranslations } from "next-intl";
-import { type TabProps, tabs } from "./tabs";
+import {  tabs } from "./tabs";
+import type {TabProps} from "./tabs";
 import { useSearchParams } from "next/navigation";
 import { useTabNavigate } from "./useTabNavigate";
 

@@ -3,7 +3,8 @@ import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
 import { searchBooks } from "@/server/typesense/book";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import { Route  } from "./routeType";
+import type {RouteType} from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { yearsSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
@@ -13,7 +14,7 @@ import { countAllBooks } from "@/server/services/books";
 import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 import YearFilterClient from "@/components/year-filter/client";
 
 type TextsPageProps = InferPagePropsType<RouteType>;

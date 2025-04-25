@@ -70,7 +70,7 @@ export const useChatStore = create(
 
           const updatedHistoryItem: HistoryItem = {
             ...(historyItem ?? {
-              chatId: state.currentChatId!,
+              chatId: state.currentChatId,
               bookId: state.currentBookId!,
               versionId: state.currentVersionId!,
               date: new Date(),

@@ -1,3 +1,5 @@
+import type {
+  RefObject} from "react";
 import {
   memo,
   useRef,
@@ -6,7 +8,6 @@ import {
   useEffect,
   useCallback,
   createContext,
-  RefObject,
   use,
 } from "react";
 import { cn } from "@/lib/utils";

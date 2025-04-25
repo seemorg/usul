@@ -2,7 +2,8 @@ import RegionSearchResult from "@/components/region-search-result";
 import SearchResults from "@/components/search-results";
 import { countAllRegions } from "@/server/services/regions";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { Route, sorts, type RouteType } from "./routeType";
+import { Route, sorts  } from "./routeType";
+import type {RouteType} from "./routeType";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import { searchRegions } from "@/server/typesense/region";
 import RootEntityPage from "../root-entity-page";
@@ -10,7 +11,7 @@ import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { InfoIcon } from "lucide-react";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({

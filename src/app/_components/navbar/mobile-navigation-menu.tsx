@@ -1,11 +1,12 @@
 import { useTranslations } from "next-intl";
 
 import {
-  type NavItem,
+  
   browseItems,
   contributeItems,
-  aboutItems,
+  aboutItems
 } from "./links";
+import type {NavItem} from "./links";
 import { Link } from "@/navigation";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import Container from "@/components/ui/container";

@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-key */
+ 
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
@@ -6,7 +6,8 @@ import { searchBooks } from "@/server/typesense/book";
 import { findAuthorBySlug } from "@/server/services/authors";
 import { notFound } from "next/navigation";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import { Route  } from "./routeType";
+import type {RouteType} from "./routeType";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { booksSorts, navigation } from "@/lib/urls";
 import { ExpandibleList } from "@/components/ui/expandible-list";
@@ -23,7 +24,7 @@ import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
@@ -168,7 +169,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
   const otherNames = (
     getPrimaryLocalizedText(author.otherNameTranslations, pathLocale) ?? []
-  ).filter(Boolean) as string[];
+  ).filter(Boolean);
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import { countAllGenres } from "@/server/services/genres";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { Route, sorts, type RouteType } from "./routeType";
+import { Route, sorts  } from "./routeType";
+import type {RouteType} from "./routeType";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 import SearchResults from "@/components/search-results";
 import GenreSearchResult from "@/components/genre-search-result";
@@ -9,7 +10,7 @@ import RootEntityPage from "../root-entity-page";
 import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { Locale } from "next-intl";
+import type { Locale } from "next-intl";
 
 type PageProps = InferPagePropsType<RouteType>;
 

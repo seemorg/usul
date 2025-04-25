@@ -197,7 +197,7 @@ export default function SearchTab() {
       {isVersionMismatch && (
         <SidebarContainer className="my-4">
           <VersionAlert
-            versionId={bookResponse.book.aiVersion!}
+            versionId={bookResponse.book.aiVersion}
             versions={bookResponse.book.versions}
             feature="search"
           />
