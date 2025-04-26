@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 const SearchResult = ({
   result,
@@ -27,7 +27,7 @@ const SearchResult = ({
   headings: OpenitiContent["headings"] | TurathContent["headings"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const t = useTranslations();
   const router = useRouter();
   const params = useParams();
@@ -79,7 +79,7 @@ const SearchResult = ({
       virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
     }
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   const handleShare = async () => {
@@ -127,7 +127,7 @@ const SearchResult = ({
             className="hover:bg-accent focus:bg-accent size-9"
             onClick={(e) => {
               e.stopPropagation(); // don't trigger navigate
-              handleShare();
+              void handleShare();
             }}
             disabled={isPending}
           >

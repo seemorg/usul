@@ -10,8 +10,8 @@ import { useRouter } from "@/navigation";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
 import PageNavigator from "./page-navigator";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
 type TurathChapter = NonNullable<TurathContent["headings"]>[number];
@@ -92,7 +92,7 @@ export default function ChaptersList({
   isSinglePage?: boolean;
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const bookSlug = useParams().bookId as string;
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -117,7 +117,7 @@ export default function ChaptersList({
       }
     }
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   if (headers.length === 0) {

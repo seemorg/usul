@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 function PageNavigator({
   popover = true,
@@ -17,7 +17,7 @@ function PageNavigator({
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const t = useTranslations("reader.page-navigator");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +36,7 @@ function PageNavigator({
     const props = getVirtuosoScrollProps(pageNumber - 1);
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   const Content = (

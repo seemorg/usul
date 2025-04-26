@@ -55,22 +55,22 @@ export default function BookInfo({ className }: { className?: string }) {
     <div className={className} dir={dir}>
       <div className="flex justify-between">
         <bdi className="flex-1">
-          <h1 className="text-4xl font-bold">{primaryName}</h1>
+          <h1 className="text-2xl font-bold md:text-4xl">{primaryName}</h1>
         </bdi>
 
         {secondaryName && (
           <bdi className="flex-1">
-            <h1 className="text-4xl font-bold">{secondaryName}</h1>
+            <h1 className="text-2xl font-bold md:text-4xl">{secondaryName}</h1>
           </bdi>
         )}
       </div>
 
-      <div className="mt-4 flex justify-between">
+      <div className="mt-2 flex justify-between md:mt-4">
         <div>
           <AuthorHoverCard>
             <Link
               href={navigation.authors.bySlug(book.author.slug)}
-              className="link text-base"
+              className="link text-sm md:text-base"
               prefetch
             >
               {authorPrimaryName} {formattedYear}
@@ -83,7 +83,7 @@ export default function BookInfo({ className }: { className?: string }) {
             <AuthorHoverCard>
               <Link
                 href={navigation.authors.bySlug(book.author.slug)}
-                className="link text-base"
+                className="link text-sm md:text-base"
                 prefetch
               >
                 {authorSecondaryName} {formattedYear}
@@ -98,12 +98,12 @@ export default function BookInfo({ className }: { className?: string }) {
         publicationDetails={bookResponse.content.publicationDetails}
       />
 
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <p className="text-muted-foreground text-sm">{t("entities.genres")}</p>
+      <div className="mt-6 flex flex-wrap items-center gap-3 text-xs md:text-sm">
+        <p className="text-muted-foreground">{t("entities.genres")}</p>
 
         {genres.map((genre) => (
           <Link key={genre.id} href={navigation.genres.bySlug(genre.slug)}>
-            <Badge variant="outline" className="hover:bg-accent text-sm">
+            <Badge variant="outline" className="hover:bg-accent">
               {genre.name}
             </Badge>
           </Link>

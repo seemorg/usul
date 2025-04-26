@@ -17,8 +17,10 @@ import { useTranslations } from "next-intl";
 import { Button } from "../button";
 import {
   Dialog,
+  DialogDescription,
   DialogOverlay,
   DialogPortal,
+  DialogTitle,
   RawDialogClose,
   RawDialogContent,
 } from "../dialog";
@@ -26,6 +28,7 @@ import { ScrollArea } from "../scroll-area";
 import { Separator } from "../separator";
 import Spinner from "../spinner";
 import { toast } from "../use-toast";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 export default function SourceModal({
   source,
@@ -36,6 +39,7 @@ export default function SourceModal({
 }) {
   const { bookResponse } = useBookDetails();
   const [isOpen, setIsOpen] = useState(false);
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const slug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId");
   const { copyUrl: copyShareUrl } = useBookShareUrl();
@@ -95,7 +99,13 @@ export default function SourceModal({
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     setIsOpen(false);
+    closeMobileSidebar();
   };
+
+  const pageReference = t("reader.chat.pg-x-vol", {
+    page: page.page,
+    vol: page.volume,
+  });
 
   return (
     <>
@@ -103,10 +113,7 @@ export default function SourceModal({
         className="bg-muted inline cursor-pointer rounded-md p-1 text-xs"
         onClick={() => setIsOpen(true)}
       >
-        {t("reader.chat.pg-x-vol", {
-          page: page.page,
-          vol: page.volume,
-        })}
+        {pageReference}
       </button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -114,6 +121,11 @@ export default function SourceModal({
           <DialogOverlay>
             <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 flex w-full max-w-xl flex-col px-6 py-4 shadow-lg duration-200 sm:rounded-lg">
               <div className="flex items-center justify-between">
+                <DialogTitle className="sr-only">Source</DialogTitle>
+                <DialogDescription className="sr-only">
+                  {pageReference}
+                </DialogDescription>
+
                 <RawDialogClose className="text-muted-foreground ring-offset-background hover:bg-accent/70 focus:ring-ring rounded-sm p-2 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                   <XIcon className="size-5" />
                   <span className="sr-only">Close</span>

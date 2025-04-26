@@ -32,7 +32,7 @@ export default function BookInfoHeader() {
   return (
     <div
       className={cn(
-        "bg-reader absolute top-0 left-0 z-2 w-full px-5 transition will-change-transform lg:px-8",
+        "bg-reader absolute top-0 left-0 z-2 hidden w-full px-5 transition will-change-transform sm:block lg:px-8",
         isVisible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none -translate-y-full opacity-0",

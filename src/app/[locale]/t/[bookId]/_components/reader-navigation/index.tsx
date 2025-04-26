@@ -1,10 +1,15 @@
 "use client";
 
 import type { ApiBookResponse } from "@/types/api/book";
-import { useState } from "react";
+
 import { SinglePageIcon } from "@/components/Icons";
 import Container from "@/components/ui/container";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerTitle,
+} from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
@@ -20,6 +25,8 @@ import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
 import VersionSelector from "./version-selector";
 import ViewTabs from "./view-tabs";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
+import { useMediaQuery } from "usehooks-ts";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {
@@ -43,14 +50,15 @@ export default function ReaderNavigation({
   const bookSlug = bookResponse.book.slug;
   const t = useTranslations("reader");
   const bookUrl = useGetBookUrl(isSinglePage ? undefined : 1);
-  const [activeTabId, setActiveTabId] = useState<
-    (typeof tabs)[number]["id"] | null
-  >(null);
+  const { activeTabId, setActiveTabId } = useMobileReaderStore();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const versionId = bookResponse.content.id;
   const pdf = getPdfUrl(bookResponse);
 
   const { hasEbook } = useReaderView();
+
+  const isDrawerOpen = !!activeTabId && isMobile;
 
   return (
     <>
@@ -109,25 +117,23 @@ export default function ReaderNavigation({
               </ReaderNavigationButton>
             ))}
 
-            <Drawer
-              open={!!activeTabId}
-              onOpenChange={(state) => {
-                if (!state) {
-                  setActiveTabId(null);
-                }
-              }}
-            >
+            <Drawer open={isDrawerOpen} onClose={() => setActiveTabId(null)}>
               <DrawerContent>
-                {activeTabId && (
-                  <div className="h-[85vh] w-full overflow-y-auto">
+                <DrawerTitle className="sr-only">Reader Navigation</DrawerTitle>
+                <DrawerDescription className="sr-only">
+                  You can use navigation, search, and AI to find what you need.
+                </DrawerDescription>
+
+                <div className="h-[90dvh] w-full overflow-y-auto">
+                  {isDrawerOpen && (
                     <TabContent
                       tabId={activeTabId}
                       bookSlug={bookSlug}
                       versionId={versionId}
                       isSinglePage={isSinglePage}
                     />
-                  </div>
-                )}
+                  )}
+                </div>
               </DrawerContent>
             </Drawer>
           </div>
