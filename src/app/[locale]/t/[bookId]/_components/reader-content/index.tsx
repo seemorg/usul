@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useMemo, useRef } from "react";
+import { memo, useCallback, useMemo, useRef, useState } from "react";
 import Footer from "@/app/_components/footer";
 import Container from "@/components/ui/container";
 import { HighlightPopover } from "@/components/ui/highlight-popover";
@@ -32,6 +32,7 @@ export default function ReaderContent({
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
   const containerEl = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(200);
 
   const defaultPages = useMemo(() => {
     if (content.source === "turath") {
@@ -44,6 +45,26 @@ export default function ReaderContent({
 
     return [];
   }, [content]);
+
+  const headerRefHandler = useCallback((r: HTMLDivElement | null) => {
+    if (r) {
+      setHeaderHeight(r.clientHeight);
+      const handleResize = () => {
+        setHeaderHeight(r.clientHeight);
+      };
+      // handle window resize
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
+  const pagesArray = useMemo(() => {
+    return new Array(isSinglePage ? 1 : bookResponse.pagination.total).fill(
+      undefined,
+    ) as undefined[];
+  }, [isSinglePage, bookResponse.pagination.total]);
 
   return (
     <div
@@ -64,9 +85,8 @@ export default function ReaderContent({
         />
       )}
 
-      <div className="w-full px-5 lg:px-8">
+      <div className="w-full px-5 lg:px-8" ref={headerRefHandler}>
         <BookInfo className="mx-auto max-w-5xl py-8" />
-
         <Separator />
       </div>
 
@@ -77,27 +97,17 @@ export default function ReaderContent({
         }
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}
-        startMargin={80}
-
-        // as={forwardRef((props, ref) => (
-        //   <div
-        //     className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
-        //     ref={ref}
-        //     {...props}
-        //   />
-        // ))}
+        startMargin={headerHeight}
       >
-        {new Array(isSinglePage ? 1 : bookResponse.pagination.total)
-          .fill(null)
-          .map((_, index) => (
-            <Page
-              key={index}
-              index={isSinglePage ? currentPage! - 1 : index}
-              defaultPages={defaultPages}
-              perPage={bookResponse.pagination.size}
-              source={content.source}
-            />
-          ))}
+        {pagesArray.map((_, index) => (
+          <Page
+            key={index}
+            index={isSinglePage ? currentPage! - 1 : index}
+            defaultPages={defaultPages}
+            perPage={bookResponse.pagination.size}
+            source={content.source}
+          />
+        ))}
       </Virtualizer>
 
       <div className="mx-auto mt-10 w-full max-w-[90%]">
