@@ -34,7 +34,7 @@ export default function Paginator({
   return (
     <div
       className={cn(
-        "sticky top-[80vh] right-0 left-0 z-10 m-0 flex w-full items-center justify-center transition will-change-transform",
+        "sticky top-[80vh] right-0 left-0 z-10 m-0 flex w-full items-center justify-center transition duration-250 will-change-transform",
         // showNavbar ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0",
         isDetailsOpen || showNavbar ? "-translate-y-[10vh]" : "",
       )}

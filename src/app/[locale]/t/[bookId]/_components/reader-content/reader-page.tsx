@@ -1,5 +1,3 @@
-"use client";
-
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";

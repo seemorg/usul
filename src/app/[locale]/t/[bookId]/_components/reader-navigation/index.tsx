@@ -64,7 +64,7 @@ export default function ReaderNavigation({
     <>
       <div
         className={cn(
-          "bg-reader relative w-full px-5 transition will-change-transform lg:px-8",
+          "bg-reader relative w-full px-5 transition duration-250 will-change-transform lg:px-8",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",

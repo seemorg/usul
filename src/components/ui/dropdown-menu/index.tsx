@@ -71,7 +71,6 @@ const DropdownMenuContent = ({
 const DropdownMenuItem = ({
   className,
   inset,
-  children,
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
   inset?: boolean;

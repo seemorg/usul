@@ -21,9 +21,7 @@ const Command = ({
   />
 );
 
-interface CommandDialogProps extends DialogProps {}
-
-const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
+const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0">
@@ -78,7 +76,10 @@ const CommandEmpty = ({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) => (
-  <CommandPrimitive.Empty className="py-6 text-center text-sm" {...props} />
+  <CommandPrimitive.Empty
+    className={cn("py-6 text-center text-sm", className)}
+    {...props}
+  />
 );
 
 const CommandGroup = ({
@@ -136,7 +137,10 @@ const CommandLoading = ({
   className,
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Loading>) => (
-  <CommandPrimitive.Loading className="py-6 text-center text-sm" {...props} />
+  <CommandPrimitive.Loading
+    className={cn("py-6 text-center text-sm", className)}
+    {...props}
+  />
 );
 
 export {

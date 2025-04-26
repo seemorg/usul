@@ -61,7 +61,7 @@ const PublicationDetails = ({
   return (
     <div
       className={cn(
-        "relative flex flex-wrap items-center gap-6 text-xs md:text-sm",
+        "relative flex flex-wrap items-center gap-8 text-xs md:text-sm",
         className,
       )}
     >

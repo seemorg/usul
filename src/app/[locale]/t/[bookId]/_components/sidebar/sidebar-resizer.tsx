@@ -56,7 +56,7 @@ export default function SidebarResizer({
       onCollapse={onCollapse}
       onExpand={onExpand}
       className={cn(
-        "hidden transition-transform will-change-transform lg:block",
+        "hidden transition-transform duration-250 will-change-transform lg:block",
         isCollapsed && "min-w-[20px] transition-all duration-300 ease-in-out",
         !showNavbar && "translate-y-[60px]", // READER_NAVIGATION_HEIGHT
       )}
@@ -78,7 +78,7 @@ export default function SidebarResizer({
           direction="horizontal"
           autoSaveId="reader-sidebar"
           className={cn(
-            "relative h-full w-full transition-transform will-change-transform",
+            "relative h-full w-full transition-transform duration-250 will-change-transform",
             navbarTranslateY,
           )}
         >
@@ -89,7 +89,7 @@ export default function SidebarResizer({
           direction="horizontal"
           autoSaveId="reader-sidebar-rtl"
           className={cn(
-            "relative h-full w-full transition-transform will-change-transform",
+            "relative h-full w-full transition-transform duration-250 will-change-transform",
             navbarTranslateY,
           )}
         >

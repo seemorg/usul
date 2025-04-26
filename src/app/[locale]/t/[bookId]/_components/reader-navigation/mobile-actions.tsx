@@ -45,13 +45,13 @@ export default function ReaderNavigationMobileActions({
             onClick={() => setView(view === "pdf" ? "ebook" : "pdf")}
             className="gap-2"
           >
-            <FileTextIcon className="h-4 w-4" />
+            <FileTextIcon className="size-4" />
             <span>{t(view === "pdf" ? "view-e-book" : "view-pdf")}</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild className="gap-2">
             <Link href={bookUrl}>
-              <SinglePageIcon className="h-4 w-4" />
+              <SinglePageIcon className="size-4" />
               <span>{t(isSinglePage ? "all-pages" : "single-page")}</span>
             </Link>
           </DropdownMenuItem>
@@ -63,13 +63,13 @@ export default function ReaderNavigationMobileActions({
           {hasPdfView ? (
             <DropdownMenuItem asChild className="gap-2">
               <a href={pdf} download={slug + ".pdf"} target="_blank">
-                <ArrowDownTrayIcon className="h-4 w-4" />
+                <ArrowDownTrayIcon className="size-4" />
                 <span>{t("download-pdf")}</span>
               </a>
             </DropdownMenuItem>
           ) : (
             <DropdownMenuItem disabled className="gap-2">
-              <ArrowDownTrayIcon className="h-4 w-4" />
+              <ArrowDownTrayIcon className="size-4" />
               <span>{t("download-pdf")}</span>
             </DropdownMenuItem>
           )}

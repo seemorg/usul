@@ -147,12 +147,10 @@
 }
 
 @theme inline {
-  --font-sans:
-    var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
+  --font-sans: var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --font-scheherazade:
-    var(--font-scheherazade-base), ui-serif, Georgia, Cambria,
+  --font-scheherazade: var(--font-scheherazade-base), ui-serif, Georgia, Cambria,
     "Times New Roman", Times, serif;
 }
 
@@ -231,7 +229,7 @@ body {
 }
 
 .reader-page {
-  @apply flex flex-col gap-6 text-2xl leading-[3rem];
+  @apply flex flex-col gap-4 text-xl leading-[2.5rem] sm:gap-6 sm:text-2xl sm:leading-[3rem];
 
   a {
     @apply text-primary underline;
@@ -239,23 +237,26 @@ body {
 
   h1,
   span[data-type="title"] {
-    @apply mx-auto my-12 block text-center text-3xl leading-10 font-bold;
+    @apply mx-auto my-8 block text-center text-2xl leading-8 font-bold sm:my-12 sm:text-3xl sm:leading-10;
   }
 
   h2 {
     @apply text-2xl font-bold;
   }
 
-  h3 {
-    @apply text-xl font-semibold;
+  h3,
+  h4,
+  h5 {
+    @apply text-xl;
   }
 
+  h3,
   h4 {
-    @apply text-xl font-semibold;
+    @apply font-semibold;
   }
 
   h5 {
-    @apply text-xl font-medium;
+    @apply font-medium;
   }
 
   .footnotes {

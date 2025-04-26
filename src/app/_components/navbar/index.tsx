@@ -67,7 +67,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       <header
         className={cn(
           layout === "reader" ? "relative" : "fixed",
-          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -149,7 +149,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       {secondNav && (
         <nav
           className={cn(
-            "fixed inset-x-0 top-16 z-30 w-full transition",
+            "fixed inset-x-0 top-16 z-30 w-full transition duration-250",
             showNavbar
               ? "pointer-events-auto translate-y-0 opacity-100"
               : "pointer-events-none -translate-y-10 opacity-0",
