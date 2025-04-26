@@ -13,7 +13,7 @@ export default function MobileSearch() {
   if (!showSearch) return null;
 
   return (
-    <MobileMenu className="z-42 pt-10">
+    <MobileMenu className="z-99 pt-10">
       <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
         <Button
           size="icon"

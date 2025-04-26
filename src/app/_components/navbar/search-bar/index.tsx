@@ -1,8 +1,7 @@
 "use client";
 
 import type { SearchType } from "@/types/search";
-import React, { useEffect, useRef, useState } from "react";
-import ComingSoonModal from "@/components/coming-soon-modal";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
 import { navigation } from "@/lib/urls";
@@ -41,7 +40,6 @@ export default function SearchBar({
   isMenu?: boolean;
 }) {
   const t = useTranslations("common");
-  const showSearch = useNavbarStore((s) => s.showSearch);
   const setShowSearch = useNavbarStore((s) => s.setShowSearch);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
@@ -58,7 +56,6 @@ export default function SearchBar({
   });
 
   const { push } = useRouter();
-  const isModalOpen = useBoolean(false);
   const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
 
   const { isLoading, data } = useQuery<SearchResults>({
@@ -66,7 +63,7 @@ export default function SearchBar({
     queryFn: ({ queryKey }) => {
       const [, type, query = ""] = queryKey as [string, SearchType, string];
       const method = typeToMethod[type];
-      return method(query ?? "", { limit: 5 }) as Promise<SearchResults>;
+      return method(query, { limit: 5 }) as Promise<SearchResults>;
     },
     enabled: !!debouncedValue,
   });
@@ -87,7 +84,6 @@ export default function SearchBar({
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // this function handles keyboard navigation and selection
@@ -95,25 +91,18 @@ export default function SearchBar({
     if (href) {
       addRecentSearch(debouncedValue);
       push(href);
-      focusedState.setFalse();
-    } else {
-      isModalOpen.setTrue();
     }
 
     // if the user is on mobile, we need to close the search bar
-    if (showSearch) {
-      setShowSearch(false);
-    }
+
+    setShowSearch(false);
+    focusedState.setFalse();
   };
 
-  const showList = focusedState.value || isMenu || isMobile;
+  const showList = focusedState.value || isMenu;
 
   return (
     <div className={cn("z-50 w-full")}>
-      <ComingSoonModal
-        open={isModalOpen.value}
-        onOpenChange={isModalOpen.setValue}
-      />
       <label htmlFor="global-search-input" className="sr-only">
         Search
       </label>
@@ -155,10 +144,6 @@ export default function SearchBar({
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
           wrapperClassName={cn(size === "lg" && "[&_svg]:h-6! [&_svg]:w-6!")}
         />
-
-        {/* <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-              <span className="text-xs">⌘</span>K
-            </kbd> */}
 
         <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
           <p className="text-muted-foreground hidden items-center gap-2 text-sm lg:flex">
