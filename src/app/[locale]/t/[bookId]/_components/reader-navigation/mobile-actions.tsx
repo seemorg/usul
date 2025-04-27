@@ -14,6 +14,7 @@ import { useTranslations } from "next-intl";
 
 import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
+import { cn } from "@/lib/utils";
 
 export default function ReaderNavigationMobileActions({
   pdf,
@@ -43,7 +44,11 @@ export default function ReaderNavigationMobileActions({
           <DropdownMenuItem
             disabled={!hasPdfView}
             onClick={() => setView(view === "pdf" ? "ebook" : "pdf")}
-            className="gap-2"
+            className={cn(
+              "gap-2",
+              // hide pdf view on mobile, we'll only show "download pdf" to open the native pdf viewer
+              view === "ebook" && "hidden md:block",
+            )}
           >
             <FileTextIcon className="size-4" />
             <span>{t(view === "pdf" ? "view-e-book" : "view-pdf")}</span>

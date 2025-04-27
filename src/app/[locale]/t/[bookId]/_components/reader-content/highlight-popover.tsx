@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 
 import { useChatStore } from "../../_stores/chat";
 import { useTabNavigate } from "../sidebar/useTabNavigate";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 function ReaderHighlightPopover({
   selection,
@@ -21,6 +22,8 @@ function ReaderHighlightPopover({
   const { copyUrl: copyShareUrl } = useBookShareUrl();
 
   const { handleNavigate } = useTabNavigate();
+
+  const setActiveTabId = useMobileReaderStore((s) => s.setActiveTabId);
 
   const setQuestion = useChatStore((s) => s.setQuestion);
 
@@ -42,8 +45,9 @@ function ReaderHighlightPopover({
   };
 
   const handleAskAI = () => {
-    handleNavigate("ai");
+    setActiveTabId("ai");
     setQuestion(`> ${selection}\n\n`);
+    handleNavigate("ai");
   };
 
   return (
@@ -51,9 +55,10 @@ function ReaderHighlightPopover({
       className="overflow-hidden rounded-lg bg-[#232324] font-sans text-[#E5E5E6] shadow-lg"
       dir={dir}
     >
+      {/* Copy will be hidden on mobile, we'll let the user copy using the native context menu */}
       <Button
         variant="ghost"
-        className="hover:bg-accent/10 focus:bg-accent/10 h-10 gap-2 rounded-none"
+        className="hover:bg-accent/10 focus:bg-accent/10 hidden h-10 gap-2 rounded-none md:flex"
         onClick={handleCopy}
       >
         <ClipboardIcon className="size-4" />
