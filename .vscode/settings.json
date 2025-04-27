@@ -17,7 +17,7 @@
   ],
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
-    "@radix-ui",
+    "radix-ui",
     "next/router",
     "next/dist",
     "lucide-react/dist/lucide-react.suffixed"
