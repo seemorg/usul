@@ -39,8 +39,8 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return getMetadata({
-    title: (await getTranslations("entities"))("texts"),
-    pagePath: navigation.books.all(),
+    title: (await getTranslations("common"))("search"),
+    pagePath: navigation.search.normal(),
     locale,
   });
 }

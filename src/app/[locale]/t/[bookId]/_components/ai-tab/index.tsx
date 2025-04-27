@@ -114,10 +114,10 @@ export default function AITab() {
 
           <div
             className={cn(
-              "will flex flex-col justify-between",
+              "flex flex-col justify-between",
               isVersionMismatch
-                ? "h-[calc(100vh-330px)] md:h-[calc(100vh-370px)]"
-                : "h-[calc(100vh-200px)] md:h-[calc(100vh-240px)]",
+                ? "h-[calc(90dvh-170px)] md:h-[calc(100vh-370px)]"
+                : "h-[calc(90dvh-60px)] md:h-[calc(100vh-240px)]",
             )}
           >
             <div className="relative flex-1 overflow-hidden">
@@ -142,7 +142,7 @@ export default function AITab() {
                   className="flex flex-col gap-5 pt-4 pb-[30px]"
                 >
                   {messages.length === 0 && (
-                    <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
+                    <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center">
                       <div className="bg-secondary flex size-12 items-center justify-center rounded-full">
                         <OpenAILogo className="h-auto w-7" />
                       </div>

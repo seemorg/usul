@@ -8,7 +8,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 import { Input } from "../ui/input";
 
-const DEBOUNCE_DELAY = 300;
+const DEBOUNCE_DELAY = 1500;
 
 export default function SearchBar({
   disabled,
@@ -60,7 +60,6 @@ export default function SearchBar({
       });
     }, DEBOUNCE_DELAY);
 
-    // @ts-ignore
     timeoutRef.current = newTimeout;
   }
 

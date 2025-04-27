@@ -51,7 +51,7 @@ export default function SearchResults<T extends object & { id: string }>({
   view,
   hasViews = true,
 }: SearchResultsProps<T>) {
-  const hasResults = response.hits.length ?? 0 > 0;
+  const hasResults = (response.hits.length ?? 0) > 0;
 
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
