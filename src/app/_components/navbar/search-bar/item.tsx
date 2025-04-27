@@ -59,7 +59,14 @@ function SearchBarItem({
     >
       <Comp
         {...(href
-          ? { href, prefetch: true, onClick: (e: any) => e.stopPropagation() }
+          ? {
+              href,
+              prefetch: true,
+              onClick: (e: MouseEvent) => {
+                e.stopPropagation();
+                onSelect();
+              },
+            }
           : {})}
         className="hover:bg-accent flex h-full w-full items-start justify-between px-4 py-3"
       >

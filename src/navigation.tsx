@@ -27,7 +27,10 @@ export const useRouter = () => {
     const currentUrl = new URL(pathname, location.href);
     const targetUrl = new URL(href, location.href);
 
-    if (isSameURL(targetUrl, currentUrl) || href === pathname)
+    if (
+      (isSameURL(targetUrl, currentUrl) || href === pathname) &&
+      NProgressOptions?.showProgressBar !== true
+    )
       return router.push(href, options);
 
     NProgress.start();

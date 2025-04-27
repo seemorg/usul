@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { removeDiacritics } from "@/lib/diacritics";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
@@ -31,6 +32,11 @@ export default function AdvancedSearchResult({
   const page = result.node.metadata.pages[0];
   const versionId = result.node.metadata.versionId;
 
+  const content =
+    "text" in result.node
+      ? removeDiacritics(result.node.text).replaceAll("\n", "<br>")
+      : result.node.highlights.join("<br>...<br>");
+
   return (
     <Link
       href={
@@ -39,16 +45,17 @@ export default function AdvancedSearchResult({
           : navigation.books.reader(result.node.book.slug)) +
         `?versionId=${versionId}`
       }
-      className="border-border bg-muted mb-10 rounded-lg border p-4"
+      className="border-border bg-card rounded-lg border p-4"
     >
       <p
         dir="rtl"
+        className="font-scheherazade [&>em]:text-primary mt-4 sm:text-xl/relaxed [&>em]:font-bold [&>em]:not-italic"
         dangerouslySetInnerHTML={{
-          __html: result.node.text.replaceAll("\n", "<br>"),
+          __html: content,
         }}
       />
 
-      <div className="text-muted-foreground mt-4 flex gap-2 text-sm" dir="rtl">
+      <div className="text-muted-foreground mt-5 flex gap-2 text-sm" dir="rtl">
         <div>
           {page?.volume && (
             <span>

@@ -47,9 +47,9 @@ const CommandInput = ({
     cmdk-input-wrapper=""
   >
     {isLoading ? (
-      <Spinner className="h-4 w-4 shrink-0" />
+      <Spinner className="size-4 shrink-0" />
     ) : (
-      <SearchIcon className="h-4 w-4 shrink-0 opacity-50" />
+      <SearchIcon className="size-4 shrink-0 opacity-50" />
     )}
 
     <CommandPrimitive.Input

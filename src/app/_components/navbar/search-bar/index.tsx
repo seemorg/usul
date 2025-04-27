@@ -88,13 +88,12 @@ export default function SearchBar({
 
   // this function handles keyboard navigation and selection
   const onItemSelect = (href?: string) => {
+    addRecentSearch(debouncedValue);
     if (href) {
-      addRecentSearch(debouncedValue);
       push(href);
     }
 
     // if the user is on mobile, we need to close the search bar
-
     setShowSearch(false);
     focusedState.setFalse();
   };
@@ -142,7 +141,10 @@ export default function SearchBar({
             }
           }}
           className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
-          wrapperClassName={cn(size === "lg" && "[&_svg]:h-6! [&_svg]:w-6!")}
+          wrapperClassName={cn(
+            size === "lg" && "[&_svg]:size-6!",
+            isMenu && "px-4",
+          )}
         />
 
         <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">

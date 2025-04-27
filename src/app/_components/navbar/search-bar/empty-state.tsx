@@ -44,7 +44,7 @@ export default function SearchBarEmptyState({
   );
 
   return (
-    <div className="flex flex-col gap-8 p-6">
+    <div className="flex flex-col gap-8 px-4 py-6 sm:px-6">
       <div>
         <DottedList
           items={[

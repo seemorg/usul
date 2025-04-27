@@ -114,7 +114,6 @@ export type SearchCorpusResponse = {
     score: number;
     node: {
       id: string;
-      text: string;
       metadata: {
         bookId: string;
         pages: {
@@ -137,21 +136,24 @@ export type SearchCorpusResponse = {
           year?: number;
         };
       };
-    };
+    } & ({ text: string } | { highlights: string[] });
   }[];
 };
 
-export const searchCorpus = async (query: string, page: number = 1) => {
+export const searchCorpus = async (
+  query: string,
+  type: "semantic" | "keyword" = "semantic",
+  page: number = 1,
+) => {
   const queryParams = new URLSearchParams();
   queryParams.set("q", query);
   queryParams.set("page", page.toString());
   queryParams.set("include_details", "true");
-  // queryParams.set("include_chapters", "true");
-  // queryParams.set("books", "1,2,3");
+  queryParams.set("type", type);
 
   const results = await baseRequest<SearchCorpusResponse>(
     "GET",
-    `/v1/vector-search?${queryParams.toString()}`,
+    `/v1/${type === "semantic" ? "vector-search" : "keyword-search"}?${queryParams.toString()}`,
     undefined,
     {
       Authorization: `Bearer ${env.SEMANTIC_SEARCH_API_KEY}`,
