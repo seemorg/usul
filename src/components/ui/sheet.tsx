@@ -2,7 +2,7 @@
 
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { Dialog as SheetPrimitive } from "radix-ui";
 import { cva } from "class-variance-authority";
 import { XIcon } from "lucide-react";
 

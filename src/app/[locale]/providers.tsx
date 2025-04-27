@@ -5,7 +5,7 @@ import AppProgressBar from "@/components/app-progressbar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { TotalEntitiesProvider } from "@/contexts/total-entities.context";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import { DirectionProvider } from "@radix-ui/react-direction";
+import { Direction as DirectionPrimitive } from "radix-ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import MobileSearch from "../_components/navbar/mobile-search";
@@ -37,7 +37,7 @@ function Providers({
 
   return (
     <TotalEntitiesProvider value={total}>
-      <DirectionProvider dir={dir}>
+      <DirectionPrimitive.DirectionProvider dir={dir}>
         <AppProgressBar
           height="4px"
           color="#fff"
@@ -58,7 +58,7 @@ function Providers({
             </TooltipProvider>
           </QueryClientProvider>
         </NextThemesProvider>
-      </DirectionProvider>
+      </DirectionPrimitive.DirectionProvider>
     </TotalEntitiesProvider>
   );
 }

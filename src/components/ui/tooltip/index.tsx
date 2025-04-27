@@ -2,7 +2,7 @@
 
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
+import { Tooltip as TooltipPrimitive } from "radix-ui";
 import { cva } from "class-variance-authority";
 
 const TooltipProvider = TooltipPrimitive.Provider;

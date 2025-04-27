@@ -1,8 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import * as TabsPrimitive from "@radix-ui/react-tabs";
-import { TooltipPortal } from "@radix-ui/react-tooltip";
+import { Tabs as TabsPrimitive, Tooltip as TooltipPrimitive } from "radix-ui";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "../tooltip";
 
@@ -50,9 +49,9 @@ const TabsTrigger = ({
           >
             <span>{children}</span>
           </TooltipTrigger>
-          <TooltipPortal>
+          <TooltipPrimitive.Portal>
             <TooltipContent {...tooltipProps}>{tooltip}</TooltipContent>
-          </TooltipPortal>
+          </TooltipPrimitive.Portal>
         </Tooltip>
       ) : (
         children

@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { CheckIcon } from "@heroicons/react/20/solid";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
+import { Checkbox as CheckboxPrimitive } from "radix-ui";
 
 const Checkbox = ({
   className,

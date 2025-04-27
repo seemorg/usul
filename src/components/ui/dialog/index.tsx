@@ -1,10 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { Dialog as DialogPrimitive } from "radix-ui";
 import { XIcon } from "lucide-react";
 
 const Dialog = DialogPrimitive.Root;
+export type DialogProps = React.ComponentProps<typeof Dialog>;
 
 const DialogTrigger = DialogPrimitive.Trigger;
 

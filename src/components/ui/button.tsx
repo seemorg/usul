@@ -1,6 +1,6 @@
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Slot } from "@radix-ui/react-slot";
+import { Slot as SlotPrimitive } from "radix-ui";
 import { cva } from "class-variance-authority";
 
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
@@ -58,7 +58,7 @@ const Button = ({
   tooltipProps,
   ...props
 }: ButtonProps) => {
-  const Comp = asChild ? Slot : "button";
+  const Comp = asChild ? SlotPrimitive.Slot : "button";
   const content = (
     <Comp
       className={cn(buttonVariants({ variant, size, rounded, className }))}

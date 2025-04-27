@@ -2,8 +2,10 @@
 
 import { useCallback, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import * as AccordionPrimitive from "@radix-ui/react-accordion";
-import { DirectionProvider, useDirection } from "@radix-ui/react-direction";
+import {
+  Direction as DirectionPrimitive,
+  Accordion as AccordionPrimitive,
+} from "radix-ui";
 import { cva } from "class-variance-authority";
 import { ChevronRightIcon } from "lucide-react";
 
@@ -101,7 +103,7 @@ const TreeView = ({
   }, [data, expandAll, initialSelectedItemId]);
 
   return (
-    <DirectionProvider dir={dir}>
+    <DirectionPrimitive.DirectionProvider dir={dir}>
       <div className={cn("relative overflow-hidden p-2", className)}>
         <TreeItem
           data={data}
@@ -113,7 +115,7 @@ const TreeView = ({
           {...props}
         />
       </div>
-    </DirectionProvider>
+    </DirectionPrimitive.DirectionProvider>
   );
 };
 
@@ -183,7 +185,7 @@ const TreeNode = ({
   defaultNodeIcon?: any;
   defaultLeafIcon?: any;
 }) => {
-  const dir = useDirection();
+  const dir = DirectionPrimitive.useDirection();
 
   const [value, setValue] = useState(
     expandedItemIds.includes(item.id) ? [item.id] : [],
@@ -261,7 +263,7 @@ const TreeLeaf = ({
   handleSelectChange: (item: TreeDataItem | undefined) => void;
   defaultLeafIcon?: any;
 }) => {
-  const dir = useDirection();
+  const dir = DirectionPrimitive.useDirection();
 
   return (
     <div
@@ -300,7 +302,7 @@ const AccordionTrigger = ({
   children,
   ...props
 }: React.ComponentProps<typeof AccordionPrimitive.Trigger>) => {
-  const dir = useDirection();
+  const dir = DirectionPrimitive.useDirection();
   return (
     <AccordionPrimitive.Header>
       <AccordionPrimitive.Trigger
@@ -349,7 +351,7 @@ const TreeIcon = ({
   isSelected?: boolean;
   default?: any;
 }) => {
-  const dir = useDirection();
+  const dir = DirectionPrimitive.useDirection();
 
   let Icon = defaultIcon;
   if (isSelected && item.selectedIcon) {
@@ -373,7 +375,7 @@ const TreeActions = ({
   children: React.ReactNode;
   isSelected: boolean;
 }) => {
-  const dir = useDirection();
+  const dir = DirectionPrimitive.useDirection();
 
   return (
     <div

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import * as SelectPrimitive from "@radix-ui/react-select";
+import { Select as SelectPrimitive } from "radix-ui";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -45,7 +45,7 @@ const SelectTrigger = ({
         {isLoading ? (
           <Spinner className="h-4 w-4" />
         ) : (
-          (icon ?? <ChevronsUpDownIcon className="h-4 w-4 opacity-50" />)
+          icon ?? <ChevronsUpDownIcon className="h-4 w-4 opacity-50" />
         )}
       </div>
     </SelectPrimitive.Icon>
