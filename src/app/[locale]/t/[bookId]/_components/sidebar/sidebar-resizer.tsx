@@ -73,29 +73,16 @@ export default function SidebarResizer({
     <>
       <Navbar layout="reader" secondNav={secondNav} />
 
-      {dir === "ltr" ? (
-        <ResizablePanelGroup
-          direction="horizontal"
-          autoSaveId="reader-sidebar"
-          className={cn(
-            "relative h-full w-full transition-transform duration-250 will-change-transform",
-            navbarTranslateY,
-          )}
-        >
-          {panels}
-        </ResizablePanelGroup>
-      ) : (
-        <ResizablePanelGroup
-          direction="horizontal"
-          autoSaveId="reader-sidebar-rtl"
-          className={cn(
-            "relative h-full w-full transition-transform duration-250 will-change-transform",
-            navbarTranslateY,
-          )}
-        >
-          {panels.reverse()}
-        </ResizablePanelGroup>
-      )}
+      <ResizablePanelGroup
+        direction="horizontal"
+        autoSaveId={dir === "ltr" ? "reader-sidebar" : "reader-sidebar-rtl"}
+        className={cn(
+          "relative h-[calc(100%-124px)] w-full transition-transform duration-250 will-change-transform",
+          navbarTranslateY,
+        )}
+      >
+        {dir === "ltr" ? panels : panels.reverse()}
+      </ResizablePanelGroup>
     </>
   );
 }

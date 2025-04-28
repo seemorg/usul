@@ -67,9 +67,7 @@ async function CollectionPage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-7xl">
-        {title}
-      </h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">{title}</h1>
       {description && (
         <TruncatedText className="mt-7 text-lg">{description}</TruncatedText>
       )}
