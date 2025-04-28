@@ -79,9 +79,11 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+      <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl lg:text-7xl">
+        {primaryName}
+      </h1>
       {secondaryName && (
-        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
           {secondaryName}
         </h2>
       )}
