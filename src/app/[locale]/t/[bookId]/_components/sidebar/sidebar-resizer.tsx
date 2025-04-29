@@ -43,20 +43,19 @@ export default function SidebarResizer({
 
   if (isMobile) {
     return (
-      <div className="h-screen overflow-hidden">
+      <>
         <Navbar layout="reader" secondNav={secondNav} />
 
         <div
           className={cn(
-            // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
-            "[--navbar-height:124px]",
             "relative h-full w-full transition-transform duration-250 will-change-transform",
-            !showNavbar && "-translate-y-[var(--navbar-height)]",
+            // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
+            !showNavbar && "-translate-y-[124px]",
           )}
         >
           {children}
         </div>
-      </div>
+      </>
     );
   }
 
@@ -64,7 +63,7 @@ export default function SidebarResizer({
     <ResizablePanel key="reader" defaultSize={defaultSizes[0]} minSize={55}>
       {children}
     </ResizablePanel>,
-    <ResizableHandle key="handle" withHandle className="hidden lg:flex" />,
+    <ResizableHandle key="handle" withHandle />,
     <ResizablePanel
       key="sidebar"
       collapsible={true}
@@ -95,7 +94,7 @@ export default function SidebarResizer({
         autoSaveId={dir === "ltr" ? "reader-sidebar" : "reader-sidebar-rtl"}
         className={cn(
           // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
-          "[--navbar-height:124px] lg:[--navbar-height:140px]",
+          "[--navbar-height:140px]",
           "relative h-[var(--navbar-height)] w-full transition-transform duration-250 will-change-transform",
           !showNavbar && "-translate-y-[var(--navbar-height)]",
         )}
