@@ -114,7 +114,7 @@ const PopoverContent = memo(
       {...props}
       role="tooltip"
       aria-live="polite"
-      className="relative select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent after:border-b-[#232324]"
+      className="relative border-transparent select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent! after:border-b-[#232324]!"
     >
       {renderPopover({ position, selection })}
     </div>

@@ -115,13 +115,11 @@ export default function SearchTab() {
       return (
         // TODO: change fixed height
         <div className="mx-auto flex h-[50vh] max-w-[350px] flex-col items-center justify-center px-8 text-center md:h-[65vh]">
-          <MagnifyingGlassIcon className="h-auto w-8 text-gray-500" />
+          <MagnifyingGlassIcon className="text-muted-foreground h-auto w-8" />
 
-          <p className="mt-5 font-semibold text-gray-700">
-            {t("reader.search.begin-search")}
-          </p>
+          <p className="mt-5 font-medium">{t("reader.search.begin-search")}</p>
 
-          <p className="mt-2 text-sm text-gray-500">
+          <p className="text-muted-foreground mt-2 text-sm">
             {t("reader.search.description")}
           </p>
         </div>
@@ -211,7 +209,7 @@ export default function SearchTab() {
 
           <div className="flex items-center gap-3">
             <Select value={type} onValueChange={(t) => setType(t as any, 1)}>
-              <SelectTrigger className="w-32">
+              <SelectTrigger className="w-32" showIconOnMobile>
                 <SelectValue />
               </SelectTrigger>
 

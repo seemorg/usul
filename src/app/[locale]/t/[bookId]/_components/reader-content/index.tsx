@@ -135,7 +135,7 @@ const Page = memo(
           renderPopover={({ selection }) => (
             <ReaderHighlightPopover selection={selection} pageIndex={index} />
           )}
-          offset={{ x: 0, y: 80 }}
+          offset={{ x: 0, y: 100 }}
         >
           <ReaderPage
             source={source}

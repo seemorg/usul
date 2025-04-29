@@ -65,10 +65,6 @@ export default function SidebarResizer({
     </ResizablePanel>,
   ];
 
-  // -translate-y-[READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT]
-  const navbarTranslateY =
-    !showNavbar && "-translate-y-[124px] lg:-translate-y-[140px]";
-
   return (
     <>
       <Navbar layout="reader" secondNav={secondNav} />
@@ -77,8 +73,10 @@ export default function SidebarResizer({
         direction="horizontal"
         autoSaveId={dir === "ltr" ? "reader-sidebar" : "reader-sidebar-rtl"}
         className={cn(
-          "relative h-[calc(100%-124px)] w-full transition-transform duration-250 will-change-transform",
-          navbarTranslateY,
+          // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
+          "[--navbar-height:124px] lg:[--navbar-height:140px]",
+          "relative h-[var(--navbar-height)] w-full transition-transform duration-250 will-change-transform",
+          !showNavbar && "-translate-y-[var(--navbar-height)]",
         )}
       >
         {dir === "ltr" ? panels : panels.reverse()}

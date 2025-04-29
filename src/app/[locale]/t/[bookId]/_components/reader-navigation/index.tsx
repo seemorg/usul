@@ -4,12 +4,7 @@ import type { ApiBookResponse } from "@/types/api/book";
 
 import { SinglePageIcon } from "@/components/Icons";
 import Container from "@/components/ui/container";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerTitle,
-} from "@/components/ui/drawer";
+
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
@@ -27,6 +22,10 @@ import VersionSelector from "./version-selector";
 import ViewTabs from "./view-tabs";
 import { useMobileReaderStore } from "@/stores/mobile-reader";
 import { useMediaQuery } from "usehooks-ts";
+import MobileMenu from "@/app/_components/navbar/mobile-menu";
+import { Button } from "@/components/ui/button";
+import { XIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {
@@ -117,25 +116,26 @@ export default function ReaderNavigation({
               </ReaderNavigationButton>
             ))}
 
-            <Drawer open={isDrawerOpen} onClose={() => setActiveTabId(null)}>
-              <DrawerContent>
-                <DrawerTitle className="sr-only">Reader Navigation</DrawerTitle>
-                <DrawerDescription className="sr-only">
-                  You can use navigation, search, and AI to find what you need.
-                </DrawerDescription>
+            <Dialog
+              open={isDrawerOpen}
+              onOpenChange={() => setActiveTabId(null)}
+            >
+              <DialogContent
+                className="h-screen w-full overflow-y-auto rounded-none px-0 pt-10"
+                overlayProps={{ className: "pt-0 pb-0" }}
+              >
+                <DialogTitle className="sr-only">test</DialogTitle>
 
-                <div className="h-[90dvh] w-full overflow-y-auto">
-                  {isDrawerOpen && (
-                    <TabContent
-                      tabId={activeTabId}
-                      bookSlug={bookSlug}
-                      versionId={versionId}
-                      isSinglePage={isSinglePage}
-                    />
-                  )}
-                </div>
-              </DrawerContent>
-            </Drawer>
+                {isDrawerOpen && (
+                  <TabContent
+                    tabId={activeTabId}
+                    bookSlug={bookSlug}
+                    versionId={versionId}
+                    isSinglePage={isSinglePage}
+                  />
+                )}
+              </DialogContent>
+            </Dialog>
           </div>
         </Container>
       </div>
