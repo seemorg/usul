@@ -116,8 +116,8 @@ export default function AITab() {
             className={cn(
               "flex flex-col justify-between",
               isVersionMismatch
-                ? "h-[calc(100lvh-220px)] lg:h-[calc(100vh-370px)]"
-                : "h-[calc(100lvh-110px)] lg:h-[calc(100vh-240px)]",
+                ? "h-[calc(100svh-220px)] lg:h-[calc(100vh-370px)]"
+                : "h-[calc(100svh-110px)] lg:h-[calc(100vh-240px)]",
             )}
           >
             <div className="relative flex-1 overflow-hidden">
