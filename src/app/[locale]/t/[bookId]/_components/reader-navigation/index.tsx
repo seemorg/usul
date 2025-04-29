@@ -124,7 +124,7 @@ export default function ReaderNavigation({
                 className="h-dvh w-full overflow-y-auto rounded-none px-0 pt-10"
                 overlayProps={{ className: "pt-0 pb-0" }}
               >
-                <DialogTitle className="sr-only">test</DialogTitle>
+                <DialogTitle className="sr-only">Reader sidebar</DialogTitle>
 
                 {isDrawerOpen && (
                   <TabContent
