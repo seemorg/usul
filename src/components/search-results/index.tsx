@@ -1,8 +1,14 @@
-import React, { Suspense } from "react";
-import Paginator from "@/components/ui/pagination";
-import type { Pagination } from "@/types/pagination";
 import type { TypesenseResponse } from "@/server/typesense/utils";
-import SearchSort from "./sort";
+import type { Pagination } from "@/types/pagination";
+import type { Sort } from "@/types/sort";
+import type { View } from "@/validation/view";
+import type { JSX } from "react";
+import { Fragment, Suspense } from "react";
+import Paginator from "@/components/ui/pagination";
+import { cn } from "@/lib/utils";
+import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
+
+import { Button } from "../ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -12,13 +18,9 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "../ui/drawer";
-import { Button } from "../ui/button";
-import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/solid";
 import SearchBar from "./search-bar";
-import { cn } from "@/lib/utils";
+import SearchSort from "./sort";
 import ViewSwitcher from "./view-switcher";
-import type { View } from "@/validation/view";
-import type { Sort } from "@/types/sort";
 
 interface SearchResultsProps<T extends object & { id: string }> {
   response: TypesenseResponse<T>;
@@ -49,7 +51,7 @@ export default function SearchResults<T extends object & { id: string }>({
   view,
   hasViews = true,
 }: SearchResultsProps<T>) {
-  const hasResults = response.hits?.length ?? 0 > 0;
+  const hasResults = (response.hits.length ?? 0) > 0;
 
   return (
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
@@ -66,7 +68,7 @@ export default function SearchResults<T extends object & { id: string }>({
       <div
         className={cn(
           "col-span-4",
-          filters ? "sm:col-span-3 ltr:sm:pl-1 rtl:sm:pr-1" : "",
+          filters ? "sm:col-span-3 sm:ltr:pl-1 sm:rtl:pr-1" : "",
         )}
       >
         <div className="relative w-full">
@@ -128,7 +130,7 @@ export default function SearchResults<T extends object & { id: string }>({
             </div>
           </div>
 
-          {/* <p className="mt-3 flex-shrink-0 text-sm text-muted-foreground">
+          {/* <p className="mt-3 shrink-0 text-sm text-muted-foreground">
             {response.found} results in {response.search_time_ms}ms
           </p> */}
         </div>
@@ -144,14 +146,14 @@ export default function SearchResults<T extends object & { id: string }>({
                 itemsContainerClassName,
               )}
             >
-              {response.hits!.map((result) => (
-                <React.Fragment key={result.document.id}>
+              {response.hits.map((result) => (
+                <Fragment key={result.document.id}>
                   {renderResult(result)}
-                </React.Fragment>
+                </Fragment>
               ))}
             </div>
           ) : (
-            <p className="text-lg text-muted-foreground">{emptyMessage}</p>
+            <p className="text-muted-foreground text-lg">{emptyMessage}</p>
           )}
         </div>
 

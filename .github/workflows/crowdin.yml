@@ -22,8 +22,8 @@ jobs:
       - name: 🔄 Pre-translate
         uses: crowdin/github-action@v2
         with:
-          command: 'pre-translate'
-          command_args: '--translate-untranslated-only --method ai --ai-prompt 35779'
+          command: "pre-translate"
+          command_args: "--translate-untranslated-only --method ai --ai-prompt 35779"
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
@@ -31,8 +31,8 @@ jobs:
       - name: ✅ Check translation progress
         uses: crowdin/github-action@v2
         with:
-          command: 'status translation'
-          command_args: '--fail-if-incomplete'
+          command: "status translation"
+          command_args: "--fail-if-incomplete"
         env:
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
@@ -42,14 +42,11 @@ jobs:
         with:
           download_translations: true
           create_pull_request: true
-          pull_request_title: '🤖 Sync Crowdin Translations'
-          pull_request_body: '_Auto-generated from by github action_'
-          localization_branch_name: 'l10n_crowdin_translations'
-          pull_request_base_branch_name: 'dev'
+          pull_request_title: "🤖 Sync Crowdin Translations"
+          pull_request_body: "_Auto-generated from by github action_"
+          localization_branch_name: "l10n_crowdin_translations"
+          pull_request_base_branch_name: "dev"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
           CROWDIN_API_TOKEN: ${{ secrets.CROWDIN_API_TOKEN }}
-
-  
-

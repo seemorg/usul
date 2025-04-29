@@ -1,27 +1,24 @@
-import Container from "@/components/ui/container";
-import { navigation } from "@/lib/urls";
-import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { type AppLocale } from "~/i18n.config";
-import { cn } from "@/lib/utils";
-
+import type { Locale } from "next-intl";
 import Image from "next/image";
+import Container from "@/components/ui/container";
+import { getMetadata } from "@/lib/seo";
+import { navigation } from "@/lib/urls";
+import { cn } from "@/lib/utils";
 import { MoonStarIcon } from "lucide-react";
-import DonateForm from "./donate-form.client";
-import BentoCard from "./bento-card";
-import FeaturesList from "./features-list";
-import dynamicImport from "next/dynamic";
-// import { DonationStatsCard } from "./stats-card.client";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-const SuccessModal = dynamicImport(() => import("./success-modal.client"), {
-  ssr: false,
-});
+import BentoCard from "./bento-card";
+import DonateForm from "./donate-form.client";
+import FeaturesList from "./features-list";
+import SuccessModal from "./success-modal.client";
 
 export const generateMetadata = async ({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: Locale }>;
 }) => {
+  const { locale } = await params;
+
   const t = await getTranslations({ locale, namespace: "meta" });
 
   return getMetadata({
@@ -33,11 +30,12 @@ export const generateMetadata = async ({
 };
 
 export default async function HomePage({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: Locale }>;
 }) {
-  unstable_setRequestLocale(locale);
+  const { locale } = await params;
+  setRequestLocale(locale);
 
   const t = await getTranslations({ locale, namespace: "donate" });
 
@@ -78,10 +76,10 @@ export default async function HomePage({
     <>
       <SuccessModal />
 
-      <div className="relative flex min-h-[550px] w-full pb-10 pt-24 text-white sm:pt-32 lg:max-h-[550px]">
-        <div className="absolute inset-0 z-0 h-full w-full bg-muted-primary" />
+      <div className="relative flex min-h-[550px] w-full pt-24 pb-10 text-white sm:pt-32 lg:max-h-[550px]">
+        <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
 
-        <Container className="z-[1] flex flex-col lg:flex-row lg:gap-12">
+        <Container className="z-1 flex flex-col lg:flex-row lg:gap-12">
           <div className="flex-1">
             <h1 className="text-4xl font-bold sm:text-5xl">
               {t("hero.title")}
@@ -92,7 +90,7 @@ export default async function HomePage({
             <p className="mt-8">{t("hero.description")}</p>
           </div>
 
-          <div className="flex-1 text-black sm:px-10 lg:px-0 ">
+          <div className="flex-1 text-black sm:px-10 lg:px-0">
             {/* <DonationStatsCard /> */}
             <DonateForm layout="hero" />
           </div>
@@ -134,7 +132,7 @@ export default async function HomePage({
 
             <BentoCard className="relative flex min-h-[400px] flex-col overflow-hidden md:col-span-2">
               <div className="flex h-full flex-col lg:w-1/2 lg:justify-center">
-                <MoonStarIcon className="size-20 text-primary" />
+                <MoonStarIcon className="text-primary size-20" />
 
                 <h3 className="mt-8 text-3xl font-semibold">
                   {t("achievements.three.title")}
@@ -145,7 +143,7 @@ export default async function HomePage({
                 </p>
               </div>
 
-              <div className="h-[200px] xs:h-[250px] md:h-[280px] lg:hidden" />
+              <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
 
               <Image
                 src="/images/features-screenshot.png"

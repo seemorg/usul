@@ -55,25 +55,25 @@ export const CollectionCard = ({
         backgroundImage: `url("${patternSrcPrefix}${pattern}.svg")`,
       }}
       className={clsx(
-        "relative isolate flex h-44 w-44 flex-col justify-end overflow-hidden rounded-2xl p-4 blur-0",
+        "blur-0 relative isolate flex h-44 w-44 flex-col justify-end overflow-hidden rounded-2xl p-4",
         variant.bg,
       )}
     >
       <div
         className={clsx(
-          "absolute inset-0 -z-[2] bg-gradient-to-t to-transparent",
+          "absolute inset-0 -z-2 bg-linear-to-t to-transparent",
           variant.gradientFrom,
         )}
       />
 
       <div
         className={clsx(
-          "absolute bottom-0 left-0 right-0 -z-[1] h-20 bg-gradient-to-t to-transparent backdrop-blur-[2px] [mask-image:linear-gradient(to_top,black,transparent)]",
+          "absolute right-0 bottom-0 left-0 -z-1 h-20 bg-linear-to-t to-transparent [mask-image:linear-gradient(to_top,black,transparent)] backdrop-blur-[2px]",
           variant.gradientFrom10,
         )}
       />
 
-      <h2 className="line-clamp-2 min-w-0 break-words text-xl font-medium text-white">
+      <h2 className="line-clamp-2 min-w-0 text-xl font-medium break-words text-white">
         {title}
       </h2>
       <p className="mt-1.5 text-sm text-white/80">

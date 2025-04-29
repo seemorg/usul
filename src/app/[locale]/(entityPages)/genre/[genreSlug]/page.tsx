@@ -1,33 +1,31 @@
-import BookSearchResult from "@/components/book-search-result";
-import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
-import { findGenreBySlug } from "@/server/services/genres";
+import { notFound } from "next/navigation";
 import AuthorsFilter from "@/components/authors-filter";
-import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import { gregorianYearToHijriYear } from "@/lib/date";
+import BookSearchResult from "@/components/book-search-result";
 import RegionsFilter from "@/components/regions-filter";
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
+import SearchResults from "@/components/search-results";
+import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
-import type { AppLocale } from "~/i18n.config";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { findGenreBySlug } from "@/server/services/genres";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
 
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 export const generateMetadata = async ({
-  params: { genreSlug, locale },
+  params,
 }: {
-  params: { genreSlug: string; locale: AppLocale };
+  params: Promise<{ genreSlug: string; locale: Locale }>;
 }) => {
+  const { genreSlug, locale } = await params;
+
   const genre = await findGenreBySlug(genreSlug);
   if (!genre) return;
 
@@ -51,10 +49,8 @@ export const generateMetadata = async ({
 
 type GenrePageProps = InferPagePropsType<RouteType>;
 
-async function GenrePage({
-  routeParams: { genreSlug },
-  searchParams,
-}: GenrePageProps) {
+async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
+  const { genreSlug } = await routeParams;
   const locale = await getPathLocale();
   const genre = await findGenreBySlug(decodeURIComponent(genreSlug));
 
@@ -64,7 +60,7 @@ async function GenrePage({
 
   const t = await getTranslations("entities");
 
-  const { q, sort, page, authors, regions, year, view } = searchParams;
+  const { q, sort, page, authors, regions, year, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -83,9 +79,11 @@ async function GenrePage({
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {primaryName}
+      </h1>
       {secondaryName && (
-        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
           {secondaryName}
         </h2>
       )}
@@ -109,7 +107,7 @@ async function GenrePage({
           )}
           emptyMessage={t("no-entity", { entity: t("texts") })}
           placeholder={t("search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
           currentSort={sort.raw}
@@ -117,7 +115,7 @@ async function GenrePage({
           currentQuery={q}
           filters={
             <>
-              <YearFilter
+              <YearFilterClient
                 maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
                 defaultRange={year}
               />

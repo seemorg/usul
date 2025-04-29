@@ -1,15 +1,16 @@
-import { PATH_LOCALES, appLocaleToPathLocale } from "./locale/utils";
-import { type Metadata, type Viewport } from "next";
-import { relativeUrl } from "./sitemap";
-import type { AppLocale } from "~/i18n.config";
+import type { Metadata, Viewport } from "next";
+import type { Locale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 
-export const config = {
+import { appLocaleToPathLocale, PATH_LOCALES } from "./locale/utils";
+import { relativeUrl } from "./sitemap";
+
+export const SITE_CONFIG = {
   themeColor: "#AA4A44",
   image: {
     url: "/cover.png",
-    width: 1500,
-    height: 600,
+    width: 1200,
+    height: 630,
     alt: "Usul Cover",
   },
   url: "https://usul.ai",
@@ -36,13 +37,13 @@ export const getMetadata = async ({
   image?: { url: string; width: number; height: number; alt?: string };
   keywords?: string[];
   authors?: Metadata["authors"];
-  locale?: AppLocale;
+  locale?: Locale;
 } = {}): Promise<Metadata> => {
   const t = await getTranslations("meta.global");
 
   const pathLocale = locale ? appLocaleToPathLocale(locale) : undefined;
 
-  const images = [config.image];
+  const images = [SITE_CONFIG.image];
 
   const siteName = t("usul");
   const defaultTitle = `${siteName} - ${t("slogan")}`;
@@ -110,7 +111,7 @@ export const getMetadata = async ({
   return {
     title,
     description: description ?? defaultDescription,
-    metadataBase: new URL(config.url),
+    metadataBase: new URL(SITE_CONFIG.url),
     icons: [{ rel: "icon", url: "/favicon.ico" }],
     openGraph: {
       type: "website",
@@ -158,7 +159,9 @@ export const getViewport = (): Viewport => {
   return {
     width: "device-width",
     initialScale: 1,
+    maximumScale: 1,
+    userScalable: true,
     viewportFit: "cover",
-    themeColor: config.themeColor,
+    themeColor: SITE_CONFIG.themeColor,
   };
 };

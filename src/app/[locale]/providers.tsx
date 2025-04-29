@@ -1,17 +1,14 @@
 "use client";
 
-import { usePathname } from "@/navigation";
-import config, { type AppLocale } from "~/i18n.config";
-import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import type { Locale } from "next-intl";
 import AppProgressBar from "@/components/app-progressbar";
-import { DirectionProvider } from "@radix-ui/react-direction";
-import { getLocaleDirection } from "@/lib/locale/utils";
-import { getSharedConfig } from "@/i18n";
-import { useMemo } from "react";
+import { TooltipProvider } from "@/components/ui/tooltip";
 import { TotalEntitiesProvider } from "@/contexts/total-entities.context";
+import { getLocaleDirection } from "@/lib/locale/utils";
+import { Direction as DirectionPrimitive } from "radix-ui";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import MobileSearch from "../_components/navbar/mobile-search";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,12 +22,10 @@ const queryClient = new QueryClient({
 function Providers({
   children,
   locale,
-  messages,
   total,
 }: {
   children: React.ReactNode;
-  locale: string;
-  messages: AbstractIntlMessages;
+  locale: Locale;
   total: {
     books: number;
     authors: number;
@@ -38,70 +33,33 @@ function Providers({
     genres: number;
   };
 }) {
-  const pathname = usePathname();
-
-  const messagesInNamespace = useMemo(() => {
-    const namespaces = ["*"];
-
-    const path = pathname as keyof typeof config.namespacedRoutes;
-    if (config.namespacedRoutes[path]) {
-      namespaces.push(path);
-    }
-
-    // if we're on /t/[slug] page, we need to match /t/*
-    if (pathname.startsWith("/t/")) {
-      namespaces.push("/t/*");
-    }
-
-    const filesInNamespace = namespaces.flatMap(
-      (namespace) => config.namespacedRoutes[namespace as typeof path] ?? [],
-    );
-
-    return filesInNamespace.reduce(
-      (acc, fileName) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        acc = {
-          ...acc,
-          [fileName]:
-            (messages as Record<string, Record<string, string>>)[fileName] ??
-            {},
-        };
-
-        return acc;
-      },
-      {} as Record<string, Record<string, string>>,
-    ) as AbstractIntlMessages;
-  }, [pathname, messages]);
-
-  const dir = getLocaleDirection(locale as AppLocale);
+  const dir = getLocaleDirection(locale);
 
   return (
-    <NextIntlClientProvider
-      messages={messagesInNamespace}
-      locale={locale as AppLocale}
-      {...getSharedConfig()}
-    >
-      <TotalEntitiesProvider value={total}>
-        <DirectionProvider dir={dir}>
-          <AppProgressBar
-            height="4px"
-            color="#fff"
-            options={{ showSpinner: false }}
-            shallowRouting
-          />
+    <TotalEntitiesProvider value={total}>
+      <DirectionPrimitive.DirectionProvider dir={dir}>
+        <AppProgressBar
+          height="4px"
+          color="#fff"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
 
-          <NextThemesProvider
-            attribute="class"
-            defaultTheme="light"
-            disableTransitionOnChange
-          >
-            <QueryClientProvider client={queryClient}>
-              <TooltipProvider>{children}</TooltipProvider>
-            </QueryClientProvider>
-          </NextThemesProvider>
-        </DirectionProvider>
-      </TotalEntitiesProvider>
-    </NextIntlClientProvider>
+        <NextThemesProvider
+          attribute="class"
+          defaultTheme="light"
+          disableTransitionOnChange
+        >
+          <QueryClientProvider client={queryClient}>
+            <TooltipProvider>
+              {children}
+
+              <MobileSearch />
+            </TooltipProvider>
+          </QueryClientProvider>
+        </NextThemesProvider>
+      </DirectionPrimitive.DirectionProvider>
+    </TotalEntitiesProvider>
   );
 }
 

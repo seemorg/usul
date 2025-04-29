@@ -1,27 +1,25 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
+import { useDirection } from "@/lib/locale/utils";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
+import { useNavbarStore } from "@/stores/navbar";
 import {
   Bars3Icon,
   MagnifyingGlassIcon,
   XMarkIcon,
-  ArrowLeftIcon,
 } from "@heroicons/react/20/solid";
 
-import { useEffect, useState } from "react";
-import { ThemeToggle } from "./theme-toggle";
-import { useNavbarStore } from "@/stores/navbar";
 import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
-import SearchBar from "./search-bar";
-import HomepageNavigationMenu from "./navigation-menu";
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
-import { useTranslations } from "next-intl";
-import { useDirection } from "@/lib/locale/utils";
+import HomepageNavigationMenu from "./navigation-menu";
+import SearchBar from "./search-bar";
+import { ThemeToggle } from "./theme-toggle";
 
 interface NavbarProps {
   layout?: "home" | "reader";
@@ -29,10 +27,10 @@ interface NavbarProps {
 }
 
 export default function Navbar({ layout, secondNav }: NavbarProps) {
-  const t = useTranslations();
-  const { showNavbar, setShowNavbar } = useNavbarStore();
+  const { showNavbar, setShowNavbar, showSearch, setShowSearch } =
+    useNavbarStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
   const containerEl = useReaderScroller();
   const dir = useDirection();
 
@@ -46,7 +44,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
 
     const handleScroll = () => {
       // Get the new Value
-      newValue = container?.scrollTop || 0;
+      newValue = container.scrollTop || 0;
 
       //Subtract the two and conclude
       if (newValue <= 100) setShowNavbar(true);
@@ -57,9 +55,9 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       oldValue = newValue;
     };
 
-    container?.addEventListener("scroll", handleScroll, { passive: true });
+    container.addEventListener("scroll", handleScroll, { passive: true });
 
-    return () => container?.removeEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [containerEl]);
@@ -69,14 +67,18 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       <header
         className={cn(
           layout === "reader" ? "relative" : "fixed",
-          "top-0 z-[41] flex h-16 w-full items-center justify-between gap-4 bg-muted-primary px-4 text-white transition sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
         )}
       >
         <div className="xl:col-span-2">
-          <Link href="/" className="flex w-fit items-center gap-3">
+          <Link
+            href="/"
+            className="flex w-fit items-center gap-3"
+            onNavigate={() => setIsMenuOpen(false)}
+          >
             {dir === "ltr" ? (
               <Logo className="h-5 w-auto" />
             ) : (
@@ -105,7 +107,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
               variant="ghost"
               onClick={() => {
                 setIsMenuOpen(false);
-                setIsSearchOpen(!isSearchOpen);
+                setShowSearch(!showSearch);
               }}
             >
               <MagnifyingGlassIcon className="block h-5 w-5 sm:h-6 sm:w-6" />
@@ -118,7 +120,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
             variant="ghost"
             className="relative"
             onClick={() => {
-              setIsSearchOpen(false);
+              setShowSearch(false);
               setIsMenuOpen(!isMenuOpen);
             }}
           >
@@ -147,7 +149,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       {secondNav && (
         <nav
           className={cn(
-            "fixed inset-x-0 top-16 z-30 w-full transition",
+            "fixed inset-x-0 top-16 z-30 w-full transition duration-250",
             showNavbar
               ? "pointer-events-auto translate-y-0 opacity-100"
               : "pointer-events-none -translate-y-10 opacity-0",
@@ -159,27 +161,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
 
       {isMenuOpen && (
         <MobileMenu>
-          <MobileNavigationMenu />
-        </MobileMenu>
-      )}
-
-      {isSearchOpen && (
-        <MobileMenu className="z-[42] pt-10">
-          <div className="absolute top-4 flex items-center gap-2 ltr:left-2 rtl:right-2">
-            <Button
-              size="icon"
-              variant="ghost"
-              onClick={() => setIsSearchOpen(false)}
-            >
-              <ArrowLeftIcon className="block h-5 w-5 rtl:rotate-180" />
-            </Button>
-
-            <h1 className="text-lg font-semibold">{t("common.search")}</h1>
-          </div>
-
-          <div className="mt-8">
-            <SearchBar autoFocus mobile />
-          </div>
+          <MobileNavigationMenu setIsMenuOpen={setIsMenuOpen} />
         </MobileMenu>
       )}
     </>

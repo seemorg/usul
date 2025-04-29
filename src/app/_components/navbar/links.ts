@@ -1,11 +1,11 @@
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
   ADD_TEXT_URL,
   REPORT_MISTAKE_URL,
   VOLUNTEER_EMAIL,
 } from "@/lib/constants";
-import { config } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
   BookOpenIcon,
   CirclePlusIcon,
@@ -80,7 +80,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.contact.title",
     description: "navigation.about.contact.description",
     icon: MailIcon,
-    href: `mailto:${config.feedbackEmail}`,
+    href: `mailto:${SITE_CONFIG.feedbackEmail}`,
   },
 ];
 
@@ -106,7 +106,7 @@ export const contributeItems: NavItem[] = [
   {
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
-    href: `mailto:${config.feedbackEmail}`,
+    href: `mailto:${SITE_CONFIG.feedbackEmail}`,
     icon: MessageSquarePlusIcon,
   },
   {

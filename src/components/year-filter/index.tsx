@@ -1,15 +1,16 @@
 "use client";
 
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import { useEffect, useRef, useState, useTransition } from "react";
 import FilterContainer from "@/components/search-results/filter-container";
 import { Input } from "@/components/ui/input";
 import { Slider } from "@/components/ui/slider";
 import { gregorianYearToHijriYear, hijriYearToGregorianYear } from "@/lib/date";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/navigation";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState, useTransition } from "react";
 import { useLocalStorage } from "usehooks-ts";
+
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 const DEBOUNCE_DELAY = 300;
@@ -86,7 +87,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
   }, [defaultRange]);
 
   const handleChange = (newValue: [number, number]) => {
-    if (newValue?.[0] > newValue?.[1]) return;
+    if (newValue[0] > newValue[1]) return;
 
     setValue(newValue);
 
@@ -162,7 +163,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
       titleInfo={t("common.year-filter-info")}
       isLoading={isPending}
       titleChildren={
-        <div className="flex items-center rounded-full bg-border">
+        <div className="bg-border flex items-center rounded-full">
           {yearFormats.map((format) => (
             <Tooltip key={format.value}>
               <TooltipTrigger asChild>
@@ -206,7 +207,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
             value={from}
             onChange={(e) => handleInputChange(e, "from")}
             disabled={isPending}
-            className="max-w-[80px] border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
+            className="dark:border-border max-w-[80px] border border-gray-300 bg-white shadow-none dark:bg-transparent"
           />
 
           <Input
@@ -215,7 +216,7 @@ export default function YearFilter({ defaultRange, maxYear }: YearFilterProps) {
             type="number"
             onChange={(e) => handleInputChange(e, "to")}
             disabled={isPending}
-            className="max-w-[80px] border border-gray-300 bg-white shadow-none dark:border-border dark:bg-transparent"
+            className="dark:border-border max-w-[80px] border border-gray-300 bg-white shadow-none dark:bg-transparent"
           />
         </div>
       </div>

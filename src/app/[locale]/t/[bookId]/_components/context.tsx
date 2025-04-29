@@ -1,18 +1,17 @@
 "use client";
 
-import React, { useRef, useState } from "react";
 import type { VListHandle } from "virtua";
-// import type { VirtuosoHandle } from "react-virtuoso";
+import { createContext, use, useRef, useState } from "react";
 
-type VirtuosoContextType = React.RefObject<VListHandle>;
+type VirtuosoContextType = React.RefObject<VListHandle | null>;
 
-const VirtuosoContext = React.createContext<VirtuosoContextType>(
+const VirtuosoContext = createContext<VirtuosoContextType>(
   {} as VirtuosoContextType,
 );
 
 type ReaderScrollerContextType = { element: HTMLDivElement } | null;
 
-const ReaderScrollerContext = React.createContext<ReaderScrollerContextType>(
+const ReaderScrollerContext = createContext<ReaderScrollerContextType>(
   {} as ReaderScrollerContextType,
 );
 
@@ -20,21 +19,20 @@ type SetReaderScrollerContextType = React.Dispatch<
   React.SetStateAction<ReaderScrollerContextType>
 >;
 
-const SetReaderScrollerContext =
-  React.createContext<SetReaderScrollerContextType>(
-    {} as SetReaderScrollerContextType,
-  );
+const SetReaderScrollerContext = createContext<SetReaderScrollerContextType>(
+  {} as SetReaderScrollerContextType,
+);
 
 export function useReaderVirtuoso() {
-  return React.useContext(VirtuosoContext);
+  return use(VirtuosoContext);
 }
 
 export function useReaderScroller() {
-  return React.useContext(ReaderScrollerContext);
+  return use(ReaderScrollerContext);
 }
 
 export function useSetReaderScroller() {
-  return React.useContext(SetReaderScrollerContext);
+  return use(SetReaderScrollerContext);
 }
 
 export default function ReaderContextProviders({

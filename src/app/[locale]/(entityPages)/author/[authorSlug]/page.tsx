@@ -1,37 +1,39 @@
-/* eslint-disable react/jsx-key */
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { findAuthorBySlug } from "@/server/services/authors";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { booksSorts, navigation } from "@/lib/urls";
+import { Button } from "@/components/ui/button";
+import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
-import { Button } from "@/components/ui/button";
+import { getPathLocale } from "@/lib/locale/server";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { getMetadata } from "@/lib/seo";
+import { booksSorts, navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import DottedList from "@/components/ui/dotted-list";
-import { getLocale, getPathLocale } from "@/lib/locale/server";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { findAuthorBySlug } from "@/server/services/authors";
+import { searchBooks } from "@/server/typesense/book";
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { authorSlug },
+  params,
 }: {
-  params: { authorSlug: string };
+  params: Promise<{ authorSlug: string; locale: Locale }>;
 }) => {
-  const locale = await getLocale();
+  const { authorSlug, locale } = await params;
   const pathLocale = appLocaleToPathLocale(locale);
 
   const author = await findAuthorBySlug(authorSlug, pathLocale);
@@ -86,10 +88,8 @@ export const generateMetadata = async ({
   });
 };
 
-async function AuthorPage({
-  routeParams: { authorSlug },
-  searchParams,
-}: AuthorPageProps) {
+async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
+  const { authorSlug } = await routeParams;
   const pathLocale = await getPathLocale();
 
   const author = await findAuthorBySlug(
@@ -102,7 +102,7 @@ async function AuthorPage({
     notFound();
   }
 
-  const { q, sort, page, genres, view } = searchParams;
+  const { q, sort, page, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -169,13 +169,15 @@ async function AuthorPage({
   const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
   const otherNames = (
     getPrimaryLocalizedText(author.otherNameTranslations, pathLocale) ?? []
-  ).filter(Boolean) as string[];
+  ).filter(Boolean);
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {primaryName}
+      </h1>
       {secondaryName && (
-        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
           {secondaryName}
         </h2>
       )}
@@ -232,7 +234,7 @@ async function AuthorPage({
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={booksSorts as any}
           currentSort={sort}

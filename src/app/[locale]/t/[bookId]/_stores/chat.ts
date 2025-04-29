@@ -1,7 +1,7 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { nanoid } from "nanoid";
 
 export type ChatMessage = {
   id?: string;
@@ -70,7 +70,7 @@ export const useChatStore = create(
 
           const updatedHistoryItem: HistoryItem = {
             ...(historyItem ?? {
-              chatId: state.currentChatId!,
+              chatId: state.currentChatId,
               bookId: state.currentBookId!,
               versionId: state.currentVersionId!,
               date: new Date(),

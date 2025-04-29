@@ -1,6 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+
+import NewsletterForm from "./newsletter-form";
 import {
   Dialog,
   DialogContent,
@@ -8,8 +10,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "./ui/dialog";
-
-import NewsletterForm from "./newsletter-form";
 
 export default function ComingSoonModal({
   trigger,

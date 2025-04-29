@@ -7,12 +7,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Link } from "@/navigation";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
-import { EllipsisIcon, FileText } from "lucide-react";
+import { EllipsisIcon, FileTextIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
 import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
-import { useTranslations } from "next-intl";
-import { Link } from "@/navigation";
+import { cn } from "@/lib/utils";
 
 export default function ReaderNavigationMobileActions({
   pdf,
@@ -42,15 +44,19 @@ export default function ReaderNavigationMobileActions({
           <DropdownMenuItem
             disabled={!hasPdfView}
             onClick={() => setView(view === "pdf" ? "ebook" : "pdf")}
-            className="gap-2"
+            className={cn(
+              "gap-2",
+              // hide pdf view on mobile, we'll only show "download pdf" to open the native pdf viewer
+              view === "ebook" && "hidden md:block",
+            )}
           >
-            <FileText className="h-4 w-4" />
+            <FileTextIcon className="size-4" />
             <span>{t(view === "pdf" ? "view-e-book" : "view-pdf")}</span>
           </DropdownMenuItem>
 
           <DropdownMenuItem asChild className="gap-2">
             <Link href={bookUrl}>
-              <SinglePageIcon className="h-4 w-4" />
+              <SinglePageIcon className="size-4" />
               <span>{t(isSinglePage ? "all-pages" : "single-page")}</span>
             </Link>
           </DropdownMenuItem>
@@ -62,13 +68,13 @@ export default function ReaderNavigationMobileActions({
           {hasPdfView ? (
             <DropdownMenuItem asChild className="gap-2">
               <a href={pdf} download={slug + ".pdf"} target="_blank">
-                <ArrowDownTrayIcon className="h-4 w-4" />
+                <ArrowDownTrayIcon className="size-4" />
                 <span>{t("download-pdf")}</span>
               </a>
             </DropdownMenuItem>
           ) : (
             <DropdownMenuItem disabled className="gap-2">
-              <ArrowDownTrayIcon className="h-4 w-4" />
+              <ArrowDownTrayIcon className="size-4" />
               <span>{t("download-pdf")}</span>
             </DropdownMenuItem>
           )}

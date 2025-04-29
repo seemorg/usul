@@ -1,27 +1,31 @@
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import SearchResults from "@/components/search-results";
-import { navigation, yearsSorts } from "@/lib/urls";
-import BookSearchResult from "@/components/book-search-result";
-import { findYearRangeBySlug } from "@/server/services/years";
+import { notFound } from "next/navigation";
 import AuthorsFilter from "@/components/authors-filter";
-import RegionsFilter from "@/components/regions-filter";
+import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
+import RegionsFilter from "@/components/regions-filter";
+import SearchResults from "@/components/search-results";
 import TruncatedText from "@/components/ui/truncated-text";
-import { getTranslations } from "next-intl/server";
 import { getMetadata } from "@/lib/seo";
-import type { AppLocale } from "~/i18n.config";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { findYearRangeBySlug } from "@/server/services/years";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type CenturyPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { centurySlug, locale },
+  params,
 }: {
-  params: { centurySlug: string; locale: AppLocale };
+  params: Promise<{ centurySlug: string; locale: Locale }>;
 }) => {
+  const { centurySlug, locale } = await params;
+
   const yearRange = await findYearRangeBySlug(centurySlug);
   if (!yearRange) return;
 
@@ -41,10 +45,8 @@ export const generateMetadata = async ({
   });
 };
 
-async function CenturyPage({
-  routeParams: { centurySlug },
-  searchParams,
-}: CenturyPageProps) {
+async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
+  const { centurySlug } = await routeParams;
   const yearRange = await findYearRangeBySlug(centurySlug);
 
   if (!yearRange) {
@@ -53,7 +55,7 @@ async function CenturyPage({
 
   const t = await getTranslations();
 
-  const { q, sort, page, authors, regions, genres, view } = searchParams;
+  const { q, sort, page, authors, regions, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -72,10 +74,12 @@ async function CenturyPage({
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {primaryName}
+      </h1>
 
       {secondaryName && (
-        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
           {secondaryName}
         </h2>
       )}

@@ -1,4 +1,4 @@
-import { PathLocale } from "./locale/utils";
+import type { PathLocale } from "./locale/utils";
 
 // Refer original code
 // https://github.com/OpenSID/OpenSID/blob/master/donjo-app/libraries/Date_conv.php#L44

@@ -1,10 +1,10 @@
-import { useLocale } from "next-intl";
+import type { Locale } from "next-intl";
 import {
-  type AppLocale,
-  pathLocaleToSupportedBcp47LocaleMap,
-  localeToFullName,
   localeToDirection,
-} from "~/i18n.config";
+  localeToFullName,
+  pathLocaleToSupportedBcp47LocaleMap,
+} from "@/i18n/config";
+import { useLocale } from "next-intl";
 
 export const PATH_LOCALES = Object.keys(
   pathLocaleToSupportedBcp47LocaleMap,
@@ -14,10 +14,10 @@ export type PathLocale = (typeof PATH_LOCALES)[number];
 
 export const pathLocaleToAppLocale = (
   pathLocale: string | PathLocale,
-): AppLocale | undefined =>
+): Locale | undefined =>
   pathLocaleToSupportedBcp47LocaleMap[pathLocale.toLowerCase() as PathLocale];
 
-export const appLocaleToPathLocale = (bcp47Locale: AppLocale): PathLocale => {
+export const appLocaleToPathLocale = (bcp47Locale: Locale): PathLocale => {
   const match = Object.entries(pathLocaleToSupportedBcp47LocaleMap).find(
     (entry) => entry[1] === bcp47Locale,
   );
@@ -31,20 +31,20 @@ export const appLocaleToPathLocale = (bcp47Locale: AppLocale): PathLocale => {
   }
 };
 
-export const getLocaleFullName = (locale: AppLocale) => {
+export const getLocaleFullName = (locale: Locale) => {
   return localeToFullName[locale];
 };
 
-export const getLocaleDirection = (locale: AppLocale) => {
+export const getLocaleDirection = (locale: Locale) => {
   return localeToDirection[locale];
 };
 
 export const usePathLocale = (): PathLocale => {
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
   return appLocaleToPathLocale(locale);
 };
 
 export const useDirection = (): "ltr" | "rtl" => {
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
   return getLocaleDirection(locale);
 };

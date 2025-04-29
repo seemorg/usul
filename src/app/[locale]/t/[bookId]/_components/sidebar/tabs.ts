@@ -1,6 +1,6 @@
 import {
-  MagnifyingGlassIcon,
   ListBulletIcon,
+  MagnifyingGlassIcon,
   SparklesIcon,
 } from "@heroicons/react/24/outline";
 

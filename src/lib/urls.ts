@@ -5,7 +5,8 @@ export const navigation = {
   search: {
     index: (params: { type: SearchType; query: string }) =>
       `/search?type=${params.type}&q=${params.query}`,
-    advanced: () => `/search`,
+    normal: () => `/search`,
+    advanced: () => `/advanced-search`,
   },
   books: {
     all: () => "/texts",

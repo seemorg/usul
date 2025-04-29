@@ -1,6 +1,7 @@
+import type { ComponentProps } from "react";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import { ComponentProps } from "react";
+
 import { Badge } from "./ui/badge";
 
 interface EntityCardProps extends ComponentProps<typeof Link> {
@@ -27,7 +28,7 @@ export default function EntityCard({
   return (
     <Link
       className={cn(
-        "w-full border-b border-border bg-transparent px-2 py-4 transition-colors hover:bg-secondary/50 dark:hover:bg-secondary/20 sm:px-3",
+        "border-border hover:bg-secondary/50 dark:hover:bg-secondary/20 w-full border-b bg-transparent px-2 py-4 transition-colors sm:px-3",
         className,
       )}
       {...props}
@@ -52,13 +53,13 @@ export default function EntityCard({
 
       <div className="mt-2 flex w-full items-start justify-between gap-3">
         {primarySubtitle && (
-          <bdi className="block flex-1 text-xs text-secondary-foreground">
+          <bdi className="text-secondary-foreground block flex-1 text-xs">
             {primarySubtitle}
           </bdi>
         )}
 
         {secondarySubtitle && (
-          <bdi className="block flex-1 text-xs text-secondary-foreground">
+          <bdi className="text-secondary-foreground block flex-1 text-xs">
             {secondarySubtitle}
           </bdi>
         )}

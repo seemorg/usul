@@ -1,10 +1,11 @@
-import { env } from "@/env";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { env } from "@/env";
 
 const baseRequest = async <T>(
   method: "GET" | "POST",
   relativeUrl: string,
   body?: object,
+  headers?: Record<string, string>,
 ) => {
   const response = await fetch(
     `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}${relativeUrl}`,
@@ -16,9 +17,12 @@ const baseRequest = async <T>(
             body: JSON.stringify(body),
             headers: {
               "Content-Type": "application/json",
+              ...(headers ?? {}),
             },
           }
-        : {}),
+        : {
+            headers,
+          }),
     },
   );
 
@@ -94,6 +98,66 @@ export const searchBook = async (
   const results = await baseRequest<SearchBookResponse>(
     "GET",
     `/search?${queryParams.toString()}`,
+  );
+
+  return results;
+};
+
+export type SearchCorpusResponse = {
+  total: number;
+  totalPages: number;
+  perPage: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPreviousPage: boolean;
+  results: {
+    score: number;
+    node: {
+      id: string;
+      metadata: {
+        bookId: string;
+        pages: {
+          index: number;
+          volume: string;
+          page: number;
+        }[];
+        versionId: string;
+      };
+      book: {
+        slug: string;
+        primaryName: string;
+        secondaryName?: string;
+        transliteration?: string;
+        author: {
+          slug: string;
+          primaryName: string;
+          secondaryName?: string;
+          transliteration?: string;
+          year?: number;
+        };
+      };
+    } & ({ text: string } | { highlights: string[] });
+  }[];
+};
+
+export const searchCorpus = async (
+  query: string,
+  type: "semantic" | "keyword" = "semantic",
+  page: number = 1,
+) => {
+  const queryParams = new URLSearchParams();
+  queryParams.set("q", query);
+  queryParams.set("page", page.toString());
+  queryParams.set("include_details", "true");
+  queryParams.set("type", type);
+
+  const results = await baseRequest<SearchCorpusResponse>(
+    "GET",
+    `/v1/${type === "semantic" ? "vector-search" : "keyword-search"}?${queryParams.toString()}`,
+    undefined,
+    {
+      Authorization: `Bearer ${env.SEMANTIC_SEARCH_API_KEY}`,
+    },
   );
 
   return results;

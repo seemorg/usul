@@ -1,13 +1,8 @@
 "use server";
 
-import { getLocale as baseGetLocale } from "next-intl/server";
-import type { AppLocale } from "~/i18n.config";
-import { appLocaleToPathLocale } from "./utils";
+import { getLocale } from "next-intl/server";
 
-export const getLocale = async () => {
-  const locale = await baseGetLocale();
-  return locale as AppLocale;
-};
+import { appLocaleToPathLocale } from "./utils";
 
 export const getPathLocale = async () => {
   const locale = await getLocale();

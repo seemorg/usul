@@ -1,30 +1,29 @@
-/* eslint-disable react/jsx-key */
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
-
 import DottedList from "@/components/ui/dotted-list";
-import { getLocale } from "@/lib/locale/server";
-
-import { getTranslations } from "next-intl/server";
-import { getMetadata } from "@/lib/seo";
-import { collections } from "@/data/collections";
 import TruncatedText from "@/components/ui/truncated-text";
+import { collections } from "@/data/collections";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 type CollectionPageProps = InferPagePropsType<RouteType>;
 
 export const generateMetadata = async ({
-  params: { slug },
+  params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string; locale: Locale }>;
 }) => {
-  const locale = await getLocale();
+  const { slug, locale } = await params;
 
   const collection = collections.find((c) => c.slug === slug);
   if (!collection) return;
@@ -40,10 +39,11 @@ export const generateMetadata = async ({
 };
 
 async function CollectionPage({
-  routeParams: { slug },
+  routeParams,
   searchParams,
 }: CollectionPageProps) {
-  const { q, sort, page, genres, view } = searchParams;
+  const { slug } = await routeParams;
+  const { q, sort, page, genres, view } = await searchParams;
   const collection = collections.find((c) => c.slug === slug);
 
   if (!collection) {
@@ -67,7 +67,7 @@ async function CollectionPage({
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{title}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">{title}</h1>
       {description && (
         <TruncatedText className="mt-7 text-lg">{description}</TruncatedText>
       )}

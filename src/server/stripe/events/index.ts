@@ -1,4 +1,5 @@
-import Stripe from "stripe";
+import type Stripe from "stripe";
+
 import { handleCheckoutCompleted } from "./checkout-completed.event";
 import { handleInvoicePaid } from "./invoice.paid.event";
 

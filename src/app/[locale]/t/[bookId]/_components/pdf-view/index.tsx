@@ -5,14 +5,16 @@ import type {
   WebViewerInstance,
   WebViewerOptions,
 } from "@pdftron/webviewer";
-// @ts-ignore
-import WebViewer from "@pdftron/pdfjs-express-viewer";
 import { useEffect, useRef } from "react";
-import { type PdfChapter, usePdfChapterStore } from "./store";
-import { useTheme } from "next-themes";
 import { env } from "@/env";
-import { makePdfViewerButtons } from "./buttons";
 import { useNavbarStore } from "@/stores/navbar";
+// @ts-expect-error - The PDFJS Express Viewer is not typed
+import WebViewer from "@pdftron/pdfjs-express-viewer";
+import { useTheme } from "next-themes";
+
+import type { PdfChapter } from "./store";
+import { makePdfViewerButtons } from "./buttons";
+import { usePdfChapterStore } from "./store";
 
 const isInitializedByUrl = new Map<string, boolean>();
 
@@ -72,7 +74,7 @@ export default function PdfView({ pdf: pdfSource }: { pdf: string }) {
       instance.Core.documentViewer.addEventListener(
         "documentLoaded",
         async () => {
-          const chapters = await getDocumentChapters(instance!);
+          const chapters = await getDocumentChapters(instance);
 
           setChapters(chapters);
           setIsLoading(false);
@@ -84,7 +86,7 @@ export default function PdfView({ pdf: pdfSource }: { pdf: string }) {
     };
 
     if (typeof window !== "undefined") {
-      initialize();
+      void initialize();
     }
   }, [pdfSource]);
 
@@ -107,7 +109,7 @@ export default function PdfView({ pdf: pdfSource }: { pdf: string }) {
     <div className="mx-auto w-full min-w-0 flex-auto">
       <div
         ref={viewerRef}
-        className="h-[calc(100vh-7rem)] w-full border-t border-border lg:h-[calc(100vh-5rem)] lg:border-none [&_iframe]:h-[calc(100vh-7rem)] lg:[&_iframe]:h-[calc(100vh-5rem)]"
+        className="border-border h-[calc(100vh-7rem)] w-full border-t lg:h-[calc(100vh-5rem)] lg:border-none [&_iframe]:h-[calc(100vh-7rem)] lg:[&_iframe]:h-[calc(100vh-5rem)]"
       />
     </div>
   );
@@ -120,7 +122,7 @@ async function getDocumentChapters(instance: WebViewerInstance) {
   try {
     const bookmarks = await pdfDoc.getBookmarks();
     return parseBookmarks(bookmarks);
-  } catch (error) {
+  } catch {
     return [];
   }
 }

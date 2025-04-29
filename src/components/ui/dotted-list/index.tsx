@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import React from "react";
 
 interface DottedListProps extends React.HTMLAttributes<HTMLDivElement> {
   items: (
@@ -20,7 +19,8 @@ export default function DottedList({
   itemClassName,
   ...props
 }: DottedListProps) {
-  const filteredItems = items.filter((item) => item); // remove null or undefined items
+  // remove null or undefined items
+  const filteredItems = items.filter((item) => !!item);
 
   return (
     <div

@@ -1,17 +1,18 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState, useTransition } from "react";
-import { Button } from "@/components/ui/button";
-import type { AuthorDocument } from "@/types/author";
-import FilterContainer from "../search-results/filter-container";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
-import { usePathname, useRouter } from "@/navigation";
-import { useFormatter, useTranslations } from "next-intl";
-import { searchAuthors } from "@/server/typesense/author";
-import { usePathLocale } from "@/lib/locale/utils";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
 import type { TypesenseResponse } from "@/server/typesense/utils";
+import type { AuthorDocument } from "@/types/author";
+import { useEffect, useMemo, useRef, useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { usePathLocale } from "@/lib/locale/utils";
+import { usePathname, useRouter } from "@/navigation";
+import { getPrimaryLocalizedText } from "@/server/db/localization";
+import { searchAuthors } from "@/server/typesense/author";
+import { useFormatter, useTranslations } from "next-intl";
+
+import FilterContainer from "../search-results/filter-container";
 
 const getAuthorsFilterUrlParams = (
   authors: string[],
@@ -43,7 +44,7 @@ interface AuthorsFilterProps {
   filters?: Record<string, any>;
 }
 
-export default function _AuthorsFilter({
+export default function AuthorsFilterClient({
   currentAuthors,
   initialAuthorsResponse,
   selectedAuthorsResponse,
@@ -150,8 +151,8 @@ export default function _AuthorsFilter({
 
   const data = useMemo(() => {
     const allResponses = Object.values(pageToResponse);
-    const hasMore = allResponses[allResponses.length - 1]?.pagination?.hasNext;
-    const items = allResponses.flatMap((r) => r?.results?.hits ?? []);
+    const hasMore = allResponses[allResponses.length - 1]?.pagination.hasNext;
+    const items = allResponses.flatMap((r) => r.results.hits ?? []);
 
     if (!selectedAuthorsResponse) {
       return {

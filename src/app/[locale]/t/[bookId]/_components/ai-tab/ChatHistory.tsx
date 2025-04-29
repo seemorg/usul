@@ -1,21 +1,22 @@
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
-import { useChatStore } from "../../_stores/chat";
-import type { HistoryItem } from "../../_stores/chat";
 import { useMemo } from "react";
-import {
-  HistoryIcon,
-  MoreHorizontalIcon,
-  TrashIcon,
-  XIcon,
-} from "lucide-react";
-import { useFormatRelativeDate } from "@/lib/relative-date";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useFormatRelativeDate } from "@/lib/relative-date";
+import {
+  HistoryIcon,
+  MoreHorizontalIcon,
+  TrashIcon,
+  XIcon,
+} from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import type { HistoryItem } from "../../_stores/chat";
+import { useChatStore } from "../../_stores/chat";
 
 interface GroupedHistory {
   [key: string]: HistoryItem[];
@@ -76,7 +77,7 @@ export function ChatHistory({
         <Button
           variant="ghost"
           size="icon"
-          className="size-9 text-muted-foreground hover:bg-secondary"
+          className="text-muted-foreground hover:bg-secondary size-9"
           onClick={() => onOpenChange(false)}
         >
           <XIcon className="size-4" />
@@ -87,7 +88,7 @@ export function ChatHistory({
         {entries.length > 0 ? (
           entries.map(([day, items]) => (
             <div key={day}>
-              <h3 className="text-sm font-medium capitalize text-muted-foreground">
+              <h3 className="text-muted-foreground text-sm font-medium capitalize">
                 {formatter(new Date(day))}
               </h3>
 
@@ -96,7 +97,7 @@ export function ChatHistory({
                   <div
                     key={item.chatId}
                     role="button"
-                    className="flex h-10 w-full items-center justify-between rounded-md px-4 py-2 text-sm transition-colors hover:bg-secondary/60"
+                    className="hover:bg-secondary/60 flex h-10 w-full items-center justify-between rounded-md px-4 py-2 text-sm transition-colors"
                     onClick={() => onSelectHistory(item.chatId)}
                     tabIndex={0}
                     onKeyDown={(e) => {

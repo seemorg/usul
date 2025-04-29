@@ -1,19 +1,16 @@
 "use client";
 
-import * as React from "react";
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
-import { CheckIcon } from "@heroicons/react/20/solid";
-
 import { cn } from "@/lib/utils";
+import { CheckIcon } from "@heroicons/react/20/solid";
+import { Checkbox as CheckboxPrimitive } from "radix-ui";
 
-const Checkbox = React.forwardRef<
-  React.ElementRef<typeof CheckboxPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
->(({ className, ...props }, ref) => (
+const Checkbox = ({
+  className,
+  ...props
+}: React.ComponentProps<typeof CheckboxPrimitive.Root>) => (
   <CheckboxPrimitive.Root
-    ref={ref}
     className={cn(
-      "peer h-5 w-5 shrink-0 rounded-sm border border-gray-300 bg-background ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-white dark:border-border",
+      "bg-background ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary dark:border-border peer h-5 w-5 shrink-0 rounded-sm border border-gray-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-white",
       className,
     )}
     {...props}
@@ -24,7 +21,6 @@ const Checkbox = React.forwardRef<
       <CheckIcon className="h-3 w-3" />
     </CheckboxPrimitive.Indicator>
   </CheckboxPrimitive.Root>
-));
-Checkbox.displayName = CheckboxPrimitive.Root.displayName;
+);
 
 export { Checkbox };

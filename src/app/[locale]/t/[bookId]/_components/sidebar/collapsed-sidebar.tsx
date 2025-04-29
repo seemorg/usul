@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ChevronDoubleLeftIcon } from "@heroicons/react/24/solid";
 import type { RefObject } from "react";
 import type { ImperativePanelHandle } from "react-resizable-panels";
+import { Button } from "@/components/ui/button";
+import { ChevronDoubleLeftIcon } from "@heroicons/react/24/solid";
 
 interface CollapsedSidebarProps {
-  sidebarRef: RefObject<ImperativePanelHandle>;
+  sidebarRef: RefObject<ImperativePanelHandle | null>;
 }
 
 export default function CollapsedSidebar({
@@ -17,7 +17,7 @@ export default function CollapsedSidebar({
   };
 
   return (
-    <div className="sticky top-0 flex h-screen flex-none flex-col items-center justify-center bg-background dark:bg-card">
+    <div className="bg-background dark:bg-card sticky top-0 flex h-screen flex-none flex-col items-center justify-center">
       <Button
         size="icon"
         variant="ghost"

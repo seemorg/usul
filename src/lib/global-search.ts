@@ -1,4 +1,5 @@
 import type { GlobalSearchDocument } from "@/types/global-search-document";
+import type { Messages } from "next-intl";
 import { navigation } from "@/lib/urls";
 
 export const getGlobalDocumentHref = (document: GlobalSearchDocument) => {
@@ -17,7 +18,7 @@ export const getGlobalDocumentHref = (document: GlobalSearchDocument) => {
 
 export const getGlobalDocumentLocalizedTypeKey = (
   type: GlobalSearchDocument["type"],
-): keyof IntlMessages["entities"] | null => {
+): keyof Messages["entities"] | null => {
   if (type === "book") {
     return "text";
   } else if (type === "author") {

@@ -1,4 +1,5 @@
 import type { ParseResult } from "@openiti/markdown-parser";
+
 import type { BaseContentWithPdf } from "./base";
 
 export type OpenitiContent = BaseContentWithPdf & {

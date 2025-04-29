@@ -1,6 +1,7 @@
 import { revalidateTag } from "next/cache";
 import { env } from "@/env";
 import { Redis } from "@upstash/redis";
+
 import { getCurrentMonth } from "./date";
 
 export const redis = new Redis({

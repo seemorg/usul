@@ -1,13 +1,13 @@
-import React, {
-  memo,
-  useRef,
-  useMemo,
-  useState,
-  useEffect,
-  useContext,
-  useCallback,
+import type { RefObject } from "react";
+import {
   createContext,
-  forwardRef,
+  memo,
+  use,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
 import { cn } from "@/lib/utils";
 
@@ -85,7 +85,7 @@ const HighlightPopoverContext =
  * @throws Error if used outside of a HighlightPopover component.
  */
 export function useHighlightPopover() {
-  const context = useContext(HighlightPopoverContext);
+  const context = use(HighlightPopoverContext);
   if (!context) {
     throw new Error(
       "useHighlightPopover must be used within a HighlightPopover",
@@ -98,25 +98,27 @@ export function useHighlightPopover() {
  * Memoized component for rendering the popover content.
  */
 const PopoverContent = memo(
-  forwardRef<
-    HTMLDivElement,
-    {
-      renderPopover: HighlightPopoverProps["renderPopover"];
-      position: Position;
-      selection: string;
-      style: React.CSSProperties;
-    }
-  >(({ renderPopover, position, selection, style }, ref) => (
+  ({
+    renderPopover,
+    position,
+    selection,
+    ...props
+  }: {
+    renderPopover: HighlightPopoverProps["renderPopover"];
+    position: Position;
+    selection: string;
+    style: React.CSSProperties;
+    ref?: RefObject<HTMLDivElement | null>;
+  }) => (
     <div
-      ref={ref}
-      style={style}
+      {...props}
       role="tooltip"
       aria-live="polite"
-      className="relative select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent after:border-b-[#232324]"
+      className="relative border-transparent select-none after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:translate-y-full after:rotate-180 after:border-8 after:border-transparent! after:border-b-[#232324]!"
     >
       {renderPopover({ position, selection })}
     </div>
-  )),
+  ),
 );
 
 PopoverContent.displayName = "PopoverContent";
@@ -145,7 +147,7 @@ export const HighlightPopover = memo(function HighlightPopover({
   const [currentSelection, setCurrentSelection] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const selectionRangeRef = useRef<Range | null>(null);
-  const showPopoverTimeoutRef = useRef<NodeJS.Timeout>();
+  const showPopoverTimeoutRef = useRef<NodeJS.Timeout>(undefined);
 
   const popoverRef = useRef<HTMLDivElement>(null);
 

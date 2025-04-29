@@ -1,23 +1,16 @@
-"use client";
-
-import { useTranslations } from "next-intl";
-import { useState } from "react";
-import {
-  type NavItem,
-  browseItems,
-  contributeItems,
-  aboutItems,
-} from "./links";
-import { Link } from "@/navigation";
-import ComingSoonModal from "@/components/coming-soon-modal";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
-import Container from "@/components/ui/container";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Container from "@/components/ui/container";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
+
+import type { NavItem } from "./links";
+import { aboutItems, browseItems, contributeItems } from "./links";
 
 const groups: {
   title: NamespaceTranslations<"common">;
@@ -37,26 +30,12 @@ const groups: {
   },
 ];
 
-export default function MobileNavigationMenu() {
+export default function MobileNavigationMenu({
+  setIsMenuOpen,
+}: {
+  setIsMenuOpen: (isMenuOpen: boolean) => void;
+}) {
   const t = useTranslations("common");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const renderItem = (item: NavItem, idx: number) => {
-    const className = "py-1";
-
-    return (
-      <Link
-        key={idx}
-        href={item.href!}
-        title={t(item.title)}
-        target={item.href!.startsWith("mailto:") ? "_blank" : undefined}
-        className={className}
-        prefetch
-      >
-        {t(item.title)}
-      </Link>
-    );
-  };
 
   const filteredGroups = groups
     .map((group) => ({
@@ -66,9 +45,7 @@ export default function MobileNavigationMenu() {
     .filter((group) => group.items.length > 0);
 
   return (
-    <Container className="py-24">
-      <ComingSoonModal open={isModalOpen} onOpenChange={setIsModalOpen} />
-
+    <Container className="py-18">
       <Accordion
         className="w-full"
         type="multiple"
@@ -81,25 +58,27 @@ export default function MobileNavigationMenu() {
             </AccordionTrigger>
 
             <AccordionContent>
-              <ul className="flex flex-col gap-3 text-muted-foreground">
-                {group.items.filter((i) => !!i.href).map(renderItem)}
+              <ul className="text-muted-foreground flex flex-col gap-3">
+                {group.items.map((item) => (
+                  <Link
+                    key={item.title}
+                    href={item.href!}
+                    title={t(item.title)}
+                    target={
+                      item.href!.startsWith("mailto:") ? "_blank" : undefined
+                    }
+                    className="py-1"
+                    prefetch
+                    onNavigate={() => setIsMenuOpen(false)}
+                  >
+                    {t(item.title)}
+                  </Link>
+                ))}
               </ul>
             </AccordionContent>
           </AccordionItem>
         ))}
       </Accordion>
-
-      {/* <div className="flex flex-col gap-10">
-        {groups.map((group) => (
-          <div key={group.title}>
-            <h2 className="text-xs font-semibold">{t(group.title)}</h2>
-
-            <ul className="mt-3 flex flex-col gap-2 text-sm text-muted-foreground ltr:ml-3 rtl:mr-3">
-              {group.items.map(renderItem)}
-            </ul>
-          </div>
-        ))}
-      </div> */}
     </Container>
   );
 }

@@ -1,12 +1,13 @@
-import { navigation } from "@/lib/urls";
 import type { searchGenres } from "@/server/typesense/genre";
+import { usePathLocale } from "@/lib/locale/utils";
+import { navigation } from "@/lib/urls";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import EntityCard from "./entity-card";
 import { useTranslations } from "next-intl";
-import { usePathLocale } from "@/lib/locale/utils";
+
+import EntityCard from "./entity-card";
 
 export default function GenreSearchResult({
   result,

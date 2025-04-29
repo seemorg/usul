@@ -1,3 +1,5 @@
+import type { GenreDocument } from "@/types/genre";
+import type { GlobalSearchDocument } from "@/types/global-search-document";
 import { CommandItem } from "@/components/ui/command";
 import DottedList from "@/components/ui/dotted-list";
 import {
@@ -10,8 +12,6 @@ import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import type { GenreDocument } from "@/types/genre";
-import type { GlobalSearchDocument } from "@/types/global-search-document";
 import { useTranslations } from "next-intl";
 
 function SearchBarItem({
@@ -59,9 +59,16 @@ function SearchBarItem({
     >
       <Comp
         {...(href
-          ? { href, prefetch: true, onClick: (e: any) => e.stopPropagation() }
+          ? {
+              href,
+              prefetch: true,
+              onClick: (e: MouseEvent) => {
+                e.stopPropagation();
+                onSelect();
+              },
+            }
           : {})}
-        className="flex h-full w-full items-start justify-between px-4 py-3 hover:bg-accent"
+        className="hover:bg-accent flex h-full w-full items-start justify-between px-4 py-3"
       >
         <DottedList
           className="gap-2"

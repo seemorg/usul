@@ -1,10 +1,11 @@
 "use server";
 
 import type { PathLocale } from "@/lib/locale/utils";
-import { db } from "../db";
 import { cache } from "react";
-import { getLocaleWhereClause } from "../db/localization";
 import { unstable_cache } from "next/cache";
+
+import { db } from "../db";
+import { getLocaleWhereClause } from "../db/localization";
 
 export const findAuthorBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {

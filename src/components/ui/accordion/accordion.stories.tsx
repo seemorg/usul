@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
+
 import {
   Accordion,
+  AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  AccordionContent,
 } from "./index";
 
 const meta = {

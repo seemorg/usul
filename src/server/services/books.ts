@@ -1,8 +1,6 @@
 import { cache } from "react";
-
-import { db } from "@/server/db";
-
 import { unstable_cache } from "next/cache";
+import { db } from "@/server/db";
 
 export const countAllBooks = cache(
   unstable_cache(

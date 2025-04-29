@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useReaderVirtuoso } from "../context";
-import { useTranslations } from "next-intl";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
-import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { Label } from "@/components/ui/label";
+import { useTranslations } from "next-intl";
+
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { useReaderVirtuoso } from "../context";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 function PageNavigator({
   popover = true,
@@ -16,7 +17,7 @@ function PageNavigator({
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const t = useTranslations("reader.page-navigator");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -35,13 +36,13 @@ function PageNavigator({
     const props = getVirtuosoScrollProps(pageNumber - 1);
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   const Content = (
     <>
-      <h4 className="font-medium leading-none">{t("title")}</h4>
-      <p className="mt-2 text-sm text-muted-foreground">
+      <h4 className="leading-none font-medium">{t("title")}</h4>
+      <p className="text-muted-foreground mt-2 text-sm">
         {t("description", { start: range.start, end: range.end })}
       </p>
 
@@ -73,7 +74,7 @@ function PageNavigator({
       <Label htmlFor="pageNumber" className="text-sm">
         {t("name")}
       </Label>
-      <p className="mt-1 text-xs text-muted-foreground">
+      <p className="text-muted-foreground mt-1 text-xs">
         {t("description", { start: range.start, end: range.end })}
       </p>
 
@@ -86,7 +87,7 @@ function PageNavigator({
           name="pageNumber"
           type="number"
           placeholder={t("input-placeholder")}
-          className="col-span-2 h-9 bg-background ltr:rounded-r-none rtl:rounded-l-none"
+          className="bg-background col-span-2 h-9 ltr:rounded-r-none rtl:rounded-l-none"
         />
 
         <Button className="ltr:rounded-l-none rtl:rounded-r-none">
