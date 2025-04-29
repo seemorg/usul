@@ -58,7 +58,7 @@ function ReaderHighlightPopover({
       {/* Copy will be hidden on mobile, we'll let the user copy using the native context menu */}
       <Button
         variant="ghost"
-        className="hover:bg-accent/10 focus:bg-accent/10 hidden h-10 gap-2 rounded-none md:flex"
+        className="hover:bg-accent/10 focus:bg-accent/10 hidden h-10 gap-2 rounded-none md:inline-flex"
         onClick={handleCopy}
       >
         <ClipboardIcon className="size-4" />
