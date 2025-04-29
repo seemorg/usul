@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -67,6 +67,7 @@ export default function SearchTab() {
   const isExternal =
     bookContent.source === "external" || bookContent.source === "pdf";
   const headings = !isExternal ? bookContent.headings : [];
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const {
     data: results,
@@ -102,6 +103,8 @@ export default function SearchTab() {
 
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     if (e) e.preventDefault();
+
+    inputRef.current?.blur();
 
     if (type === "semantic" || type === "simple") {
       setValue(inputValue, 1);
@@ -240,6 +243,7 @@ export default function SearchTab() {
 
                 <Input
                   type="text"
+                  ref={inputRef}
                   value={inputValue}
                   onChange={handleChange}
                   placeholder={t("reader.search.placeholder")}

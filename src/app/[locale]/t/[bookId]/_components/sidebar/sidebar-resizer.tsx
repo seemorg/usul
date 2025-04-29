@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 import { useNavbarStore } from "@/stores/navbar";
 
 import CollapsedSidebar from "./collapsed-sidebar";
+import { useMediaQuery } from "usehooks-ts";
 
 const defaultSizes = [75, 25];
 
@@ -28,6 +29,7 @@ export default function SidebarResizer({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const dir = useDirection();
   const showNavbar = useNavbarStore((s) => s.showNavbar);
+  const isMobile = useMediaQuery("(max-width: 1024px)");
 
   const sidebarRef = useRef<ImperativePanelHandle>(null);
 
@@ -38,6 +40,25 @@ export default function SidebarResizer({
   const onExpand = () => {
     setIsCollapsed(false);
   };
+
+  if (isMobile) {
+    return (
+      <div className="h-screen overflow-hidden">
+        <Navbar layout="reader" secondNav={secondNav} />
+
+        <div
+          className={cn(
+            // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
+            "[--navbar-height:124px]",
+            "relative h-full w-full transition-transform duration-250 will-change-transform",
+            !showNavbar && "-translate-y-[var(--navbar-height)]",
+          )}
+        >
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   const panels = [
     <ResizablePanel key="reader" defaultSize={defaultSizes[0]} minSize={55}>
