@@ -1,14 +1,15 @@
-import type { GlobalSearchDocument } from "@/types/global-search-document";
-import { useTranslations } from "next-intl";
-import SearchBarItem from "./item";
 import type { prepareResults } from "@/server/typesense/utils";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { SearchType } from "@/types/search";
+import { Button } from "@/components/ui/button";
 import { CommandEmpty } from "@/components/ui/command";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Link } from "@/navigation";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { navigation } from "@/lib/urls";
-import { Button } from "@/components/ui/button";
+import { Link } from "@/navigation";
+import { useTranslations } from "next-intl";
+
+import SearchBarItem from "./item";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -27,20 +28,20 @@ const ResultsSkeleton = () => (
       >
         <div className="hidden items-center gap-4 md:flex">
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![0] }}
           />
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![1] }}
           />
           <Skeleton
-            className="h-6 bg-accent"
+            className="bg-accent h-6"
             style={{ width: skeletonWidths[index]![2] }}
           />
         </div>
 
-        <Skeleton className="h-6 w-full bg-accent md:w-12" />
+        <Skeleton className="bg-accent h-6 w-full md:w-12" />
       </div>
     ))}
   </div>
@@ -67,26 +68,8 @@ export default function SearchBarResults({
   const hits = results?.hits ?? [];
   const showSeeMore = (results?.found ?? 0) > 5 && hits.length > 0;
 
-  const renderResults = () => {
-    if (isLoading) {
-      return <ResultsSkeleton />;
-    }
-
-    if (hits.length > 0) {
-      return hits.map((hit) => (
-        <SearchBarItem
-          key={hit.document.id}
-          document={hit.document}
-          onSelect={onItemSelect}
-        />
-      ));
-    }
-
-    return <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>;
-  };
-
   return (
-    <div className="p-3 sm:p-6">
+    <>
       <div className="flex flex-col items-start justify-between sm:flex-row sm:items-center">
         <Tabs
           value={searchType}
@@ -114,33 +97,46 @@ export default function SearchBarResults({
         {showSeeMore && (
           <Link
             href={navigation.search.index({ type: searchType, query: value })}
-            className="mt-3 hidden text-primary underline sm:mt-0 sm:block"
+            className="text-primary mt-3 hidden underline sm:mt-0 sm:block"
           >
             {t("common.search-bar.all-results", {
-              results: results?.found,
+              results: results?.found ?? 0,
             })}
           </Link>
         )}
       </div>
 
       <div className="mt-5">
-        {renderResults()}
-        {showSeeMore && (
-          <Button
-            asChild
-            className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
-            variant="link"
-          >
-            <Link
-              href={navigation.search.index({ type: searchType, query: value })}
-            >
-              {t("common.search-bar.all-results", {
-                results: results?.found,
-              })}
-            </Link>
-          </Button>
+        {isLoading ? (
+          <ResultsSkeleton />
+        ) : hits.length > 0 ? (
+          hits.map((hit) => (
+            <SearchBarItem
+              key={hit.document.id}
+              document={hit.document}
+              onSelect={onItemSelect}
+            />
+          ))
+        ) : (
+          <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>
         )}
       </div>
-    </div>
+
+      {showSeeMore && (
+        <Button
+          asChild
+          className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
+          variant="link"
+        >
+          <Link
+            href={navigation.search.index({ type: searchType, query: value })}
+          >
+            {t("common.search-bar.all-results", {
+              results: results?.found ?? 0,
+            })}
+          </Link>
+        </Button>
+      )}
+    </>
   );
 }

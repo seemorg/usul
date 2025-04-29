@@ -1,10 +1,11 @@
 "use server";
 
+import type { PathLocale } from "@/lib/locale/utils";
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
 import { db } from "../db";
 import { getLocaleWhereClause } from "../db/localization";
-import type { PathLocale } from "@/lib/locale/utils";
-import { unstable_cache } from "next/cache";
 
 export const findAllRegionsWithCounts = cache(
   async (locale: PathLocale = "en") => {

@@ -1,32 +1,30 @@
-import SearchResults from "@/components/search-results";
-import { Route, sorts, type RouteType } from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import dynamic from "next/dynamic";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import { gregorianYearToHijriYear } from "@/lib/date";
 import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
-import { countAllAuthors } from "@/server/services/authors";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
-import { searchAuthors } from "@/server/typesense/author";
+import SearchResults from "@/components/search-results";
+import YearFilterClient from "@/components/year-filter/client";
+import { gregorianYearToHijriYear } from "@/lib/date";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { AppLocale } from "~/i18n.config";
+import { countAllAuthors } from "@/server/services/authors";
+import { searchAuthors } from "@/server/typesense/author";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
 
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route, sorts } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
+
   return getMetadata({
     title: (await getTranslations("entities"))("authors"),
     pagePath: navigation.authors.all(),
@@ -35,7 +33,7 @@ export async function generateMetadata({
 }
 
 async function AuthorsPage({ searchParams }: PageProps) {
-  const { q, sort, page, year, regions } = searchParams;
+  const { q, sort, page, year, regions } = await searchParams;
   const t = await getTranslations("entities");
 
   const [results, totalAuthors] = await Promise.all([
@@ -74,7 +72,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
         hasViews={false}
         filters={
           <>
-            <YearFilter
+            <YearFilterClient
               defaultRange={year}
               maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
             />

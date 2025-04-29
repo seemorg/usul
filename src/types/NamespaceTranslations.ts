@@ -1,9 +1,10 @@
 import type {
-  NamespaceKeys as NextIntlNamespaceKeys,
+  Messages,
   NestedKeyOf,
+  NamespaceKeys as NextIntlNamespaceKeys,
   useTranslations,
 } from "next-intl";
 
 export type NamespaceTranslations<
-  NS extends NextIntlNamespaceKeys<IntlMessages, NestedKeyOf<IntlMessages>>,
+  NS extends NextIntlNamespaceKeys<Messages, NestedKeyOf<Messages>>,
 > = Parameters<ReturnType<typeof useTranslations<NS>>>[0];

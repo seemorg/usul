@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -17,9 +18,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-import { useMediaQuery } from "usehooks-ts";
-import { useState } from "react";
 import { useFormatter } from "next-intl";
+import { useMediaQuery } from "usehooks-ts";
 
 interface ExpandibleListProps {
   items: string[];

@@ -1,13 +1,13 @@
 "use client";
 
-import SidebarContainer from "../sidebar/sidebar-container";
-import PageNavigator from "./page-navigator";
-import ChaptersList from "./chapters-section";
 import type { TabProps } from "../sidebar/tabs";
-import { usePageNavigation } from "../usePageNavigation";
-import PdfChaptersList from "./pdf-chapters-section";
 import { useBookDetails } from "../../_contexts/book-details.context";
 import { useReaderView } from "../reader-navigation/utils";
+import SidebarContainer from "../sidebar/sidebar-container";
+import { usePageNavigation } from "../usePageNavigation";
+import ChaptersList from "./chapters-section";
+import PageNavigator from "./page-navigator";
+import PdfChaptersList from "./pdf-chapters-section";
 
 function ContentTab({ isSinglePage }: TabProps) {
   const { bookResponse } = useBookDetails();

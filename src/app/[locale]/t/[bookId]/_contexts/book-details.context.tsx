@@ -1,7 +1,8 @@
 "use client";
 
 import type { ApiBookResponse } from "@/types/api/book";
-import { createContext, useContext, useEffect } from "react";
+import { createContext, use, useEffect } from "react";
+
 import { useChatStore } from "../_stores/chat";
 
 interface BookDetailsContextValue {
@@ -34,7 +35,7 @@ export function BookDetailsProvider({
 }
 
 export function useBookDetails() {
-  const context = useContext(BookDetailsContext);
+  const context = use(BookDetailsContext);
   if (!context) {
     throw new Error("useBookDetails must be used within a BookDetailsProvider");
   }

@@ -1,6 +1,7 @@
-import { navigation } from "@/lib/urls";
 import type { findAllYearRanges } from "@/server/services/years";
+import { navigation } from "@/lib/urls";
 import { useFormatter, useTranslations } from "next-intl";
+
 import EntityCard from "./entity-card";
 
 export default function CenturySearchResult({

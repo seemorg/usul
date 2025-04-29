@@ -1,11 +1,10 @@
 name: Purge CF Cache
 
-on: 
+on:
   deployment_status:
-    
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 
 jobs:
   purge_cache:

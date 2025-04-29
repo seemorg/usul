@@ -1,19 +1,20 @@
 "use client";
 
+import { memo, useCallback, useMemo, useRef, useState } from "react";
+import Footer from "@/app/_components/footer";
+import Container from "@/components/ui/container";
+import { HighlightPopover } from "@/components/ui/highlight-popover";
+import { Separator } from "@/components/ui/separator";
+import { READER_OVERSCAN_SIZE, READER_SSR_SIZE } from "@/lib/constants";
 import { Virtualizer } from "virtua";
 
-import { memo, useMemo, useRef } from "react";
-import { useReaderVirtuoso, useSetReaderScroller } from "../context";
-import Footer from "@/app/_components/footer";
-import ReaderPage from "./reader-page";
-import { READER_OVERSCAN_SIZE, READER_SSR_SIZE } from "@/lib/constants";
-import Container from "@/components/ui/container";
-import Paginator from "../../[pageNumber]/paginator";
-import { HighlightPopover } from "@/components/ui/highlight-popover";
-import ReaderHighlightPopover from "./highlight-popover";
+import type { DefaultPages } from "./use-fetch-page";
 import { useBookDetails } from "../../_contexts/book-details.context";
+import Paginator from "../../[pageNumber]/paginator";
+import { useReaderVirtuoso, useSetReaderScroller } from "../context";
 import BookInfo from "./book-info";
-import { Separator } from "@/components/ui/separator";
+import ReaderHighlightPopover from "./highlight-popover";
+import ReaderPage from "./reader-page";
 
 export default function ReaderContent({
   isSinglePage,
@@ -31,6 +32,7 @@ export default function ReaderContent({
   const virtuosoRef = useReaderVirtuoso();
   const setContainerEl = useSetReaderScroller();
   const containerEl = useRef<HTMLElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(200);
 
   const defaultPages = useMemo(() => {
     if (content.source === "turath") {
@@ -44,14 +46,33 @@ export default function ReaderContent({
     return [];
   }, [content]);
 
+  const headerRefHandler = useCallback((r: HTMLDivElement | null) => {
+    if (r) {
+      setHeaderHeight(r.clientHeight);
+      const handleResize = () => {
+        setHeaderHeight(r.clientHeight);
+      };
+      // handle window resize
+      window.addEventListener("resize", handleResize);
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
+
+  const pagesArray = useMemo(() => {
+    return new Array(isSinglePage ? 1 : bookResponse.pagination.total).fill(
+      undefined,
+    ) as undefined[];
+  }, [isSinglePage, bookResponse.pagination.total]);
+
   return (
     <div
-      className="relative !h-screen w-full overflow-y-auto text-xl text-foreground [overflow-anchor:none]"
+      className="text-foreground relative h-screen w-full overflow-y-auto text-xl [overflow-anchor:none]"
       dir="rtl"
       ref={(r) => {
         if (r) {
           setContainerEl({ element: r });
-          // @ts-ignore
           containerEl.current = r;
         }
       }}
@@ -64,9 +85,8 @@ export default function ReaderContent({
         />
       )}
 
-      <div className="w-full px-5 lg:px-8">
+      <div className="w-full px-5 lg:px-8" ref={headerRefHandler}>
         <BookInfo className="mx-auto max-w-5xl py-8" />
-
         <Separator />
       </div>
 
@@ -77,27 +97,17 @@ export default function ReaderContent({
         }
         overscan={READER_OVERSCAN_SIZE}
         ref={virtuosoRef}
-        startMargin={80}
-        // eslint-disable-next-line react/display-name
-        // as={forwardRef((props, ref) => (
-        //   <div
-        //     className="min-h-[100vh] w-full flex-auto divide-y-2 divide-border"
-        //     ref={ref}
-        //     {...props}
-        //   />
-        // ))}
+        startMargin={headerHeight}
       >
-        {new Array(isSinglePage ? 1 : bookResponse.pagination.total)
-          .fill(null)
-          .map((_, index) => (
-            <Page
-              key={index}
-              index={isSinglePage ? currentPage! - 1 : index}
-              defaultPages={defaultPages}
-              perPage={bookResponse.pagination.size}
-              source={content.source}
-            />
-          ))}
+        {pagesArray.map((_, index) => (
+          <Page
+            key={index}
+            index={isSinglePage ? currentPage! - 1 : index}
+            defaultPages={defaultPages}
+            perPage={bookResponse.pagination.size}
+            source={content.source}
+          />
+        ))}
       </Virtualizer>
 
       <div className="mx-auto mt-10 w-full max-w-[90%]">
@@ -115,12 +125,12 @@ const Page = memo(
     source,
   }: {
     index: number;
-    defaultPages: any[];
+    defaultPages: DefaultPages;
     perPage: number;
     source: "turath" | "openiti" | "pdf";
   }) => {
     return (
-      <Container className="mx-auto flex flex-col gap-8 border-b-2 border-border px-5 pb-5 pt-7 font-scheherazade lg:px-8 xl:px-16 2xl:max-w-5xl">
+      <Container className="border-border font-scheherazade mx-auto flex flex-col gap-8 border-b-2 px-5 pt-7 pb-5 lg:px-8 xl:px-16 2xl:max-w-5xl">
         <HighlightPopover
           renderPopover={({ selection }) => (
             <ReaderHighlightPopover selection={selection} pageIndex={index} />

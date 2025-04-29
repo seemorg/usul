@@ -1,9 +1,8 @@
 "use client";
 
-import { RemoveScroll } from "react-remove-scroll";
-import { Slot } from "@radix-ui/react-slot";
-import { Portal } from "@radix-ui/themes";
 import { cn } from "@/lib/utils";
+import { Slot as SlotPrimitive, Portal as PortalPrimitive } from "radix-ui";
+import { RemoveScroll } from "react-remove-scroll";
 
 export default function MobileMenu({
   children,
@@ -13,12 +12,17 @@ export default function MobileMenu({
   className?: string;
 }) {
   return (
-    <Portal>
-      <RemoveScroll as={Slot} allowPinchZoom enabled>
-        <div className={cn("fixed inset-0 z-[40] bg-background", className)}>
+    <PortalPrimitive.Portal>
+      <RemoveScroll as={SlotPrimitive.Slot} allowPinchZoom enabled>
+        <div
+          className={cn(
+            "bg-background fixed inset-0 z-40 overflow-y-auto",
+            className,
+          )}
+        >
           {children}
         </div>
       </RemoveScroll>
-    </Portal>
+    </PortalPrimitive.Portal>
   );
 }

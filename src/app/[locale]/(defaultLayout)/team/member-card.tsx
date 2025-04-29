@@ -16,7 +16,7 @@ export default function MemberCard({
   return (
     <div className="group mx-auto max-w-72">
       {image ? (
-        <div className="relative aspect-square w-full flex-shrink-0 cursor-pointer overflow-hidden rounded-md bg-gray-200">
+        <div className="relative aspect-square w-full shrink-0 cursor-pointer overflow-hidden rounded-md bg-gray-200">
           <Image
             src={image}
             alt={`${name} image`}
@@ -31,18 +31,19 @@ export default function MemberCard({
           />
         </div>
       ) : (
-        <div className="aspect-square w-full flex-shrink-0 rounded-md bg-primary-foreground" />
+        <div className="bg-primary-foreground aspect-square w-full shrink-0 rounded-md" />
       )}
-      {/* w-44 lg:w-56 */}
 
       <div className="mt-4">
         {role && (
-          <p className="mb-1 text-sm font-medium text-muted-foreground">
+          <p className="text-secondary-foreground mb-1 text-sm font-medium">
             {role}
           </p>
         )}
         <h3 className="text-xl font-medium">{name}</h3>
-        <p className="mt-2 hyphens-auto text-sm text-gray-500">{description}</p>
+        <p className="text-muted-foreground mt-2 text-sm hyphens-auto">
+          {description}
+        </p>
       </div>
     </div>
   );

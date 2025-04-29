@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "../button";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+
+import { Button } from "../button";
 
 type TruncatedTextProps = Omit<
   React.HTMLAttributes<HTMLDivElement>,

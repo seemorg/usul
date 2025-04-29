@@ -10,7 +10,7 @@ export default function RootEntityPageLayout({
     <div>
       <Navbar />
 
-      <main className="flex min-h-screen w-full flex-col bg-background pb-24">
+      <main className="bg-background flex min-h-screen w-full flex-col pb-24">
         {children}
       </main>
 

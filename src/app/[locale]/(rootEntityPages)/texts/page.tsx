@@ -1,34 +1,32 @@
+import type { Locale } from "next-intl";
+import type { InferPagePropsType } from "next-typesafe-url";
+import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
-import SearchResults from "@/components/search-results";
-import { searchBooks } from "@/server/typesense/book";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
-import type { InferPagePropsType } from "next-typesafe-url";
-import { yearsSorts, navigation } from "@/lib/urls";
 import RegionsFilter from "@/components/regions-filter";
-import AuthorsFilter from "@/components/authors-filter";
+import SearchResults from "@/components/search-results";
+import YearFilterClient from "@/components/year-filter/client";
 import { gregorianYearToHijriYear } from "@/lib/date";
-import { countAllBooks } from "@/server/services/books";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
-import dynamic from "next/dynamic";
 import { getMetadata } from "@/lib/seo";
-import type { AppLocale } from "~/i18n.config";
+import { navigation, yearsSorts } from "@/lib/urls";
+import { countAllBooks } from "@/server/services/books";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
 
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route } from "./routeType";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
+
   return getMetadata({
     title: (await getTranslations("entities"))("texts"),
     pagePath: navigation.books.all(),
@@ -37,7 +35,8 @@ export async function generateMetadata({
 }
 
 async function TextsPage({ searchParams }: TextsPageProps) {
-  const { q, sort, page, genres, authors, regions, year, view } = searchParams;
+  const { q, sort, page, genres, authors, regions, year, view } =
+    await searchParams;
   const t = await getTranslations("entities");
 
   const [results, totalBooks] = await Promise.all([
@@ -79,7 +78,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         view={view}
         filters={
           <>
-            <YearFilter
+            <YearFilterClient
               maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
               defaultRange={year}
             />

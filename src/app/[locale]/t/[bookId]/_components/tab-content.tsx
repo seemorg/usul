@@ -1,9 +1,9 @@
 "use client";
 
 import type { TabProps } from "./sidebar/tabs";
+import { useBookDetails } from "../_contexts/book-details.context";
 import { ComingSoonAlert } from "./coming-soon-alert";
 import { tabIdToComponent } from "./sidebar/tabs-content";
-import { useBookDetails } from "../_contexts/book-details.context";
 
 export const TabContent = ({
   tabId,

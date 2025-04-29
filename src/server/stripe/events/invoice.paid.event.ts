@@ -1,5 +1,5 @@
-import { storeDonation } from "@/lib/upstash";
 import type Stripe from "stripe";
+import { storeDonation } from "@/lib/upstash";
 
 export const handleInvoicePaid = async (event: Stripe.Event) => {
   const invoice = event.data.object as Stripe.Invoice;

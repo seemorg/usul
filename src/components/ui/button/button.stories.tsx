@@ -1,8 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { InformationCircleIcon } from "@heroicons/react/24/outline";
 
 import { Button } from "./index";
-import { InformationCircleIcon } from "@heroicons/react/24/outline";
-import {} from "react";
+
+import "react";
 
 const meta = {
   title: "Button",

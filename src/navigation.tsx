@@ -1,9 +1,11 @@
-import { type AppLocale, routing } from "~/i18n.config";
-import { createSharedPathnamesNavigation } from "next-intl/navigation";
-import { isSameURL } from "./lib/utils";
+import type { Locale } from "next-intl";
+import { routing } from "@/i18n/config";
+import { createNavigation } from "next-intl/navigation";
 import NProgress from "nprogress";
 
-const result = createSharedPathnamesNavigation(routing);
+import { isSameURL } from "./lib/utils";
+
+const result = createNavigation(routing);
 
 export const Link = result.Link;
 export const usePathname = result.usePathname;
@@ -16,7 +18,7 @@ export const useRouter = () => {
 
   function push(
     href: string,
-    options?: Parameters<typeof router.push>[1] & { locale?: AppLocale },
+    options?: Parameters<typeof router.push>[1] & { locale?: Locale },
     NProgressOptions?: { showProgressBar?: boolean },
   ) {
     if (NProgressOptions?.showProgressBar === false)
@@ -25,7 +27,10 @@ export const useRouter = () => {
     const currentUrl = new URL(pathname, location.href);
     const targetUrl = new URL(href, location.href);
 
-    if (isSameURL(targetUrl, currentUrl) || href === pathname)
+    if (
+      (isSameURL(targetUrl, currentUrl) || href === pathname) &&
+      NProgressOptions?.showProgressBar !== true
+    )
       return router.push(href, options);
 
     NProgress.start();
@@ -34,7 +39,7 @@ export const useRouter = () => {
 
   function replace(
     href: string,
-    options?: Parameters<typeof router.replace>[1] & { locale?: AppLocale },
+    options?: Parameters<typeof router.replace>[1] & { locale?: Locale },
     NProgressOptions?: { showProgressBar?: boolean },
   ) {
     if (NProgressOptions?.showProgressBar === false)

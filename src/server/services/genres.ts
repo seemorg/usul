@@ -1,9 +1,10 @@
 "use server";
 
-import { cache } from "react";
-import { db } from "../db";
-import { unstable_cache } from "next/cache";
 import type { PathLocale } from "@/lib/locale/utils";
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
+import { db } from "../db";
 import { getLocaleWhereClause } from "../db/localization";
 
 export const findAllGenres = cache(async (locale: PathLocale = "en") => {

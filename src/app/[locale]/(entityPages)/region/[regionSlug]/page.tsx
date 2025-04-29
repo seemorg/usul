@@ -1,41 +1,38 @@
-/* eslint-disable react/jsx-key */
-import { searchBooks } from "@/server/typesense/book";
-import { notFound } from "next/navigation";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, type RouteType } from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import SearchResults from "@/components/search-results";
-import { navigation, yearsSorts } from "@/lib/urls";
-import BookSearchResult from "@/components/book-search-result";
+import { notFound } from "next/navigation";
 import AuthorsFilter from "@/components/authors-filter";
-import dynamic from "next/dynamic";
-import { gregorianYearToHijriYear } from "@/lib/date";
-import YearFilterSkeleton from "@/components/year-filter/skeleton";
+import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
-import TruncatedText from "@/components/ui/truncated-text";
-import { ExpandibleList } from "@/components/ui/expandible-list";
-import { getTranslations } from "next-intl/server";
+import SearchResults from "@/components/search-results";
 import DottedList from "@/components/ui/dotted-list";
+import { ExpandibleList } from "@/components/ui/expandible-list";
+import TruncatedText from "@/components/ui/truncated-text";
+import YearFilterClient from "@/components/year-filter/client";
+import { getRegion } from "@/lib/api";
+import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
+import { getMetadata } from "@/lib/seo";
+import { navigation, yearsSorts } from "@/lib/urls";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
-import { getMetadata } from "@/lib/seo";
-import type { AppLocale } from "~/i18n.config";
-import { getRegion } from "@/lib/api";
 import { findRegionBySlug } from "@/server/services/regions";
+import { searchBooks } from "@/server/typesense/book";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
 
-const YearFilter = dynamic(() => import("@/components/year-filter"), {
-  ssr: false,
-  loading: () => <YearFilterSkeleton defaultRange={[0, 0]} maxYear={0} />,
-});
+import type { RouteType } from "./routeType";
+import { Route } from "./routeType";
 
 export const generateMetadata = async ({
-  params: { regionSlug, locale },
+  params,
 }: {
-  params: { regionSlug: string; locale: AppLocale };
+  params: Promise<{ regionSlug: string; locale: Locale }>;
 }) => {
+  const { regionSlug, locale } = await params;
+
   const pathLocale = await getPathLocale();
 
   const region = await getRegion(regionSlug, { locale: pathLocale });
@@ -56,10 +53,8 @@ export const generateMetadata = async ({
 
 type RegionPageProps = InferPagePropsType<RouteType>;
 
-async function RegionPage({
-  routeParams: { regionSlug },
-  searchParams,
-}: RegionPageProps) {
+async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
+  const { regionSlug } = await routeParams;
   const pathLocale = await getPathLocale();
   const region = await findRegionBySlug(regionSlug, pathLocale);
 
@@ -69,7 +64,7 @@ async function RegionPage({
 
   const t = await getTranslations();
 
-  const { q, sort, page, year, authors, genres, view } = searchParams;
+  const { q, sort, page, year, authors, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
@@ -107,9 +102,11 @@ async function RegionPage({
 
   return (
     <div>
-      <h1 className="text-5xl font-bold sm:text-7xl">{primaryName}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {primaryName}
+      </h1>
       {secondaryName && (
-        <h2 className="mt-5 text-3xl font-medium sm:text-5xl">
+        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
           {secondaryName}
         </h2>
       )}
@@ -147,7 +144,7 @@ async function RegionPage({
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName,
+            entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
           currentSort={sort.raw}
@@ -155,7 +152,7 @@ async function RegionPage({
           view={view}
           filters={
             <>
-              <YearFilter
+              <YearFilterClient
                 maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
                 defaultRange={year}
               />

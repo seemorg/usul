@@ -1,9 +1,10 @@
-import { chatWithBook } from "@/server/services/chat";
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import type { ChatResponse } from "@/types/chat";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useCallback, useMemo } from "react";
-import { useChatStore } from "../../_stores/chat";
+import { chatWithBook } from "@/server/services/chat";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
+import { useChatStore } from "../../_stores/chat";
 
 type ChatMessage = {
   id?: string;

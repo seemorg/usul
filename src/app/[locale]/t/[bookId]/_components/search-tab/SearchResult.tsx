@@ -1,20 +1,21 @@
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { useReaderVirtuoso } from "../context";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
-import { removeDiacritics } from "@/lib/diacritics";
-import { Button } from "@/components/ui/button";
-import { useTranslations } from "next-intl";
-import type { UsePageNavigationReturnType } from "../usePageNavigation";
-import { useMutation } from "@tanstack/react-query";
-import { getBookPageIndex } from "@/lib/api";
-import { useParams, useSearchParams } from "next/navigation";
-import { ShareIcon } from "lucide-react";
-import { useBookShareUrl } from "@/lib/share";
-import Spinner from "@/components/ui/spinner";
-import { useRouter } from "@/navigation";
-import { navigation } from "@/lib/urls";
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { TurathContent } from "@/types/api/content/turath";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import { useParams, useSearchParams } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Spinner from "@/components/ui/spinner";
+import { getBookPageIndex } from "@/lib/api";
+import { removeDiacritics } from "@/lib/diacritics";
+import { useBookShareUrl } from "@/lib/share";
+import { navigation } from "@/lib/urls";
+import { useRouter } from "@/navigation";
+import { useMutation } from "@tanstack/react-query";
+import { ShareIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
+import { useReaderVirtuoso } from "../context";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 const SearchResult = ({
   result,
@@ -26,7 +27,7 @@ const SearchResult = ({
   headings: OpenitiContent["headings"] | TurathContent["headings"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const t = useTranslations();
   const router = useRouter();
   const params = useParams();
@@ -78,7 +79,7 @@ const SearchResult = ({
       virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
     }
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   const handleShare = async () => {
@@ -115,18 +116,18 @@ const SearchResult = ({
 
   return (
     <div
-      className="border-b border-border px-6 py-4 transition-colors hover:cursor-pointer hover:bg-accent/50"
+      className="border-border hover:bg-accent/50 border-b px-6 py-4 transition-colors hover:cursor-pointer"
       onClick={handleNavigate}
     >
-      <div className="flex items-center justify-between text-xs text-muted-foreground">
+      <div className="text-muted-foreground flex items-center justify-between text-xs">
         <div className="flex">
           <Button
             variant="ghost"
             size="icon"
-            className="size-9 hover:bg-accent focus:bg-accent"
+            className="hover:bg-accent focus:bg-accent size-9"
             onClick={(e) => {
               e.stopPropagation(); // don't trigger navigate
-              handleShare();
+              void handleShare();
             }}
             disabled={isPending}
           >
@@ -151,13 +152,13 @@ const SearchResult = ({
 
       <p
         dir="rtl"
-        className="mt-4 font-scheherazade text-lg [&>em]:font-bold [&>em]:not-italic [&>em]:text-primary"
+        className="font-scheherazade [&>em]:text-primary mt-4 text-lg [&>em]:font-bold [&>em]:not-italic"
         dangerouslySetInnerHTML={{
           __html: content,
         }}
       />
 
-      <div className="mt-4 flex items-center justify-between text-xs text-muted-foreground">
+      <div className="text-muted-foreground mt-4 flex items-center justify-between text-xs">
         {result.score ? (
           <span>
             {t("reader.match-rate-x", {

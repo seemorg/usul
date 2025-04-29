@@ -1,16 +1,17 @@
+import type { TreeDataItem } from "@/components/tree-view";
+import type { OpenitiContent } from "@/types/api/content/openiti";
+import type { PdfContent } from "@/types/api/content/pdf";
+import type { TurathContent } from "@/types/api/content/turath";
+import React, { useMemo } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { TreeView } from "@/components/tree-view";
+import { navigation } from "@/lib/urls";
+import { useRouter } from "@/navigation";
+
+import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
-import { useMobileSidebar } from "../mobile-sidebar-provider";
-import React, { useMemo } from "react";
-import type { UsePageNavigationReturnType } from "../usePageNavigation";
-import type { OpenitiContent } from "@/types/api/content/openiti";
-import type { TurathContent } from "@/types/api/content/turath";
-
-import { type TreeDataItem, TreeView } from "@/components/tree-view";
-import { useRouter } from "@/navigation";
-import { useParams, useSearchParams } from "next/navigation";
-import { navigation } from "@/lib/urls";
-import { PdfContent } from "@/types/api/content/pdf";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
 type TurathChapter = NonNullable<TurathContent["headings"]>[number];
@@ -91,7 +92,7 @@ export default function ChaptersList({
   isSinglePage?: boolean;
 }) {
   const virtuosoRef = useReaderVirtuoso();
-  const mobileSidebar = useMobileSidebar();
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const bookSlug = useParams().bookId as string;
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -116,7 +117,7 @@ export default function ChaptersList({
       }
     }
 
-    if (mobileSidebar.closeSidebar) mobileSidebar.closeSidebar();
+    closeMobileSidebar();
   };
 
   if (headers.length === 0) {

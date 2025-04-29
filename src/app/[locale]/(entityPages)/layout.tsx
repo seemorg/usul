@@ -11,7 +11,7 @@ export default function EntityPageLayout({
     <div>
       <Navbar />
 
-      <main className="flex min-h-screen w-full bg-background pb-24 pt-24 sm:pt-36">
+      <main className="bg-background flex min-h-screen w-full pt-24 pb-24 sm:pt-36">
         <Container>{children}</Container>
       </main>
 

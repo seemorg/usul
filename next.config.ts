@@ -2,19 +2,19 @@
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
  * for Docker builds.
  */
-const env = await import("./src/env.js");
 
-import createNextIntlPlugin from "next-intl/plugin";
-import { withAxiom } from "next-axiom";
-import createMDX from "@next/mdx";
+import { NextConfig } from "next";
+import { env } from "@/env";
 import createBundleAnalyzer from "@next/bundle-analyzer";
+import createMDX from "@next/mdx";
+import { withAxiom } from "next-axiom";
+import createNextIntlPlugin from "next-intl/plugin";
 
-/** @type {import("next").NextConfig} */
-const config = {
+const config: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  eslint: { ignoreDuringBuilds: true },
   headers: async () => {
-    /** @type {Awaited<ReturnType<NonNullable<import("next").NextConfig["headers"]>>>} */
-    const headers = [
+    const headers: Awaited<ReturnType<NonNullable<NextConfig["headers"]>>> = [
       {
         // Cache sitemap
         source: "/sitemap.xml",
@@ -29,7 +29,7 @@ const config = {
     ];
 
     // disable indexing on non-production environments
-    if (env.env.VERCEL_ENV !== "production") {
+    if (env.VERCEL_ENV !== "production") {
       headers.push({
         source: "/:path*",
         headers: [
@@ -73,17 +73,18 @@ const config = {
   },
 };
 
-const withNextIntl = createNextIntlPlugin();
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-});
-const withBundleAnalyzer = createBundleAnalyzer({
-  enabled: process.env.ANALYZE === "true",
-});
-
-const plugins = [withBundleAnalyzer, withMDX, withNextIntl, withAxiom];
+const plugins = [
+  createBundleAnalyzer({
+    enabled: process.env.ANALYZE === "true",
+  }),
+  createMDX({
+    options: {
+      remarkPlugins: [],
+      rehypePlugins: [],
+    },
+  }),
+  createNextIntlPlugin("./src/i18n/request.ts"),
+  withAxiom,
+];
 
 export default plugins.reduce((acc, plugin) => plugin(acc), config);

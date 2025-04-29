@@ -1,3 +1,5 @@
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
+import type { JSX } from "react";
 import ComingSoonModal from "@/components/coming-soon-modal";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
@@ -7,13 +9,12 @@ import {
   VOLUNTEER_EMAIL,
 } from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
-import { config } from "@/lib/seo";
+import { SITE_CONFIG } from "@/lib/seo";
 import { navigation as urls } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import { useLocale, useTranslations } from "next-intl";
-import type { AppLocale } from "~/i18n.config";
+
 import FooterDemoButton from "./demo-button";
 
 type NavItem = {
@@ -38,7 +39,7 @@ const navigation = {
     },
     {
       label: "navigation.about.contact.title",
-      href: `mailto:${config.contactEmail}`,
+      href: `mailto:${SITE_CONFIG.contactEmail}`,
     },
   ] satisfies NavItem[],
   browse: [
@@ -58,7 +59,7 @@ const navigation = {
     },
     {
       label: "navigation.contribute.feedback.title",
-      href: `mailto:${config.feedbackEmail}`,
+      href: `mailto:${SITE_CONFIG.feedbackEmail}`,
     },
     {
       label: "navigation.contribute.volunteer.title",
@@ -91,7 +92,7 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
 
   return (
     <div className="w-fit xl:mx-auto">
-      <h3 className="text-sm font-bold leading-6 text-foreground">{title}</h3>
+      <h3 className="text-foreground text-sm leading-6 font-bold">{title}</h3>
 
       <ul role="list" className="mt-6 space-y-4">
         {items.map((item) => {
@@ -135,7 +136,7 @@ const FooterRow = ({ title, items }: { title: string; items: NavItem[] }) => {
 };
 
 export default function Footer() {
-  const locale = useLocale() as AppLocale;
+  const locale = useLocale();
   const t = useTranslations("common");
 
   return (
@@ -144,14 +145,14 @@ export default function Footer() {
         Footer
       </h2>
 
-      <Container className="pb-8 pt-0">
-        <div className="border-t border-border pt-12 xl:flex xl:justify-between xl:gap-8">
+      <Container className="pt-0 pb-8">
+        <div className="border-border border-t pt-12 xl:flex xl:justify-between xl:gap-8">
           <div className="max-w-[400px]">
-            <p className="font-bold leading-6 text-foreground">
+            <p className="text-foreground leading-6 font-bold">
               {t("footer.headline")}
             </p>
 
-            <p className="mt-3 text-sm leading-6 text-muted-foreground">
+            <p className="text-muted-foreground mt-3 text-sm leading-6">
               {t("footer.description")}
             </p>
 

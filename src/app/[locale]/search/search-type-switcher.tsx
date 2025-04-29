@@ -1,10 +1,11 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
-import type { SearchType } from "./routeType";
+import { useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { usePathname, useRouter } from "@/navigation";
+
+import type { SearchType } from "./routeType";
 
 export default function SearchTypeSwitcher() {
   const searchParams = useSearchParams();

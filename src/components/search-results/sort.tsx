@@ -1,6 +1,11 @@
 "use client";
 
+import type { Sort } from "@/types/sort";
+import { useState, useTransition } from "react";
 import { usePathname, useRouter } from "@/navigation";
+import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
+
 import {
   Select,
   SelectContent,
@@ -8,10 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { useState, useTransition } from "react";
-import { ArrowsUpDownIcon } from "@heroicons/react/24/solid";
-import type { Sort } from "@/types/sort";
-import { useTranslations } from "next-intl";
 
 export default function SearchSort({
   sorts,

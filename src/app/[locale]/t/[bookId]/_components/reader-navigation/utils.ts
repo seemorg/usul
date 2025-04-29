@@ -1,6 +1,7 @@
+import { useParams, useSearchParams } from "next/navigation";
 import { navigation } from "@/lib/urls";
 import { usePathname, useRouter } from "@/navigation";
-import { useParams, useSearchParams } from "next/navigation";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
 
 export const useReaderView = () => {
@@ -30,7 +31,7 @@ export const useReaderView = () => {
     return _view;
   };
 
-  const view = getView() as "pdf" | "ebook";
+  const view = getView();
 
   const setView = (newView: "pdf" | "ebook") => {
     if (newView === view) return;

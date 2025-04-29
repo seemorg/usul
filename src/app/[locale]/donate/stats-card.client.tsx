@@ -1,15 +1,15 @@
 "use client";
 
-import { useTranslations, useFormatter } from "next-intl";
+import { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import { useQuery } from "@tanstack/react-query";
-import { getMonthlyStats } from "@/server/services/donations";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { HandCoinsIcon } from "lucide-react";
 import { env } from "@/env";
+import { getMonthlyStats } from "@/server/services/donations";
+import { useQuery } from "@tanstack/react-query";
+import { HandCoinsIcon } from "lucide-react";
+import { useFormatter, useTranslations } from "next-intl";
 
 const GOAL = 10_000;
 
@@ -65,12 +65,12 @@ export function DonationStatsCard() {
     : 0;
 
   return (
-    <div className="flex w-full translate-y-[20%] flex-col justify-between rounded-2xl bg-card p-10 text-foreground shadow-xl shadow-black/5 sm:p-14 lg:translate-y-0 ">
+    <div className="bg-card text-foreground flex w-full translate-y-[20%] flex-col justify-between rounded-2xl p-10 shadow-xl shadow-black/5 sm:p-14 lg:translate-y-0">
       <div>
         {isLoading ? (
           <Skeleton className="h-[48px] w-full sm:h-[72px]" />
         ) : (
-          <p className="text-5xl font-bold text-primary xs:text-6xl sm:text-7xl">
+          <p className="text-primary xs:text-6xl text-5xl font-bold sm:text-7xl">
             {formattedDonations}
           </p>
         )}
@@ -114,7 +114,7 @@ export function DonationStatsCard() {
           </a>
         </Button>
 
-        <p className="mt-5 text-sm text-muted-foreground">
+        <p className="text-muted-foreground mt-5 text-sm">
           {t("already-donor.title")}{" "}
           <a
             href={env.NEXT_PUBLIC_STRIPE_PORTAL_URL}

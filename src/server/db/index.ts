@@ -1,7 +1,7 @@
+import { env } from "@/env";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
-import { env } from "@/env";
 
 const prismaClientSingleton = () => {
   if (
@@ -24,4 +24,4 @@ declare const globalThis: {
 
 export const db = globalThis.prismaGlobal ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = db;
+if (env.NODE_ENV !== "production") globalThis.prismaGlobal = db;

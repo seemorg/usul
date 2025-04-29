@@ -1,18 +1,19 @@
 import type { searchBooks } from "@/server/typesense/book";
-import { Link } from "@/navigation";
+import type { View } from "@/validation/view";
+import { formatDeathYear } from "@/lib/date";
+import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import InfoDialog from "./info-dialog";
-import type { View } from "@/validation/view";
-import { CloudflareImage } from "../cloudflare-image";
-import { useTranslations } from "next-intl";
-import { useDirection, usePathLocale } from "@/lib/locale/utils";
+import { Link } from "@/navigation";
 import {
   getPrimaryLocalizedText,
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
+import { useTranslations } from "next-intl";
+
+import { CloudflareImage } from "../cloudflare-image";
 import EntityCard from "../entity-card";
-import { formatDeathYear } from "@/lib/date";
+import InfoDialog from "./info-dialog";
 
 export default function BookSearchResult({
   result,
@@ -36,14 +37,14 @@ export default function BookSearchResult({
       : "primaryName" in document
         ? document.primaryName
         : primaryNames
-          ? getPrimaryLocalizedText(primaryNames, pathLocale) ?? ""
+          ? (getPrimaryLocalizedText(primaryNames, pathLocale) ?? "")
           : ""
   ) as string;
 
   const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
 
   const authorPrimaryNames =
-    author?.primaryNames ?? (author as any)?.primaryNameTranslations;
+    author.primaryNames ?? (author as any)?.primaryNameTranslations;
 
   const authorName = (
     author.transliteration && pathLocale === "en"
@@ -58,7 +59,7 @@ export default function BookSearchResult({
   const authorSecondaryName = (
     "secondaryName" in author
       ? author.secondaryName
-      : author?.primaryNames
+      : author.primaryNames
         ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
         : undefined
   ) as string | undefined;
@@ -69,24 +70,24 @@ export default function BookSearchResult({
         <InfoDialog result={result} />
 
         <Link href={navigation.books.reader(document.slug)} prefetch={prefetch}>
-          <div className={cn("overflow-hidden rounded-md bg-muted")}>
+          <div className={cn("bg-muted overflow-hidden rounded-md")}>
             {document.coverUrl ? (
               <CloudflareImage
                 src={document.coverUrl}
                 alt={title}
                 width={320}
                 height={460}
-                className="aspect-[1600/2300] w-full object-cover"
+                className="aspect-1600/2300 w-full object-cover"
                 placeholder="empty"
               />
             ) : (
-              <div className="aspect-[1600/2300] w-full bg-muted" />
+              <div className="bg-muted aspect-1600/2300 w-full" />
             )}
           </div>
 
           <div className="mt-2">
             <p
-              className="mt-2 line-clamp-2 text-wrap text-lg font-semibold"
+              className="mt-2 line-clamp-2 text-lg font-semibold text-wrap"
               dir={dir}
               dangerouslySetInnerHTML={{ __html: title }}
               title={title}
@@ -94,7 +95,7 @@ export default function BookSearchResult({
 
             {authorName && (
               <p
-                className="mt-1 line-clamp-2 text-wrap text-sm text-muted-foreground"
+                className="text-muted-foreground mt-1 line-clamp-2 text-sm text-wrap"
                 title={authorName}
                 dir={dir}
               >

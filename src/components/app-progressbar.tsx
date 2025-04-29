@@ -1,10 +1,11 @@
 "use client";
 
+import type { NProgressOptions } from "nprogress";
 import React, { useEffect } from "react";
-import NProgress, { type NProgressOptions } from "nprogress";
-import { usePathname } from "@/navigation";
 import { useSearchParams } from "next/navigation";
 import { isSameURL } from "@/lib/utils";
+import { usePathname } from "@/navigation";
+import NProgress from "nprogress";
 
 type PushStateInput = [
   data: any,
@@ -144,7 +145,7 @@ const AppProgressBar = React.memo(
         const currentUrl = new URL(location.href);
 
         if (shallowRouting && isSameURL(targetUrl, currentUrl)) return;
-        if (targetUrl?.href === currentUrl?.href) return;
+        if (targetUrl.href === currentUrl.href) return;
 
         startProgress();
       };

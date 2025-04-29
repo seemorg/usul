@@ -1,21 +1,21 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import {
   DropdownMenu,
-  DropdownMenuContent,
   DropdownMenuCheckboxItem,
+  DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { type AppLocale, routing } from "~/i18n.config";
-import { Link, usePathname } from "@/navigation";
-import { useSearchParams } from "next/navigation";
+import { routing } from "@/i18n/config";
 import { getLocaleFullName } from "@/lib/locale/utils";
+import { Link, usePathname } from "@/navigation";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { useLocale } from "next-intl";
 
 export default function LocaleSwitcher() {
-  const selectedLocale = useLocale() as AppLocale;
+  const selectedLocale = useLocale();
   const pathname = usePathname();
 
   const params = useSearchParams();
@@ -34,7 +34,7 @@ export default function LocaleSwitcher() {
 
       <DropdownMenuContent align="end">
         {routing.locales.map((locale) => (
-          <Link href={currentUrl} key={locale} locale={locale as any}>
+          <Link href={currentUrl} key={locale} locale={locale}>
             <DropdownMenuCheckboxItem checked={selectedLocale === locale}>
               {getLocaleFullName(locale)}
             </DropdownMenuCheckboxItem>

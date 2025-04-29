@@ -1,9 +1,9 @@
-import { ArabicLogo, Logo } from "@/components/Icons";
-import { loadFileOnEdge } from "@/lib/edge";
+import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
+import { ArabicLogo, Logo } from "@/components/Icons";
 import { getAuthorBySlug } from "@/lib/api";
-import type { NextRequest } from "next/server";
+import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";
 
@@ -26,9 +26,9 @@ const fonts = {
 // Image generation
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { slug: string } },
+  { params }: { params: Promise<{ slug: string }> },
 ) {
-  const slug = params.slug;
+  const { slug } = await params;
 
   if (!slug) {
     notFound();

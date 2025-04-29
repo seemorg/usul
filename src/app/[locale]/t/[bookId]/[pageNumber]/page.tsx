@@ -1,30 +1,35 @@
-import { getPathLocale } from "@/lib/locale/server";
+import type { Locale } from "next-intl";
 import { notFound } from "next/navigation";
-import ReaderContent from "../_components/reader-content";
-import SidebarResizer from "../_components/sidebar/sidebar-resizer";
-import ReaderSidebar from "../_components/sidebar";
 import { getBookPage } from "@/lib/api";
-import ReaderNavigation from "../_components/reader-navigation";
+import { getPathLocale } from "@/lib/locale/server";
+import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
+
+import ReaderContent from "../_components/reader-content";
+import ReaderNavigation from "../_components/reader-navigation";
+import ReaderSidebar from "../_components/sidebar";
+import SidebarResizer from "../_components/sidebar/sidebar-resizer";
 import { BookDetailsProvider } from "../_contexts/book-details.context";
-import type { AppLocale } from "~/i18n.config";
-import { appLocaleToPathLocale } from "@/lib/locale/utils";
 
 export const generateMetadata = async ({
-  params: { bookId, pageNumber, locale },
-  searchParams: { versionId },
+  params,
+  searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
     pageNumber: string;
-    locale: AppLocale;
-  };
-  searchParams: {
+    locale: Locale;
+  }>;
+  searchParams: Promise<{
     versionId?: string;
-  };
+  }>;
 }) => {
+  const { bookId, locale, pageNumber } = await params;
+  const resolvedSearchParams = await searchParams;
+  const { versionId } = resolvedSearchParams;
+
   const pathLocale = appLocaleToPathLocale(locale);
 
   const parsedNumber = Number(pageNumber);
@@ -63,19 +68,23 @@ export const generateMetadata = async ({
 };
 
 async function SidebarContent({
-  params: { bookId, pageNumber },
+  params,
   searchParams,
 }: {
-  params: {
+  params: Promise<{
     bookId: string;
     pageNumber: string;
-  };
-  searchParams: {
+    locale: Locale;
+  }>;
+  searchParams: Promise<{
     versionId?: string;
     tab: string;
-  };
+  }>;
 }) {
-  const { versionId } = searchParams;
+  const resolvedSearchParams = await searchParams;
+  const { bookId, pageNumber, locale } = await params;
+  const { versionId } = resolvedSearchParams;
+
   const pathLocale = await getPathLocale();
 
   const parsedNumber = Number(pageNumber);
@@ -96,12 +105,13 @@ async function SidebarContent({
   }
 
   if ("type" in response) {
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams(resolvedSearchParams);
     const paramsString = params.size > 0 ? `?${params.toString()}` : "";
 
-    permanentRedirect(
-      `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
-    );
+    permanentRedirect({
+      href: `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
+      locale,
+    });
     return;
   }
 

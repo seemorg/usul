@@ -1,24 +1,31 @@
 "use client";
 
-import Container from "@/components/ui/container";
-import VersionSelector from "./version-selector";
 import type { ApiBookResponse } from "@/types/api/book";
-import DownloadButton from "./download-button";
-import ViewTabs from "./view-tabs";
-import BookInfoHeader from "./book-info-header";
-import { useNavbarStore } from "@/stores/navbar";
+
+import { SinglePageIcon } from "@/components/Icons";
+import Container from "@/components/ui/container";
+
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import ReaderNavigationMobileActions from "./mobile-actions";
-import { SinglePageIcon } from "@/components/Icons";
-import ReaderNavigationButton from "./navigation-button";
+import { useNavbarStore } from "@/stores/navbar";
 import { useTranslations } from "next-intl";
-import { useGetBookUrl, useReaderView } from "./utils";
-import { TabContent } from "../tab-content";
-import { tabs } from "../sidebar/tabs";
-import { useState } from "react";
-import { Drawer, DrawerContent } from "@/components/ui/drawer";
+
 import { useBookDetails } from "../../_contexts/book-details.context";
+import { tabs } from "../sidebar/tabs";
+import { TabContent } from "../tab-content";
+import BookInfoHeader from "./book-info-header";
+import DownloadButton from "./download-button";
+import ReaderNavigationMobileActions from "./mobile-actions";
+import ReaderNavigationButton from "./navigation-button";
+import { useGetBookUrl, useReaderView } from "./utils";
+import VersionSelector from "./version-selector";
+import ViewTabs from "./view-tabs";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
+import { useMediaQuery } from "usehooks-ts";
+import MobileMenu from "@/app/_components/navbar/mobile-menu";
+import { Button } from "@/components/ui/button";
+import { XIcon } from "lucide-react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {
@@ -42,26 +49,27 @@ export default function ReaderNavigation({
   const bookSlug = bookResponse.book.slug;
   const t = useTranslations("reader");
   const bookUrl = useGetBookUrl(isSinglePage ? undefined : 1);
-  const [activeTabId, setActiveTabId] = useState<
-    (typeof tabs)[number]["id"] | null
-  >(null);
+  const { activeTabId, setActiveTabId } = useMobileReaderStore();
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const versionId = bookResponse.content.id;
   const pdf = getPdfUrl(bookResponse);
 
   const { hasEbook } = useReaderView();
 
+  const isDrawerOpen = !!activeTabId && isMobile;
+
   return (
     <>
       <div
         className={cn(
-          "relative w-full bg-reader px-5 transition will-change-transform lg:px-8",
+          "bg-reader relative w-full px-5 transition duration-250 will-change-transform lg:px-8",
           showNavbar
             ? "translate-y-0 opacity-100"
             : "-translate-y-10 opacity-0",
         )}
       >
-        <Container className="flex items-center justify-between border-b border-border px-0 py-2.5 2xl:max-w-5xl">
+        <Container className="border-border flex items-center justify-between border-b px-0 py-2.5 2xl:max-w-5xl">
           <div className="flex flex-1 items-center gap-2">
             <ReaderNavigationMobileActions
               isSinglePage={isSinglePage ?? false}
@@ -108,27 +116,26 @@ export default function ReaderNavigation({
               </ReaderNavigationButton>
             ))}
 
-            <Drawer
-              open={!!activeTabId}
-              onOpenChange={(state) => {
-                if (!state) {
-                  setActiveTabId(null);
-                }
-              }}
+            <Dialog
+              open={isDrawerOpen}
+              onOpenChange={() => setActiveTabId(null)}
             >
-              <DrawerContent>
-                {activeTabId && (
-                  <div className="h-[85vh] w-full overflow-y-auto">
-                    <TabContent
-                      tabId={activeTabId}
-                      bookSlug={bookSlug}
-                      versionId={versionId}
-                      isSinglePage={isSinglePage}
-                    />
-                  </div>
+              <DialogContent
+                className="h-dvh w-full overflow-y-auto rounded-none px-0 pt-10"
+                overlayProps={{ className: "pt-0 pb-0" }}
+              >
+                <DialogTitle className="sr-only">Reader sidebar</DialogTitle>
+
+                {isDrawerOpen && (
+                  <TabContent
+                    tabId={activeTabId}
+                    bookSlug={bookSlug}
+                    versionId={versionId}
+                    isSinglePage={isSinglePage}
+                  />
                 )}
-              </DrawerContent>
-            </Drawer>
+              </DialogContent>
+            </Dialog>
           </div>
         </Container>
       </div>

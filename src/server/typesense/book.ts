@@ -1,16 +1,13 @@
 "use server";
 
-import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
-import {
-  type SearchOptions,
-  makePagination,
-  prepareQuery,
-  prepareResults,
-} from "./utils";
+import type { SearchResponse } from "typesense/lib/Typesense/Documents";
 import { makeMultiSearchRequest } from "@/lib/typesense";
+
+import type { SearchOptions } from "./utils";
 import { AUTHORS_COLLECTION, BOOKS_COLLECTION } from "./config";
+import { makePagination, prepareQuery, prepareResults } from "./utils";
 
 export const searchBooks = async (q: string, options?: SearchOptions) => {
   const { limit = BOOKS_COLLECTION.DEFAULT_PER_PAGE, page = 1 } = options ?? {};
@@ -67,35 +64,34 @@ export const searchBooks = async (q: string, options?: SearchOptions) => {
   //   ...(filters.length > 0 && { filter_by: filters.join(" && ") }),
   // })) as SearchResponse<BookDocument>;
 
-  const results = (await makeMultiSearchRequest([
+  const results = await makeMultiSearchRequest<{
+    results: [SearchResponse<BookDocument>, SearchResponse<AuthorDocument>];
+  }>([
     {
       collection: BOOKS_COLLECTION.INDEX,
       q: prepareQuery(q),
       query_by: BOOKS_COLLECTION.queryBy,
       query_by_weights: BOOKS_COLLECTION.queryByWeights,
-      prioritize_token_position: true,
-      limit,
-      page,
+      prioritize_token_position: "true",
+      ...(limit && { limit: limit.toString() }),
+      ...(page && { page: page.toString() }),
       ...(options?.sortBy &&
         options.sortBy !== "relevance" && { sort_by: options.sortBy }),
       ...(filters.length > 0 && { filter_by: filters.join(" && ") }),
     },
-
     ...(authors && authors.length > 0
       ? [
           {
             collection: AUTHORS_COLLECTION.INDEX,
             q: "",
             query_by: "primaryNames.text",
-            limit: 100,
-            page: 1,
+            limit: "100",
+            page: "1",
             filter_by: `id:[${authors.map((id) => `\`${id}\``).join(", ")}]`,
           },
         ]
       : []),
-  ])) as {
-    results: [SearchResponse<BookDocument>, SearchResponse<AuthorDocument>];
-  };
+  ]);
 
   const [booksResults, selectedAuthorsResults] = results.results;
 

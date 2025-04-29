@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-key */
 import DottedList from "@/components/ui/dotted-list";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { TrendingUpIcon } from "lucide-react";
@@ -15,7 +14,7 @@ const SearchPill = ({
 }) => {
   return (
     <button
-      className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent"
+      className="border-border text-muted-foreground hover:bg-accent flex items-center gap-2 rounded-lg border px-3 py-2 text-sm font-medium transition-colors"
       onClick={onClick}
     >
       {showIcon && <TrendingUpIcon className="size-4" />}
@@ -45,7 +44,7 @@ export default function SearchBarEmptyState({
   );
 
   return (
-    <div className="flex flex-col gap-8 p-6">
+    <div className="flex flex-col gap-8 px-4 py-6 sm:px-6">
       <div>
         <DottedList
           items={[
@@ -70,7 +69,7 @@ export default function SearchBarEmptyState({
               </SearchPill>
             ))
           ) : (
-            <p className="text-sm text-foreground/50">
+            <p className="text-foreground/50 text-sm">
               {t("common.search-bar.recent-searches-placeholder")}
             </p>
           )}

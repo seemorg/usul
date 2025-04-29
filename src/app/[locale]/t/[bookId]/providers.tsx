@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
+
 import ReaderContextProviders from "./_components/context";
 import { useBookDetailsStore } from "./_stores/book-details";
-import { useEffect } from "react";
 import { useSearchStore } from "./_stores/search";
 
 export default function Providers({ children }: { children: React.ReactNode }) {

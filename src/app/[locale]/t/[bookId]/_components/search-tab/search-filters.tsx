@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -9,8 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import { Label } from "@/components/ui/label";
-import { X, Plus, FolderPlus } from "lucide-react";
+import { FolderPlusIcon, PlusIcon, XIcon } from "lucide-react";
 
 type Operator = "like" | "exact" | "starts-with" | "ends-with";
 
@@ -58,7 +58,7 @@ const ConditionComponent: React.FC<{
       value={condition.value}
       onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
       placeholder="Enter value"
-      className="flex-grow"
+      className="grow"
     />
 
     <div className="flex items-center space-x-2">
@@ -71,7 +71,7 @@ const ConditionComponent: React.FC<{
     </div>
 
     <Button variant="ghost" size="icon" onClick={onRemove}>
-      <X className="h-4 w-4" />
+      <XIcon className="size-4" />
     </Button>
   </div>
 );
@@ -140,14 +140,14 @@ const GroupComponent: React.FC<{
           </Select>
         )}
         <Button variant="outline" onClick={addCondition}>
-          <Plus className="mr-2 h-4 w-4" /> Add Condition
+          <PlusIcon className="mr-2 size-4" /> Add Condition
         </Button>
         <Button variant="outline" onClick={addGroup}>
-          <FolderPlus className="mr-2 h-4 w-4" /> Add Group
+          <FolderPlusIcon className="mr-2 size-4" /> Add Group
         </Button>
         {depth > 0 && (
           <Button variant="ghost" size="icon" onClick={onRemove}>
-            <X className="h-4 w-4" />
+            <XIcon className="size-4" />
           </Button>
         )}
       </div>

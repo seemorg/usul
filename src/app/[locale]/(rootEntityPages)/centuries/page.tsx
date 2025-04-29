@@ -1,23 +1,27 @@
-import { findAllYearRanges } from "@/server/services/years";
-import { withParamValidation } from "next-typesafe-url/app/hoc";
-import { Route, sorts, type RouteType } from "./routeType";
+import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import Fuse from "fuse.js";
-import SearchResults from "@/components/search-results";
 import CenturySearchResult from "@/components/century-search-result";
-import RootEntityPage from "../root-entity-page";
-import { getTranslations } from "next-intl/server";
+import SearchResults from "@/components/search-results";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { AppLocale } from "~/i18n.config";
+import { findAllYearRanges } from "@/server/services/years";
+import Fuse from "fuse.js";
+import { getTranslations } from "next-intl/server";
+import { withParamValidation } from "next-typesafe-url/app/hoc";
+
+import type { RouteType } from "./routeType";
+import RootEntityPage from "../root-entity-page";
+import { Route, sorts } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
 
 export async function generateMetadata({
-  params: { locale },
+  params,
 }: {
-  params: { locale: AppLocale };
+  params: Promise<{ locale: Locale }>;
 }) {
+  const { locale } = await params;
+
   return getMetadata({
     title: (await getTranslations("entities"))("centuries"),
     pagePath: navigation.centuries.all(),
@@ -26,7 +30,7 @@ export async function generateMetadata({
 }
 
 async function CenturiesPage({ searchParams }: PageProps) {
-  const { q, sort } = searchParams;
+  const { q, sort } = await searchParams;
   const qString = String(q);
 
   const t = await getTranslations("entities");

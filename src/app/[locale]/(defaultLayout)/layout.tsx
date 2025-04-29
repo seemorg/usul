@@ -10,7 +10,7 @@ export default function DefaultLayout({
     <div>
       <Navbar />
 
-      <main className="flex min-h-screen w-full flex-col bg-background pb-24 pt-24">
+      <main className="bg-background flex min-h-screen w-full flex-col py-24">
         {children}
       </main>
 

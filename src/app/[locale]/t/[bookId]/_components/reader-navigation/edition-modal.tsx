@@ -1,21 +1,24 @@
+import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogDescription,
   DialogOverlay,
   DialogPortal,
+  DialogTitle,
   RawDialogClose,
   RawDialogContent,
 } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
+import Spinner from "@/components/ui/spinner";
+import { versionToName } from "@/lib/version";
+import { usePathname, useRouter } from "@/navigation";
 import { XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Fragment, useState, useTransition } from "react";
+
 import PublicationDetails from "../publication-details";
-import { Button } from "@/components/ui/button";
-import { usePathname, useRouter } from "@/navigation";
-import { useSearchParams } from "next/navigation";
-import { versionToName } from "@/lib/version";
-import Spinner from "@/components/ui/spinner";
 
 const EditionItem = ({
   version,
@@ -32,19 +35,23 @@ const EditionItem = ({
 
   return (
     <div className="px-6 py-6">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <h4 className="text-xl font-semibold">{versionToName(version)}</h4>
+      <div className="flex justify-between sm:items-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2">
+          <h4 className="text-lg font-semibold sm:text-xl">
+            {versionToName(version)}
+          </h4>
 
-          {version.source === "openiti" ||
-          version.source === "turath" ||
-          (version.source === "pdf" && version.ocrBookId) ? (
-            <Badge variant="muted">{t("common.e-book")}</Badge>
-          ) : null}
+          <div className="flex gap-2">
+            {version.source === "openiti" ||
+            version.source === "turath" ||
+            (version.source === "pdf" && version.ocrBookId) ? (
+              <Badge variant="muted">{t("common.e-book")}</Badge>
+            ) : null}
 
-          {version.source === "pdf" || version.pdfUrl ? (
-            <Badge variant="muted">{t("common.pdf")}</Badge>
-          ) : null}
+            {version.source === "pdf" || version.pdfUrl ? (
+              <Badge variant="muted">{t("common.pdf")}</Badge>
+            ) : null}
+          </div>
         </div>
 
         <Button
@@ -61,7 +68,7 @@ const EditionItem = ({
       </div>
 
       <PublicationDetails
-        className="mt-6"
+        className="mt-4 grid grid-cols-2 items-start gap-3 sm:mt-6 sm:flex sm:items-center sm:gap-6"
         publicationDetails={{
           publisher: version.publicationDetails?.publisher,
           investigator: version.publicationDetails?.investigator,
@@ -116,19 +123,18 @@ export default function EditionModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogPortal>
-        <DialogOverlay>
-          <RawDialogContent className="relative z-50 grid w-full max-w-4xl bg-background shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+        <DialogOverlay className="place-items-end pt-10 pb-0 sm:place-items-center sm:pt-40 sm:pb-20">
+          <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 grid w-full max-w-4xl shadow-lg duration-200 sm:rounded-lg">
             <div className="flex w-full items-center justify-between px-6 py-5">
               <div>
-                <h3 className="text-lg font-semibold">
-                  {t("reader.editions-modal.title")}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">
+                <DialogTitle>{t("reader.editions-modal.title")}</DialogTitle>
+
+                <DialogDescription className="mt-1">
                   {t("reader.editions-modal.description")}
-                </p>
+                </DialogDescription>
               </div>
 
-              <RawDialogClose className="rounded-sm p-2 opacity-70 ring-offset-background transition-opacity hover:bg-secondary/50 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+              <RawDialogClose className="ring-offset-background hover:bg-secondary/50 focus:ring-ring rounded-sm p-2 opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                 <XIcon className="size-5" />
                 <span className="sr-only">Close</span>
               </RawDialogClose>
@@ -136,18 +142,15 @@ export default function EditionModal({
 
             <Separator />
 
-            <div className="w-full">
-              {versions.map((version, index) => (
-                <Fragment key={version.id}>
-                  <EditionItem
-                    version={version}
-                    isSelected={version.id === selectedVersionObj?.id}
-                    onSelect={() => handleVersionChange(version.id)}
-                    isLoading={isPending}
-                  />
-
-                  {index < versions.length - 1 && <Separator />}
-                </Fragment>
+            <div className="divide-border w-full divide-y">
+              {versions.map((version) => (
+                <EditionItem
+                  key={version.id}
+                  version={version}
+                  isSelected={version.id === selectedVersionObj?.id}
+                  onSelect={() => handleVersionChange(version.id)}
+                  isLoading={isPending}
+                />
               ))}
             </div>
           </RawDialogContent>

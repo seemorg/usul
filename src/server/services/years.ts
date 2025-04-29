@@ -1,9 +1,10 @@
 // "use server";
 
 import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
 import descriptions from "~/data/centuries.json";
 import { db } from "../db";
-import { unstable_cache } from "next/cache";
 
 export const findAllYearRanges = cache(async () => {
   const counts = await countAllBooksByCentury();
@@ -22,7 +23,9 @@ export const findAllYearRanges = cache(async () => {
       yearFrom: i === 0 ? 1 : i,
       yearTo: i + 100,
       centuryNumber: century,
-      description: (descriptions as any)[String(century)]?.summary,
+      description: (descriptions as Record<string, { summary: string }>)[
+        String(century)
+      ]!.summary,
       totalBooks: counts.find((c) => c.century === century)?.count || 0,
     });
   }

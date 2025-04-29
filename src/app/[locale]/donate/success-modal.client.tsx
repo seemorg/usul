@@ -1,5 +1,6 @@
 "use client";
 
+import { useSearchParams } from "next/navigation";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +8,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { HeartIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 export default function SuccessModal() {

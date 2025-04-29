@@ -1,11 +1,11 @@
-import { getBook } from "@/lib/api";
-import { ApiBookParams } from "@/types/api/book";
+import type { ApiBookParams } from "@/types/api/book";
 import type { OpenitiContent } from "@/types/api/content/openiti";
 import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
-import { useQuery } from "@tanstack/react-query";
-import { useParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { getBook } from "@/lib/api";
+import { useQuery } from "@tanstack/react-query";
 
 export type DefaultPages = NonNullable<
   | TurathContent["pages"]

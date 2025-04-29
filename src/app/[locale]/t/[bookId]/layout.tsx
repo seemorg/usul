@@ -3,7 +3,7 @@ import Providers from "./providers";
 function ReaderLayout({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
-      <div className="max-h-screen overflow-hidden bg-reader">{children}</div>
+      <div className="bg-reader max-h-svh overflow-hidden">{children}</div>
     </Providers>
   );
 }

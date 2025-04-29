@@ -1,30 +1,34 @@
+import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_components/usePageNavigation";
+import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useState } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context";
+import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
+import { getBookPageIndex } from "@/lib/api";
+import { useBookShareUrl } from "@/lib/share";
+import {
+  ArrowUpOnSquareIcon,
+  DocumentDuplicateIcon,
+} from "@heroicons/react/24/outline";
+import { useQuery } from "@tanstack/react-query";
+import { XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+import { Button } from "../button";
 import {
   Dialog,
-  RawDialogClose,
-  RawDialogContent,
+  DialogDescription,
   DialogOverlay,
   DialogPortal,
+  DialogTitle,
+  RawDialogClose,
+  RawDialogContent,
 } from "../dialog";
-import { XIcon } from "lucide-react";
-import {
-  DocumentDuplicateIcon,
-  ArrowUpOnSquareIcon,
-} from "@heroicons/react/24/outline";
-import { Separator } from "../separator";
-import { Button } from "../button";
-import { useTranslations } from "next-intl";
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
-import { toast } from "../use-toast";
-import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context";
-import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_components/usePageNavigation";
-import { useQuery } from "@tanstack/react-query";
-import { getBookPageIndex } from "@/lib/api";
-import { useParams, useSearchParams } from "next/navigation";
 import { ScrollArea } from "../scroll-area";
-import { useBookShareUrl } from "@/lib/share";
+import { Separator } from "../separator";
 import Spinner from "../spinner";
-import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
+import { toast } from "../use-toast";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 export default function SourceModal({
   source,
@@ -35,6 +39,7 @@ export default function SourceModal({
 }) {
   const { bookResponse } = useBookDetails();
   const [isOpen, setIsOpen] = useState(false);
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
   const slug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId");
   const { copyUrl: copyShareUrl } = useBookShareUrl();
@@ -94,36 +99,44 @@ export default function SourceModal({
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     setIsOpen(false);
+    closeMobileSidebar();
   };
+
+  const pageReference = t("reader.chat.pg-x-vol", {
+    page: page.page,
+    vol: page.volume,
+  });
 
   return (
     <>
       <button
-        className="inline cursor-pointer rounded-md bg-muted p-1 text-xs"
+        className="bg-muted inline cursor-pointer rounded-md p-1 text-xs"
         onClick={() => setIsOpen(true)}
       >
-        {t("reader.chat.pg-x-vol", {
-          page: page.page,
-          vol: page.volume,
-        })}
+        {pageReference}
       </button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogPortal>
           <DialogOverlay>
-            <RawDialogContent className="relative z-50 flex w-full max-w-xl flex-col bg-background px-6 py-4 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] sm:rounded-lg">
+            <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 flex w-full max-w-xl flex-col px-6 py-4 shadow-lg duration-200 sm:rounded-lg">
               <div className="flex items-center justify-between">
-                <RawDialogClose className="rounded-sm p-2 text-muted-foreground ring-offset-background transition-colors hover:bg-accent/70 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
+                <DialogTitle className="sr-only">Source</DialogTitle>
+                <DialogDescription className="sr-only">
+                  {pageReference}
+                </DialogDescription>
+
+                <RawDialogClose className="text-muted-foreground ring-offset-background hover:bg-accent/70 focus:ring-ring rounded-sm p-2 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
                   <XIcon className="size-5" />
                   <span className="sr-only">Close</span>
                 </RawDialogClose>
 
-                <div className="flex items-center gap-2 text-base text-muted-foreground">
+                <div className="text-muted-foreground flex items-center gap-2 text-base">
                   <p dir="rtl">{chapter}</p>
                 </div>
               </div>
 
-              <Separator className="mb-6 mt-4" />
+              <Separator className="mt-4 mb-6" />
 
               <ScrollArea className="h-96 w-full pl-5" dir="rtl">
                 <p

@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, use } from "react";
 
 const TotalEntitiesContext = createContext<{
   books: number;
@@ -15,5 +15,5 @@ const TotalEntitiesContext = createContext<{
 export const TotalEntitiesProvider = TotalEntitiesContext.Provider;
 
 export const useTotalEntities = () => {
-  return useContext(TotalEntitiesContext);
+  return use(TotalEntitiesContext);
 };
