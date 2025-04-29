@@ -9,8 +9,8 @@ export const SITE_CONFIG = {
   themeColor: "#AA4A44",
   image: {
     url: "/cover.png",
-    width: 1500,
-    height: 600,
+    width: 1200,
+    height: 630,
     alt: "Usul Cover",
   },
   url: "https://usul.ai",
