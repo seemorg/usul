@@ -48,7 +48,7 @@ export default function SidebarResizer({
 
         <div
           className={cn(
-            "relative h-full w-full transition-transform duration-250 will-change-transform",
+            "relative h-[calc(100svh-64px)] w-full transition-transform duration-250 will-change-transform",
             // READER_NAVIGATION_HEIGHT + NAVBAR_HEIGHT
             !showNavbar && "-translate-y-[124px]",
           )}
