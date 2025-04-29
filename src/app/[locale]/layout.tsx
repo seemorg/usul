@@ -49,7 +49,7 @@ export default async function LocaleLayout({
     >
       <body
         className={cn(
-          "bg-background relative min-h-lvh w-full font-sans antialiased",
+          "bg-background relative min-h-svh w-full font-sans antialiased",
           getFontsClassnames(),
         )}
       >
