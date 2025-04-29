@@ -63,7 +63,7 @@ export default function AITab() {
     bookResponse.book.aiVersion !== bookResponse.content.id;
 
   return (
-    <div className="pb-2">
+    <div className="lg:pb-2">
       {isVersionMismatch && (
         <SidebarContainer className="my-4">
           <VersionAlert
@@ -116,8 +116,8 @@ export default function AITab() {
             className={cn(
               "flex flex-col justify-between",
               isVersionMismatch
-                ? "h-[calc(90dvh-170px)] md:h-[calc(100vh-370px)]"
-                : "h-[calc(90dvh-60px)] md:h-[calc(100vh-240px)]",
+                ? "h-[calc(100lvh-220px)] lg:h-[calc(100vh-370px)]"
+                : "h-[calc(100lvh-110px)] lg:h-[calc(100vh-240px)]",
             )}
           >
             <div className="relative flex-1 overflow-hidden">

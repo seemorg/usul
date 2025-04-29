@@ -121,7 +121,7 @@ export default function ReaderNavigation({
               onOpenChange={() => setActiveTabId(null)}
             >
               <DialogContent
-                className="h-screen w-full overflow-y-auto rounded-none px-0 pt-10"
+                className="h-dvh w-full overflow-y-auto rounded-none px-0 pt-10"
                 overlayProps={{ className: "pt-0 pb-0" }}
               >
                 <DialogTitle className="sr-only">test</DialogTitle>
