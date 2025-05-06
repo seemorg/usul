@@ -1,54 +1,59 @@
 "use client";
 
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { getLocaleFullName, usePathLocale } from "@/lib/locale/utils";
 import { useDemo } from "@/stores/demo";
+import { useTranslations } from "next-intl";
 
-// import { Button } from "@/components/ui/button";
-// import { useState } from "react";
-// import {
-//   getLocaleFullName,
-//   pathLocaleToAppLocale,
-//   usePathLocale,
-// } from "@/lib/locale/utils";
+const videos = {
+  en: "https://assets.usul.ai/usul-demos:english.mp4",
+  ar: "https://assets.usul.ai/usul-demos:arabic.mp4",
+};
 
 export default function DemoModalProvider() {
   const { isOpen, setIsOpen } = useDemo();
-
-  // const pathLocale = usePathLocale();
-  // const [activeLanguage, setActiveLanguage] = useState<"ar" | "en">(
-  //   pathLocale === "ar" ? "ar" : "en",
-  // );
+  const t = useTranslations("common");
+  const pathLocale = usePathLocale();
+  const [activeLanguage, setActiveLanguage] = useState<"ar" | "en">(
+    pathLocale === "ar" ? "ar" : "en",
+  );
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="sm:max-w-4xl">
-        <DialogTitle className="text-2xl">Usul Demo</DialogTitle>
-        <DialogDescription>This is a demo of the Usul app.</DialogDescription>
-        {/* <div className="flex items-center gap-3">
-        <Button
-          variant={activeLanguage === "en" ? "default" : "outline"}
-          onClick={() => setActiveLanguage("en")}
-        >
-          {getLocaleFullName(pathLocaleToAppLocale("en")!)}
-        </Button>
+        <DialogHeader>
+          <DialogTitle className="text-2xl">{t("demo.title")}</DialogTitle>
+          <DialogDescription>{t("demo.description")}</DialogDescription>
+        </DialogHeader>
 
-        <Button
-          variant={activeLanguage === "ar" ? "default" : "outline"}
-          onClick={() => setActiveLanguage("ar")}
-        >
-          {getLocaleFullName(pathLocaleToAppLocale("ar")!)}
-        </Button>
-      </div> */}
+        <div className="flex items-center gap-3">
+          <Button
+            variant={activeLanguage === "en" ? "default" : "outline"}
+            onClick={() => setActiveLanguage("en")}
+          >
+            {getLocaleFullName("en-US")}
+          </Button>
+
+          <Button
+            variant={activeLanguage === "ar" ? "default" : "outline"}
+            onClick={() => setActiveLanguage("ar")}
+          >
+            {getLocaleFullName("ar-SA")}
+          </Button>
+        </div>
 
         <div className="mt-5">
           <video
-            // autoPlay
-            src="https://assets.usul.ai/usul%20beta.mp4"
+            autoPlay
+            src={videos[activeLanguage]}
             className="w-full"
             controls
           />
