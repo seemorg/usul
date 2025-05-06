@@ -14,6 +14,10 @@
     "vol-x": "वॉल्यूम {volume, number, nogroup}",
     "page-unknown": "अज्ञात पृष्ठ"
   },
+  "demo": {
+    "title": "उसुल डेमो",
+    "description": "यह उसुल प्लेटफॉर्म का एक डेमो है।"
+  },
   "year-format": {
     "ah": {
       "title": "अ.ह.",

@@ -14,6 +14,10 @@
     "vol-x": "Ƙarar {volume, number, nogroup}",
     "page-unknown": "Shafi da ba'a sani ba"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Wannan gwaji ne na dandamali na Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",

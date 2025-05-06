@@ -14,6 +14,10 @@
     "vol-x": "جزء {volume, number, nogroup}",
     "page-unknown": "صفحة غير معروفة"
   },
+  "demo": {
+    "title": "عرض Usul",
+    "description": "هذا عرض للنظام الأساسي Usul."
+  },
   "year-format": {
     "ah": {
       "title": "هجري",
