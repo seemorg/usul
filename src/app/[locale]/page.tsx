@@ -84,7 +84,7 @@ export default async function HomePage({
           <div className="mt-7 flex w-full justify-center">
             <DemoButton>
               <PlayIcon className="size-4" />
-              {t("home.how-usul-works")} - 2:40
+              {t("home.how-usul-works")} - 2:00
             </DemoButton>
           </div>
 

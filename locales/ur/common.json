@@ -14,6 +14,10 @@
     "vol-x": "حجم {volume, number, nogroup}",
     "page-unknown": "نامعلوم صفحہ"
   },
+  "demo": {
+    "title": "\nیوصل ڈیمو\n",
+    "description": "یہ یوصل پلیٹ فارم کا ایک ڈیمو ہے۔"
+  },
   "year-format": {
     "ah": {
       "title": "ہجری",

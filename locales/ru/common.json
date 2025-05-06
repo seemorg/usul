@@ -14,6 +14,10 @@
     "vol-x": "Том {volume, number, nogroup}",
     "page-unknown": "Неизвестная страница"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Это демонстрация платформы Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",

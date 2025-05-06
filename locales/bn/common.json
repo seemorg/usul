@@ -14,6 +14,10 @@
     "vol-x": "ভলিউম {volume, number, nogroup}",
     "page-unknown": "অজানা পৃষ্ঠা"
   },
+  "demo": {
+    "title": "Usul ডেমো",
+    "description": "এটি Usul প্ল্যাটফর্মের একটি ডেমো।"
+  },
   "year-format": {
     "ah": {
       "title": "AH",
