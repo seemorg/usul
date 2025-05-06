@@ -14,6 +14,10 @@
     "vol-x": "حجم {volume, number, nogroup}",
     "page-unknown": "ناپیژندل شوی مخ"
   },
+  "demo": {
+    "title": "\n\nد اوسول ډیمو\n\n",
+    "description": "\n\nدا د Usul پلیټ فارم یوه ډیمو ده.\n\n"
+  },
   "year-format": {
     "ah": {
       "title": "ه.ق",

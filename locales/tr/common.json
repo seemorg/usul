@@ -14,6 +14,10 @@
     "vol-x": "Cilt {volume, number, nogroup}",
     "page-unknown": "Bilinmeyen sayfa"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Usul platformunun bir demosu."
+  },
   "year-format": {
     "ah": {
       "title": "AH",

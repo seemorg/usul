@@ -14,6 +14,10 @@
     "vol-x": "Jilid {volume, number, nogroup}",
     "page-unknown": "Halaman tidak diketahui"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Ini adalah demo platform Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",

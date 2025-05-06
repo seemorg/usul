@@ -14,6 +14,10 @@
     "vol-x": "Volumen {volume, number, nogroup}",
     "page-unknown": "Página desconocida"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Esta es una demostración de la plataforma Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",

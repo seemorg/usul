@@ -14,6 +14,10 @@
     "vol-x": "حجم {volume, number, nogroup}",
     "page-unknown": "صفحه نامشخص"
   },
+  "demo": {
+    "title": "دموی Usul",
+    "description": "این یک دمو از پلتفرم Usul است."
+  },
   "year-format": {
     "ah": {
       "title": "ه.ق",
