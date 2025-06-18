@@ -14,6 +14,10 @@
     "vol-x": "Jilid {volume, number, nogroup}",
     "page-unknown": "Halaman tidak diketahui"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Ini adalah demo platform Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",
@@ -30,10 +34,12 @@
     "placeholder": "Susun mengikut",
     "relevance": "Relevan",
     "chronological": "Kronologi",
-    "no-of-texts": "Bil. Teks",
-    "no-of-authors": "Bil. Pengarang",
-    "year-asc": "Tahun (Menaik)",
-    "year-desc": "Tahun (Menurun)"
+    "no-of-texts-desc": "Bil. Teks (Menurun)",
+    "no-of-texts-asc": "Bil. Teks (Menaik)",
+    "no-of-authors-desc": "Bil. Pengarang (Menurun)",
+    "no-of-authors-asc": "Bil. Pengarang (Menaik)",
+    "year-asc": "Tahun Kematian (Menaik)",
+    "year-desc": "Tahun Kematian (Menurun)"
   },
   "theme": {
     "light": "Cahaya",
@@ -117,10 +123,10 @@
   },
   "footer": {
     "headline": "Usul - Alat Penyelidikan untuk Teks Islam",
-    "description": "Usul.ai menyediakan lebih dari 8,000 teks Islam dari korpus OpenITI. Tujuan kami adalah untuk memudahkan membaca, mencari, dan meneliti teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
+    "description": "Usul.ai mempunyai perpustakaan lebih daripada 15,000 teks Islam. Matlamat kami adalah untuk memudahkan pembacaan, carian, dan penyelidikan teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
     "email-address": "Alamat E-mel",
     "subscribe": "Langgan",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. Hak cipta terpelihara."
+    "copyright": "{year, number, nogroup} The Seemore Foundation. Hak cipta terpelihara."
   },
   "lost": "Sepertinya anda tersesat",
   "go-back-home": "Kembali ke halaman utama",

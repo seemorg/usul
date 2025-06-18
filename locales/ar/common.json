@@ -14,6 +14,10 @@
     "vol-x": "جزء {volume, number, nogroup}",
     "page-unknown": "صفحة غير معروفة"
   },
+  "demo": {
+    "title": "عرض Usul",
+    "description": "هذا عرض للنظام الأساسي Usul."
+  },
   "year-format": {
     "ah": {
       "title": "هجري",
@@ -30,10 +34,12 @@
     "placeholder": "رتب حسب",
     "relevance": "الصلة",
     "chronological": "الترتيب الزمني",
-    "no-of-texts": "عدد النصوص",
-    "no-of-authors": "عدد المؤلفين",
-    "year-asc": "السنة (تصاعدي)",
-    "year-desc": "السنة (تنازلي)"
+    "no-of-texts-desc": "عدد النصوص (تنازلي)",
+    "no-of-texts-asc": "عدد النصوص (تصاعدي)",
+    "no-of-authors-desc": "عدد المؤلفين (تنازلي)",
+    "no-of-authors-asc": "عدد المؤلفين (تصاعدي)",
+    "year-asc": "عام الوفاة (تصاعدي)",
+    "year-desc": "عام الوفاة (تنازلي)"
   },
   "theme": {
     "light": "فاتح",
