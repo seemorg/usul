@@ -73,7 +73,7 @@ async function RegionsPage({ searchParams }: PageProps) {
           entity: t("regions"),
         })}
         hasViews={false}
-        sorts={sorts as any}
+        sorts={sorts}
         currentSort={sort.raw}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={q}

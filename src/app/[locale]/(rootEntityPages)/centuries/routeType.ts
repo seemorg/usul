@@ -8,8 +8,12 @@ export const sorts = [
     value: "chronological",
   },
   {
-    label: "sorts.no-of-texts",
-    value: "texts",
+    label: "sorts.no-of-texts-desc",
+    value: "texts-desc",
+  },
+  {
+    label: "sorts.no-of-texts-asc",
+    value: "texts-asc",
   },
 ] as const satisfies Sort[];
 
@@ -27,7 +31,8 @@ export const Route = {
       .transform((v: (typeof sortsValues)[number]) => {
         let typesenseValue: string = v;
         if (v === "chronological") typesenseValue = "chronological:asc";
-        if (v === "texts") typesenseValue = "booksCount:desc";
+        if (v === "texts-desc") typesenseValue = "booksCount:desc";
+        if (v === "texts-asc") typesenseValue = "booksCount:asc";
 
         return {
           typesenseValue,

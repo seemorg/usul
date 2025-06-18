@@ -128,13 +128,16 @@ export const formatDeathYear = (
   locale: PathLocale = "en",
 ) => {
   const isUnknown = !year || year <= 0;
-  const format = isUnknown ? "" : locale === "ar" ? " هجري" : " AH";
-
-  if (locale === "ar") {
-    return `ت. ${isUnknown ? "غير معلوم" : year}${format}`;
+  const prefix = locale === "ar" ? "ت." : "d.";
+  if (isUnknown) {
+    return `${prefix} ${locale === "ar" ? "غير معلوم" : "Unknown"}`;
   }
 
-  return `d. ${isUnknown ? "Unknown" : year}${format}`;
+  if (locale === "ar") {
+    return `${prefix} ${year} / ${hijriYearToGregorianYear(year)}`;
+  }
+
+  return `${prefix} ${year} / ${hijriYearToGregorianYear(year)}`;
 };
 
 export const secondsToMsDate = (seconds: number) => new Date(seconds * 1000);

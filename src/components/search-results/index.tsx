@@ -57,10 +57,6 @@ export default function SearchResults<T extends object & { id: string }>({
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
       {filters && (
         <div className="hidden w-full sm:block">
-          {/* <div className="h-10">
-          <h2 className="text-2xl">Filters</h2>
-        </div> */}
-          {/* mt-5 */}
           <div className="flex flex-col gap-5">{filters}</div>
         </div>
       )}
@@ -72,10 +68,6 @@ export default function SearchResults<T extends object & { id: string }>({
         )}
       >
         <div className="relative w-full">
-          {/* <div className="mb-2 flex justify-end sm:hidden">
-            <Sorts />
-          </div> */}
-
           <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
               <SearchBar

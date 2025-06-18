@@ -34,10 +34,12 @@
     "placeholder": "Sort by",
     "relevance": "Relevance",
     "chronological": "Chronological",
-    "no-of-texts": "No. of Texts",
-    "no-of-authors": "No. of Authors",
-    "year-asc": "Year (Asc)",
-    "year-desc": "Year (Desc)"
+    "no-of-texts-desc": "No. of Texts (Descending)",
+    "no-of-texts-asc": "No. of Texts (Ascending)",
+    "no-of-authors-desc": "No. of Authors (Descending)",
+    "no-of-authors-asc": "No. of Authors (Ascending)",
+    "year-asc": "Death Year (Ascending)",
+    "year-desc": "Death Year (Descending)"
   },
   "theme": {
     "light": "Light",
@@ -121,10 +123,10 @@
   },
   "footer": {
     "headline": "Usul - The Research tool for Islamic Texts",
-    "description": "Usul.ai serves over 8,000 Islamic texts from the OpenITI corpus. Our goal is to make it easy to read, search, and research classical texts. Subscribe below to receive monthly updates on our work.",
+    "description": "Usul.ai has a library of over 15,000 Islamic texts. Our goal is to make it easy to read, search, and research classical texts. Subscribe below to receive monthly updates on our work.",
     "email-address": "Email Address",
     "subscribe": "Subscribe",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. All rights reserved."
+    "copyright": "{year, number, nogroup} The Seemore Foundation. All rights reserved."
   },
   "lost": "Looks like you're lost",
   "go-back-home": "Go back home",
