@@ -57,8 +57,11 @@ async function CenturiesPage({ searchParams }: PageProps) {
       return a.centuryNumber - b.centuryNumber;
     }
 
-    if (sort.raw === "texts") {
+    if (sort.raw === "texts-desc") {
       return b.totalBooks - a.totalBooks;
+    }
+    if (sort.raw === "texts-asc") {
+      return a.totalBooks - b.totalBooks;
     }
 
     return 0;
