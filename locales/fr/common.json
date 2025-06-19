@@ -34,10 +34,12 @@
     "placeholder": "Trier par",
     "relevance": "Pertinence",
     "chronological": "Chronologique",
-    "no-of-texts": "Nb de textes",
-    "no-of-authors": "Nb d'auteurs",
-    "year-asc": "Année (Asc)",
-    "year-desc": "Année (Desc)"
+    "no-of-texts-desc": "Nb. de textes (décroissant)",
+    "no-of-texts-asc": "Nb. de textes (croissant)",
+    "no-of-authors-desc": "Nb. d'auteurs (décroissant)",
+    "no-of-authors-asc": "Nb. d'auteurs (croissant)",
+    "year-asc": "Année de décès (croissant)",
+    "year-desc": "Année de décès (décroissant)"
   },
   "theme": {
     "light": "Lumière",
@@ -121,10 +123,10 @@
   },
   "footer": {
     "headline": "Usul - L'outil de recherche pour les textes islamiques",
-    "description": "Usul.ai sert plus de 8 000 textes islamiques du corpus OpenITI. Notre objectif est de faciliter la lecture, la recherche et la recherche de textes classiques. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
+    "description": "Usul.ai possède une bibliothèque de plus de 15 000 textes islamiques. Notre objectif est de rendre la lecture, la recherche et l'analyse des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
     "email-address": "Adresse Email",
     "subscribe": "Abonnez-vous",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. Tous droits réservés."
+    "copyright": "{year, number, nogroup} The Seemore Foundation. Tous droits réservés."
   },
   "lost": "On dirait que vous êtes perdus",
   "go-back-home": "Retour à l'accueil",

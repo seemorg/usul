@@ -1,3 +1,5 @@
+import type { PathLocale } from "@/lib/locale/utils";
+import type { BookDocument } from "@/types/book";
 import type { Locale } from "next-intl";
 import BookSearchResult from "@/components/book-search-result";
 import { CollectionCard } from "@/components/ui/collection-card";
@@ -15,6 +17,10 @@ import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
+import {
+  getPrimaryLocalizedText,
+  getSecondaryLocalizedText,
+} from "@/server/db/localization";
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -38,6 +44,76 @@ export const dynamic = "force-static";
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
+
+const bookToTypesenseBook = (
+  book: Awaited<ReturnType<typeof fetchPopularBooks>>[number],
+  pathLocale: PathLocale,
+): BookDocument => {
+  return {
+    type: "book",
+    id: book.id,
+    slug: book.slug,
+    authorId: book.authorId,
+    transliteration: book.transliteration ?? undefined,
+
+    primaryName: getPrimaryLocalizedText(
+      book.primaryNameTranslations,
+      pathLocale,
+    )!,
+    secondaryName:
+      getSecondaryLocalizedText(book.primaryNameTranslations, pathLocale) ??
+      undefined,
+
+    otherNames: getPrimaryLocalizedText(book.otherNameTranslations, pathLocale),
+    secondaryOtherNames: getSecondaryLocalizedText(
+      book.otherNameTranslations,
+      pathLocale,
+    ),
+
+    versions: book.versions,
+    coverUrl: book.coverImageUrl ?? undefined,
+    genreIds: book.genres.map((g) => g.id),
+    genres: book.genres.map((g) => ({
+      type: "genre",
+      id: g.id,
+      slug: g.slug,
+      primaryName: getPrimaryLocalizedText(g.nameTranslations, pathLocale)!,
+      booksCount: g.numberOfBooks,
+    })),
+
+    // these are derived from the author
+    author: {
+      type: "author",
+      id: book.authorId,
+      slug: book.author.slug,
+      transliteration: book.author.transliteration ?? undefined,
+      year: book.author.year ?? -1,
+      primaryName: getPrimaryLocalizedText(
+        book.author.primaryNameTranslations,
+        pathLocale,
+      )!,
+      secondaryName:
+        getSecondaryLocalizedText(
+          book.author.primaryNameTranslations,
+          pathLocale,
+        ) ?? undefined,
+      otherNames: getPrimaryLocalizedText(
+        book.author.otherNameTranslations,
+        pathLocale,
+      ),
+      secondaryOtherNames: getSecondaryLocalizedText(
+        book.author.otherNameTranslations,
+        pathLocale,
+      ),
+
+      booksCount: book.author.numberOfBooks,
+    },
+
+    year: book.author.year ?? -1,
+    geographies: [],
+    regions: [],
+  };
+};
 
 export default async function HomePage({
   params,
@@ -144,15 +220,7 @@ export default async function HomePage({
               <BookSearchResult
                 prefetch
                 key={text.id}
-                result={
-                  {
-                    document: {
-                      ...text,
-                      coverUrl: text.coverImageUrl,
-                      primaryNames: text.primaryNameTranslations,
-                    },
-                  } as any
-                }
+                result={bookToTypesenseBook(text, pathLocale)}
                 view="grid"
               />
             ))}
@@ -167,15 +235,7 @@ export default async function HomePage({
               <BookSearchResult
                 prefetch
                 key={text.id}
-                result={
-                  {
-                    document: {
-                      ...text,
-                      coverUrl: text.coverImageUrl,
-                      primaryNames: text.primaryNameTranslations,
-                    },
-                  } as any
-                }
+                result={bookToTypesenseBook(text, pathLocale)}
                 view="grid"
               />
             ))}
@@ -190,15 +250,7 @@ export default async function HomePage({
               <BookSearchResult
                 prefetch
                 key={text.id}
-                result={
-                  {
-                    document: {
-                      ...text,
-                      coverUrl: text.coverImageUrl,
-                      primaryNames: text.primaryNameTranslations,
-                    },
-                  } as any
-                }
+                result={bookToTypesenseBook(text, pathLocale)}
                 view="grid"
               />
             ))}

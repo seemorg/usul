@@ -21,13 +21,13 @@ import { searchAuthors } from "@/server/typesense/author";
 import { searchBooks } from "@/server/typesense/book";
 import { searchGenres } from "@/server/typesense/genre";
 import { searchAllCollections } from "@/server/typesense/global";
+import { searchRegions } from "@/server/typesense/region";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType, SearchType } from "./routeType";
 import { Route } from "./routeType";
 import SearchTypeSwitcher from "./search-type-switcher";
-import { searchRegions } from "@/server/typesense/region";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -59,7 +59,7 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     return searchBooks(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
       filters: {
         genres,
         authors,
@@ -73,7 +73,7 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     return searchAuthors(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
       filters: {
         yearRange: year,
         regions,
@@ -180,7 +180,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                 ? yearsSorts
                 : booksSorts
             }
-            currentSort={sort.raw}
+            currentSort={sort}
             currentQuery={q}
             view={view}
             filters={

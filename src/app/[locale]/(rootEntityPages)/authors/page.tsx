@@ -40,7 +40,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
     searchAuthors(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
       filters: {
         yearRange: year,
         regions,
@@ -65,9 +65,9 @@ async function AuthorsPage({ searchParams }: PageProps) {
         placeholder={t("search-within", {
           entity: t("authors"),
         })}
-        sorts={sorts as any}
+        sorts={sorts}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
-        currentSort={sort.raw}
+        currentSort={sort}
         currentQuery={q}
         hasViews={false}
         filters={

@@ -53,12 +53,15 @@ async function CenturiesPage({ searchParams }: PageProps) {
       : centuries;
 
   const sorted = matches.sort((a, b) => {
-    if (sort.raw === "chronological") {
+    if (sort === "chronological") {
       return a.centuryNumber - b.centuryNumber;
     }
 
-    if (sort.raw === "texts") {
+    if (sort === "texts-desc") {
       return b.totalBooks - a.totalBooks;
+    }
+    if (sort === "texts-asc") {
+      return a.totalBooks - b.totalBooks;
     }
 
     return 0;
@@ -73,14 +76,11 @@ async function CenturiesPage({ searchParams }: PageProps) {
       })}
     >
       <SearchResults
-        response={
-          {
-            page: 1,
-            hits: sorted.map((r) => ({
-              document: { id: r.centuryNumber, ...r },
-            })),
-          } as any
-        }
+        response={{
+          page: 1,
+          found: sorted.length,
+          hits: sorted.map((r) => ({ id: r.centuryNumber.toString(), ...r })),
+        }}
         pagination={{
           totalRecords: centuries.length,
           totalPages: 1,
@@ -88,12 +88,10 @@ async function CenturiesPage({ searchParams }: PageProps) {
           hasPrev: false,
           hasNext: false,
         }}
-        renderResult={(result) => (
-          <CenturySearchResult result={result.document as any} />
-        )}
+        renderResult={(result) => <CenturySearchResult result={result} />}
         emptyMessage={t("no-entity", { entity: t("centuries") })}
-        sorts={sorts as any}
-        currentSort={sort.raw}
+        sorts={sorts}
+        currentSort={sort}
         placeholder={t("search-within", {
           entity: t("centuries"),
         })}

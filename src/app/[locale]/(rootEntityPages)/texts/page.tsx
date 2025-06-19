@@ -43,7 +43,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
     searchBooks(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
       filters: {
         genres,
         authors,
@@ -53,6 +53,19 @@ async function TextsPage({ searchParams }: TextsPageProps) {
     }),
     countAllBooks(),
   ]);
+
+  console.log({
+    q,
+    page,
+    sortBy: sort,
+    filters: {
+      genres,
+      authors,
+      regions,
+      yearRange: year,
+    },
+  });
+  console.log(results);
 
   return (
     <RootEntityPage
@@ -72,8 +85,8 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         placeholder={t("search-within", {
           entity: t("texts"),
         })}
-        sorts={yearsSorts as any}
-        currentSort={sort.raw}
+        sorts={yearsSorts}
+        currentSort={sort}
         currentQuery={q}
         view={view}
         filters={

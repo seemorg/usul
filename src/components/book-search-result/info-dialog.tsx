@@ -7,9 +7,9 @@ import {
   Dialog,
   DialogOverlay,
   DialogPortal,
-  RawDialogTitle,
   RawDialogClose,
   RawDialogContent,
+  RawDialogTitle,
 } from "@/components/ui/dialog";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
@@ -41,7 +41,6 @@ export default function InfoDialog({
 }: {
   result: ComponentProps<typeof BookSearchResult>["result"];
 }) {
-  const { document } = result;
   const [open, setOpen] = useState(false);
   const pathLocale = usePathLocale();
   const t = useTranslations();
@@ -50,7 +49,7 @@ export default function InfoDialog({
   const shouldFetch = open;
 
   const { data: author, isFetching } = useQuery({
-    queryKey: ["author", document.authorId, pathLocale] as const,
+    queryKey: ["author", result.authorId, pathLocale] as const,
     queryFn: ({ queryKey }) => {
       const [, authorId, locale] = queryKey;
       return findAuthorBySlug(authorId, locale);
@@ -58,21 +57,11 @@ export default function InfoDialog({
     enabled: shouldFetch,
   });
 
-  const primaryTitle = document.primaryNames
-    ? getPrimaryLocalizedText(document.primaryNames, pathLocale)
-    : null;
+  const primaryTitle = result.primaryName;
+  const otherTitles = result.otherNames;
 
-  const otherTitles = document.otherNames
-    ? getPrimaryLocalizedText(document.otherNames, pathLocale)
-    : null;
-
-  const secondaryTitle = document.primaryNames
-    ? getSecondaryLocalizedText(document.primaryNames, pathLocale)
-    : null;
-
-  const otherSecondaryTitles = document.otherNames
-    ? getSecondaryLocalizedText(document.otherNames, pathLocale)
-    : null;
+  const secondaryTitle = result.secondaryName;
+  const otherSecondaryTitles = result.secondaryOtherNames;
 
   const authorPrimaryName = author
     ? getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale)
@@ -114,7 +103,7 @@ export default function InfoDialog({
 
   const isLoading = isFetching || !author;
 
-  const genres = ((document as any).genres ?? []) as GenreDocument[];
+  const genres = result.genres ?? [];
 
   return (
     <>
@@ -161,24 +150,26 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div
-                    className="w-full flex-1"
-                    dir={dir === "ltr" ? "rtl" : "ltr"}
-                  >
-                    <p className="mb-2 text-base font-medium text-white/60">
-                      {pathLocale === "ar" ? "Name" : "الاسم"}
-                    </p>
+                  {secondaryTitle && (
+                    <div
+                      className="w-full flex-1"
+                      dir={dir === "ltr" ? "rtl" : "ltr"}
+                    >
+                      <p className="mb-2 text-base font-medium text-white/60">
+                        {pathLocale === "ar" ? "Name" : "الاسم"}
+                      </p>
 
-                    <div>
-                      <p className="text-xl font-bold">{secondaryTitle}</p>
+                      <div>
+                        <p className="text-xl font-bold">{secondaryTitle}</p>
 
-                      {otherSecondaryTitles && (
-                        <p className="text-muted mt-3 text-sm">
-                          {otherSecondaryTitles.join(", ")}
-                        </p>
-                      )}
+                        {otherSecondaryTitles && (
+                          <p className="text-muted mt-3 text-sm">
+                            {otherSecondaryTitles.join(", ")}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {genres.length > 0 && (
@@ -195,10 +186,7 @@ export default function InfoDialog({
                           // className="rounded-md bg-muted px-3 py-1 text-sm font-medium text-muted-foreground"
                           className="text-muted-foreground hover:bg-accent rounded-lg bg-white px-3 py-1.5 text-sm font-medium transition-colors"
                         >
-                          {getPrimaryLocalizedText(
-                            genre.nameTranslations,
-                            pathLocale,
-                          )}
+                          {genre.primaryName}
                         </Link>
                       ))}
                     </div>
@@ -239,7 +227,7 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  {!isLoading && (
+                  {(isLoading || authorSecondaryName) && (
                     <div
                       className="w-full flex-1"
                       dir={dir === "ltr" ? "rtl" : "ltr"}
@@ -292,7 +280,7 @@ export default function InfoDialog({
                       {getPrimaryLocalizedText(
                         author.bioTranslations,
                         pathLocale,
-                      )}
+                      ) || "-"}
                     </p>
                   )}
                 </div>

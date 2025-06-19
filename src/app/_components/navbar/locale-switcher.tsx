@@ -8,7 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { routing } from "@/i18n/config";
+import { localeToEnglishName, routing } from "@/i18n/config";
 import { getLocaleFullName } from "@/lib/locale/utils";
 import { Link, usePathname } from "@/navigation";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
@@ -34,7 +34,12 @@ export default function LocaleSwitcher() {
 
       <DropdownMenuContent align="end">
         {routing.locales.map((locale) => (
-          <Link href={currentUrl} key={locale} locale={locale}>
+          <Link
+            href={currentUrl}
+            key={locale}
+            locale={locale}
+            title={localeToEnglishName[locale]}
+          >
             <DropdownMenuCheckboxItem checked={selectedLocale === locale}>
               {getLocaleFullName(locale)}
             </DropdownMenuCheckboxItem>

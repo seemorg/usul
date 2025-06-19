@@ -6,8 +6,6 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
-    TYPESENSE_URL: z.string().url().min(1),
-    TYPESENSE_API_KEY: z.string().min(1),
     DATABASE_URL: z.string().url().min(1),
     RESEND_AUDIENCE_ID: z.string().min(1),
     // RESEND_DONORS_AUDIENCE_ID: z.string().min(1),
@@ -36,8 +34,6 @@ export const env = createEnv({
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    TYPESENSE_URL: process.env.TYPESENSE_URL,
-    TYPESENSE_API_KEY: process.env.TYPESENSE_API_KEY,
     DATABASE_URL: process.env.DATABASE_URL,
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
     // RESEND_DONORS_AUDIENCE_ID: process.env.RESEND_DONORS_AUDIENCE_ID,

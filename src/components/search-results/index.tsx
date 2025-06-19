@@ -1,4 +1,4 @@
-import type { TypesenseResponse } from "@/server/typesense/utils";
+import type { SearchResponse } from "@/server/typesense/utils";
 import type { Pagination } from "@/types/pagination";
 import type { Sort } from "@/types/sort";
 import type { View } from "@/validation/view";
@@ -23,8 +23,8 @@ import SearchSort from "./sort";
 import ViewSwitcher from "./view-switcher";
 
 interface SearchResultsProps<T extends object & { id: string }> {
-  response: TypesenseResponse<T>;
-  renderResult: (result: TypesenseResponse<T>["hits"][number]) => JSX.Element;
+  response: SearchResponse<T>["results"];
+  renderResult: (result: T) => JSX.Element;
   pagination?: Pagination;
   emptyMessage?: string;
   sorts: Sort[];
@@ -57,10 +57,6 @@ export default function SearchResults<T extends object & { id: string }>({
     <div className="grid grid-cols-4 gap-10 sm:gap-6">
       {filters && (
         <div className="hidden w-full sm:block">
-          {/* <div className="h-10">
-          <h2 className="text-2xl">Filters</h2>
-        </div> */}
-          {/* mt-5 */}
           <div className="flex flex-col gap-5">{filters}</div>
         </div>
       )}
@@ -72,10 +68,6 @@ export default function SearchResults<T extends object & { id: string }>({
         )}
       >
         <div className="relative w-full">
-          {/* <div className="mb-2 flex justify-end sm:hidden">
-            <Sorts />
-          </div> */}
-
           <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
               <SearchBar
@@ -147,9 +139,7 @@ export default function SearchResults<T extends object & { id: string }>({
               )}
             >
               {response.hits.map((result) => (
-                <Fragment key={result.document.id}>
-                  {renderResult(result)}
-                </Fragment>
+                <Fragment key={result.id}>{renderResult(result)}</Fragment>
               ))}
             </div>
           ) : (

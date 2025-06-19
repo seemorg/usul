@@ -39,7 +39,7 @@ async function RegionsPage({ searchParams }: PageProps) {
     searchRegions(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
     }),
     countAllRegions(),
   ]);
@@ -73,8 +73,8 @@ async function RegionsPage({ searchParams }: PageProps) {
           entity: t("regions"),
         })}
         hasViews={false}
-        sorts={sorts as any}
-        currentSort={sort.raw}
+        sorts={sorts}
+        currentSort={sort}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={q}
       />
