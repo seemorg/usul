@@ -14,7 +14,7 @@ export default async function AuthorsFilter(props: Props) {
     searchAuthors("", {
       page: 1,
       limit: 10,
-      sortBy: "booksCount:desc,_text_match:desc",
+      sortBy: "texts-desc",
       filters: props.filters,
     }),
     findAllAuthorIdsWithBooksCount(),

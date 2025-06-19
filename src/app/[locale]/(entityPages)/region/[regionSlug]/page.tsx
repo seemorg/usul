@@ -69,7 +69,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
     filters: {
       regions: [region.slug],
       yearRange: year,
@@ -147,7 +147,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
             entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          currentSort={sort}
           currentQuery={q}
           view={view}
           filters={

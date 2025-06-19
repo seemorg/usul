@@ -1,4 +1,4 @@
-import type { TypesenseResponse } from "@/server/typesense/utils";
+import type { SearchResponse } from "@/server/typesense/utils";
 import type { Pagination } from "@/types/pagination";
 import type { Sort } from "@/types/sort";
 import type { View } from "@/validation/view";
@@ -23,8 +23,8 @@ import SearchSort from "./sort";
 import ViewSwitcher from "./view-switcher";
 
 interface SearchResultsProps<T extends object & { id: string }> {
-  response: TypesenseResponse<T>;
-  renderResult: (result: TypesenseResponse<T>["hits"][number]) => JSX.Element;
+  response: SearchResponse<T>["results"];
+  renderResult: (result: T) => JSX.Element;
   pagination?: Pagination;
   emptyMessage?: string;
   sorts: Sort[];
@@ -139,9 +139,7 @@ export default function SearchResults<T extends object & { id: string }>({
               )}
             >
               {response.hits.map((result) => (
-                <Fragment key={result.document.id}>
-                  {renderResult(result)}
-                </Fragment>
+                <Fragment key={result.id}>{renderResult(result)}</Fragment>
               ))}
             </div>
           ) : (

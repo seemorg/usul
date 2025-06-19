@@ -60,7 +60,7 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
     filters: {
       yearRange: [yearRange.yearFrom, yearRange.yearTo],
       authors,
@@ -107,8 +107,8 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
           placeholder={t("entities.search-within", {
             entity: primaryName,
           })}
-          sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          sorts={yearsSorts}
+          currentSort={sort}
           currentQuery={q}
           view={view}
           filters={

@@ -55,7 +55,7 @@ async function CollectionPage({
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
     filters: {
       genres,
       ids: collection.bookIds,
@@ -93,7 +93,7 @@ async function CollectionPage({
             entity: title,
           })}
           sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          currentSort={sort}
           currentQuery={q}
           view={view}
           filters={

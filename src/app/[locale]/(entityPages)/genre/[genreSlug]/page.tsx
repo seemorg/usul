@@ -65,7 +65,7 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
     filters: {
       genres: [genre.id],
       regions,
@@ -109,8 +109,8 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
           placeholder={t("search-within", {
             entity: primaryName ?? "",
           })}
-          sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          sorts={yearsSorts}
+          currentSort={sort}
           view={view}
           currentQuery={q}
           filters={

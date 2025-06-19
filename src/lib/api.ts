@@ -18,11 +18,12 @@ import { prepareSearchParams } from "./params";
 
 const API_BASE = "https://api.usul.ai";
 
-const apiFetch = async <T>(
+export const apiFetch = async <T>(
   url: string,
   params?: Record<string, string>,
 ): Promise<T | null> => {
   const finalUrl = `${API_BASE}${url}${prepareSearchParams(params)}`;
+
   const response = await fetch(finalUrl, {
     headers: {
       "Content-Type": "application/json",
