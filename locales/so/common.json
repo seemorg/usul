@@ -14,6 +14,10 @@
     "vol-x": "Mugga {volume, number, nogroup}",
     "page-unknown": "Bog aan la aqoon"
   },
+  "demo": {
+    "title": "Usul Tijaabo",
+    "description": "Tani waa tijaabo madal Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",
@@ -30,10 +34,12 @@
     "placeholder": "Kala saar",
     "relevance": "Ku habboon",
     "chronological": "Taariikheed",
-    "no-of-texts": "No. Wargeysyada",
-    "no-of-authors": "No. Qorayaasha",
-    "year-asc": "Sannadka (Kor)",
-    "year-desc": "Sannadka (Hoos)"
+    "no-of-texts-desc": "Tirada Qoraallada (Hoos u Dhacaya)",
+    "no-of-texts-asc": "Tirada Qoraallada (Kor u Kacaya)",
+    "no-of-authors-desc": "Tirada Qorayaasha (Hoos u Dhacaya)",
+    "no-of-authors-asc": "Tirada Qorayaasha (Kor u Kacaya)",
+    "year-asc": "Sannadka Geerida (Kor u Kacaya)",
+    "year-desc": "Sannadka Geerida (Hoos u Dhacaya)"
   },
   "theme": {
     "light": "Iftiin",
@@ -117,10 +123,10 @@
   },
   "footer": {
     "headline": "Usul - Qalabka Cilmi-baarista ee Qoraalada Islaamka",
-    "description": "Usul.ai waxa uu u adeegaa in ka badan 8,000 qoraal oo Islaami ah oo ka socda corpus-ka OpenITI. Hadafkayagu waa inaan fududeyno akhrinta, raadinta, iyo cilmi-baarista qoraalada dhaqameed. Ku qor hoos si aad u hesho warbixinno bille ah oo ku saabsan shaqadayada.",
+    "description": "Usul.ai waxay leedahay maktabad ka badan 15,000 qoraallo Islaami ah. Hadafkayagu waa inaan si sahlan u akhrino, raadino, oo aan barano qoraallo caadi ah. Saxiix hoos si aad u hesho warbixin bille ah ee shaqadayada.",
     "email-address": "Cinwaanka Emailka",
     "subscribe": "Isdiiwaangeli",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. Dhamaan xuquuqaha way xifdisan."
+    "copyright": "{year, number, nogroup} The Seemore Foundation. Dhammaan xuquuqaha way dhawranyihiin."
   },
   "lost": "Waxay u muuqataa inaad lumtay",
   "go-back-home": "Ku noqo guriga",

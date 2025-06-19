@@ -14,6 +14,10 @@
     "vol-x": "Volumen {volume, number, nogroup}",
     "page-unknown": "Página desconocida"
   },
+  "demo": {
+    "title": "Usul Demo",
+    "description": "Esta es una demostración de la plataforma Usul."
+  },
   "year-format": {
     "ah": {
       "title": "AH",
@@ -30,10 +34,12 @@
     "placeholder": "Ordenar por",
     "relevance": "Relevancia",
     "chronological": "Cronológico",
-    "no-of-texts": "No. de Textos",
-    "no-of-authors": "No. de Autores",
-    "year-asc": "Año (Asc)",
-    "year-desc": "Año (Desc)"
+    "no-of-texts-desc": "Núm. de textos (Descendente)",
+    "no-of-texts-asc": "Núm. de textos (Ascendente)",
+    "no-of-authors-desc": "Núm. de autores (Descendente)",
+    "no-of-authors-asc": "Núm. de autores (Ascendente)",
+    "year-asc": "Año de defunción (Ascendente)",
+    "year-desc": "Año de defunción (Descendente)"
   },
   "theme": {
     "light": "Claro",
@@ -117,10 +123,10 @@
   },
   "footer": {
     "headline": "Usuales - Herramienta de investigación de textos islámicos",
-    "description": "Usul.ai sirve más de 8.000 textos islámicos del cuerpo OpenITI. Nuestro objetivo es facilitar la lectura, la búsqueda y la investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
+    "description": "Usul.ai tiene una biblioteca de más de 15,000 textos islámicos. Nuestro objetivo es facilitar la lectura, búsqueda e investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
     "email-address": "Dirección de correo electrónico",
     "subscribe": "Suscribirse",
-    "copyright": "{year, number, nogroup} Fundación Seemorg. Todos los derechos reservados."
+    "copyright": "{year, number, nogroup} La Fundación Seemore. Todos los derechos reservados."
   },
   "lost": "Parece que te has perdido",
   "go-back-home": "Vuelve a casa",
