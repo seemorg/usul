@@ -150,24 +150,26 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  <div
-                    className="w-full flex-1"
-                    dir={dir === "ltr" ? "rtl" : "ltr"}
-                  >
-                    <p className="mb-2 text-base font-medium text-white/60">
-                      {pathLocale === "ar" ? "Name" : "الاسم"}
-                    </p>
+                  {secondaryTitle && (
+                    <div
+                      className="w-full flex-1"
+                      dir={dir === "ltr" ? "rtl" : "ltr"}
+                    >
+                      <p className="mb-2 text-base font-medium text-white/60">
+                        {pathLocale === "ar" ? "Name" : "الاسم"}
+                      </p>
 
-                    <div>
-                      <p className="text-xl font-bold">{secondaryTitle}</p>
+                      <div>
+                        <p className="text-xl font-bold">{secondaryTitle}</p>
 
-                      {otherSecondaryTitles && (
-                        <p className="text-muted mt-3 text-sm">
-                          {otherSecondaryTitles.join(", ")}
-                        </p>
-                      )}
+                        {otherSecondaryTitles && (
+                          <p className="text-muted mt-3 text-sm">
+                            {otherSecondaryTitles.join(", ")}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
 
                 {genres.length > 0 && (
@@ -225,7 +227,7 @@ export default function InfoDialog({
                     </div>
                   </div>
 
-                  {!isLoading && (
+                  {(isLoading || authorSecondaryName) && (
                     <div
                       className="w-full flex-1"
                       dir={dir === "ltr" ? "rtl" : "ltr"}
@@ -278,7 +280,7 @@ export default function InfoDialog({
                       {getPrimaryLocalizedText(
                         author.bioTranslations,
                         pathLocale,
-                      )}
+                      ) || "-"}
                     </p>
                   )}
                 </div>
