@@ -6,6 +6,7 @@ import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context
 import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
 import { getBookPageIndex } from "@/lib/api";
 import { useBookShareUrl } from "@/lib/share";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 import {
   ArrowUpOnSquareIcon,
   DocumentDuplicateIcon,
@@ -13,6 +14,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import { XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { Button } from "../button";
 import {
@@ -27,8 +29,6 @@ import {
 import { ScrollArea } from "../scroll-area";
 import { Separator } from "../separator";
 import Spinner from "../spinner";
-import { toast } from "../use-toast";
-import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 export default function SourceModal({
   source,
@@ -77,9 +77,7 @@ export default function SourceModal({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(source.text);
-    toast({
-      title: t("reader.chat.copied"),
-    });
+    toast.success(t("reader.chat.copied"));
   };
 
   const handleShare = async () => {

@@ -20,5 +20,9 @@
   "donate-page": {
     "title": "Donate",
     "description": "Donate to Usul"
+  },
+  "profile-page": {
+    "title": "Profile",
+    "description": "Your profile"
   }
 }

@@ -54,12 +54,12 @@ export default function NewsletterForm() {
 
       <div className="border-border flex w-[400px] max-w-full overflow-hidden rounded-md border">
         <label htmlFor="newsletter-email-address" className="sr-only">
-          {t("footer.email-address")}
+          {t("email-address")}
         </label>
 
         <Input
           id="newsletter-email-address"
-          placeholder={t("footer.email-address")}
+          placeholder={t("email-address")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="border-border bg-background w-full flex-1 rounded-none border border-none"

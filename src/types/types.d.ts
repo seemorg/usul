@@ -13,6 +13,8 @@ declare module "next-intl" {
       team: typeof import("../../locales/en/team.json");
       donate: typeof import("../../locales/en/donate.json");
       collections: typeof import("../../locales/en/collections.json");
+      login: typeof import("../../locales/en/login.json");
+      profile: typeof import("../../locales/en/profile.json");
     };
     // Formats: typeof formats;
     Locale: (typeof routing.locales)[number];

@@ -37,6 +37,8 @@ export const navigation = {
   about: () => "/about",
   team: () => "/team",
   donate: () => "/donate",
+  login: () => "/login",
+  profile: () => "/profile",
 };
 
 export const booksSorts = [
