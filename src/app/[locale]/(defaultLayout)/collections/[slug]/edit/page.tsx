@@ -35,7 +35,7 @@ export default function EditCollectionPage() {
       <div className="flex items-center gap-3">
         <Button asChild size="icon" variant="ghost" className="hover:bg-accent">
           <Link href={navigation.collections.all()}>
-            <ArrowLeftIcon className="size-8" />
+            <ArrowLeftIcon className="size-8 rtl:rotate-180" />
           </Link>
         </Button>
 
