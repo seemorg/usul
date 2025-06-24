@@ -1,0 +1,8 @@
+{
+  "login": "Giriş Yap",
+  "title": "Hesabınıza giriş yapın",
+  "description": "Hesabınıza giriş yapmak için aşağıya e-posta adresinizi girin",
+  "check-email": "Giriş yapma bağlantısı için e-postanızı kontrol edin",
+  "or-continue-with": "Veya devam edin",
+  "login-with-x": "{provider} ile giriş yap"
+}

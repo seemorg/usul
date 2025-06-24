@@ -1,0 +1,8 @@
+{
+  "name": {
+    "label": "Nom complet",
+    "placeholder": "Entrez votre nom"
+  },
+  "success-message": "Utilisateur mis à jour avec succès",
+  "save-changes": "Sauvegarder les modifications"
+}

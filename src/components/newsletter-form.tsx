@@ -39,7 +39,7 @@ export default function NewsletterForm() {
     return (
       <div className="bg-background text-foreground [&>svg]:text-foreground relative flex w-full items-center rounded-lg border px-4 py-3 text-sm [&>svg~*]:ltr:pl-4 [&>svg~*]:rtl:pr-4">
         <XCircleIcon className="h-5 w-5" />
-        <AlertTitle>{t("coming-soon.error")}</AlertTitle>
+        <AlertTitle>{t("error")}</AlertTitle>
       </div>
     );
   }
@@ -54,12 +54,12 @@ export default function NewsletterForm() {
 
       <div className="border-border flex w-[400px] max-w-full overflow-hidden rounded-md border">
         <label htmlFor="newsletter-email-address" className="sr-only">
-          {t("footer.email-address")}
+          {t("email-address")}
         </label>
 
         <Input
           id="newsletter-email-address"
-          placeholder={t("footer.email-address")}
+          placeholder={t("email-address")}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="border-border bg-background w-full flex-1 rounded-none border border-none"

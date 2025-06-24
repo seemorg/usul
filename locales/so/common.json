@@ -41,11 +41,8 @@
     "year-asc": "Sannadka Geerida (Kor u Kacaya)",
     "year-desc": "Sannadka Geerida (Hoos u Dhacaya)"
   },
-  "theme": {
-    "light": "Iftiin",
-    "dark": "Mugdi",
-    "auto": "Toos ah"
-  },
+  "profile": "Profile",
+  "logout": "Ka Bax",
   "from": "Laga bilaabo",
   "to": "Ilaa",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "Cinwaanka Iimaylka",
   "footer": {
     "headline": "Usul - Qalabka Cilmi-baarista ee Qoraalada Islaamka",
     "description": "Usul.ai waxay leedahay maktabad ka badan 15,000 qoraallo Islaami ah. Hadafkayagu waa inaan si sahlan u akhrino, raadino, oo aan barano qoraallo caadi ah. Saxiix hoos si aad u hesho warbixin bille ah ee shaqadayada.",
-    "email-address": "Cinwaanka Emailka",
     "subscribe": "Isdiiwaangeli",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Dhammaan xuquuqaha way dhawranyihiin."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Dhawaan Imaanaya",
     "message": "Astaamahan imika lama heli karo. Isdiiwaangeli warsidaha aan leenahay oo hel ogeysiis markuu diyaar yahay.",
-    "success": "Mahadsanid!",
-    "error": "Wax qalad ah ayaa dhacay. Fadlan isku day mar kale."
+    "success": "Mahadsanid!"
   },
   "year-filter-info": "Taariikhda geerida qoraha",
   "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday",
   "text-info": "Macluumaadka Qoraalka",
   "author-info": "Macluumaadka Qoraaga",
-  "names": "Magacyada"
+  "names": "Magacyada",
+  "create": "Abuur",
+  "create-x": "Abuur {entity}",
+  "view": "Eeg",
+  "edit": "Tafatir",
+  "edit-x": "Tafatir {entity}",
+  "update": "Cusbooneysiin",
+  "delete": "Tirtir",
+  "cancel": "Ka noqo",
+  "delete-x": "Tirtir {entity}",
+  "error": "Wax baa khaldamay. Fadlan isku day mar kale.",
+  "delete-confirmation": {
+    "title": "Ma hubtaa gabi ahaanba?",
+    "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada."
+  }
 }

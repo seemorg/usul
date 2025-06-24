@@ -41,11 +41,8 @@
     "year-asc": "Tahun Kematian (Menaik)",
     "year-desc": "Tahun Kematian (Menurun)"
   },
-  "theme": {
-    "light": "Cahaya",
-    "dark": "Gelap",
-    "auto": "Auto"
-  },
+  "profile": "Profil",
+  "logout": "Log Keluar",
   "from": "Dari",
   "to": "Ke",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "Alamat E-mel",
   "footer": {
     "headline": "Usul - Alat Penyelidikan untuk Teks Islam",
     "description": "Usul.ai mempunyai perpustakaan lebih daripada 15,000 teks Islam. Matlamat kami adalah untuk memudahkan pembacaan, carian, dan penyelidikan teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
-    "email-address": "Alamat E-mel",
     "subscribe": "Langgan",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Hak cipta terpelihara."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Akan Datang",
     "message": "Ciri ini belum tersedia. Langgan ke surat berita kami dan dapatkan notifikasi bila ia siap.",
-    "success": "Terima kasih!",
-    "error": "Ada yang salah. Sila cuba lagi nanti."
+    "success": "Terima kasih!"
   },
   "year-filter-info": "Tarikh kematian penulis",
   "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia",
   "text-info": "Maklumat Teks",
   "author-info": "Maklumat Pengarang",
-  "names": "Nama-nama"
+  "names": "Nama-nama",
+  "create": "Cipta",
+  "create-x": "Cipta {entity}",
+  "view": "Lihat",
+  "edit": "Sunting",
+  "edit-x": "Sunting {entity}",
+  "update": "Kemaskini",
+  "delete": "Padam",
+  "cancel": "Batal",
+  "delete-x": "Padam {entity}",
+  "error": "Sesuatu yang tidak kena. Sila cuba lagi kemudian.",
+  "delete-confirmation": {
+    "title": "Adakah anda benar-benar pasti?",
+    "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami."
+  }
 }
