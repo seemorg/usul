@@ -19,6 +19,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_STRIPE_PORTAL_URL: z.string().url().min(1),
+    NEXT_PUBLIC_API_BASE_URL: z.string().url().min(1),
   },
   shared: {
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
@@ -58,6 +59,7 @@ export const env = createEnv({
     VERIFY_RIGHT_API_KEY: process.env.VERIFY_RIGHT_API_KEY,
     NEXT_PUBLIC_STRIPE_PORTAL_URL: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL,
     SEMANTIC_SEARCH_API_KEY: process.env.SEMANTIC_SEARCH_API_KEY,
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
   emptyStringAsUndefined: true,

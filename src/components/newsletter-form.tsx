@@ -39,7 +39,7 @@ export default function NewsletterForm() {
     return (
       <div className="bg-background text-foreground [&>svg]:text-foreground relative flex w-full items-center rounded-lg border px-4 py-3 text-sm [&>svg~*]:ltr:pl-4 [&>svg~*]:rtl:pr-4">
         <XCircleIcon className="h-5 w-5" />
-        <AlertTitle>{t("coming-soon.error")}</AlertTitle>
+        <AlertTitle>{t("error")}</AlertTitle>
       </div>
     );
   }

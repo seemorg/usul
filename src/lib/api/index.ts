@@ -12,25 +12,32 @@ import type { ApiGenre, ApiGenreCollection } from "@/types/api/genre";
 import type { ApiRegion } from "@/types/api/region";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
+import { env } from "@/env";
 
-import type { PathLocale } from "./locale/utils";
-import { prepareSearchParams } from "./params";
-
-const API_BASE = "https://api.usul.ai";
+import type { PathLocale } from "../locale/utils";
+import { prepareSearchParams } from "../params";
 
 export const apiFetch = async <T>(
   url: string,
   params?: Record<string, string>,
+  init?: RequestInit & { throw?: boolean },
 ): Promise<T | null> => {
-  const finalUrl = `${API_BASE}${url}${prepareSearchParams(params)}`;
+  const finalUrl = `${env.NEXT_PUBLIC_API_BASE_URL}${url}${prepareSearchParams(params)}`;
 
   const response = await fetch(finalUrl, {
     headers: {
       "Content-Type": "application/json",
     },
+    ...init,
   });
 
-  if (!response.ok || response.status >= 300) return null;
+  if (!response.ok || response.status >= 300) {
+    if (init?.throw) {
+      throw new Error(`API error: ${response.status} ${response.statusText}`);
+    }
+
+    return null;
+  }
 
   return response.json() as Promise<T>;
 };

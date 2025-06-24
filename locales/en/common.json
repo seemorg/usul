@@ -147,12 +147,25 @@
   "coming-soon": {
     "title": "Coming Soon",
     "message": "This feature is not yet available. Subscribe to our newsletter and get notified when it's ready.",
-    "success": "Thank you!",
-    "error": "Something went wrong. Please try again later."
+    "success": "Thank you!"
   },
   "year-filter-info": "Author's death date",
   "regions-filter-info": "Locations where the author has visited, been born, or died",
   "text-info": "Text Info",
   "author-info": "Author Info",
-  "names": "Names"
+  "names": "Names",
+  "create": "Create",
+  "create-x": "Create {entity}",
+  "view": "View",
+  "edit": "Edit",
+  "edit-x": "Edit {entity}",
+  "update": "Update",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "delete-x": "Delete {entity}",
+  "error": "Something went wrong. Please try again later.",
+  "delete-confirmation": {
+    "title": "Are you absolutely sure?",
+    "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers."
+  }
 }

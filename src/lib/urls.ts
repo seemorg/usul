@@ -23,7 +23,10 @@ export const navigation = {
     bySlug: (genreSlug: string) => `/genre/${genreSlug}`,
   },
   collections: {
-    bySlug: (collectionSlug: string) => `/collection/${collectionSlug}`,
+    all: () => "/collections",
+    bySlug: (slug: string) => `/collections/${slug}`,
+    add: () => "/collections/add",
+    edit: (id: string) => `/collections/${id}/edit`,
   },
   regions: {
     all: () => "/regions",

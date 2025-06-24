@@ -1,59 +1,55 @@
 "use client";
 
+import type { useSession } from "@/lib/auth";
 import { useState } from "react";
+import RequireAuth from "@/components/require-auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import { updateUser, useSession } from "@/lib/auth";
-import { navigation } from "@/lib/urls";
-import { redirect, useRouter } from "@/navigation";
-import { XIcon } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { updateUser } from "@/lib/auth";
+import { useRouter } from "@/navigation";
+import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-async function convertImageToBase64(file: File): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
+// import { XIcon } from "lucide-react";
+
+// async function convertImageToBase64(file: File): Promise<string> {
+//   return new Promise((resolve, reject) => {
+//     const reader = new FileReader();
+//     reader.onloadend = () => resolve(reader.result as string);
+//     reader.onerror = reject;
+//     reader.readAsDataURL(file);
+//   });
+// }
 
 export default function EditUser() {
-  const { data, isPending } = useSession();
-  const locale = useLocale();
+  return (
+    <RequireAuth
+      skeleton={
+        <div className="flex max-w-xl flex-col gap-10">
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-3.5 w-30" />
+            <Skeleton className="h-9 w-full" />
+          </div>
 
-  if (isPending) {
-    return (
-      <div className="flex max-w-xl flex-col gap-10">
-        <div className="flex flex-col gap-2">
-          <Skeleton className="h-3.5 w-30" />
-          <Skeleton className="h-9 w-full" />
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-3.5 w-30" />
+            <Skeleton className="h-9 w-full" />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Skeleton className="h-3.5 w-30" />
+            <Skeleton className="h-9 w-full" />
+          </div>
+
+          <Skeleton className="h-9 w-20" />
         </div>
-
-        <div className="flex flex-col gap-2">
-          <Skeleton className="h-3.5 w-30" />
-          <Skeleton className="h-9 w-full" />
-        </div>
-
-        <div className="flex flex-col gap-2">
-          <Skeleton className="h-3.5 w-30" />
-          <Skeleton className="h-9 w-full" />
-        </div>
-
-        <Skeleton className="h-9 w-20" />
-      </div>
-    );
-  }
-
-  if (!data) {
-    redirect({ href: navigation.login(), locale });
-    return null;
-  }
-
-  return <EditUserForm session={data} />;
+      }
+    >
+      {(data) => <EditUserForm session={data} />}
+    </RequireAuth>
+  );
 }
 
 type Data = NonNullable<ReturnType<typeof useSession>["data"]>;
@@ -61,31 +57,31 @@ type Data = NonNullable<ReturnType<typeof useSession>["data"]>;
 const EditUserForm = ({ session }: { session: Data }) => {
   const t = useTranslations();
   const [name, setName] = useState<string>(session.user.name);
-  const [image, setImage] = useState<File | null>(null);
-  const [imagePreview, setImagePreview] = useState<string | null>(
-    session.user.image || null,
-  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const router = useRouter();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setImage(file);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const [image, setImage] = useState<File | null>(null);
+  // const [imagePreview, setImagePreview] = useState<string | null>(
+  //   session.user.image || null,
+  // );
+  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (file) {
+  //     setImage(file);
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setImagePreview(reader.result as string);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setIsLoading(true);
     await updateUser({
-      image: image ? await convertImageToBase64(image) : undefined,
+      // image: image ? await convertImageToBase64(image) : undefined,
       name: name ? name : undefined,
       fetchOptions: {
         onSuccess: () => {
@@ -109,7 +105,7 @@ const EditUserForm = ({ session }: { session: Data }) => {
           <Input
             id="name"
             type="name"
-            placeholder="John Doe"
+            placeholder="Enter your name"
             value={name}
             required
             onChange={(e) => setName(e.target.value)}
@@ -121,7 +117,7 @@ const EditUserForm = ({ session }: { session: Data }) => {
           <Input id="email" type="email" value={session.user.email} disabled />
         </div>
 
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <Label htmlFor="image">{t("profile.profile-image")}</Label>
           <div className="flex items-end gap-4">
             {imagePreview && (
@@ -155,7 +151,7 @@ const EditUserForm = ({ session }: { session: Data }) => {
               )}
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div>
           <Button type="submit" isLoading={isLoading}>

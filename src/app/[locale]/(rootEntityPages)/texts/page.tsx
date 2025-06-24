@@ -7,6 +7,7 @@ import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
 import { gregorianYearToHijriYear } from "@/lib/date";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
 import { countAllBooks } from "@/server/services/books";
@@ -38,6 +39,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
   const { q, sort, page, genres, authors, regions, year, view } =
     await searchParams;
   const t = await getTranslations("entities");
+  const pathLocale = await getPathLocale();
 
   const [results, totalBooks] = await Promise.all([
     searchBooks(q, {
@@ -50,22 +52,10 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         regions,
         yearRange: year,
       },
+      locale: pathLocale,
     }),
     countAllBooks(),
   ]);
-
-  console.log({
-    q,
-    page,
-    sortBy: sort,
-    filters: {
-      genres,
-      authors,
-      regions,
-      yearRange: year,
-    },
-  });
-  console.log(results);
 
   return (
     <RootEntityPage

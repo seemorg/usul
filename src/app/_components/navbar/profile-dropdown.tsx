@@ -11,11 +11,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Skeleton } from "@/components/ui/skeleton";
 import { signOut, useSession } from "@/lib/auth";
 import { navigation } from "@/lib/urls";
 import { Link, useRouter } from "@/navigation";
-import { BadgeCheckIcon, LogInIcon, LogOutIcon } from "lucide-react";
+import { BadgeCheckIcon, FolderIcon, LogOutIcon, UserIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
@@ -42,14 +41,18 @@ export function ProfileDropdown() {
   };
 
   if (session.isPending) {
-    return <Skeleton className="bg-secondary/20 block size-10 shrink-0" />;
+    return (
+      <Button variant="ghost" size="icon" className="shrink-0" disabled>
+        <UserIcon className="size-5" />
+      </Button>
+    );
   }
 
   if (!session.data) {
     return (
-      <Button asChild size="icon" variant="ghost" className="shrink-0">
+      <Button asChild variant="ghost" size="icon" className="shrink-0">
         <Link href={navigation.login()}>
-          <LogInIcon className="size-4" />
+          <UserIcon className="size-5" />
         </Link>
       </Button>
     );
@@ -60,14 +63,9 @@ export function ProfileDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button className="border-border size-10 shrink-0 overflow-hidden rounded-full border-2 data-[state=open]:border-white">
-          <EntityAvatar
-            type="user"
-            entity={user}
-            className="size-full rounded-none"
-            fallbackClassName="rounded-none"
-          />
-        </button>
+        <Button variant="ghost" size="icon" className="shrink-0">
+          <UserIcon className="size-5" />
+        </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent
@@ -95,9 +93,16 @@ export function ProfileDropdown() {
         <DropdownMenuSeparator />
 
         <DropdownMenuItem asChild>
-          <Link href="/profile">
+          <Link href={navigation.profile()}>
             <BadgeCheckIcon />
             {t("common.profile")}
+          </Link>
+        </DropdownMenuItem>
+
+        <DropdownMenuItem asChild>
+          <Link href={navigation.collections.all()}>
+            <FolderIcon />
+            {t("entities.collections")}
           </Link>
         </DropdownMenuItem>
 
