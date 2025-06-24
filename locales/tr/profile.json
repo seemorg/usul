@@ -1,5 +1,8 @@
 {
-  "full-name": "Tam Adı",
-  "profile-image": "Profil Resmi",
+  "name": {
+    "label": "Tam Ad",
+    "placeholder": "Adınızı girin"
+  },
+  "success-message": "Kullanıcı başarıyla güncellendi",
   "save-changes": "Değişiklikleri Kaydet"
 }

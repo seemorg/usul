@@ -1,5 +1,8 @@
 {
-  "full-name": "نام کامل",
-  "profile-image": "تصویر پروفایل",
+  "name": {
+    "label": "نام کامل",
+    "placeholder": "نام خود را وارد کنید"
+  },
+  "success-message": "کاربر با موفقیت به روز شد",
   "save-changes": "ذخیره تغییرات"
 }
