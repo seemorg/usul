@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "عطیہ کریں",
     "description": "اُصول کو عطیہ کریں"
+  },
+  "profile-page": {
+    "title": "پروفائل",
+    "description": "آپ کا پروفائل"
+  },
+  "collections-page": {
+    "title": "کلیکشن",
+    "description": "آپ کا کلیکشن"
   }
 }

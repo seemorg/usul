@@ -2,5 +2,28 @@
   "legal-canons": {
     "title": "Yasal Kanunlar",
     "description": "Hukuki kanon koleksiyonlarının örnek seçimi"
+  },
+  "name": {
+    "title": "Ad",
+    "placeholder": "Koleksiyon adını girin"
+  },
+  "description": {
+    "title": "Açıklama",
+    "placeholder": "Koleksiyon açıklamasını girin"
+  },
+  "slug": {
+    "title": "Kısa Adres",
+    "placeholder": "Koleksiyon kısa adresini girin",
+    "description": "Koleksiyonunuz için URL dostu bir tanımlayıcı."
+  },
+  "visibility": {
+    "title": "Görünürlük",
+    "public": "Genel",
+    "unlisted": "Liste Dışı",
+    "description": "Genel koleksiyonlar herkese görünür. Liste dışı koleksiyonlara yalnızca doğrudan bağlantı üzerinden erişilebilir."
+  },
+  "danger-zone": {
+    "title": "Tehlikeli Bölge",
+    "description": "Bir koleksiyonu sildikten sonra geri dönüş yoktur. Lütfen emin olun."
   }
 }

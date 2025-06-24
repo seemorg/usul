@@ -41,11 +41,8 @@
     "year-asc": "Shekarar Mutuwa (Tashi)",
     "year-desc": "Shekarar Mutuwa (Matsakaici)"
   },
-  "theme": {
-    "light": "Haske",
-    "dark": "Baki",
-    "auto": "Atomatik"
-  },
+  "profile": "Fayil",
+  "logout": "Fita",
   "from": "Daga",
   "to": "Zuwa",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "Adireshin Imel",
   "footer": {
     "headline": "Usul - Kayan Bincike don Rubutun Musulunci",
     "description": "Usul.ai tana da ɗakin karatu na sama da 15,000 na rubuce-rubuce na Musulunci. Manufarmu ita ce sauƙaƙa karatu, bincike da nazari game da rubuce-rubuce na gargajiya. Yi rajista a ƙasa don karɓar sabuntawa na wata-wata game da ayyukanmu.",
-    "email-address": "Adireshin Imel",
     "subscribe": "Yi rajista",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Duk haƙƙoƙi an tanada."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Ana zuwa Ba da daɗewa ba",
     "message": "Wannan fasalin ba shi da akwai tukuna. Yi rijista zuwa wasiƙarmu kuma an sanar da ku lokacin da yake shirye.",
-    "success": "Na gode!",
-    "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
+    "success": "Na gode!"
   },
   "year-filter-info": "Ranar mutuwar marubuci",
   "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
   "text-info": "Bayanin Rubutu",
   "author-info": "Bayanin Mawallafi",
-  "names": "Sunaye"
+  "names": "Sunaye",
+  "create": "Ƙirƙiri",
+  "create-x": "Ƙirƙiri {entity}",
+  "view": "Duba",
+  "edit": "Gyara",
+  "edit-x": "Gyara {entity}",
+  "update": "Sabunta",
+  "delete": "Goge",
+  "cancel": "Soke",
+  "delete-x": "Goge {entity}",
+  "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
+  "delete-confirmation": {
+    "title": "Ka tabbata sosai?",
+    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu."
+  }
 }
