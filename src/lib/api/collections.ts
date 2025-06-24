@@ -63,7 +63,7 @@ export const getCollectionBySlug = async (
 };
 
 export const addCollection = async (
-  data: Pick<Collection, "name" | "description" | "slug">,
+  data: Pick<Collection, "name" | "description" | "slug" | "visibility">,
 ) => {
   return await apiFetch<{ data: Collection }>(`/collections`, undefined, {
     method: "POST",
@@ -75,7 +75,7 @@ export const addCollection = async (
 
 export const updateCollection = async (
   id: string,
-  data: Pick<Collection, "name" | "description" | "slug">,
+  data: Pick<Collection, "name" | "description" | "slug" | "visibility">,
 ) => {
   return await apiFetch<{ data: Collection }>(`/collections/${id}`, undefined, {
     method: "PUT",
