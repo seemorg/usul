@@ -41,11 +41,8 @@
     "year-asc": "Año de defunción (Ascendente)",
     "year-desc": "Año de defunción (Descendente)"
   },
-  "theme": {
-    "light": "Claro",
-    "dark": "Oscuro",
-    "auto": "Automático"
-  },
+  "profile": "Perfil",
+  "logout": "Cerrar sesión",
   "from": "Desde",
   "to": "Hasta",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "Dirección de correo electrónico",
   "footer": {
     "headline": "Usuales - Herramienta de investigación de textos islámicos",
     "description": "Usul.ai tiene una biblioteca de más de 15,000 textos islámicos. Nuestro objetivo es facilitar la lectura, búsqueda e investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
-    "email-address": "Dirección de correo electrónico",
     "subscribe": "Suscribirse",
     "copyright": "{year, number, nogroup} La Fundación Seemore. Todos los derechos reservados."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Próximamente",
     "message": "Esta función aún no está disponible. Suscríbete a nuestro boletín y te notificaremos cuando esté lista.",
-    "success": "¡Gracias!",
-    "error": "Algo salió mal. Por favor, intenta de nuevo más tarde."
+    "success": "¡Gracias!"
   },
   "year-filter-info": "Fecha de fallecimiento del autor",
   "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
   "text-info": "Información del texto",
   "author-info": "Información del autor",
-  "names": "Nombres"
+  "names": "Nombres",
+  "create": "Crear",
+  "create-x": "Crear {entity}",
+  "view": "Ver",
+  "edit": "Editar",
+  "edit-x": "Editar {entity}",
+  "update": "Actualizar",
+  "delete": "Eliminar",
+  "cancel": "Cancelar",
+  "delete-x": "Eliminar {entity}",
+  "error": "Algo salió mal. Por favor, inténtelo de nuevo más tarde.",
+  "delete-confirmation": {
+    "title": "¿Está absolutamente seguro?",
+    "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente el {entity} y eliminará todos sus datos de nuestros servidores."
+  }
 }

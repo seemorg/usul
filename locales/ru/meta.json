@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Пожертвовать",
     "description": "Пожертвовать на Усуль"
+  },
+  "profile-page": {
+    "title": "Профиль",
+    "description": "Ваш профиль"
+  },
+  "collections-page": {
+    "title": "Коллекции",
+    "description": "Ваши коллекции"
   }
 }

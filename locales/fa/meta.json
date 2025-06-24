@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "اهدا",
     "description": "به اصول اهدا کنید"
+  },
+  "profile-page": {
+    "title": "پروفایل",
+    "description": "پروفایل شما"
+  },
+  "collections-page": {
+    "title": "مجموعه‌ها",
+    "description": "مجموعه‌های شما"
   }
 }

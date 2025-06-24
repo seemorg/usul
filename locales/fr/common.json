@@ -41,11 +41,8 @@
     "year-asc": "Année de décès (croissant)",
     "year-desc": "Année de décès (décroissant)"
   },
-  "theme": {
-    "light": "Lumière",
-    "dark": "Sombre",
-    "auto": "Auto"
-  },
+  "profile": "Profil",
+  "logout": "Déconnexion",
   "from": "De",
   "to": "À",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "Adresse e-mail",
   "footer": {
     "headline": "Usul - L'outil de recherche pour les textes islamiques",
     "description": "Usul.ai possède une bibliothèque de plus de 15 000 textes islamiques. Notre objectif est de rendre la lecture, la recherche et l'analyse des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
-    "email-address": "Adresse Email",
     "subscribe": "Abonnez-vous",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Tous droits réservés."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Bientôt disponible",
     "message": "Cette fonctionnalité n'est pas encore disponible. Abonnez-vous à notre newsletter et soyez notifié lorsque c'est prêt.",
-    "success": "Merci !",
-    "error": "Quelque chose s'est mal passé. Veuillez réessayer plus tard."
+    "success": "Merci !"
   },
   "year-filter-info": "Date de décès de l'auteur",
   "regions-filter-info": "Lieux où l'auteur a visité, est né ou est décédé",
   "text-info": "Infos Texte",
   "author-info": "Infos Auteur",
-  "names": "Noms"
+  "names": "Noms",
+  "create": "Créer",
+  "create-x": "Créer {entity}",
+  "view": "Afficher",
+  "edit": "Modifier",
+  "edit-x": "Modifier {entity}",
+  "update": "Mettre à jour",
+  "delete": "Supprimer",
+  "cancel": "Annuler",
+  "delete-x": "Supprimer {entity}",
+  "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
+  "delete-confirmation": {
+    "title": "Êtes-vous absolument sûr?",
+    "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs."
+  }
 }

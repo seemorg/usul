@@ -41,11 +41,8 @@
     "year-asc": "Ölüm Yılı (Artan)",
     "year-desc": "Ölüm Yılı (Azalan)"
   },
-  "theme": {
-    "light": "Açık",
-    "dark": "Koyu",
-    "auto": "Otomatik"
-  },
+  "profile": "Profil",
+  "logout": "Çıkış Yap",
   "from": "Başlangıç",
   "to": "Bitiş",
   "search-bar": {
@@ -121,10 +118,10 @@
       }
     }
   },
+  "email-address": "E-posta Adresi",
   "footer": {
     "headline": "Usul - İslami Metinler İçin Araştırma Aracı",
     "description": "Usul.ai, 15.000'den fazla İslami metni içeren bir kütüphaneye sahiptir. Amacımız klasik metinleri okumayı, aramayı ve araştırmayı kolay hale getirmektir. Aşağıdan abonelik yaparak çalışmalarımız hakkında aylık güncellemeler alın.",
-    "email-address": "E-posta Adresi",
     "subscribe": "Abone Ol",
     "copyright": "{year, number, nogroup} The Seemore Vakfı. Tüm hakları saklıdır."
   },
@@ -150,12 +147,25 @@
   "coming-soon": {
     "title": "Yakında",
     "message": "Bu özellik henüz kullanılabilir değil. Hazır olduğunda bilgilendirilmek için bültenimize abone olun.",
-    "success": "Teşekkürler!",
-    "error": "Bir şeyler yanlış gitti. Lütfen daha sonra tekrar deneyin."
+    "success": "Teşekkürler!"
   },
   "year-filter-info": "Yazarın ölüm tarihi",
   "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler",
   "text-info": "Metin Bilgisi",
   "author-info": "Yazar Bilgisi",
-  "names": "İsimler"
+  "names": "İsimler",
+  "create": "Oluştur",
+  "create-x": "{entity} Oluştur",
+  "view": "Görüntüle",
+  "edit": "Düzenle",
+  "edit-x": "{entity} Düzenle",
+  "update": "Güncelle",
+  "delete": "Sil",
+  "cancel": "İptal",
+  "delete-x": "{entity} Sil",
+  "error": "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.",
+  "delete-confirmation": {
+    "title": "Kesinlikle emin misiniz?",
+    "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır."
+  }
 }

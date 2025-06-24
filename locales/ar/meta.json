@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "تبرع",
     "description": "تبرع لمشروع أصول"
+  },
+  "profile-page": {
+    "title": "الملف الشخصي",
+    "description": "ملفك الشخصي"
+  },
+  "collections-page": {
+    "title": "التجميعات",
+    "description": "تجميعاتك"
   }
 }

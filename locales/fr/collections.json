@@ -2,5 +2,28 @@
   "legal-canons": {
     "title": "Canons Juridiques",
     "description": "Un échantillon de collections de canons juridiques"
+  },
+  "name": {
+    "title": "Nom",
+    "placeholder": "Entrez le nom de la collection"
+  },
+  "description": {
+    "title": "Description",
+    "placeholder": "Entrez la description de la collection"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Entrez le slug de la collection",
+    "description": "Identifiant compatible URL pour votre collection."
+  },
+  "visibility": {
+    "title": "Visibilité",
+    "public": "Publique",
+    "unlisted": "Non répertoriée",
+    "description": "Les collections publiques sont visibles par tout le monde. Les collections non répertoriées sont accessibles uniquement via un lien direct."
+  },
+  "danger-zone": {
+    "title": "Zone de danger",
+    "description": "Une fois que vous supprimez une collection, il n'y a pas de retour en arrière. Veuillez être certain."
   }
 }
