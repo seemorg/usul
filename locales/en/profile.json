@@ -1,5 +1,8 @@
 {
-  "full-name": "Full Name",
-  "profile-image": "Profile Image",
+  "name": {
+    "label": "Full Name",
+    "placeholder": "Enter your name"
+  },
+  "success-message": "User updated successfully",
   "save-changes": "Save Changes"
 }

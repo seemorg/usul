@@ -45,7 +45,7 @@ export default function GenresFilter({
 
   const locale = usePathLocale();
   const { data: genres, isLoading: isLoadingGenres } = useQuery({
-    queryKey: ["genres"],
+    queryKey: ["genres", bookIds, locale],
     queryFn: () => findAllGenresWithBooksCount({ bookIds, locale }),
   });
 

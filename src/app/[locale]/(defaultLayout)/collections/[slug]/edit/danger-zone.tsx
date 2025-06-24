@@ -20,8 +20,11 @@ export default function DangerZone({ collection }: { collection: Collection }) {
   const t = useTranslations();
 
   const handleDelete = () => {
-    mutate(collection.id);
-    setIsOpen(false);
+    mutate(collection.id, {
+      onSuccess: () => {
+        setIsOpen(false);
+      },
+    });
   };
 
   return (

@@ -1,27 +1,25 @@
 "use client";
 
 import type { useSession } from "@/lib/auth";
-import { useState } from "react";
 import RequireAuth from "@/components/require-auth";
 import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { updateUser } from "@/lib/auth";
-import { useRouter } from "@/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-// import { XIcon } from "lucide-react";
-
-// async function convertImageToBase64(file: File): Promise<string> {
-//   return new Promise((resolve, reject) => {
-//     const reader = new FileReader();
-//     reader.onloadend = () => resolve(reader.result as string);
-//     reader.onerror = reject;
-//     reader.readAsDataURL(file);
-//   });
-// }
+import { z } from "zod";
 
 export default function EditUser() {
   return (
@@ -54,111 +52,71 @@ export default function EditUser() {
 
 type Data = NonNullable<ReturnType<typeof useSession>["data"]>;
 
+const schema = z.object({
+  name: z.string().min(1),
+});
+
+type FormData = z.infer<typeof schema>;
+
 const EditUserForm = ({ session }: { session: Data }) => {
   const t = useTranslations();
-  const [name, setName] = useState<string>(session.user.name);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const router = useRouter();
+  const form = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: session.user.name,
+    },
+  });
 
-  // const [image, setImage] = useState<File | null>(null);
-  // const [imagePreview, setImagePreview] = useState<string | null>(
-  //   session.user.image || null,
-  // );
-  // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (file) {
-  //     setImage(file);
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => {
-  //       setImagePreview(reader.result as string);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   }
-  // };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    setIsLoading(true);
-    await updateUser({
-      // image: image ? await convertImageToBase64(image) : undefined,
-      name: name ? name : undefined,
-      fetchOptions: {
-        onSuccess: () => {
-          toast.success("User updated successfully");
+  const { mutate, isPending } = useMutation({
+    mutationFn: (data: FormData) =>
+      updateUser({
+        ...data,
+        fetchOptions: {
+          throw: true,
         },
-        onError: (error) => {
-          toast.error(error.error.message);
-        },
-      },
-    });
+      }),
+    onSuccess: () => {
+      toast.success(t("profile.success-message"));
+    },
+    onError: () => {
+      toast.error(t("common.error"));
+    },
+  });
 
-    router.refresh();
-    setIsLoading(false);
+  const handleSubmit = (data: FormData) => {
+    mutate(data);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="flex max-w-xl flex-col gap-10">
-        <div className="flex flex-col gap-2">
-          <Label htmlFor="name">{t("profile.full-name")}</Label>
-          <Input
-            id="name"
-            type="name"
-            placeholder="Enter your name"
-            value={name}
-            required
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="flex max-w-xl flex-col gap-10"
+      >
+        <FormField
+          control={form.control}
+          name="name"
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-2">
+              <FormLabel>{t("profile.name.label")}</FormLabel>
+              <FormControl>
+                <Input placeholder={t("profile.name.placeholder")} {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
 
         <div className="flex flex-col gap-2">
           <Label htmlFor="email">{t("common.email-address")}</Label>
           <Input id="email" type="email" value={session.user.email} disabled />
         </div>
 
-        {/* <div className="flex flex-col gap-2">
-          <Label htmlFor="image">{t("profile.profile-image")}</Label>
-          <div className="flex items-end gap-4">
-            {imagePreview && (
-              <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-sm">
-                <img
-                  src={imagePreview}
-                  alt="Profile preview"
-                  className="h-full w-full object-cover"
-                />
-              </div>
-            )}
-
-            <div className="flex w-full items-center gap-2">
-              <Input
-                id="image"
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                value={image ? image.name : ""}
-                className="text-muted-foreground w-full"
-              />
-
-              {imagePreview && (
-                <XIcon
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setImage(null);
-                    setImagePreview(null);
-                  }}
-                />
-              )}
-            </div>
-          </div>
-        </div> */}
-
         <div>
-          <Button type="submit" isLoading={isLoading}>
+          <Button type="submit" isLoading={isPending}>
             {t("profile.save-changes")}
           </Button>
         </div>
       </form>
-    </div>
+    </Form>
   );
 };
