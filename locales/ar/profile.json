@@ -1,5 +1,8 @@
 {
-  "full-name": "الاسم الكامل",
-  "profile-image": "صورة الملف الشخصي",
+  "name": {
+    "label": "الاسم الكامل",
+    "placeholder": "أدخل اسمك"
+  },
+  "success-message": "تم تحديث المستخدم بنجاح",
   "save-changes": "حفظ التغييرات"
 }

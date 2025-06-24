@@ -1,5 +1,8 @@
 {
-  "full-name": "Nombre completo",
-  "profile-image": "Imagen de perfil",
+  "name": {
+    "label": "Nombre Completo",
+    "placeholder": "Ingrese su nombre"
+  },
+  "success-message": "Usuario actualizado con éxito",
   "save-changes": "Guardar cambios"
 }
