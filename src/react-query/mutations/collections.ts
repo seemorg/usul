@@ -83,10 +83,6 @@ export const useUpdateCollection = () => {
 
       const previousCollections =
         queryClient.getQueryData<CollectionsQueryResult>(collectionKeys.all);
-      const collectionBySlug =
-        queryClient.getQueryData<CollectionBySlugQueryResult>(
-          collectionKeys.bySlug(updatedCollection.slug),
-        );
 
       queryClient.setQueryData(
         collectionKeys.all,
@@ -102,31 +98,13 @@ export const useUpdateCollection = () => {
         }),
       );
 
-      queryClient.setQueryData(
-        collectionKeys.bySlug(updatedCollection.slug),
-        (old: CollectionBySlugQueryResult) => ({
-          ...old,
-          data: {
-            ...old?.data,
-            ...updatedCollection,
-          },
-        }),
-      );
-
-      return { previousCollections, collectionBySlug };
+      return { previousCollections };
     },
-    onError: (err, updatedCollection, context) => {
+    onError: (err, _, context) => {
       if (context?.previousCollections) {
         queryClient.setQueryData(
           collectionKeys.all,
           context.previousCollections,
-        );
-      }
-
-      if (context?.collectionBySlug) {
-        queryClient.setQueryData(
-          collectionKeys.bySlug(updatedCollection.slug),
-          context.collectionBySlug,
         );
       }
 
