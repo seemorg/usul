@@ -94,7 +94,10 @@ export default function CollectionForm({
     if (mode === "create") {
       createMutation.mutate(data);
     } else {
-      updateMutation.mutate({ id: collectionId!, ...data });
+      updateMutation.mutate({
+        id: collectionId!,
+        ...data,
+      });
     }
   };
 

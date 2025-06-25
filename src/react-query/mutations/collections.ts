@@ -1,3 +1,4 @@
+import { useParams } from "next/navigation";
 import {
   addBookToCollection,
   addCollection,
@@ -71,6 +72,9 @@ export const useCreateCollection = () => {
 
 export const useUpdateCollection = () => {
   const queryClient = useQueryClient();
+  const router = useRouter();
+  const params = useParams();
+  const currentSlug = params.slug as string;
 
   return useMutation({
     mutationFn: ({
@@ -111,8 +115,16 @@ export const useUpdateCollection = () => {
       console.error("Error updating collection:", err);
       toast.error("Failed to update collection");
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast.success("Collection updated successfully");
+
+      // Check if the slug was updated and navigate to the new URL
+      const updatedCollection = data!.data;
+      const newSlug = updatedCollection.slug;
+
+      if (currentSlug && newSlug && currentSlug !== newSlug) {
+        router.replace(navigation.collections.edit(newSlug));
+      }
     },
     onSettled: (_, __, updateCollectionInput) => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });
