@@ -1,4 +1,4 @@
-import type { searchRegions } from "@/server/typesense/region";
+import type { RegionDocument } from "@/types/region";
 import { navigation } from "@/lib/urls";
 import { useTranslations } from "next-intl";
 
@@ -8,7 +8,7 @@ export default function RegionSearchResult({
   result,
   prefetch = true,
 }: {
-  result: Awaited<ReturnType<typeof searchRegions>>["results"]["hits"][number];
+  result: RegionDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();

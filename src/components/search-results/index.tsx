@@ -1,4 +1,4 @@
-import type { SearchResponse } from "@/server/typesense/utils";
+import type { SearchResponse } from "@/lib/api/search";
 import type { Pagination } from "@/types/pagination";
 import type { Sort } from "@/types/sort";
 import type { View } from "@/validation/view";

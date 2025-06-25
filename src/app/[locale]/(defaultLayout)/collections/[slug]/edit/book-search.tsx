@@ -10,10 +10,10 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination";
 import { Skeleton } from "@/components/ui/skeleton";
+import { searchBooks } from "@/lib/api/search";
 import { formatDeathYear } from "@/lib/date";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { cn } from "@/lib/utils";
-import { searchBooks } from "@/server/typesense/book";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2Icon, PlusIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -49,9 +49,17 @@ export default function BookSearch({
   });
 
   const { data, isLoading } = useQuery({
-    queryKey: ["book-search", debouncedValue, currentPage],
+    queryKey: [
+      "book-search",
+      debouncedValue,
+      { page: currentPage, locale: pathLocale },
+    ],
     queryFn: () =>
-      searchBooks(debouncedValue, { limit: 10, page: currentPage }),
+      searchBooks(debouncedValue, {
+        limit: 10,
+        page: currentPage,
+        locale: pathLocale,
+      }),
     enabled: !!debouncedValue && debouncedValue.length > 2,
   });
 

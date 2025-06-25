@@ -7,9 +7,10 @@ import SearchResults from "@/components/search-results";
 import DottedList from "@/components/ui/dotted-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import { collections } from "@/data/collections";
+import { searchBooks } from "@/lib/api/search";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { searchBooks } from "@/server/typesense/book";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -51,11 +52,13 @@ async function CollectionPage({
   }
 
   const t = await getTranslations();
+  const pathLocale = await getPathLocale();
 
   const results = await searchBooks(q, {
     limit: 20,
     page,
     sortBy: sort,
+    locale: pathLocale,
     filters: {
       genres,
       ids: collection.bookIds,

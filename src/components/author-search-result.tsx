@@ -1,4 +1,4 @@
-import type { searchAuthors } from "@/server/typesense/author";
+import type { AuthorDocument } from "@/types/author";
 import { formatDeathYear } from "@/lib/date";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
@@ -10,7 +10,7 @@ export default function AuthorSearchResult({
   result,
   prefetch = true,
 }: {
-  result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
+  result: AuthorDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();

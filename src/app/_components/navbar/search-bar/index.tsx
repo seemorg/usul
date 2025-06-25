@@ -4,13 +4,17 @@ import type { SearchType } from "@/types/search";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
+import {
+  searchAllCollections,
+  searchAuthors,
+  searchBooks,
+  searchGenres,
+} from "@/lib/api/search";
+import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
-import { searchAuthors } from "@/server/typesense/author";
-import { searchBooks } from "@/server/typesense/book";
-import { searchGenres } from "@/server/typesense/genre";
-import { searchAllCollections } from "@/server/typesense/global";
+import { useNavbarStore } from "@/stores/navbar";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
@@ -19,7 +23,6 @@ import { useBoolean, useDebounceValue, useMediaQuery } from "usehooks-ts";
 
 import SearchBarEmptyState from "./empty-state";
 import SearchBarResults from "./results";
-import { useNavbarStore } from "@/stores/navbar";
 
 const typeToMethod = {
   all: searchAllCollections,
@@ -40,6 +43,7 @@ export default function SearchBar({
   isMenu?: boolean;
 }) {
   const t = useTranslations("common");
+  const pathLocale = usePathLocale();
   const setShowSearch = useNavbarStore((s) => s.setShowSearch);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
@@ -63,7 +67,10 @@ export default function SearchBar({
     queryFn: ({ queryKey }) => {
       const [, type, query = ""] = queryKey as [string, SearchType, string];
       const method = typeToMethod[type];
-      return method(query, { limit: 5 }) as Promise<SearchResults>;
+      return method(query, {
+        limit: 5,
+        locale: pathLocale,
+      }) as Promise<SearchResults>;
     },
     enabled: !!debouncedValue,
   });

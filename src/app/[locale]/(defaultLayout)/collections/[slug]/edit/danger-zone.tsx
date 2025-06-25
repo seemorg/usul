@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useDeleteCollection } from "@/queries/collections";
+import { useDeleteCollection } from "@/react-query/mutations/collections";
 import { TrashIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 

@@ -2,10 +2,8 @@
 
 import type { BookDocument } from "@/types/book";
 import { notFound, useParams } from "next/navigation";
-import {
-  useAddBookToCollection,
-  useCollectionBySlug,
-} from "@/queries/collections";
+import { useAddBookToCollection } from "@/react-query/mutations/collections";
+import { useCollectionBySlug } from "@/react-query/queries/collections";
 import { useTranslations } from "next-intl";
 
 import CollectionForm from "../../collection-form";

@@ -1,4 +1,4 @@
-import type { SearchResponse } from "@/server/typesense/utils";
+import type { SearchResponse } from "@/lib/api/search";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { SearchType } from "@/types/search";
 import { Button } from "@/components/ui/button";

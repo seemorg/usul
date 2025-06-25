@@ -1,4 +1,4 @@
-import type { searchBooks } from "@/server/typesense/book";
+import type { BookDocument } from "@/types/book";
 import type { View } from "@/validation/view";
 import { formatDeathYear } from "@/lib/date";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
@@ -17,7 +17,7 @@ export default function BookSearchResult({
   prefetch = true,
 }: {
   view?: View;
-  result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
+  result: BookDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();

@@ -15,11 +15,11 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
 import { checkCollectionSlug } from "@/lib/api/collections";
+import { toSlug } from "@/lib/slug";
 import {
-  generateSlug,
   useCreateCollection,
   useUpdateCollection,
-} from "@/queries/collections";
+} from "@/react-query/mutations/collections";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslations } from "next-intl";
 import { useForm } from "react-hook-form";
@@ -85,7 +85,7 @@ export default function CollectionForm({
   useEffect(() => {
     // Only auto-generate slug if name changed and slug is not dirty
     if (!isSlugDirty) {
-      const generatedSlug = generateSlug(name);
+      const generatedSlug = toSlug(name);
       form.setValue("slug", generatedSlug, { shouldDirty: false });
     }
   }, [name, isSlugDirty, form]);
@@ -94,7 +94,7 @@ export default function CollectionForm({
     if (mode === "create") {
       createMutation.mutate(data);
     } else {
-      updateMutation.mutate({ id: collectionId!, data });
+      updateMutation.mutate({ id: collectionId!, ...data });
     }
   };
 

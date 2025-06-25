@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import { useCollections } from "@/queries/collections";
+import { useCollections } from "@/react-query/queries/collections";
 import { EditIcon, EyeIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 

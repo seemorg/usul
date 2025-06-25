@@ -1,13 +1,14 @@
 "use client";
 
+import type { SearchResponse } from "@/lib/api/search";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
-import type { SearchResponse } from "@/server/typesense/utils";
 import type { AuthorDocument } from "@/types/author";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { searchAuthors } from "@/lib/api/search";
+import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { searchAuthors } from "@/server/typesense/author";
 import { useFormatter, useTranslations } from "next-intl";
 
 import FilterContainer from "../search-results/filter-container";
@@ -59,6 +60,7 @@ export default function AuthorsFilterClient({
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const searchTimeoutRef = useRef<NodeJS.Timeout>(null);
   const pathname = usePathname();
+  const pathLocale = usePathLocale();
   const { replace } = useRouter();
 
   const [value, setValue] = useState("");
@@ -89,7 +91,8 @@ export default function AuthorsFilterClient({
     const results = await searchAuthors(q, {
       page: p,
       limit: 10,
-      sortBy: "booksCount:desc,_text_match:desc",
+      sortBy: "texts-desc",
+      locale: pathLocale,
       filters,
     });
 

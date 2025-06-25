@@ -12,116 +12,85 @@ import type { ApiGenre, ApiGenreCollection } from "@/types/api/genre";
 import type { ApiRegion } from "@/types/api/region";
 import { cache } from "react";
 import { unstable_cache } from "next/cache";
-import { env } from "@/env";
 
 import type { PathLocale } from "../locale/utils";
-import { prepareSearchParams } from "../params";
-
-export const apiFetch = async <T>(
-  url: string,
-  params?: Record<string, string>,
-  init?: RequestInit & { throw?: boolean },
-): Promise<T | null> => {
-  const finalUrl = `${env.NEXT_PUBLIC_API_BASE_URL}${url}${prepareSearchParams(params)}`;
-
-  const response = await fetch(finalUrl, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    ...init,
-  });
-
-  if (!response.ok || response.status >= 300) {
-    if (init?.throw) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
-    }
-
-    return null;
-  }
-
-  return response.json() as Promise<T>;
-};
+import { apiFetch } from "./utils";
 
 export const getBook = cache(async (slug: string, params: ApiBookParams) => {
-  return await apiFetch<ApiBookResponse | AlternateSlugResponse>(
-    `/book/${slug}`,
-    {
-      ...(params.fields && { fields: params.fields.join(",") }),
-      ...(params.versionId && { versionId: params.versionId }),
-      ...(params.locale && { locale: params.locale }),
-      ...(params.startIndex && { startIndex: params.startIndex.toString() }),
-      ...(params.size && { size: params.size.toString() }),
-      ...(params.includeBook && { includeBook: "true" }),
-    },
-  );
+  return await apiFetch<ApiBookResponse | AlternateSlugResponse>({
+    path: `/book/${slug}`,
+    params,
+  });
 });
 
 export const getBookPage = cache(
   async (slug: string, params: ApiBookPageParams) => {
-    return await apiFetch<ApiBookPageResponse | AlternateSlugResponse>(
-      `/book/page/${slug}`,
-      {
-        index: params.index.toString(),
-        ...(params.fields && { fields: params.fields.join(",") }),
-        ...(params.versionId && { versionId: params.versionId }),
-        ...(params.locale && { locale: params.locale }),
-        ...(params.includeBook && { includeBook: "true" }),
-      },
-    );
+    return await apiFetch<ApiBookPageResponse | AlternateSlugResponse>({
+      path: `/book/page/${slug}`,
+      params,
+    });
   },
 );
 
 export const getBookPageIndex = cache(
   async (slug: string, params: ApiPageIndexParams) => {
-    return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>(
-      `/book/page_index/${slug}`,
-      {
-        page: params.page.toString(),
-        ...(params.versionId && { versionId: params.versionId }),
-        ...(params.volume && { volume: params.volume.toString() }),
-      },
-    );
+    return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>({
+      path: `/book/page_index/${slug}`,
+      params,
+    });
   },
 );
 
 export const getAuthorBySlug = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiAuthor>(`/author/${slug}`, params);
+    return await apiFetch<ApiAuthor>({
+      path: `/author/${slug}`,
+      params,
+    });
   },
 );
 
 export const getGenre = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiGenre>(`/genre/${slug}`, params);
+    return await apiFetch<ApiGenre>({
+      path: `/genre/${slug}`,
+      params,
+    });
   },
 );
 
 export const getRegion = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiRegion>(`/region/${slug}`, params);
+    return await apiFetch<ApiRegion>({
+      path: `/region/${slug}`,
+      params,
+    });
   },
 );
 
 export const getHomepageGenres = cache(
   async (params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiGenreCollection[]>(`/genre/homepage`, params);
+    return await apiFetch<ApiGenreCollection[]>({
+      path: `/genre/homepage`,
+      params,
+    });
   },
 );
 
 export const getTotalEntities = cache(async () => {
   return unstable_cache(
-    async () =>
-      (await apiFetch<{
-        books: number;
-        authors: number;
-        regions: number;
-        genres: number;
-      }>(`/total`)) || {
+    async () => {
+      const defaultResponse = {
         books: 0,
         authors: 0,
         regions: 0,
         genres: 0,
-      },
+      };
+
+      return (
+        (await apiFetch<typeof defaultResponse>(`/total`)) || defaultResponse
+      );
+    },
     ["total"],
     {
       revalidate: false, // make this static

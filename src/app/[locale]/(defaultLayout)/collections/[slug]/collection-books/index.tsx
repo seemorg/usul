@@ -18,10 +18,8 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import {
-  useCollectionBySlug,
-  useRemoveBookFromCollection,
-} from "@/queries/collections";
+import { useRemoveBookFromCollection } from "@/react-query/mutations/collections";
+import { useCollectionBySlug } from "@/react-query/queries/collections";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -71,9 +69,11 @@ export default function CollectionBooks({
   const [genres] = useGenresFilter();
   const { data, isLoading, isFetching } = useCollectionBySlug(slug, {
     page,
-    query: search,
+    q: search,
     sortBy: sort,
-    genres,
+    filters: {
+      genres,
+    },
   });
 
   if (!data && !isLoading) {

@@ -1,4 +1,4 @@
-import type { searchGenres } from "@/server/typesense/genre";
+import type { GenreDocument } from "@/types/genre";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { useTranslations } from "next-intl";
@@ -9,9 +9,7 @@ export default function GenreSearchResult({
   result,
   prefetch = true,
 }: {
-  result: NonNullable<
-    Awaited<ReturnType<typeof searchGenres>>["results"]["hits"]
-  >[number];
+  result: GenreDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations("entities");

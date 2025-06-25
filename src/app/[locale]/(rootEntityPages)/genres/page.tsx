@@ -2,10 +2,11 @@ import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import GenreSearchResult from "@/components/genre-search-result";
 import SearchResults from "@/components/search-results";
+import { searchGenres } from "@/lib/api/search";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { countAllGenres } from "@/server/services/genres";
-import { searchGenres } from "@/server/typesense/genre";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -33,10 +34,12 @@ async function GenresPage({ searchParams }: PageProps) {
   const { q, sort, page } = await searchParams;
 
   const t = await getTranslations("entities");
+  const pathLocale = await getPathLocale();
 
   const [results, totalGenres] = await Promise.all([
     searchGenres(q, {
       limit: 20,
+      locale: pathLocale,
       page,
       sortBy: sort,
     }),
