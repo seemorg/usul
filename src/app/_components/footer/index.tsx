@@ -199,7 +199,7 @@ export default function Footer() {
                 title={item.name}
               >
                 <span className="sr-only">{item.name}</span>
-                <item.icon className="size-6" aria-hidden="true" />
+                <item.icon className="size-4" aria-hidden="true" />
               </a>
             ))}
           </div>
