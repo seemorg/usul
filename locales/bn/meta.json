@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "দান করুন",
     "description": "আমাদের উসুলে দান করুন"
+  },
+  "profile-page": {
+    "title": "প্রোফাইল",
+    "description": "আপনার প্রোফাইল"
+  },
+  "collections-page": {
+    "title": "সংগ্রহসমূহ",
+    "description": "আপনার সংগ্রহসমূহ"
   }
 }

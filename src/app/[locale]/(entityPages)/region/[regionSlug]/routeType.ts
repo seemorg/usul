@@ -18,17 +18,7 @@ export const Route = {
     sort: z
       .enum(sorts as any)
       .default(defaultSort)
-      .catch(defaultSort)
-      .transform((v: (typeof sorts)[number]) => {
-        let typesenseValue: string = v;
-        if (v === "year-asc") typesenseValue = "year:asc";
-        if (v === "year-desc") typesenseValue = "year:desc";
-
-        return {
-          typesenseValue,
-          raw: v,
-        };
-      }),
+      .catch(defaultSort),
     authors: z
       .string()
       .transform((v) => v.split(","))

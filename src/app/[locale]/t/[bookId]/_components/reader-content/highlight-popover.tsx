@@ -1,14 +1,14 @@
 import { useParams, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { toast } from "@/components/ui/use-toast";
 import { useDirection } from "@/lib/locale/utils";
 import { useBookShareUrl } from "@/lib/share";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 import { ClipboardIcon, ShareIcon, SparklesIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { useChatStore } from "../../_stores/chat";
 import { useTabNavigate } from "../sidebar/useTabNavigate";
-import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 function ReaderHighlightPopover({
   selection,
@@ -32,7 +32,7 @@ function ReaderHighlightPopover({
 
   const handleCopy = async () => {
     await navigator.clipboard.writeText(selection);
-    toast({ description: t("reader.chat.copied") });
+    toast.success(t("reader.chat.copied"));
   };
 
   const handleShare = async () => {

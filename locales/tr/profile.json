@@ -1,0 +1,8 @@
+{
+  "name": {
+    "label": "Tam Ad",
+    "placeholder": "Adınızı girin"
+  },
+  "success-message": "Kullanıcı başarıyla güncellendi",
+  "save-changes": "Değişiklikleri Kaydet"
+}

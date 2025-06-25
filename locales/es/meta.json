@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Donar",
     "description": "Donar a Usul"
+  },
+  "profile-page": {
+    "title": "Perfil",
+    "description": "Tu perfil"
+  },
+  "collections-page": {
+    "title": "Colecciones",
+    "description": "Tus colecciones"
   }
 }

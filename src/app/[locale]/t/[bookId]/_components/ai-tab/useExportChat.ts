@@ -1,12 +1,11 @@
 import { useCallback, useRef } from "react";
-import { useToast } from "@/components/ui/use-toast";
 import html2canvas from "html2canvas";
+import { toast } from "sonner";
 import { useBoolean } from "usehooks-ts";
 
 export const useExportChat = () => {
   const captureRef = useRef<HTMLDivElement>(null);
   const isSavingImage = useBoolean(false);
-  const { toast } = useToast();
 
   const handleShareChat = useCallback(async () => {
     isSavingImage.setTrue();
@@ -29,9 +28,9 @@ export const useExportChat = () => {
       link.href = canvas.toDataURL("image/png", 1.0);
       link.click();
 
-      toast({ description: "Done!" });
+      toast.success("Done!");
     } catch {
-      toast({ description: "An error occurred!", variant: "destructive" });
+      toast.error("An error occurred!");
     }
 
     isSavingImage.setFalse();

@@ -1,0 +1,8 @@
+{
+  "name": {
+    "label": "Nama Penuh",
+    "placeholder": "Masukkan nama anda"
+  },
+  "success-message": "Pengguna dikemas kini dengan jayanya",
+  "save-changes": "Simpan Perubahan"
+}

@@ -1,14 +1,10 @@
-import type { searchBooks } from "@/server/typesense/book";
+import type { BookDocument } from "@/types/book";
 import type { View } from "@/validation/view";
 import { formatDeathYear } from "@/lib/date";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import { useTranslations } from "next-intl";
 
 import { CloudflareImage } from "../cloudflare-image";
@@ -21,59 +17,40 @@ export default function BookSearchResult({
   prefetch = true,
 }: {
   view?: View;
-  result: Awaited<ReturnType<typeof searchBooks>>["results"]["hits"][number];
+  result: BookDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();
   const dir = useDirection();
   const pathLocale = usePathLocale();
-  const { document } = result;
 
-  const { primaryNames, author } = document;
+  const { author } = result;
 
-  const title = (
-    document.transliteration && pathLocale === "en"
-      ? document.transliteration
-      : "primaryName" in document
-        ? document.primaryName
-        : primaryNames
-          ? (getPrimaryLocalizedText(primaryNames, pathLocale) ?? "")
-          : ""
-  ) as string;
+  const title =
+    result.transliteration && pathLocale === "en"
+      ? result.transliteration
+      : result.primaryName;
 
-  const secondaryTitle = getSecondaryLocalizedText(primaryNames, pathLocale);
-
-  const authorPrimaryNames =
-    author.primaryNames ?? (author as any)?.primaryNameTranslations;
+  const secondaryTitle = result.secondaryName;
 
   const authorName = (
     author.transliteration && pathLocale === "en"
       ? author.transliteration
-      : "primaryName" in author
-        ? author.primaryName
-        : authorPrimaryNames
-          ? getPrimaryLocalizedText(authorPrimaryNames, pathLocale)
-          : undefined
+      : author.primaryName
   ) as string | undefined;
 
-  const authorSecondaryName = (
-    "secondaryName" in author
-      ? author.secondaryName
-      : author.primaryNames
-        ? getSecondaryLocalizedText(author.primaryNames, pathLocale)
-        : undefined
-  ) as string | undefined;
+  const authorSecondaryName = author.secondaryName;
 
   if (view === "grid") {
     return (
       <div className="group relative mx-auto block h-full w-full">
         <InfoDialog result={result} />
 
-        <Link href={navigation.books.reader(document.slug)} prefetch={prefetch}>
+        <Link href={navigation.books.reader(result.slug)} prefetch={prefetch}>
           <div className={cn("bg-muted overflow-hidden rounded-md")}>
-            {document.coverUrl ? (
+            {result.coverUrl ? (
               <CloudflareImage
-                src={document.coverUrl}
+                src={result.coverUrl}
                 alt={title}
                 width={320}
                 height={460}
@@ -112,7 +89,7 @@ export default function BookSearchResult({
   let hasEbook = false;
   let hasExternal = false;
 
-  for (const version of document.versions) {
+  for (const version of result.versions) {
     if (version.source === "pdf" || !!version.pdfUrl) {
       hasPdf = true;
     }
@@ -128,7 +105,7 @@ export default function BookSearchResult({
 
   return (
     <EntityCard
-      href={navigation.books.reader(document.slug)}
+      href={navigation.books.reader(result.slug)}
       prefetch={prefetch}
       primaryTitle={title}
       secondaryTitle={secondaryTitle}

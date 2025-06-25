@@ -1,0 +1,8 @@
+{
+  "login": "Connexion",
+  "title": "Connectez-vous à votre compte",
+  "description": "Entrez votre email ci-dessous pour vous connecter à votre compte",
+  "check-email": "Vérifiez votre email pour un lien de connexion",
+  "or-continue-with": "Ou continuez avec",
+  "login-with-x": "Connectez-vous avec {provider}"
+}

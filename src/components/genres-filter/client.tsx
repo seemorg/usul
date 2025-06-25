@@ -93,7 +93,6 @@ export default function GenresFilterClient({
       });
     }, DEBOUNCE_DELAY);
 
-    // @ts-ignore
     timeoutRef.current = newTimeout;
   };
 

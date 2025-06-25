@@ -1,6 +1,6 @@
-import { toast } from "@/components/ui/use-toast";
 import { routing } from "@/i18n/config";
 import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import { usePathLocale } from "./locale/utils";
 import { navigation } from "./urls";
@@ -34,7 +34,7 @@ export const useBookShareUrl = () => {
 
     await navigator.clipboard.writeText(url);
 
-    toast({ description: t("reader.chat.copied") });
+    toast.success(t("reader.chat.copied"));
   };
 
   return { copyUrl };

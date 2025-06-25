@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "ډونیشن",
     "description": "اوسول ته ډونیشن وکړئ"
+  },
+  "profile-page": {
+    "title": "پروفايل",
+    "description": "ستاسو پروفايل"
+  },
+  "collections-page": {
+    "title": "مجموعې",
+    "description": "ستاسو مجموعې"
   }
 }

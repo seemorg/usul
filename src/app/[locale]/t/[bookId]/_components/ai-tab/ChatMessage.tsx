@@ -3,7 +3,6 @@ import type { Components } from "react-markdown";
 import { memo, useCallback, useMemo, useState } from "react";
 import { OpenAILogo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { sendFeedback } from "@/server/services/chat";
 import {
@@ -20,6 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import { toast } from "sonner";
 import { useBoolean } from "usehooks-ts";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
@@ -64,7 +64,6 @@ const ChatMessage = ({
   onRegenerate,
   getVirtuosoScrollProps,
 }: ChatMessageProps) => {
-  const { toast } = useToast();
   const t = useTranslations();
 
   const isLoading = useBoolean(false);
@@ -76,10 +75,7 @@ const ChatMessage = ({
     mutationKey: ["send-feedback"],
     mutationFn: sendFeedback,
     onSuccess: (_, { feedback }) => {
-      toast({
-        variant: "primary",
-        description: t("reader.feedback-submitted"),
-      });
+      toast.success(t("reader.feedback-submitted"));
       setFeedbackSentType(feedback);
     },
   });
@@ -95,7 +91,7 @@ const ChatMessage = ({
   const handleCopy = useCallback(async () => {
     isLoading.setTrue();
     await navigator.clipboard.writeText(text);
-    toast({ description: t("reader.chat.copied") });
+    toast.success(t("reader.chat.copied"));
     isLoading.setFalse();
   }, [text]);
 

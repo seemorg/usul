@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Bağış Yap",
     "description": "Usul'e Bağış Yap"
+  },
+  "profile-page": {
+    "title": "Profil",
+    "description": "Profiliniz"
+  },
+  "collections-page": {
+    "title": "Koleksiyonlar",
+    "description": "Koleksiyonlarınız"
   }
 }

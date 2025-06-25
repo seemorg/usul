@@ -34,16 +34,16 @@
     "placeholder": "Ordenar por",
     "relevance": "Relevancia",
     "chronological": "Cronológico",
-    "no-of-texts": "No. de Textos",
-    "no-of-authors": "No. de Autores",
-    "year-asc": "Año (Asc)",
-    "year-desc": "Año (Desc)"
+    "no-of-texts-desc": "Núm. de textos (Descendente)",
+    "no-of-texts-asc": "Núm. de textos (Ascendente)",
+    "no-of-authors-desc": "Núm. de autores (Descendente)",
+    "no-of-authors-asc": "Núm. de autores (Ascendente)",
+    "year-asc": "Año de defunción (Ascendente)",
+    "year-desc": "Año de defunción (Descendente)"
   },
-  "theme": {
-    "light": "Claro",
-    "dark": "Oscuro",
-    "auto": "Automático"
-  },
+  "profile": "Perfil",
+  "login": "Iniciar sesión",
+  "logout": "Cerrar sesión",
   "from": "Desde",
   "to": "Hasta",
   "search-bar": {
@@ -119,12 +119,12 @@
       }
     }
   },
+  "email-address": "Dirección de correo electrónico",
   "footer": {
     "headline": "Usuales - Herramienta de investigación de textos islámicos",
-    "description": "Usul.ai sirve más de 8.000 textos islámicos del cuerpo OpenITI. Nuestro objetivo es facilitar la lectura, la búsqueda y la investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
-    "email-address": "Dirección de correo electrónico",
+    "description": "Usul.ai tiene una biblioteca de más de 15,000 textos islámicos. Nuestro objetivo es facilitar la lectura, búsqueda e investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
     "subscribe": "Suscribirse",
-    "copyright": "{year, number, nogroup} Fundación Seemorg. Todos los derechos reservados."
+    "copyright": "{year, number, nogroup} La Fundación Seemore. Todos los derechos reservados."
   },
   "lost": "Parece que te has perdido",
   "go-back-home": "Vuelve a casa",
@@ -148,12 +148,25 @@
   "coming-soon": {
     "title": "Próximamente",
     "message": "Esta función aún no está disponible. Suscríbete a nuestro boletín y te notificaremos cuando esté lista.",
-    "success": "¡Gracias!",
-    "error": "Algo salió mal. Por favor, intenta de nuevo más tarde."
+    "success": "¡Gracias!"
   },
   "year-filter-info": "Fecha de fallecimiento del autor",
   "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
   "text-info": "Información del texto",
   "author-info": "Información del autor",
-  "names": "Nombres"
+  "names": "Nombres",
+  "create": "Crear",
+  "create-x": "Crear {entity}",
+  "view": "Ver",
+  "edit": "Editar",
+  "edit-x": "Editar {entity}",
+  "update": "Actualizar",
+  "delete": "Eliminar",
+  "cancel": "Cancelar",
+  "delete-x": "Eliminar {entity}",
+  "error": "Algo salió mal. Por favor, inténtelo de nuevo más tarde.",
+  "delete-confirmation": {
+    "title": "¿Está absolutamente seguro?",
+    "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente el {entity} y eliminará todos sus datos de nuestros servidores."
+  }
 }

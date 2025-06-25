@@ -2,10 +2,11 @@ import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import RegionSearchResult from "@/components/region-search-result";
 import SearchResults from "@/components/search-results";
+import { searchRegions } from "@/lib/api/search";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { countAllRegions } from "@/server/services/regions";
-import { searchRegions } from "@/server/typesense/region";
 import { InfoIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -32,14 +33,15 @@ export async function generateMetadata({
 
 async function RegionsPage({ searchParams }: PageProps) {
   const { q, page, sort } = await searchParams;
-
+  const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
   const [results, totalRegions] = await Promise.all([
     searchRegions(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
+      locale: pathLocale,
     }),
     countAllRegions(),
   ]);
@@ -73,8 +75,8 @@ async function RegionsPage({ searchParams }: PageProps) {
           entity: t("regions"),
         })}
         hasViews={false}
-        sorts={sorts as any}
-        currentSort={sort.raw}
+        sorts={sorts}
+        currentSort={sort}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={q}
       />

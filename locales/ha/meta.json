@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Ba da Gudunmawa",
     "description": "Ba da gudunmawa ga Usul"
+  },
+  "profile-page": {
+    "title": "Bayanin mutum",
+    "description": "Bayanin ku"
+  },
+  "collections-page": {
+    "title": "Tarin",
+    "description": "Tarin ku"
   }
 }

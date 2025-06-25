@@ -1,0 +1,8 @@
+{
+  "login": "Iniciar sesión",
+  "title": "Inicia sesión en tu cuenta",
+  "description": "Ingresa tu correo electrónico abajo para iniciar sesión en tu cuenta",
+  "check-email": "Revisa tu correo electrónico para el enlace de inicio de sesión",
+  "or-continue-with": "O continuar con",
+  "login-with-x": "Iniciar sesión con {provider}"
+}

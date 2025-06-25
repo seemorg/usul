@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "दान करें",
     "description": "उसूल को दान करें"
+  },
+  "profile-page": {
+    "title": "प्रोफ़ाइल",
+    "description": "आपकी प्रोफ़ाइल"
+  },
+  "collections-page": {
+    "title": "संग्रह",
+    "description": "आपके संग्रह"
   }
 }

@@ -18,6 +18,7 @@ import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";
 import HomepageNavigationMenu from "./navigation-menu";
+import { ProfileDropdown } from "./profile-dropdown";
 import SearchBar from "./search-bar";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -143,6 +144,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
           <LocaleSwitcher />
           <ThemeToggle />
+          <ProfileDropdown />
         </div>
       </header>
 

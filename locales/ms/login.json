@@ -1,0 +1,8 @@
+{
+  "login": "Log Masuk",
+  "title": "Log masuk ke akaun anda",
+  "description": "Masukkan emel anda di bawah untuk log masuk ke akaun anda",
+  "check-email": "Periksa emel anda untuk pautan log masuk",
+  "or-continue-with": "Atau teruskan dengan",
+  "login-with-x": "Log masuk dengan {provider}"
+}

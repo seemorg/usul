@@ -4,13 +4,17 @@ import { z } from "zod";
 
 export const sorts = [
   {
-    label: "sorts.no-of-texts",
-    value: "texts",
+    label: "sorts.no-of-texts-desc",
+    value: "texts-desc",
+  },
+  {
+    label: "sorts.no-of-texts-asc",
+    value: "texts-asc",
   },
 ] as const satisfies Sort[];
 
 const sortsValues = sorts.map((s) => s.value);
-const defaultSort: (typeof sortsValues)[number] = "texts";
+const defaultSort: (typeof sortsValues)[number] = "texts-desc";
 
 export const Route = {
   searchParams: z.object({
@@ -19,16 +23,7 @@ export const Route = {
     sort: z
       .enum(sortsValues as any)
       .default(defaultSort)
-      .catch(defaultSort)
-      .transform((v: (typeof sortsValues)[number]) => {
-        let typesenseValue: string = v;
-        if (v === "texts") typesenseValue = "booksCount:desc";
-
-        return {
-          typesenseValue,
-          raw: v,
-        };
-      }),
+      .catch(defaultSort),
   }),
 } satisfies DynamicRoute;
 

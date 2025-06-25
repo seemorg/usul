@@ -40,29 +40,35 @@ const PaginationItem = ({
   <li className={cn("", className)} {...props} />
 );
 
-type PaginationLinkProps = {
+type PaginationLinkProps<T extends "button" | "link"> = {
   isActive?: boolean;
+  asElement?: T;
 } & Pick<ButtonProps, "size"> &
-  React.ComponentProps<typeof Link>;
+  React.ComponentProps<T extends "link" ? typeof Link : "button">;
 
-const PaginationLink = ({
+const PaginationLink = <T extends "button" | "link">({
   className,
   isActive,
   size = "icon",
+  asElement = "link" as T,
   ...props
-}: PaginationLinkProps) => (
-  <Link
-    aria-current={isActive ? "page" : undefined}
-    className={cn(
-      buttonVariants({
-        variant: isActive ? "outline" : "ghost",
-        size,
-      }),
-      className,
-    )}
-    {...props}
-  />
-);
+}: PaginationLinkProps<T>) => {
+  const Element = (asElement === "link" ? Link : "button") as any;
+
+  return (
+    <Element
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        buttonVariants({
+          variant: isActive ? "outline" : "ghost",
+          size,
+        }),
+        className,
+      )}
+      {...props}
+    />
+  );
+};
 PaginationLink.displayName = "PaginationLink";
 
 const PaginationPrevious = ({
@@ -221,4 +227,13 @@ const Paginator = ({
   );
 };
 
+export {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationPrevious,
+  PaginationNext,
+  PaginationEllipsis,
+};
 export default Paginator;

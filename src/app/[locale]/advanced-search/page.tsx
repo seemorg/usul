@@ -1,26 +1,23 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
+import { Suspense } from "react";
 import Footer from "@/app/_components/footer";
 import Navbar from "@/app/_components/navbar";
-
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
-
+import Paginator from "@/components/ui/pagination";
+import { prepareSearchParams } from "@/lib/api/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-
+import { Link } from "@/navigation";
+import { searchCorpus } from "@/server/services/chat";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType } from "./routeType";
-import { Route } from "./routeType";
-import { searchCorpus } from "@/server/services/chat";
-import AdvancedSearchResult from "./search-result";
-import { Link } from "@/navigation";
-import { prepareSearchParams } from "@/lib/params";
-import { Button } from "@/components/ui/button";
-import { Suspense } from "react";
-import Paginator from "@/components/ui/pagination";
 import AdvancedSearchInput from "./input";
+import { Route } from "./routeType";
+import AdvancedSearchResult from "./search-result";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 

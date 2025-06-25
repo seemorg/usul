@@ -1,0 +1,8 @@
+{
+  "login": "Вход",
+  "title": "Войдите в свой аккаунт",
+  "description": "Введите ваш email ниже, чтобы войти в аккаунт",
+  "check-email": "Проверьте ваш email для ссылки входа",
+  "or-continue-with": "Или продолжить с",
+  "login-with-x": "Войти с {provider}"
+}

@@ -1,15 +1,14 @@
 "use client";
 
+import type { SearchResponse } from "@/lib/api/search";
 import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
-import type { TypesenseResponse } from "@/server/typesense/utils";
 import type { AuthorDocument } from "@/types/author";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { searchAuthors } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { searchAuthors } from "@/server/typesense/author";
 import { useFormatter, useTranslations } from "next-intl";
 
 import FilterContainer from "../search-results/filter-container";
@@ -40,7 +39,7 @@ interface AuthorsFilterProps {
   initialAuthorsResponse: Awaited<ReturnType<typeof searchAuthors>>;
   booksCount: Awaited<ReturnType<typeof findAllAuthorIdsWithBooksCount>>;
   currentAuthors: string[];
-  selectedAuthorsResponse: TypesenseResponse<AuthorDocument> | null;
+  selectedAuthorsResponse: SearchResponse<AuthorDocument>["results"] | null;
   filters?: Record<string, any>;
 }
 
@@ -52,7 +51,7 @@ export default function AuthorsFilterClient({
   filters,
 }: AuthorsFilterProps) {
   const t = useTranslations();
-  const pathLocale = usePathLocale();
+
   const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =
     useState<string[]>(currentAuthors);
@@ -61,6 +60,7 @@ export default function AuthorsFilterClient({
   const timeoutRef = useRef<NodeJS.Timeout>(null);
   const searchTimeoutRef = useRef<NodeJS.Timeout>(null);
   const pathname = usePathname();
+  const pathLocale = usePathLocale();
   const { replace } = useRouter();
 
   const [value, setValue] = useState("");
@@ -91,7 +91,8 @@ export default function AuthorsFilterClient({
     const results = await searchAuthors(q, {
       page: p,
       limit: 10,
-      sortBy: "booksCount:desc,_text_match:desc",
+      sortBy: "texts-desc",
+      locale: pathLocale,
       filters,
     });
 
@@ -112,16 +113,15 @@ export default function AuthorsFilterClient({
     }
 
     const newTimeout = setTimeout(() => {
-      fetchAuthors(newValue, 1, { reset: true });
+      void fetchAuthors(newValue, 1, { reset: true });
     }, DEBOUNCE_DELAY);
 
-    // @ts-ignore
     searchTimeoutRef.current = newTimeout;
   };
 
   const handleLoadMore = () => {
     setPage((p) => p + 1);
-    fetchAuthors(value, page + 1);
+    void fetchAuthors(value, page + 1);
   };
 
   const handleChange = (authorId: string) => {
@@ -145,14 +145,15 @@ export default function AuthorsFilterClient({
       });
     }, DEBOUNCE_DELAY);
 
-    // @ts-ignore
     timeoutRef.current = newTimeout;
   };
 
   const data = useMemo(() => {
     const allResponses = Object.values(pageToResponse);
     const hasMore = allResponses[allResponses.length - 1]?.pagination.hasNext;
-    const items = allResponses.flatMap((r) => r.results.hits ?? []);
+    console.log(pageToResponse);
+
+    const items = allResponses.flatMap((r) => r.results.hits);
 
     if (!selectedAuthorsResponse) {
       return {
@@ -161,12 +162,12 @@ export default function AuthorsFilterClient({
       };
     }
 
-    const selectedHits = selectedAuthorsResponse.hits ?? [];
-    const selectedIds = new Set(selectedHits.map((i) => i.document.id));
+    const selectedHits = selectedAuthorsResponse.hits;
+    const selectedIds = new Set(selectedHits.map((i) => i.id));
 
     return {
       items: selectedHits.concat(
-        items.filter((item) => !selectedIds.has(item.document.id)),
+        items.filter((item) => !selectedIds.has(item.id)),
       ),
       hasMore,
     };
@@ -199,18 +200,14 @@ export default function AuthorsFilterClient({
 
       <FilterContainer.List className="font-inter mt-5">
         {data.items.map((item) => {
-          const author = item.document;
+          const author = item;
           const authorId = author.id;
 
           const booksCount = formatter.number(
             authorIdToBooksCount[authorId] ?? 0,
           );
 
-          const name = getPrimaryLocalizedText(
-            item.document.primaryNames,
-            pathLocale,
-          );
-
+          const name = item.primaryName;
           const title = `${name} (${booksCount})`;
 
           return (

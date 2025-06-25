@@ -1,6 +1,29 @@
 {
   "legal-canons": {
     "title": "Legal Canons",
-    "description": "A curated selection of legal canon sources by Dr. Intisar Rabb"
+    "description": "A sample selection of legal canons collections"
+  },
+  "name": {
+    "title": "Name",
+    "placeholder": "Enter collection name"
+  },
+  "description": {
+    "title": "Description",
+    "placeholder": "Enter collection description"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Enter collection slug",
+    "description": "URL-friendly identifier for your collection."
+  },
+  "visibility": {
+    "title": "Visibility",
+    "public": "Public",
+    "unlisted": "Unlisted",
+    "description": "Public collections are visible to everyone. Unlisted collections are only accessible via direct link."
+  },
+  "danger-zone": {
+    "title": "Danger Zone",
+    "description": "Once you delete a collection, there is no going back. Please be certain."
   }
 }

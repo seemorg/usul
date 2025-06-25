@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Ku deeq",
     "description": "Ku deeq Usul"
+  },
+  "profile-page": {
+    "title": "Profile-kaaga",
+    "description": "Profile-kaaga"
+  },
+  "collections-page": {
+    "title": "Ururinta",
+    "description": "Ururintaada"
   }
 }

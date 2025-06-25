@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
+import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
@@ -18,7 +19,6 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { findAuthorBySlug } from "@/server/services/authors";
-import { searchBooks } from "@/server/typesense/book";
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -108,6 +108,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
     limit: 20,
     page,
     sortBy: sort,
+    locale: pathLocale,
     filters: {
       genres,
       authors: [author.id], // books for the current author only

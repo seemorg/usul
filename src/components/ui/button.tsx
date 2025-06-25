@@ -1,8 +1,9 @@
 import type { VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Slot as SlotPrimitive } from "radix-ui";
 import { cva } from "class-variance-authority";
+import { Slot as SlotPrimitive } from "radix-ui";
 
+import Spinner from "./spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 const buttonVariants = cva(
@@ -46,6 +47,7 @@ export interface ButtonProps
   asChild?: boolean;
   tooltip?: string;
   tooltipProps?: React.ComponentProps<typeof TooltipContent>;
+  isLoading?: boolean;
 }
 
 const Button = ({
@@ -56,6 +58,8 @@ const Button = ({
   asChild = false,
   tooltip,
   tooltipProps,
+  isLoading = false,
+  children,
   ...props
 }: ButtonProps) => {
   const Comp = asChild ? SlotPrimitive.Slot : "button";
@@ -63,7 +67,9 @@ const Button = ({
     <Comp
       className={cn(buttonVariants({ variant, size, rounded, className }))}
       {...props}
-    />
+    >
+      {isLoading ? <Spinner className="size-4 text-current" /> : children}
+    </Comp>
   );
 
   if (!tooltip) return content;

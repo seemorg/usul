@@ -10,6 +10,7 @@ import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import YearFilterClient from "@/components/year-filter/client";
 import { getRegion } from "@/lib/api";
+import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
@@ -19,7 +20,6 @@ import {
   getSecondaryLocalizedText,
 } from "@/server/db/localization";
 import { findRegionBySlug } from "@/server/services/regions";
-import { searchBooks } from "@/server/typesense/book";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -69,7 +69,8 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
+    locale: pathLocale,
     filters: {
       regions: [region.slug],
       yearRange: year,
@@ -147,7 +148,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
             entity: primaryName ?? "",
           })}
           sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          currentSort={sort}
           currentQuery={q}
           view={view}
           filters={

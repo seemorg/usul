@@ -1,6 +1,29 @@
 {
   "legal-canons": {
     "title": "Cánones legales",
-    "description": "Una selección curada de fuentes del canon legal por la Dra. Intisar Rabb"
+    "description": "Una selección de muestras de colecciones de cánones legales"
+  },
+  "name": {
+    "title": "Nombre",
+    "placeholder": "Ingrese el nombre de la colección"
+  },
+  "description": {
+    "title": "Descripción",
+    "placeholder": "Ingrese la descripción de la colección"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Ingrese el slug de la colección",
+    "description": "Identificador amigable para la URL de tu colección."
+  },
+  "visibility": {
+    "title": "Visibilidad",
+    "public": "Pública",
+    "unlisted": "No listado",
+    "description": "Las colecciones públicas son visibles para todos. Las colecciones no listadas sólo son accesibles mediante enlace directo."
+  },
+  "danger-zone": {
+    "title": "Zona de peligro",
+    "description": "Una vez que elimines una colección, no hay vuelta atrás. Por favor, asegúrate."
   }
 }

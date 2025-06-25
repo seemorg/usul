@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
 
 import type { Locale } from "next-intl";
-import { Toaster } from "@/components/ui/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { env } from "@/env";
 import { getTotalEntities } from "@/lib/api";
 import { getFontsClassnames } from "@/lib/fonts";

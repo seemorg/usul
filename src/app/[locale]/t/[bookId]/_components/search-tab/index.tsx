@@ -131,7 +131,7 @@ export default function SearchTab() {
     if (error) {
       return (
         <div className="flex h-[71vh] items-center justify-center gap-5">
-          <p className="text-red-500">{t("common.coming-soon.error")}</p>
+          <p className="text-red-500">{t("common.error")}</p>
         </div>
       );
     }

@@ -1,4 +1,3 @@
-import type { GenreDocument } from "@/types/genre";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import { CommandItem } from "@/components/ui/command";
 import DottedList from "@/components/ui/dotted-list";
@@ -8,10 +7,6 @@ import {
 } from "@/lib/global-search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { Link } from "@/navigation";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import { useTranslations } from "next-intl";
 
 function SearchBarItem({
@@ -27,25 +22,16 @@ function SearchBarItem({
   const Comp = (href ? Link : "button") as any;
   const type = document.type;
 
-  const names =
-    document.primaryNames ??
-    (document as unknown as GenreDocument).nameTranslations;
-
   const primaryName =
-    pathLocale === "en" &&
-    (document as unknown as GenreDocument).transliteration &&
-    type !== "genre"
-      ? (document as unknown as GenreDocument).transliteration
-      : getPrimaryLocalizedText(names, pathLocale);
-  const secondaryName = getSecondaryLocalizedText(names, pathLocale);
+    pathLocale === "en" && document.transliteration && type !== "genre"
+      ? document.transliteration
+      : document.primaryName;
+  const secondaryName = document.secondaryName;
 
   const finalPrimaryName = primaryName ?? secondaryName;
   const finalSecondaryName = primaryName ? secondaryName : null;
 
-  const authorName = getPrimaryLocalizedText(
-    document.author?.primaryNames ?? [],
-    pathLocale,
-  );
+  const authorName = document.author?.primaryName;
 
   const localizedType = t(
     getGlobalDocumentLocalizedTypeKey(type) ?? "no-entity",

@@ -69,6 +69,8 @@ const config = {
     "team",
     "donate",
     "collections",
+    "login",
+    "profile",
   ] as const,
   namespacedRoutes: {
     "*": ["common", "entities", "meta", "reader"],
@@ -78,6 +80,8 @@ const config = {
     "/team": ["team"],
     "/donate": ["donate"],
     "/collections/*": ["collections"],
+    "/login": ["login"],
+    "/profile": ["profile"],
     // "/chat/*": ["reader"],
   },
 };
@@ -99,6 +103,23 @@ export const localeToFullName: Record<Locale, string> = {
   "es-ES": "Español",
   "tr-TR": "Türkçe",
   "ur-PK": "اردو",
+};
+
+export const localeToEnglishName: Record<Locale, string> = {
+  "en-US": "English",
+  "ar-SA": "Arabic",
+  "bn-BD": "Bengali",
+  "fr-FR": "French",
+  "hi-IN": "Hindi",
+  "ha-NG": "Hausa",
+  "ms-MY": "Malay",
+  "ps-AF": "Pashto",
+  "fa-IR": "Persian",
+  "ru-RU": "Russian",
+  "so-SO": "Somali",
+  "es-ES": "Spanish",
+  "tr-TR": "Turkish",
+  "ur-PK": "Urdu",
 };
 
 export const localeToDirection: Record<Locale, "ltr" | "rtl"> = {

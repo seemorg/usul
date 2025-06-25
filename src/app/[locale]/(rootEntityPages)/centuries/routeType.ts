@@ -8,8 +8,12 @@ export const sorts = [
     value: "chronological",
   },
   {
-    label: "sorts.no-of-texts",
-    value: "texts",
+    label: "sorts.no-of-texts-desc",
+    value: "texts-desc",
+  },
+  {
+    label: "sorts.no-of-texts-asc",
+    value: "texts-asc",
   },
 ] as const satisfies Sort[];
 
@@ -23,17 +27,7 @@ export const Route = {
     sort: z
       .enum(sortsValues as any)
       .default(defaultSort)
-      .catch(defaultSort)
-      .transform((v: (typeof sortsValues)[number]) => {
-        let typesenseValue: string = v;
-        if (v === "chronological") typesenseValue = "chronological:asc";
-        if (v === "texts") typesenseValue = "booksCount:desc";
-
-        return {
-          typesenseValue,
-          raw: v,
-        };
-      }),
+      .catch(defaultSort),
   }),
 } satisfies DynamicRoute;
 

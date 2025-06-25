@@ -1,4 +1,3 @@
-import type { GenreDocument } from "@/types/genre";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import {
   getGlobalDocumentHref,
@@ -6,10 +5,6 @@ import {
 } from "@/lib/global-search";
 import { getPathLocale } from "@/lib/locale/server";
 import { Link } from "@/navigation";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import { getTranslations } from "next-intl/server";
 
 import DottedList from "./ui/dotted-list";
@@ -18,38 +13,26 @@ export default async function GlobalSearchResult({
   result,
   prefetch = true,
 }: {
-  result: { document: GlobalSearchDocument };
+  result: GlobalSearchDocument;
   prefetch?: boolean;
 }) {
   const t = await getTranslations("entities");
   const pathLocale = await getPathLocale();
 
-  const document = result.document;
-
-  const href = getGlobalDocumentHref(document);
-  const type = document.type;
-
-  const names =
-    document.primaryNames ??
-    (document as unknown as GenreDocument).nameTranslations;
+  const href = getGlobalDocumentHref(result);
+  const type = result.type;
 
   const primaryName =
-    pathLocale === "en" &&
-    (document as unknown as GenreDocument).transliteration &&
-    type !== "genre"
-      ? (document as unknown as GenreDocument).transliteration
-      : getPrimaryLocalizedText(names, pathLocale);
+    pathLocale === "en" && result.transliteration && type !== "genre"
+      ? result.transliteration
+      : result.primaryName;
 
-  const secondaryName = getSecondaryLocalizedText(names, pathLocale);
+  const secondaryName = result.secondaryName;
 
   const finalPrimaryName = primaryName ?? secondaryName;
   const finalSecondaryName = primaryName ? secondaryName : null;
 
-  const authorName = getPrimaryLocalizedText(
-    document.author?.primaryNames ?? [],
-    pathLocale,
-  );
-
+  const authorName = result.author?.primaryName;
   const localizedType = t(
     getGlobalDocumentLocalizedTypeKey(type) ?? "no-entity",
   );
