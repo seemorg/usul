@@ -139,8 +139,6 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
               />
             )}
           </Button>
-
-          <ProfileDropdown />
         </div>
 
         <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">

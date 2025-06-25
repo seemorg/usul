@@ -18,10 +18,8 @@ import { BadgeCheckIcon, FolderIcon, LogOutIcon, UserIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-export function ProfileDropdown() {
-  const session = useSession();
+export function useLogout() {
   const router = useRouter();
-  const t = useTranslations();
   const [isSigningOut, setIsSigningOut] = useState(false);
 
   const handleSignOut = async () => {
@@ -39,6 +37,14 @@ export function ProfileDropdown() {
       setIsSigningOut(false);
     }
   };
+
+  return { handleSignOut, isSigningOut };
+}
+
+export function ProfileDropdown() {
+  const session = useSession();
+  const t = useTranslations();
+  const { handleSignOut, isSigningOut } = useLogout();
 
   if (session.isPending) {
     return (
