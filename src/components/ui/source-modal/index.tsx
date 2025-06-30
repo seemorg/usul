@@ -1,4 +1,3 @@
-import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_components/usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
@@ -32,10 +31,8 @@ import Spinner from "../spinner";
 
 export default function SourceModal({
   source,
-  getVirtuosoScrollProps,
 }: {
   source: SemanticSearchBookNode;
-  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
 }) {
   const { bookResponse } = useBookDetails();
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +90,11 @@ export default function SourceModal({
   const handleGoToPage = () => {
     if (!data || data.index === null) return;
 
-    const props = getVirtuosoScrollProps(data.index);
+    const props = {
+      index: data.index,
+      align: "center" as const,
+    };
+
     virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
 
     setIsOpen(false);

@@ -1,5 +1,6 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { env } from "@/env";
+import { apiFetch } from "@/lib/api/utils";
 
 const baseRequest = async <T>(
   method: "GET" | "POST",
@@ -33,38 +34,17 @@ const baseRequest = async <T>(
   return response.json() as Promise<T>;
 };
 
-export const chatWithBook = async (body: {
-  bookId: string;
-  versionId: string;
-  question: string;
-  messages: any[];
-}) => {
-  const response = await baseRequest<{ chatId: string }>(
-    "POST",
-    `/chat/${body.bookId}/${body.versionId}`,
-    {
-      question: body.question,
-      messages: body.messages,
-    },
-  );
-
-  // this has the first chunk, we need to get the rest via SSE
-  const eventSource = new EventSource(
-    `${env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL}/chat/sse/${response.chatId}`,
-  );
-
-  return { eventSource, messageId: response.chatId };
-};
-
 export const sendFeedback = async (body: {
   messageId: string;
   feedback: "positive" | "negative";
 }) => {
-  const response = await baseRequest<{ success: boolean }>(
-    "POST",
+  const response = await apiFetch<{ success: boolean }>(
     `/chat/feedback/${body.messageId}`,
     {
-      type: body.feedback,
+      method: "POST",
+      body: {
+        type: body.feedback,
+      },
     },
   );
 

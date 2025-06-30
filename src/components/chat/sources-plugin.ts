@@ -1,26 +1,3 @@
-// function formatMarkdown(str: string, numbers: number[]) {
-//   let newStr = str;
-//   const regex = /\[(\d+)\]/g;
-
-//   for (const match of newStr.matchAll(regex)) {
-//     const number = match[1];
-//     const parsedNumber = Number(number);
-//     if (!numbers.includes(parsedNumber)) {
-//       continue;
-//     }
-
-//     const original = match[0];
-//     newStr = newStr.replaceAll(
-//       original,
-//       `<page-reference data-number="${number}"></page-reference>`,
-//     );
-//   }
-
-//   return newStr;
-// }
-
-// export default formatMarkdown;
-
 import type { Node } from "unist";
 import { SKIP, visit } from "unist-util-visit";
 

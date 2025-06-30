@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import type { UseChatHelpers } from "@ai-sdk/react";
+import { memo, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useEnterSubmit } from "@/hooks/useEnterSubmit";
 import { cn } from "@/lib/utils";
@@ -8,17 +9,18 @@ import { useNavbarStore } from "@/stores/navbar";
 import { ArrowRightIcon } from "@heroicons/react/20/solid";
 import { useTranslations } from "next-intl";
 import Textarea from "react-textarea-autosize";
+import { toast } from "sonner";
 
-function ChatForm({
+function PureChatInput({
   input,
+  status,
   setInput,
   onSubmit,
-  isPending,
 }: {
   input: string;
+  status: UseChatHelpers["status"];
   setInput: (value: string) => void;
-  onSubmit: (value: string) => void;
-  isPending?: boolean;
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 }) {
   const showNavbar = useNavbarStore((s) => s.showNavbar);
   const { formRef, onKeyDown } = useEnterSubmit();
@@ -38,21 +40,18 @@ function ChatForm({
         "mt-5 shrink-0 px-4 transition-transform duration-250 will-change-transform",
         showNavbar ? "md:translate-y-2.5" : "md:translate-y-[5.5rem]",
       )}
-      onSubmit={(e: any) => {
-        e.preventDefault();
+      onSubmit={(e) => {
+        if (status !== "ready") {
+          toast.error("Please wait for the model to finish its response!");
+          return;
+        }
 
-        if (isPending) return;
+        onSubmit(e);
 
         // Blur focus on mobile
         if (window.innerWidth < 600) {
-          e.target["message"]?.blur();
+          (e.target as HTMLFormElement)["message"]?.blur();
         }
-
-        const value = input.trim();
-        setInput("");
-        if (!value) return;
-
-        onSubmit(value);
       }}
     >
       <div className="bg-input relative flex max-h-60 w-full grow flex-col overflow-hidden rounded-md ltr:pr-8 sm:ltr:pr-12 rtl:pl-8 sm:rtl:pl-12">
@@ -78,7 +77,7 @@ function ChatForm({
             size="icon"
             type="submit"
             className="size-8 shrink-0 rounded-full"
-            disabled={isPending || input === ""}
+            disabled={status === "submitted" || input === ""}
             tooltip={t("chat.send-message")}
           >
             <ArrowRightIcon className="size-4 rtl:rotate-180" />
@@ -89,4 +88,9 @@ function ChatForm({
   );
 }
 
-export default ChatForm;
+export const ChatInput = memo(PureChatInput, (prevProps, nextProps) => {
+  if (prevProps.input !== nextProps.input) return false;
+  if (prevProps.status !== nextProps.status) return false;
+
+  return true;
+});
