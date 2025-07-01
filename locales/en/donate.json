@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "The Future of Islamic knowledge, powered by AI",
-    "subtitle": "Help us make Islamic knowledge more accessible and retrieving it much easier.",
-    "description": "🎉 Alhamdulillah, with your support, Usul has reached thousands of seekers of knowledge, bridging the gap between tradition and modernity.",
+    "subtitle": "Join us in making the study of Islamic sources accessible, searchable, and analyzable at scale.",
+    "description": "With your support, Usul has made thousands of historical texts more accessible, reaching tens of thousands of users around the world.",
     "donate-widget": {
       "month-raised": "Raised",
       "goal": "Goal ${goal, number} Monthly",
@@ -13,17 +13,17 @@
   "achievements": {
     "title": "Achievements",
     "one": {
-      "title": "Unmatched Access to Islamic Texts.",
+      "title": "Expanding Access to Islamic Texts",
       "features": {
-        "0": "Over <strong>10,000 classical and modern Islamic texts</strong> available for free.",
-        "1": "<strong>Advanced search tools</strong> to help researchers and learners uncover insights with ease."
+        "0": "Collecting and making accessible in one place over <strong>15,000</strong> digitized Islamic sources in PDF and eBook format, with a clean, readable format.",
+        "1": "Transforming static PDFs into structured, machine-readable formats for easier search and analysis."
       }
     },
     "two": {
-      "title": "Empowering Scholars and Learners",
+      "title": "Enhancing Research with AI-Powered Tools",
       "features": {
-        "0": "State-of-the-art <strong>AI tools</strong> that allows users to quickly find and extract information from classical texts.",
-        "1": "<strong>PDF Attachment</strong> uploaded to many books for users to validate the source."
+        "0": "Advanced search capabilities that allow users to quickly locate precise information.",
+        "1": "AI-powered assistants that allow researchers to navigate large volumes of text with ease."
       }
     },
     "three": {
@@ -32,41 +32,41 @@
     }
   },
   "roadmap": {
-    "title": "<strong>Our Roadmap</strong>, Usul’s Vision for the Future",
-    "description": "Your donations will help us achieve the following goals, inshaAllah:",
+    "title": "<strong>Usul’s Roadmap</strong>: Our Vision for the Future",
+    "description": "Your donations will help us achieve the following goals:",
     "items": {
       "0": {
-        "title": "Expand the Text Library",
+        "title": "AI-Powered Search for Islamic Sources",
         "features": {
-          "0": "Digitize and additional thousands of additional books to the platform.",
-          "1": "Ensure comprehensive representation of various Islamic disciplines and schools of thought."
+          "0": "Incorporate state-of-the-art search tools and the latest AI models to enable researchers to quickly locate precise information.",
+          "1": "Enable efficient navigation of vast Islamic textual sources."
         }
       },
       "1": {
-        "title": "Refine Research Tools",
+        "title": "Curated Islamic Collections",
         "features": {
-          "0": "Introduce more advanced AI-powered capabilities to allow users to find insights across texts or an entire corpus.",
-          "1": "Develop features such as side-by-side text comparisons and finding quote sources."
+          "0": "Collaborate with leading scholars to develop a representative “core corpus” across all major Islamic fields.",
+          "1": "Create curated collections tailored to various genres."
         }
       },
       "2": {
-        "title": "Global Accessibility",
+        "title": "Universal Corpus",
         "features": {
-          "0": "Translate texts using AI into English and many other languages to open-up access to Islamic knowledge.",
-          "1": "Improve website performance for users in areas with limited connectivity, ensuring no learner is left behind."
+          "0": "Build the infrastructure and partnerships with libraries and other online repositories to house a universal, comprehensive corpus of texts in structured digital formats.",
+          "1": "Ensure that, as the world of online knowledge grows, all works are accessible, searchable, and analyzable."
         }
       }
     }
   },
   "be-part": {
-    "title": "Be a Part of Usul’s Journey",
-    "description": " Your monthly support drives innovation, sustains our growth, and ensures that Usul remains a vital resource for generations to come.",
+    "title": "Support Usul’s Mission",
+    "description": "Your contribution enables the development of short-term research and it sustains the long-term development of innovative tools for Islamic research.",
     "why-support": {
       "title": "Why support Usul?",
       "features": {
-        "0": "Transparent quarterly updates on how your donation is making a difference",
-        "1": "Flexibility to cancel or adjust your contribution anytime",
-        "2": "A chance to be part of a groundbreaking mission to preserve and share Islamic knowledge"
+        "0": "Accelerate Islamic research into cutting edge problems of the day that require quick analysis across vast resources–from ethical Islamic AI and governance to how and whether to use AI to produce legal opinions, medical diagnoses, and financial matters",
+        "1": "Accelerate Islamic education and Islamic knowledge more generally, by building the infrastructure for use in global schools, universities, and courts in need of reliable ‘internal’ or comparative Islamic research tools",
+        "2": "Play a vital role in shaping the future of how Islam is preserved and studied"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Monthly",
         "yearly": "Yearly"
       },
-      "note": "Donations are collected by Usul Foundation, a 501(c)(3) nonprofit organization. All donations are tax-deductible in the US. For any inquiries, please contact us at donors@usul.ai.",
+      "note": "Donations are collected by Usul Foundation, a 501(c)(3) nonprofit organization (pending). All donations are tax-deductible in the US. You may adjust or cancel your contribution at any time.",
       "continue": "Continue"
     }
   },

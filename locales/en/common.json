@@ -80,11 +80,11 @@
       "title": "About",
       "about": {
         "title": "About",
-        "description": "What's Usul"
+        "description": "What we do"
       },
       "team": {
         "title": "Team",
-        "description": "Who's behind Usul"
+        "description": "Who we are "
       },
       "demo": {
         "title": "Demo",
@@ -106,7 +106,7 @@
         "description": "Upload Book or PDF"
       },
       "report-mistake": {
-        "title": "Report Mistake",
+        "title": "Report an error",
         "description": "Found something wrong"
       },
       "feedback": {
@@ -122,7 +122,7 @@
   "email-address": "Email Address",
   "footer": {
     "headline": "Usul - The Research tool for Islamic Texts",
-    "description": "Usul.ai has a library of over 15,000 Islamic texts. Our goal is to make it easy to read, search, and research classical texts. Subscribe below to receive monthly updates on our work.",
+    "description": "Usul is an AI-powered platform designed to evolve how Islamic research is conducted. Our goal is to make the study of Islamic sources accessible, searchable, and analyzable at scale. Subscribe below to receive monthly updates on our work.",
     "subscribe": "Subscribe",
     "copyright": "{year, number, nogroup} The Seemore Foundation. All rights reserved."
   },
