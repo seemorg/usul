@@ -102,7 +102,7 @@
         "description": "Support Usul"
       },
       "add-text": {
-        "title": "Add Text",
+        "title": "Add a Text",
         "description": "Upload Book or PDF"
       },
       "report-mistake": {
@@ -110,11 +110,11 @@
         "description": "Found something wrong"
       },
       "feedback": {
-        "title": "Feedback",
+        "title": "Provide Feedback",
         "description": "Share a suggestion"
       },
       "volunteer": {
-        "title": "Volunteer",
+        "title": "Become a Volunteer",
         "description": "Work with our team"
       }
     }
