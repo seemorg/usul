@@ -147,10 +147,12 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
+  --font-sans:
+    var(--font-ibm-plex-sans-arabic), var(--font-plus-jakarta-sans),
     ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol", "Noto Color Emoji";
-  --font-scheherazade: var(--font-scheherazade-base), ui-serif, Georgia, Cambria,
+  --font-scheherazade:
+    var(--font-scheherazade-base), ui-serif, Georgia, Cambria,
     "Times New Roman", Times, serif;
 }
 
@@ -222,7 +224,6 @@ body {
   }
 }
 
-.prose li::before,
 .list li::before {
   content: "—";
   @apply left-0 mr-2 w-auto opacity-50;
