@@ -3,7 +3,9 @@ import SourceModal from "@/components/ui/source-modal";
 
 interface PageReferenceProps {
   "data-number": string;
-  sourceNodes: SemanticSearchBookNode[];
+  sourceNodes: (SemanticSearchBookNode & {
+    book?: { slug: string; primaryName: string };
+  })[];
 }
 
 function PageReference({ sourceNodes, ...props }: PageReferenceProps) {

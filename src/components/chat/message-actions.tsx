@@ -67,6 +67,7 @@ export const MessageActions = ({
         "message-actions text-muted-foreground mt-2 flex gap-1",
 
         "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100",
+        "group-hover/message:pointer-events-auto group-hover/message:opacity-100",
       )}
     >
       <Button
