@@ -5,8 +5,8 @@ import { useMessages } from "@/hooks/use-messages";
 import equal from "fast-deep-equal";
 import { motion } from "framer-motion";
 
-import { ErrorMessage, PreviewMessage, ThinkingMessage } from "./message";
-import { Overview } from "./overview";
+import { Greeting } from "./greeting";
+import { PreviewMessage, ThinkingMessage } from "./message";
 
 interface MessagesProps {
   chatId: string;
@@ -42,7 +42,7 @@ function PureMessages({
       ref={messagesContainerRef}
       className="relative flex min-w-0 flex-1 flex-col gap-6 overflow-y-scroll pt-10"
     >
-      {messages.length === 0 && <Overview />}
+      {messages.length === 0 && <Greeting />}
 
       {messages.map((message, index) => (
         <PreviewMessage
@@ -62,8 +62,6 @@ function PureMessages({
       {status === "submitted" &&
         messages.length > 0 &&
         messages[messages.length - 1]!.role === "user" && <ThinkingMessage />}
-
-      {status === "error" && <ErrorMessage reload={reload} />}
 
       <motion.div
         ref={messagesEndRef}

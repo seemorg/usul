@@ -5,6 +5,7 @@ import equal from "fast-deep-equal";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 
+import AdditionalSourcesHover from "./additional-sources-hover";
 import PageReference from "./page-reference";
 import makeSourcesPlugin from "./sources-plugin";
 
@@ -17,6 +18,23 @@ const makeComponents = (sourceNodes: SemanticSearchBookNode[]): Components => ({
   "page-reference": (props) => (
     <PageReference sourceNodes={sourceNodes} {...props} />
   ),
+  "additional-sources-hover": (props) => {
+    const sourcesData = (props as { "data-sources": string })["data-sources"];
+    if (sourcesData) {
+      try {
+        const additionalSources = sourcesData.split(",").map(Number);
+        return (
+          <AdditionalSourcesHover
+            additionalSources={additionalSources}
+            sourceNodes={sourceNodes}
+          />
+        );
+      } catch (error) {
+        return null;
+      }
+    }
+    return null;
+  },
   ol: (props) => <ol className="flex flex-col gap-2" {...props} />,
   ul: (props) => <ul className="flex flex-col gap-2" {...props} />,
 });

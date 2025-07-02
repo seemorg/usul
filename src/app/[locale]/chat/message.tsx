@@ -39,7 +39,7 @@ function sanitizeText(text: string) {
 }
 
 const Avatar = () => (
-  <div className="dark:bg-accent border-border flex size-8 shrink-0 items-center justify-center rounded-full border bg-white dark:text-white">
+  <div className="dark:bg-accent border-border flex size-8 shrink-0 items-center justify-center rounded-3xl border bg-white dark:text-white">
     <OpenAILogo className="size-5 shrink-0" />
   </div>
 );
@@ -298,38 +298,6 @@ export const ThinkingMessage = () => {
         <div className="flex w-full flex-col gap-2">
           <div className="text-muted-foreground flex flex-col gap-4">
             Hmm...
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-export const ErrorMessage = ({ reload }: { reload: () => void }) => {
-  const role = "assistant";
-
-  return (
-    <motion.div
-      data-testid="message-assistant-loading"
-      className="group/message mx-auto w-full max-w-3xl px-4"
-      initial={{ y: 5, opacity: 0 }}
-      animate={{ y: 0, opacity: 1, transition: { delay: 1 } }}
-      data-role={role}
-    >
-      <div
-        className={cn(
-          "flex w-full gap-4 rounded-xl group-data-[role=user]/message:ml-auto group-data-[role=user]/message:w-fit group-data-[role=user]/message:max-w-2xl group-data-[role=user]/message:px-3 group-data-[role=user]/message:py-2",
-          "group-data-[role=user]/message:bg-muted",
-        )}
-      >
-        <Avatar />
-
-        <div className="flex w-full flex-col gap-2">
-          <div className="text-muted-foreground flex flex-col gap-4">
-            Oops! Something went wrong.{" "}
-            <Button onClick={reload} className="w-fit">
-              Try again
-            </Button>
           </div>
         </div>
       </div>
