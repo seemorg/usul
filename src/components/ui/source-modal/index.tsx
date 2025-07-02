@@ -258,9 +258,7 @@ export default function SourceModal({
         className="bg-muted mx-0.5 inline cursor-pointer rounded-md p-1 text-xs"
         onClick={() => setIsOpen(true)}
       >
-        {source.book
-          ? `${source.book.primaryName} - ${pageReference}`
-          : pageReference}
+        {source.book ? source.book.primaryName : pageReference}
       </button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -280,6 +278,8 @@ export default function SourceModal({
                 isPending={isPending}
                 pageReference={pageReference}
               />
+
+              <Separator className="my-4" />
 
               <SourceModalActions
                 isPending={isPending}

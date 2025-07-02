@@ -1,15 +1,14 @@
 "use client";
 
 import Navbar from "@/app/_components/navbar";
-import { env } from "@/env";
-import { useChat } from "@ai-sdk/react";
+import { Button } from "@/components/ui/button";
+import { useGlobalChat } from "@/hooks/use-global-chat";
+import { PlusIcon } from "lucide-react";
 
-import { useChatFilters } from "./chat-filters";
 import { MultimodalInput } from "./chat-input";
 import { Messages } from "./messages";
 
 export default function ChatPage() {
-  const selectedBooks = useChatFilters((s) => s.selectedBooks);
   const {
     messages,
     setMessages,
@@ -21,19 +20,27 @@ export default function ChatPage() {
     append,
     reload,
     id,
-  } = useChat({
-    api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
-    body: {
-      bookIds: selectedBooks.map((book) => book.id),
-    },
-  });
+  } = useGlobalChat();
 
   return (
-    <div className="h-screen [--navbar-height:calc(var(--spacing)*16)] lg:[--navbar-height:calc(var(--spacing)*20)]">
+    <div className="h-dvh [--navbar-height:calc(var(--spacing)*16)] lg:[--navbar-height:calc(var(--spacing)*20)]">
       <Navbar />
-
       <div className="h-[var(--navbar-height)] w-full" />
-      <main className="bg-background flex h-[calc(100vh-var(--navbar-height))] min-w-0 flex-col">
+
+      <Button
+        variant="outline"
+        className="fixed top-[calc(var(--navbar-height))] left-4 z-10 mt-4 gap-2"
+        onClick={() => {
+          stop();
+          setMessages([]);
+          setInput("");
+        }}
+      >
+        <PlusIcon className="size-4" />
+        <span className="hidden md:block">New Chat</span>
+      </Button>
+
+      <main className="bg-background flex h-[calc(100dvh-var(--navbar-height))] min-w-0 flex-col">
         <Messages
           chatId={id}
           status={status}
