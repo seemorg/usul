@@ -26,18 +26,6 @@ export default function ChatPage() {
     body: {
       bookIds: selectedBooks.map((book) => book.id),
     },
-    // initialMessages: [
-    //   {
-    //     role: "user",
-    //     content: "Hello, how are you?",
-    //     id: "1",
-    //   },
-    //   {
-    //     role: "assistant",
-    //     content: "I'm good, thank you!",
-    //     id: "2",
-    //   },
-    // ],
   });
 
   return (
