@@ -7,7 +7,7 @@ import { ClipboardIcon, ShareIcon, SparklesIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 
-import { useChatStore } from "../../_stores/chat";
+// import { useChatStore } from "../../_stores/chat";
 import { useTabNavigate } from "../sidebar/useTabNavigate";
 
 function ReaderHighlightPopover({
@@ -25,7 +25,7 @@ function ReaderHighlightPopover({
 
   const setActiveTabId = useMobileReaderStore((s) => s.setActiveTabId);
 
-  const setQuestion = useChatStore((s) => s.setQuestion);
+  // const setQuestion = useChatStore((s) => s.setQuestion);
 
   const bookSlug = useParams().bookId as string;
   const versionId = useSearchParams().get("versionId") as string;
@@ -46,7 +46,7 @@ function ReaderHighlightPopover({
 
   const handleAskAI = () => {
     setActiveTabId("ai");
-    setQuestion(`> ${selection}\n\n`);
+    // setQuestion(`> ${selection}\n\n`);
     handleNavigate("ai");
   };
 
