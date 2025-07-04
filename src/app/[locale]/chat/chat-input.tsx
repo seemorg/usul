@@ -142,7 +142,7 @@ function PureMultimodalInput({
         value={input}
         onChange={handleInput}
         className={cn(
-          "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-10 text-base shadow-lg",
+          "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-14 text-base shadow-lg",
           className,
         )}
         rows={2}
