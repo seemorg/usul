@@ -51,7 +51,7 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
                 content: suggestedAction.label,
               });
             }}
-            className="hover:bg-accent h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
+            className="hover:bg-background bg-background/50 h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
           >
             <span className="font-medium">{suggestedAction.title}</span>
             <span className="text-muted-foreground">

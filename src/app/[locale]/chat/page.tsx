@@ -23,7 +23,7 @@ export default function ChatPage() {
   } = useGlobalChat();
 
   return (
-    <div className="h-dvh [--navbar-height:calc(var(--spacing)*16)] lg:[--navbar-height:calc(var(--spacing)*20)]">
+    <div className="bg-background h-dvh [--navbar-height:calc(var(--spacing)*16)] lg:[--navbar-height:calc(var(--spacing)*20)]">
       <Navbar />
       <div className="h-[var(--navbar-height)] w-full" />
 
@@ -40,7 +40,7 @@ export default function ChatPage() {
         <span className="hidden md:block">New Chat</span>
       </Button>
 
-      <main className="bg-background flex h-[calc(100dvh-var(--navbar-height))] min-w-0 flex-col">
+      <main className="flex h-[calc(100dvh-var(--navbar-height))] min-w-0 flex-col">
         <Messages
           chatId={id}
           status={status}
