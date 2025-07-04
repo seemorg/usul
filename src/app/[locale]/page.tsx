@@ -196,7 +196,7 @@ export default async function HomePage({
                 collections.map((collection) => (
                   <Link
                     key={collection.slug}
-                    href={navigation.collections.bySlug(collection.slug)}
+                    href={navigation.collections.static.bySlug(collection.slug)}
                     prefetch
                   >
                     <CollectionCard

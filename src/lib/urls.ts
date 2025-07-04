@@ -24,6 +24,9 @@ export const navigation = {
   },
   collections: {
     all: () => "/collections",
+    static: {
+      bySlug: (slug: string) => `/collection/${slug}`,
+    },
     bySlug: (slug: string) => `/collections/${slug}`,
     add: () => "/collections/add",
     edit: (id: string) => `/collections/${id}/edit`,

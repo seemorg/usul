@@ -17,6 +17,7 @@ export const collections: {
     slug: "legal-canons",
     bookIds: [
       "xgaoldpjwdfxqx4yougfpr6o",
+      "0970IbnIbrahimIbnNujaymMisri.AshbahWaNazair",
       "hfnoebkz8momypmjlmp7kfzw",
       "0684ShihabDinQarafi.Furuq",
       "0759AbuCabdAllahMaqqari.Qawacid",
