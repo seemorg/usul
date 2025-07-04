@@ -1,11 +1,11 @@
-import type { Node } from "unist";
+import type { Literal, Node, Parent } from "unist";
 import { SKIP, visit } from "unist-util-visit";
 
 function makeSourcesPlugin(numbers: number[]) {
   return () => {
     return (tree: Node) => {
-      visit(tree, "text", (node, index, parent) => {
-        const value = (node as any).value;
+      visit(tree, "text", (node: Literal, index: number, parent?: Parent) => {
+        const value = node.value as string;
 
         const regex = /\[(\d+)\]/g;
         let match;
@@ -64,7 +64,7 @@ function makeSourcesPlugin(numbers: number[]) {
 
         if (newNodes.length > 0) {
           if (parent) {
-            (parent as any).children.splice(index, 1, ...newNodes);
+            parent.children.splice(index, 1, ...newNodes);
           }
           return [SKIP, index + newNodes.length];
         }
@@ -74,9 +74,9 @@ function makeSourcesPlugin(numbers: number[]) {
 }
 
 function processConsecutiveRefs(refs: number[]) {
-  const nodes: any[] = [];
+  const nodes: Literal[] = [];
 
-  if (refs.length <= 2) {
+  if (refs.length <= 1) {
     // Show all references as individual elements
     refs.forEach((ref) => {
       nodes.push({
@@ -85,18 +85,14 @@ function processConsecutiveRefs(refs: number[]) {
       });
     });
   } else {
-    // Show first 2 references as individual elements + indicator with hover card
+    // Show first reference as individual elements + indicator with hover card
     nodes.push({
       type: "html",
       value: `<page-reference data-number="${refs[0]}"></page-reference>`,
     });
-    nodes.push({
-      type: "html",
-      value: `<page-reference data-number="${refs[1]}"></page-reference>`,
-    });
 
     // Create hover card for additional sources
-    const additionalSources = refs.slice(2);
+    const additionalSources = refs.slice(1);
     nodes.push({
       type: "html",
       value: `<additional-sources-hover data-sources='${additionalSources.join(",")}'></additional-sources-hover>`,
