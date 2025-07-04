@@ -4,11 +4,12 @@ import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { searchAuthors } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { countAllAuthors } from "@/server/services/authors";
-import { searchAuthors } from "@/server/typesense/author";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -36,11 +37,13 @@ async function AuthorsPage({ searchParams }: PageProps) {
   const { q, sort, page, year, regions } = await searchParams;
   const t = await getTranslations("entities");
 
+  const pathLocale = await getPathLocale();
   const [results, totalAuthors] = await Promise.all([
     searchAuthors(q, {
       limit: 20,
       page,
-      sortBy: sort.typesenseValue,
+      sortBy: sort,
+      locale: pathLocale,
       filters: {
         yearRange: year,
         regions,
@@ -65,9 +68,9 @@ async function AuthorsPage({ searchParams }: PageProps) {
         placeholder={t("search-within", {
           entity: t("authors"),
         })}
-        sorts={sorts as any}
+        sorts={sorts}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
-        currentSort={sort.raw}
+        currentSort={sort}
         currentQuery={q}
         hasViews={false}
         filters={

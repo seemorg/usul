@@ -7,10 +7,11 @@ import GenresFilter from "@/components/genres-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import TruncatedText from "@/components/ui/truncated-text";
+import { searchBooks } from "@/lib/api/search";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
 import { findYearRangeBySlug } from "@/server/services/years";
-import { searchBooks } from "@/server/typesense/book";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -54,13 +55,15 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   }
 
   const t = await getTranslations();
+  const pathLocale = await getPathLocale();
 
   const { q, sort, page, authors, regions, genres, view } = await searchParams;
 
   const results = await searchBooks(q, {
     limit: 20,
     page,
-    sortBy: sort.typesenseValue,
+    sortBy: sort,
+    locale: pathLocale,
     filters: {
       yearRange: [yearRange.yearFrom, yearRange.yearTo],
       authors,
@@ -107,8 +110,8 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
           placeholder={t("entities.search-within", {
             entity: primaryName,
           })}
-          sorts={yearsSorts as any}
-          currentSort={sort.raw}
+          sorts={yearsSorts}
+          currentSort={sort}
           currentQuery={q}
           view={view}
           filters={

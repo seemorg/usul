@@ -11,7 +11,6 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { toast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import {
   createCheckoutSession,
@@ -19,6 +18,7 @@ import {
 } from "@/server/services/donations";
 import { useMutation } from "@tanstack/react-query";
 import { useFormatter, useTranslations } from "next-intl";
+import { toast } from "sonner";
 
 import BentoCard from "./bento-card";
 
@@ -48,10 +48,7 @@ function DonateForm({ layout }: { layout?: "hero" }) {
     },
     onError: (error) => {
       console.error(error);
-      toast({
-        title: "Failed to verify!",
-        variant: "destructive",
-      });
+      toast.error("Failed to verify!");
     },
   });
 
@@ -187,10 +184,7 @@ const EmailVerification = ({
     mutationFn: (email: string) => generateAndSendDonationCode(email),
     onError: (error) => {
       console.log(error);
-      toast({
-        title: "Failed to send code!",
-        variant: "destructive",
-      });
+      toast.error("Failed to send code!");
     },
   });
 

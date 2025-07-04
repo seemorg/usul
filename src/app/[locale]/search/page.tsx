@@ -14,20 +14,23 @@ import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import Container from "@/components/ui/container";
 import YearFilterClient from "@/components/year-filter/client";
+import {
+  searchAllCollections,
+  searchAuthors,
+  searchBooks,
+  searchGenres,
+  searchRegions,
+} from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
+import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { booksSorts, navigation, yearsSorts } from "@/lib/urls";
-import { searchAuthors } from "@/server/typesense/author";
-import { searchBooks } from "@/server/typesense/book";
-import { searchGenres } from "@/server/typesense/genre";
-import { searchAllCollections } from "@/server/typesense/global";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType, SearchType } from "./routeType";
 import { Route } from "./routeType";
 import SearchTypeSwitcher from "./search-type-switcher";
-import { searchRegions } from "@/server/typesense/region";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
@@ -46,20 +49,23 @@ export async function generateMetadata({
 }
 
 async function search(params: Awaited<TextsPageProps["searchParams"]>) {
+  const pathLocale = await getPathLocale();
   const { type, q, sort, page, genres, authors, regions, year } = params;
 
+  const commonOptions = {
+    limit: 20,
+    page,
+    locale: pathLocale,
+  };
+
   if (type === "all") {
-    return searchAllCollections(q, {
-      limit: 20,
-      page,
-    });
+    return searchAllCollections(q, commonOptions);
   }
 
   if (type === "texts") {
     return searchBooks(q, {
-      limit: 20,
-      page,
-      sortBy: sort.typesenseValue,
+      ...commonOptions,
+      sortBy: sort,
       filters: {
         genres,
         authors,
@@ -71,9 +77,8 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
 
   if (type === "authors") {
     return searchAuthors(q, {
-      limit: 20,
-      page,
-      sortBy: sort.typesenseValue,
+      ...commonOptions,
+      sortBy: sort,
       filters: {
         yearRange: year,
         regions,
@@ -81,17 +86,10 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     });
   }
 
-  if (type === "genres")
-    return searchGenres(q, {
-      limit: 20,
-      page,
-    });
+  if (type === "genres") return searchGenres(q, commonOptions);
 
   // type === "regions"
-  return searchRegions(q, {
-    limit: 20,
-    page,
-  });
+  return searchRegions(q, commonOptions);
 }
 
 const SearchResult = ({
@@ -180,7 +178,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                 ? yearsSorts
                 : booksSorts
             }
-            currentSort={sort.raw}
+            currentSort={sort}
             currentQuery={q}
             view={view}
             filters={

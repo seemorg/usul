@@ -1,0 +1,8 @@
+{
+  "login": "Login",
+  "title": "Login to your account",
+  "description": "Enter your email below to login to your account",
+  "check-email": "Check your email for a login link",
+  "or-continue-with": "Or continue with",
+  "login-with-x": "Login with {provider}"
+}

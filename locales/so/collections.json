@@ -1,6 +1,29 @@
 {
   "legal-canons": {
     "title": "Xeerarka Sharciga",
-    "description": "Xulasho taxane ah ee ilo xeerar sharci ah oo uu soo ururiyey Dr. Intisar Rabb"
+    "description": "Xulasho tusaale ah oo ururinta xeerarka sharciga"
+  },
+  "name": {
+    "title": "Magaca",
+    "placeholder": "Gali magaca ururinta"
+  },
+  "description": {
+    "title": "Sharaxaad",
+    "placeholder": "Gali sharaxaada ururinta"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Gali ururinta slug",
+    "description": "Aqoonsi URL-saaxiibtinimo ee ururintaada."
+  },
+  "visibility": {
+    "title": "Muuqashada",
+    "public": "Dadweyne",
+    "unlisted": "Aan la diiwaan gelin",
+    "description": "Ururada dadweynuhu waxay u muuqdaan qof walba. Ururinta aan la diiwaan gelin waxay heli karaan oo kaliya iyada oo xiriir toos ah."
+  },
+  "danger-zone": {
+    "title": "Aagga Khatar",
+    "description": "Markaad tirto ururinta, dib ugu noqo ma jiro. Fadlan hubi."
   }
 }

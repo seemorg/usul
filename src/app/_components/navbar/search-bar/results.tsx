@@ -1,4 +1,4 @@
-import type { prepareResults } from "@/server/typesense/utils";
+import type { SearchResponse } from "@/lib/api/search";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { SearchType } from "@/types/search";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ export default function SearchBarResults({
   isLoading,
   value,
 }: {
-  results?: ReturnType<typeof prepareResults<GlobalSearchDocument>>;
+  results?: SearchResponse<GlobalSearchDocument>["results"];
   onItemSelect: (href?: string) => void;
   searchType: SearchType;
   setSearchType: (type: SearchType) => void;
@@ -112,8 +112,8 @@ export default function SearchBarResults({
         ) : hits.length > 0 ? (
           hits.map((hit) => (
             <SearchBarItem
-              key={hit.document.id}
-              document={hit.document}
+              key={hit.id}
+              document={hit}
               onSelect={onItemSelect}
             />
           ))

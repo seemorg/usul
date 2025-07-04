@@ -1,6 +1,29 @@
 {
   "legal-canons": {
     "title": "Kanun Perundangan",
-    "description": "Pilihan terpilih sumber kanun perundangan oleh Dr. Intisar Rabb"
+    "description": "Contoh koleksi kanun undang-undang"
+  },
+  "name": {
+    "title": "Nama",
+    "placeholder": "Masukkan nama koleksi"
+  },
+  "description": {
+    "title": "Penerangan",
+    "placeholder": "Masukkan penerangan koleksi"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Masukkan slug koleksi",
+    "description": "Pengecam mesra-URL untuk koleksi anda."
+  },
+  "visibility": {
+    "title": "Keterlihatan",
+    "public": "Umum",
+    "unlisted": "Tidak disenaraikan",
+    "description": "Koleksi umum boleh dilihat oleh semua orang. Koleksi yang tidak disenaraikan hanya boleh diakses melalui pautan langsung."
+  },
+  "danger-zone": {
+    "title": "Zon Bahaya",
+    "description": "Sebaik sahaja anda memadam koleksi, tiada jalan kembali. Sila pastikan."
   }
 }

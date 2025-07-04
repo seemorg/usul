@@ -1,11 +1,7 @@
-import type { searchAuthors } from "@/server/typesense/author";
+import type { AuthorDocument } from "@/types/author";
 import { formatDeathYear } from "@/lib/date";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import { useTranslations } from "next-intl";
 
 import EntityCard from "./entity-card";
@@ -14,54 +10,37 @@ export default function AuthorSearchResult({
   result,
   prefetch = true,
 }: {
-  result: Awaited<ReturnType<typeof searchAuthors>>["results"]["hits"][number];
+  result: AuthorDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();
   const pathLocale = usePathLocale();
 
-  const { document } = result;
-
   const transliteration =
-    document.transliteration && pathLocale === "en"
-      ? document.transliteration
+    result.transliteration && pathLocale === "en"
+      ? result.transliteration
       : undefined;
-  const primaryName =
-    transliteration ??
-    getPrimaryLocalizedText(document.primaryNames, pathLocale);
-
-  const secondaryName = getSecondaryLocalizedText(
-    document.primaryNames,
-    pathLocale,
-  );
-
-  const primaryOtherNames = getPrimaryLocalizedText(
-    document.otherNames,
-    pathLocale,
-  );
-
-  const secondaryOtherNames = getSecondaryLocalizedText(
-    document.otherNames,
-    pathLocale,
-  );
+  const primaryName = transliteration ?? result.primaryName;
+  const primaryOtherNames = result.otherNames;
+  const secondaryOtherNames = result.secondaryOtherNames;
 
   return (
     <EntityCard
-      href={navigation.authors.bySlug(document.slug)}
+      href={navigation.authors.bySlug(result.slug)}
       prefetch={prefetch}
-      primaryTitle={primaryName!}
-      secondaryTitle={secondaryName}
+      primaryTitle={primaryName}
+      secondaryTitle={result.secondaryName}
       primarySubtitle={
         primaryOtherNames && primaryOtherNames.length > 0
-          ? `${formatDeathYear(document.year, pathLocale)} - ${primaryOtherNames[0]}`
+          ? `${formatDeathYear(result.year, pathLocale)} - ${primaryOtherNames[0]}`
           : undefined
       }
       secondarySubtitle={
         secondaryOtherNames && secondaryOtherNames.length > 0
-          ? `${formatDeathYear(document.year, "ar")} - ${secondaryOtherNames[0]}`
+          ? `${formatDeathYear(result.year, "ar")} - ${secondaryOtherNames[0]}`
           : undefined
       }
-      tags={[t("entities.x-texts", { count: document.booksCount })]}
+      tags={[t("entities.x-texts", { count: result.booksCount })]}
     />
   );
 }

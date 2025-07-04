@@ -20,5 +20,13 @@
   "donate-page": {
     "title": "Derma",
     "description": "Derma kepada Usul"
+  },
+  "profile-page": {
+    "title": "Profil",
+    "description": "Profil anda"
+  },
+  "collections-page": {
+    "title": "Koleksi",
+    "description": "Koleksi anda"
   }
 }

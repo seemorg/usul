@@ -49,11 +49,11 @@ export default function SearchSort({
   return (
     <Select value={value} onValueChange={handleSortChange} disabled={isPending}>
       <SelectTrigger
-        className="h-10 w-10 max-w-full justify-center p-0 sm:w-[140px] sm:justify-between sm:px-3 sm:py-2"
+        className="h-10 w-10 max-w-full justify-center p-0 sm:w-fit sm:justify-between sm:px-3 sm:py-2"
         showIconOnMobile={false}
         isLoading={isPending}
       >
-        <div className="hidden sm:block">
+        <div className="hidden sm:block sm:ltr:mr-2 sm:rtl:ml-2">
           {currentSortLabel ? (
             t(currentSortLabel)
           ) : (
@@ -61,7 +61,7 @@ export default function SearchSort({
           )}
         </div>
 
-        <ArrowsUpDownIcon className="h-4 w-4 sm:hidden" />
+        <ArrowsUpDownIcon className="size-4 sm:hidden" />
       </SelectTrigger>
 
       <SelectContent>

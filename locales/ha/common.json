@@ -34,16 +34,16 @@
     "placeholder": "Zaɓi Ta",
     "relevance": "Dangantaka",
     "chronological": "Chronological",
-    "no-of-texts": "Yawan Rubutu",
-    "no-of-authors": "Yawan Marubuta",
-    "year-asc": "Shekara (Tashi)",
-    "year-desc": "Shekara (Sauka)"
+    "no-of-texts-desc": "No. na Rubuce-rubuce (Matsakaici)",
+    "no-of-texts-asc": "No. na Rubuce-rubuce (Tashi)",
+    "no-of-authors-desc": "No. na Mawallafa (Matsakaici)",
+    "no-of-authors-asc": "No. na Mawallafa (Tashi)",
+    "year-asc": "Shekarar Mutuwa (Tashi)",
+    "year-desc": "Shekarar Mutuwa (Matsakaici)"
   },
-  "theme": {
-    "light": "Haske",
-    "dark": "Baki",
-    "auto": "Atomatik"
-  },
+  "profile": "Fayil",
+  "login": "Shiga",
+  "logout": "Fita",
   "from": "Daga",
   "to": "Zuwa",
   "search-bar": {
@@ -119,12 +119,12 @@
       }
     }
   },
+  "email-address": "Adireshin Imel",
   "footer": {
     "headline": "Usul - Kayan Bincike don Rubutun Musulunci",
-    "description": "Usul.ai na hidima sama da rubutun Musulunci 8,000 daga korpus na OpenITI. Burinmu shine saukaka karatun rubuce-rubuce na asali, bincike, da bincike. Yi rajista a kasa don samun sabuntawa na wata-wata akan aikinmu.",
-    "email-address": "Adireshin Imel",
+    "description": "Usul.ai tana da ɗakin karatu na sama da 15,000 na rubuce-rubuce na Musulunci. Manufarmu ita ce sauƙaƙa karatu, bincike da nazari game da rubuce-rubuce na gargajiya. Yi rajista a ƙasa don karɓar sabuntawa na wata-wata game da ayyukanmu.",
     "subscribe": "Yi rajista",
-    "copyright": "{year, number, nogroup} Seemorg Foundation. Duk haƙƙin mallaka."
+    "copyright": "{year, number, nogroup} The Seemore Foundation. Duk haƙƙoƙi an tanada."
   },
   "lost": "Yana kama da ka bata",
   "go-back-home": "Koma gida",
@@ -148,12 +148,25 @@
   "coming-soon": {
     "title": "Ana zuwa Ba da daɗewa ba",
     "message": "Wannan fasalin ba shi da akwai tukuna. Yi rijista zuwa wasiƙarmu kuma an sanar da ku lokacin da yake shirye.",
-    "success": "Na gode!",
-    "error": "Wani abu bai daidaita ba. Da fatan za a sake gwadawa daga baya."
+    "success": "Na gode!"
   },
   "year-filter-info": "Ranar mutuwar marubuci",
   "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
   "text-info": "Bayanin Rubutu",
   "author-info": "Bayanin Mawallafi",
-  "names": "Sunaye"
+  "names": "Sunaye",
+  "create": "Ƙirƙiri",
+  "create-x": "Ƙirƙiri {entity}",
+  "view": "Duba",
+  "edit": "Gyara",
+  "edit-x": "Gyara {entity}",
+  "update": "Sabunta",
+  "delete": "Goge",
+  "cancel": "Soke",
+  "delete-x": "Goge {entity}",
+  "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
+  "delete-confirmation": {
+    "title": "Ka tabbata sosai?",
+    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu."
+  }
 }

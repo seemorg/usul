@@ -55,9 +55,11 @@ const fetchBooksByIds = async (ids: string[], locale: PathLocale) => {
     },
     include: {
       primaryNameTranslations: localeWhere,
+      otherNameTranslations: localeWhere,
       author: {
         include: {
           primaryNameTranslations: localeWhere,
+          otherNameTranslations: localeWhere,
         },
       },
       genres: {

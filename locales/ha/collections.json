@@ -1,6 +1,29 @@
 {
   "legal-canons": {
     "title": "Ƙa'idodin Dokoki",
-    "description": "Zaɓaɓɓen tsarin tushe na ƙa'idodin doka daga Dr. Intisar Rabb"
+    "description": "Zaɓin samfur na tarin ka'idojin doka"
+  },
+  "name": {
+    "title": "Sunan",
+    "placeholder": "Shigar da sunan tarin"
+  },
+  "description": {
+    "title": "Bayani",
+    "placeholder": "Shigar da bayanin tarin"
+  },
+  "slug": {
+    "title": "Slug",
+    "placeholder": "Shigar da slug na tarin",
+    "description": "Matsayin da zai yi amfani da URL don tarin ku."
+  },
+  "visibility": {
+    "title": "Bayyanawa",
+    "public": "Jama'a",
+    "unlisted": "Ba a ambaci shi ba",
+    "description": "Tarin jama'a suna bayyanawa ga kowa. Tarin da ba a ambaci su ba za a iya samun su ta hanyar haɗin kai tsaye kawai."
+  },
+  "danger-zone": {
+    "title": "Yankin Hadari",
+    "description": "Da zarar ka goge tarin, ba za ka iya yin baya ba. Da fatan za a tabbata."
   }
 }

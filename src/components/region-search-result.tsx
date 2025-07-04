@@ -1,10 +1,5 @@
-import type { searchRegions } from "@/server/typesense/region";
-import { usePathLocale } from "@/lib/locale/utils";
+import type { RegionDocument } from "@/types/region";
 import { navigation } from "@/lib/urls";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
 import { useTranslations } from "next-intl";
 
 import EntityCard from "./entity-card";
@@ -13,25 +8,22 @@ export default function RegionSearchResult({
   result,
   prefetch = true,
 }: {
-  result: Awaited<ReturnType<typeof searchRegions>>["results"]["hits"][number];
+  result: RegionDocument;
   prefetch?: boolean;
 }) {
   const t = useTranslations();
-  const pathLocale = usePathLocale();
 
-  const region = result.document;
+  const primaryName = result.primaryName;
+  const secondaryName = result.secondaryName;
 
-  const primaryName = getPrimaryLocalizedText(region.names, pathLocale);
-  const secondaryName = getSecondaryLocalizedText(region.names, pathLocale);
-
-  const totalBooks = region.booksCount;
-  const subLocations = region.subLocations;
+  const totalBooks = result.booksCount;
+  const subLocations = result.subLocations ?? [];
 
   return (
     <EntityCard
-      href={navigation.regions.bySlug(region.slug)}
+      href={navigation.regions.bySlug(result.slug)}
       prefetch={prefetch}
-      primaryTitle={primaryName!}
+      primaryTitle={primaryName}
       secondaryTitle={secondaryName}
       primarySubtitle={`${t("common.includes")} ${t("entities.x-locations", { count: subLocations.length })}`}
       tags={[t("entities.x-texts", { count: totalBooks })]}

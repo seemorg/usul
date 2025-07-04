@@ -1,0 +1,8 @@
+{
+  "name": {
+    "label": "الاسم الكامل",
+    "placeholder": "أدخل اسمك"
+  },
+  "success-message": "تم تحديث المستخدم بنجاح",
+  "save-changes": "حفظ التغييرات"
+}
