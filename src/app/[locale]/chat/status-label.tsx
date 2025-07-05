@@ -27,14 +27,14 @@ const StatusLabel = ({
 
   let text = "Thinking...";
   if (!isLoading) {
-    const status = findLast(
+    const queriesStatus = findLast(
       annotations,
       (annotation) =>
         annotation.type === "STATUS" && annotation.value === "searching",
     ) as Extract<MessageAnnotation, { value: "searching" }> | undefined;
 
-    if (status) {
-      text = `Done. Searched for ${formatQueries(status.queries)}`;
+    if (queriesStatus) {
+      text = `Done. Searched for ${formatQueries(queriesStatus.queries)}`;
     } else {
       text = "Done";
     }
@@ -43,11 +43,16 @@ const StatusLabel = ({
       annotations,
       (annotation) => annotation.type === "STATUS",
     ) as Extract<MessageAnnotation, { type: "STATUS" }> | undefined;
+    const queriesStatus = findLast(
+      annotations,
+      (annotation) =>
+        annotation.type === "STATUS" && annotation.value === "searching",
+    ) as Extract<MessageAnnotation, { value: "searching" }> | undefined;
 
     if (status?.value === "generating-queries") {
       text = "Generating queries...";
     } else if (status?.value === "generating-response") {
-      text = "Generating response...";
+      text = `Generating response for ${formatQueries(queriesStatus?.queries ?? [])}`;
     } else if (status?.value === "searching") {
       text = `Searching for ${formatQueries(status.queries)}`;
     }

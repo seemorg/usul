@@ -6,6 +6,7 @@ import { useGlobalChat } from "@/hooks/use-global-chat";
 import { PlusIcon } from "lucide-react";
 
 import { MultimodalInput } from "./chat-input";
+import ChatFilters from "./filters";
 import { Messages } from "./messages";
 
 export default function ChatPage() {
@@ -41,6 +42,8 @@ export default function ChatPage() {
       </Button>
 
       <main className="flex h-[calc(100dvh-var(--navbar-height))] min-w-0 flex-col">
+        <ChatFilters />
+
         <Messages
           chatId={id}
           status={status}
@@ -51,7 +54,7 @@ export default function ChatPage() {
           isArtifactVisible={false}
         />
 
-        <form className="mx-auto flex w-full flex-col gap-4 px-4 pb-4 md:max-w-3xl">
+        <form className="mx-auto flex w-full flex-col px-4 md:max-w-3xl">
           <MultimodalInput
             input={input}
             setInput={setInput}
@@ -63,7 +66,7 @@ export default function ChatPage() {
             append={append}
           />
 
-          <p className="text-muted-foreground text-center text-sm">
+          <p className="text-muted-foreground my-3 text-center text-xs">
             AI can make mistakes. Check important info.
           </p>
         </form>

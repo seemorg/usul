@@ -122,7 +122,7 @@ const PurePreviewMessage = ({
                         className={cn(
                           "flex flex-col gap-4",
                           message.role === "user" &&
-                            "bg-muted text-foreground rounded-full px-4 py-2 font-medium",
+                            "bg-muted text-foreground rounded-3xl px-4 py-2 font-medium",
                         )}
                       >
                         <Markdown sourceNodes={sourceNodes}>
@@ -263,7 +263,7 @@ export const ThinkingMessage = () => {
     >
       <div
         className={cn(
-          "flex w-full gap-4 rounded-xl group-data-[role=user]/message:ml-auto group-data-[role=user]/message:w-fit group-data-[role=user]/message:max-w-2xl group-data-[role=user]/message:px-3 group-data-[role=user]/message:py-2",
+          "flex w-full gap-4 rounded-3xl group-data-[role=user]/message:ml-auto group-data-[role=user]/message:w-fit group-data-[role=user]/message:max-w-2xl group-data-[role=user]/message:px-3 group-data-[role=user]/message:py-2",
           "group-data-[role=user]/message:bg-muted",
         )}
       >
