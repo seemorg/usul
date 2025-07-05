@@ -1,4 +1,3 @@
-import type { UsePageNavigationReturnType } from "@/app/[locale]/t/[bookId]/_components/usePageNavigation";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
@@ -6,6 +5,8 @@ import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context
 import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
 import { getBookPageIndex } from "@/lib/api";
 import { useBookShareUrl } from "@/lib/share";
+import { truncate } from "@/lib/string";
+import { useRouter } from "@/navigation";
 import { useMobileReaderStore } from "@/stores/mobile-reader";
 import {
   ArrowUpOnSquareIcon,
@@ -28,41 +29,58 @@ import {
 } from "../dialog";
 import { ScrollArea } from "../scroll-area";
 import { Separator } from "../separator";
-import Spinner from "../spinner";
 
-export default function SourceModal({
-  source,
-  getVirtuosoScrollProps,
-}: {
-  source: SemanticSearchBookNode;
-  getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
-}) {
+type Source = SemanticSearchBookNode & {
+  book?: { slug: string; primaryName: string };
+};
+
+function SourceTitle({ source }: { source: Source }) {
+  const slugParam = useParams().bookId as string;
+  if (!slugParam) {
+    if (source.book) {
+      return <p>{source.book.primaryName}</p>;
+    }
+  }
+
+  return <SourceTitleInner source={source} />;
+}
+
+function SourceTitleInner({ source }: { source: Source }) {
   const { bookResponse } = useBookDetails();
-  const [isOpen, setIsOpen] = useState(false);
-  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
-  const slug = useParams().bookId as string;
-  const versionId = useSearchParams().get("versionId");
-  const { copyUrl: copyShareUrl } = useBookShareUrl();
 
-  const t = useTranslations();
-  const virtuosoRef = useReaderVirtuoso();
-
+  // Only get chapter info when bookResponse is available
   const chapterIndex = source.metadata.chapters[0];
   const chapter =
     chapterIndex !== undefined && "headings" in bookResponse.content
       ? bookResponse.content.headings?.[chapterIndex]?.title
       : undefined;
 
+  return chapter ? <p dir="rtl">{chapter}</p> : null;
+}
+
+export default function SourceModal({ source }: { source: Source }) {
+  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
+  const slugParam = useParams().bookId as string;
+  const slug = source.book?.slug ?? slugParam;
+  const versionId = useSearchParams().get("versionId");
+  const { copyUrl: copyShareUrl, getUrl: getShareUrl } = useBookShareUrl();
+
+  const t = useTranslations();
+  const virtuosoRef = useReaderVirtuoso();
+
   const page = source.metadata.pages[0]!;
 
+  // Only call usePageData when slug is defined
   const { isPending, data } = useQuery({
-    queryKey: ["page", slug, page.page, page.volume, versionId] as const,
+    queryKey: ["page", slug, page, versionId] as const,
     queryFn: async ({ queryKey }) => {
-      const [, _slug, pg, vol, version] = queryKey;
+      const [, _slug, pg, version] = queryKey;
 
       const result = await getBookPageIndex(_slug, {
-        page: pg,
-        volume: vol,
+        page: pg.page,
+        volume: pg.volume,
         versionId: version ?? undefined,
       });
 
@@ -72,7 +90,7 @@ export default function SourceModal({
 
       return result;
     },
-    enabled: isOpen && !!page,
+    enabled: isOpen && !!slug,
   });
 
   const handleCopy = async () => {
@@ -93,11 +111,24 @@ export default function SourceModal({
   const handleGoToPage = () => {
     if (!data || data.index === null) return;
 
-    const props = getVirtuosoScrollProps(data.index);
-    virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+    if (slugParam) {
+      const props = {
+        index: data.index,
+        align: "center" as const,
+      };
 
-    setIsOpen(false);
-    closeMobileSidebar();
+      virtuosoRef.current?.scrollToIndex(props.index, { align: props.align });
+      setIsOpen(false);
+      closeMobileSidebar();
+    } else {
+      const url = getShareUrl({
+        slug,
+        pageIndex: data.index,
+        versionId: versionId ?? undefined,
+      });
+
+      router.push(url);
+    }
   };
 
   const pageReference = t("reader.chat.pg-x-vol", {
@@ -108,10 +139,10 @@ export default function SourceModal({
   return (
     <>
       <button
-        className="bg-muted inline cursor-pointer rounded-md p-1 text-xs"
+        className="bg-muted mx-0.5 inline cursor-pointer rounded-full px-2.5 py-0.5 text-xs"
         onClick={() => setIsOpen(true)}
       >
-        {pageReference}
+        {source.book ? truncate(source.book.primaryName, 35) : pageReference}
       </button>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -124,13 +155,16 @@ export default function SourceModal({
                   {pageReference}
                 </DialogDescription>
 
-                <RawDialogClose className="text-muted-foreground ring-offset-background hover:bg-accent/70 focus:ring-ring rounded-sm p-2 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none">
+                <RawDialogClose
+                  className="text-muted-foreground ring-offset-background hover:bg-accent/70 focus:ring-ring rounded-sm p-2 transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-hidden disabled:pointer-events-none"
+                  onClick={() => setIsOpen(false)}
+                >
                   <XIcon className="size-5" />
                   <span className="sr-only">Close</span>
                 </RawDialogClose>
 
                 <div className="text-muted-foreground flex items-center gap-2 text-base">
-                  <p dir="rtl">{chapter}</p>
+                  <SourceTitle source={source} />
                 </div>
               </div>
 
@@ -175,13 +209,9 @@ export default function SourceModal({
                     variant="ghost"
                     tooltip={t("reader.chat.share-chat")}
                     onClick={handleShare}
-                    disabled={isPending}
+                    isLoading={isPending}
                   >
-                    {isPending ? (
-                      <Spinner className="size-5" />
-                    ) : (
-                      <ArrowUpOnSquareIcon className="size-5" />
-                    )}
+                    <ArrowUpOnSquareIcon className="size-5" />
                   </Button>
                 </div>
               </div>

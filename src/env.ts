@@ -15,7 +15,6 @@ export const env = createEnv({
     UPSTASH_REDIS_REST_URL: z.string().url().min(1),
     UPSTASH_REDIS_REST_TOKEN: z.string().min(1),
     VERIFY_RIGHT_API_KEY: z.string().min(1),
-    SEMANTIC_SEARCH_API_KEY: z.string().min(1),
   },
   client: {
     NEXT_PUBLIC_STRIPE_PORTAL_URL: z.string().url().min(1),
@@ -24,7 +23,7 @@ export const env = createEnv({
   shared: {
     NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY: z.string().min(1),
-    NEXT_PUBLIC_SEMANTIC_SEARCH_URL: z.string().min(1),
+
     NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().min(1),
     NEXT_PUBLIC_ENABLE_CLARITY: z.string().optional().default("false"),
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().min(1),
@@ -43,8 +42,7 @@ export const env = createEnv({
       process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY:
       process.env.NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY,
-    NEXT_PUBLIC_SEMANTIC_SEARCH_URL:
-      process.env.NEXT_PUBLIC_SEMANTIC_SEARCH_URL,
+
     NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
     NEXT_PUBLIC_ENABLE_CLARITY: process.env.NEXT_PUBLIC_ENABLE_CLARITY,
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
@@ -58,7 +56,7 @@ export const env = createEnv({
     UPSTASH_REDIS_REST_TOKEN: process.env.UPSTASH_REDIS_REST_TOKEN,
     VERIFY_RIGHT_API_KEY: process.env.VERIFY_RIGHT_API_KEY,
     NEXT_PUBLIC_STRIPE_PORTAL_URL: process.env.NEXT_PUBLIC_STRIPE_PORTAL_URL,
-    SEMANTIC_SEARCH_API_KEY: process.env.SEMANTIC_SEARCH_API_KEY,
+
     NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
   },
   skipValidation: !!process.env.SKIP_ENV_VALIDATION,
