@@ -115,7 +115,7 @@ function PureMultimodalInput({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute bottom-32 left-1/2 z-50 -translate-x-1/2"
+            className="absolute bottom-34 left-1/2 z-50 -translate-x-1/2"
           >
             <Button
               data-testid="scroll-to-bottom-button"

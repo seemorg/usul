@@ -7,9 +7,9 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { FilterIcon, XIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { Settings2Icon, XIcon } from "lucide-react";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -21,9 +21,14 @@ export const useChatFilters = create(
     setSelectedBooks: (books: BookDocument[]) => void;
     addBook: (book: BookDocument) => void;
     removeBook: (bookId: string) => void;
+
+    open: boolean;
+    setOpen: (open: boolean) => void;
   }>(
     (set) => ({
       selectedBooks: [],
+      open: false,
+      setOpen: (open) => set({ open }),
       setSelectedBooks: (books) => set({ selectedBooks: books }),
       addBook: (book) =>
         set((state) => {
@@ -45,34 +50,38 @@ export const useChatFilters = create(
 );
 
 const ChatFilters = memo(() => {
-  const { selectedBooks, addBook, removeBook } = useChatFilters();
+  const { selectedBooks, addBook, removeBook, open, setOpen } =
+    useChatFilters();
 
   const handleBookSelect = (book: BookDocument) => {
     addBook(book);
   };
 
   return (
-    <div className="absolute bottom-0 left-0 flex w-fit flex-row justify-end gap-2 px-5 py-4">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button
-            variant="outline"
-            className="gap-2 rounded-full"
-            size="sm"
-            type="button"
+    <div className="absolute right-15 bottom-0 flex w-fit flex-row justify-end gap-2 px-5 py-4">
+      <Button
+        variant="outline"
+        className={cn(
+          "gap-2 rounded-full",
+          open &&
+            "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
+        )}
+        type="button"
+        onClick={() => setOpen(!open)}
+      >
+        <Settings2Icon className="size-4" />
+        Filters
+        {selectedBooks.length > 0 && (
+          <Badge
+            variant="secondary"
+            className="size-5 items-center justify-center rounded-full p-0 text-xs"
           >
-            <FilterIcon className="size-3" />
-            Filters
-            {selectedBooks.length > 0 && (
-              <Badge
-                variant="secondary"
-                className="size-5 items-center justify-center rounded-full p-0 text-xs"
-              >
-                {selectedBooks.length}
-              </Badge>
-            )}
-          </Button>
-        </DialogTrigger>
+            {selectedBooks.length}
+          </Badge>
+        )}
+      </Button>
+
+      <Dialog>
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>Chat Filters</DialogTitle>
