@@ -28,6 +28,7 @@ import Footer from "../_components/footer";
 import HomepageSection from "../_components/homepage-section";
 import Navbar from "../_components/navbar";
 import SearchBar from "../_components/navbar/search-bar";
+import { HomepageChatInput } from "./chat/chat-input";
 import { DemoButton } from "./demo-button";
 
 export const generateMetadata = async ({
@@ -166,7 +167,8 @@ export default async function HomePage({
 
           <div className={cn("w-full", "mt-16 sm:mt-[4.5rem]")}>
             <div className="mx-auto max-w-[46rem]">
-              <SearchBar size="lg" />
+              <HomepageChatInput />
+              {/* <SearchBar size="lg" /> */}
             </div>
           </div>
         </Container>
