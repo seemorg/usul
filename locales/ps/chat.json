@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "سلامونه!",
+    "welcome": "Usul AI ته ښه راغلاست"
+  },
+  "messages": {
+    "edit_tooltip": "پیغام سمول",
+    "thinking": "... هه",
+    "ai_disclaimer": "AI تېروتنې کولی شی. مهرباني وکړئ مهم معلومات وګورئ."
+  },
+  "editor": {
+    "sending": "لېږل...",
+    "send": "ولېږه"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "صحیح بخاري",
+      "label": "د اسلام ستنې کومې دي؟"
+    },
+    "sahih_muslim": {
+      "title": "صحیح مسلم",
+      "label": "د کتاب لیکوال څوک دی؟"
+    },
+    "muwatta_imam_malik": {
+      "title": "موطا امام مالک",
+      "label": "په جمعه باندې د روژې په اړه حکم څه دی؟"
+    },
+    "sunan_abu_dawud": {
+      "title": "سنن ابوداود",
+      "label": "کله چې یو څوک مړ شي څه باید وویل شي؟"
+    }
+  },
+  "status": {
+    "thinking": "فکر کول...",
+    "done": "ورته شو",
+    "done_searched": "وروسته پای ته ورسېدې.",
+    "generating_queries": "د پوښتنو تولید...",
+    "generating_response": "په اړه د ځوابونو تولید",
+    "searching": "لټون کول"
+  },
+  "reasoning": {
+    "title": "دلایل",
+    "completed": "د یو څو ثانیو لپاره دلیل شوی"
+  },
+  "input": {
+    "filters": "فلټرونه",
+    "placeholder": "یو پیغام ولېږه...",
+    "ai_chat": "AI چیټ",
+    "search": "لټون"
+  },
+  "sidebar": {
+    "chat_history": "د چیټ تاریخچه",
+    "toggle_sidebar": "سايدبار کې بدلون راوستل",
+    "new_chat": "نوی چیټ",
+    "chats": "چیټونه",
+    "no_chats_yet": "تر دې دمه هیڅ چیټ نشته",
+    "start_conversation": "نوی خبرو اترو پیل کړئ",
+    "untitled_chat": "بی نوم چیټ"
+  },
+  "filters": {
+    "find_texts": "متنونه ومومئ",
+    "find_authors": "لیکوالان ومومئ",
+    "texts_count": "متنونه"
+  }
+}

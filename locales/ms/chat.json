@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "Halo di sana!",
+    "welcome": "Selamat datang ke Usul AI"
+  },
+  "messages": {
+    "edit_tooltip": "Sunting mesej",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI boleh membuat kesilapan. Semak maklumat penting."
+  },
+  "editor": {
+    "sending": "Menghantar...",
+    "send": "Hantar"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "Sahih Bukhari",
+      "label": "Apakah rukun Islam?"
+    },
+    "sahih_muslim": {
+      "title": "Sahih Muslim",
+      "label": "Siapakah pengarang kitab ini?"
+    },
+    "muwatta_imam_malik": {
+      "title": "Muwatta Imam Malik",
+      "label": "Apakah hukum berpuasa pada hari Jumaat?"
+    },
+    "sunan_abu_dawud": {
+      "title": "Sunan Abu Dawud",
+      "label": "Apa untuk dikatakan apabila seseorang meninggal dunia?"
+    }
+  },
+  "status": {
+    "thinking": "Berfikir...",
+    "done": "Selesai",
+    "done_searched": "Selesai. Dicari",
+    "generating_queries": "Menjana pertanyaan...",
+    "generating_response": "Menjana respons untuk",
+    "searching": "Mencari"
+  },
+  "reasoning": {
+    "title": "Penaakulan",
+    "completed": "Penaakulan untuk beberapa saat"
+  },
+  "input": {
+    "filters": "Penapis",
+    "placeholder": "Hantar mesej...",
+    "ai_chat": "AI Chat",
+    "search": "Cari"
+  },
+  "sidebar": {
+    "chat_history": "Sejarah Sembang",
+    "toggle_sidebar": "Tukar Bar Sisi",
+    "new_chat": "Sembang Baru",
+    "chats": "Sembang",
+    "no_chats_yet": "Tiada sembang lagi",
+    "start_conversation": "Mulakan perbualan baharu",
+    "untitled_chat": "Sembang Tanpa Tajuk"
+  },
+  "filters": {
+    "find_texts": "Cari teks",
+    "find_authors": "Cari pengarang",
+    "texts_count": "teks"
+  }
+}

@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "नमस्ते वहाँ!",
+    "welcome": "Usul AI में आपका स्वागत है"
+  },
+  "messages": {
+    "edit_tooltip": "संदेश संपादित करें",
+    "thinking": "हम्म...",
+    "ai_disclaimer": "AI गलतियाँ कर सकता है। महत्वपूर्ण जानकारी जांचें।"
+  },
+  "editor": {
+    "sending": "भेजा जा रहा...",
+    "send": "भेजें"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "सहीह बुख़ारी",
+      "label": "इस्लाम के स्तंभ क्या हैं?"
+    },
+    "sahih_muslim": {
+      "title": "सहीह मुस्लिम",
+      "label": "पुस्तक के लेखक कौन हैं?"
+    },
+    "muwatta_imam_malik": {
+      "title": "मुवत्ता इमाम मालिक",
+      "label": "शुक्रवार को उपवास रखने का नियम क्या है?"
+    },
+    "sunan_abu_dawud": {
+      "title": "सनन अबू दाऊद",
+      "label": "जब कोई मर जाए तो क्या कहना चाहिए?"
+    }
+  },
+  "status": {
+    "thinking": "विचार हो रहा...",
+    "done": "पूर्ण",
+    "done_searched": "पूर्ण। के लिए खोजा गया",
+    "generating_queries": "प्रश्न उत्पन्न करना...",
+    "generating_response": "के लिए प्रतिक्रिया उत्पन्न करना",
+    "searching": "के लिए खोज कर रहा"
+  },
+  "reasoning": {
+    "title": "तर्क",
+    "completed": "कुछ सेकंड के लिए तर्कसंगत किया गया"
+  },
+  "input": {
+    "filters": "फिल्टर",
+    "placeholder": "एक संदेश भेजें...",
+    "ai_chat": "AI चैट",
+    "search": "खोज"
+  },
+  "sidebar": {
+    "chat_history": "चैट इतिहास",
+    "toggle_sidebar": "साइडबार टॉगल करें",
+    "new_chat": "नई चैट",
+    "chats": "चैट्स",
+    "no_chats_yet": "अभी तक कोई चैट नहीं",
+    "start_conversation": "एक नई बातचीत शुरू करें",
+    "untitled_chat": "अनटाइटल्ड चैट"
+  },
+  "filters": {
+    "find_texts": "पाठ खोजें",
+    "find_authors": "लेखकों को खोजें",
+    "texts_count": "पाठ"
+  }
+}

@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "سلام!",
+    "welcome": "به Usul AI خوش آمدید"
+  },
+  "messages": {
+    "edit_tooltip": "ویرایش پیام",
+    "thinking": "هممم...",
+    "ai_disclaimer": "هوش مصنوعی می‌تواند اشتباه کند. اطلاعات مهم را بررسی کنید."
+  },
+  "editor": {
+    "sending": "در حال ارسال...",
+    "send": "ارسال"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "صحیح بخاری",
+      "label": "ارکان اسلام چیست؟"
+    },
+    "sahih_muslim": {
+      "title": "صحیح مسلم",
+      "label": "نویسنده کتاب کیست؟"
+    },
+    "muwatta_imam_malik": {
+      "title": "موطأ امام مالک",
+      "label": "حکم روزه گرفتن روز جمعه چیست؟"
+    },
+    "sunan_abu_dawud": {
+      "title": "سنن ابوداود",
+      "label": "وقتی کسی می‌میرد چه باید گفت؟"
+    }
+  },
+  "status": {
+    "thinking": "در حال فکر کردن...",
+    "done": "تمام شد",
+    "done_searched": "تمام شد. جستجو برای",
+    "generating_queries": "در حال تولید پرسش‌ها...",
+    "generating_response": "در حال تولید پاسخ برای",
+    "searching": "در حال جستجو برای"
+  },
+  "reasoning": {
+    "title": "استدلال",
+    "completed": "چند لحظه استدلال شد"
+  },
+  "input": {
+    "filters": "فیلترها",
+    "placeholder": "پیام بفرستید...",
+    "ai_chat": "گفتگوی هوش مصنوعی",
+    "search": "جستجو"
+  },
+  "sidebar": {
+    "chat_history": "تاریخچه گفتگو",
+    "toggle_sidebar": "باز و بسته کردن نوار جانبی",
+    "new_chat": "گفتگوی جدید",
+    "chats": "گفتگوها",
+    "no_chats_yet": "هنوز هیچ گفتگویی وجود ندارد",
+    "start_conversation": "یک گفتگو جدید شروع کنید",
+    "untitled_chat": "گفتگوی بدون عنوان"
+  },
+  "filters": {
+    "find_texts": "یافتن متن‌ها",
+    "find_authors": "یافتن نویسندگان",
+    "texts_count": "متن‌ها"
+  }
+}
