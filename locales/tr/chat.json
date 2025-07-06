@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "Merhaba!",
+    "welcome": "Usul AI'ye hoş geldiniz"
+  },
+  "messages": {
+    "edit_tooltip": "Mesajı düzenle",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI hatalar yapabilir. Önemli bilgileri kontrol edin."
+  },
+  "editor": {
+    "sending": "Gönderiliyor...",
+    "send": "Gönder"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "Sahih Buhari",
+      "label": "İslam'ın şartları nelerdir?"
+    },
+    "sahih_muslim": {
+      "title": "Sahih Müslim",
+      "label": "Kitabın yazarı kimdir?"
+    },
+    "muwatta_imam_malik": {
+      "title": "Muvatta İmam Malik",
+      "label": "Cuma günü oruç tutmanın hükmü nedir?"
+    },
+    "sunan_abu_dawud": {
+      "title": "Sünen Ebu Davud",
+      "label": "Biri öldüğünde ne söylenir?"
+    }
+  },
+  "status": {
+    "thinking": "Düşünülüyor...",
+    "done": "Tamamlandı",
+    "done_searched": "Tamamlandı. Aranan",
+    "generating_queries": "Sorgular oluşturuluyor...",
+    "generating_response": "Yanıt oluşturuluyor için",
+    "searching": "Aranıyor"
+  },
+  "reasoning": {
+    "title": "Muhakeme",
+    "completed": "Birkaç saniye için muhakeme yapıldı"
+  },
+  "input": {
+    "filters": "Filtreler",
+    "placeholder": "Bir mesaj gönder...",
+    "ai_chat": "AI Sohbet",
+    "search": "Ara"
+  },
+  "sidebar": {
+    "chat_history": "Sohbet Geçmişi",
+    "toggle_sidebar": "Kenar Çubuğunu Değiştir",
+    "new_chat": "Yeni Sohbet",
+    "chats": "Sohbetler",
+    "no_chats_yet": "Henüz sohbet yok",
+    "start_conversation": "Yeni bir konuşma başlat",
+    "untitled_chat": "Başlıksız Sohbet"
+  },
+  "filters": {
+    "find_texts": "Metinleri bul",
+    "find_authors": "Yazarları bul",
+    "texts_count": "metinler"
+  }
+}

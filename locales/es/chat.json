@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "¡Hola!",
+    "welcome": "Bienvenido a Usul AI"
+  },
+  "messages": {
+    "edit_tooltip": "Editar mensaje",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "La IA puede cometer errores. Verifica información importante."
+  },
+  "editor": {
+    "sending": "Enviando...",
+    "send": "Enviar"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "Sahih Bukhari",
+      "label": "¿Cuáles son los pilares del Islam?"
+    },
+    "sahih_muslim": {
+      "title": "Sahih Muslim",
+      "label": "¿Quién es el autor del libro?"
+    },
+    "muwatta_imam_malik": {
+      "title": "Muwatta Imam Malik",
+      "label": "¿Cuál es la regla sobre ayunar el viernes?"
+    },
+    "sunan_abu_dawud": {
+      "title": "Sunan Abu Dawud",
+      "label": "¿Qué decir cuando alguien muere?"
+    }
+  },
+  "status": {
+    "thinking": "Pensando...",
+    "done": "Hecho",
+    "done_searched": "Hecho. Buscado por",
+    "generating_queries": "Generando consultas...",
+    "generating_response": "Generando respuesta para",
+    "searching": "Buscando por"
+  },
+  "reasoning": {
+    "title": "Razonamiento",
+    "completed": "Razonado por unos segundos"
+  },
+  "input": {
+    "filters": "Filtros",
+    "placeholder": "Enviar un mensaje...",
+    "ai_chat": "Chat IA",
+    "search": "Buscar"
+  },
+  "sidebar": {
+    "chat_history": "Historial de chat",
+    "toggle_sidebar": "Alternar barra lateral",
+    "new_chat": "Nuevo chat",
+    "chats": "Chats",
+    "no_chats_yet": "No hay chats aún",
+    "start_conversation": "Inicia una nueva conversación",
+    "untitled_chat": "Chat sin título"
+  },
+  "filters": {
+    "find_texts": "Encontrar textos",
+    "find_authors": "Encontrar autores",
+    "texts_count": "textos"
+  }
+}

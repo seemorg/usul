@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "ہیلو!",
+    "welcome": "Usul AI میں خوش آمدید"
+  },
+  "messages": {
+    "edit_tooltip": "پیغام میں ترمیم کریں",
+    "thinking": "ہمم...",
+    "ai_disclaimer": "AI غلطیاں کر سکتا ہے۔ اہم معلومات چیک کریں۔"
+  },
+  "editor": {
+    "sending": "بھیج رہا ہے...",
+    "send": "ارسال کریں"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "صحیح بخاری",
+      "label": "اسلام کے ارکان کیا ہیں؟"
+    },
+    "sahih_muslim": {
+      "title": "صحیح مسلم",
+      "label": "کتاب کا مصنف کون ہے؟"
+    },
+    "muwatta_imam_malik": {
+      "title": "مؤطا امام مالک",
+      "label": "جمعہ کے روزہ کا حکم کیا ہے؟"
+    },
+    "sunan_abu_dawud": {
+      "title": "سنن ابو داود",
+      "label": "کسی کے انتقال پر کیا کہیں؟"
+    }
+  },
+  "status": {
+    "thinking": "سوچ رہا ہے...",
+    "done": "مکمل",
+    "done_searched": "مکمل. تلاش کی گئی",
+    "generating_queries": "تلاشات تیار کر رہا ہے...",
+    "generating_response": "جواب تیار کر رہا ہے",
+    "searching": "تلاش کر رہا ہے"
+  },
+  "reasoning": {
+    "title": "دلیل",
+    "completed": "چند سیکنڈ کے لیے دلیل دی گئی"
+  },
+  "input": {
+    "filters": "فلٹرز",
+    "placeholder": "ایک پیغام بھیجیں...",
+    "ai_chat": "AI چیٹ",
+    "search": "تلاش"
+  },
+  "sidebar": {
+    "chat_history": "چیٹ کی تاریخ",
+    "toggle_sidebar": "سائیڈ بار کو ٹوگل کریں",
+    "new_chat": "نئی چیٹ",
+    "chats": "چیٹس",
+    "no_chats_yet": "ابھی تک کوئی چیٹ نہیں ہے",
+    "start_conversation": "نئی گفتگو شروع کریں",
+    "untitled_chat": "بے نام چیٹ"
+  },
+  "filters": {
+    "find_texts": "متون تلاش کریں",
+    "find_authors": "مصنفین تلاش کریں",
+    "texts_count": "متون"
+  }
+}

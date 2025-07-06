@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "Salaan!",
+    "welcome": "Ku soo dhawoow Usul AI"
+  },
+  "messages": {
+    "edit_tooltip": "Bedel farriinta",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI waxay sameyn kartaa qaladaad. Hubi xogta muhiimka ah."
+  },
+  "editor": {
+    "sending": "Diraya...",
+    "send": "Dir"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "Sahih Bukhari",
+      "label": "Maxay yihiin tiirarka Islaamka?"
+    },
+    "sahih_muslim": {
+      "title": "Sahih Muslim",
+      "label": "Waa kuma qoraaga buugga?"
+    },
+    "muwatta_imam_malik": {
+      "title": "Muwatta Imam Malik",
+      "label": "Waa maxay xukunka soomidda jimcaha?"
+    },
+    "sunan_abu_dawud": {
+      "title": "Sunan Abu Dawud",
+      "label": "Maxaa la dhahaa markuu qof dhinto?"
+    }
+  },
+  "status": {
+    "thinking": "Fikiraya...",
+    "done": "Dhameysan",
+    "done_searched": "Dhameystay. Raadiyay",
+    "generating_queries": "Abuuraya weydiimo...",
+    "generating_response": "Abuuraya jawaab u",
+    "searching": "Raadinaya"
+  },
+  "reasoning": {
+    "title": "Sababta",
+    "completed": "Sababay dhowr ilbiriqsi"
+  },
+  "input": {
+    "filters": "Shaandhooyin",
+    "placeholder": "Dir farriin...",
+    "ai_chat": "AI Wadahadal",
+    "search": "Raadi"
+  },
+  "sidebar": {
+    "chat_history": "Taariikhda Chat-ka",
+    "toggle_sidebar": "Bedelka Sidebar",
+    "new_chat": "Chat Cusub",
+    "chats": "Chats",
+    "no_chats_yet": "Ma jiraan chat weli",
+    "start_conversation": "Bilaabo wada sheekaysi cusub",
+    "untitled_chat": "Chat aan haysan cinwaan"
+  },
+  "filters": {
+    "find_texts": "Raadi qoraallo",
+    "find_authors": "Raadi shakhsiyaad qoraal ah",
+    "texts_count": "qoraallo"
+  }
+}
