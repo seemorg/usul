@@ -1,11 +1,11 @@
 import type { Chat } from "@/app/[locale]/chat/db";
 import type { Message } from "@ai-sdk/react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { db } from "@/app/[locale]/chat/db";
 import { env } from "@/env";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
-import { usePathname } from "@/navigation";
+import { usePathname, useRouter } from "@/navigation";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useChat } from "@ai-sdk/react";
 import { add } from "dexie";
@@ -14,14 +14,21 @@ import { toast } from "sonner";
 
 type UseChatCoreProps = {
   initialChat?: Chat;
+  initialId?: string;
+  shouldRedirect?: boolean;
 };
 
 export type UseGlobalChatReturn = ReturnType<typeof useGlobalChat>;
 
-export function useGlobalChat({ initialChat }: UseChatCoreProps) {
+export function useGlobalChat({
+  initialChat,
+  shouldRedirect = false,
+  initialId,
+}: UseChatCoreProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const pathname = usePathname();
   const pathLocale = usePathLocale();
+  const router = useRouter();
 
   const chatId = useMemo(() => {
     if (pathname.startsWith(`${navigation.chat.all()}/`))
@@ -29,7 +36,7 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     return null;
   }, [pathname]);
 
-  const prevChatIdRef = useRef<string | null>(null);
+  const effectiveChatId = chatId || initialId;
   const chatRef = useRef<Chat | null>(initialChat ?? null);
 
   const handleFinish = useCallback((message: Message) => {
@@ -47,30 +54,39 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     });
   }, []);
 
-  const ensureChatExists = useCallback(async (input: string) => {
-    if (chatRef.current) return chatRef.current.id;
+  const ensureChatExists = useCallback(
+    async (input: string) => {
+      if (chatRef.current) return chatRef.current.id;
 
-    const newId = nanoid();
-    const newChat: Chat = {
-      id: newId,
-      title: input,
-      messages: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
-    window.history.pushState(
-      null,
-      "",
-      `${pathLocale === "en" ? "" : `/${pathLocale}`}${navigation.chat.byId(
-        newId,
-      )}`,
-    );
-    chatRef.current = newChat;
+      const newId = initialId ?? nanoid();
 
-    await db.chats.add(newChat);
+      const newChat: Chat = {
+        id: newId,
+        title: input,
+        messages: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
 
-    return newId;
-  }, []);
+      chatRef.current = newChat;
+      await db.chats.add(newChat);
+
+      if (shouldRedirect) {
+        router.push(navigation.chat.byId(newId));
+      } else {
+        window.history.pushState(
+          null,
+          "",
+          `${pathLocale === "en" ? "" : `/${pathLocale}`}${navigation.chat.byId(
+            newId,
+          )}`,
+        );
+      }
+
+      return newId;
+    },
+    [shouldRedirect, router, pathLocale, initialId],
+  );
 
   const selectedBooks = useChatFilters((s) => s.selectedBooks);
   const {
@@ -84,6 +100,7 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     reload: originalReload,
     append: originalAppend,
   } = useChat({
+    id: effectiveChatId ? `global-chat-${effectiveChatId}` : "global-chat",
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
     initialMessages: initialChat?.messages ?? [],
     body: {
@@ -136,18 +153,6 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
 
     await originalReload({ body: { isRetry: true } });
   }, [messages, setMessages, persistMessages, originalReload]);
-
-  useEffect(() => {
-    // Reset messages when navigating from a chat to home
-    if (
-      prevChatIdRef.current !== null &&
-      chatId === null &&
-      messages.length > 0
-    ) {
-      setMessages([]);
-    }
-    prevChatIdRef.current = chatId ?? null;
-  }, [chatId, messages, setMessages]);
 
   const submit = useCallback(async () => {
     setIsSubmitting(true);
