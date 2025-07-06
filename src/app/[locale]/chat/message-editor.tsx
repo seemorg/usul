@@ -1,6 +1,6 @@
 "use client";
 
-import type { UseChatHelpers } from "@ai-sdk/react";
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { Message } from "ai";
 import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useRef, useState } from "react";
@@ -10,15 +10,13 @@ import { Textarea } from "@/components/ui/textarea";
 export type MessageEditorProps = {
   message: Message;
   setMode: Dispatch<SetStateAction<"view" | "edit">>;
-  setMessages: UseChatHelpers["setMessages"];
-  reload: UseChatHelpers["reload"];
+  updateMessage: UseGlobalChatReturn["updateMessage"];
 };
 
 export function MessageEditor({
   message,
   setMode,
-  setMessages,
-  reload,
+  updateMessage,
 }: MessageEditorProps) {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
@@ -68,32 +66,10 @@ export function MessageEditor({
           variant="default"
           className="h-fit px-3 py-2"
           disabled={isSubmitting}
-          onClick={async () => {
+          onClick={() => {
             setIsSubmitting(true);
-
-            // await deleteTrailingMessages({
-            //   id: message.id,
-            // });
-
-            // @ts-expect-error todo: support UIMessage in setMessages
-            setMessages((messages) => {
-              const index = messages.findIndex((m) => m.id === message.id);
-
-              if (index !== -1) {
-                const updatedMessage = {
-                  ...message,
-                  content: draftContent,
-                  parts: [{ type: "text", text: draftContent }],
-                };
-
-                return [...messages.slice(0, index), updatedMessage];
-              }
-
-              return messages;
-            });
-
+            updateMessage(message, draftContent);
             setMode("view");
-            void reload();
           }}
         >
           {isSubmitting ? "Sending..." : "Send"}

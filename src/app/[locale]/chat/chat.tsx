@@ -19,6 +19,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
     submit,
     append,
     isSubmitting,
+    updateMessage,
   } = useGlobalChat({ initialChat: chat });
 
   return (
@@ -34,13 +35,14 @@ export default function Chat({ chat }: { chat?: Chat }) {
         reload={reload}
         isReadonly={false}
         isArtifactVisible={false}
+        updateMessage={updateMessage}
       />
 
       <form className="mx-auto flex w-full flex-col px-4 md:max-w-3xl">
         <MultimodalInput
           input={input}
           setInput={setInput}
-          handleSubmit={() => submit()}
+          handleSubmit={submit}
           status={status}
           stop={stop}
           messages={messages}

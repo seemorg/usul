@@ -1,3 +1,4 @@
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { UIMessage } from "ai";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -24,7 +25,7 @@ export const MessageActions = ({
 }: {
   chatId: string;
   message: UIMessage;
-  reload: () => Promise<void>;
+  reload: UseGlobalChatReturn["reload"];
 }) => {
   const t = useTranslations();
   const [feedbackSentType, setFeedbackSentType] = useState<

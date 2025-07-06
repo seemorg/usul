@@ -1,5 +1,6 @@
 "use client";
 
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { UseChatHelpers } from "@ai-sdk/react";
 import type { Message } from "ai";
 import type React from "react";
@@ -33,10 +34,10 @@ function PureMultimodalInput({
   setInput: UseChatHelpers["setInput"];
   status: UseChatHelpers["status"];
   stop: () => void;
-  append: (text?: string) => void;
+  append: UseGlobalChatReturn["append"];
   messages: Array<Message>;
   setMessages: Dispatch<SetStateAction<Array<Message>>>;
-  handleSubmit: UseChatHelpers["handleSubmit"];
+  handleSubmit: UseGlobalChatReturn["submit"];
   className?: string;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -91,7 +92,7 @@ function PureMultimodalInput({
   };
 
   const submitForm = useCallback(() => {
-    handleSubmit(undefined);
+    void handleSubmit();
 
     setLocalStorageInput("");
     resetHeight();

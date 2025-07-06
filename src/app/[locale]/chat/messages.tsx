@@ -1,4 +1,4 @@
-import type { UseChatHelpers } from "@ai-sdk/react";
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { UIMessage } from "ai";
 import { memo } from "react";
 import { useMessages } from "@/hooks/use-messages";
@@ -10,13 +10,14 @@ import { PreviewMessage, ThinkingMessage } from "./message";
 
 interface MessagesProps {
   chatId?: string;
-  status: UseChatHelpers["status"];
+  status: UseGlobalChatReturn["status"];
   isSubmitting?: boolean;
   messages: Array<UIMessage>;
-  setMessages: UseChatHelpers["setMessages"];
-  reload: UseChatHelpers["reload"];
+  setMessages: UseGlobalChatReturn["setMessages"];
+  reload: UseGlobalChatReturn["reload"];
   isReadonly: boolean;
   isArtifactVisible: boolean;
+  updateMessage: UseGlobalChatReturn["updateMessage"];
 }
 
 function PureMessages({
@@ -27,6 +28,7 @@ function PureMessages({
   setMessages,
   reload,
   isReadonly,
+  updateMessage,
 }: MessagesProps) {
   const {
     containerRef: messagesContainerRef,
@@ -57,6 +59,7 @@ function PureMessages({
           requiresScrollPadding={
             hasSentMessage && index === messages.length - 1
           }
+          updateMessage={updateMessage}
         />
       ))}
 

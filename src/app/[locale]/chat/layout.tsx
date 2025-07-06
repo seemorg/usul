@@ -14,9 +14,9 @@ export default function ChatLayout({
 
       <SidebarProvider defaultOpen>
         <AppSidebar />
+
         <main className="bg-background relative h-[calc(100dvh-var(--navbar-height))] w-full">
           <div className="h-[var(--navbar-height)] w-full" />
-          <SidebarTrigger className="absolute top-[calc(var(--navbar-height)+1rem)] left-4 z-10" />
           {children}
         </main>
       </SidebarProvider>
