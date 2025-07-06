@@ -160,11 +160,16 @@ export function AuthorsFilterContent({ onBack }: { onBack?: () => void }) {
 
 const AuthorsFilter = () => {
   const t = useTranslations();
+  const selectedAuthors = useChatFilters((s) => s.selectedAuthors);
 
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <FilterButton icon={UserPenIcon} label={t("entities.author")} />
+        <FilterButton
+          icon={UserPenIcon}
+          label={t("entities.author")}
+          count={selectedAuthors.length}
+        />
       </PopoverTrigger>
 
       <PopoverContent className="flex max-h-100 w-100 flex-col gap-4 overflow-y-auto">

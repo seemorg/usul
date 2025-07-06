@@ -89,6 +89,16 @@ export function useGlobalChat({
   );
 
   const selectedBooks = useChatFilters((s) => s.selectedBooks);
+  const selectedAuthors = useChatFilters((s) => s.selectedAuthors);
+  const selectedGenres = useChatFilters((s) => s.selectedGenres);
+  const body = useMemo(() => {
+    return {
+      bookIds: selectedBooks.map((b) => b.id),
+      authorIds: selectedAuthors.map((a) => a.id),
+      genreIds: selectedGenres.map((g) => g.id),
+    };
+  }, [selectedBooks, selectedAuthors, selectedGenres]);
+
   const {
     messages,
     setMessages,
@@ -103,9 +113,7 @@ export function useGlobalChat({
     id: effectiveChatId ? `global-chat-${effectiveChatId}` : "global-chat",
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
     initialMessages: initialChat?.messages ?? [],
-    body: {
-      bookIds: selectedBooks.map((book) => book.id),
-    },
+    body,
     experimental_throttle: 100,
     onError: () => {
       const isOffline = typeof navigator !== "undefined" && !navigator.onLine;

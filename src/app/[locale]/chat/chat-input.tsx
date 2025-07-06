@@ -111,9 +111,10 @@ function FiltersButton({
   const t = useTranslations();
   const selectedBooksLength = useChatFilters((s) => s.selectedBooks.length);
   const selectedAuthorsLength = useChatFilters((s) => s.selectedAuthors.length);
+  const selectedGenresLength = useChatFilters((s) => s.selectedGenres.length);
 
   const total =
-    Math.min(selectedBooksLength, 1) + Math.min(selectedAuthorsLength, 1);
+    selectedBooksLength + selectedAuthorsLength + selectedGenresLength;
 
   return (
     <Button

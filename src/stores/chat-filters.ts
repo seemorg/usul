@@ -1,5 +1,6 @@
 import type { AuthorDocument } from "@/types/author";
 import type { BookDocument } from "@/types/book";
+import type { GenreDocument } from "@/types/genre";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -14,6 +15,10 @@ interface ChatFiltersState {
   selectedAuthors: AuthorDocument[];
   addAuthor: (author: AuthorDocument) => void;
   removeAuthor: (authorId: string) => void;
+
+  selectedGenres: GenreDocument[];
+  addGenre: (genre: GenreDocument) => void;
+  removeGenre: (genreId: string) => void;
 
   clear: () => void;
 }
@@ -52,7 +57,20 @@ export const useChatFilters = create(
           ),
         })),
 
-      clear: () => set({ selectedBooks: [], selectedAuthors: [] }),
+      selectedGenres: [],
+      addGenre: (genre) =>
+        set((state) => {
+          const exists = state.selectedGenres.find((g) => g.id === genre.id);
+          if (exists) return state;
+          return { selectedGenres: [...state.selectedGenres, genre] };
+        }),
+      removeGenre: (genreId) =>
+        set((state) => ({
+          selectedGenres: state.selectedGenres.filter((g) => g.id !== genreId),
+        })),
+
+      clear: () =>
+        set({ selectedBooks: [], selectedAuthors: [], selectedGenres: [] }),
     }),
     {
       name: "chat-filters",

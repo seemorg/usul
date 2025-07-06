@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { ChevronRightIcon } from "lucide-react";
 
 import { AuthorsFilterContent } from "./authors-filter";
+import { GenresFilterContent } from "./genres-filter";
 import { TextsFilterContent } from "./texts-filter";
 
 // import { useTranslations } from "next-intl";
@@ -18,7 +19,9 @@ export default function HomepageFilters({
 }: {
   trigger: React.ReactNode;
 }) {
-  const [filter, setFilter] = useState<"texts" | "authors" | null>(null);
+  const [filter, setFilter] = useState<"texts" | "authors" | "genres" | null>(
+    null,
+  );
 
   return (
     <Popover>
@@ -51,6 +54,14 @@ export default function HomepageFilters({
                 Authors
                 <ChevronRightIcon className="size-4" />
               </Button>
+              <Button
+                variant="ghost"
+                className="hover:bg-accent! w-full justify-between"
+                onClick={() => setFilter("genres")}
+              >
+                Genres
+                <ChevronRightIcon className="size-4" />
+              </Button>
             </div>
           </>
         )}
@@ -60,6 +71,9 @@ export default function HomepageFilters({
         )}
         {filter === "authors" && (
           <AuthorsFilterContent onBack={() => setFilter(null)} />
+        )}
+        {filter === "genres" && (
+          <GenresFilterContent onBack={() => setFilter(null)} />
         )}
       </PopoverContent>
     </Popover>

@@ -4,6 +4,7 @@ import { useChatFilters } from "@/stores/chat-filters";
 import { useTranslations } from "next-intl";
 
 import AuthorsFilter from "./filters/authors-filter";
+import GenresFilter from "./filters/genres-filter";
 import TextsFilter from "./filters/texts-filter";
 
 export default function ChatFilters() {
@@ -26,9 +27,7 @@ export default function ChatFilters() {
         <div className="flex gap-4">
           <TextsFilter />
           <AuthorsFilter />
-          {/* <FilterButton icon={UserPenIcon} label="Author" />
-          <FilterButton icon={FoldersIcon} label="Collection" />
-          <FilterButton icon={MapPinIcon} label="Location" /> */}
+          <GenresFilter />
         </div>
 
         <Button

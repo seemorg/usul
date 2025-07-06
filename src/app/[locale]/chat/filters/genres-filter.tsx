@@ -1,4 +1,4 @@
-import type { BookDocument } from "@/types/book";
+import type { GenreDocument } from "@/types/genre";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,12 +10,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Spinner from "@/components/ui/spinner";
-import { searchBooks } from "@/lib/api/search";
-import { formatDeathYear } from "@/lib/date";
+import { searchGenres } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeftIcon, LibraryBigIcon, SearchIcon } from "lucide-react";
+import { ChevronLeftIcon, SearchIcon, TagIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDebounceValue } from "usehooks-ts";
 
@@ -23,31 +22,30 @@ import FilterPagination from "./filter-pagination";
 import { FilterButton } from "./utils";
 
 const Item = ({
-  book,
-  handleBookSelect,
+  genre,
+  handleSelect,
   isSelected,
 }: {
-  book: BookDocument;
-  handleBookSelect: () => void;
+  genre: GenreDocument;
+  handleSelect: () => void;
   isSelected: boolean;
 }) => {
-  const locale = usePathLocale();
+  const t = useTranslations();
 
   return (
     <div className="flex items-center gap-4">
       <Checkbox
         className="size-6"
-        id={`${book.id}-text-filter`}
+        id={`${genre.id}-genre-filter`}
         checked={isSelected}
-        onCheckedChange={handleBookSelect}
+        onCheckedChange={handleSelect}
       />
 
-      <Label htmlFor={`${book.id}-text-filter`}>
+      <Label htmlFor={`${genre.id}-genre-filter`}>
         <div>
-          <p className="font-semibold">{book.primaryName}</p>
+          <p className="font-semibold">{genre.primaryName}</p>
           <p className="text-muted-foreground text-sm">
-            {book.author.primaryName}{" "}
-            {formatDeathYear(book.author.year, locale)}
+            {t("entities.x-texts", { count: genre.booksCount })}
           </p>
         </div>
       </Label>
@@ -55,12 +53,12 @@ const Item = ({
   );
 };
 
-export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
+export function GenresFilterContent({ onBack }: { onBack?: () => void }) {
   const t = useTranslations();
   const locale = usePathLocale();
-  const selectedBooks = useChatFilters((s) => s.selectedBooks);
-  const addBook = useChatFilters((s) => s.addBook);
-  const removeBook = useChatFilters((s) => s.removeBook);
+  const selectedGenres = useChatFilters((s) => s.selectedGenres);
+  const addGenre = useChatFilters((s) => s.addGenre);
+  const removeGenre = useChatFilters((s) => s.removeGenre);
 
   const [value, setValue] = useState("");
   const [debouncedValue] = useDebounceValue(value, 300);
@@ -68,26 +66,26 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
 
   const { data, isLoading } = useQuery({
     queryKey: [
-      "book-search",
+      "genre-search",
       debouncedValue,
       { page: currentPage, locale },
     ] as const,
     queryFn: ({
       queryKey: [, debouncedValue, { page: currentPage, locale }],
     }) =>
-      searchBooks(debouncedValue, {
+      searchGenres(debouncedValue, {
         limit: 10,
         page: currentPage,
         locale,
       }),
   });
 
-  const selectedIds = selectedBooks.map((b) => b.id);
-  const handleBookSelect = (book: BookDocument) => {
-    if (selectedIds.includes(book.id)) {
-      removeBook(book.id);
+  const selectedIds = selectedGenres.map((g) => g.id);
+  const handleGenreSelect = (genre: GenreDocument) => {
+    if (selectedIds.includes(genre.id)) {
+      removeGenre(genre.id);
     } else {
-      addBook(book);
+      addGenre(genre);
     }
   };
 
@@ -104,7 +102,8 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
             <ChevronLeftIcon className="size-4" />
           </Button>
         )}
-        <h4 className="text-xl font-semibold">{t("entities.texts")}</h4>
+
+        <h4 className="text-xl font-semibold">{t("entities.genres")}</h4>
       </div>
 
       <div className="relative">
@@ -115,7 +114,9 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
         )}
 
         <Input
-          placeholder={t("chat.filters.find_texts")}
+          placeholder={t("entities.search-for", {
+            entity: t("entities.genres"),
+          })}
           className="h-8 pl-8"
           value={value}
           onChange={(e) => setValue(e.target.value)}
@@ -123,23 +124,23 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
       </div>
 
       <div className="flex flex-col gap-2">
-        {selectedBooks.map((book) => (
+        {selectedGenres.map((genre) => (
           <Item
-            key={book.id}
-            book={book}
-            handleBookSelect={() => handleBookSelect(book)}
+            key={genre.id}
+            genre={genre}
+            handleSelect={() => handleGenreSelect(genre)}
             isSelected={true}
           />
         ))}
 
-        {data?.results.hits.map((book) => {
-          if (selectedIds.includes(book.id)) return null;
+        {data?.results.hits.map((genre) => {
+          if (selectedIds.includes(genre.id)) return null;
 
           return (
             <Item
-              key={book.id}
-              book={book}
-              handleBookSelect={() => handleBookSelect(book)}
+              key={genre.id}
+              genre={genre}
+              handleSelect={() => handleGenreSelect(genre)}
               isSelected={false}
             />
           );
@@ -155,25 +156,25 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
   );
 }
 
-const TextsFilter = () => {
+const GenresFilter = () => {
   const t = useTranslations();
-  const selectedBooks = useChatFilters((s) => s.selectedBooks);
+  const selectedGenres = useChatFilters((s) => s.selectedGenres);
 
   return (
     <Popover>
       <PopoverTrigger asChild>
         <FilterButton
-          icon={LibraryBigIcon}
-          label={t("entities.text")}
-          count={selectedBooks.length}
+          icon={TagIcon}
+          label={t("entities.genre")}
+          count={selectedGenres.length}
         />
       </PopoverTrigger>
 
-      <PopoverContent className="flex max-h-96 w-100 flex-col gap-4 overflow-y-auto">
-        <TextsFilterContent />
+      <PopoverContent className="flex max-h-100 w-100 flex-col gap-4 overflow-y-auto">
+        <GenresFilterContent />
       </PopoverContent>
     </Popover>
   );
 };
 
-export default TextsFilter;
+export default GenresFilter;
