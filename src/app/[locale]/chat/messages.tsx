@@ -9,8 +9,9 @@ import { Greeting } from "./greeting";
 import { PreviewMessage, ThinkingMessage } from "./message";
 
 interface MessagesProps {
-  chatId: string;
+  chatId?: string;
   status: UseChatHelpers["status"];
+  isSubmitting?: boolean;
   messages: Array<UIMessage>;
   setMessages: UseChatHelpers["setMessages"];
   reload: UseChatHelpers["reload"];
@@ -21,6 +22,7 @@ interface MessagesProps {
 function PureMessages({
   chatId,
   status,
+  isSubmitting,
   messages,
   setMessages,
   reload,
@@ -47,7 +49,6 @@ function PureMessages({
       {messages.map((message, index) => (
         <PreviewMessage
           key={message.id}
-          chatId={chatId}
           message={message}
           isLoading={status === "streaming" && messages.length - 1 === index}
           setMessages={setMessages}
@@ -59,7 +60,7 @@ function PureMessages({
         />
       ))}
 
-      {status === "submitted" &&
+      {(status === "submitted" || isSubmitting) &&
         messages.length > 0 &&
         messages[messages.length - 1]!.role === "user" && <ThinkingMessage />}
 

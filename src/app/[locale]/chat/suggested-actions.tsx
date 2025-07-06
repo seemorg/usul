@@ -1,6 +1,5 @@
 "use client";
 
-import type { UseChatHelpers } from "@ai-sdk/react";
 import { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -25,7 +24,7 @@ const actions = [
 ];
 
 interface SuggestedActionsProps {
-  append: UseChatHelpers["append"];
+  append: (text?: string) => void;
 }
 
 function PureSuggestedActions({ append }: SuggestedActionsProps) {
@@ -46,12 +45,9 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
           <Button
             variant="ghost"
             onClick={() => {
-              void append({
-                role: "user",
-                content: suggestedAction.label,
-              });
+              void append(suggestedAction.label);
             }}
-            className="hover:bg-background bg-background/50 h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
+            className="hover:bg-accent h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
           >
             <span className="font-medium">{suggestedAction.title}</span>
             <span className="text-muted-foreground">

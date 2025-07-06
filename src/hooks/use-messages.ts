@@ -7,7 +7,7 @@ export function useMessages({
   chatId,
   status,
 }: {
-  chatId: string;
+  chatId?: string;
   status: UseChatHelpers["status"];
 }) {
   const {
