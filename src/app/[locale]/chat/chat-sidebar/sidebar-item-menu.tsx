@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { MoreVerticalIcon, PencilIcon, TrashIcon } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
@@ -33,7 +34,7 @@ export function SidebarItemMenu({
   const handleConfirmDelete = async () => {
     await db.chats.delete(chat.id);
     if (chatId && chatId === chat.id) {
-      router.push("/chat");
+      router.push(navigation.chat.all());
     }
   };
 
