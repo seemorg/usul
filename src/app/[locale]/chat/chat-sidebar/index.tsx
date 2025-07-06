@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import { useRouter } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
@@ -14,6 +13,8 @@ import {
   SidebarRail,
   SidebarSeparator,
 } from "@/components/ui/sidebar";
+import { navigation } from "@/lib/urls";
+import { useRouter } from "@/navigation";
 import { useLiveQuery } from "dexie-react-hooks";
 import { MessageCirclePlusIcon, PencilLineIcon } from "lucide-react";
 
@@ -67,7 +68,10 @@ export function AppSidebar() {
         <ScrollArea>
           <SidebarGroup>
             <SidebarMenuButton asChild className="py-5">
-              <button type="button" onClick={() => router.push("/chat")}>
+              <button
+                type="button"
+                onClick={() => router.push(navigation.chat.all())}
+              >
                 <PencilLineIcon className="size-5" />
                 New Chat
               </button>

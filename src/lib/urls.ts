@@ -42,6 +42,10 @@ export const navigation = {
   donate: () => "/donate",
   login: () => "/login",
   profile: () => "/profile",
+  chat: {
+    all: () => "/chat",
+    byId: (chatId: string) => `/chat/${chatId}`,
+  },
 };
 
 export const booksSorts = [

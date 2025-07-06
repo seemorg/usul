@@ -3,6 +3,8 @@ import type { Message } from "@ai-sdk/react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { db } from "@/app/[locale]/chat/db";
 import { env } from "@/env";
+import { usePathLocale } from "@/lib/locale/utils";
+import { navigation } from "@/lib/urls";
 import { usePathname } from "@/navigation";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useChat } from "@ai-sdk/react";
@@ -17,8 +19,11 @@ type UseChatCoreProps = {
 export function useGlobalChat({ initialChat }: UseChatCoreProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const pathname = usePathname();
+  const pathLocale = usePathLocale();
+
   const chatId = useMemo(() => {
-    if (pathname.startsWith("/chat/")) return pathname.split("/chat/")[1];
+    if (pathname.startsWith(`${navigation.chat.all()}/`))
+      return pathname.split(`${navigation.chat.all()}/`)[1];
     return null;
   }, [pathname]);
 
@@ -43,7 +48,13 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
       createdAt: new Date(),
       updatedAt: new Date(),
     };
-    window.history.pushState(null, "", `/chat/${newId}`);
+    window.history.pushState(
+      null,
+      "",
+      `${pathLocale === "en" ? "" : `/${pathLocale}`}${navigation.chat.byId(
+        newId,
+      )}`,
+    );
     chatRef.current = newChat;
 
     await db.chats.add(newChat);

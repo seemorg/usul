@@ -1,6 +1,7 @@
 import type { RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
 import { useParams } from "next/navigation";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { CheckIcon, XIcon } from "lucide-react";
@@ -161,7 +162,7 @@ export function SidebarItem({ chat }: SidebarItemProps) {
       ) : (
         <>
           <Link
-            href={`/chat/${chat.id}`}
+            href={navigation.chat.byId(chat.id)}
             className="block w-full"
             prefetch
             onClick={handleLinkClick}
