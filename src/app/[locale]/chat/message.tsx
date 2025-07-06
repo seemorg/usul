@@ -1,7 +1,7 @@
 "use client";
 
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { MessageAnnotation } from "@/types/chat";
-import type { UseChatHelpers } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import { memo, useState } from "react";
 import { Markdown } from "@/components/chat/markdown";
@@ -33,13 +33,15 @@ const PurePreviewMessage = ({
   reload,
   isReadonly,
   requiresScrollPadding,
+  updateMessage,
 }: {
   message: UIMessage;
   isLoading: boolean;
-  setMessages: UseChatHelpers["setMessages"];
-  reload: UseChatHelpers["reload"];
+  setMessages: UseGlobalChatReturn["setMessages"];
+  reload: UseGlobalChatReturn["reload"];
   isReadonly: boolean;
   requiresScrollPadding: boolean;
+  updateMessage: UseGlobalChatReturn["updateMessage"];
 }) => {
   const [mode, setMode] = useState<"view" | "edit">("view");
 
@@ -140,8 +142,7 @@ const PurePreviewMessage = ({
                         key={message.id}
                         message={message}
                         setMode={setMode}
-                        setMessages={setMessages}
-                        reload={reload}
+                        updateMessage={updateMessage}
                       />
                     </div>
                   );
@@ -221,9 +222,7 @@ const PurePreviewMessage = ({
                 key={`action-${message.id}`}
                 chatId={chatIdFromAnnotation}
                 message={message}
-                reload={async () => {
-                  await reload({ body: { isRetry: true } });
-                }}
+                reload={reload}
               />
             )}
           </div>

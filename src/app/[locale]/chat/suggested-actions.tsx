@@ -1,5 +1,6 @@
 "use client";
 
+import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -24,7 +25,7 @@ const actions = [
 ];
 
 interface SuggestedActionsProps {
-  append: (text?: string) => void;
+  append: UseGlobalChatReturn["append"];
 }
 
 function PureSuggestedActions({ append }: SuggestedActionsProps) {
@@ -44,6 +45,7 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
         >
           <Button
             variant="ghost"
+            type="button"
             onClick={() => {
               void append(suggestedAction.label);
             }}

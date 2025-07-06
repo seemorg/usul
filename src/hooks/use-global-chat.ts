@@ -16,6 +16,8 @@ type UseChatCoreProps = {
   initialChat?: Chat;
 };
 
+export type UseGlobalChatReturn = ReturnType<typeof useGlobalChat>;
+
 export function useGlobalChat({ initialChat }: UseChatCoreProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const pathname = usePathname();
@@ -34,6 +36,14 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     if (!chatRef.current) return;
     void db.chats.update(chatRef.current.id, {
       messages: add([message]),
+    });
+  }, []);
+
+  const persistMessages = useCallback((messages: Message[]) => {
+    if (!chatRef.current) return;
+    void db.chats.update(chatRef.current.id, {
+      messages,
+      updatedAt: new Date(),
     });
   }, []);
 
@@ -71,7 +81,8 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     handleSubmit,
     status,
     stop,
-    reload,
+    reload: originalReload,
+    append: originalAppend,
   } = useChat({
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
     initialMessages: initialChat?.messages ?? [],
@@ -90,6 +101,42 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     onFinish: handleFinish,
   });
 
+  const updateMessage = useCallback(
+    (message: Message, draftContent: string) => {
+      const index = messages.findIndex((m) => m.id === message.id);
+      if (index === -1) return;
+
+      const updatedMessage = {
+        ...message,
+        content: draftContent,
+        parts: [{ type: "text" as const, text: draftContent }],
+      };
+
+      const newMessages = [...messages.slice(0, index), updatedMessage];
+
+      setMessages(newMessages);
+      persistMessages(newMessages);
+
+      void originalReload();
+    },
+    [messages, setMessages, persistMessages, originalReload],
+  );
+
+  const reload = useCallback(async () => {
+    const lastMessage = messages[messages.length - 1];
+    if (!lastMessage) return;
+
+    const messageIndex = messages.findIndex((m) => m.id === lastMessage.id);
+    if (messageIndex !== -1) {
+      // Remove all messages from the current message onwards
+      const truncatedMessages = messages.slice(0, messageIndex);
+      setMessages(truncatedMessages);
+      persistMessages(truncatedMessages);
+    }
+
+    await originalReload({ body: { isRetry: true } });
+  }, [messages, setMessages, persistMessages, originalReload]);
+
   useEffect(() => {
     // Reset messages when navigating from a chat to home
     if (
@@ -102,53 +149,63 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     prevChatIdRef.current = chatId ?? null;
   }, [chatId, messages, setMessages]);
 
-  const submitText = useCallback(
-    async (text?: string) => {
+  const submit = useCallback(async () => {
+    setIsSubmitting(true);
+
+    const newMessage: Message = {
+      id: uuidv4(),
+      content: input,
+      role: "user" as const,
+      createdAt: new Date(),
+    };
+
+    setMessages((prev) => [...prev, newMessage]);
+    setInput("");
+
+    const currentChatId = await ensureChatExists(input);
+    handleFinish(newMessage);
+
+    handleSubmit(undefined, {
+      body: {
+        chatId: currentChatId,
+      },
+    });
+
+    setMessages((prev) => prev.filter((msg) => msg.id !== newMessage.id));
+    setIsSubmitting(false);
+  }, [
+    ensureChatExists,
+    setIsSubmitting,
+    input,
+    handleFinish,
+    setMessages,
+    setInput,
+    handleSubmit,
+  ]);
+
+  const append = useCallback(
+    async (text: string) => {
       setIsSubmitting(true);
 
-      const textToSend = text ?? input;
       const newMessage: Message = {
         id: uuidv4(),
-        content: textToSend,
+        content: text,
         role: "user" as const,
         createdAt: new Date(),
       };
 
-      setMessages((prev) => [...prev, newMessage]);
-      setInput("");
-
-      const currentChatId = await ensureChatExists(textToSend);
+      const currentChatId = await ensureChatExists(text);
       handleFinish(newMessage);
 
-      handleSubmit(undefined, {
+      await originalAppend(newMessage, {
         body: {
           chatId: currentChatId,
         },
       });
 
-      setMessages((prev) => prev.filter((msg) => msg.id !== newMessage.id));
       setIsSubmitting(false);
     },
-    [
-      ensureChatExists,
-      setIsSubmitting,
-      input,
-      handleFinish,
-      setMessages,
-      setInput,
-      handleSubmit,
-    ],
-  );
-
-  const submit = useCallback(() => {
-    void submitText();
-  }, [submitText]);
-
-  const append = useCallback(
-    (text?: string) => {
-      void submitText(text);
-    },
-    [submitText],
+    [ensureChatExists, setIsSubmitting, handleFinish, originalAppend],
   );
 
   return {
@@ -162,5 +219,6 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     stop,
     reload,
     isSubmitting,
+    updateMessage,
   };
 }

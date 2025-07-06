@@ -22,7 +22,7 @@ import {
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
-import { PanelLeftIcon } from "lucide-react";
+import { PanelLeftCloseIcon, PanelLeftOpenIcon } from "lucide-react";
 import { Slot as SlotPrimitive } from "radix-ui";
 
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
@@ -258,7 +258,7 @@ function SidebarTrigger({
   onClick,
   ...props
 }: React.ComponentProps<typeof Button>) {
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, open } = useSidebar();
 
   return (
     <Button
@@ -266,14 +266,18 @@ function SidebarTrigger({
       data-slot="sidebar-trigger"
       variant="ghost"
       size="icon"
-      className={cn("size-7", className)}
+      className={cn("hover:bg-accent! size-8 shrink-0", className)}
       onClick={(event) => {
         onClick?.(event);
         toggleSidebar();
       }}
       {...props}
     >
-      <PanelLeftIcon className="size-5" />
+      {open ? (
+        <PanelLeftCloseIcon className="text-foreground size-4" />
+      ) : (
+        <PanelLeftOpenIcon className="text-foreground size-4" />
+      )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );

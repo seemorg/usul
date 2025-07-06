@@ -12,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
   SidebarSeparator,
+  SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
@@ -52,13 +53,26 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      collapsible="offcanvas"
+      collapsible="icon"
       variant="sidebar"
       className="mt-[var(--navbar-height)] border-none"
     >
       <SidebarHeader className="pt-4">
-        <SidebarGroup>
-          <h4 className="text-foreground font-bold">Chat History</h4>
+        <SidebarGroup className="group-data-[collapsible=icon]:p-0">
+          <div className="flex items-center justify-between">
+            <h4 className="text-foreground font-bold group-data-[collapsible=icon]:hidden">
+              Chat History
+            </h4>
+            <SidebarTrigger
+              tooltip="Toggle Sidebar"
+              tooltipProps={{
+                side: "right",
+                align: "center",
+                variant: "primary",
+                className: "hidden group-data-[collapsible=icon]:block",
+              }}
+            />
+          </div>
         </SidebarGroup>
       </SidebarHeader>
 
@@ -67,7 +81,11 @@ export function AppSidebar() {
       <SidebarContent>
         <ScrollArea>
           <SidebarGroup>
-            <SidebarMenuButton asChild className="py-5">
+            <SidebarMenuButton
+              asChild
+              className="py-5"
+              tooltip={{ children: "New Chat", variant: "primary" }}
+            >
               <button
                 type="button"
                 onClick={() => router.push(navigation.chat.all())}
@@ -80,7 +98,7 @@ export function AppSidebar() {
 
           <SidebarSeparator />
 
-          <SidebarGroup>
+          <SidebarGroup className="group-data-[collapsible=icon]:hidden">
             <SidebarGroupLabel>Chats</SidebarGroupLabel>
             <SidebarGroupContent>
               {isLoading ? (
