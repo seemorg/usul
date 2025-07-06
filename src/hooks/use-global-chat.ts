@@ -9,8 +9,8 @@ import { usePathname } from "@/navigation";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useChat } from "@ai-sdk/react";
 import { add } from "dexie";
+import { nanoid } from "nanoid";
 import { toast } from "sonner";
-import { v4 as uuidv4 } from "uuid";
 
 type UseChatCoreProps = {
   initialChat?: Chat;
@@ -50,7 +50,7 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
   const ensureChatExists = useCallback(async (input: string) => {
     if (chatRef.current) return chatRef.current.id;
 
-    const newId = uuidv4();
+    const newId = nanoid();
     const newChat: Chat = {
       id: newId,
       title: input,
@@ -153,7 +153,7 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
     setIsSubmitting(true);
 
     const newMessage: Message = {
-      id: uuidv4(),
+      id: nanoid(),
       content: input,
       role: "user" as const,
       createdAt: new Date(),
@@ -188,7 +188,7 @@ export function useGlobalChat({ initialChat }: UseChatCoreProps) {
       setIsSubmitting(true);
 
       const newMessage: Message = {
-        id: uuidv4(),
+        id: nanoid(),
         content: text,
         role: "user" as const,
         createdAt: new Date(),
