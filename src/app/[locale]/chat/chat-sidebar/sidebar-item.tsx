@@ -5,6 +5,7 @@ import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { CheckIcon, XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMediaQuery, useOnClickOutside } from "usehooks-ts";
 
 import type { Chat } from "../db";
@@ -16,6 +17,7 @@ type SidebarItemProps = {
 };
 
 export function SidebarItem({ chat }: SidebarItemProps) {
+  const t = useTranslations();
   const { chatId } = useParams<{ chatId: string }>();
 
   const [isEditing, setIsEditing] = useState(false);
@@ -121,7 +123,7 @@ export function SidebarItem({ chat }: SidebarItemProps) {
   }, []);
 
   const isActive = chat.id === chatId || isEditing || isMenuOpen;
-  const displayTitle = chat.title || "Untitled Chat";
+  const displayTitle = chat.title || t("chat.sidebar.untitled_chat");
 
   return (
     <div

@@ -31,6 +31,7 @@ const Item = ({
   handleSelect: () => void;
   isSelected: boolean;
 }) => {
+  const t = useTranslations();
   const locale = usePathLocale();
 
   return (
@@ -48,7 +49,7 @@ const Item = ({
             {author.primaryName} {formatDeathYear(author.year, locale)}
           </p>
           <p className="text-muted-foreground text-sm">
-            {author.booksCount} texts
+            {t("entities.x-texts", { count: author.booksCount })}
           </p>
         </div>
       </Label>
@@ -117,7 +118,7 @@ export function AuthorsFilterContent({ onBack }: { onBack?: () => void }) {
         )}
 
         <Input
-          placeholder="Find authors"
+          placeholder={t("chat.filters.find_authors")}
           className="h-8 pl-8"
           value={value}
           onChange={(e) => setValue(e.target.value)}

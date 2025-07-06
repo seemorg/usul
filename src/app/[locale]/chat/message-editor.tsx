@@ -6,6 +6,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 
 export type MessageEditorProps = {
   message: Message;
@@ -18,6 +19,7 @@ export function MessageEditor({
   setMode,
   updateMessage,
 }: MessageEditorProps) {
+  const t = useTranslations();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const [draftContent, setDraftContent] = useState<string>(message.content);
@@ -59,7 +61,7 @@ export function MessageEditor({
             setMode("view");
           }}
         >
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button
           data-testid="message-editor-send-button"
@@ -72,7 +74,7 @@ export function MessageEditor({
             setMode("view");
           }}
         >
-          {isSubmitting ? "Sending..." : "Send"}
+          {isSubmitting ? t("chat.editor.sending") : t("chat.editor.send")}
         </Button>
       </div>
     </div>

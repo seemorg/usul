@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import equal from "fast-deep-equal";
 import { AnimatePresence, motion } from "framer-motion";
 import { PencilIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import Avatar from "./avatar";
 import { MessageEditor } from "./message-editor";
@@ -43,6 +44,7 @@ const PurePreviewMessage = ({
   requiresScrollPadding: boolean;
   updateMessage: UseGlobalChatReturn["updateMessage"];
 }) => {
+  const t = useTranslations();
   const [mode, setMode] = useState<"view" | "edit">("view");
 
   const annotations = (message.annotations ?? []) as MessageAnnotation[];
@@ -113,7 +115,9 @@ const PurePreviewMessage = ({
                               <PencilIcon className="size-4" />
                             </Button>
                           </TooltipTrigger>
-                          <TooltipContent>Edit message</TooltipContent>
+                          <TooltipContent>
+                            {t("chat.messages.edit_tooltip")}
+                          </TooltipContent>
                         </Tooltip>
                       )}
 
@@ -248,6 +252,7 @@ export const PreviewMessage = memo(
 );
 
 export const ThinkingMessage = () => {
+  const t = useTranslations();
   const role = "assistant";
 
   return (
@@ -268,7 +273,7 @@ export const ThinkingMessage = () => {
 
         <div className="flex w-full flex-col gap-2">
           <div className="text-muted-foreground flex flex-col gap-4">
-            Hmm...
+            {t("chat.messages.thinking")}
           </div>
         </div>
       </div>

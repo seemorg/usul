@@ -4,31 +4,34 @@ import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-
-const actions = [
-  {
-    title: "Sahih Bukhari",
-    label: "What are the pillars of Islam?",
-  },
-  {
-    title: "Sahih Muslim",
-    label: "Who is the author of the book?",
-  },
-  {
-    title: "Muwatta Imam Malik",
-    label: "What is the ruling on fasting friday?",
-  },
-  {
-    title: "Sunan Abu Dawud",
-    label: "What to say when someone dies?",
-  },
-];
+import { useTranslations } from "next-intl";
 
 interface SuggestedActionsProps {
   append: UseGlobalChatReturn["append"];
 }
 
 function PureSuggestedActions({ append }: SuggestedActionsProps) {
+  const t = useTranslations();
+
+  const actions = [
+    {
+      title: t("chat.suggested_actions.sahih_bukhari.title"),
+      label: t("chat.suggested_actions.sahih_bukhari.label"),
+    },
+    {
+      title: t("chat.suggested_actions.sahih_muslim.title"),
+      label: t("chat.suggested_actions.sahih_muslim.label"),
+    },
+    {
+      title: t("chat.suggested_actions.muwatta_imam_malik.title"),
+      label: t("chat.suggested_actions.muwatta_imam_malik.label"),
+    },
+    {
+      title: t("chat.suggested_actions.sunan_abu_dawud.title"),
+      label: t("chat.suggested_actions.sunan_abu_dawud.label"),
+    },
+  ];
+
   return (
     <div
       data-testid="suggested-actions"

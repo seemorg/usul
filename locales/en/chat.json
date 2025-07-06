@@ -1,1 +1,65 @@
-{}
+{
+  "greeting": {
+    "hello": "Hello there!",
+    "welcome": "Welcome to Usul AI"
+  },
+  "messages": {
+    "edit_tooltip": "Edit message",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI can make mistakes. Check important info."
+  },
+  "editor": {
+    "sending": "Sending...",
+    "send": "Send"
+  },
+  "suggested_actions": {
+    "sahih_bukhari": {
+      "title": "Sahih Bukhari",
+      "label": "What are the pillars of Islam?"
+    },
+    "sahih_muslim": {
+      "title": "Sahih Muslim",
+      "label": "Who is the author of the book?"
+    },
+    "muwatta_imam_malik": {
+      "title": "Muwatta Imam Malik",
+      "label": "What is the ruling on fasting friday?"
+    },
+    "sunan_abu_dawud": {
+      "title": "Sunan Abu Dawud",
+      "label": "What to say when someone dies?"
+    }
+  },
+  "status": {
+    "thinking": "Thinking...",
+    "done": "Done",
+    "done_searched": "Done. Searched for",
+    "generating_queries": "Generating queries...",
+    "generating_response": "Generating response for",
+    "searching": "Searching for"
+  },
+  "reasoning": {
+    "title": "Reasoning",
+    "completed": "Reasoned for a few seconds"
+  },
+  "input": {
+    "filters": "Filters",
+    "placeholder": "Send a message...",
+    "ai_chat": "AI Chat",
+    "search": "Search"
+  },
+  "sidebar": {
+    "chat_history": "Chat History",
+    "toggle_sidebar": "Toggle Sidebar",
+    "new_chat": "New Chat",
+    "chats": "Chats",
+    "no_chats_yet": "No chats yet",
+    "start_conversation": "Start a new conversation",
+    "untitled_chat": "Untitled Chat"
+  },
+  "filters": {
+    "find_texts": "Find texts",
+    "find_authors": "Find authors",
+    "texts_count": "texts"
+  }
+}

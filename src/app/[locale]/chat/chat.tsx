@@ -1,6 +1,7 @@
 "use client";
 
 import { useGlobalChat } from "@/hooks/use-global-chat";
+import { useTranslations } from "next-intl";
 
 import type { Chat } from "./db";
 import { MultimodalInput } from "./chat-input";
@@ -8,6 +9,7 @@ import ChatFilters from "./filters";
 import { Messages } from "./messages";
 
 export default function Chat({ chat }: { chat?: Chat }) {
+  const t = useTranslations();
   const {
     messages,
     setMessages,
@@ -51,7 +53,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
         />
 
         <p className="text-muted-foreground my-3 text-center text-xs">
-          AI can make mistakes. Check important info.
+          {t("chat.messages.ai_disclaimer")}
         </p>
       </form>
     </main>

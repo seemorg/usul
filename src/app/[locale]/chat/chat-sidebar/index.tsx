@@ -18,12 +18,14 @@ import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { useLiveQuery } from "dexie-react-hooks";
 import { MessageCirclePlusIcon, PencilLineIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import type { Chat } from "../db";
 import { db } from "../db";
 import { SidebarList } from "./sidebar-list";
 
 export function AppSidebar() {
+  const t = useTranslations();
   const chats = useLiveQuery(
     async () => await db.chats.reverse().sortBy("updatedAt"),
   );
@@ -61,10 +63,10 @@ export function AppSidebar() {
         <SidebarGroup className="group-data-[collapsible=icon]:p-0">
           <div className="flex items-center justify-between">
             <h4 className="text-foreground font-bold group-data-[collapsible=icon]:hidden">
-              Chat History
+              {t("chat.sidebar.chat_history")}
             </h4>
             <SidebarTrigger
-              tooltip="Toggle Sidebar"
+              tooltip={t("chat.sidebar.toggle_sidebar")}
               tooltipProps={{
                 side: "right",
                 align: "center",
@@ -84,14 +86,17 @@ export function AppSidebar() {
             <SidebarMenuButton
               asChild
               className="py-5"
-              tooltip={{ children: "New Chat", variant: "primary" }}
+              tooltip={{
+                children: t("chat.sidebar.new_chat"),
+                variant: "primary",
+              }}
             >
               <button
                 type="button"
                 onClick={() => router.push(navigation.chat.all())}
               >
                 <PencilLineIcon className="size-5" />
-                New Chat
+                {t("chat.sidebar.new_chat")}
               </button>
             </SidebarMenuButton>
           </SidebarGroup>
@@ -99,7 +104,7 @@ export function AppSidebar() {
           <SidebarSeparator />
 
           <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel>Chats</SidebarGroupLabel>
+            <SidebarGroupLabel>{t("chat.sidebar.chats")}</SidebarGroupLabel>
             <SidebarGroupContent>
               {isLoading ? (
                 <div className="h-full" />
@@ -113,9 +118,11 @@ export function AppSidebar() {
                 <div className="mt-30 flex flex-col items-center justify-center md:mt-50">
                   <MessageCirclePlusIcon className="text-muted-foreground size-8 opacity-60" />
                   <div className="text-muted-foreground mt-2 text-center">
-                    <p className="mb-1 text-base font-medium">No chats yet</p>
+                    <p className="mb-1 text-base font-medium">
+                      {t("chat.sidebar.no_chats_yet")}
+                    </p>
                     <p className="text-sm opacity-70">
-                      Start a new conversation
+                      {t("chat.sidebar.start_conversation")}
                     </p>
                   </div>
                 </div>
