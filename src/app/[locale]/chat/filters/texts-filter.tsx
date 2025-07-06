@@ -115,7 +115,7 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
         )}
 
         <Input
-          placeholder="Find texts"
+          placeholder={t("chat.filters.find_texts")}
           className="h-8 pl-8"
           value={value}
           onChange={(e) => setValue(e.target.value)}

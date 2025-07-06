@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownIcon, ArrowUpIcon, Settings2Icon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
 import HomepageFilters from "./filters/homepage-filters";
@@ -105,6 +106,7 @@ function FiltersButton({
   open?: boolean;
   setOpen?: (open: boolean) => void;
 } & ButtonProps) {
+  const t = useTranslations();
   const selectedBooksLength = useChatFilters((s) => s.selectedBooks.length);
   const selectedAuthorsLength = useChatFilters((s) => s.selectedAuthors.length);
 
@@ -124,7 +126,7 @@ function FiltersButton({
       {...props}
     >
       <Settings2Icon className="size-4" />
-      Filters
+      <span className="hidden sm:block">{t("chat.input.filters")}</span>
       {total > 0 && (
         <Badge
           variant="secondary"
@@ -153,10 +155,12 @@ function ChatTextarea({
 }: React.ComponentProps<"textarea"> & {
   handleSubmit?: () => void;
 }) {
+  const t = useTranslations();
+
   return (
     <Textarea
       data-testid="multimodal-input"
-      placeholder="Send a message..."
+      placeholder={t("chat.input.placeholder")}
       className={cn(
         "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
         className,
@@ -345,6 +349,7 @@ const SendButton = memo(PureSendButton, (prevProps, nextProps) => {
 });
 
 export const HomepageChatInput = () => {
+  const t = useTranslations();
   const [input, setInput] = useState("");
   const { textareaRef, handleInput, submitForm } = useChatInput({
     input,
@@ -353,35 +358,54 @@ export const HomepageChatInput = () => {
   });
 
   return (
-    <div className="text-foreground relative flex w-full flex-col gap-4">
-      <ChatTextarea
-        ref={textareaRef}
-        value={input}
-        onChange={handleInput}
-        handleSubmit={submitForm}
-      />
+    <>
+      <div className="text-foreground relative flex w-full flex-col gap-4">
+        <ChatTextarea
+          ref={textareaRef}
+          value={input}
+          onChange={handleInput}
+          handleSubmit={submitForm}
+        />
 
-      <Tabs
-        className={cn(
-          "text-foreground absolute bottom-4 gap-2 rounded-full ltr:left-4 rtl:right-4",
-        )}
-        defaultValue="ai"
-      >
-        <TabsList className="rounded-3xl">
-          <TabsTrigger value="ai" className="rounded-3xl">
-            AI Chat
-          </TabsTrigger>
-          <TabsTrigger value="search" className="rounded-3xl">
-            Search
-          </TabsTrigger>
-        </TabsList>
-      </Tabs>
+        <Tabs
+          className={cn(
+            "text-foreground absolute bottom-4 gap-2 rounded-full ltr:left-4 rtl:right-4",
+          )}
+          defaultValue="ai"
+        >
+          <TabsList className="rounded-3xl">
+            <TabsTrigger value="ai" className="rounded-3xl">
+              {t("chat.input.ai_chat")}
+            </TabsTrigger>
+            <TabsTrigger value="search" className="rounded-3xl">
+              {t("chat.input.search")}
+            </TabsTrigger>
+          </TabsList>
+        </Tabs>
 
-      <HomepageFilters trigger={<FiltersButton />} />
+        <HomepageFilters trigger={<FiltersButton />} />
 
-      <ActionContainer>
-        <SendButton input={input} submitForm={submitForm} />
-      </ActionContainer>
-    </div>
+        <ActionContainer>
+          <SendButton input={input} submitForm={submitForm} />
+        </ActionContainer>
+      </div>
+      <div className="mt-10 flex justify-center gap-3">
+        {[
+          "Who's al-ghazali?",
+          "How to pray witr?",
+          "When's laylatul Qadr?",
+          "What does Ramadan mean?",
+        ].map((item) => (
+          <Badge
+            key={item}
+            className="rounded-3xl px-3 py-1.5 text-sm font-normal"
+            variant="muted"
+            onClick={() => setInput(item)}
+          >
+            {item}
+          </Badge>
+        ))}
+      </div>
+    </>
   );
 };

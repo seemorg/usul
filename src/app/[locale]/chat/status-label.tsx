@@ -1,5 +1,6 @@
 import type { MessageAnnotation } from "@/types/chat";
 import { ShinyText } from "@/components/shiny-text";
+import { useTranslations } from "next-intl";
 
 function findLast<T>(
   array: T[],
@@ -23,7 +24,9 @@ const StatusLabel = ({
   isLoading: boolean;
   annotations: MessageAnnotation[];
 }) => {
-  let text = "Thinking...";
+  const t = useTranslations();
+
+  let text = t("chat.status.thinking");
   if (!isLoading) {
     const queriesStatus = findLast(
       annotations,
@@ -32,9 +35,9 @@ const StatusLabel = ({
     ) as Extract<MessageAnnotation, { value: "searching" }> | undefined;
 
     if (queriesStatus) {
-      text = `Done. Searched for ${formatQueries(queriesStatus.queries)}`;
+      text = `${t("chat.status.done_searched")} ${formatQueries(queriesStatus.queries)}`;
     } else {
-      text = "Done";
+      text = t("chat.status.done");
     }
   } else {
     const status = findLast(
@@ -48,11 +51,11 @@ const StatusLabel = ({
     ) as Extract<MessageAnnotation, { value: "searching" }> | undefined;
 
     if (status?.value === "generating-queries") {
-      text = "Generating queries...";
+      text = t("chat.status.generating_queries");
     } else if (status?.value === "generating-response") {
-      text = `Generating response for ${formatQueries(queriesStatus?.queries ?? [])}`;
+      text = `${t("chat.status.generating_response")} ${formatQueries(queriesStatus?.queries ?? [])}`;
     } else if (status?.value === "searching") {
-      text = `Searching for ${formatQueries(status.queries)}`;
+      text = `${t("chat.status.searching")} ${formatQueries(status.queries)}`;
     }
   }
 

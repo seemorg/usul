@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export const Greeting = () => {
+  const t = useTranslations();
+
   return (
     <div
       key="overview"
@@ -13,7 +16,7 @@ export const Greeting = () => {
         transition={{ delay: 0.5 }}
         className="text-2xl font-semibold"
       >
-        Hello there!
+        {t("chat.greeting.hello")}
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 10 }}
@@ -22,7 +25,7 @@ export const Greeting = () => {
         transition={{ delay: 0.6 }}
         className="text-2xl text-zinc-500"
       >
-        Welcome to Usul AI
+        {t("chat.greeting.welcome")}
       </motion.div>
     </div>
   );
