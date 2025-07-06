@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useParams } from "next/navigation";
+import { useMemo, useState } from "react";
 import { DeleteConfirmation } from "@/components/delete-confirmation";
 import {
   DropdownMenu,
@@ -8,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { navigation } from "@/lib/urls";
-import { useRouter } from "@/navigation";
+import { usePathname, useRouter } from "@/navigation";
 import { MoreVerticalIcon, PencilIcon, TrashIcon } from "lucide-react";
 import { useMediaQuery } from "usehooks-ts";
 
@@ -29,7 +28,13 @@ export function SidebarItemMenu({
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
-  const { chatId } = useParams<{ chatId: string }>();
+  const pathname = usePathname();
+  const chatId = useMemo(() => {
+    if (pathname.startsWith(`${navigation.chat.all()}/`)) {
+      return pathname.split("/").pop() ?? null;
+    }
+    return null;
+  }, [pathname]);
 
   const handleConfirmDelete = async () => {
     await db.chats.delete(chat.id);

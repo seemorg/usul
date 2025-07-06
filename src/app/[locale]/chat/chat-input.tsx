@@ -6,16 +6,18 @@ import type { UseChatHelpers } from "@ai-sdk/react";
 import type { Message } from "ai";
 import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { useGlobalChat } from "@/hooks/use-global-chat";
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
 import { cn } from "@/lib/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownIcon, ArrowUpIcon, Settings2Icon } from "lucide-react";
+import { nanoid } from "nanoid";
 import { useTranslations } from "next-intl";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
@@ -350,11 +352,15 @@ const SendButton = memo(PureSendButton, (prevProps, nextProps) => {
 
 export const HomepageChatInput = () => {
   const t = useTranslations();
-  const [input, setInput] = useState("");
+  const initialId = useMemo(() => nanoid(), []);
+  const { input, setInput, submit } = useGlobalChat({
+    shouldRedirect: true,
+    initialId,
+  });
   const { textareaRef, handleInput, submitForm } = useChatInput({
     input,
     setInput,
-    handleSubmit: async () => {},
+    handleSubmit: submit,
   });
 
   return (
@@ -398,7 +404,7 @@ export const HomepageChatInput = () => {
         ].map((item) => (
           <Badge
             key={item}
-            className="rounded-3xl px-3 py-1.5 text-sm font-normal"
+            className="cursor-pointer rounded-3xl px-3 py-1.5 text-sm font-normal"
             variant="muted"
             onClick={() => setInput(item)}
           >
