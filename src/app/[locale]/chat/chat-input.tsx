@@ -1,49 +1,37 @@
 "use client";
 
+import type { ButtonProps } from "@/components/ui/button";
 import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import type { UseChatHelpers } from "@ai-sdk/react";
 import type { Message } from "ai";
 import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { memo, useCallback, useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
 import { cn } from "@/lib/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownIcon, ArrowUpIcon, Settings2Icon } from "lucide-react";
-import { toast } from "sonner";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
+import HomepageFilters from "./filters/homepage-filters";
 import { SuggestedActions } from "./suggested-actions";
 
-function PureMultimodalInput({
+function useChatInput({
   input,
   setInput,
-  append,
-  messages,
-  status,
-  stop,
-
-  setMessages,
   handleSubmit,
-  className,
 }: {
   input: UseChatHelpers["input"];
   setInput: UseChatHelpers["setInput"];
-  status: UseChatHelpers["status"];
-  stop: () => void;
-  append: UseGlobalChatReturn["append"];
-  messages: Array<Message>;
-  setMessages: Dispatch<SetStateAction<Array<Message>>>;
   handleSubmit: UseGlobalChatReturn["submit"];
-  className?: string;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
-  const open = useChatFilters((s) => s.open);
-  const setOpen = useChatFilters((s) => s.setOpen);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -102,6 +90,124 @@ function PureMultimodalInput({
     }
   }, [handleSubmit, setLocalStorageInput, width]);
 
+  return {
+    textareaRef,
+    handleInput,
+    submitForm,
+  };
+}
+
+function FiltersButton({
+  open,
+  setOpen,
+  ...props
+}: {
+  open?: boolean;
+  setOpen?: (open: boolean) => void;
+} & ButtonProps) {
+  const selectedBooksLength = useChatFilters((s) => s.selectedBooks.length);
+  const selectedAuthorsLength = useChatFilters((s) => s.selectedAuthors.length);
+
+  const total =
+    Math.min(selectedBooksLength, 1) + Math.min(selectedAuthorsLength, 1);
+
+  return (
+    <Button
+      variant="outline"
+      className={cn(
+        "text-foreground absolute bottom-4 gap-2 rounded-full ltr:right-18 rtl:left-18",
+        open &&
+          "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
+      )}
+      type="button"
+      {...(setOpen && { onClick: () => setOpen(!open) })}
+      {...props}
+    >
+      <Settings2Icon className="size-4" />
+      Filters
+      {total > 0 && (
+        <Badge
+          variant="secondary"
+          className="size-5 items-center justify-center rounded-full p-0 text-xs"
+        >
+          {total}
+        </Badge>
+      )}
+    </Button>
+  );
+}
+
+function ActionContainer(props: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className="absolute bottom-0 flex w-fit flex-row justify-end px-5 py-4 ltr:right-0 rtl:left-0"
+      {...props}
+    />
+  );
+}
+
+function ChatTextarea({
+  className,
+  handleSubmit,
+  ...props
+}: React.ComponentProps<"textarea"> & {
+  handleSubmit?: () => void;
+}) {
+  return (
+    <Textarea
+      data-testid="multimodal-input"
+      placeholder="Send a message..."
+      className={cn(
+        "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
+        className,
+      )}
+      rows={2}
+      autoFocus
+      onKeyDown={(event) => {
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey &&
+          !event.nativeEvent.isComposing
+        ) {
+          event.preventDefault();
+
+          handleSubmit?.();
+        }
+      }}
+      {...props}
+    />
+  );
+}
+
+function PureMultimodalInput({
+  input,
+  setInput,
+  append,
+  messages,
+  status,
+  stop,
+  setMessages,
+  handleSubmit,
+  className,
+}: {
+  input: UseChatHelpers["input"];
+  setInput: UseChatHelpers["setInput"];
+  status: UseChatHelpers["status"];
+  stop: () => void;
+  append: UseGlobalChatReturn["append"];
+  messages: Array<Message>;
+  setMessages: Dispatch<SetStateAction<Array<Message>>>;
+  handleSubmit: UseGlobalChatReturn["submit"];
+  className?: string;
+}) {
+  const filtersOpen = useChatFilters((s) => s.open);
+  const setFiltersOpen = useChatFilters((s) => s.setOpen);
+  const { textareaRef, handleInput, submitForm } = useChatInput({
+    input,
+    setInput,
+    handleSubmit,
+  });
+
   const { isAtBottom, scrollToBottom } = useScrollToBottom();
 
   useEffect(() => {
@@ -139,64 +245,23 @@ function PureMultimodalInput({
 
       {messages.length === 0 && <SuggestedActions append={append} />}
 
-      <Textarea
-        data-testid="multimodal-input"
+      <ChatTextarea
         ref={textareaRef}
-        placeholder="Send a message..."
         value={input}
         onChange={handleInput}
-        className={cn(
-          "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-14 text-base shadow-[0px_16px_32px_0px_#0000000A]",
-          className,
-        )}
-        rows={2}
-        autoFocus
-        onKeyDown={(event) => {
-          if (
-            event.key === "Enter" &&
-            !event.shiftKey &&
-            !event.nativeEvent.isComposing
-          ) {
-            event.preventDefault();
-
-            if (status !== "ready") {
-              toast.error("Please wait for the model to finish its response!");
-            } else {
-              submitForm();
-            }
-          }
-        }}
+        className={cn("pb-14", className)}
+        handleSubmit={submitForm}
       />
 
-      <Button
-        variant="outline"
-        className={cn(
-          "absolute right-18 bottom-4 gap-2 rounded-full",
-          open &&
-            "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
-        )}
-        type="button"
-        onClick={() => setOpen(!open)}
-      >
-        <Settings2Icon className="size-4" />
-        Filters
-        {/* {selectedBooks.length > 0 && (
-          <Badge
-            variant="secondary"
-            className="size-5 items-center justify-center rounded-full p-0 text-xs"
-          >
-            {selectedBooks.length}
-          </Badge>
-        )} */}
-      </Button>
+      <FiltersButton open={filtersOpen} setOpen={setFiltersOpen} />
 
-      <div className="absolute right-0 bottom-0 flex w-fit flex-row justify-end px-5 py-4">
+      <ActionContainer>
         {status === "submitted" ? (
           <StopButton stop={stop} setMessages={setMessages} />
         ) : (
           <SendButton input={input} submitForm={submitForm} />
         )}
-      </div>
+      </ActionContainer>
     </div>
   );
 }
@@ -278,3 +343,45 @@ const SendButton = memo(PureSendButton, (prevProps, nextProps) => {
   if (prevProps.input !== nextProps.input) return false;
   return true;
 });
+
+export const HomepageChatInput = () => {
+  const [input, setInput] = useState("");
+  const { textareaRef, handleInput, submitForm } = useChatInput({
+    input,
+    setInput,
+    handleSubmit: async () => {},
+  });
+
+  return (
+    <div className="text-foreground relative flex w-full flex-col gap-4">
+      <ChatTextarea
+        ref={textareaRef}
+        value={input}
+        onChange={handleInput}
+        handleSubmit={submitForm}
+      />
+
+      <Tabs
+        className={cn(
+          "text-foreground absolute bottom-4 gap-2 rounded-full ltr:left-4 rtl:right-4",
+        )}
+        defaultValue="ai"
+      >
+        <TabsList className="rounded-3xl">
+          <TabsTrigger value="ai" className="rounded-3xl">
+            AI Chat
+          </TabsTrigger>
+          <TabsTrigger value="search" className="rounded-3xl">
+            Search
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
+
+      <HomepageFilters trigger={<FiltersButton />} />
+
+      <ActionContainer>
+        <SendButton input={input} submitForm={submitForm} />
+      </ActionContainer>
+    </div>
+  );
+};
