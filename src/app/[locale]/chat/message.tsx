@@ -27,7 +27,6 @@ function sanitizeText(text: string) {
 }
 
 const PurePreviewMessage = ({
-  chatId,
   message,
   isLoading,
   setMessages,
@@ -35,7 +34,6 @@ const PurePreviewMessage = ({
   isReadonly,
   requiresScrollPadding,
 }: {
-  chatId: string;
   message: UIMessage;
   isLoading: boolean;
   setMessages: UseChatHelpers["setMessages"];

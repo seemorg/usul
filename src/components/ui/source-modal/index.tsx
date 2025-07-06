@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context";
 import { useBookDetails } from "@/app/[locale]/t/[bookId]/_contexts/book-details.context";
-import { getBookPageIndex } from "@/lib/api";
 import { useBookShareUrl } from "@/lib/share";
 import { truncate } from "@/lib/string";
 import { useRouter } from "@/navigation";
@@ -12,7 +11,6 @@ import {
   ArrowUpOnSquareIcon,
   DocumentDuplicateIcon,
 } from "@heroicons/react/24/outline";
-import { useQuery } from "@tanstack/react-query";
 import { XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -72,48 +70,23 @@ export default function SourceModal({ source }: { source: Source }) {
 
   const page = source.metadata.pages[0]!;
 
-  // Only call usePageData when slug is defined
-  const { isPending, data } = useQuery({
-    queryKey: ["page", slug, page, versionId] as const,
-    queryFn: async ({ queryKey }) => {
-      const [, _slug, pg, version] = queryKey;
-
-      const result = await getBookPageIndex(_slug, {
-        page: pg.page,
-        volume: pg.volume,
-        versionId: version ?? undefined,
-      });
-
-      if (!result || "type" in result) {
-        return null;
-      }
-
-      return result;
-    },
-    enabled: isOpen && !!slug,
-  });
-
   const handleCopy = async () => {
     await navigator.clipboard.writeText(source.text);
     toast.success(t("reader.chat.copied"));
   };
 
   const handleShare = async () => {
-    if (!data || data.index === null) return;
-
     await copyShareUrl({
       slug,
-      pageIndex: data.index,
+      pageIndex: page.index,
       versionId: versionId ?? undefined,
     });
   };
 
   const handleGoToPage = () => {
-    if (!data || data.index === null) return;
-
     if (slugParam) {
       const props = {
-        index: data.index,
+        index: page.index,
         align: "center" as const,
       };
 
@@ -123,7 +96,7 @@ export default function SourceModal({ source }: { source: Source }) {
     } else {
       const url = getShareUrl({
         slug,
-        pageIndex: data.index,
+        pageIndex: page.index,
         versionId: versionId ?? undefined,
       });
 
@@ -181,17 +154,11 @@ export default function SourceModal({ source }: { source: Source }) {
               <Separator className="my-4" />
 
               <div className="flex justify-between">
-                <Button
-                  variant="outline"
-                  onClick={handleGoToPage}
-                  disabled={isPending}
-                >
-                  {isPending
-                    ? "Loading..."
-                    : t("reader.go-to-page-x", {
-                        vol: page.volume,
-                        page: page.page,
-                      })}
+                <Button variant="outline" onClick={handleGoToPage}>
+                  {t("reader.go-to-page-x", {
+                    vol: page.volume,
+                    page: page.page,
+                  })}
                 </Button>
 
                 <div className="flex">
@@ -209,7 +176,6 @@ export default function SourceModal({ source }: { source: Source }) {
                     variant="ghost"
                     tooltip={t("reader.chat.share-chat")}
                     onClick={handleShare}
-                    isLoading={isPending}
                   >
                     <ArrowUpOnSquareIcon className="size-5" />
                   </Button>

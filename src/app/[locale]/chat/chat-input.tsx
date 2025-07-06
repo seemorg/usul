@@ -9,12 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
 import { cn } from "@/lib/utils";
+import { useChatFilters } from "@/stores/chat-filters";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowDownIcon, ArrowUpIcon } from "lucide-react";
+import { ArrowDownIcon, ArrowUpIcon, Settings2Icon } from "lucide-react";
 import { toast } from "sonner";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
-import ChatFilters from "./chat-filters";
 import { SuggestedActions } from "./suggested-actions";
 
 function PureMultimodalInput({
@@ -24,6 +24,7 @@ function PureMultimodalInput({
   messages,
   status,
   stop,
+
   setMessages,
   handleSubmit,
   className,
@@ -32,7 +33,7 @@ function PureMultimodalInput({
   setInput: UseChatHelpers["setInput"];
   status: UseChatHelpers["status"];
   stop: () => void;
-  append: UseChatHelpers["append"];
+  append: (text?: string) => void;
   messages: Array<Message>;
   setMessages: Dispatch<SetStateAction<Array<Message>>>;
   handleSubmit: UseChatHelpers["handleSubmit"];
@@ -40,6 +41,8 @@ function PureMultimodalInput({
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
+  const open = useChatFilters((s) => s.open);
+  const setOpen = useChatFilters((s) => s.setOpen);
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -164,7 +167,27 @@ function PureMultimodalInput({
         }}
       />
 
-      <ChatFilters />
+      <Button
+        variant="outline"
+        className={cn(
+          "absolute right-18 bottom-4 gap-2 rounded-full",
+          open &&
+            "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
+        )}
+        type="button"
+        onClick={() => setOpen(!open)}
+      >
+        <Settings2Icon className="size-4" />
+        Filters
+        {/* {selectedBooks.length > 0 && (
+          <Badge
+            variant="secondary"
+            className="size-5 items-center justify-center rounded-full p-0 text-xs"
+          >
+            {selectedBooks.length}
+          </Badge>
+        )} */}
+      </Button>
 
       <div className="absolute right-0 bottom-0 flex w-fit flex-row justify-end px-5 py-4">
         {status === "submitted" ? (

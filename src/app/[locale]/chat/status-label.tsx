@@ -23,8 +23,6 @@ const StatusLabel = ({
   isLoading: boolean;
   annotations: MessageAnnotation[];
 }) => {
-  console.log(annotations);
-
   let text = "Thinking...";
   if (!isLoading) {
     const queriesStatus = findLast(

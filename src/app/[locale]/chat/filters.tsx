@@ -1,36 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  ChevronDownIcon,
-  FoldersIcon,
-  LibraryBigIcon,
-  MapPinIcon,
-  UserPenIcon,
-} from "lucide-react";
+import { useChatFilters } from "@/stores/chat-filters";
+import { useTranslations } from "next-intl";
 
-import { useChatFilters } from "./chat-filters";
-
-const FilterButton = ({
-  icon: Icon,
-  label,
-}: {
-  icon: React.ElementType;
-  label: string;
-}) => {
-  return (
-    <Button
-      variant="outline"
-      className="text-muted-foreground items-center gap-2 rounded-full border text-sm shadow-none"
-    >
-      <Icon className="size-4" />
-      {label}
-      <ChevronDownIcon className="size-4" />
-    </Button>
-  );
-};
+import AuthorsFilter from "./filters/authors-filter";
+import TextsFilter from "./filters/texts-filter";
 
 export default function ChatFilters() {
   const open = useChatFilters((s) => s.open);
+  const clear = useChatFilters((s) => s.clear);
+  const t = useTranslations();
 
   return (
     <div
@@ -45,17 +24,19 @@ export default function ChatFilters() {
         )}
       >
         <div className="flex gap-4">
-          <FilterButton icon={LibraryBigIcon} label="Text" />
-          <FilterButton icon={UserPenIcon} label="Author" />
+          <TextsFilter />
+          <AuthorsFilter />
+          {/* <FilterButton icon={UserPenIcon} label="Author" />
           <FilterButton icon={FoldersIcon} label="Collection" />
-          <FilterButton icon={MapPinIcon} label="Location" />
+          <FilterButton icon={MapPinIcon} label="Location" /> */}
         </div>
 
         <Button
           variant="ghost"
           className="text-muted-foreground hover:bg-accent text-sm"
+          onClick={clear}
         >
-          Clear Filters
+          {t("common.clear-all")}
         </Button>
       </div>
     </div>
