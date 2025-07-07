@@ -13,21 +13,21 @@
     "send": "Send"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
+    "one": {
       "title": "Sahih Bukhari",
-      "label": "What are the pillars of Islam?"
+      "label": "Who's al-ghazali?"
     },
-    "sahih_muslim": {
+    "two": {
       "title": "Sahih Muslim",
-      "label": "Who is the author of the book?"
+      "label": "How to pray witr?"
     },
-    "muwatta_imam_malik": {
+    "three": {
       "title": "Muwatta Imam Malik",
-      "label": "What is the ruling on fasting friday?"
+      "label": "When's laylatul Qadr?"
     },
-    "sunan_abu_dawud": {
+    "four": {
       "title": "Sunan Abu Dawud",
-      "label": "What to say when someone dies?"
+      "label": "What's Zakat?"
     }
   },
   "status": {

@@ -398,10 +398,10 @@ export const HomepageChatInput = () => {
       </div>
       <div className="mt-10 flex justify-center gap-3">
         {[
-          "Who's al-ghazali?",
-          "How to pray witr?",
-          "When's laylatul Qadr?",
-          "What does Ramadan mean?",
+          t("chat.suggested_actions.one.label"),
+          t("chat.suggested_actions.two.label"),
+          t("chat.suggested_actions.three.label"),
+          t("chat.suggested_actions.four.label"),
         ].map((item) => (
           <Badge
             key={item}

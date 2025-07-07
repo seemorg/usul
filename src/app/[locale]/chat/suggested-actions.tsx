@@ -3,8 +3,10 @@
 import type { UseGlobalChatReturn } from "@/hooks/use-global-chat";
 import { memo } from "react";
 import { Button } from "@/components/ui/button";
+import { useChatFilters } from "@/stores/chat-filters";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import { useShallow } from "zustand/shallow";
 
 interface SuggestedActionsProps {
   append: UseGlobalChatReturn["append"];
@@ -12,23 +14,33 @@ interface SuggestedActionsProps {
 
 function PureSuggestedActions({ append }: SuggestedActionsProps) {
   const t = useTranslations();
+  const hasFilters = useChatFilters(
+    useShallow(
+      (s) =>
+        s.selectedAuthors.length +
+        s.selectedGenres.length +
+        s.selectedBooks.length,
+    ),
+  );
+
+  if (hasFilters) return null;
 
   const actions = [
     {
-      title: t("chat.suggested_actions.sahih_bukhari.title"),
-      label: t("chat.suggested_actions.sahih_bukhari.label"),
+      title: t("chat.suggested_actions.one.title"),
+      label: t("chat.suggested_actions.one.label"),
     },
     {
-      title: t("chat.suggested_actions.sahih_muslim.title"),
-      label: t("chat.suggested_actions.sahih_muslim.label"),
+      title: t("chat.suggested_actions.two.title"),
+      label: t("chat.suggested_actions.two.label"),
     },
     {
-      title: t("chat.suggested_actions.muwatta_imam_malik.title"),
-      label: t("chat.suggested_actions.muwatta_imam_malik.label"),
+      title: t("chat.suggested_actions.three.title"),
+      label: t("chat.suggested_actions.three.label"),
     },
     {
-      title: t("chat.suggested_actions.sunan_abu_dawud.title"),
-      label: t("chat.suggested_actions.sunan_abu_dawud.label"),
+      title: t("chat.suggested_actions.four.title"),
+      label: t("chat.suggested_actions.four.label"),
     },
   ];
 
@@ -54,10 +66,8 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
             }}
             className="hover:bg-accent h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
           >
-            <span className="font-medium">{suggestedAction.title}</span>
-            <span className="text-muted-foreground">
-              {suggestedAction.label}
-            </span>
+            {/* <span className="font-medium">{suggestedAction.title}</span> */}
+            <span>{suggestedAction.label}</span>
           </Button>
         </motion.div>
       ))}
