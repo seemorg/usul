@@ -17,27 +17,6 @@ export const findAllGenres = cache(async (locale: PathLocale = "en") => {
   });
 });
 
-export const findGenreBySlug = cache(
-  async (slug: string, locale: PathLocale = "en") => {
-    const localeWhere = getLocaleWhereClause(locale);
-
-    const genreRecord = await db.genre.findUnique({
-      where: {
-        slug,
-      },
-      include: {
-        nameTranslations: localeWhere,
-      },
-    });
-
-    if (!genreRecord) {
-      return;
-    }
-
-    return genreRecord;
-  },
-);
-
 export const findAllGenresWithBooksCount = cache(
   async ({
     yearRange,
