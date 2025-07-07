@@ -161,6 +161,8 @@ export function AppSidebar() {
               </SidebarGroupContent>
             </SidebarGroup>
           </div>
+
+          <div className="block h-40 w-full" />
         </ScrollArea>
       </SidebarContent>
       <SidebarRail />
