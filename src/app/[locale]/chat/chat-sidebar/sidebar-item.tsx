@@ -1,6 +1,7 @@
 import type { RefObject } from "react";
 import { useCallback, useRef, useState } from "react";
 import { useParams } from "next/navigation";
+import { useSidebar } from "@/components/ui/sidebar";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -25,6 +26,7 @@ export function SidebarItem({ chat }: SidebarItemProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const lastChatTitleRef = useRef(chat.title);
+  const sidebar = useSidebar();
 
   const isMobile = useMediaQuery("(max-width: 768px)");
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,9 +120,15 @@ export function SidebarItem({ chat }: SidebarItemProps) {
     [handleCancel],
   );
 
-  const handleLinkClick = useCallback((e: React.MouseEvent) => {
-    e.stopPropagation();
-  }, []);
+  const handleLinkClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.stopPropagation();
+      if (sidebar.openMobile && sidebar.isMobile) {
+        sidebar.setOpenMobile(false);
+      }
+    },
+    [sidebar],
+  );
 
   const isActive = chat.id === chatId || isEditing || isMenuOpen;
   const displayTitle = chat.title || t("chat.sidebar.untitled_chat");

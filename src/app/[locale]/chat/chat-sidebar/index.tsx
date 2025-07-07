@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -14,6 +14,7 @@ import {
   SidebarRail,
   SidebarSeparator,
   SidebarTrigger,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
@@ -38,6 +39,7 @@ export function AppSidebar() {
   );
   const hasChats = chats && chats.length > 0;
   const router = useRouter();
+  const sidebar = useSidebar();
   const isLoading = !chats;
 
   const groupedChats = useMemo(() => {
@@ -59,6 +61,13 @@ export function AppSidebar() {
       {} as Record<string, Chat[]>,
     );
   }, [chats]);
+
+  const handleNewChatClick = useCallback(() => {
+    router.push(navigation.chat.all());
+    if (sidebar.openMobile && sidebar.isMobile) {
+      sidebar.setOpenMobile(false);
+    }
+  }, [sidebar]);
 
   return (
     <Sidebar
@@ -97,10 +106,7 @@ export function AppSidebar() {
             variant: "primary",
           }}
         >
-          <button
-            type="button"
-            onClick={() => router.push(navigation.chat.all())}
-          >
+          <button type="button" onClick={handleNewChatClick}>
             <PencilLineIcon className="size-5" />
             {t("chat.sidebar.new_chat")}
           </button>
