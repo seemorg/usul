@@ -11,6 +11,7 @@ import { useChat } from "@ai-sdk/react";
 import { add } from "dexie";
 import { nanoid } from "nanoid";
 import { toast } from "sonner";
+import { useShallow } from "zustand/shallow";
 
 type UseChatCoreProps = {
   initialChat?: Chat;
@@ -88,16 +89,23 @@ export function useGlobalChat({
     [shouldRedirect, router, pathLocale, initialId],
   );
 
-  const selectedBooks = useChatFilters((s) => s.selectedBooks);
-  const selectedAuthors = useChatFilters((s) => s.selectedAuthors);
-  const selectedGenres = useChatFilters((s) => s.selectedGenres);
-  const body = useMemo(() => {
-    return {
-      bookIds: selectedBooks.map((b) => b.id),
-      authorIds: selectedAuthors.map((a) => a.id),
-      genreIds: selectedGenres.map((g) => g.id),
-    };
-  }, [selectedBooks, selectedAuthors, selectedGenres]);
+  const bookIds = useChatFilters(
+    useShallow((s) => s.selectedBooks.map((b) => b.id)),
+  );
+  const authorIds = useChatFilters(
+    useShallow((s) => s.selectedAuthors.map((a) => a.id)),
+  );
+  const genreIds = useChatFilters(
+    useShallow((s) => s.selectedGenres.map((g) => g.id)),
+  );
+  const body = useMemo(
+    () => ({
+      bookIds,
+      authorIds,
+      genreIds,
+    }),
+    [bookIds, authorIds, genreIds],
+  );
 
   const {
     messages,
@@ -208,15 +216,17 @@ export function useGlobalChat({
       };
 
       const currentChatId = await ensureChatExists(text);
-      handleFinish(newMessage);
+      setTimeout(() => {
+        handleFinish(newMessage);
 
-      await originalAppend(newMessage, {
-        body: {
-          chatId: currentChatId,
-        },
-      });
-
-      setIsSubmitting(false);
+        void originalAppend(newMessage, {
+          body: {
+            chatId: currentChatId,
+          },
+        }).finally(() => {
+          setIsSubmitting(false);
+        });
+      }, 0);
     },
     [ensureChatExists, setIsSubmitting, handleFinish, originalAppend],
   );
