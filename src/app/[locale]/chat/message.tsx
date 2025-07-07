@@ -121,7 +121,7 @@ const PurePreviewMessage = ({
                         </Tooltip>
                       )}
 
-                      <div
+                      <bdi
                         data-testid="message-content"
                         className={cn(
                           "flex flex-col gap-4",
@@ -132,7 +132,7 @@ const PurePreviewMessage = ({
                         <Markdown sourceNodes={sourceNodes}>
                           {sanitizeText(part.text)}
                         </Markdown>
-                      </div>
+                      </bdi>
                     </div>
                   );
                 }
