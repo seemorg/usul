@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Sannu!",
-    "welcome": "Barka da zuwa Usul AI"
+    "hello": "Barka da zuwa Usul AI!",
+    "welcome": "Rubuta tambayarka ta farko a kasa"
   },
   "messages": {
     "edit_tooltip": "Gyara saƙo",
@@ -13,21 +13,21 @@
     "send": "Aika"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
-      "title": "Sahih Bukhari",
-      "label": "Menene ginshiƙan Islam?"
+    "one": {
+      "short": "Waye al-ghazali?",
+      "long": "Me yasa aka san Al-Ghazali?"
     },
-    "sahih_muslim": {
-      "title": "Sahih Muslim",
-      "label": "Wanene marubucin littafin?"
+    "two": {
+      "short": "Yaya ake yin sallar witr?",
+      "long": "Yaya Annabi ya yi sallar witr?"
     },
-    "muwatta_imam_malik": {
-      "title": "Muwatta Imam Malik",
-      "label": "Menene hukunci kan azumin juma'a?"
+    "three": {
+      "short": "Yaushe laylatul Qadr?",
+      "long": "Wadanne hadisi ke ambato Laylatul Qadr?"
     },
-    "sunan_abu_dawud": {
-      "title": "Sunan Abu Dawud",
-      "label": "Me za a ce idan wani ya mutu?"
+    "four": {
+      "short": "Menene Zakat?",
+      "long": "Menene ma'anar Ramadan a Larabci?"
     }
   },
   "status": {

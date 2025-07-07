@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Merhaba!",
-    "welcome": "Usul AI'ye hoş geldiniz"
+    "hello": "Usul AI'ye hoş geldiniz!",
+    "welcome": "Aşağıya ilk sorunuzu yazın"
   },
   "messages": {
     "edit_tooltip": "Mesajı düzenle",
@@ -13,21 +13,21 @@
     "send": "Gönder"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
-      "title": "Sahih Buhari",
-      "label": "İslam'ın şartları nelerdir?"
+    "one": {
+      "short": "İmam Gazali kimdir?",
+      "long": "İmam Gazali neyle tanınırdı?"
     },
-    "sahih_muslim": {
-      "title": "Sahih Müslim",
-      "label": "Kitabın yazarı kimdir?"
+    "two": {
+      "short": "Vitir namazı nasıl kılınır?",
+      "long": "Peygamber vitir namazını nasıl kılardı?"
     },
-    "muwatta_imam_malik": {
-      "title": "Muvatta İmam Malik",
-      "label": "Cuma günü oruç tutmanın hükmü nedir?"
+    "three": {
+      "short": "Kadir Gecesi ne zaman?",
+      "long": "Kadir Gecesini anlatan hangi hadisler var?"
     },
-    "sunan_abu_dawud": {
-      "title": "Sünen Ebu Davud",
-      "label": "Biri öldüğünde ne söylenir?"
+    "four": {
+      "short": "Zekat nedir?",
+      "long": "Arapça'da Ramazan ne anlama gelir?"
     }
   },
   "status": {
