@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Hello there!",
-    "welcome": "Welcome to Usul AI"
+    "hello": "Welcome to Usul AI!",
+    "welcome": "Type your first question below"
   },
   "messages": {
     "edit_tooltip": "Edit message",
