@@ -135,7 +135,7 @@ export function SidebarItem({ chat }: SidebarItemProps) {
       ref={containerRef}
     >
       {isEditing ? (
-        <div className="bg-accent flex items-center rounded-md py-1 pr-1 pl-2">
+        <div className="bg-accent flex items-center rounded-md py-1 ltr:pr-1 ltr:pl-2 rtl:pr-2 rtl:pl-1">
           <input
             ref={inputRef}
             value={editTitle}
@@ -170,16 +170,16 @@ export function SidebarItem({ chat }: SidebarItemProps) {
             onClick={handleLinkClick}
           >
             <div
-              className="text-foreground relative line-clamp-1 mask-r-from-80% mask-r-to-85% px-4 py-2 text-ellipsis whitespace-nowrap"
+              className="text-foreground relative line-clamp-1 px-4 py-2 text-ellipsis whitespace-nowrap ltr:mask-r-from-80% ltr:mask-r-to-85% rtl:mask-l-from-80% rtl:mask-l-to-85%"
               title={displayTitle}
             >
-              {displayTitle}
+              <bdi>{displayTitle}</bdi>
             </div>
           </Link>
 
           <div
             className={cn(
-              "absolute top-0 right-1 flex h-full items-center justify-center opacity-0 transition-opacity group-hover/chat:opacity-100",
+              "absolute top-0 flex h-full items-center justify-center opacity-0 transition-opacity group-hover/chat:opacity-100 ltr:right-1 rtl:left-1",
               isMobile && "opacity-100 group-hover/chat:opacity-100",
             )}
             key={chat.id}

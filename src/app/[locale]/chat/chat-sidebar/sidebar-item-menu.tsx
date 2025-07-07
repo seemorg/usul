@@ -6,9 +6,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { usePathname, useRouter } from "@/navigation";
 import { MoreVerticalIcon, PencilIcon, TrashIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useMediaQuery } from "usehooks-ts";
 
 import type { Chat } from "../db";
@@ -29,6 +31,9 @@ export function SidebarItemMenu({
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 768px)");
   const pathname = usePathname();
+  const t = useTranslations();
+  const dir = useDirection();
+
   const chatId = useMemo(() => {
     if (pathname.startsWith(`${navigation.chat.all()}/`)) {
       return pathname.split("/").pop() ?? null;
@@ -59,7 +64,10 @@ export function SidebarItemMenu({
           </button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="end" className="w-40">
+        <DropdownMenuContent
+          align={dir === "rtl" ? "start" : "end"}
+          className="w-40"
+        >
           <DropdownMenuItem
             className="cursor-pointer"
             onClick={(e) => {
@@ -69,7 +77,7 @@ export function SidebarItemMenu({
             }}
           >
             <PencilIcon className="size-4" />
-            Rename
+            {t("common.update")}
           </DropdownMenuItem>
 
           <DropdownMenuItem
@@ -77,7 +85,7 @@ export function SidebarItemMenu({
             onClick={() => setIsDeleteDialogOpen(true)}
           >
             <TrashIcon className="size-4" />
-            Delete
+            {t("common.delete")}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

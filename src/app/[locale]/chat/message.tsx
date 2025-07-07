@@ -66,7 +66,7 @@ const PurePreviewMessage = ({
       >
         <div
           className={cn(
-            "flex w-full gap-4 group-data-[role=user]/message:ml-auto group-data-[role=user]/message:max-w-2xl",
+            "flex w-full gap-4 group-data-[role=user]/message:max-w-2xl ltr:group-data-[role=user]/message:ml-auto rtl:group-data-[role=user]/message:mr-auto",
             mode === "edit" ? "w-full" : "group-data-[role=user]/message:w-fit",
           )}
         >

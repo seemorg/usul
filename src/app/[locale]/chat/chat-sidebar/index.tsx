@@ -15,6 +15,7 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { useLiveQuery } from "dexie-react-hooks";
@@ -31,6 +32,7 @@ import { SidebarList } from "./sidebar-list";
 
 export function AppSidebar() {
   const t = useTranslations();
+  const dir = useDirection();
   const chats = useLiveQuery(
     async () => await db.chats.reverse().sortBy("updatedAt"),
   );
@@ -62,6 +64,7 @@ export function AppSidebar() {
     <Sidebar
       collapsible="icon"
       variant="sidebar"
+      side={dir === "rtl" ? "right" : "left"}
       className="mt-[var(--navbar-height)] border-none"
     >
       <SidebarHeader className="pt-4">
