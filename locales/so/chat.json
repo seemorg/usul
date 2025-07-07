@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Salaan!",
-    "welcome": "Ku soo dhawoow Usul AI"
+    "hello": "Ku soo dhawoow Usul AI!",
+    "welcome": "Ku qor su'aalahaaga ugu horeeya hoos"
   },
   "messages": {
     "edit_tooltip": "Bedel farriinta",
@@ -13,21 +13,21 @@
     "send": "Dir"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
-      "title": "Sahih Bukhari",
-      "label": "Maxay yihiin tiirarka Islaamka?"
+    "one": {
+      "short": "Waa kuma Al-Ghazali?",
+      "long": "Muxuu Al-Ghazali ku caan baxay?"
     },
-    "sahih_muslim": {
-      "title": "Sahih Muslim",
-      "label": "Waa kuma qoraaga buugga?"
+    "two": {
+      "short": "Sidee loo tukadaa witr?",
+      "long": "Nebigu sidee u tukaday witr?"
     },
-    "muwatta_imam_malik": {
-      "title": "Muwatta Imam Malik",
-      "label": "Waa maxay xukunka soomidda jimcaha?"
+    "three": {
+      "short": "Goorma ayuu Laylatul Qadr yahay?",
+      "long": "Axdida yaa Laylatul Qadr ku xusaya?"
     },
-    "sunan_abu_dawud": {
-      "title": "Sunan Abu Dawud",
-      "label": "Maxaa la dhahaa markuu qof dhinto?"
+    "four": {
+      "short": "Waa maxay Zakat?",
+      "long": "Maxaa Ramadan micno ugu yahay Carabi?"
     }
   },
   "status": {

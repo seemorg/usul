@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Bonjour !",
-    "welcome": "Bienvenue à Usul AI"
+    "hello": "Bienvenue chez Usul AI!",
+    "welcome": "Tapez votre première question ci-dessous"
   },
   "messages": {
     "edit_tooltip": "Modifier le message",
@@ -13,21 +13,21 @@
     "send": "Envoyer"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
-      "title": "Sahih Bukhari",
-      "label": "Quels sont les piliers de l'Islam ?"
+    "one": {
+      "short": "Qui est al-Ghazali ?",
+      "long": "Pour quoi Al-Ghazali était-il connu ?"
     },
-    "sahih_muslim": {
-      "title": "Sahih Muslim",
-      "label": "Qui est l'auteur du livre ?"
+    "two": {
+      "short": "Comment prier le witr ?",
+      "long": "Comment le prophète priait-il le witr ?"
     },
-    "muwatta_imam_malik": {
-      "title": "Muwatta Imam Malik",
-      "label": "Quelle est la règle concernant le jeûne du vendredi ?"
+    "three": {
+      "short": "Quand est Laylatul Qadr ?",
+      "long": "Quels hadiths mentionnent Laylatul Qadr ?"
     },
-    "sunan_abu_dawud": {
-      "title": "Sunan Abu Dawud",
-      "label": "Que dire quand quelqu'un meurt ?"
+    "four": {
+      "short": "Qu'est-ce que la Zakat ?",
+      "long": "Que signifie Ramadan en arabe ?"
     }
   },
   "status": {

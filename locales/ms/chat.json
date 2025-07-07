@@ -1,7 +1,7 @@
 {
   "greeting": {
-    "hello": "Halo di sana!",
-    "welcome": "Selamat datang ke Usul AI"
+    "hello": "Selamat datang ke Usul AI!",
+    "welcome": "Taip soalan pertama anda di bawah"
   },
   "messages": {
     "edit_tooltip": "Sunting mesej",
@@ -13,21 +13,21 @@
     "send": "Hantar"
   },
   "suggested_actions": {
-    "sahih_bukhari": {
-      "title": "Sahih Bukhari",
-      "label": "Apakah rukun Islam?"
+    "one": {
+      "short": "Siapa al-ghazali?",
+      "long": "Untuk apa Al-Ghazali dikenali?"
     },
-    "sahih_muslim": {
-      "title": "Sahih Muslim",
-      "label": "Siapakah pengarang kitab ini?"
+    "two": {
+      "short": "Bagaimana solat witr?",
+      "long": "Bagaimana nabi solat witr?"
     },
-    "muwatta_imam_malik": {
-      "title": "Muwatta Imam Malik",
-      "label": "Apakah hukum berpuasa pada hari Jumaat?"
+    "three": {
+      "short": "Bila laylatul Qadr?",
+      "long": "Hadith mana yang menyebut Laylatul Qadr?"
     },
-    "sunan_abu_dawud": {
-      "title": "Sunan Abu Dawud",
-      "label": "Apa untuk dikatakan apabila seseorang meninggal dunia?"
+    "four": {
+      "short": "Apa itu Zakat?",
+      "long": "Apa maksud Ramadan dalam bahasa Arab?"
     }
   },
   "status": {
