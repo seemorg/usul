@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
@@ -17,7 +18,11 @@ import {
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { useLiveQuery } from "dexie-react-hooks";
-import { MessageCirclePlusIcon, PencilLineIcon } from "lucide-react";
+import {
+  MessageCirclePlusIcon,
+  PencilLineIcon,
+  SearchIcon,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import type { Chat } from "../db";
@@ -80,55 +85,73 @@ export function AppSidebar() {
 
       <SidebarSeparator />
 
-      <SidebarContent>
-        <ScrollArea>
-          <SidebarGroup>
-            <SidebarMenuButton
-              asChild
-              className="py-5"
-              tooltip={{
-                children: t("chat.sidebar.new_chat"),
-                variant: "primary",
-              }}
-            >
-              <button
-                type="button"
-                onClick={() => router.push(navigation.chat.all())}
-              >
-                <PencilLineIcon className="size-5" />
-                {t("chat.sidebar.new_chat")}
-              </button>
-            </SidebarMenuButton>
-          </SidebarGroup>
+      <SidebarGroup>
+        <SidebarMenuButton
+          asChild
+          className="py-5"
+          tooltip={{
+            children: t("chat.sidebar.new_chat"),
+            variant: "primary",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => router.push(navigation.chat.all())}
+          >
+            <PencilLineIcon className="size-5" />
+            {t("chat.sidebar.new_chat")}
+          </button>
+        </SidebarMenuButton>
+      </SidebarGroup>
 
-          <SidebarSeparator />
+      <SidebarSeparator />
 
-          <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel>{t("chat.sidebar.chats")}</SidebarGroupLabel>
-            <SidebarGroupContent>
-              {isLoading ? (
-                <div className="h-full" />
-              ) : hasChats ? (
-                <div className="space-y-5">
-                  {Object.entries(groupedChats).map(([date, chatsInGroup]) => (
-                    <SidebarList key={date} date={date} items={chatsInGroup} />
-                  ))}
-                </div>
-              ) : (
-                <div className="mt-30 flex flex-col items-center justify-center md:mt-50">
-                  <MessageCirclePlusIcon className="text-muted-foreground size-8 opacity-60" />
-                  <div className="text-muted-foreground mt-2 text-center">
-                    <p className="mb-1 text-base font-medium">
-                      {t("chat.sidebar.no_chats_yet")}
-                    </p>
-                    <p className="text-sm opacity-70">
-                      {t("chat.sidebar.start_conversation")}
-                    </p>
+      <SidebarContent className="mask-t-from-98% mask-t-to-100% mask-b-from-98% mask-b-to-100%">
+        <ScrollArea className="flex h-full [&>div>div]:!block">
+          <div>
+            <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+              <div className="flex items-center justify-between">
+                <SidebarGroupLabel>{t("chat.sidebar.chats")}</SidebarGroupLabel>
+                <Button
+                  variant="ghost"
+                  className="hover:bg-accent text-muted-foreground size-8"
+                  size="icon"
+                >
+                  <SearchIcon className="size-3" />
+                </Button>
+              </div>
+
+              <SidebarGroupContent>
+                {isLoading ? (
+                  <div className="h-full" />
+                ) : hasChats ? (
+                  <div className="space-y-5">
+                    {Object.entries(groupedChats).map(
+                      ([date, chatsInGroup]) => (
+                        <SidebarList
+                          key={date}
+                          date={date}
+                          items={chatsInGroup}
+                        />
+                      ),
+                    )}
                   </div>
-                </div>
-              )}
-            </SidebarGroupContent>
-          </SidebarGroup>
+                ) : (
+                  <div className="mt-30 flex flex-col items-center justify-center md:mt-50">
+                    <MessageCirclePlusIcon className="text-muted-foreground size-8 opacity-60" />
+                    <div className="text-muted-foreground mt-2 text-center">
+                      <p className="mb-1 text-base font-medium">
+                        {t("chat.sidebar.no_chats_yet")}
+                      </p>
+                      <p className="text-sm opacity-70">
+                        {t("chat.sidebar.start_conversation")}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </div>
         </ScrollArea>
       </SidebarContent>
       <SidebarRail />

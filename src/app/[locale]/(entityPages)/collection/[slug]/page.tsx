@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import GenresFilter from "@/components/genres-filter";
 import SearchResults from "@/components/search-results";
+import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import { collections } from "@/data/collections";
@@ -11,6 +12,7 @@ import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
+import { SearchIcon, SparklesIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -74,6 +76,20 @@ async function CollectionPage({
       {description && (
         <TruncatedText className="mt-7 text-lg">{description}</TruncatedText>
       )}
+
+      <div className="mt-5 flex gap-3">
+        <Button
+          variant="outline"
+          className="bg-primary-foreground text-primary border-primary! rounded-full shadow-none"
+        >
+          <SparklesIcon className="size-4" />
+          AI Chat
+        </Button>
+        <Button variant="outline" className="rounded-full">
+          <SearchIcon className="size-4" />
+          Search
+        </Button>
+      </div>
 
       <DottedList
         className="mt-9"
