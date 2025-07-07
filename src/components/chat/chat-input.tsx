@@ -36,10 +36,7 @@ function PureChatInput({
   return (
     <form
       ref={formRef}
-      className={cn(
-        "mt-5 shrink-0 px-4 transition-transform duration-250 will-change-transform",
-        showNavbar ? "md:translate-y-2.5" : "md:translate-y-[5.5rem]",
-      )}
+      className={cn("mt-5 shrink-0 px-4")}
       onSubmit={(e) => {
         if (status !== "ready") {
           toast.error("Please wait for the model to finish its response!");

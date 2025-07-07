@@ -1,9 +1,9 @@
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import type { MessageAnnotation } from "@/types/chat";
 import type { UIMessage } from "ai";
-import { memo, useMemo } from "react";
+import { memo } from "react";
+import StatusLabel from "@/app/[locale]/chat/status-label";
 import { Markdown } from "@/components/chat/markdown";
 import { OpenAILogo } from "@/components/Icons";
-import { ShinyText } from "@/components/shiny-text";
 import { cn } from "@/lib/utils";
 import equal from "fast-deep-equal";
 
@@ -22,30 +22,15 @@ const ChatMessage = ({
   isScreenshot = false,
   reload,
 }: ChatMessageProps) => {
-  const { sources, chatId } = useMemo(() => {
-    const typedAnnotations = (message.annotations ?? []) as (
-      | {
-          type: "SOURCES";
-          value: SemanticSearchBookNode[];
-        }
-      | {
-          type: "CHAT_ID";
-          value: string;
-        }
-    )[];
+  const typedAnnotations = (message.annotations ?? []) as MessageAnnotation[];
 
-    const sources = typedAnnotations.find(
-      (annotation) => annotation.type === "SOURCES",
-    )?.value;
-    const chatId = typedAnnotations.find(
-      (annotation) => annotation.type === "CHAT_ID",
-    )?.value;
+  const chatId = typedAnnotations.find(
+    (annotation) => annotation.type === "CHAT_ID",
+  )?.value;
 
-    return {
-      sources,
-      chatId,
-    };
-  }, [message.annotations]);
+  const sources = typedAnnotations.find(
+    (annotation) => annotation.type === "SOURCES",
+  )?.value;
 
   return (
     <div
@@ -82,13 +67,11 @@ const ChatMessage = ({
         >
           {message.role === "assistant" && (
             <>
-              <ShinyText
-                className="w-fit font-medium"
-                shimmerWidth={40}
-                disabled={!isLoading}
-              >
-                {isLoading ? "Thinking..." : "Done!"}
-              </ShinyText>
+              <StatusLabel
+                isLoading={isLoading}
+                annotations={typedAnnotations}
+              />
+
               <div className="h-2 w-full" />
             </>
           )}

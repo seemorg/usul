@@ -6,7 +6,9 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
+import { useChatFilters } from "@/stores/chat-filters";
 import { ChevronRightIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { AuthorsFilterContent } from "./authors-filter";
 import { GenresFilterContent } from "./genres-filter";
@@ -22,6 +24,8 @@ export default function HomepageFilters({
   const [filter, setFilter] = useState<"texts" | "authors" | "genres" | null>(
     null,
   );
+  const clear = useChatFilters((s) => s.clear);
+  const t = useTranslations();
 
   return (
     <Popover>
@@ -35,7 +39,16 @@ export default function HomepageFilters({
       >
         {filter === null && (
           <>
-            <h4 className="text-xl font-semibold">Filters</h4>
+            <div className="flex items-center justify-between">
+              <h4 className="text-xl font-semibold">Filters</h4>
+              <Button
+                variant="ghost"
+                className="text-muted-foreground hover:bg-accent! text-sm"
+                onClick={clear}
+              >
+                {t("common.clear-filters")}
+              </Button>
+            </div>
 
             <div className="flex flex-col gap-2">
               <Button

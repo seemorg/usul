@@ -35,7 +35,7 @@ export default function ChatFilters() {
           className="text-muted-foreground hover:bg-accent text-sm"
           onClick={clear}
         >
-          {t("common.clear-all")}
+          {t("common.clear-filters")}
         </Button>
       </div>
     </div>

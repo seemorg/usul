@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useBookChat } from "@/hooks/use-chat";
 import { cn } from "@/lib/utils";
+import { useNavbarStore } from "@/stores/navbar";
 import { HistoryIcon, SquarePenIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -31,6 +32,7 @@ export default function AITab() {
   } = useBookChat(bookResponse.book.id, bookResponse.content.id);
 
   const clearChat = useChatStore((state) => state.clearChat);
+  const showNavbar = useNavbarStore((s) => s.showNavbar);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const onClearChat = () => {
     clearChat();
@@ -96,10 +98,15 @@ export default function AITab() {
 
           <div
             className={cn(
-              "flex flex-col justify-between",
+              "flex flex-col justify-between transition-[height] duration-300 will-change-[height]",
               isVersionMismatch
-                ? "h-[calc(100svh-220px)] lg:h-[calc(100vh-370px)]"
-                : "h-[calc(100svh-110px)] lg:h-[calc(100vh-240px)]",
+                ? showNavbar
+                  ? "[--sub-height:220px] lg:[--sub-height:320px]"
+                  : "[--sub-height:220px] lg:[--sub-height:240px]"
+                : showNavbar
+                  ? "[--sub-height:110px] lg:[--sub-height:220px]"
+                  : "[--sub-height:110px] lg:[--sub-height:150px]",
+              "h-[calc(100svh-var(--sub-height))] lg:h-[calc(100vh-var(--sub-height))]",
             )}
           >
             <Messages
