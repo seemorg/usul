@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "title": "Sahih Bukhari",
-      "label": "Who's al-ghazali?"
+      "short": "Who's al-ghazali?",
+      "long": "What was Al-Ghazali known for?"
     },
     "two": {
-      "title": "Sahih Muslim",
-      "label": "How to pray witr?"
+      "short": "How to pray witr?",
+      "long": "How did the prophet pray witr?"
     },
     "three": {
-      "title": "Muwatta Imam Malik",
-      "label": "When's laylatul Qadr?"
+      "short": "When's laylatul Qadr?",
+      "long": "What hadiths mention Laylatul Qadr?"
     },
     "four": {
-      "title": "Sunan Abu Dawud",
-      "label": "What's Zakat?"
+      "short": "What's Zakat?",
+      "long": "What does Ramadan mean in Arabic?"
     }
   },
   "status": {

@@ -398,10 +398,10 @@ export const HomepageChatInput = () => {
       </div>
       <div className="mt-10 flex justify-center gap-3">
         {[
-          t("chat.suggested_actions.one.label"),
-          t("chat.suggested_actions.two.label"),
-          t("chat.suggested_actions.three.label"),
-          t("chat.suggested_actions.four.label"),
+          t("chat.suggested_actions.one.short"),
+          t("chat.suggested_actions.two.short"),
+          t("chat.suggested_actions.three.short"),
+          t("chat.suggested_actions.four.short"),
         ].map((item) => (
           <Badge
             key={item}

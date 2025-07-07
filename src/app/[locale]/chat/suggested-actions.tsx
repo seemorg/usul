@@ -26,22 +26,10 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
   if (hasFilters) return null;
 
   const actions = [
-    {
-      title: t("chat.suggested_actions.one.title"),
-      label: t("chat.suggested_actions.one.label"),
-    },
-    {
-      title: t("chat.suggested_actions.two.title"),
-      label: t("chat.suggested_actions.two.label"),
-    },
-    {
-      title: t("chat.suggested_actions.three.title"),
-      label: t("chat.suggested_actions.three.label"),
-    },
-    {
-      title: t("chat.suggested_actions.four.title"),
-      label: t("chat.suggested_actions.four.label"),
-    },
+    t("chat.suggested_actions.one.long"),
+    t("chat.suggested_actions.two.long"),
+    t("chat.suggested_actions.three.long"),
+    t("chat.suggested_actions.four.long"),
   ];
 
   return (
@@ -62,12 +50,11 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
             variant="ghost"
             type="button"
             onClick={() => {
-              void append(suggestedAction.label);
+              void append(suggestedAction);
             }}
             className="hover:bg-accent h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
           >
-            {/* <span className="font-medium">{suggestedAction.title}</span> */}
-            <span>{suggestedAction.label}</span>
+            <span>{suggestedAction}</span>
           </Button>
         </motion.div>
       ))}
