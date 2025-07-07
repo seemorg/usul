@@ -14,8 +14,6 @@ import { AuthorsFilterContent } from "./authors-filter";
 import { GenresFilterContent } from "./genres-filter";
 import { TextsFilterContent } from "./texts-filter";
 
-// import { useTranslations } from "next-intl";
-
 export default function HomepageFilters({
   trigger,
 }: {
@@ -40,7 +38,9 @@ export default function HomepageFilters({
         {filter === null && (
           <>
             <div className="flex items-center justify-between">
-              <h4 className="text-xl font-semibold">Filters</h4>
+              <h4 className="text-xl font-semibold">
+                {t("chat.input.filters")}
+              </h4>
               <Button
                 variant="ghost"
                 className="text-muted-foreground hover:bg-accent! text-sm"
@@ -56,24 +56,24 @@ export default function HomepageFilters({
                 className="hover:bg-accent! w-full justify-between"
                 onClick={() => setFilter("texts")}
               >
-                Texts
-                <ChevronRightIcon className="size-4" />
+                {t("entities.texts")}
+                <ChevronRightIcon className="size-4 rtl:rotate-180" />
               </Button>
               <Button
                 variant="ghost"
                 className="hover:bg-accent! w-full justify-between"
                 onClick={() => setFilter("authors")}
               >
-                Authors
-                <ChevronRightIcon className="size-4" />
+                {t("entities.authors")}
+                <ChevronRightIcon className="size-4 rtl:rotate-180" />
               </Button>
               <Button
                 variant="ghost"
                 className="hover:bg-accent! w-full justify-between"
                 onClick={() => setFilter("genres")}
               >
-                Genres
-                <ChevronRightIcon className="size-4" />
+                {t("entities.genres")}
+                <ChevronRightIcon className="size-4 rtl:rotate-180" />
               </Button>
             </div>
           </>

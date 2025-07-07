@@ -101,7 +101,7 @@ export function TextsFilterContent({ onBack }: { onBack?: () => void }) {
             className="hover:bg-accent size-8"
             size="icon"
           >
-            <ChevronLeftIcon className="size-4" />
+            <ChevronLeftIcon className="size-4 rtl:rotate-180" />
           </Button>
         )}
         <h4 className="text-xl font-semibold">{t("entities.texts")}</h4>
