@@ -2,11 +2,11 @@ import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import RegionSearchResult from "@/components/region-search-result";
 import SearchResults from "@/components/search-results";
+import { getTotalEntities } from "@/lib/api";
 import { searchRegions } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { countAllRegions } from "@/server/services/regions";
 import { InfoIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -36,21 +36,21 @@ async function RegionsPage({ searchParams }: PageProps) {
   const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
-  const [results, totalRegions] = await Promise.all([
+  const [results, total] = await Promise.all([
     searchRegions(q, {
       limit: 20,
       page,
       sortBy: sort,
       locale: pathLocale,
     }),
-    countAllRegions(),
+    getTotalEntities(),
   ]);
 
   return (
     <RootEntityPage
       title={t("regions")}
       description={t("search-x", {
-        count: totalRegions,
+        count: total.regions,
         entity: t("regions"),
       })}
     >

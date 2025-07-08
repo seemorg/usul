@@ -49,9 +49,7 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
           <Button
             variant="ghost"
             type="button"
-            onClick={() => {
-              void append(suggestedAction);
-            }}
+            onClick={() => append(suggestedAction)}
             className="hover:bg-accent h-auto w-full flex-1 items-start justify-start gap-1 rounded-xl border px-4 py-3.5 text-left text-sm sm:flex-col"
           >
             <span>{suggestedAction}</span>

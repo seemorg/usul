@@ -4,12 +4,12 @@ import AuthorSearchResult from "@/components/author-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { getTotalEntities } from "@/lib/api";
 import { searchAuthors } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { countAllAuthors } from "@/server/services/authors";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -38,7 +38,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
   const t = await getTranslations("entities");
 
   const pathLocale = await getPathLocale();
-  const [results, totalAuthors] = await Promise.all([
+  const [results, total] = await Promise.all([
     searchAuthors(q, {
       limit: 20,
       page,
@@ -49,14 +49,14 @@ async function AuthorsPage({ searchParams }: PageProps) {
         regions,
       },
     }),
-    countAllAuthors(),
+    getTotalEntities(),
   ]);
 
   return (
     <RootEntityPage
       title={t("authors")}
       description={t("search-x", {
-        count: totalAuthors,
+        count: total.authors,
         entity: t("authors"),
       })}
     >

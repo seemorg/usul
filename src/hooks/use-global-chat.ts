@@ -1,6 +1,6 @@
 import type { Chat } from "@/app/[locale]/chat/db";
 import type { Message } from "@ai-sdk/react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { db } from "@/app/[locale]/chat/db";
 import { env } from "@/env";
 import { usePathLocale } from "@/lib/locale/utils";
@@ -30,6 +30,7 @@ export function useGlobalChat({
   const pathname = usePathname();
   const pathLocale = usePathLocale();
   const router = useRouter();
+  const [shouldSubmit, setShouldSubmit] = useState(false);
 
   const chatId = useMemo(() => {
     if (pathname.startsWith(`${navigation.chat.all()}/`))
@@ -116,7 +117,6 @@ export function useGlobalChat({
     status,
     stop,
     reload: originalReload,
-    append: originalAppend,
   } = useChat({
     id: effectiveChatId ? `global-chat-${effectiveChatId}` : "global-chat",
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
@@ -205,31 +205,19 @@ export function useGlobalChat({
   ]);
 
   const append = useCallback(
-    async (text: string) => {
-      setIsSubmitting(true);
-
-      const newMessage: Message = {
-        id: nanoid(),
-        content: text,
-        role: "user" as const,
-        createdAt: new Date(),
-      };
-
-      const currentChatId = await ensureChatExists(text);
-      setTimeout(() => {
-        handleFinish(newMessage);
-
-        void originalAppend(newMessage, {
-          body: {
-            chatId: currentChatId,
-          },
-        }).finally(() => {
-          setIsSubmitting(false);
-        });
-      }, 0);
+    (text: string) => {
+      setInput(text);
+      setShouldSubmit(true);
     },
-    [ensureChatExists, setIsSubmitting, handleFinish, originalAppend],
+    [setInput],
   );
+
+  useEffect(() => {
+    if (shouldSubmit) {
+      void submit();
+      setShouldSubmit(false);
+    }
+  }, [shouldSubmit, submit]);
 
   return {
     messages,

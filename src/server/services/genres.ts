@@ -1,21 +1,7 @@
-"use server";
-
 import type { PathLocale } from "@/lib/locale/utils";
+import type { ApiGenre } from "@/types/api/genre";
 import { cache } from "react";
-import { unstable_cache } from "next/cache";
-
-import { db } from "../db";
-import { getLocaleWhereClause } from "../db/localization";
-
-export const findAllGenres = cache(async (locale: PathLocale = "en") => {
-  const localeWhere = getLocaleWhereClause(locale);
-
-  return await db.genre.findMany({
-    include: {
-      nameTranslations: localeWhere,
-    },
-  });
-});
+import { apiFetch } from "@/lib/api/utils";
 
 export const findAllGenresWithBooksCount = cache(
   async ({
@@ -23,7 +9,7 @@ export const findAllGenresWithBooksCount = cache(
     authorId,
     bookIds,
     regionId,
-    locale = "en",
+    locale,
   }: {
     yearRange?: [number, number];
     bookIds?: string[];
@@ -31,62 +17,17 @@ export const findAllGenresWithBooksCount = cache(
     regionId?: string;
     locale?: PathLocale;
   } = {}) => {
-    const localeWhere = getLocaleWhereClause(locale);
-
-    const base = await db.genre.findMany({
-      include: {
-        _count: {
-          select: {
-            books: {
-              where: {
-                ...(bookIds && {
-                  id: {
-                    in: bookIds,
-                  },
-                }),
-                ...(yearRange && {
-                  AND: {
-                    author: {
-                      year: {
-                        gte: yearRange[0],
-                        lt: yearRange[1],
-                      },
-                    },
-                  },
-                }),
-                ...(regionId && {
-                  author: {
-                    locations: {
-                      some: {
-                        regionId,
-                      },
-                    },
-                  },
-                }),
-                ...(authorId && {
-                  authorId,
-                }),
-              },
-            },
-          },
-        },
-        nameTranslations: localeWhere,
+    const result = await apiFetch<ApiGenre[]>({
+      path: "/genre",
+      params: {
+        yearRange,
+        authorId,
+        bookIds,
+        regionId,
+        locale,
       },
     });
 
-    return base
-      .filter((g) => g._count.books > 0)
-      .sort((a, b) => b._count.books - a._count.books);
+    return result ?? [];
   },
-);
-
-export const countAllGenres = cache(
-  unstable_cache(
-    async () => {
-      const result = await db.genre.count();
-      return result;
-    },
-    ["genres-count"],
-    { revalidate: false },
-  ),
 );

@@ -6,12 +6,12 @@ import GenresFilter from "@/components/genres-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { getTotalEntities } from "@/lib/api";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { countAllBooks } from "@/server/services/books";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -41,7 +41,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
   const t = await getTranslations("entities");
   const pathLocale = await getPathLocale();
 
-  const [results, totalBooks] = await Promise.all([
+  const [results, total] = await Promise.all([
     searchBooks(q, {
       limit: 20,
       page,
@@ -54,14 +54,14 @@ async function TextsPage({ searchParams }: TextsPageProps) {
       },
       locale: pathLocale,
     }),
-    countAllBooks(),
+    getTotalEntities(),
   ]);
 
   return (
     <RootEntityPage
       title={t("texts")}
       description={t("search-x", {
-        count: totalBooks,
+        count: total.books,
         entity: t("texts"),
       })}
     >
