@@ -6,25 +6,21 @@ import type { UseChatHelpers } from "@ai-sdk/react";
 import type { Message } from "ai";
 import type React from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { memo, useCallback, useEffect, useMemo, useRef } from "react";
+import { memo, useCallback, useEffect, useRef } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { useGlobalChat } from "@/hooks/use-global-chat";
 import { useScrollToBottom } from "@/hooks/use-scroll-to-bottom";
 import { cn } from "@/lib/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDownIcon, ArrowUpIcon, Settings2Icon } from "lucide-react";
-import { nanoid } from "nanoid";
 import { useTranslations } from "next-intl";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 
-import HomepageFilters from "./filters/homepage-filters";
 import { SuggestedActions } from "./suggested-actions";
 
-function useChatInput({
+export function useChatInput({
   input,
   setInput,
   handleSubmit,
@@ -100,7 +96,7 @@ function useChatInput({
   };
 }
 
-function FiltersButton({
+export function FiltersButton({
   open,
   setOpen,
   ...props
@@ -142,7 +138,7 @@ function FiltersButton({
   );
 }
 
-function ActionContainer(props: React.HTMLAttributes<HTMLDivElement>) {
+export function ActionContainer(props: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
       className="absolute bottom-0 flex w-fit flex-row justify-end px-5 py-4 ltr:right-0 rtl:left-0"
@@ -151,7 +147,7 @@ function ActionContainer(props: React.HTMLAttributes<HTMLDivElement>) {
   );
 }
 
-function ChatTextarea({
+export function ChatTextarea({
   className,
   handleSubmit,
   ...props
@@ -346,73 +342,7 @@ function PureSendButton({
   );
 }
 
-const SendButton = memo(PureSendButton, (prevProps, nextProps) => {
+export const SendButton = memo(PureSendButton, (prevProps, nextProps) => {
   if (prevProps.input !== nextProps.input) return false;
   return true;
 });
-
-export const HomepageChatInput = () => {
-  const t = useTranslations();
-  const initialId = useMemo(() => nanoid(), []);
-  const { input, setInput, submit } = useGlobalChat({
-    shouldRedirect: true,
-    initialId,
-  });
-  const { textareaRef, handleInput, submitForm } = useChatInput({
-    input,
-    setInput,
-    handleSubmit: submit,
-  });
-
-  return (
-    <>
-      <div className="text-foreground relative flex w-full flex-col gap-4">
-        <ChatTextarea
-          ref={textareaRef}
-          value={input}
-          onChange={handleInput}
-          handleSubmit={submitForm}
-        />
-
-        <Tabs
-          className={cn(
-            "text-foreground absolute bottom-4 gap-2 rounded-full ltr:left-4 rtl:right-4",
-          )}
-          defaultValue="ai"
-        >
-          <TabsList className="rounded-3xl">
-            <TabsTrigger value="ai" className="rounded-3xl">
-              {t("chat.input.ai_chat")}
-            </TabsTrigger>
-            <TabsTrigger value="search" className="rounded-3xl">
-              {t("chat.input.search")}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
-
-        <HomepageFilters trigger={<FiltersButton />} />
-
-        <ActionContainer>
-          <SendButton input={input} submitForm={submitForm} />
-        </ActionContainer>
-      </div>
-      <div className="mt-10 flex justify-center gap-3">
-        {[
-          t("chat.suggested_actions.one.short"),
-          t("chat.suggested_actions.two.short"),
-          t("chat.suggested_actions.three.short"),
-          t("chat.suggested_actions.four.short"),
-        ].map((item) => (
-          <Badge
-            key={item}
-            className="cursor-pointer rounded-3xl px-3 py-1.5 text-sm font-normal"
-            variant="muted"
-            onClick={() => setInput(item)}
-          >
-            {item}
-          </Badge>
-        ))}
-      </div>
-    </>
-  );
-};

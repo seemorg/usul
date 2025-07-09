@@ -4,7 +4,6 @@ import type { Locale } from "next-intl";
 import BookSearchResult from "@/components/book-search-result";
 import { CollectionCard } from "@/components/ui/collection-card";
 import Container from "@/components/ui/container";
-import { collections } from "@/data/collections";
 import {
   fetchPopularBooks,
   fetchPopularIslamicHistoryBooks,
@@ -27,9 +26,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import Footer from "../_components/footer";
 import HomepageSection from "../_components/homepage-section";
 import Navbar from "../_components/navbar";
-import SearchBar from "../_components/navbar/search-bar";
-import { HomepageChatInput } from "./chat/chat-input";
 import { DemoButton } from "./demo-button";
+import { HomepageChatInput } from "./home-chat-input";
 
 export const generateMetadata = async ({
   params,
@@ -179,37 +177,21 @@ export default async function HomePage({
           <HomepageSection
             isBooks={false}
             title={t("home.sections.collections")}
-            items={(genres || [])
-              .map((genre) => (
-                <Link
-                  key={genre.id}
-                  href={navigation.genres.bySlug(genre.slug)}
-                  prefetch
-                >
-                  <CollectionCard
-                    title={genre.name}
-                    numberOfBooks={genre.numberOfBooks}
-                    pattern={genre.pattern}
-                    color={genre.color}
-                  />
-                </Link>
-              ))
-              .concat(
-                collections.map((collection) => (
-                  <Link
-                    key={collection.slug}
-                    href={navigation.collections.static.bySlug(collection.slug)}
-                    prefetch
-                  >
-                    <CollectionCard
-                      title={t(`collections.${collection.title}`)}
-                      numberOfBooks={collection.bookIds.length}
-                      pattern={collection.pattern}
-                      color={collection.color}
-                    />
-                  </Link>
-                )),
-              )}
+            href={navigation.collections.all()}
+            items={(genres || []).map((genre) => (
+              <Link
+                key={genre.id}
+                href={navigation.genres.bySlug(genre.slug)}
+                prefetch
+              >
+                <CollectionCard
+                  title={genre.name}
+                  numberOfBooks={genre.numberOfBooks}
+                  pattern={genre.pattern}
+                  color={genre.color}
+                />
+              </Link>
+            ))}
           />
         </div>
 

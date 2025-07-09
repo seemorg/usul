@@ -2,7 +2,7 @@
 
 import { useSession } from "@/lib/auth";
 import { navigation } from "@/lib/urls";
-import { useRouter } from "@/navigation";
+import { usePathname, useRouter } from "@/navigation";
 import { useIsomorphicLayoutEffect } from "usehooks-ts";
 
 import Spinner from "./ui/spinner";
@@ -18,6 +18,7 @@ export default function RequireAuth({
 }) {
   const { data, isPending } = useSession();
   const router = useRouter();
+  const pathname = usePathname();
 
   const loadingState = skeleton || (
     <div className="flex h-full min-h-[400px] w-full items-center justify-center">
@@ -27,7 +28,8 @@ export default function RequireAuth({
 
   useIsomorphicLayoutEffect(() => {
     if (!isPending && !data) {
-      router.push(navigation.login(), undefined, { showProgressBar: false });
+      const url = navigation.login() + "?r=" + pathname;
+      router.push(url, undefined, { showProgressBar: false });
     }
   }, [isPending, data]);
 

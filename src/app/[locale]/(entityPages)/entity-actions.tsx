@@ -43,7 +43,7 @@ export function EntityActions({
 
   return (
     <div className="mt-5 flex gap-3">
-      <Button variant="outline" className="rounded-full" onClick={handleChat}>
+      <Button variant="default" className="rounded-full" onClick={handleChat}>
         <SparklesIcon className="size-4" />
         {t("chat.input.ai_chat")}
       </Button>
