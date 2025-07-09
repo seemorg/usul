@@ -1,0 +1,65 @@
+{
+  "greeting": {
+    "hello": "Barka da zuwa Usul AI!",
+    "welcome": "Rubuta tambayarka ta farko a kasa"
+  },
+  "messages": {
+    "edit_tooltip": "Gyara saƙo",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI na iya yin kuskure. Duba muhimmiyar bayani."
+  },
+  "editor": {
+    "sending": "Ana aikawa...",
+    "send": "Aika"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "Waye al-ghazali?",
+      "long": "Me yasa aka san Al-Ghazali?"
+    },
+    "two": {
+      "short": "Yaya ake yin sallar witr?",
+      "long": "Yaya Annabi ya yi sallar witr?"
+    },
+    "three": {
+      "short": "Yaushe laylatul Qadr?",
+      "long": "Wadanne hadisi ke ambato Laylatul Qadr?"
+    },
+    "four": {
+      "short": "Menene Zakat?",
+      "long": "Menene ma'anar Ramadan a Larabci?"
+    }
+  },
+  "status": {
+    "thinking": "Tunani...",
+    "done": "An gama",
+    "done_searched": "An gama. An bincika",
+    "generating_queries": "Ana ƙirƙirar tambayoyi...",
+    "generating_response": "Ana ƙirƙirar amsa don",
+    "searching": "Ana nema don"
+  },
+  "reasoning": {
+    "title": "Tunanin dalili",
+    "completed": "An yi dalili na ƴan daƙiƙo"
+  },
+  "input": {
+    "filters": "Filters",
+    "placeholder": "Aika saƙo...",
+    "ai_chat": "AI Chat",
+    "search": "Search"
+  },
+  "sidebar": {
+    "chat_history": "Tarihin Tattaunawa",
+    "toggle_sidebar": "Canza gefen gefen",
+    "new_chat": "Sabuwar Tattaunawa",
+    "chats": "Tattaunawa",
+    "no_chats_yet": "Babu tattaunawa tukuna",
+    "start_conversation": "Fara sabuwar muhawara",
+    "untitled_chat": "Tattaunawa Mara Suna"
+  },
+  "filters": {
+    "find_texts": "Nemo rubutu",
+    "find_authors": "Nemo marubuta",
+    "texts_count": "rubututtuka"
+  }
+}

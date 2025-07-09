@@ -1,0 +1,65 @@
+{
+  "greeting": {
+    "hello": "Selamat datang ke Usul AI!",
+    "welcome": "Taip soalan pertama anda di bawah"
+  },
+  "messages": {
+    "edit_tooltip": "Sunting mesej",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI boleh membuat kesilapan. Semak maklumat penting."
+  },
+  "editor": {
+    "sending": "Menghantar...",
+    "send": "Hantar"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "Siapa al-ghazali?",
+      "long": "Untuk apa Al-Ghazali dikenali?"
+    },
+    "two": {
+      "short": "Bagaimana solat witr?",
+      "long": "Bagaimana nabi solat witr?"
+    },
+    "three": {
+      "short": "Bila laylatul Qadr?",
+      "long": "Hadith mana yang menyebut Laylatul Qadr?"
+    },
+    "four": {
+      "short": "Apa itu Zakat?",
+      "long": "Apa maksud Ramadan dalam bahasa Arab?"
+    }
+  },
+  "status": {
+    "thinking": "Berfikir...",
+    "done": "Selesai",
+    "done_searched": "Selesai. Dicari",
+    "generating_queries": "Menjana pertanyaan...",
+    "generating_response": "Menjana respons untuk",
+    "searching": "Mencari"
+  },
+  "reasoning": {
+    "title": "Penaakulan",
+    "completed": "Penaakulan untuk beberapa saat"
+  },
+  "input": {
+    "filters": "Penapis",
+    "placeholder": "Hantar mesej...",
+    "ai_chat": "AI Chat",
+    "search": "Cari"
+  },
+  "sidebar": {
+    "chat_history": "Sejarah Sembang",
+    "toggle_sidebar": "Tukar Bar Sisi",
+    "new_chat": "Sembang Baru",
+    "chats": "Sembang",
+    "no_chats_yet": "Tiada sembang lagi",
+    "start_conversation": "Mulakan perbualan baharu",
+    "untitled_chat": "Sembang Tanpa Tajuk"
+  },
+  "filters": {
+    "find_texts": "Cari teks",
+    "find_authors": "Cari pengarang",
+    "texts_count": "teks"
+  }
+}

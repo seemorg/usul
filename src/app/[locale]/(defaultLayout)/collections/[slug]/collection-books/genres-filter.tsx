@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname } from "@/navigation";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
 import { findAllGenresWithBooksCount } from "@/server/services/genres";
 import { useQuery } from "@tanstack/react-query";
 import Fuse from "fuse.js";
@@ -139,12 +138,9 @@ export default function GenresFilter({
           </>
         ) : (
           matchedGenres.items.map((genre) => {
-            const booksCount = formatter.number(genre._count.books);
+            const booksCount = formatter.number(genre.numberOfBooks);
 
-            const primaryText = getPrimaryLocalizedText(
-              genre.nameTranslations,
-              locale,
-            );
+            const primaryText = genre.name;
             const title = `${primaryText} (${booksCount})`;
 
             return (

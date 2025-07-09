@@ -1,152 +1,40 @@
 "use server";
 
 import type { PathLocale } from "@/lib/locale/utils";
+import type { ApiLocation } from "@/types/api/location";
+import type { ApiRegion } from "@/types/api/region";
 import { cache } from "react";
-import { unstable_cache } from "next/cache";
-
-import { db } from "../db";
-import { getLocaleWhereClause } from "../db/localization";
-
-export const findAllRegionsWithCounts = cache(
-  async (locale: PathLocale = "en") => {
-    const localeWhere = getLocaleWhereClause(locale);
-
-    return await db.region.findMany({
-      include: {
-        nameTranslations: localeWhere,
-        overviewTranslations: localeWhere,
-        currentNameTranslations: localeWhere,
-      },
-    });
-  },
-);
+import { apiFetch } from "@/lib/api/utils";
 
 export const findRegionBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {
-    const localeWhere = getLocaleWhereClause(locale);
-
-    const region = await db.region.findUnique({
-      where: {
-        slug,
-      },
-      include: {
-        locations: {
-          include: {
-            cityNameTranslations: localeWhere,
-          },
-        },
-        nameTranslations: localeWhere,
-        overviewTranslations: localeWhere,
-        currentNameTranslations: localeWhere,
+    const result = await apiFetch<ApiRegion & { locations: ApiLocation[] }>({
+      path: `/region/${slug}`,
+      params: {
+        locale,
+        locations: true,
       },
     });
-
-    if (!region) {
-      return;
-    }
-
-    return region;
+    return result ?? null;
   },
 );
 
 export const findAllRegionsWithBooksCount = cache(
   async (
-    {
-      yearRange,
-      genreId,
-      countType = "books",
-    }: {
+    params?: {
       yearRange?: [number, number];
       genreId?: string;
-      countType?: "books" | "authors";
-    } = {},
+    },
     locale: PathLocale = "en",
   ) => {
-    const localeWhere = getLocaleWhereClause(locale);
-
-    if (countType === "authors") {
-      const data = await db.region.findMany({
-        orderBy: { numberOfAuthors: "desc" },
-        include: {
-          locations: {
-            include: {
-              cityNameTranslations: localeWhere,
-            },
-          },
-          nameTranslations: localeWhere,
-          overviewTranslations: localeWhere,
-          currentNameTranslations: localeWhere,
-        },
-      });
-
-      return data.map((region) => ({
-        ...region,
-        count: region.numberOfAuthors,
-      }));
-    }
-
-    const data = await db.region.findMany({
-      include: {
-        nameTranslations: localeWhere,
-        overviewTranslations: localeWhere,
-        currentNameTranslations: localeWhere,
-        locations: {
-          include: {
-            cityNameTranslations: localeWhere,
-            authors: {
-              ...(yearRange && {
-                where: {
-                  year: {
-                    gte: yearRange[0],
-                    lt: yearRange[1],
-                  },
-                },
-              }),
-              include: {
-                _count: {
-                  select: {
-                    books: !genreId
-                      ? true
-                      : {
-                          where: {
-                            genres: {
-                              some: {
-                                id: genreId,
-                              },
-                            },
-                          },
-                        },
-                  },
-                },
-              },
-            },
-          },
-        },
+    const result = await apiFetch<ApiRegion[]>({
+      path: "/region",
+      params: {
+        locale,
+        ...params,
       },
     });
 
-    return data.map(({ locations, ...region }) => {
-      const totalBooks = locations.reduce(
-        (acc, loc) =>
-          acc +
-          loc.authors.reduce((acc2, author) => acc2 + author._count.books, 0),
-        0,
-      );
-
-      return {
-        ...region,
-        count: totalBooks,
-      };
-    });
+    return result ?? [];
   },
-);
-
-export const countAllRegions = cache(
-  unstable_cache(
-    async () => {
-      return await db.region.count();
-    },
-    ["regions-count"],
-    { revalidate: false },
-  ),
 );

@@ -10,6 +10,32 @@ export const useBookShareUrl = () => {
   const locale = useLocale();
   const t = useTranslations();
 
+  const getUrl = ({
+    slug,
+    pageIndex,
+    versionId,
+    selection,
+  }: {
+    slug: string;
+    pageIndex: number;
+    versionId?: string;
+    selection?: string;
+  }) => {
+    let url = window.location.origin;
+
+    if (locale !== routing.defaultLocale) url = pathLocale + url;
+    url += navigation.books.pageReader(slug, pageIndex + 1);
+
+    if (versionId) url += `?versionId=${versionId}`;
+
+    if (selection) {
+      // add selection to url via browser query params
+      url += `#:~:text=${encodeURIComponent(selection)}`;
+    }
+
+    return url;
+  };
+
   const copyUrl = async ({
     slug,
     pageIndex,
@@ -21,21 +47,11 @@ export const useBookShareUrl = () => {
     versionId?: string;
     selection?: string;
   }) => {
-    let url =
-      window.location.origin + navigation.books.pageReader(slug, pageIndex + 1);
-
-    if (locale !== routing.defaultLocale) url = pathLocale + url;
-    if (versionId) url = url + `?versionId=${versionId}`;
-
-    if (selection) {
-      // add selection to url via browser query params
-      url = url + `#:~:text=${encodeURIComponent(selection)}`;
-    }
-
+    const url = getUrl({ slug, pageIndex, versionId, selection });
     await navigator.clipboard.writeText(url);
 
     toast.success(t("reader.chat.copied"));
   };
 
-  return { copyUrl };
+  return { copyUrl, getUrl };
 };

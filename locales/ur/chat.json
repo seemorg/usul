@@ -1,0 +1,65 @@
+{
+  "greeting": {
+    "hello": "Usul AI میں خوش آمدید!",
+    "welcome": "نیچے اپنا پہلا سوال ٹائپ کریں"
+  },
+  "messages": {
+    "edit_tooltip": "پیغام میں ترمیم کریں",
+    "thinking": "ہمم...",
+    "ai_disclaimer": "AI غلطیاں کر سکتا ہے۔ اہم معلومات چیک کریں۔"
+  },
+  "editor": {
+    "sending": "بھیج رہا ہے...",
+    "send": "ارسال کریں"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "''",
+      "long": "''"
+    },
+    "two": {
+      "short": "وتر نماز کیسے پڑھیں؟",
+      "long": "نبی نے وتر نماز کیسے پڑھی؟"
+    },
+    "three": {
+      "short": "لیلتہ القدر کب ہے؟",
+      "long": "کون سی احادیث لیلتہ القدر کا ذکر کرتی ہیں؟"
+    },
+    "four": {
+      "short": "زکات کیا ہے؟",
+      "long": "رمضان کا عربی میں کیا مطلب ہے؟"
+    }
+  },
+  "status": {
+    "thinking": "سوچ رہا ہے...",
+    "done": "مکمل",
+    "done_searched": "مکمل. تلاش کی گئی",
+    "generating_queries": "تلاشات تیار کر رہا ہے...",
+    "generating_response": "جواب تیار کر رہا ہے",
+    "searching": "تلاش کر رہا ہے"
+  },
+  "reasoning": {
+    "title": "دلیل",
+    "completed": "چند سیکنڈ کے لیے دلیل دی گئی"
+  },
+  "input": {
+    "filters": "فلٹرز",
+    "placeholder": "ایک پیغام بھیجیں...",
+    "ai_chat": "AI چیٹ",
+    "search": "تلاش"
+  },
+  "sidebar": {
+    "chat_history": "چیٹ کی تاریخ",
+    "toggle_sidebar": "سائیڈ بار کو ٹوگل کریں",
+    "new_chat": "نئی چیٹ",
+    "chats": "چیٹس",
+    "no_chats_yet": "ابھی تک کوئی چیٹ نہیں ہے",
+    "start_conversation": "نئی گفتگو شروع کریں",
+    "untitled_chat": "بے نام چیٹ"
+  },
+  "filters": {
+    "find_texts": "متون تلاش کریں",
+    "find_authors": "مصنفین تلاش کریں",
+    "texts_count": "متون"
+  }
+}

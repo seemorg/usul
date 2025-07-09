@@ -1,0 +1,65 @@
+{
+  "greeting": {
+    "hello": "Bienvenue chez Usul AI!",
+    "welcome": "Tapez votre première question ci-dessous"
+  },
+  "messages": {
+    "edit_tooltip": "Modifier le message",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "L'IA peut faire des erreurs. Vérifiez les informations importantes."
+  },
+  "editor": {
+    "sending": "Envoi...",
+    "send": "Envoyer"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "Qui est al-Ghazali ?",
+      "long": "Pour quoi Al-Ghazali était-il connu ?"
+    },
+    "two": {
+      "short": "Comment prier le witr ?",
+      "long": "Comment le prophète priait-il le witr ?"
+    },
+    "three": {
+      "short": "Quand est Laylatul Qadr ?",
+      "long": "Quels hadiths mentionnent Laylatul Qadr ?"
+    },
+    "four": {
+      "short": "Qu'est-ce que la Zakat ?",
+      "long": "Que signifie Ramadan en arabe ?"
+    }
+  },
+  "status": {
+    "thinking": "Réflexion...",
+    "done": "Terminé",
+    "done_searched": "Terminé. Recherche effectuée pour",
+    "generating_queries": "Génération de requêtes...",
+    "generating_response": "Génération de réponse pour",
+    "searching": "Recherche de"
+  },
+  "reasoning": {
+    "title": "Raisonnement",
+    "completed": "Raisonné pendant quelques secondes"
+  },
+  "input": {
+    "filters": "Filtres",
+    "placeholder": "Envoyer un message...",
+    "ai_chat": "Chat IA",
+    "search": "Recherche"
+  },
+  "sidebar": {
+    "chat_history": "Historique du chat",
+    "toggle_sidebar": "Basculer la barre latérale",
+    "new_chat": "Nouveau chat",
+    "chats": "Chats",
+    "no_chats_yet": "Pas de chats pour l'instant",
+    "start_conversation": "Commencez une nouvelle conversation",
+    "untitled_chat": "Chat sans titre"
+  },
+  "filters": {
+    "find_texts": "Trouver des textes",
+    "find_authors": "Trouver des auteurs",
+    "texts_count": "textes"
+  }
+}

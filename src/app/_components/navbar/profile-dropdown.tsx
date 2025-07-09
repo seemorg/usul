@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { EntityAvatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -41,17 +41,19 @@ export function useLogout() {
   return { handleSignOut, isSigningOut };
 }
 
-export function ProfileDropdown() {
+const Placeholder = () => (
+  <Button variant="ghost" size="icon" className="shrink-0" disabled>
+    <UserIcon className="size-5" />
+  </Button>
+);
+
+function ProfileDropdownInner() {
   const session = useSession();
   const t = useTranslations();
   const { handleSignOut, isSigningOut } = useLogout();
 
   if (session.isPending) {
-    return (
-      <Button variant="ghost" size="icon" className="shrink-0" disabled>
-        <UserIcon className="size-5" />
-      </Button>
-    );
+    return <Placeholder />;
   }
 
   if (!session.data) {
@@ -118,5 +120,13 @@ export function ProfileDropdown() {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
+  );
+}
+
+export function ProfileDropdown() {
+  return (
+    <Suspense fallback={<Placeholder />}>
+      <ProfileDropdownInner />
+    </Suspense>
   );
 }

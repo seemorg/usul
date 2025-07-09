@@ -28,7 +28,7 @@ export function useFormatRelativeDate() {
       // if diff in days is <= 5, return relative date
       if (diffInDays <= 5) {
         const relativeFormatter = getRelativeFormatterByLocale(locale);
-        return relativeFormatter.format(diffInDays, "day");
+        return relativeFormatter.format(-diffInDays, "day");
       }
 
       // otherwise, return Day of week, day of month, month, year. Example: "Tuesday, 24 December 2024"

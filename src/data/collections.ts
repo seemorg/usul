@@ -46,6 +46,7 @@ export const collections: {
       "qs7trgbye1sjj1nf04nuw696",
       "cdmterqdow2zv232qdbpxhly",
       "zrop56zg6wrub85ylzpibnms",
+      "w87u7gk93qnnwkfoab9hxt4q",
     ],
   },
 ];

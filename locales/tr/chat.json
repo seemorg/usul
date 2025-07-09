@@ -1,0 +1,65 @@
+{
+  "greeting": {
+    "hello": "Usul AI'ye hoş geldiniz!",
+    "welcome": "Aşağıya ilk sorunuzu yazın"
+  },
+  "messages": {
+    "edit_tooltip": "Mesajı düzenle",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI hatalar yapabilir. Önemli bilgileri kontrol edin."
+  },
+  "editor": {
+    "sending": "Gönderiliyor...",
+    "send": "Gönder"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "İmam Gazali kimdir?",
+      "long": "İmam Gazali neyle tanınırdı?"
+    },
+    "two": {
+      "short": "Vitir namazı nasıl kılınır?",
+      "long": "Peygamber vitir namazını nasıl kılardı?"
+    },
+    "three": {
+      "short": "Kadir Gecesi ne zaman?",
+      "long": "Kadir Gecesini anlatan hangi hadisler var?"
+    },
+    "four": {
+      "short": "Zekat nedir?",
+      "long": "Arapça'da Ramazan ne anlama gelir?"
+    }
+  },
+  "status": {
+    "thinking": "Düşünülüyor...",
+    "done": "Tamamlandı",
+    "done_searched": "Tamamlandı. Aranan",
+    "generating_queries": "Sorgular oluşturuluyor...",
+    "generating_response": "Yanıt oluşturuluyor için",
+    "searching": "Aranıyor"
+  },
+  "reasoning": {
+    "title": "Muhakeme",
+    "completed": "Birkaç saniye için muhakeme yapıldı"
+  },
+  "input": {
+    "filters": "Filtreler",
+    "placeholder": "Bir mesaj gönder...",
+    "ai_chat": "AI Sohbet",
+    "search": "Ara"
+  },
+  "sidebar": {
+    "chat_history": "Sohbet Geçmişi",
+    "toggle_sidebar": "Kenar Çubuğunu Değiştir",
+    "new_chat": "Yeni Sohbet",
+    "chats": "Sohbetler",
+    "no_chats_yet": "Henüz sohbet yok",
+    "start_conversation": "Yeni bir konuşma başlat",
+    "untitled_chat": "Başlıksız Sohbet"
+  },
+  "filters": {
+    "find_texts": "Metinleri bul",
+    "find_authors": "Yazarları bul",
+    "texts_count": "metinler"
+  }
+}

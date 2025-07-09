@@ -1,44 +1,26 @@
-import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
+import type { UIMessage } from "ai";
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-
-export type ChatMessage = {
-  id?: string;
-  text: string;
-  role: "ai" | "user";
-  sourceNodes?: SemanticSearchBookNode[];
-};
 
 export type HistoryItem = {
   chatId: string;
   bookId: string;
   versionId: string;
-  messages: ChatMessage[];
+  messages: UIMessage[];
   date: Date;
 };
 
 interface ChatStore {
-  messages: ChatMessage[];
-  setMessages: (messages: ChatMessage[]) => void;
-
-  question: string;
-  setQuestion: (question: string) => void;
-
-  isPending: boolean;
-  setIsPending: (isPending: boolean) => void;
-
-  error?: Error;
-  setError: (error?: Error) => void;
-
   currentChatId: string | null;
   currentBookId: string | null;
   currentVersionId: string | null;
 
   // id -> history item
   history: Record<string, HistoryItem>;
-  syncHistory: () => void;
+  syncHistory: (messages: UIMessage[]) => void;
   revertToHistoryChat: (chatId: string) => void;
+  clearChat: () => void;
   deleteHistoryChat: (chatId: string) => void;
 
   initializeChat: ({
@@ -53,19 +35,14 @@ interface ChatStore {
 export const useChatStore = create(
   persist<ChatStore>(
     (set, get) => ({
-      messages: [],
       history: {},
-
       currentChatId: null,
       currentBookId: null,
       currentVersionId: null,
-
-      setMessages: (messages: ChatMessage[]) => set({ messages }),
-
-      syncHistory: () => {
+      syncHistory: (messages: UIMessage[]) => {
         const state = get();
 
-        if (state.currentChatId && state.messages.length > 0) {
+        if (state.currentChatId && messages.length > 0) {
           const historyItem = state.history[state.currentChatId];
 
           const updatedHistoryItem: HistoryItem = {
@@ -75,7 +52,7 @@ export const useChatStore = create(
               versionId: state.currentVersionId!,
               date: new Date(),
             }),
-            messages: state.messages,
+            messages,
           };
 
           set({
@@ -86,32 +63,12 @@ export const useChatStore = create(
           });
         }
       },
-
-      question: "",
-      setQuestion: (question: string) => set({ question }),
-
-      isPending: false,
-      setIsPending: (isPending: boolean) => set({ isPending }),
-
-      error: undefined,
-      setError: (error?: Error) => set({ error }),
-
       revertToHistoryChat: (chatId: string) => {
-        const state = get();
-        const historyItem = state.history[chatId];
-        if (!historyItem) return;
-
-        set({
-          messages: historyItem.messages,
-          currentChatId: historyItem.chatId,
-          currentBookId: historyItem.bookId,
-          currentVersionId: historyItem.versionId,
-          question: "",
-          isPending: false,
-          error: undefined,
-        });
+        set({ currentChatId: chatId });
       },
-
+      clearChat: () => {
+        set({ currentChatId: nanoid() });
+      },
       deleteHistoryChat: (chatId: string) => {
         const state = get();
         const { [chatId]: _, ...history } = state.history;
@@ -131,17 +88,26 @@ export const useChatStore = create(
           currentChatId: newChatId,
           currentBookId: bookId,
           currentVersionId: versionId,
-          messages: [],
-          question: "",
-          isPending: false,
-          error: undefined,
         });
       },
     }),
     {
       name: "ai-chat-history",
       partialize: (state) => ({ history: state.history }) as ChatStore,
-      version: 0,
+      version: 1,
+      migrate: () => {
+        return {
+          history: {},
+          currentChatId: null,
+          currentBookId: null,
+          currentVersionId: null,
+          syncHistory: () => {},
+          revertToHistoryChat: () => {},
+          deleteHistoryChat: () => {},
+          initializeChat: () => {},
+          clearChat: () => {},
+        };
+      },
     },
   ),
 );
