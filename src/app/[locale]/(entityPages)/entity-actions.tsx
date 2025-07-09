@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { useChatFilters } from "@/stores/chat-filters";
-import { SearchIcon, SparklesIcon } from "lucide-react";
+import { SparklesIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export function EntityActions({
@@ -47,10 +47,10 @@ export function EntityActions({
         <SparklesIcon className="size-4" />
         {t("chat.input.ai_chat")}
       </Button>
-      <Button variant="outline" className="rounded-full">
+      {/* <Button variant="outline" className="rounded-full">
         <SearchIcon className="size-4" />
         {t("chat.input.search")}
-      </Button>
+      </Button> */}
     </div>
   );
 }
