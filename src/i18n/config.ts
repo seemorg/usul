@@ -61,6 +61,7 @@ export const pathLocaleToSupportedBcp47LocaleMap = {
 const config = {
   namespaces: [
     "common",
+    "chat",
     "home",
     "entities",
     "reader",
@@ -82,7 +83,8 @@ const config = {
     "/collections/*": ["collections"],
     "/login": ["login"],
     "/profile": ["profile"],
-    // "/chat/*": ["reader"],
+    "/chat": ["chat"],
+    "/chat/*": ["chat"],
   },
 };
 

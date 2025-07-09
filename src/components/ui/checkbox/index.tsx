@@ -10,7 +10,7 @@ const Checkbox = ({
 }: React.ComponentProps<typeof CheckboxPrimitive.Root>) => (
   <CheckboxPrimitive.Root
     className={cn(
-      "bg-background ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary dark:border-border peer h-5 w-5 shrink-0 rounded-sm border border-gray-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-white",
+      "bg-background ring-offset-background focus-visible:ring-ring data-[state=checked]:bg-primary dark:border-border peer size-5 shrink-0 rounded-sm border border-gray-300 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-hidden disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:text-white",
       className,
     )}
     {...props}

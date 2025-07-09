@@ -15,6 +15,7 @@ declare module "next-intl" {
       collections: typeof import("../../locales/en/collections.json");
       login: typeof import("../../locales/en/login.json");
       profile: typeof import("../../locales/en/profile.json");
+      chat: typeof import("../../locales/en/chat.json");
     };
     // Formats: typeof formats;
     Locale: (typeof routing.locales)[number];

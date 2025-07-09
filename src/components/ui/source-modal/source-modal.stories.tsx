@@ -15,19 +15,15 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// @ts-ignore
 export const Basic: Story = {
-  render: () => (
-    <SourceModal
-      source={{
-        metadata: {
-          chapters: [1],
-          pages: [{ volume: "1", page: 1 }],
-        },
-        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-      }}
-      // @ts-ignore
-      getVirtuosoScrollProps={() => {}}
-    />
-  ),
+  args: {
+    source: {
+      metadata: {
+        chapters: [1],
+        pages: [{ volume: "1", page: 1, index: 0 }],
+      },
+      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
+    },
+  },
+  render: SourceModal,
 };

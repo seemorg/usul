@@ -42,7 +42,7 @@ export const generateMetadata = async ({
     locale,
     pagePath: navigation.centuries.byNumber(yearRange.centuryNumber),
     title,
-    description: yearRange.description,
+    description: yearRange.description ?? undefined,
   });
 };
 
@@ -73,19 +73,12 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   });
 
   const primaryName = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
-  const secondaryName = null;
 
   return (
     <div>
       <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
         {primaryName}
       </h1>
-
-      {secondaryName && (
-        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
-          {secondaryName}
-        </h2>
-      )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
         <p>{t("entities.x-texts", { count: yearRange.totalBooks })}</p>

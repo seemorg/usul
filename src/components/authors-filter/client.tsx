@@ -1,7 +1,6 @@
 "use client";
 
 import type { SearchResponse } from "@/lib/api/search";
-import type { findAllAuthorIdsWithBooksCount } from "@/server/services/authors";
 import type { AuthorDocument } from "@/types/author";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
@@ -9,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { searchAuthors } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 
 import FilterContainer from "../search-results/filter-container";
 
@@ -37,7 +36,7 @@ const DEBOUNCE_DELAY = 300;
 
 interface AuthorsFilterProps {
   initialAuthorsResponse: Awaited<ReturnType<typeof searchAuthors>>;
-  booksCount: Awaited<ReturnType<typeof findAllAuthorIdsWithBooksCount>>;
+
   currentAuthors: string[];
   selectedAuthorsResponse: SearchResponse<AuthorDocument>["results"] | null;
   filters?: Record<string, any>;
@@ -47,12 +46,11 @@ export default function AuthorsFilterClient({
   currentAuthors,
   initialAuthorsResponse,
   selectedAuthorsResponse,
-  booksCount,
+
   filters,
 }: AuthorsFilterProps) {
   const t = useTranslations();
 
-  const formatter = useFormatter();
   const [selectedAuthors, setSelectedAuthors] =
     useState<string[]>(currentAuthors);
 
@@ -173,12 +171,6 @@ export default function AuthorsFilterClient({
     };
   }, [pageToResponse, selectedAuthorsResponse]);
 
-  const authorIdToBooksCount = useMemo(() => {
-    return Object.fromEntries(
-      booksCount.map((item) => [item.id, item.numberOfBooks]),
-    );
-  }, [booksCount]);
-
   return (
     <FilterContainer
       title={t("entities.author")}
@@ -203,12 +195,7 @@ export default function AuthorsFilterClient({
           const author = item;
           const authorId = author.id;
 
-          const booksCount = formatter.number(
-            authorIdToBooksCount[authorId] ?? 0,
-          );
-
           const name = item.primaryName;
-          const title = `${name} (${booksCount})`;
 
           return (
             <FilterContainer.Checkbox
@@ -216,8 +203,7 @@ export default function AuthorsFilterClient({
               id={authorId}
               checked={selectedAuthors.includes(authorId)}
               onCheckedChange={() => handleChange(authorId)}
-              title={title}
-              count={booksCount}
+              title={name}
             >
               {name}
             </FilterContainer.Checkbox>

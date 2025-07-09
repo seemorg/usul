@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import GoogleIcon from "@/components/icons/google";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
@@ -9,54 +10,64 @@ import { Label } from "@/components/ui/label";
 import Spinner from "@/components/ui/spinner";
 import { signIn } from "@/lib/auth";
 import { cn } from "@/lib/utils";
+import { useMutation } from "@tanstack/react-query";
 import { CheckCircle2Icon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { useIsClient } from "usehooks-ts";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSendingEmail, setIsSendingEmail] = useState(false);
-  const [isSentEmail, setIsSentEmail] = useState(false);
   const t = useTranslations();
+  const [email, setEmail] = useState("");
+  const [isSentEmail, setIsSentEmail] = useState(false);
+  const searchParams = useSearchParams();
+  const _redirect = searchParams.get("r");
+  const isClient = useIsClient();
+  const redirect = _redirect && _redirect.startsWith("/") ? _redirect : "/";
+  const callbackURL = isClient
+    ? `${window.location.origin}${redirect}`
+    : undefined;
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSendingEmail(true);
-    try {
+  const { mutate: sendMagicLink, isPending: isSendingEmail } = useMutation({
+    mutationFn: async (_email: string) => {
       await signIn.magicLink({
-        email,
+        email: _email,
         fetchOptions: {
           throw: true,
         },
-        callbackURL: window.location.origin,
+        callbackURL,
       });
+    },
+    onSuccess: () => {
       setIsSentEmail(true);
-    } catch {
-      toast.error("Something went wrong");
-    } finally {
-      setIsSendingEmail(false);
-    }
-  };
+    },
+    onError: () => {
+      toast.error(t("common.error"));
+    },
+  });
 
-  const handleGoogleLogin = async () => {
-    setIsLoading(true);
-    try {
+  const { mutate: googleLogin, isPending: isLoading } = useMutation({
+    mutationFn: async () => {
       await signIn.social({
         provider: "google",
         fetchOptions: {
           throw: true,
         },
-        callbackURL: window.location.origin,
+        callbackURL,
       });
-    } catch {
-      toast.error("Something went wrong");
-    } finally {
-      setIsLoading(false);
-    }
+    },
+
+    onError: () => {
+      toast.error(t("common.error"));
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    sendMagicLink(email);
   };
 
   return (
@@ -109,7 +120,7 @@ export function LoginForm({
           <Button
             variant="outline"
             className="w-full gap-2"
-            onClick={handleGoogleLogin}
+            onClick={() => googleLogin()}
             disabled={isLoading}
           >
             {isLoading ? (

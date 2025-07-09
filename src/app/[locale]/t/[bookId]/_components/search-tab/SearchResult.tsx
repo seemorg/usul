@@ -3,19 +3,16 @@ import type { TurathContent } from "@/types/api/content/turath";
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { useParams, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import Spinner from "@/components/ui/spinner";
-import { getBookPageIndex } from "@/lib/api";
 import { removeDiacritics } from "@/lib/diacritics";
 import { useBookShareUrl } from "@/lib/share";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
-import { useMutation } from "@tanstack/react-query";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 import { ShareIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
-import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 const SearchResult = ({
   result,
@@ -39,36 +36,12 @@ const SearchResult = ({
 
   const { copyUrl: copySearchResultUrl } = useBookShareUrl();
 
-  const { isPending, mutateAsync, data } = useMutation({
-    mutationKey: ["page"],
-    mutationFn: async (args: { page: number; vol?: string }) => {
-      const result = await getBookPageIndex(slug, {
-        page: args.page,
-        volume: args.vol,
-        versionId: versionId ?? undefined,
-      });
-
-      if (!result || "type" in result) {
-        return null;
-      }
-
-      return result;
-    },
-  });
-
   const page = result.metadata.pages[0];
 
-  const handleNavigate = async () => {
-    if (!page || page.page === -1 || isPending) return;
+  const handleNavigate = () => {
+    if (!page || page.page === -1) return;
 
-    let index: number;
-    if ("index" in page) {
-      index = page.index as number;
-    } else {
-      const result = await mutateAsync({ page: page.page, vol: page.volume });
-      if (!result || result.index === null) return;
-      index = result.index;
-    }
+    const index = page.index;
 
     if (isSinglePage) {
       router.push(
@@ -83,20 +56,9 @@ const SearchResult = ({
   };
 
   const handleShare = async () => {
-    if (!page || page.page === -1 || isPending) return;
+    if (!page || page.page === -1) return;
 
-    let idx: number;
-
-    if ("index" in page) {
-      idx = page.index as number;
-    } else if (data) {
-      if (data.index === null) return;
-      idx = data.index;
-    } else {
-      const result = await mutateAsync({ page: page.page, vol: page.volume });
-      if (!result || result.index === null) return;
-      idx = result.index;
-    }
+    const idx = page.index;
 
     await copySearchResultUrl({
       slug,
@@ -129,13 +91,8 @@ const SearchResult = ({
               e.stopPropagation(); // don't trigger navigate
               void handleShare();
             }}
-            disabled={isPending}
           >
-            {isPending ? (
-              <Spinner className="size-4" />
-            ) : (
-              <ShareIcon className="size-4" />
-            )}
+            <ShareIcon className="size-4" />
           </Button>
         </div>
 

@@ -115,7 +115,7 @@ FilterContainer.Checkbox = function FilterContainerCheckbox({
           {children}
         </span>
 
-        {typeof count === "number" ? (
+        {count ? (
           <span className="rounded-md px-1.5 py-0.5 text-xs text-gray-600 dark:text-gray-300">
             {count}
           </span>

@@ -11,7 +11,7 @@ type Props = Omit<ComponentProps<typeof RegionsFilterClient>, "regions"> & {
 
 export default async function RegionsFilter(props: Props) {
   const regions = await findAllRegionsWithBooksCount(
-    { ...props.filters, countType: props.countType },
+    props.filters,
     await getPathLocale(),
   );
 
