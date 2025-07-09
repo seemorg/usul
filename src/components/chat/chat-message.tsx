@@ -3,10 +3,10 @@ import type { UIMessage } from "ai";
 import { memo } from "react";
 import StatusLabel from "@/app/[locale]/chat/status-label";
 import { Markdown } from "@/components/chat/markdown";
-import { OpenAILogo } from "@/components/Icons";
 import { cn } from "@/lib/utils";
 import equal from "fast-deep-equal";
 
+import { LogoIcon } from "../icons/logo";
 import { MessageActions } from "./message-actions";
 
 export type ChatMessageProps = {
@@ -15,6 +15,12 @@ export type ChatMessageProps = {
   isLoading?: boolean;
   isScreenshot?: boolean;
 };
+
+const Avatar = () => (
+  <div className="flex size-8 shrink-0">
+    <LogoIcon className="text-primary size-6 shrink-0" />
+  </div>
+);
 
 const ChatMessage = ({
   message,
@@ -53,11 +59,7 @@ const ChatMessage = ({
             : "",
         )}
       >
-        {message.role === "assistant" && (
-          <div className="dark:bg-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white dark:text-white">
-            <OpenAILogo className="size-5 shrink-0" />
-          </div>
-        )}
+        {message.role === "assistant" && <Avatar />}
 
         <bdi
           className={cn(
@@ -114,14 +116,9 @@ export default memo(ChatMessage, (prevProps, nextProps) => {
 export function LoadingMessage() {
   return (
     <div className="flex justify-start">
-      <div className="chat-message text-foreground group flex max-w-full flex-col items-start gap-3 text-wrap @sm:max-w-[90%] @sm:flex-row">
-        <div className="dark:bg-accent flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gray-300 bg-white dark:text-white">
-          <OpenAILogo className="size-5 shrink-0" />
-        </div>
-
-        <bdi className="block text-sm">
-          <div className="loader" />
-        </bdi>
+      <div className="chat-message text-foreground group flex max-w-full flex-col items-start gap-3 text-sm text-wrap @sm:max-w-[90%] @sm:flex-row">
+        <Avatar />
+        <StatusLabel isLoading annotations={[]} />
       </div>
     </div>
   );

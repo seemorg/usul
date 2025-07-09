@@ -22,6 +22,7 @@ export function useBookChat(bookId: string, versionId: string) {
   const result = useChat({
     id: `book-chat-${bookId}-${versionId}`,
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/${bookId}/${aiVersion}`,
+    experimental_throttle: 100,
   });
 
   useEffect(() => {
