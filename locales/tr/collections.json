@@ -22,8 +22,5 @@
     "unlisted": "Liste Dışı",
     "description": "Genel koleksiyonlar herkese görünür. Liste dışı koleksiyonlara yalnızca doğrudan bağlantı üzerinden erişilebilir."
   },
-  "danger-zone": {
-    "title": "Tehlikeli Bölge",
-    "description": "Bir koleksiyonu sildikten sonra geri dönüş yoktur. Lütfen emin olun."
-  }
+  "my-collections": "Koleksiyonlarım"
 }
