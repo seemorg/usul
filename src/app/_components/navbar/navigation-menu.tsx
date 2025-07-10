@@ -106,6 +106,18 @@ export default function HomepageNavigationMenu() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
+        <NavigationMenuLink asChild>
+          <Link
+            href="/chat"
+            className="group hover:bg-accent/10 focus:bg-accent/10 data-active:bg-accent/10 data-[state=open]:bg-accent/10 inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-transparent px-2 py-2 text-sm font-medium transition-colors focus:outline-hidden disabled:pointer-events-none disabled:opacity-5"
+          >
+            AI Chat
+            <span className="bg-primary-foreground text-primary rounded-full px-2 py-0.5 text-xs">
+              New!
+            </span>
+          </Link>
+        </NavigationMenuLink>
       </NavigationMenuList>
     </NavigationMenu>
   );

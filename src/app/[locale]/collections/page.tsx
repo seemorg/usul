@@ -36,7 +36,8 @@ export default function CollectionsPage() {
         <h1 className="text-4xl font-bold lg:text-5xl">
           {t("entities.collections")}
         </h1>
-        <Button asChild className="gap-2">
+
+        <Button asChild className="gap-2 rounded-full">
           <Link href={navigation.collections.add()}>
             <PlusIcon className="size-4" />
             {t("common.create")}

@@ -32,7 +32,7 @@ export const useCollectionBySlug = (
   return useQuery({
     queryKey: collectionKeys.bySlug(slug, params),
     queryFn: () => getCollectionBySlug(slug, params),
-    enabled: !!slug,
+    enabled: !!slug || slug === "",
     refetchOnMount: true,
     placeholderData: keepPreviousData,
   });

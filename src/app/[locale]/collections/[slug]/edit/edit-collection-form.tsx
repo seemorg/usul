@@ -6,11 +6,9 @@ import { useAddBookToCollection } from "@/react-query/mutations/collections";
 import { useCollectionBySlug } from "@/react-query/queries/collections";
 import { useTranslations } from "next-intl";
 
-import CollectionForm from "../../collection-form";
 import CollectionFormSkeleton from "../../collection-form-skeleton";
 import CollectionBooks from "../collection-books";
 import BookSearch from "./book-search";
-import DangerZone from "./danger-zone";
 
 export default function EditCollectionForm() {
   const { slug } = useParams();
@@ -42,42 +40,23 @@ export default function EditCollectionForm() {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="max-w-2xl">
-        <CollectionForm
-          mode="edit"
-          initialData={{
-            name: collection.name,
-            description: collection.description,
-            slug: collection.slug,
-            visibility: collection.visibility,
-          }}
-          collectionId={collection.id}
-        />
-      </div>
+      <div>
+        <div className="mb-4">
+          <label className="mb-2 text-sm font-medium">
+            {t("entities.x-texts", { count: books.length })}
+          </label>
 
-      <div className="border-t pt-6">
-        <div>
-          <div className="mb-4">
-            <label className="mb-2 text-sm font-medium">
-              {t("entities.x-texts", { count: books.length })}
-            </label>
-
-            <BookSearch
-              onBookSelect={handleAddBook}
-              excludeBookIds={excludeBookIds}
-              placeholder={t("entities.search-for", {
-                entity: t("entities.text"),
-              })}
-              isAdding={isPending}
-            />
-          </div>
-
-          <CollectionBooks slug={collection.slug} showDeleteButton listOnly />
+          <BookSearch
+            onBookSelect={handleAddBook}
+            excludeBookIds={excludeBookIds}
+            placeholder={t("entities.search-for", {
+              entity: t("entities.text"),
+            })}
+            isAdding={isPending}
+          />
         </div>
-      </div>
 
-      <div className="border-t pt-6">
-        <DangerZone collection={collection} />
+        <CollectionBooks slug={collection.slug} showDeleteButton listOnly />
       </div>
     </div>
   );
