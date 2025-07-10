@@ -169,6 +169,7 @@
   "error": "Sesuatu yang tidak kena. Sila cuba lagi kemudian.",
   "delete-confirmation": {
     "title": "Adakah anda benar-benar pasti?",
-    "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami."
+    "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami.",
+    "type-to-confirm": "Sila taip <strong>{text}</strong> untuk mengesahkan"
   }
 }

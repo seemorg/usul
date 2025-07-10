@@ -169,6 +169,7 @@
   "error": "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.",
   "delete-confirmation": {
     "title": "Kesinlikle emin misiniz?",
-    "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır."
+    "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır.",
+    "type-to-confirm": "<strong>{text}</strong> yazın onaylamak için"
   }
 }

@@ -28,6 +28,8 @@
   "year": "السنة",
   "years": "السنوات",
   "x-years": "{count, plural, one {سنة واحدة} two {# سنتان} few {# سنوات} many {# سنوات} other {# سنوات}}",
+  "chat": "الدردشة",
+  "chats": "الدردشات",
   "search-for": "البحث عن {entity}",
   "search-within": "البحث داخل {entity}...",
   "search-x": "البحث {count, number} {entity}",
