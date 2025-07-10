@@ -14,7 +14,7 @@ import EditCollectionModal from "./edit-collection-modal";
 
 export const CollectionsListSkeleton = () => (
   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-    {Array.from({ length: 6 }).map((_, i) => (
+    {Array.from({ length: 4 }).map((_, i) => (
       <div
         key={i}
         className="bg-card flex flex-col justify-between rounded-2xl p-5"

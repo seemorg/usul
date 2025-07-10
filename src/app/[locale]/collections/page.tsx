@@ -34,7 +34,7 @@ export default function CollectionsPage() {
     <Container className="max-w-4xl pt-8 lg:pt-12 2xl:max-w-4xl">
       <div className="flex items-center justify-between gap-10">
         <h1 className="text-4xl font-bold lg:text-5xl">
-          {t("entities.collections")}
+          {t("collections.my-collections")}
         </h1>
 
         <Button asChild className="gap-2 rounded-full">

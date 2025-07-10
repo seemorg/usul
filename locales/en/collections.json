@@ -21,5 +21,6 @@
     "public": "Public",
     "unlisted": "Unlisted",
     "description": "Public collections are visible to everyone. Unlisted collections are only accessible via direct link."
-  }
+  },
+  "my-collections": "My Collections"
 }
