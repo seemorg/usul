@@ -48,7 +48,8 @@ export default function ReaderPage({
     const typedPage = page as TurathContent["pages"][number];
     const text = typedPage.text
       .replaceAll("</span>.", "</span>")
-      .split(`<br>`)
+      .replaceAll("\n", "<br>")
+      .split("<br>")
       .map((block) => {
         let final = block;
 
