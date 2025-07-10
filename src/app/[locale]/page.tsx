@@ -10,7 +10,7 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import { routing } from "@/i18n/config";
-import { getHomepageGenres } from "@/lib/api";
+import { getHomepageGenres } from "@/lib/api/genres";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";

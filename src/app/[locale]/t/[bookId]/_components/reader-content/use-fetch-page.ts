@@ -4,7 +4,7 @@ import type { PdfContent } from "@/types/api/content/pdf";
 import type { TurathContent } from "@/types/api/content/turath";
 import { useMemo } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { getBook } from "@/lib/api";
+import { getBook } from "@/lib/api/books";
 import { useQuery } from "@tanstack/react-query";
 
 export type DefaultPages = NonNullable<

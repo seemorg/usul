@@ -55,10 +55,9 @@ export const useCreateCollection = () => {
       console.error("Error creating collection:", err);
       toast.error("Failed to create collection");
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Collection created successfully");
-      const newCollection = data!.data;
-      router.push(navigation.collections.edit(newCollection.slug));
+      router.push(navigation.collections.all());
     },
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });
@@ -128,7 +127,6 @@ export const useUpdateCollection = ({
 
 export const useDeleteCollection = () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   return useMutation({
     mutationFn: deleteCollection,
@@ -159,7 +157,6 @@ export const useDeleteCollection = () => {
     },
     onSuccess: () => {
       toast.success("Collection deleted successfully");
-      router.push(navigation.collections.all());
     },
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });

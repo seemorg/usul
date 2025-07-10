@@ -10,7 +10,7 @@ import {
   RawDialogContent,
   RawDialogTitle,
 } from "@/components/ui/dialog";
-import { getAuthorBySlug } from "@/lib/api";
+import { getAuthorBySlug } from "@/lib/api/authors";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";

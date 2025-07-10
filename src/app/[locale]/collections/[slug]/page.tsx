@@ -11,7 +11,7 @@ async function ViewCollectionPage({
 
   return (
     <Container className="mt-10">
-      <CollectionBooks slug={slug} filters />
+      <CollectionBooks slug={slug} />
     </Container>
   );
 }

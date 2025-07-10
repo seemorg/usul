@@ -1,4 +1,4 @@
-import type { findAllYearRanges } from "@/server/services/years";
+import type { Century } from "@/types/api/century";
 import { navigation } from "@/lib/urls";
 import { useFormatter, useTranslations } from "next-intl";
 
@@ -8,7 +8,7 @@ export default function CenturySearchResult({
   result,
   prefetch = true,
 }: {
-  result: Awaited<ReturnType<typeof findAllYearRanges>>[number];
+  result: Century;
   prefetch?: boolean;
 }) {
   const t = useTranslations();

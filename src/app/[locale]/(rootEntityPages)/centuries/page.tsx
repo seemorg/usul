@@ -2,9 +2,9 @@ import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import CenturySearchResult from "@/components/century-search-result";
 import SearchResults from "@/components/search-results";
+import { findAllCenturies } from "@/lib/api/centuries";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { findAllYearRanges } from "@/server/services/years";
 import Fuse from "fuse.js";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
@@ -34,7 +34,7 @@ async function CenturiesPage({ searchParams }: PageProps) {
   const qString = String(q);
 
   const t = await getTranslations("entities");
-  const centuries = await findAllYearRanges();
+  const centuries = await findAllCenturies();
 
   const matches =
     qString.length > 0

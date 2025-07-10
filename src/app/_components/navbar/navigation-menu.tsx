@@ -9,6 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useTotalEntities } from "@/contexts/total-entities.context";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useDemo } from "@/stores/demo";
@@ -18,7 +19,7 @@ import type { NavItem } from "./links";
 import { aboutItems, browseItems, contributeItems } from "./links";
 
 export default function HomepageNavigationMenu() {
-  const t = useTranslations("common");
+  const t = useTranslations();
   const setDemo = useDemo((s) => s.setIsOpen);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const total = useTotalEntities();
@@ -30,10 +31,10 @@ export default function HomepageNavigationMenu() {
           key={idx}
           href={item.href}
           icon={item.icon}
-          title={t(item.title)}
+          title={t(`common.${item.title}`)}
           target={item.href.startsWith("mailto:") ? "_blank" : undefined}
         >
-          {t(item.description, total)}
+          {t(`common.${item.description}`, total)}
         </ListItem>
       );
     }
@@ -44,10 +45,10 @@ export default function HomepageNavigationMenu() {
           key={idx}
           onClick={() => setDemo(true)}
           icon={item.icon}
-          title={t(item.title)}
+          title={t(`common.${item.title}`)}
           className="cursor-pointer"
         >
-          {t(item.description, total)}
+          {t(`common.${item.description}`, total)}
         </ListItem>
       );
     }
@@ -57,11 +58,11 @@ export default function HomepageNavigationMenu() {
         key={idx}
         href={item.href}
         icon={item.icon}
-        title={t(item.title)}
+        title={t(`common.${item.title}`)}
         onClick={() => setIsModalOpen(true)}
         className="cursor-pointer"
       >
-        {t(item.description, total)}
+        {t(`common.${item.description}`, total)}
       </ListItem>
     );
   };
@@ -73,7 +74,7 @@ export default function HomepageNavigationMenu() {
       <NavigationMenuList>
         <NavigationMenuItem value="1">
           <NavigationMenuTrigger>
-            {t("navigation.browse.title")}
+            {t("common.navigation.browse.title")}
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
@@ -85,7 +86,7 @@ export default function HomepageNavigationMenu() {
 
         <NavigationMenuItem value="2">
           <NavigationMenuTrigger>
-            {t("navigation.about.title")}
+            {t("common.navigation.about.title")}
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
@@ -97,7 +98,7 @@ export default function HomepageNavigationMenu() {
 
         <NavigationMenuItem value="3">
           <NavigationMenuTrigger>
-            {t("navigation.contribute.title")}
+            {t("common.navigation.contribute.title")}
           </NavigationMenuTrigger>
 
           <NavigationMenuContent>
@@ -109,12 +110,12 @@ export default function HomepageNavigationMenu() {
 
         <NavigationMenuLink asChild>
           <Link
-            href="/chat"
+            href={navigation.chat.all()}
             className="group hover:bg-accent/10 focus:bg-accent/10 data-active:bg-accent/10 data-[state=open]:bg-accent/10 inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-transparent px-2 py-2 text-sm font-medium transition-colors focus:outline-hidden disabled:pointer-events-none disabled:opacity-5"
           >
-            AI Chat
+            {t("chat.input.ai_chat")}
             <span className="bg-primary-foreground text-primary rounded-full px-2 py-0.5 text-xs">
-              New!
+              {t("common.new")}
             </span>
           </Link>
         </NavigationMenuLink>

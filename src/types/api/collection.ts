@@ -6,5 +6,6 @@ export type Collection = {
   visibility: "PUBLIC" | "UNLISTED";
   createdAt: Date;
   updatedAt: Date;
+  isOwner?: boolean;
   books?: string[];
 };

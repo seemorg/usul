@@ -1,5 +1,5 @@
 import type { ComponentProps } from "react";
-import { findAllGenresWithBooksCount } from "@/server/services/genres";
+import { findAllGenresWithBooksCount } from "@/lib/api/genres";
 
 import GenresFilterClient from "./client";
 

@@ -68,13 +68,13 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       <header
         className={cn(
           layout === "reader" ? "relative" : "fixed",
-          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:h-20 lg:px-10 xl:grid xl:grid-cols-12",
+          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:grid lg:h-20 lg:grid-cols-12 lg:px-10",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
         )}
       >
-        <div className="xl:col-span-2">
+        <div className="lg:col-span-2">
           <Link
             href="/"
             className="flex w-fit items-center gap-3"
@@ -89,11 +89,11 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
         </div>
 
         {layout === "home" ? (
-          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none lg:justify-center xl:col-span-8 xl:px-0">
+          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 lg:col-span-8 lg:flex lg:max-w-none lg:justify-center lg:px-0">
             <HomepageNavigationMenu />
           </div>
         ) : (
-          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 md:mx-auto md:max-w-3xl md:px-8 lg:mx-0 lg:flex lg:max-w-none xl:col-span-8 xl:px-0">
+          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 lg:col-span-8 lg:mx-0 lg:flex lg:max-w-none lg:px-0">
             <SearchBar />
           </div>
         )}
@@ -141,7 +141,7 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
           </Button>
         </div>
 
-        <div className="hidden lg:flex lg:items-center lg:justify-end lg:gap-3 xl:col-span-2">
+        <div className="hidden lg:col-span-2 lg:flex lg:items-center lg:justify-end lg:gap-3">
           <LocaleSwitcher />
           <ThemeToggle />
           <ProfileDropdown />
