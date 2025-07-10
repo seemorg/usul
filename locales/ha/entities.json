@@ -28,6 +28,8 @@
   "year": "Shekara",
   "years": "Shekaru",
   "x-years": "{count, plural, one {Shekara daya} other {# Shekaru}}",
+  "chat": "Tattaunawa",
+  "chats": "Tattaunawa",
   "search-for": "Bincika {entity}",
   "search-within": "Bincika cikin {entity}...",
   "search-x": "Nema {count, number} {entity}",

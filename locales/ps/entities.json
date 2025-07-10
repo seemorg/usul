@@ -28,6 +28,8 @@
   "year": "کال",
   "years": "کلونه",
   "x-years": "{count, plural, one {یو کال} other {# کلونه}}",
+  "chat": "\n",
+  "chats": "\n",
   "search-for": "د {entity} پلټنه وکړئ",
   "search-within": "د {entity} دننه پلټنه وکړئ...",
   "search-x": "د {count, number} {entity} پلټنه",

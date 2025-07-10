@@ -169,6 +169,7 @@
   "error": "Wax baa khaldamay. Fadlan isku day mar kale.",
   "delete-confirmation": {
     "title": "Ma hubtaa gabi ahaanba?",
-    "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada."
+    "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada.",
+    "type-to-confirm": "Fadlan ku qor <strong>{text}</strong> si aad u xaqiijiso"
   }
 }
