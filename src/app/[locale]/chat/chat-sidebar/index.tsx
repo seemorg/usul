@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
+import { DeleteConfirmation } from "@/components/delete-confirmation";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import {
@@ -24,6 +25,7 @@ import {
   MessageCirclePlusIcon,
   PencilLineIcon,
   SearchIcon,
+  Trash2Icon,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -40,6 +42,7 @@ export function AppSidebar() {
   const hasChats = chats && chats.length > 0;
   const router = useRouter();
   const sidebar = useSidebar();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const isLoading = !chats;
 
   const groupedChats = useMemo(() => {
@@ -67,7 +70,12 @@ export function AppSidebar() {
     if (sidebar.openMobile && sidebar.isMobile) {
       sidebar.setOpenMobile(false);
     }
-  }, [sidebar]);
+  }, [router, sidebar]);
+
+  const clearChats = useCallback(async () => {
+    await db.chats.clear();
+    router.push(navigation.chat.all());
+  }, [router]);
 
   return (
     <Sidebar
@@ -120,14 +128,33 @@ export function AppSidebar() {
           <div>
             <SidebarGroup className="group-data-[collapsible=icon]:hidden">
               <div className="flex items-center justify-between">
-                <SidebarGroupLabel>{t("chat.sidebar.chats")}</SidebarGroupLabel>
-                <Button
-                  variant="ghost"
-                  className="hover:bg-accent text-muted-foreground size-8"
-                  size="icon"
-                >
-                  <SearchIcon className="size-3" />
-                </Button>
+                <SidebarGroupLabel>{t("entities.chats")}</SidebarGroupLabel>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    className="hover:bg-accent text-muted-foreground size-8"
+                    size="icon"
+                  >
+                    <SearchIcon className="size-3" />
+                  </Button>
+
+                  <Button
+                    variant="ghost"
+                    className="hover:bg-accent text-muted-foreground size-8"
+                    size="icon"
+                    onClick={() => setShowDeleteModal(true)}
+                  >
+                    <Trash2Icon className="size-3" />
+                  </Button>
+
+                  <DeleteConfirmation
+                    isOpen={showDeleteModal}
+                    setIsOpen={setShowDeleteModal}
+                    onConfirm={clearChats}
+                    entity={t("entities.chats")}
+                  />
+                </div>
               </div>
 
               <SidebarGroupContent>

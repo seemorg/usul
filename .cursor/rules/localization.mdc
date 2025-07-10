@@ -1,0 +1,16 @@
+---
+description: Localization
+alwaysApply: true
+---
+
+Whenever you're adding a new string to the codebase, make sure to add it to a translation file in `locales/en`.
+
+If you're using a translation key in the codebase, that's how to use it:
+
+```tsx
+import { useTranslations } from "next-intl";
+
+const t = useTranslations();
+
+t("common.delete"); // maps to locales/en/common.json -> "delete"
+```

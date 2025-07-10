@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import {
   Dialog,
@@ -9,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useTranslations } from "next-intl";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
@@ -18,6 +17,7 @@ interface DeleteConfirmationProps {
   setIsOpen: (isOpen: boolean) => void;
   title?: string;
   description?: string;
+  entity?: string;
   confirmText?: string;
   onConfirm: () => void;
   className?: string;
@@ -26,13 +26,15 @@ interface DeleteConfirmationProps {
 export function DeleteConfirmation({
   isOpen,
   setIsOpen,
-  title = "Are you sure?",
-  description = "This action cannot be undone.",
+  title,
+  description,
+  entity = "item",
   confirmText,
   onConfirm,
   className,
 }: DeleteConfirmationProps) {
   const [inputValue, setInputValue] = useState("");
+  const t = useTranslations("common");
 
   const handleConfirm = () => {
     onConfirm();
@@ -46,14 +48,17 @@ export function DeleteConfirmation({
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className={className}>
         <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>{description}</DialogDescription>
+          <DialogTitle>{title || t("delete-confirmation.title")}</DialogTitle>
+          <DialogDescription>
+            {description || t("delete-confirmation.description", { entity })}
+          </DialogDescription>
         </DialogHeader>
         {confirmText && (
           <div className="py-4">
             <p className="text-muted-foreground mb-2 text-sm">
-              Please type <span className="font-semibold">{confirmText}</span>{" "}
-              to confirm
+              {t.rich("delete-confirmation.type-to-confirm", {
+                text: confirmText,
+              })}
             </p>
             <Input
               value={inputValue}
@@ -70,14 +75,14 @@ export function DeleteConfirmation({
               setInputValue("");
             }}
           >
-            Cancel
+            {t("cancel")}
           </Button>
           <Button
             variant="destructive"
             onClick={handleConfirm}
             disabled={isConfirmDisabled}
           >
-            Delete
+            {t("delete")}
           </Button>
         </DialogFooter>
       </DialogContent>
