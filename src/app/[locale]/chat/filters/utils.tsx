@@ -26,7 +26,7 @@ export const FilterButton = ({
       {...props}
     >
       <Icon className="size-4" />
-      {label}
+      <span className="hidden sm:block">{label}</span>
 
       {count && count > 0 ? (
         <Badge className="size-4 items-center justify-center rounded-full p-0 text-xs">

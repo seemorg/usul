@@ -13,15 +13,26 @@ import DeleteCollectionModal from "./delete-collection-modal";
 import EditCollectionModal from "./edit-collection-modal";
 
 export const CollectionsListSkeleton = () => (
-  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
     {Array.from({ length: 6 }).map((_, i) => (
-      <div key={i} className="rounded-lg border p-6">
-        <Skeleton className="h-6 w-3/4" />
-        <Skeleton className="mt-2 h-4 w-full" />
+      <div
+        key={i}
+        className="bg-card flex flex-col justify-between rounded-2xl p-5"
+      >
+        <div className="flex items-center justify-between">
+          <Skeleton className="h-6 w-1/2" />
+          <Skeleton className="h-6 w-14 rounded-full" />
+        </div>
 
-        <div className="mt-4 flex gap-2">
-          <Skeleton className="h-8 w-16" />
-          <Skeleton className="h-8 w-16" />
+        <Skeleton className="mt-4 h-3 w-full" />
+        <Skeleton className="mt-1 h-3 w-3/4" />
+
+        <div className="mt-5 flex items-center justify-between">
+          <Skeleton className="h-9 w-16 rounded-full" />
+          <div className="flex gap-2">
+            <Skeleton className="size-8" />
+            <Skeleton className="size-8" />
+          </div>
         </div>
       </div>
     ))}

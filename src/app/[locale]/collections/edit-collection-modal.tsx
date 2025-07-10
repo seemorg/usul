@@ -38,6 +38,7 @@ export default function EditCollectionModal({
           size="icon"
           className="hover:bg-accent text-muted-foreground"
           tooltip={t("common.edit")}
+          tooltipProps={{ variant: "primary" }}
         >
           <PenLineIcon className="size-4" />
         </Button>
@@ -49,6 +50,7 @@ export default function EditCollectionModal({
             {t("common.edit-x", { entity: t("entities.collection") })}
           </DialogTitle>
         </DialogHeader>
+
         <div className="mt-4">
           {isLoading ? (
             <CollectionFormSkeleton />

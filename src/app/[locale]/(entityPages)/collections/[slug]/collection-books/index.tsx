@@ -3,7 +3,6 @@
 import type { BookDocument } from "@/types/book";
 import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import {
@@ -16,6 +15,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Skeleton } from "@/components/ui/skeleton";
+import TruncatedText from "@/components/ui/truncated-text";
 import { yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import {
@@ -81,17 +81,15 @@ export default function CollectionBooks({ slug }: { slug: string }) {
   if (!data) {
     return (
       <div className="w-full">
-        <div className="w-full">
-          <div className="flex items-start justify-between">
-            <div className="w-full">
-              <Skeleton className="h-10 w-2/5" />
-              <Skeleton className="mt-5 h-7 w-4/5" />
+        <div className="flex items-start justify-between">
+          <div className="w-full">
+            <Skeleton className="h-16 w-2/5" />
+            <Skeleton className="mt-5 h-7 w-4/5" />
 
-              <div className="mt-4 flex items-center gap-2">
-                <Skeleton className="h-6 w-12" />
-                <Skeleton className="h-5 w-20" />
-                <Skeleton className="h-5 w-20" />
-              </div>
+            <div className="mt-4 flex items-center gap-2">
+              <Skeleton className="h-6 w-12" />
+              <Skeleton className="h-5 w-20" />
+              <Skeleton className="h-5 w-20" />
             </div>
           </div>
         </div>
@@ -129,43 +127,34 @@ export default function CollectionBooks({ slug }: { slug: string }) {
 
   return (
     <div>
-      <div>
-        <h1 className="text-4xl font-bold lg:text-5xl">{collection.name}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {collection.name}
+      </h1>
+      {collection.description && (
+        <TruncatedText className="mt-7 text-lg">
+          {collection.description}
+        </TruncatedText>
+      )}
 
-        {collection.description && (
-          <p className="text-muted-foreground mt-5 text-lg">
-            {collection.description}
-          </p>
-        )}
-
-        <DottedList
-          className="mt-4"
-          items={[
-            <Badge
-              variant={
-                collection.visibility === "PUBLIC" ? "default" : "secondary"
-              }
-              className="capitalize"
-            >
-              {collection.visibility.toLowerCase()}
-            </Badge>,
-            {
-              text: t("entities.x-texts", {
-                count: collection.totalBooks,
-              }),
-              className: "text-muted-foreground",
-            },
-          ]}
-        />
-      </div>
+      <DottedList
+        className="mt-9"
+        items={[
+          <p>
+            {t("entities.x-texts", {
+              count: collection.totalBooks,
+            })}
+          </p>,
+        ]}
+      />
 
       {/* Book search input for collection owners */}
       {isOwner && (
-        <div className={cn("mt-8", "border-t pt-5")}>
+        <div className="mt-8 border-t pt-5">
           <div className="mb-4">
             <label className="mb-2 block text-sm font-medium">
               Add {t("entities.text")}
             </label>
+
             <BookSearch
               onBookSelect={handleAddBook}
               excludeBookIds={excludeBookIds}
@@ -178,7 +167,7 @@ export default function CollectionBooks({ slug }: { slug: string }) {
         </div>
       )}
 
-      <div className={cn("border-t pt-5", "mt-10 sm:mt-16", isOwner && "mt-5")}>
+      <div className={cn("border-t pt-5", isOwner ? "mt-5" : "mt-10 sm:mt-16")}>
         <div className="grid grid-cols-4 gap-10 sm:gap-6">
           <div className="hidden w-full sm:block">
             <div className="flex flex-col gap-5">{filtersComp}</div>

@@ -50,6 +50,7 @@ export default function DeleteCollectionModal({
           size="icon"
           className="hover:bg-accent text-muted-foreground"
           tooltip={t("common.delete")}
+          tooltipProps={{ variant: "primary" }}
         >
           <Trash2Icon className="size-4" />
         </Button>

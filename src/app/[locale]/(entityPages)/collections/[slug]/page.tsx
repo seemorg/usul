@@ -1,5 +1,3 @@
-import Container from "@/components/ui/container";
-
 import CollectionBooks from "./collection-books";
 
 async function ViewCollectionPage({
@@ -9,11 +7,7 @@ async function ViewCollectionPage({
 }) {
   const { slug } = await params;
 
-  return (
-    <Container className="mt-10">
-      <CollectionBooks slug={slug} />
-    </Container>
-  );
+  return <CollectionBooks slug={slug} />;
 }
 
 export default ViewCollectionPage;

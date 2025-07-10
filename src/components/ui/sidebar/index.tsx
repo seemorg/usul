@@ -274,9 +274,9 @@ function SidebarTrigger({
       {...props}
     >
       {open ? (
-        <PanelLeftCloseIcon className="text-foreground size-4 rtl:rotate-180" />
+        <PanelLeftCloseIcon className="text-muted-foreground size-5 rtl:rotate-180" />
       ) : (
-        <PanelLeftOpenIcon className="text-foreground size-4 rtl:rotate-180" />
+        <PanelLeftOpenIcon className="text-muted-foreground size-5 rtl:rotate-180" />
       )}
       <span className="sr-only">Toggle Sidebar</span>
     </Button>

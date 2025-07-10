@@ -140,6 +140,7 @@ export default function CollectionForm({
                   {...field}
                   placeholder={t("collections.description.placeholder")}
                   rows={3}
+                  className="max-h-40"
                 />
               </FormControl>
               <FormMessage />
