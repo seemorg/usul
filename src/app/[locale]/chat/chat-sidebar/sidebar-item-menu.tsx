@@ -94,6 +94,7 @@ export function SidebarItemMenu({
         isOpen={isDeleteDialogOpen}
         setIsOpen={setIsDeleteDialogOpen}
         onConfirm={handleConfirmDelete}
+        entity={t("entities.chat")}
       />
     </>
   );

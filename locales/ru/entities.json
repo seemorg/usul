@@ -28,6 +28,8 @@
   "year": "Год",
   "years": "Годы",
   "x-years": "{count, plural, one {Один год} other {# Года}}",
+  "chat": "Чат",
+  "chats": "Чаты",
   "search-for": "Поиск {entity}",
   "search-within": "Поиск внутри {entity}...",
   "search-x": "Поиск {count, number} {entity}",

@@ -169,6 +169,7 @@
   "error": "Something went wrong. Please try again later.",
   "delete-confirmation": {
     "title": "Are you absolutely sure?",
-    "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers."
+    "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers.",
+    "type-to-confirm": "Please type <strong>{text}</strong> to confirm"
   }
 }

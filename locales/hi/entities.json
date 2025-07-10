@@ -28,6 +28,8 @@
   "year": "वर्ष",
   "years": "वर्षों",
   "x-years": "{count, plural, one {एक वर्ष} other {# वर्ष}}",
+  "chat": "चैट",
+  "chats": "चैट्स",
   "search-for": "{entity} के लिए खोजें",
   "search-within": "{entity} के भीतर खोजें...",
   "search-x": "{count, number} {entity} की खोज करें",

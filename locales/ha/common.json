@@ -169,6 +169,7 @@
   "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
   "delete-confirmation": {
     "title": "Ka tabbata sosai?",
-    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu."
+    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu.",
+    "type-to-confirm": "Da fatan shigar da <strong>{text}</strong> don tabbatarwa"
   }
 }

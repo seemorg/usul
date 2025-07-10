@@ -28,6 +28,8 @@
   "year": "Yıl",
   "years": "Yıllar",
   "x-years": "{count, plural, one {Bir yıl} other {# Yıl}}",
+  "chat": "Sohbet",
+  "chats": "Sohbetler",
   "search-for": "Bir {entity} ara",
   "search-within": "{entity} içinde ara...",
   "search-x": "{count, number} {entity} ara",

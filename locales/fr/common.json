@@ -169,6 +169,7 @@
   "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
   "delete-confirmation": {
     "title": "Êtes-vous absolument sûr?",
-    "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs."
+    "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs.",
+    "type-to-confirm": "Veuillez taper <strong>{text}</strong> pour confirmer"
   }
 }

@@ -28,6 +28,8 @@
   "year": "Sannad",
   "years": "Sannadaha",
   "x-years": "{count, plural, one {Hal sanno} other {# Sannadood}}",
+  "chat": "Soo Dhawoow",
+  "chats": "Soo Dhawoowyo",
   "search-for": "Raadi {entity}",
   "search-within": "Raadi gudaha {entity}...",
   "search-x": "Raadi {count, number} {entity}",

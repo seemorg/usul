@@ -28,6 +28,8 @@
   "year": "Año",
   "years": "Años",
   "x-years": "{count, plural, one {Un año} other {# Años}}",
+  "chat": "Chat",
+  "chats": "Chats",
   "search-for": "Buscar un {entity}",
   "search-within": "Buscar dentro de {entity}...",
   "search-x": "Buscar {count, number} {entity}",

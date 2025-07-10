@@ -2,7 +2,7 @@ import type { Message } from "ai";
 import type { EntityTable } from "dexie";
 import Dexie from "dexie";
 
-interface Chat {
+export interface Chat {
   id: string;
   title: string;
   messages: Message[];
@@ -10,13 +10,10 @@ interface Chat {
   updatedAt: Date;
 }
 
-const db = new Dexie("usul-chat") as Dexie & {
+export const db = new Dexie("usul-chat") as Dexie & {
   chats: EntityTable<Chat, "id">;
 };
 
 db.version(1).stores({
   chats: "id",
 });
-
-export type { Chat };
-export { db };

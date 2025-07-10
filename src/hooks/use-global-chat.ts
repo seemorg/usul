@@ -219,6 +219,12 @@ export function useGlobalChat({
     }
   }, [shouldSubmit, submit]);
 
+  useEffect(() => {
+    if (!effectiveChatId) {
+      chatRef.current = null;
+    }
+  }, [effectiveChatId]);
+
   return {
     messages,
     setMessages,
