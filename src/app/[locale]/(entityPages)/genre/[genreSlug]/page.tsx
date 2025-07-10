@@ -6,7 +6,7 @@ import BookSearchResult from "@/components/book-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
-import { getGenre } from "@/lib/api";
+import { getGenre } from "@/lib/api/genres";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";

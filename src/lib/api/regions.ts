@@ -1,10 +1,9 @@
-"use server";
-
-import type { PathLocale } from "@/lib/locale/utils";
 import type { ApiLocation } from "@/types/api/location";
 import type { ApiRegion } from "@/types/api/region";
 import { cache } from "react";
-import { apiFetch } from "@/lib/api/utils";
+
+import type { PathLocale } from "../locale/utils";
+import { apiFetch } from "./utils";
 
 export const findRegionBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {

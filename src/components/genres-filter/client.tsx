@@ -1,6 +1,6 @@
 "use client";
 
-import type { findAllGenresWithBooksCount } from "@/server/services/genres";
+import type { findAllGenresWithBooksCount } from "@/lib/api/genres";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";

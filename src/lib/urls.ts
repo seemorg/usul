@@ -29,7 +29,6 @@ export const navigation = {
     },
     bySlug: (slug: string) => `/collections/${slug}`,
     add: () => "/collections/add",
-    edit: (id: string) => `/collections/${id}/edit`,
   },
   regions: {
     all: () => "/regions",

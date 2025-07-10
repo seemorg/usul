@@ -14,7 +14,7 @@ import { searchGenres } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeftIcon, SearchIcon, TagIcon } from "lucide-react";
+import { ChevronLeftIcon, FoldersIcon, SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useDebounceValue } from "usehooks-ts";
 
@@ -164,7 +164,7 @@ const GenresFilter = () => {
     <Popover>
       <PopoverTrigger asChild>
         <FilterButton
-          icon={TagIcon}
+          icon={FoldersIcon}
           label={t("entities.genre")}
           count={selectedGenres.length}
         />

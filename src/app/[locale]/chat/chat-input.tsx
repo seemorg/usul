@@ -48,7 +48,7 @@ export function useChatInput({
   const resetHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = "112px";
+      textareaRef.current.style.height = "135px";
     }
   };
 
@@ -161,7 +161,7 @@ export function ChatTextarea({
       data-testid="multimodal-input"
       placeholder={t("chat.input.placeholder")}
       className={cn(
-        "bg-background max-h-[75dvh] min-h-28 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
+        "bg-background max-h-[75dvh] min-h-33.75 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
         className,
       )}
       rows={2}

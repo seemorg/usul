@@ -1,6 +1,6 @@
 import type { Locale } from "next-intl";
 import { notFound } from "next/navigation";
-import { getBookPage } from "@/lib/api";
+import { getBookPage } from "@/lib/api/books";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";

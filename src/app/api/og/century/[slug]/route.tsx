@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
+import { findCenturyBySlug } from "@/lib/api/centuries";
 import { loadFileOnEdge } from "@/lib/edge";
-import { findYearRangeBySlug } from "@/server/services/years";
 
 export const runtime = "edge";
 
@@ -34,7 +34,7 @@ export async function GET(
     notFound();
   }
 
-  const yearRange = await findYearRangeBySlug(slug);
+  const yearRange = await findCenturyBySlug(slug);
   if (!yearRange) {
     notFound();
   }

@@ -61,7 +61,7 @@ export default function MobileNavigationMenu({
   return (
     <Container className="py-18">
       {/* Profile Section - Always First and Expanded */}
-      <div className="border-border mt-4 mb-6 border-b pb-4">
+      <div className="border-border mt-5 mb-3 border-b pb-3">
         {session.isPending ? (
           <div className="flex items-center gap-3 py-2">
             <Skeleton className="size-10 rounded-full" />
@@ -167,6 +167,15 @@ export default function MobileNavigationMenu({
           </AccordionItem>
         ))}
       </Accordion>
+      <Link
+        href={navigation.chat.all()}
+        className="flex w-full items-center justify-start gap-2 py-4 text-sm font-semibold"
+      >
+        {t("chat.input.ai_chat")}
+        <span className="bg-primary-foreground text-primary rounded-full px-2 py-0.5 text-xs">
+          {t("common.new")}
+        </span>
+      </Link>
     </Container>
   );
 }

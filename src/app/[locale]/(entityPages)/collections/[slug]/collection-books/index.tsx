@@ -3,7 +3,6 @@
 import type { BookDocument } from "@/types/book";
 import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import {
@@ -16,14 +15,19 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { Skeleton } from "@/components/ui/skeleton";
+import TruncatedText from "@/components/ui/truncated-text";
 import { yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import { useRemoveBookFromCollection } from "@/react-query/mutations/collections";
+import {
+  useAddBookToCollection,
+  useRemoveBookFromCollection,
+} from "@/react-query/mutations/collections";
 import { useCollectionBySlug } from "@/react-query/queries/collections";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
 import { TrashIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+import BookSearch from "./book-search";
 import GenresFilter, { useGenresFilter } from "./genres-filter";
 import { Paginator, usePage } from "./paginator";
 import SearchBar, { useSearch } from "./search-bar";
@@ -51,22 +55,13 @@ const DeleteBookButton = ({
   );
 };
 
-export default function CollectionBooks({
-  slug,
-  showDeleteButton = false,
-  listOnly = false,
-  filters = false,
-}: {
-  slug: string;
-  showDeleteButton?: boolean;
-  listOnly?: boolean;
-  filters?: boolean;
-}) {
+export default function CollectionBooks({ slug }: { slug: string }) {
   const [search] = useSearch();
   const t = useTranslations();
   const [page] = usePage();
   const [sort] = useSort(yearsSorts.map((s) => s.value));
   const [genres] = useGenresFilter();
+
   const { data, isLoading, isFetching } = useCollectionBySlug(slug, {
     page,
     q: search,
@@ -76,6 +71,9 @@ export default function CollectionBooks({
     },
   });
 
+  const { mutate: addBookToCollection, isPending: isAddingBook } =
+    useAddBookToCollection();
+
   if (!data && !isLoading) {
     notFound();
   }
@@ -83,22 +81,18 @@ export default function CollectionBooks({
   if (!data) {
     return (
       <div className="w-full">
-        {!listOnly && (
+        <div className="flex items-start justify-between">
           <div className="w-full">
-            <div className="flex items-start justify-between">
-              <div className="w-full">
-                <Skeleton className="h-10 w-2/5" />
-                <Skeleton className="mt-5 h-7 w-4/5" />
+            <Skeleton className="h-16 w-2/5" />
+            <Skeleton className="mt-5 h-7 w-4/5" />
 
-                <div className="mt-4 flex items-center gap-2">
-                  <Skeleton className="h-6 w-12" />
-                  <Skeleton className="h-5 w-20" />
-                  <Skeleton className="h-5 w-20" />
-                </div>
-              </div>
+            <div className="mt-4 flex items-center gap-2">
+              <Skeleton className="h-6 w-12" />
+              <Skeleton className="h-5 w-20" />
+              <Skeleton className="h-5 w-20" />
             </div>
           </div>
-        )}
+        </div>
 
         <div className="mt-16 border-t sm:mt-22">
           <Skeleton className="min-h-50 w-full" />
@@ -112,58 +106,77 @@ export default function CollectionBooks({
   const results = data.results;
   const hasResults = results.hits.length > 0;
 
-  const filtersComp = filters ? (
+  // Check if current user owns the collection
+  const isOwner = collection.isOwner;
+
+  const filtersComp = (
     <>
       <GenresFilter bookIds={collection.books ?? []} isLoading={isFetching} />
     </>
-  ) : null;
+  );
+
+  const handleAddBook = (book: BookDocument) => {
+    addBookToCollection({
+      collectionId: collection.id,
+      bookId: book.id,
+    });
+  };
+
+  const books = results.hits;
+  const excludeBookIds = books.map((book) => book.id);
 
   return (
     <div>
-      {!listOnly && (
-        <div>
-          <h1 className="text-4xl font-bold lg:text-5xl">{collection.name}</h1>
+      <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
+        {collection.name}
+      </h1>
+      {collection.description && (
+        <TruncatedText className="mt-7 text-lg">
+          {collection.description}
+        </TruncatedText>
+      )}
 
-          {collection.description && (
-            <p className="text-muted-foreground mt-5 text-lg">
-              {collection.description}
-            </p>
-          )}
+      <DottedList
+        className="mt-9"
+        items={[
+          <p>
+            {t("entities.x-texts", {
+              count: collection.totalBooks,
+            })}
+          </p>,
+        ]}
+      />
 
-          <DottedList
-            className="mt-4"
-            items={[
-              <Badge
-                variant={
-                  collection.visibility === "PUBLIC" ? "default" : "secondary"
-                }
-                className="capitalize"
-              >
-                {collection.visibility.toLowerCase()}
-              </Badge>,
-              {
-                text: t("entities.x-texts", {
-                  count: collection.totalBooks,
-                }),
-                className: "text-muted-foreground",
-              },
-            ]}
-          />
+      {/* Book search input for collection owners */}
+      {isOwner && (
+        <div className="mt-8 border-t pt-5">
+          <div className="mb-4">
+            <label className="mb-2 block text-sm font-medium">
+              Add {t("entities.text")}
+            </label>
+
+            <BookSearch
+              onBookSelect={handleAddBook}
+              excludeBookIds={excludeBookIds}
+              placeholder={t("entities.search-for", {
+                entity: t("entities.text"),
+              })}
+              isAdding={isAddingBook}
+            />
+          </div>
         </div>
       )}
 
-      <div className={cn("border-t pt-5", listOnly ? "" : "mt-10 sm:mt-16")}>
+      <div className={cn("border-t pt-5", isOwner ? "mt-5" : "mt-10 sm:mt-16")}>
         <div className="grid grid-cols-4 gap-10 sm:gap-6">
-          {filtersComp && (
-            <div className="hidden w-full sm:block">
-              <div className="flex flex-col gap-5">{filtersComp}</div>
-            </div>
-          )}
+          <div className="hidden w-full sm:block">
+            <div className="flex flex-col gap-5">{filtersComp}</div>
+          </div>
 
           <div
             className={cn(
               "col-span-4",
-              filters ? "sm:col-span-3 sm:ltr:pl-1 sm:rtl:pr-1" : "",
+              "sm:col-span-3 sm:ltr:pl-1 sm:rtl:pr-1",
             )}
           >
             <div className="relative w-full">
@@ -182,38 +195,36 @@ export default function CollectionBooks({
                     <SearchSort sorts={yearsSorts} isLoading={isFetching} />
                   </div>
 
-                  {filtersComp && (
-                    <div className="col-span-4 sm:hidden">
-                      <Drawer>
-                        <DrawerTrigger asChild>
-                          <Button
-                            variant="outline"
-                            size="icon"
-                            className="h-10 w-10"
-                          >
-                            <AdjustmentsHorizontalIcon className="h-5 w-5" />
-                          </Button>
-                        </DrawerTrigger>
-                        <DrawerContent>
-                          <DrawerHeader>
-                            <DrawerTitle>Filters</DrawerTitle>
-                          </DrawerHeader>
+                  <div className="col-span-4 sm:hidden">
+                    <Drawer>
+                      <DrawerTrigger asChild>
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="h-10 w-10"
+                        >
+                          <AdjustmentsHorizontalIcon className="h-5 w-5" />
+                        </Button>
+                      </DrawerTrigger>
+                      <DrawerContent>
+                        <DrawerHeader>
+                          <DrawerTitle>Filters</DrawerTitle>
+                        </DrawerHeader>
 
-                          <div className="mt-5 flex max-h-[70svh] flex-col gap-5 overflow-y-scroll">
-                            {filtersComp}
-                          </div>
+                        <div className="mt-5 flex max-h-[70svh] flex-col gap-5 overflow-y-scroll">
+                          {filtersComp}
+                        </div>
 
-                          <DrawerFooter>
-                            <DrawerClose asChild>
-                              <Button variant="outline" className="flex-1">
-                                Close
-                              </Button>
-                            </DrawerClose>
-                          </DrawerFooter>
-                        </DrawerContent>
-                      </Drawer>
-                    </div>
-                  )}
+                        <DrawerFooter>
+                          <DrawerClose asChild>
+                            <Button variant="outline" className="flex-1">
+                              Close
+                            </Button>
+                          </DrawerClose>
+                        </DrawerFooter>
+                      </DrawerContent>
+                    </Drawer>
+                  </div>
                 </div>
               </div>
             </div>
@@ -224,7 +235,7 @@ export default function CollectionBooks({
                   {results.hits.map((result) => (
                     <div key={result.id} className="flex">
                       <BookSearchResult key={result.id} result={result} />
-                      {showDeleteButton && (
+                      {isOwner && (
                         <DeleteBookButton
                           book={result}
                           collectionId={collection.id}

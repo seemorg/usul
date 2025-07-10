@@ -1,6 +1,6 @@
 "use client";
 
-import type { findAllRegionsWithBooksCount } from "@/server/services/regions";
+import type { findAllRegionsWithBooksCount } from "@/lib/api/regions";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";

@@ -9,13 +9,12 @@ import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import YearFilterClient from "@/components/year-filter/client";
-import { getRegion } from "@/lib/api";
+import { findRegionBySlug } from "@/lib/api/regions";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { findRegionBySlug } from "@/server/services/regions";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -31,7 +30,7 @@ export const generateMetadata = async ({
 
   const pathLocale = await getPathLocale();
 
-  const region = await getRegion(regionSlug, { locale: pathLocale });
+  const region = await findRegionBySlug(regionSlug, pathLocale);
   if (!region) return {};
 
   return getMetadata({

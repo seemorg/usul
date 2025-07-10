@@ -21,7 +21,7 @@ export default function ChatLayout({
         <main className="bg-background relative h-[calc(100dvh-var(--navbar-height))] w-full">
           <div className="h-[var(--navbar-height)] w-full" />
           <SidebarTrigger
-            className="fixed top-[var(--navbar-height)] z-10 mt-3 sm:hidden ltr:left-1 rtl:right-1"
+            className="fixed top-[var(--navbar-height)] z-10 mt-4.5 sm:hidden ltr:left-1 rtl:right-1"
             tooltip={t("chat.sidebar.toggle_sidebar")}
             tooltipProps={{
               side: "right",

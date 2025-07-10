@@ -50,12 +50,14 @@ interface CollectionFormProps {
   mode: "create" | "edit";
   initialData?: FormData;
   collectionId?: string;
+  onSuccess?: () => void;
 }
 
 export default function CollectionForm({
   mode,
   initialData,
   collectionId,
+  onSuccess,
 }: CollectionFormProps) {
   const t = useTranslations();
   const schema = useMemo(
@@ -74,13 +76,15 @@ export default function CollectionForm({
   });
 
   const createMutation = useCreateCollection();
-  const updateMutation = useUpdateCollection();
+  const updateMutation = useUpdateCollection({ onSuccess });
 
   const isPending = createMutation.isPending || updateMutation.isPending;
 
   // Watch for name changes and auto-generate slug
   const name = form.watch("name");
   const isSlugDirty = form.formState.dirtyFields.slug;
+
+  const isFormValidating = form.formState.isSubmitting;
 
   useEffect(() => {
     // Only auto-generate slug if name changed and slug is not dirty
@@ -136,6 +140,7 @@ export default function CollectionForm({
                   {...field}
                   placeholder={t("collections.description.placeholder")}
                   rows={3}
+                  className="max-h-40"
                 />
               </FormControl>
               <FormMessage />
@@ -203,7 +208,7 @@ export default function CollectionForm({
         />
 
         <div className="flex gap-4 pt-4">
-          <Button type="submit" isLoading={isPending}>
+          <Button type="submit" isLoading={isFormValidating || isPending}>
             {mode === "create" ? t("common.create") : t("common.update")}
           </Button>
         </div>

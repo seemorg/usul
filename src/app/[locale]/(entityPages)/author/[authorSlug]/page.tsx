@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
-import { getAuthorBySlug } from "@/lib/api";
+import { getAuthorBySlug } from "@/lib/api/authors";
 import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
@@ -68,7 +68,7 @@ export const generateMetadata = async ({
       author: author.primaryName,
     }),
     description: truncatedDescription,
-    keywords: [author.primaryName, ...author.otherNames],
+    keywords: [author.primaryName, ...(author.otherNames ?? [])],
   });
 };
 
@@ -149,7 +149,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   );
 
   const bio = author.bio;
-  const otherNames = author.otherNames;
+  const otherNames = author.otherNames ?? [];
 
   return (
     <div>

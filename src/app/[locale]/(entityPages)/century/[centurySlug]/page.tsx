@@ -7,11 +7,11 @@ import GenresFilter from "@/components/genres-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import TruncatedText from "@/components/ui/truncated-text";
+import { findCenturyBySlug } from "@/lib/api/centuries";
 import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { findYearRangeBySlug } from "@/server/services/years";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -27,7 +27,7 @@ export const generateMetadata = async ({
 }) => {
   const { centurySlug, locale } = await params;
 
-  const yearRange = await findYearRangeBySlug(centurySlug);
+  const yearRange = await findCenturyBySlug(centurySlug);
   if (!yearRange) return;
 
   const t = await getTranslations();
@@ -48,7 +48,7 @@ export const generateMetadata = async ({
 
 async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   const { centurySlug } = await routeParams;
-  const yearRange = await findYearRangeBySlug(centurySlug);
+  const yearRange = await findCenturyBySlug(centurySlug);
 
   if (!yearRange) {
     notFound();

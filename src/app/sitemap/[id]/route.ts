@@ -1,9 +1,9 @@
 import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
+import { findAllCenturies } from "@/lib/api/centuries";
 import { localesWithoutDefault, relativeUrl } from "@/lib/sitemap";
 import { navigation } from "@/lib/urls";
 import { db } from "@/server/db";
-import { findAllYearRanges } from "@/server/services/years";
 
 const rootEntityPages = [
   navigation.books.all(),
@@ -95,7 +95,7 @@ export async function GET(
       entries += generateEntryFromUrl(navigation.regions.bySlug(region.slug));
     });
 
-    const centuries = await findAllYearRanges();
+    const centuries = await findAllCenturies();
     centuries.forEach((century) => {
       entries += generateEntryFromUrl(
         navigation.centuries.byNumber(century.centuryNumber),

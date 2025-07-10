@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
+import { findAllRegionsWithBooksCount } from "@/lib/api/regions";
 import { getPathLocale } from "@/lib/locale/server";
-import { findAllRegionsWithBooksCount } from "@/server/services/regions";
 
 import RegionsFilterClient from "./client";
 

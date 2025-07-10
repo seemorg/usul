@@ -1,0 +1,4 @@
+# ignore locales and content folders
+path_filters:
+  - "!locales/**"
+  - "!content/**"

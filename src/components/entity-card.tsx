@@ -34,12 +34,14 @@ export default function EntityCard({
       {...props}
     >
       <div className="flex w-full items-start justify-between gap-3">
-        <div className="flex-1">
-          <h3
-            className="text-base font-semibold"
-            dangerouslySetInnerHTML={{ __html: primaryTitle }}
-          />
-        </div>
+        {primaryTitle && (
+          <div className="flex-1">
+            <h3
+              className="text-base font-semibold"
+              dangerouslySetInnerHTML={{ __html: primaryTitle }}
+            />
+          </div>
+        )}
 
         {secondaryTitle && (
           <bdi className="flex-1">
