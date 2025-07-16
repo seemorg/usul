@@ -31,6 +31,7 @@ export function useChatInput({
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
+  const isMobile = width && width < 768;
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -45,12 +46,14 @@ export function useChatInput({
     }
   };
 
-  const resetHeight = () => {
+  const resetHeight = useCallback(() => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = "135px";
+      // Use responsive height: 80px on mobile, 135px on desktop
+      const minHeight = isMobile ? "80px" : "135px";
+      textareaRef.current.style.height = minHeight;
     }
-  };
+  }, [isMobile]);
 
   const [localStorageInput, setLocalStorageInput] = useLocalStorage(
     "input",
@@ -84,10 +87,10 @@ export function useChatInput({
     setLocalStorageInput("");
     resetHeight();
 
-    if (width && width > 768) {
+    if (isMobile) {
       textareaRef.current?.focus();
     }
-  }, [handleSubmit, setLocalStorageInput, width]);
+  }, [handleSubmit, setLocalStorageInput, isMobile, resetHeight]);
 
   return {
     textareaRef,
@@ -161,7 +164,7 @@ export function ChatTextarea({
       data-testid="multimodal-input"
       placeholder={t("chat.input.placeholder")}
       className={cn(
-        "bg-background max-h-[75dvh] min-h-33.75 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
+        "bg-background max-h-[75dvh] min-h-20 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-10 text-base shadow-[0px_16px_32px_0px_#0000000A] md:min-h-33.75 md:pb-14",
         className,
       )}
       rows={2}
@@ -228,7 +231,7 @@ function PureMultimodalInput({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute bottom-34 left-1/2 z-50 -translate-x-1/2"
+            className="absolute bottom-30 left-1/2 z-50 -translate-x-1/2 md:bottom-38"
           >
             <Button
               data-testid="scroll-to-bottom-button"
@@ -252,7 +255,7 @@ function PureMultimodalInput({
         ref={textareaRef}
         value={input}
         onChange={handleInput}
-        className={cn("pb-14", className)}
+        className={cn(className)}
         handleSubmit={submitForm}
       />
 
