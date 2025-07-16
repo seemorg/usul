@@ -55,7 +55,7 @@ export function AppSidebar() {
             ? item.updatedAt
             : new Date(item.updatedAt);
 
-        const day = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+        const day = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 
         if (!groups[day]) groups[day] = [];
         groups[day].push(item);

@@ -59,6 +59,7 @@ export const HomepageChatInput = () => {
     <>
       <div className="text-foreground relative flex w-full flex-col gap-4">
         <ChatTextarea
+          className="pb-10 md:pb-16"
           ref={textareaRef}
           value={input}
           onChange={handleInput}
