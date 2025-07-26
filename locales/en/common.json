@@ -104,7 +104,7 @@
       },
       "add-text": {
         "title": "Add a Text",
-        "description": "Upload Book or PDF"
+        "description": "Add a URL or PDF"
       },
       "report-mistake": {
         "title": "Report an error",

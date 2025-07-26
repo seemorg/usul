@@ -33,6 +33,10 @@
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
       "description": "Ahmed holds a PhD. from Al-Azhar university. He leads the digitization team and efforts."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar is a Law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law."
+      "description": "Intisar is a law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",

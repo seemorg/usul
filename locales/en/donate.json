@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "The Future of Islamic knowledge, powered by AI",
-    "subtitle": "Join us in making the study of Islamic sources accessible, searchable, and analyzable at scale.",
+    "subtitle": "Help us build the biggest library, ensure the widest access, and facilitate the boldest research in Islamic knowledge for the 21st century.",
     "description": "With your support, Usul has made thousands of historical texts more accessible, reaching tens of thousands of users around the world.",
     "donate-widget": {
       "month-raised": "Raised",
@@ -27,8 +27,8 @@
       }
     },
     "three": {
-      "title": "Beautiful User Experience",
-      "description": "We strive to make our work <strong>beautiful and loved</strong> by beginner students of knowledge and advanced scholars alike. From the reading experience, to the search interface, to the mobile experience."
+      "title": "Enabling Large-Scale Analysis",
+      "description": "Supporting large-scale, cross-textual analysis that opens new possibilities for Islamic research. Enabling efficient navigation of vast Islamic textual sources by making thousands of credible works searchable at once, researchers can use Usul to trace concepts and patterns across genres with speed and precision."
     }
   },
   "roadmap": {
@@ -76,7 +76,7 @@
         "monthly": "Monthly",
         "yearly": "Yearly"
       },
-      "note": "Donations are collected by Usul Foundation, a 501(c)(3) nonprofit organization (pending). All donations are tax-deductible in the US. You may adjust or cancel your contribution at any time.",
+      "note": "Donations are collected by the Seemore Foundation, a 501(c)(3) nonprofit organization (status pending). All donations are tax-deductible in the US. For any inquiries, please contact us at donors@usul.ai.",
       "continue": "Continue"
     }
   },
