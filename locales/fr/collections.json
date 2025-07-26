@@ -22,8 +22,5 @@
     "unlisted": "Non répertoriée",
     "description": "Les collections publiques sont visibles par tout le monde. Les collections non répertoriées sont accessibles uniquement via un lien direct."
   },
-  "danger-zone": {
-    "title": "Zone de danger",
-    "description": "Une fois que vous supprimez une collection, il n'y a pas de retour en arrière. Veuillez être certain."
-  }
+  "my-collections": "Mes collections"
 }

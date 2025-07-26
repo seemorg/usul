@@ -2,6 +2,7 @@
   "advanced-search": "Carian Lanjutan",
   "load-more": "Muat Lebih",
   "clear-all": "Kosongkan semua",
+  "clear-filters": "Kosongkan penapis",
   "beta": "Beta",
   "search": "Cari",
   "e-book": "e-Buku",
@@ -150,6 +151,7 @@
     "message": "Ciri ini belum tersedia. Langgan ke surat berita kami dan dapatkan notifikasi bila ia siap.",
     "success": "Terima kasih!"
   },
+  "new": "Baharu!",
   "year-filter-info": "Tarikh kematian penulis",
   "regions-filter-info": "Lokasi di mana pengarang telah melawat, dilahirkan, atau meninggal dunia",
   "text-info": "Maklumat Teks",
@@ -167,6 +169,7 @@
   "error": "Sesuatu yang tidak kena. Sila cuba lagi kemudian.",
   "delete-confirmation": {
     "title": "Adakah anda benar-benar pasti?",
-    "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami."
+    "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami.",
+    "type-to-confirm": "Sila taip <strong>{text}</strong> untuk mengesahkan"
   }
 }

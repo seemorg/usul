@@ -22,8 +22,5 @@
     "unlisted": "Unlisted",
     "description": "Public collections are visible to everyone. Unlisted collections are only accessible via direct link."
   },
-  "danger-zone": {
-    "title": "Danger Zone",
-    "description": "Once you delete a collection, there is no going back. Please be certain."
-  }
+  "my-collections": "My Collections"
 }

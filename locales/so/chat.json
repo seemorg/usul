@@ -1,0 +1,64 @@
+{
+  "greeting": {
+    "hello": "Ku soo dhawoow Usul AI!",
+    "welcome": "Ku qor su'aalahaaga ugu horeeya hoos"
+  },
+  "messages": {
+    "edit_tooltip": "Bedel farriinta",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI waxay sameyn kartaa qaladaad. Hubi xogta muhiimka ah."
+  },
+  "editor": {
+    "sending": "Diraya...",
+    "send": "Dir"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "Waa kuma Al-Ghazali?",
+      "long": "Muxuu Al-Ghazali ku caan baxay?"
+    },
+    "two": {
+      "short": "Sidee loo tukadaa witr?",
+      "long": "Nebigu sidee u tukaday witr?"
+    },
+    "three": {
+      "short": "Goorma ayuu Laylatul Qadr yahay?",
+      "long": "Axdida yaa Laylatul Qadr ku xusaya?"
+    },
+    "four": {
+      "short": "Waa maxay Zakat?",
+      "long": "Maxaa Ramadan micno ugu yahay Carabi?"
+    }
+  },
+  "status": {
+    "thinking": "Fikiraya...",
+    "done": "Dhameysan",
+    "done_searched": "Dhameystay. Raadiyay",
+    "generating_queries": "Abuuraya weydiimo...",
+    "generating_response": "Abuuraya jawaab u",
+    "searching": "Raadinaya"
+  },
+  "reasoning": {
+    "title": "Sababta",
+    "completed": "Sababay dhowr ilbiriqsi"
+  },
+  "input": {
+    "filters": "Shaandhooyin",
+    "placeholder": "Dir farriin...",
+    "ai_chat": "AI Wadahadal",
+    "search": "Raadi"
+  },
+  "sidebar": {
+    "chat_history": "Taariikhda Chat-ka",
+    "toggle_sidebar": "Bedelka Sidebar",
+    "new_chat": "Chat Cusub",
+    "no_chats_yet": "Ma jiraan chat weli",
+    "start_conversation": "Bilaabo wada sheekaysi cusub",
+    "untitled_chat": "Chat aan haysan cinwaan"
+  },
+  "filters": {
+    "find_texts": "Raadi qoraallo",
+    "find_authors": "Raadi shakhsiyaad qoraal ah",
+    "texts_count": "qoraallo"
+  }
+}

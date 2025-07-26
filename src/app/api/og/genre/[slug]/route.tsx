@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
-import { getGenre } from "@/lib/api";
+import { getGenre } from "@/lib/api/genres";
 import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";

@@ -28,6 +28,8 @@
   "year": "سال",
   "years": "سال",
   "x-years": "{count, plural, one {ایک سال} other {# سال}}",
+  "chat": "چیٹ",
+  "chats": "چیٹس",
   "search-for": "{entity} کے لئے تلاش کریں",
   "search-within": "{entity} کے اندر تلاش کریں...",
   "search-x": "{count, number} {entity} تلاش کریں",

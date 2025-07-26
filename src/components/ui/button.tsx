@@ -7,7 +7,7 @@ import Spinner from "./spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 
 const buttonVariants = cva(
-  "focus-visible:ring-ring inline-flex items-center justify-center text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-1 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50",
+  "focus-visible:ring-ring inline-flex items-center justify-center gap-2 text-sm font-medium whitespace-nowrap transition-colors focus-visible:ring-1 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       rounded: {
@@ -65,7 +65,7 @@ const Button = ({
   const Comp = asChild ? SlotPrimitive.Slot : "button";
   const content = (
     <Comp
-      className={cn(buttonVariants({ variant, size, rounded, className }))}
+      className={cn(buttonVariants({ variant, size, rounded }), className)}
       {...props}
     >
       {isLoading ? <Spinner className="size-4 text-current" /> : children}

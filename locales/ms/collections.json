@@ -22,8 +22,5 @@
     "unlisted": "Tidak disenaraikan",
     "description": "Koleksi umum boleh dilihat oleh semua orang. Koleksi yang tidak disenaraikan hanya boleh diakses melalui pautan langsung."
   },
-  "danger-zone": {
-    "title": "Zon Bahaya",
-    "description": "Sebaik sahaja anda memadam koleksi, tiada jalan kembali. Sila pastikan."
-  }
+  "my-collections": "Koleksi Saya"
 }

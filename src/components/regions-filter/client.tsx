@@ -1,14 +1,12 @@
 "use client";
 
-import type { findAllRegionsWithBooksCount } from "@/server/services/regions";
+import type { findAllRegionsWithBooksCount } from "@/lib/api/regions";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterContainer from "@/components/search-results/filter-container";
 import { Button } from "@/components/ui/button";
-import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
 import Fuse from "fuse.js";
 import { useFormatter, useTranslations } from "next-intl";
 
@@ -36,15 +34,16 @@ const getRegionFilterUrlParams = (
 interface RegionsFilterProps {
   currentRegions: string[];
   regions: Awaited<ReturnType<typeof findAllRegionsWithBooksCount>>;
+  countType?: "books" | "authors";
 }
 
 export default function RegionsFilterClient({
   currentRegions,
   regions,
+  countType = "books",
 }: RegionsFilterProps) {
   const t = useTranslations();
   const formatter = useFormatter();
-  const pathLocale = usePathLocale();
 
   const [selectedRegions, setSelectedRegions] =
     useState<string[]>(currentRegions);
@@ -104,7 +103,6 @@ export default function RegionsFilterClient({
       });
     }, DEBOUNCE_DELAY);
 
-    // @ts-ignore
     timeoutRef.current = newTimeout;
   };
 
@@ -163,13 +161,14 @@ export default function RegionsFilterClient({
       {/* make font weight normal */}
       <FilterContainer.List className="font-inter mt-5">
         {matchedRegions.items.map((region) => {
-          const booksCount = formatter.number(region.count);
-
-          const name = getPrimaryLocalizedText(
-            region.nameTranslations,
-            pathLocale,
+          const count = formatter.number(
+            countType === "books"
+              ? region.numberOfBooks
+              : region.numberOfAuthors,
           );
-          const title = `${name} (${booksCount})`;
+
+          const name = region.name;
+          const title = `${name} (${count})`;
 
           return (
             <FilterContainer.Checkbox
@@ -178,7 +177,7 @@ export default function RegionsFilterClient({
               checked={selectedRegions.includes(region.slug)}
               onCheckedChange={() => handleChange(region.slug)}
               title={title}
-              count={booksCount}
+              count={count}
             >
               {name}
             </FilterContainer.Checkbox>

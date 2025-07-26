@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
-import { getRegion } from "@/lib/api";
+import { findRegionBySlug } from "@/lib/api/regions";
 import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";
@@ -34,7 +34,7 @@ export async function GET(
     notFound();
   }
 
-  const region = await getRegion(slug, { locale: "en" });
+  const region = await findRegionBySlug(slug);
 
   if (!region) {
     notFound();

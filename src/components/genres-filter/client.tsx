@@ -1,14 +1,12 @@
 "use client";
 
-import type { findAllGenresWithBooksCount } from "@/server/services/genres";
+import type { findAllGenresWithBooksCount } from "@/lib/api/genres";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterContainer from "@/components/search-results/filter-container";
 import { Button } from "@/components/ui/button";
-import { usePathLocale } from "@/lib/locale/utils";
 import { usePathname, useRouter } from "@/navigation";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
 import Fuse from "fuse.js";
 import { useFormatter, useTranslations } from "next-intl";
 
@@ -53,7 +51,6 @@ export default function GenresFilterClient({
   const { replace } = useRouter();
   const searchParams = useSearchParams();
   const [size, setSize] = useState(10);
-  const locale = usePathLocale();
 
   const genreIdToGenreName = useMemo(() => {
     return Object.fromEntries(genres.map((item) => [item.id, item]));
@@ -152,13 +149,9 @@ export default function GenresFilterClient({
 
       <FilterContainer.List className="mt-5">
         {matchedGenres.items.map((genre) => {
-          // const count = genreIdToBooksCount[genre.genreId.toLowerCase()] ?? 0;
-          const booksCount = formatter.number(genre._count.books);
+          const booksCount = formatter.number(genre.numberOfBooks);
 
-          const primaryText = getPrimaryLocalizedText(
-            genre.nameTranslations,
-            locale,
-          );
+          const primaryText = genre.name;
           const title = `${primaryText} (${booksCount})`;
 
           return (

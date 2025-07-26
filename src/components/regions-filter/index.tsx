@@ -1,6 +1,6 @@
 import type { ComponentProps } from "react";
+import { findAllRegionsWithBooksCount } from "@/lib/api/regions";
 import { getPathLocale } from "@/lib/locale/server";
-import { findAllRegionsWithBooksCount } from "@/server/services/regions";
 
 import RegionsFilterClient from "./client";
 
@@ -11,7 +11,7 @@ type Props = Omit<ComponentProps<typeof RegionsFilterClient>, "regions"> & {
 
 export default async function RegionsFilter(props: Props) {
   const regions = await findAllRegionsWithBooksCount(
-    { ...props.filters, countType: props.countType },
+    props.filters,
     await getPathLocale(),
   );
 

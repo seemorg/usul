@@ -2,6 +2,7 @@
   "advanced-search": "Recherche Avancée",
   "load-more": "Charger plus",
   "clear-all": "Effacer tout",
+  "clear-filters": "Effacer les filtres",
   "beta": "Bêta",
   "search": "Chercher",
   "e-book": "Livre numérique",
@@ -150,6 +151,7 @@
     "message": "Cette fonctionnalité n'est pas encore disponible. Abonnez-vous à notre newsletter et soyez notifié lorsque c'est prêt.",
     "success": "Merci !"
   },
+  "new": "Nouveau!",
   "year-filter-info": "Date de décès de l'auteur",
   "regions-filter-info": "Lieux où l'auteur a visité, est né ou est décédé",
   "text-info": "Infos Texte",
@@ -167,6 +169,7 @@
   "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
   "delete-confirmation": {
     "title": "Êtes-vous absolument sûr?",
-    "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs."
+    "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs.",
+    "type-to-confirm": "Veuillez taper <strong>{text}</strong> pour confirmer"
   }
 }

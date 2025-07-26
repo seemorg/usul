@@ -2,6 +2,7 @@
   "advanced-search": "Advanced Search",
   "load-more": "Load More",
   "clear-all": "Clear all",
+  "clear-filters": "Clear filters",
   "beta": "Beta",
   "search": "Search",
   "e-book": "e-Book",
@@ -150,6 +151,7 @@
     "message": "This feature is not yet available. Subscribe to our newsletter and get notified when it's ready.",
     "success": "Thank you!"
   },
+  "new": "New!",
   "year-filter-info": "Author's death date",
   "regions-filter-info": "Locations where the author has visited, been born, or died",
   "text-info": "Text Info",
@@ -167,6 +169,7 @@
   "error": "Something went wrong. Please try again later.",
   "delete-confirmation": {
     "title": "Are you absolutely sure?",
-    "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers."
+    "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers.",
+    "type-to-confirm": "Please type <strong>{text}</strong> to confirm"
   }
 }

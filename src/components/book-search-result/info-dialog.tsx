@@ -1,6 +1,5 @@
 "use client";
 
-import type { GenreDocument } from "@/types/genre";
 import type { ComponentProps } from "react";
 import { useMemo, useState } from "react";
 import {
@@ -11,14 +10,10 @@ import {
   RawDialogContent,
   RawDialogTitle,
 } from "@/components/ui/dialog";
+import { getAuthorBySlug } from "@/lib/api/authors";
 import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
-import { findAuthorBySlug } from "@/server/services/authors";
 import { InformationCircleIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import { XIcon } from "lucide-react";
@@ -52,7 +47,7 @@ export default function InfoDialog({
     queryKey: ["author", result.authorId, pathLocale] as const,
     queryFn: ({ queryKey }) => {
       const [, authorId, locale] = queryKey;
-      return findAuthorBySlug(authorId, locale);
+      return getAuthorBySlug(authorId, { locale });
     },
     enabled: shouldFetch,
   });
@@ -63,43 +58,44 @@ export default function InfoDialog({
   const secondaryTitle = result.secondaryName;
   const otherSecondaryTitles = result.secondaryOtherNames;
 
-  const authorPrimaryName = author
-    ? getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale)
-    : null;
-  const authorSecondaryName = author
-    ? getSecondaryLocalizedText(author.primaryNameTranslations, pathLocale)
-    : null;
+  const authorPrimaryName = author ? author.primaryName : null;
+  const authorSecondaryName = author ? author.secondaryName : null;
 
-  const authorOtherPrimaryNames = author
-    ? getPrimaryLocalizedText(author.otherNameTranslations, pathLocale)
-    : null;
-  const authorOtherSecondaryNames = author
-    ? getSecondaryLocalizedText(author.otherNameTranslations, pathLocale)
-    : null;
+  const authorOtherPrimaryNames = author ? author.otherNames : null;
+  const authorOtherSecondaryNames = author ? author.secondaryOtherNames : null;
 
   const parsedRegions = useMemo(() => {
     if (!author) return [];
 
     if ("locations" in author) {
-      return author.locations
-        .filter((l) => !!l.region)
-        .map((location) => {
-          const region = location.region!;
-          const typeKey = `common.${location.type.toLowerCase()}` as any;
-          const localizedType = t(typeKey);
+      return (
+        author.locations
+          // filter locations with no regionId or duplicate region and type
+          .filter(
+            (l) =>
+              !!l.regionId &&
+              !author.locations.some(
+                (l2) => l2.regionId === l.regionId && l2.type === l.type,
+              ),
+          )
+          .map((location) => {
+            const region = location.region;
+            const typeKey = `common.${location.type.toLowerCase()}` as any;
+            const localizedType = t(typeKey);
 
-          return {
-            id: location.id,
-            type: localizedType === typeKey ? location.type : localizedType,
-            slug: region.slug,
-            name: getPrimaryLocalizedText(region.nameTranslations, pathLocale),
-          };
-        })
-        .sort((a, b) => order[a.type]! - order[b.type]!);
+            return {
+              id: location.id,
+              type: localizedType === typeKey ? location.type : localizedType,
+              slug: region.slug,
+              name: region.name,
+            };
+          })
+          .sort((a, b) => order[a.type]! - order[b.type]!)
+      );
     }
 
     return [];
-  }, [author, pathLocale, t]);
+  }, [author, t]);
 
   const isLoading = isFetching || !author;
 
@@ -276,12 +272,7 @@ export default function InfoDialog({
                       <Skeleton className="h-2.5 w-1/3" />
                     </div>
                   ) : (
-                    <p>
-                      {getPrimaryLocalizedText(
-                        author.bioTranslations,
-                        pathLocale,
-                      ) || "-"}
-                    </p>
+                    <p>{author.bio || "-"}</p>
                   )}
                 </div>
 

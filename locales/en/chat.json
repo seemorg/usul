@@ -1,0 +1,64 @@
+{
+  "greeting": {
+    "hello": "Welcome to Usul AI!",
+    "welcome": "Type your first question below"
+  },
+  "messages": {
+    "edit_tooltip": "Edit message",
+    "thinking": "Hmm...",
+    "ai_disclaimer": "AI can make mistakes. Check important info."
+  },
+  "editor": {
+    "sending": "Sending...",
+    "send": "Send"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "Who's al-ghazali?",
+      "long": "What was Al-Ghazali known for?"
+    },
+    "two": {
+      "short": "How to pray witr?",
+      "long": "How did the prophet pray witr?"
+    },
+    "three": {
+      "short": "When's laylatul Qadr?",
+      "long": "What hadiths mention Laylatul Qadr?"
+    },
+    "four": {
+      "short": "What's Zakat?",
+      "long": "What does Ramadan mean in Arabic?"
+    }
+  },
+  "status": {
+    "thinking": "Thinking...",
+    "done": "Done",
+    "done_searched": "Done. Searched for",
+    "generating_queries": "Generating queries...",
+    "generating_response": "Generating response for",
+    "searching": "Searching for"
+  },
+  "reasoning": {
+    "title": "Reasoning",
+    "completed": "Reasoned for a few seconds"
+  },
+  "input": {
+    "filters": "Filters",
+    "placeholder": "Send a message...",
+    "ai_chat": "AI Chat",
+    "search": "Search"
+  },
+  "sidebar": {
+    "chat_history": "Chat History",
+    "toggle_sidebar": "Toggle Sidebar",
+    "new_chat": "New Chat",
+    "no_chats_yet": "No chats yet",
+    "start_conversation": "Start a new conversation",
+    "untitled_chat": "Untitled Chat"
+  },
+  "filters": {
+    "find_texts": "Find texts",
+    "find_authors": "Find authors",
+    "texts_count": "texts"
+  }
+}

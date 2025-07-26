@@ -2,6 +2,7 @@
   "advanced-search": "Bincike Mai Zurfi",
   "load-more": "Daukar Karin",
   "clear-all": "Goge duk",
+  "clear-filters": "Goge matattara",
   "beta": "Beta",
   "search": "Bincike",
   "e-book": "e-Littafi",
@@ -150,6 +151,7 @@
     "message": "Wannan fasalin ba shi da akwai tukuna. Yi rijista zuwa wasiƙarmu kuma an sanar da ku lokacin da yake shirye.",
     "success": "Na gode!"
   },
+  "new": "Sabo!",
   "year-filter-info": "Ranar mutuwar marubuci",
   "regions-filter-info": "Wuraren da marubucin ya ziyarta, haifa, ko rasu",
   "text-info": "Bayanin Rubutu",
@@ -167,6 +169,7 @@
   "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
   "delete-confirmation": {
     "title": "Ka tabbata sosai?",
-    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu."
+    "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu.",
+    "type-to-confirm": "Da fatan shigar da <strong>{text}</strong> don tabbatarwa"
   }
 }

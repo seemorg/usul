@@ -1,8 +1,7 @@
 import type { Locale } from "next-intl";
-import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { getBook } from "@/lib/api";
+import { getBook } from "@/lib/api/books";
 import { READER_PAGINATION_SIZE } from "@/lib/constants";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";

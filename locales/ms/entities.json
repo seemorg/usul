@@ -28,6 +28,8 @@
   "year": "Tahun",
   "years": "Tahun-tahun",
   "x-years": "{count, plural, one {Satu tahun} other {# Tahun}}",
+  "chat": "Sembang",
+  "chats": "Sembang",
   "search-for": "Cari {entity}",
   "search-within": "Cari dalam {entity}...",
   "search-x": "Cari {count, number} {entity}",

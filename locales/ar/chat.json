@@ -1,0 +1,64 @@
+{
+  "greeting": {
+    "hello": "أهلاً بك في Usul AI!",
+    "welcome": "اكتب سؤالك الأول أدناه"
+  },
+  "messages": {
+    "edit_tooltip": "تعديل الرسالة",
+    "thinking": "همم...",
+    "ai_disclaimer": "قد يرتكب الذكاء الاصطناعي أخطاء. تحقق من المعلومات الهامة."
+  },
+  "editor": {
+    "sending": "جارٍ الإرسال...",
+    "send": "أرسل"
+  },
+  "suggested_actions": {
+    "one": {
+      "short": "من هو الغزالي؟",
+      "long": "بماذا اشتهر الغزالي؟"
+    },
+    "two": {
+      "short": "كيف نصلي الوتر؟",
+      "long": "كيف كان يصلي النبي الوتر؟"
+    },
+    "three": {
+      "short": "متى ليلة القدر؟",
+      "long": "ما الأحاديث التي تذكر ليلة القدر؟"
+    },
+    "four": {
+      "short": "ما هي الزكاة؟",
+      "long": "ماذا يعني رمضان في اللغة العربية؟"
+    }
+  },
+  "status": {
+    "thinking": "التفكير...",
+    "done": "تم",
+    "done_searched": "تم. بحث عن",
+    "generating_queries": "جارٍ توليد الاستعلامات...",
+    "generating_response": "جارٍ توليد الاستجابة لـ",
+    "searching": "البحث عن"
+  },
+  "reasoning": {
+    "title": "التفكير",
+    "completed": "تم التفكير لبضع ثوان"
+  },
+  "input": {
+    "filters": "فلاتر",
+    "placeholder": "أرسل رسالة...",
+    "ai_chat": "دردشة الذكاء الاصطناعي",
+    "search": "البحث"
+  },
+  "sidebar": {
+    "chat_history": "سجل الدردشة",
+    "toggle_sidebar": "تبديل الشريط الجانبي",
+    "new_chat": "دردشة جديدة",
+    "no_chats_yet": "لا توجد دردشات بعد",
+    "start_conversation": "بدء محادثة جديدة",
+    "untitled_chat": "دردشة بدون عنوان"
+  },
+  "filters": {
+    "find_texts": "العثور على النصوص",
+    "find_authors": "العثور على المؤلفين",
+    "texts_count": "نصوص"
+  }
+}

@@ -2,8 +2,8 @@ import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
+import { findCenturyBySlug } from "@/lib/api/centuries";
 import { loadFileOnEdge } from "@/lib/edge";
-import { findYearRangeBySlug } from "@/server/services/years";
 
 export const runtime = "edge";
 
@@ -34,7 +34,7 @@ export async function GET(
     notFound();
   }
 
-  const yearRange = await findYearRangeBySlug(slug);
+  const yearRange = await findCenturyBySlug(slug);
   if (!yearRange) {
     notFound();
   }
@@ -42,10 +42,11 @@ export async function GET(
   // make the name look like "10th century"
   const name = `${yearRange.centuryNumber}${yearRange.centuryNumber === 11 ? "th" : yearRange.centuryNumber % 10 === 1 ? "st" : yearRange.centuryNumber % 10 === 2 ? "nd" : yearRange.centuryNumber % 10 === 3 ? "rd" : "th"} Century`;
 
-  const trimmedOverview =
-    yearRange.description.length > 330
+  const trimmedOverview = yearRange.description
+    ? yearRange.description.length > 330
       ? yearRange.description.slice(0, 330) + "..."
-      : yearRange.description;
+      : yearRange.description
+    : null;
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -65,16 +66,18 @@ export async function GET(
           {name}
         </h1>
 
-        <p
-          style={{
-            fontSize: 38,
-            fontFamily: "Family",
-            textAlign: "left",
-            marginTop: 40,
-          }}
-        >
-          {trimmedOverview}
-        </p>
+        {trimmedOverview && (
+          <p
+            style={{
+              fontSize: 38,
+              fontFamily: "Family",
+              textAlign: "left",
+              marginTop: 40,
+            }}
+          >
+            {trimmedOverview}
+          </p>
+        )}
 
         <div tw="absolute bottom-0 left-0 right-0 text-white flex items-center px-20 py-8">
           {/* w:26 h:10 */}

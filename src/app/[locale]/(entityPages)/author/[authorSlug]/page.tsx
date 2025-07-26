@@ -8,22 +8,19 @@ import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
+import { getAuthorBySlug } from "@/lib/api/authors";
 import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { booksSorts, navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
-import { findAuthorBySlug } from "@/server/services/authors";
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType } from "./routeType";
+import { EntityActions } from "../../entity-actions";
 import { Route } from "./routeType";
 
 type AuthorPageProps = InferPagePropsType<RouteType>;
@@ -36,21 +33,11 @@ export const generateMetadata = async ({
   const { authorSlug, locale } = await params;
   const pathLocale = appLocaleToPathLocale(locale);
 
-  const author = await findAuthorBySlug(authorSlug, pathLocale);
-  if (!author) return;
+  const author = await getAuthorBySlug(authorSlug, { locale: pathLocale });
+  if (!author || !author.primaryName) return;
 
-  const name = getPrimaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
-  if (!name) return;
-
-  const authorSecondary = getSecondaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
-
-  const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
+  const authorSecondary = author.secondaryName;
+  const bio = author.bio;
 
   const t = await getTranslations("meta");
 
@@ -59,7 +46,7 @@ export const generateMetadata = async ({
       ? "author-page.description-secondary"
       : "author-page.description",
     {
-      author: name ?? "",
+      author: author.primaryName,
       books: author.numberOfBooks,
       ...(authorSecondary ? { authorSecondary } : {}),
     },
@@ -78,13 +65,10 @@ export const generateMetadata = async ({
     locale,
     pagePath: navigation.authors.bySlug(authorSlug),
     title: t("author-page.title", {
-      author: name,
+      author: author.primaryName,
     }),
     description: truncatedDescription,
-    keywords: author.primaryNameTranslations
-      .map((t) => t.text)
-      .concat(author.otherNameTranslations.flatMap((t) => t.texts)),
-    authors: [{}],
+    keywords: [author.primaryName, ...(author.otherNames ?? [])],
   });
 };
 
@@ -92,10 +76,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   const { authorSlug } = await routeParams;
   const pathLocale = await getPathLocale();
 
-  const author = await findAuthorBySlug(
-    decodeURIComponent(authorSlug),
-    pathLocale,
-  );
+  const author = await getAuthorBySlug(authorSlug, { locale: pathLocale });
   const t = await getTranslations();
 
   if (!author) {
@@ -118,15 +99,12 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   const primaryName =
     pathLocale === "en" && author.transliteration
       ? author.transliteration
-      : getPrimaryLocalizedText(author.primaryNameTranslations, pathLocale);
+      : author.primaryName;
 
-  const secondaryName = getSecondaryLocalizedText(
-    author.primaryNameTranslations,
-    pathLocale,
-  );
+  const secondaryName = author.secondaryName;
 
   const locations = author.locations
-    .filter((l) => !!l.region)
+    .filter((l) => !!l.regionId)
     .sort((a, b) => {
       // sort should be:
       // 1. born
@@ -152,25 +130,26 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
       return 0;
     });
 
-  const localizedLocations = locations.map((l) => {
-    const region = l.region!;
-    return getPrimaryLocalizedText(region.nameTranslations, pathLocale);
-  }) as string[];
-
   const localizedLocationItems = locations.map((l) => {
-    const region = l.region!;
-    const name = getPrimaryLocalizedText(region.nameTranslations, pathLocale);
+    const region = l.region;
+    const name = region.name;
 
     const key = `common.${l.type.toLowerCase()}` as any;
     const localizedType = t(key);
 
-    return `${name} (${localizedType === key ? l.type : localizedType})`;
+    return {
+      region: name,
+      text: `${name} (${localizedType === key ? l.type : localizedType})`,
+    };
   });
 
-  const bio = getPrimaryLocalizedText(author.bioTranslations, pathLocale);
-  const otherNames = (
-    getPrimaryLocalizedText(author.otherNameTranslations, pathLocale) ?? []
-  ).filter(Boolean);
+  // filter out duplicates
+  const uniqueLocations = localizedLocationItems.filter(
+    (l, index, self) => index === self.findIndex((t) => t.text === l.text),
+  );
+
+  const bio = author.bio;
+  const otherNames = author.otherNames ?? [];
 
   return (
     <div>
@@ -182,6 +161,17 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
           {secondaryName}
         </h2>
       )}
+
+      <EntityActions
+        type="author"
+        entity={{
+          type: "author",
+          booksCount: author.numberOfBooks,
+          regions: [],
+          geographies: [],
+          ...author,
+        }}
+      />
 
       <DottedList
         className="mt-9 sm:mt-14"
@@ -198,8 +188,8 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
               <p className="capitalize">{t("common.lived")}: &nbsp;</p>
 
               <ExpandibleList
-                triggerItems={localizedLocations}
-                items={localizedLocationItems}
+                triggerItems={uniqueLocations.map((l) => l.region)}
+                items={uniqueLocations.map((l) => l.text)}
                 noun={{
                   singular: t("entities.location"),
                   plural: t("entities.locations"),

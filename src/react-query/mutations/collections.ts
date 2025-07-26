@@ -1,4 +1,3 @@
-import { useParams } from "next/navigation";
 import {
   addBookToCollection,
   addCollection,
@@ -11,10 +10,7 @@ import { useRouter } from "@/navigation";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 
-import type {
-  CollectionBySlugQueryResult,
-  CollectionsQueryResult,
-} from "../queries/collections";
+import type { CollectionsQueryResult } from "../queries/collections";
 import {
   collectionKeys,
   matchCollectionKeyBySlug,
@@ -59,10 +55,9 @@ export const useCreateCollection = () => {
       console.error("Error creating collection:", err);
       toast.error("Failed to create collection");
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Collection created successfully");
-      const newCollection = data!.data;
-      router.push(navigation.collections.edit(newCollection.slug));
+      router.push(navigation.collections.all());
     },
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });
@@ -70,11 +65,12 @@ export const useCreateCollection = () => {
   });
 };
 
-export const useUpdateCollection = () => {
+export const useUpdateCollection = ({
+  onSuccess,
+}: {
+  onSuccess?: () => void;
+}) => {
   const queryClient = useQueryClient();
-  const router = useRouter();
-  const params = useParams();
-  const currentSlug = params.slug as string;
 
   return useMutation({
     mutationFn: ({
@@ -115,16 +111,9 @@ export const useUpdateCollection = () => {
       console.error("Error updating collection:", err);
       toast.error("Failed to update collection");
     },
-    onSuccess: (data) => {
+    onSuccess: () => {
       toast.success("Collection updated successfully");
-
-      // Check if the slug was updated and navigate to the new URL
-      const updatedCollection = data!.data;
-      const newSlug = updatedCollection.slug;
-
-      if (currentSlug && newSlug && currentSlug !== newSlug) {
-        router.replace(navigation.collections.edit(newSlug));
-      }
+      onSuccess?.();
     },
     onSettled: (_, __, updateCollectionInput) => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });
@@ -138,7 +127,6 @@ export const useUpdateCollection = () => {
 
 export const useDeleteCollection = () => {
   const queryClient = useQueryClient();
-  const router = useRouter();
 
   return useMutation({
     mutationFn: deleteCollection,
@@ -169,7 +157,6 @@ export const useDeleteCollection = () => {
     },
     onSuccess: () => {
       toast.success("Collection deleted successfully");
-      router.push(navigation.collections.all());
     },
     onSettled: () => {
       void queryClient.invalidateQueries({ queryKey: collectionKeys.all });

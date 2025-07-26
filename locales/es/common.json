@@ -2,6 +2,7 @@
   "advanced-search": "Búsqueda Avanzada",
   "load-more": "Cargar Más",
   "clear-all": "Borrar todo",
+  "clear-filters": "Borrar filtros",
   "beta": "Beta",
   "search": "Buscar",
   "e-book": "Libro electrónico",
@@ -150,6 +151,7 @@
     "message": "Esta función aún no está disponible. Suscríbete a nuestro boletín y te notificaremos cuando esté lista.",
     "success": "¡Gracias!"
   },
+  "new": "¡Nuevo!",
   "year-filter-info": "Fecha de fallecimiento del autor",
   "regions-filter-info": "Ubicaciones donde el autor ha visitado, nacido o fallecido",
   "text-info": "Información del texto",
@@ -167,6 +169,7 @@
   "error": "Algo salió mal. Por favor, inténtelo de nuevo más tarde.",
   "delete-confirmation": {
     "title": "¿Está absolutamente seguro?",
-    "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente el {entity} y eliminará todos sus datos de nuestros servidores."
+    "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente el {entity} y eliminará todos sus datos de nuestros servidores.",
+    "type-to-confirm": "Por favor escriba <strong>{text}</strong> para confirmar"
   }
 }

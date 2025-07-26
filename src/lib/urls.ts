@@ -24,9 +24,11 @@ export const navigation = {
   },
   collections: {
     all: () => "/collections",
+    static: {
+      bySlug: (slug: string) => `/collection/${slug}`,
+    },
     bySlug: (slug: string) => `/collections/${slug}`,
     add: () => "/collections/add",
-    edit: (id: string) => `/collections/${id}/edit`,
   },
   regions: {
     all: () => "/regions",
@@ -42,6 +44,10 @@ export const navigation = {
   donate: () => "/donate",
   login: () => "/login",
   profile: () => "/profile",
+  chat: {
+    all: () => "/chat",
+    byId: (chatId: string) => `/chat/${chatId}`,
+  },
 };
 
 export const booksSorts = [

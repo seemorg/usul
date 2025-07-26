@@ -1,11 +1,22 @@
 import type { SemanticSearchBookNode } from "./SemanticSearchBookNode";
 
-export type ChatResponse =
-  | {
-      response: string;
-      // metadata: Record<string, unknown>;
-    }
+export type MessageAnnotation =
   | {
       type: "SOURCES";
-      sourceNodes: SemanticSearchBookNode[];
+      value: (SemanticSearchBookNode & {
+        book: { slug: string; primaryName: string };
+      })[];
+    }
+  | {
+      type: "STATUS";
+      value: "generating-queries" | "generating-response";
+    }
+  | {
+      type: "STATUS";
+      value: "searching";
+      queries: string[];
+    }
+  | {
+      type: "CHAT_ID";
+      value: string;
     };

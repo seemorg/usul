@@ -7,11 +7,11 @@ import GenresFilter from "@/components/genres-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import TruncatedText from "@/components/ui/truncated-text";
+import { findCenturyBySlug } from "@/lib/api/centuries";
 import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { findYearRangeBySlug } from "@/server/services/years";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -27,7 +27,7 @@ export const generateMetadata = async ({
 }) => {
   const { centurySlug, locale } = await params;
 
-  const yearRange = await findYearRangeBySlug(centurySlug);
+  const yearRange = await findCenturyBySlug(centurySlug);
   if (!yearRange) return;
 
   const t = await getTranslations();
@@ -42,13 +42,13 @@ export const generateMetadata = async ({
     locale,
     pagePath: navigation.centuries.byNumber(yearRange.centuryNumber),
     title,
-    description: yearRange.description,
+    description: yearRange.description ?? undefined,
   });
 };
 
 async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   const { centurySlug } = await routeParams;
-  const yearRange = await findYearRangeBySlug(centurySlug);
+  const yearRange = await findCenturyBySlug(centurySlug);
 
   if (!yearRange) {
     notFound();
@@ -73,19 +73,12 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
   });
 
   const primaryName = `${t("entities.ordinal-century", { count: yearRange.centuryNumber })} ${t("common.year-format.ah.title")}`;
-  const secondaryName = null;
 
   return (
     <div>
       <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
         {primaryName}
       </h1>
-
-      {secondaryName && (
-        <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
-          {secondaryName}
-        </h2>
-      )}
 
       <div className="mt-9 flex w-full items-center sm:mt-14">
         <p>{t("entities.x-texts", { count: yearRange.totalBooks })}</p>

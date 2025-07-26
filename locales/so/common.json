@@ -2,6 +2,7 @@
   "advanced-search": "Raadin Horumarsan",
   "load-more": "Ku Shub wax dheeraad ah",
   "clear-all": "Nadiifi dhammaan",
+  "clear-filters": "Tirtir shaandheeyayaasha",
   "beta": "Beta",
   "search": "Raadi",
   "e-book": "Buug elektaroonig ah",
@@ -150,6 +151,7 @@
     "message": "Astaamahan imika lama heli karo. Isdiiwaangeli warsidaha aan leenahay oo hel ogeysiis markuu diyaar yahay.",
     "success": "Mahadsanid!"
   },
+  "new": "Cusub!",
   "year-filter-info": "Taariikhda geerida qoraha",
   "regions-filter-info": "Goobaha uu qoraagu booqday, ku dhashay, ama ku geeriyooday",
   "text-info": "Macluumaadka Qoraalka",
@@ -167,6 +169,7 @@
   "error": "Wax baa khaldamay. Fadlan isku day mar kale.",
   "delete-confirmation": {
     "title": "Ma hubtaa gabi ahaanba?",
-    "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada."
+    "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada.",
+    "type-to-confirm": "Fadlan ku qor <strong>{text}</strong> si aad u xaqiijiso"
   }
 }

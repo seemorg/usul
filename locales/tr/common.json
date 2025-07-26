@@ -2,6 +2,7 @@
   "advanced-search": "Gelişmiş Arama",
   "load-more": "Daha Fazla Yükle",
   "clear-all": "Tümünü Temizle",
+  "clear-filters": "Filtreleri temizle",
   "beta": "Beta",
   "search": "Arama",
   "e-book": "e-Kitap",
@@ -150,6 +151,7 @@
     "message": "Bu özellik henüz kullanılabilir değil. Hazır olduğunda bilgilendirilmek için bültenimize abone olun.",
     "success": "Teşekkürler!"
   },
+  "new": "Yeni!",
   "year-filter-info": "Yazarın ölüm tarihi",
   "regions-filter-info": "Yazarın ziyaret ettiği, doğduğu veya öldüğü yerler",
   "text-info": "Metin Bilgisi",
@@ -167,6 +169,7 @@
   "error": "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.",
   "delete-confirmation": {
     "title": "Kesinlikle emin misiniz?",
-    "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır."
+    "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır.",
+    "type-to-confirm": "<strong>{text}</strong> yazın onaylamak için"
   }
 }

@@ -18,6 +18,26 @@ export const SITE_CONFIG = {
   contactEmail: "contact@usul.ai",
 };
 
+const icons = [
+  {
+    rel: "apple-touch-icon",
+    sizes: "32x32",
+    url: "/favicons/apple-touch-icon.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "32x32",
+    url: "/favicons/favicon-32x32.png",
+  },
+  {
+    rel: "icon",
+    type: "image/png",
+    sizes: "16x16",
+    url: "/favicons/favicon-16x16.png",
+  },
+];
+
 export const getMetadata = async ({
   title: baseTitle,
   description,
@@ -71,6 +91,7 @@ export const getMetadata = async ({
     return {
       ...newTitle,
       ...newDescription,
+      icons,
       keywords,
       authors,
       openGraph: {
@@ -111,8 +132,8 @@ export const getMetadata = async ({
   return {
     title,
     description: description ?? defaultDescription,
+    icons,
     metadataBase: new URL(SITE_CONFIG.url),
-    icons: [{ rel: "icon", url: "/favicon.ico" }],
     openGraph: {
       type: "website",
       siteName,

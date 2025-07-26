@@ -6,17 +6,17 @@ import BookSearchResult from "@/components/book-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
+import { getGenre } from "@/lib/api/genres";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import { getPrimaryLocalizedText } from "@/server/db/localization";
-import { findGenreBySlug } from "@/server/services/genres";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType } from "./routeType";
+import { EntityActions } from "../../entity-actions";
 import { Route } from "./routeType";
 
 export const generateMetadata = async ({
@@ -26,14 +26,9 @@ export const generateMetadata = async ({
 }) => {
   const { genreSlug, locale } = await params;
 
-  const genre = await findGenreBySlug(genreSlug);
-  if (!genre) return;
-
   const pathLocale = await getPathLocale();
-  const primaryText = getPrimaryLocalizedText(
-    genre.nameTranslations,
-    pathLocale,
-  );
+  const genre = await getGenre(genreSlug, { locale: pathLocale });
+  if (!genre) return;
 
   return getMetadata({
     image: {
@@ -43,7 +38,7 @@ export const generateMetadata = async ({
     },
     locale,
     pagePath: navigation.genres.bySlug(genreSlug),
-    title: primaryText ?? "",
+    title: genre.name,
   });
 };
 
@@ -52,7 +47,7 @@ type GenrePageProps = InferPagePropsType<RouteType>;
 async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
   const { genreSlug } = await routeParams;
   const locale = await getPathLocale();
-  const genre = await findGenreBySlug(decodeURIComponent(genreSlug));
+  const genre = await getGenre(genreSlug, { locale });
 
   if (!genre) {
     notFound();
@@ -75,17 +70,14 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
     },
   });
 
-  const primaryName = getPrimaryLocalizedText(genre.nameTranslations, locale);
-  const secondaryName = null;
-
   return (
     <div>
       <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
-        {primaryName}
+        {genre.name}
       </h1>
-      {secondaryName && (
+      {genre.secondaryName && (
         <h2 className="mt-5 text-xl font-medium sm:text-2xl md:text-3xl lg:text-5xl">
-          {secondaryName}
+          {genre.secondaryName}
         </h2>
       )}
 
@@ -93,11 +85,15 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
         <p>{t("x-texts", { count: genre.numberOfBooks })}</p>
       </div>
 
-      {/* {author.bio && (
-        <div className="mt-6 text-lg">
-          <p>{author.bio}</p>
-        </div>
-      )} */}
+      <EntityActions
+        type="genre"
+        entity={{
+          type: "genre",
+          primaryName: genre.name,
+          booksCount: genre.numberOfBooks,
+          ...genre,
+        }}
+      />
 
       <div className="mt-10 sm:mt-16">
         <SearchResults
@@ -108,7 +104,7 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
           )}
           emptyMessage={t("no-entity", { entity: t("texts") })}
           placeholder={t("search-within", {
-            entity: primaryName ?? "",
+            entity: genre.name,
           })}
           sorts={yearsSorts}
           currentSort={sort}

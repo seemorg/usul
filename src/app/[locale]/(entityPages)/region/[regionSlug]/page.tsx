@@ -9,17 +9,12 @@ import DottedList from "@/components/ui/dotted-list";
 import { ExpandibleList } from "@/components/ui/expandible-list";
 import TruncatedText from "@/components/ui/truncated-text";
 import YearFilterClient from "@/components/year-filter/client";
-import { getRegion } from "@/lib/api";
+import { findRegionBySlug } from "@/lib/api/regions";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { navigation, yearsSorts } from "@/lib/urls";
-import {
-  getPrimaryLocalizedText,
-  getSecondaryLocalizedText,
-} from "@/server/db/localization";
-import { findRegionBySlug } from "@/server/services/regions";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -35,7 +30,7 @@ export const generateMetadata = async ({
 
   const pathLocale = await getPathLocale();
 
-  const region = await getRegion(regionSlug, { locale: pathLocale });
+  const region = await findRegionBySlug(regionSlug, pathLocale);
   if (!region) return {};
 
   return getMetadata({
@@ -79,26 +74,13 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
     },
   });
 
-  const primaryName = getPrimaryLocalizedText(
-    region.nameTranslations,
-    pathLocale,
-  );
-  const secondaryName = getSecondaryLocalizedText(
-    region.nameTranslations,
-    pathLocale,
-  );
+  const primaryName = region.name;
+  const secondaryName = region.secondaryName;
 
-  const overview = getPrimaryLocalizedText(
-    region.overviewTranslations,
-    pathLocale,
-  );
+  const overview = region.overview;
 
   const cities = [
-    ...new Set(
-      region.locations
-        .map((l) => getPrimaryLocalizedText(l.cityNameTranslations, pathLocale))
-        .filter(Boolean),
-    ),
+    ...new Set(region.locations.map((l) => l.name).filter(Boolean)),
   ];
 
   return (
@@ -120,7 +102,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
             <p className="capitalize">{t("common.includes")} &nbsp;</p>
 
             <ExpandibleList
-              items={cities as string[]}
+              items={cities}
               noun={{
                 singular: t("entities.location"),
                 plural: t("entities.locations"),
