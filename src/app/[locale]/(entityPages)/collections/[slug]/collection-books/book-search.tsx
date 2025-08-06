@@ -160,8 +160,8 @@ export default function BookSearch({
                           dangerouslySetInnerHTML={{ __html: title(book) }}
                         />
                         <p className="text-muted-foreground truncate text-xs">
-                          {authorName(book)} (
-                          {formatDeathYear(book.author.year, pathLocale)})
+                          {authorName(book)}{" "}
+                          {formatDeathYear(book.author.year, pathLocale)}
                         </p>
                       </div>
                     </div>

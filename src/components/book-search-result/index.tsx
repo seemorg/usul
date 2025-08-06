@@ -104,12 +104,12 @@ export default function BookSearchResult({
       secondaryTitle={secondaryTitle}
       primarySubtitle={
         authorName
-          ? `${authorName} (${formatDeathYear(author.year, pathLocale)})`
+          ? `${authorName} ${formatDeathYear(author.year, pathLocale)}`
           : undefined
       }
       secondarySubtitle={
         authorSecondaryName
-          ? `${authorSecondaryName} (${formatDeathYear(author.year, "ar")})`
+          ? `${authorSecondaryName} ${formatDeathYear(author.year, "ar")}`
           : undefined
       }
       tags={[
