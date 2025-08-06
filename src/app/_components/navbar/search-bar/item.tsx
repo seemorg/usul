@@ -5,7 +5,6 @@ import {
   getGlobalDocumentHref,
   getGlobalDocumentLocalizedTypeKey,
 } from "@/lib/global-search";
-import { usePathLocale } from "@/lib/locale/utils";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
@@ -17,15 +16,12 @@ function SearchBarItem({
   document: GlobalSearchDocument;
 }) {
   const href = getGlobalDocumentHref(document);
-  const pathLocale = usePathLocale();
+
   const t = useTranslations("entities");
   const Comp = (href ? Link : "button") as any;
   const type = document.type;
 
-  const primaryName =
-    pathLocale === "en" && document.transliteration && type !== "genre"
-      ? document.transliteration
-      : document.primaryName;
+  const primaryName = document.primaryName;
   const secondaryName = document.secondaryName;
 
   const finalPrimaryName = primaryName ?? secondaryName;

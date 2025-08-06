@@ -96,11 +96,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
     },
   });
 
-  const primaryName =
-    pathLocale === "en" && author.transliteration
-      ? author.transliteration
-      : author.primaryName;
-
+  const primaryName = author.primaryName;
   const secondaryName = author.secondaryName;
 
   const locations = author.locations

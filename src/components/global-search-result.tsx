@@ -3,7 +3,6 @@ import {
   getGlobalDocumentHref,
   getGlobalDocumentLocalizedTypeKey,
 } from "@/lib/global-search";
-import { getPathLocale } from "@/lib/locale/server";
 import { Link } from "@/navigation";
 import { getTranslations } from "next-intl/server";
 
@@ -17,16 +16,11 @@ export default async function GlobalSearchResult({
   prefetch?: boolean;
 }) {
   const t = await getTranslations("entities");
-  const pathLocale = await getPathLocale();
 
   const href = getGlobalDocumentHref(result);
   const type = result.type;
 
-  const primaryName =
-    pathLocale === "en" && result.transliteration && type !== "genre"
-      ? result.transliteration
-      : result.primaryName;
-
+  const primaryName = result.primaryName;
   const secondaryName = result.secondaryName;
 
   const finalPrimaryName = primaryName ?? secondaryName;

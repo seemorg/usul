@@ -53,12 +53,11 @@ const bookToTypesenseBook = (
     id: book.id,
     slug: book.slug,
     authorId: book.authorId,
-    transliteration: book.transliteration ?? undefined,
 
-    primaryName: getPrimaryLocalizedText(
-      book.primaryNameTranslations,
-      pathLocale,
-    )!,
+    primaryName:
+      pathLocale === "en" && book.transliteration
+        ? book.transliteration
+        : getPrimaryLocalizedText(book.primaryNameTranslations, pathLocale)!,
     secondaryName:
       getSecondaryLocalizedText(book.primaryNameTranslations, pathLocale) ??
       undefined,
@@ -85,12 +84,14 @@ const bookToTypesenseBook = (
       type: "author",
       id: book.authorId,
       slug: book.author.slug,
-      transliteration: book.author.transliteration ?? undefined,
       year: book.author.year ?? -1,
-      primaryName: getPrimaryLocalizedText(
-        book.author.primaryNameTranslations,
-        pathLocale,
-      )!,
+      primaryName:
+        pathLocale === "en" && book.author.transliteration
+          ? book.author.transliteration
+          : getPrimaryLocalizedText(
+              book.author.primaryNameTranslations,
+              pathLocale,
+            )!,
       secondaryName:
         getSecondaryLocalizedText(
           book.author.primaryNameTranslations,

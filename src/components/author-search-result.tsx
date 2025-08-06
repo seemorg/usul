@@ -16,11 +16,7 @@ export default function AuthorSearchResult({
   const t = useTranslations();
   const pathLocale = usePathLocale();
 
-  const transliteration =
-    result.transliteration && pathLocale === "en"
-      ? result.transliteration
-      : undefined;
-  const primaryName = transliteration ?? result.primaryName;
+  const primaryName = result.primaryName;
   const primaryOtherNames = result.otherNames;
   const secondaryOtherNames = result.secondaryOtherNames;
 
@@ -32,12 +28,16 @@ export default function AuthorSearchResult({
       secondaryTitle={result.secondaryName}
       primarySubtitle={
         primaryOtherNames && primaryOtherNames.length > 0
-          ? `${formatDeathYear(result.year, pathLocale)} - ${primaryOtherNames[0]}`
+          ? [formatDeathYear(result.year, pathLocale), primaryOtherNames[0]]
+              .filter(Boolean)
+              .join(" - ")
           : undefined
       }
       secondarySubtitle={
         secondaryOtherNames && secondaryOtherNames.length > 0
-          ? `${formatDeathYear(result.year, "ar")} - ${secondaryOtherNames[0]}`
+          ? [formatDeathYear(result.year, "ar"), secondaryOtherNames[0]]
+              .filter(Boolean)
+              .join(" - ")
           : undefined
       }
       tags={[t("entities.x-texts", { count: result.booksCount })]}
