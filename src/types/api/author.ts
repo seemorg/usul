@@ -5,7 +5,6 @@ import type { ApiRegion } from "./region";
 export interface ApiAuthor {
   id: string;
   slug: string;
-  transliteration: string;
   year: number;
   numberOfBooks: number;
   primaryName: string;
@@ -13,11 +12,9 @@ export interface ApiAuthor {
   secondaryName: string;
   secondaryOtherNames: string[];
   bio: string;
-
   locations: {
     id: string;
     slug: string;
-    transliteration: string | null;
     name: string;
     secondaryName: string;
     type: LocationType;

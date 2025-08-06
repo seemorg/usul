@@ -1,9 +1,9 @@
+import type { SearchCorpusResponse } from "@/server/services/chat";
 import { Badge } from "@/components/ui/badge";
 import { removeDiacritics } from "@/lib/diacritics";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import type { SearchCorpusResponse } from "@/server/services/chat";
 import { useTranslations } from "next-intl";
 
 export default function AdvancedSearchResult({

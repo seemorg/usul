@@ -32,7 +32,6 @@ type BookDetails = {
   author: {
     id: string;
     slug: string;
-    transliteration: string;
     year?: number | null;
     numberOfBooks: number;
     primaryName: string;
@@ -41,7 +40,6 @@ type BookDetails = {
     secondaryOtherNames?: string[] | null;
     bio: string;
   };
-  transliteration: string;
   aiSupported: boolean;
   aiVersion: string;
   keywordSupported: boolean;
@@ -55,7 +53,6 @@ type BookDetails = {
   genres: {
     id: string;
     slug: string;
-    transliteration: string;
     numberOfBooks: number;
     name: string;
     secondaryName: string;

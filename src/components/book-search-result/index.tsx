@@ -26,18 +26,11 @@ export default function BookSearchResult({
 
   const { author } = result;
 
-  const title =
-    result.transliteration && pathLocale === "en"
-      ? result.transliteration
-      : result.primaryName;
+  const title = result.primaryName;
 
   const secondaryTitle = result.secondaryName;
 
-  const authorName = (
-    author.transliteration && pathLocale === "en"
-      ? author.transliteration
-      : author.primaryName
-  ) as string | undefined;
+  const authorName = author.primaryName as string | undefined;
 
   const authorSecondaryName = author.secondaryName;
 

@@ -16,11 +16,7 @@ export default function AuthorSearchResult({
   const t = useTranslations();
   const pathLocale = usePathLocale();
 
-  const transliteration =
-    result.transliteration && pathLocale === "en"
-      ? result.transliteration
-      : undefined;
-  const primaryName = transliteration ?? result.primaryName;
+  const primaryName = result.primaryName;
   const primaryOtherNames = result.otherNames;
   const secondaryOtherNames = result.secondaryOtherNames;
 
