@@ -35,12 +35,12 @@
     "placeholder": "Sort by",
     "relevance": "Relevance",
     "chronological": "Chronological",
-    "no-of-texts-desc": "No. of Texts (Descending)",
-    "no-of-texts-asc": "No. of Texts (Ascending)",
-    "no-of-authors-desc": "No. of Authors (Descending)",
-    "no-of-authors-asc": "No. of Authors (Ascending)",
-    "year-asc": "Death Year (Ascending)",
-    "year-desc": "Death Year (Descending)"
+    "no-of-texts-desc": "No. of Texts ▼",
+    "no-of-texts-asc": "No. of Texts ▲",
+    "no-of-authors-desc": "No. of Authors ▼",
+    "no-of-authors-asc": "No. of Authors ▲",
+    "year-asc": "Death Year ▲",
+    "year-desc": "Death Year ▼"
   },
   "profile": "Profile",
   "login": "Login",

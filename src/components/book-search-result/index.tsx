@@ -26,18 +26,11 @@ export default function BookSearchResult({
 
   const { author } = result;
 
-  const title =
-    result.transliteration && pathLocale === "en"
-      ? result.transliteration
-      : result.primaryName;
+  const title = result.primaryName;
 
   const secondaryTitle = result.secondaryName;
 
-  const authorName = (
-    author.transliteration && pathLocale === "en"
-      ? author.transliteration
-      : author.primaryName
-  ) as string | undefined;
+  const authorName = author.primaryName as string | undefined;
 
   const authorSecondaryName = author.secondaryName;
 
@@ -111,12 +104,12 @@ export default function BookSearchResult({
       secondaryTitle={secondaryTitle}
       primarySubtitle={
         authorName
-          ? `${authorName} (${formatDeathYear(author.year, pathLocale)})`
+          ? `${authorName} ${formatDeathYear(author.year, pathLocale)}`
           : undefined
       }
       secondarySubtitle={
         authorSecondaryName
-          ? `${authorSecondaryName} (${formatDeathYear(author.year, "ar")})`
+          ? `${authorSecondaryName} ${formatDeathYear(author.year, "ar")}`
           : undefined
       }
       tags={[

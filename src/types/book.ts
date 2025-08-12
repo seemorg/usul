@@ -5,7 +5,6 @@ export type BookDocument = {
   id: string;
   slug: string;
   authorId: string;
-  transliteration?: string;
 
   primaryName: string;
   secondaryName?: string;
@@ -23,7 +22,6 @@ export type BookDocument = {
     type: "author";
     id: string;
     slug: string;
-    transliteration?: string;
     year: number;
     primaryName: string;
     secondaryName?: string;

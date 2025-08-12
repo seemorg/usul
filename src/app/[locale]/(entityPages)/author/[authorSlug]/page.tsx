@@ -96,11 +96,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
     },
   });
 
-  const primaryName =
-    pathLocale === "en" && author.transliteration
-      ? author.transliteration
-      : author.primaryName;
-
+  const primaryName = author.primaryName;
   const secondaryName = author.secondaryName;
 
   const locations = author.locations
@@ -225,7 +221,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName ?? "",
+            entity: t("entities.author"),
           })}
           sorts={booksSorts as any}
           currentSort={sort}

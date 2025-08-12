@@ -93,7 +93,7 @@ async function CollectionPage({
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: title,
+            entity: t("entities.collection"),
           })}
           sorts={yearsSorts as any}
           currentSort={sort}

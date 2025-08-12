@@ -129,15 +129,19 @@ export const formatDeathYear = (
 ) => {
   const isUnknown = !year || year <= 0;
   const prefix = locale === "ar" ? "ت." : "d.";
+
+  let result = "";
   if (isUnknown) {
-    return `${prefix} ${locale === "ar" ? "غير معلوم" : "Unknown"}`;
+    result = `${prefix} ${locale === "ar" ? "غير معلوم" : "Unknown"}`;
+  } else {
+    const gregorianYear = hijriYearToGregorianYear(year);
+    if (gregorianYear <= 1924) {
+      result = `${prefix} ${year} / ${gregorianYear}`;
+    }
   }
 
-  if (locale === "ar") {
-    return `${prefix} ${year} / ${hijriYearToGregorianYear(year)}`;
-  }
-
-  return `${prefix} ${year} / ${hijriYearToGregorianYear(year)}`;
+  if (result) return `(${result})`;
+  return "";
 };
 
 export const secondsToMsDate = (seconds: number) => new Date(seconds * 1000);

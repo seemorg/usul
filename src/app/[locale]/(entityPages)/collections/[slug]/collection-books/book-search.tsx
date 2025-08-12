@@ -78,17 +78,8 @@ export default function BookSearch({
     setCurrentPage(page);
   };
 
-  const title = (book: BookDocument) => {
-    return book.transliteration && pathLocale === "en"
-      ? book.transliteration
-      : book.primaryName;
-  };
-
-  const authorName = (book: BookDocument) => {
-    return book.author.transliteration && pathLocale === "en"
-      ? book.author.transliteration
-      : book.author.primaryName;
-  };
+  const title = (book: BookDocument) => book.primaryName;
+  const authorName = (book: BookDocument) => book.author.primaryName;
 
   const showList =
     focusedState.value && (debouncedValue.length > 2 || isLoading);
@@ -169,8 +160,8 @@ export default function BookSearch({
                           dangerouslySetInnerHTML={{ __html: title(book) }}
                         />
                         <p className="text-muted-foreground truncate text-xs">
-                          {authorName(book)} (
-                          {formatDeathYear(book.author.year, pathLocale)})
+                          {authorName(book)}{" "}
+                          {formatDeathYear(book.author.year, pathLocale)}
                         </p>
                       </div>
                     </div>
