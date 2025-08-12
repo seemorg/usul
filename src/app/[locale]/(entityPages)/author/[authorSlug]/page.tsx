@@ -221,7 +221,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName ?? "",
+            entity: t("entities.author"),
           })}
           sorts={booksSorts as any}
           currentSort={sort}

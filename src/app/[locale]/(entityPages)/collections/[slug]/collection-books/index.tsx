@@ -183,8 +183,8 @@ export default function CollectionBooks({ slug }: { slug: string }) {
               <div className="flex items-center justify-between gap-4">
                 <div className="w-full flex-1">
                   <SearchBar
-                    placeholder={t("entities.search-for", {
-                      entity: t("entities.text"),
+                    placeholder={t("entities.search-within", {
+                      entity: t("entities.collection"),
                     })}
                     isLoading={isFetching}
                   />

@@ -104,7 +104,7 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
           )}
           emptyMessage={t("no-entity", { entity: t("texts") })}
           placeholder={t("search-within", {
-            entity: genre.name,
+            entity: t("genre"),
           })}
           sorts={yearsSorts}
           currentSort={sort}

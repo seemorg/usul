@@ -101,7 +101,7 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName,
+            entity: t("entities.century"),
           })}
           sorts={yearsSorts}
           currentSort={sort}
