@@ -35,12 +35,12 @@
     "placeholder": "Trier par",
     "relevance": "Pertinence",
     "chronological": "Chronologique",
-    "no-of-texts-desc": "Nb. de textes (décroissant)",
-    "no-of-texts-asc": "Nb. de textes (croissant)",
-    "no-of-authors-desc": "Nb. d'auteurs (décroissant)",
-    "no-of-authors-asc": "Nb. d'auteurs (croissant)",
-    "year-asc": "Année de décès (croissant)",
-    "year-desc": "Année de décès (décroissant)"
+    "no-of-texts-desc": "Nº de textes ▼",
+    "no-of-texts-asc": "Nº de textes ▲",
+    "no-of-authors-desc": "Nº d'auteurs ▼",
+    "no-of-authors-asc": "Nº d'auteurs ▲",
+    "year-asc": "Année de décès ▲",
+    "year-desc": "Année de décès ▼"
   },
   "profile": "Profil",
   "login": "Connexion",

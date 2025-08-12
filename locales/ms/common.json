@@ -35,12 +35,12 @@
     "placeholder": "Susun mengikut",
     "relevance": "Relevan",
     "chronological": "Kronologi",
-    "no-of-texts-desc": "Bil. Teks (Menurun)",
-    "no-of-texts-asc": "Bil. Teks (Menaik)",
-    "no-of-authors-desc": "Bil. Pengarang (Menurun)",
-    "no-of-authors-asc": "Bil. Pengarang (Menaik)",
-    "year-asc": "Tahun Kematian (Menaik)",
-    "year-desc": "Tahun Kematian (Menurun)"
+    "no-of-texts-desc": "Bil. Teks ▼",
+    "no-of-texts-asc": "Bil. Teks ▲",
+    "no-of-authors-desc": "Bil. Pengarang ▼",
+    "no-of-authors-asc": "Bil. Pengarang ▲",
+    "year-asc": "Tahun Kematian ▲",
+    "year-desc": "Tahun Kematian ▼"
   },
   "profile": "Profil",
   "login": "Log Masuk",

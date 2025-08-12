@@ -35,12 +35,12 @@
     "placeholder": "Zaɓi Ta",
     "relevance": "Dangantaka",
     "chronological": "Chronological",
-    "no-of-texts-desc": "No. na Rubuce-rubuce (Matsakaici)",
-    "no-of-texts-asc": "No. na Rubuce-rubuce (Tashi)",
-    "no-of-authors-desc": "No. na Mawallafa (Matsakaici)",
-    "no-of-authors-asc": "No. na Mawallafa (Tashi)",
-    "year-asc": "Shekarar Mutuwa (Tashi)",
-    "year-desc": "Shekarar Mutuwa (Matsakaici)"
+    "no-of-texts-desc": "Adadin Rubuce-rubuce ▼",
+    "no-of-texts-asc": "Adadin Rubuce-rubuce ▲",
+    "no-of-authors-desc": "Adadin Marubuta ▼",
+    "no-of-authors-asc": "Adadin Marubuta ▲",
+    "year-asc": "Shekarar Mutuwa ▲",
+    "year-desc": "Shekarar Mutuwa ▼"
   },
   "profile": "Fayil",
   "login": "Shiga",

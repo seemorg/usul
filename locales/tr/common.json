@@ -35,12 +35,12 @@
     "placeholder": "Sırala",
     "relevance": "İlgi Derecesine Göre",
     "chronological": "Kronolojik",
-    "no-of-texts-desc": "Metin Sayısı (Azalan)",
-    "no-of-texts-asc": "Metin Sayısı (Artan)",
-    "no-of-authors-desc": "Yazar Sayısı (Azalan)",
-    "no-of-authors-asc": "Yazar Sayısı (Artan)",
-    "year-asc": "Ölüm Yılı (Artan)",
-    "year-desc": "Ölüm Yılı (Azalan)"
+    "no-of-texts-desc": "Metin Sayısı ▼",
+    "no-of-texts-asc": "Metin Sayısı ▲",
+    "no-of-authors-desc": "Yazar Sayısı ▼",
+    "no-of-authors-asc": "Yazar Sayısı ▲",
+    "year-asc": "Ölüm Yılı ▲",
+    "year-desc": "Ölüm Yılı ▼"
   },
   "profile": "Profil",
   "login": "Giriş",
