@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 import { nanoid } from "nanoid";
 import { useTranslations } from "next-intl";
 
-import SearchBar from "../_components/navbar/search-bar";
+import SearchBar from "../../components/navbar/search-bar";
 import {
   ActionContainer,
   ChatTextarea,

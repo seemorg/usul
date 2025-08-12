@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
-import Navbar from "../_components/navbar";
+import Navbar from "../../components/navbar";
 
 export default function NotFound() {
   const t = useTranslations("common");

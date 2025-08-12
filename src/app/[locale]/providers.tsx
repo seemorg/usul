@@ -10,7 +10,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Direction as DirectionPrimitive } from "radix-ui";
 
-import MobileSearch from "../_components/navbar/mobile-search";
+import MobileSearch from "../../components/navbar/mobile-search";
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -1,14 +1,18 @@
 "use client";
 
 import type { ApiBookResponse } from "@/types/api/book";
-
 import { SinglePageIcon } from "@/components/Icons";
+import MobileMenu from "@/components/navbar/mobile-menu";
+import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
-
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 import { useNavbarStore } from "@/stores/navbar";
+import { XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { useMediaQuery } from "usehooks-ts";
 
 import { useBookDetails } from "../../_contexts/book-details.context";
 import { tabs } from "../sidebar/tabs";
@@ -20,12 +24,6 @@ import ReaderNavigationButton from "./navigation-button";
 import { useGetBookUrl, useReaderView } from "./utils";
 import VersionSelector from "./version-selector";
 import ViewTabs from "./view-tabs";
-import { useMobileReaderStore } from "@/stores/mobile-reader";
-import { useMediaQuery } from "usehooks-ts";
-import MobileMenu from "@/app/_components/navbar/mobile-menu";
-import { Button } from "@/components/ui/button";
-import { XIcon } from "lucide-react";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 const getPdfUrl = (bookResponse: ApiBookResponse) => {
   if (bookResponse.content.source === "pdf") {

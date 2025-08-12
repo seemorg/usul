@@ -1,14 +1,14 @@
 import type { View } from "@/validation/view";
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import Footer from "@/app/_components/footer";
-import Navbar from "@/app/_components/navbar";
 import AuthorSearchResult from "@/components/author-search-result";
 import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
+import Footer from "@/components/footer";
 import GenreSearchResult from "@/components/genre-search-result";
 import GenresFilter from "@/components/genres-filter";
 import GlobalSearchResult from "@/components/global-search-result";
+import Navbar from "@/components/navbar";
 import RegionSearchResult from "@/components/region-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";

@@ -1,5 +1,5 @@
-import Footer from "@/app/_components/footer";
-import Navbar from "@/app/_components/navbar";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import Container from "@/components/ui/container";
 
 export default function EntityPageLayout({

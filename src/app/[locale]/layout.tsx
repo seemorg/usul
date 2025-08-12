@@ -11,7 +11,7 @@ import { getLocaleDirection } from "@/lib/locale/utils";
 import { getMetadata, getViewport } from "@/lib/seo";
 import { NextIntlClientProvider } from "next-intl";
 
-import DemoModalProvider from "../_components/video-modal";
+import DemoModalProvider from "../../components/video-modal";
 import Analytics from "./analytics";
 import Providers from "./providers";
 
