@@ -47,6 +47,7 @@ export const collections: {
       "cdmterqdow2zv232qdbpxhly",
       "zrop56zg6wrub85ylzpibnms",
       "w87u7gk93qnnwkfoab9hxt4q",
+      "0340AbuHasanKarkhi.Usul",
     ],
   },
 ];
