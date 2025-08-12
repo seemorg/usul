@@ -23,9 +23,9 @@ import {
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import Footer from "../_components/footer";
-import HomepageSection from "../_components/homepage-section";
-import Navbar from "../_components/navbar";
+import Footer from "../../components/footer";
+import HomepageSection from "../../components/homepage-section";
+import Navbar from "../../components/navbar";
 import { DemoButton } from "./demo-button";
 import { HomepageChatInput } from "./home-chat-input";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useCallback, useMemo, useRef, useState } from "react";
-import Footer from "@/app/_components/footer";
+import Footer from "@/components/footer";
 import Container from "@/components/ui/container";
 import { HighlightPopover } from "@/components/ui/highlight-popover";
 import { Separator } from "@/components/ui/separator";

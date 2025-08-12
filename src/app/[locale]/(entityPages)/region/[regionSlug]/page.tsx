@@ -127,7 +127,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
             entity: t("entities.texts"),
           })}
           placeholder={t("entities.search-within", {
-            entity: primaryName ?? "",
+            entity: t("entities.region"),
           })}
           sorts={yearsSorts as any}
           currentSort={sort}

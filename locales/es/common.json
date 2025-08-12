@@ -35,12 +35,12 @@
     "placeholder": "Ordenar por",
     "relevance": "Relevancia",
     "chronological": "Cronológico",
-    "no-of-texts-desc": "Núm. de textos (Descendente)",
-    "no-of-texts-asc": "Núm. de textos (Ascendente)",
-    "no-of-authors-desc": "Núm. de autores (Descendente)",
-    "no-of-authors-asc": "Núm. de autores (Ascendente)",
-    "year-asc": "Año de defunción (Ascendente)",
-    "year-desc": "Año de defunción (Descendente)"
+    "no-of-texts-desc": "N.º de Textos ▼",
+    "no-of-texts-asc": "N.º de Textos ▲",
+    "no-of-authors-desc": "N.º de Autores ▼",
+    "no-of-authors-asc": "N.º de Autores ▲",
+    "year-asc": "Año de Muerte ▲",
+    "year-desc": "Año de Muerte ▼"
   },
   "profile": "Perfil",
   "login": "Iniciar sesión",

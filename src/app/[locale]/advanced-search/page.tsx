@@ -1,8 +1,8 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { Suspense } from "react";
-import Footer from "@/app/_components/footer";
-import Navbar from "@/app/_components/navbar";
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
 import Paginator from "@/components/ui/pagination";

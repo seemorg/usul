@@ -1,4 +1,4 @@
-import Navbar from "@/app/_components/navbar";
+import Navbar from "@/components/navbar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { useTranslations } from "next-intl";
 

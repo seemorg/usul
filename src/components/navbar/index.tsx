@@ -13,7 +13,7 @@ import {
   XMarkIcon,
 } from "@heroicons/react/20/solid";
 
-import { useReaderScroller } from "../../[locale]/t/[bookId]/_components/context";
+import { useReaderScroller } from "../../app/[locale]/t/[bookId]/_components/context";
 import LocaleSwitcher from "./locale-switcher";
 import MobileMenu from "./mobile-menu";
 import MobileNavigationMenu from "./mobile-navigation-menu";

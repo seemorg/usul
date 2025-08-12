@@ -35,12 +35,12 @@
     "placeholder": "د مرتبولو په جنسیت کې",
     "relevance": "اړوند",
     "chronological": "کره وخت",
-    "no-of-texts-desc": "د متنونو شمېر (کموالی سره)",
-    "no-of-texts-asc": "د متنونو شمېر (لوړوالی سره)",
-    "no-of-authors-desc": "د لیکوالانو شمېر (کموالی سره)",
-    "no-of-authors-asc": "د لیکوالانو شمېر (لوړوالی سره)",
-    "year-asc": "د مرګ کال (لوړوالی سره)",
-    "year-desc": "د مرګ کال (کموالی سره)"
+    "no-of-texts-desc": "د متن شمېر ▼",
+    "no-of-texts-asc": "د متن شمېر ▲",
+    "no-of-authors-desc": "د لیکوالانو شمېر ▼",
+    "no-of-authors-asc": "د لیکوالانو شمېر ▲",
+    "year-asc": "د مرګ کال ▲",
+    "year-desc": "د مرګ کال ▼"
   },
   "profile": "پروفایل",
   "login": "ننوتل",

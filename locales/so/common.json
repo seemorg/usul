@@ -35,12 +35,12 @@
     "placeholder": "Kala saar",
     "relevance": "Ku habboon",
     "chronological": "Taariikheed",
-    "no-of-texts-desc": "Tirada Qoraallada (Hoos u Dhacaya)",
-    "no-of-texts-asc": "Tirada Qoraallada (Kor u Kacaya)",
-    "no-of-authors-desc": "Tirada Qorayaasha (Hoos u Dhacaya)",
-    "no-of-authors-asc": "Tirada Qorayaasha (Kor u Kacaya)",
-    "year-asc": "Sannadka Geerida (Kor u Kacaya)",
-    "year-desc": "Sannadka Geerida (Hoos u Dhacaya)"
+    "no-of-texts-desc": "Tirada Qoraallada ▼",
+    "no-of-texts-asc": "Tirada Qoraallada ▲",
+    "no-of-authors-desc": "Tirada Qorayaasha ▼",
+    "no-of-authors-asc": "Tirada Qorayaasha ▲",
+    "year-asc": "Sanadka Geerida ▲",
+    "year-desc": "Sanadka Geerida ▼"
   },
   "profile": "Profile",
   "login": "Gal",

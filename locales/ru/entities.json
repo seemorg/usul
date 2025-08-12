@@ -31,7 +31,7 @@
   "chat": "Чат",
   "chats": "Чаты",
   "search-for": "Поиск {entity}",
-  "search-within": "Поиск внутри {entity}...",
+  "search-within": "Поиск в {entity}...",
   "search-x": "Поиск {count, number} {entity}",
   "no-entity": "{entity} не найдено"
 }

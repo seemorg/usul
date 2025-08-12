@@ -2,7 +2,7 @@
 
 import type { ImperativePanelHandle } from "react-resizable-panels";
 import React, { useRef, useState } from "react";
-import Navbar from "@/app/_components/navbar";
+import Navbar from "@/components/navbar";
 import {
   ResizableHandle,
   ResizablePanel,
@@ -11,9 +11,9 @@ import {
 import { useDirection } from "@/lib/locale/utils";
 import { cn } from "@/lib/utils";
 import { useNavbarStore } from "@/stores/navbar";
+import { useMediaQuery } from "usehooks-ts";
 
 import CollapsedSidebar from "./collapsed-sidebar";
-import { useMediaQuery } from "usehooks-ts";
 
 const defaultSizes = [75, 25];
 
