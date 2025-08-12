@@ -35,12 +35,12 @@
     "placeholder": "ترتیب دے",
     "relevance": "متعلقہ",
     "chronological": "تاریخی ترتیب",
-    "no-of-texts-desc": "پیغامات کی تعداد (نزولی ترتیب)",
-    "no-of-texts-asc": "پیغامات کی تعداد (صعودی ترتیب)",
-    "no-of-authors-desc": "مصنفین کی تعداد (نزولی ترتیب)",
-    "no-of-authors-asc": "مصنفین کی تعداد (صعودی ترتیب)",
-    "year-asc": "وفات کا سال (صعودی ترتیب)",
-    "year-desc": "وفات کا سال (نزولی ترتیب)"
+    "no-of-texts-desc": "تحریروں کی تعداد ▼",
+    "no-of-texts-asc": "تحریروں کی تعداد ▲",
+    "no-of-authors-desc": "مصنفین کی تعداد ▼",
+    "no-of-authors-asc": "مصنفین کی تعداد ▲",
+    "year-asc": "وفات کا سال ▲",
+    "year-desc": "وفات کا سال ▼"
   },
   "profile": "پروفائل",
   "login": "لاگ ان",

@@ -31,7 +31,7 @@
   "chat": "Chat",
   "chats": "Chats",
   "search-for": "Buscar un {entity}",
-  "search-within": "Buscar dentro de {entity}...",
+  "search-within": "Buscar en {entity}...",
   "search-x": "Buscar {count, number} {entity}",
   "no-entity": "No se encontraron {entity}"
 }

@@ -35,12 +35,12 @@
     "placeholder": "مرتب سازی بر اساس",
     "relevance": "مرتبط",
     "chronological": "ترتیب زمانی",
-    "no-of-texts-desc": "تعداد متون (نزولی)",
-    "no-of-texts-asc": "تعداد متون (صعودی)",
-    "no-of-authors-desc": "تعداد نویسندگان (نزولی)",
-    "no-of-authors-asc": "تعداد نویسندگان (صعودی)",
-    "year-asc": "سال مرگ (صعودی)",
-    "year-desc": "سال مرگ (نزولی)"
+    "no-of-texts-desc": "تعداد متون ▼",
+    "no-of-texts-asc": "تعداد متون ▲",
+    "no-of-authors-desc": "تعداد نویسندگان ▼",
+    "no-of-authors-asc": "تعداد نویسندگان ▲",
+    "year-asc": "سال مرگ ▲",
+    "year-desc": "سال مرگ ▼"
   },
   "profile": "پروفایل",
   "login": "ورود",

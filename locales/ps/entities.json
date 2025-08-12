@@ -31,7 +31,7 @@
   "chat": "\n",
   "chats": "\n",
   "search-for": "د {entity} پلټنه وکړئ",
-  "search-within": "د {entity} دننه پلټنه وکړئ...",
+  "search-within": "په {entity} کې لټون ...",
   "search-x": "د {count, number} {entity} پلټنه",
   "no-entity": "هیڅ {entity} ونه موندل شو"
 }

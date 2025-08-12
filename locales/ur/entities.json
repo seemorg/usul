@@ -31,7 +31,7 @@
   "chat": "چیٹ",
   "chats": "چیٹس",
   "search-for": "{entity} کے لئے تلاش کریں",
-  "search-within": "{entity} کے اندر تلاش کریں...",
+  "search-within": "{entity} میں تلاش کریں...",
   "search-x": "{count, number} {entity} تلاش کریں",
   "no-entity": "کوئی {entity} نہیں ملا"
 }

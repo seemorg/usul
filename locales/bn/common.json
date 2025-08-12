@@ -35,12 +35,12 @@
     "placeholder": "সাজানোর ভিত্তিতে",
     "relevance": "প্রাসঙ্গিকতা",
     "chronological": "কালানুক্রমিক",
-    "no-of-texts-desc": "পাঠ্যের সংখ্যা (অবনমীয়)",
-    "no-of-texts-asc": "পাঠ্যের সংখ্যা (আরোহী)",
-    "no-of-authors-desc": "লেখকের সংখ্যা (অবনমীয়)",
-    "no-of-authors-asc": "লেখকের সংখ্যা (আরোহী)",
-    "year-asc": "মৃত্যুর বছর (আরোহী)",
-    "year-desc": "মৃত্যুর বছর (অবনমীয়)"
+    "no-of-texts-desc": "টেক্সটগুলির সংখ্যা ▼",
+    "no-of-texts-asc": "টেক্সটগুলির সংখ্যা ▲",
+    "no-of-authors-desc": "লেখকদের সংখ্যা ▼",
+    "no-of-authors-asc": "লেখকদের সংখ্যা ▲",
+    "year-asc": "মৃত্যুর বছর ▲",
+    "year-desc": "মৃত্যুর বছর ▼"
   },
   "profile": "প্রোফাইল",
   "login": "লগইন",

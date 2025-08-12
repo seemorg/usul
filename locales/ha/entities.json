@@ -31,7 +31,7 @@
   "chat": "Tattaunawa",
   "chats": "Tattaunawa",
   "search-for": "Bincika {entity}",
-  "search-within": "Bincika cikin {entity}...",
+  "search-within": "Nema cikin {entity}...",
   "search-x": "Nema {count, number} {entity}",
   "no-entity": "Babu {entity} da aka samu"
 }
