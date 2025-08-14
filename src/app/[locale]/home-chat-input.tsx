@@ -65,27 +65,26 @@ export const HomepageChatInput = () => {
           handleSubmit={submitForm}
         />
 
-        <Tabs
-          className={cn(
-            "text-foreground absolute bottom-4 gap-2 rounded-full ltr:left-4 rtl:right-4",
-          )}
-          value={tab}
-          onValueChange={(value) => setTab(value as "ai" | "search")}
-        >
-          <TabsList className="rounded-3xl">
-            <TabsTrigger value="ai" className="rounded-3xl">
-              {t("chat.input.ai_chat")}
-            </TabsTrigger>
-            <TabsTrigger value="search" className="rounded-3xl">
-              {t("chat.input.search")}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <ActionContainer className="md:justify-between">
+          <Tabs
+            className="text-foreground gap-2 rounded-full"
+            value={tab}
+            onValueChange={(value) => setTab(value as "ai" | "search")}
+          >
+            <TabsList className="rounded-3xl">
+              <TabsTrigger value="ai" className="rounded-3xl">
+                {t("chat.input.ai_chat")}
+              </TabsTrigger>
+              <TabsTrigger value="search" className="rounded-3xl">
+                {t("chat.input.search")}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
 
-        <HomepageFilters trigger={<FiltersButton />} />
-
-        <ActionContainer>
-          <SendButton input={input} submitForm={submitForm} />
+          <div className="flex items-center gap-3">
+            <HomepageFilters trigger={<FiltersButton />} />
+            <SendButton input={input} submitForm={submitForm} />
+          </div>
         </ActionContainer>
       </div>
       <div className="mt-10 flex flex-wrap justify-center gap-3">

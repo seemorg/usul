@@ -17,13 +17,16 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    source: {
-      metadata: {
-        chapters: [1],
-        pages: [{ volume: "1", page: 1, index: 0 }],
+    sources: [
+      {
+        id: "1",
+        metadata: {
+          chapters: [1],
+          pages: [{ volume: "1", page: 1, index: 0 }],
+        },
+        text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
       },
-      text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-    },
+    ],
   },
   render: SourceModal,
 };

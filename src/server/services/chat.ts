@@ -1,5 +1,6 @@
 import type { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 import { apiFetch } from "@/lib/api/utils";
+import { PathLocale } from "@/lib/locale/utils";
 
 export const sendFeedback = async (body: {
   messageId: string;
@@ -11,6 +12,23 @@ export const sendFeedback = async (body: {
       method: "POST",
       body: {
         type: body.feedback,
+      },
+    },
+  );
+
+  return response;
+};
+
+export const translateChunk = async (body: {
+  text: string;
+  locale: PathLocale;
+}) => {
+  const response = await apiFetch<{ text: string }>(
+    { path: `/chat/translate`, params: { locale: body.locale } },
+    {
+      method: "POST",
+      body: {
+        text: body.text,
       },
     },
   );

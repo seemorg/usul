@@ -116,7 +116,7 @@ export function FiltersButton({
     <Button
       variant="outline"
       className={cn(
-        "text-foreground absolute bottom-4 gap-2 rounded-full ltr:right-18 rtl:left-18",
+        "text-foreground gap-2 rounded-full",
         open &&
           "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
       )}
@@ -138,10 +138,16 @@ export function FiltersButton({
   );
 }
 
-export function ActionContainer(props: React.HTMLAttributes<HTMLDivElement>) {
+export function ActionContainer({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
   return (
     <div
-      className="absolute bottom-0 flex w-fit flex-row justify-end px-5 py-4 ltr:right-0 rtl:left-0"
+      className={cn(
+        "absolute right-0 bottom-0 left-0 flex flex-row justify-between gap-3 px-5 py-4 md:justify-end",
+        className,
+      )}
       {...props}
     />
   );
@@ -256,9 +262,8 @@ function PureMultimodalInput({
         handleSubmit={submitForm}
       />
 
-      <FiltersButton open={filtersOpen} setOpen={setFiltersOpen} />
-
       <ActionContainer>
+        <FiltersButton open={filtersOpen} setOpen={setFiltersOpen} />
         {status === "submitted" ? (
           <StopButton stop={stop} setMessages={setMessages} />
         ) : (
