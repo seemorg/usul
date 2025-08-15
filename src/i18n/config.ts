@@ -5,6 +5,7 @@ export const routing = defineRouting({
   locales: [
     "en-US", // english
     "ar-SA", // arabic
+    "ms-MY", // malay
     "bn-BD", // bengali
     "fr-FR", // french
     "ha-NG", // hausa
@@ -93,11 +94,11 @@ export default config;
 export const localeToFullName: Record<Locale, string> = {
   "en-US": "English",
   "ar-SA": "العربية",
+  "ms-MY": "Bahasa-Malay",
   "bn-BD": "বাংলা",
   "fr-FR": "Français",
   "hi-IN": "हिन्दी",
   "ha-NG": "Hausa",
-  "ms-MY": "Bahasa Melayu",
   "ps-AF": "پښتو",
   "fa-IR": "فارسی",
   "ru-RU": "русский",

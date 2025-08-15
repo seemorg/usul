@@ -8,6 +8,7 @@ import lamine from "~/public/team/lamine.png";
 import rahma from "~/public/team/rahma.png";
 import ryad from "~/public/team/ryad.png";
 import zeki from "~/public/team/zeki.png";
+import ismail from "~/public/team/zeki.png";
 
 export const members = [
   {
@@ -33,6 +34,12 @@ export const members = [
     roleKey: "researcher",
     image: ryad.src,
     blurDataUrl: ryad.blurDataURL,
+  },
+  {
+    key: "ismail-safadi",
+    roleKey: "researcher",
+    image: ismail.src,
+    blurDataUrl: ismail.blurDataURL,
   },
   {
     key: "rahma-fateen",
