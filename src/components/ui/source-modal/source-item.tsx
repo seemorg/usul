@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useReaderVirtuoso } from "@/app/[locale]/t/[bookId]/_components/context";
+import { ShinyText } from "@/components/shiny-text";
 import { usePathLocale } from "@/lib/locale/utils";
 import { convertPageToHtml } from "@/lib/reader";
 import { useBookShareUrl } from "@/lib/share";
+import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
 import { translateChunk } from "@/server/services/chat";
 import { useMobileReaderStore } from "@/stores/mobile-reader";
@@ -17,6 +19,7 @@ import { toast } from "sonner";
 
 import type { Source } from ".";
 import { Button } from "../button";
+import Spinner from "../spinner";
 import { SourceTitle } from "./source-title";
 
 const SourceItem = ({
@@ -123,23 +126,39 @@ const SourceItem = ({
     page: firstPage.page,
   });
 
+  const content = (
+    <bdi
+      className={cn(
+        "flex flex-col gap-3",
+        isTranslating
+          ? "[&_.footnotes]:text-muted-foreground/70"
+          : "[&_.footnotes]:text-muted-foreground",
+      )}
+      dangerouslySetInnerHTML={{
+        __html: convertPageToHtml(displayedText),
+      }}
+    />
+  );
+
   return (
     <div className="flex flex-col gap-3 px-6 py-6">
       <div className="text-muted-foreground text-lg font-medium">
         <SourceTitle source={source} />
       </div>
 
-      <bdi
-        className="[&_.footnotes]:text-muted-foreground mt-2 flex flex-col gap-3"
-        dangerouslySetInnerHTML={{
-          __html: convertPageToHtml(displayedText),
-        }}
-      />
+      <div className="h-2" />
+
+      {isTranslating ? (
+        <ShinyText shimmerWidth={200} className="[animation-duration:1.5s]">
+          {content}
+        </ShinyText>
+      ) : (
+        content
+      )}
 
       <div>
         <Button
           variant="link"
-          size="sm"
           className="px-0"
           disabled={isTranslating}
           onClick={async () => {
@@ -153,10 +172,11 @@ const SourceItem = ({
           {translatedText && !showOriginal
             ? t("reader.chat.show-original")
             : t("reader.chat.translate")}
+          {isTranslating && <Spinner className="size-3" />}
         </Button>
       </div>
 
-      <div className="mt-5 flex justify-between">
+      <div className="mt-4 flex justify-between">
         <Button variant="outline" onClick={handleGoToPage} asChild={!!url}>
           {url ? <Link href={url}>{textLabel}</Link> : textLabel}
         </Button>

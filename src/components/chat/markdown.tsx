@@ -18,7 +18,7 @@ const components: Partial<Components> = {
   pre: ({ children }) => <>{children}</>,
   ol: ({ node: _, children, ...props }) => {
     return (
-      <ol className="ml-4 list-outside list-decimal" {...props}>
+      <ol className="ml-4 list-inside list-decimal" {...props}>
         {children}
       </ol>
     );
@@ -32,7 +32,7 @@ const components: Partial<Components> = {
   },
   ul: ({ node: _, children, ...props }) => {
     return (
-      <ul className="ml-4 list-outside list-decimal" {...props}>
+      <ul className="ml-4 list-inside list-disc" {...props}>
         {children}
       </ul>
     );
@@ -96,6 +96,50 @@ const components: Partial<Components> = {
       <h6 className="mt-6 mb-2 text-sm font-semibold" {...props}>
         {children}
       </h6>
+    );
+  },
+  table: ({ node: _, children, ...props }) => {
+    return (
+      <table
+        className="border-border my-4 w-full table-auto border text-start text-sm"
+        {...props}
+      >
+        {children}
+      </table>
+    );
+  },
+  thead: ({ node: _, children, ...props }) => {
+    return (
+      <thead className="bg-muted border-border border-b" {...props}>
+        {children}
+      </thead>
+    );
+  },
+  th: ({ node: _, children, ...props }) => {
+    return (
+      <th
+        className="border-border border p-2 text-start align-top break-normal"
+        {...props}
+      >
+        {children}
+      </th>
+    );
+  },
+  tr: ({ node: _, children, ...props }) => {
+    return (
+      <tr className="border-border border-b" {...props}>
+        {children}
+      </tr>
+    );
+  },
+  td: ({ node: _, children, ...props }) => {
+    return (
+      <td
+        className="border-border min-w-[48px] border p-2 break-normal"
+        {...props}
+      >
+        {children}
+      </td>
     );
   },
 };

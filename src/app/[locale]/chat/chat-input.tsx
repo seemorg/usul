@@ -24,10 +24,12 @@ export function useChatInput({
   input,
   setInput,
   handleSubmit,
+  initialHeight = 130,
 }: {
   input: UseChatHelpers["input"];
   setInput: UseChatHelpers["setInput"];
   handleSubmit: UseGlobalChatReturn["submit"];
+  initialHeight?: number;
 }) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { width } = useWindowSize();
@@ -48,7 +50,7 @@ export function useChatInput({
   const resetHeight = () => {
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
-      textareaRef.current.style.height = "135px";
+      textareaRef.current.style.height = `${initialHeight}px`;
     }
   };
 
@@ -99,10 +101,12 @@ export function useChatInput({
 export function FiltersButton({
   open,
   setOpen,
+  hideLabelOnMobile = false,
   ...props
 }: {
   open?: boolean;
   setOpen?: (open: boolean) => void;
+  hideLabelOnMobile?: boolean;
 } & ButtonProps) {
   const t = useTranslations();
   const selectedBooksLength = useChatFilters((s) => s.selectedBooks.length);
@@ -125,7 +129,10 @@ export function FiltersButton({
       {...props}
     >
       <Settings2Icon className="size-4" />
-      <span className="hidden sm:block">{t("chat.input.filters")}</span>
+      <span className={cn(hideLabelOnMobile && "hidden sm:block")}>
+        {t("chat.input.filters")}
+      </span>
+
       {total > 0 && (
         <Badge
           variant="secondary"
@@ -145,7 +152,7 @@ export function ActionContainer({
   return (
     <div
       className={cn(
-        "absolute right-0 bottom-0 left-0 flex flex-row justify-between gap-3 px-5 py-4 md:justify-end",
+        "absolute right-0 bottom-0 left-0 flex flex-row justify-between gap-3 px-5 py-4",
         className,
       )}
       {...props}
@@ -167,7 +174,7 @@ export function ChatTextarea({
       data-testid="multimodal-input"
       placeholder={t("chat.input.placeholder")}
       className={cn(
-        "bg-background max-h-[75dvh] min-h-33.75 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
+        "bg-background max-h-[75dvh] min-h-24 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-15 text-base shadow-[0px_16px_32px_0px_#0000000A]",
         className,
       )}
       rows={2}
@@ -258,7 +265,7 @@ function PureMultimodalInput({
         ref={textareaRef}
         value={input}
         onChange={handleInput}
-        className={cn("pb-14", className)}
+        className={cn(className)}
         handleSubmit={submitForm}
       />
 

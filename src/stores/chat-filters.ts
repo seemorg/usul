@@ -26,7 +26,7 @@ interface ChatFiltersState {
 export const useChatFilters = create(
   persist<ChatFiltersState>(
     (set) => ({
-      open: true,
+      open: false,
       setOpen: (open) => set({ open }),
 
       selectedBooks: [],

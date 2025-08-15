@@ -30,6 +30,7 @@ export const HomepageChatInput = () => {
     input,
     setInput,
     handleSubmit: submit,
+    initialHeight: 135,
   });
 
   if (tab === "search") {
@@ -63,6 +64,7 @@ export const HomepageChatInput = () => {
           value={input}
           onChange={handleInput}
           handleSubmit={submitForm}
+          className="min-h-33.75 pt-5 pb-16"
         />
 
         <ActionContainer className="md:justify-between">
@@ -82,7 +84,7 @@ export const HomepageChatInput = () => {
           </Tabs>
 
           <div className="flex items-center gap-3">
-            <HomepageFilters trigger={<FiltersButton />} />
+            <HomepageFilters trigger={<FiltersButton hideLabelOnMobile />} />
             <SendButton input={input} submitForm={submitForm} />
           </div>
         </ActionContainer>
