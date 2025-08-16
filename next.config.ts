@@ -7,7 +7,6 @@ import { NextConfig } from "next";
 import { env } from "@/env";
 import createBundleAnalyzer from "@next/bundle-analyzer";
 import createMDX from "@next/mdx";
-import { withAxiom } from "next-axiom";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const config: NextConfig = {
@@ -84,7 +83,6 @@ const plugins = [
     },
   }),
   createNextIntlPlugin("./src/i18n/request.ts"),
-  withAxiom,
 ];
 
 export default plugins.reduce((acc, plugin) => plugin(acc), config);

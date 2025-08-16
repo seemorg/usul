@@ -21,7 +21,6 @@ export const env = createEnv({
     NEXT_PUBLIC_API_BASE_URL: z.string().url().min(1),
   },
   shared: {
-    NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT: z.string().url().min(1),
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY: z.string().min(1),
 
     NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().min(1),
@@ -38,8 +37,6 @@ export const env = createEnv({
     RESEND_AUDIENCE_ID: process.env.RESEND_AUDIENCE_ID,
     // RESEND_DONORS_AUDIENCE_ID: process.env.RESEND_DONORS_AUDIENCE_ID,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
-    NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT:
-      process.env.NEXT_PUBLIC_AXIOM_INGEST_ENDPOINT,
     NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY:
       process.env.NEXT_PUBLIC_PDF_EXPRESS_LICENSE_KEY,
 
