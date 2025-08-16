@@ -76,19 +76,25 @@ export default function SearchBarResults({
           onValueChange={(value) =>
             setSearchType(value as "all" | "texts" | "authors" | "genres")
           }
-          className="w-full sm:w-auto"
+          className="w-full gap-2 rounded-full sm:w-auto"
         >
-          <TabsList className="w-full sm:w-auto">
-            <TabsTrigger value="all" className="w-full sm:w-auto">
+          <TabsList className="w-full rounded-3xl sm:w-auto">
+            <TabsTrigger value="all" className="w-full rounded-3xl sm:w-auto">
               {entitiesT("all")}
             </TabsTrigger>
-            <TabsTrigger value="texts" className="w-full sm:w-auto">
+            <TabsTrigger value="texts" className="w-full rounded-3xl sm:w-auto">
               {entitiesT("texts")}
             </TabsTrigger>
-            <TabsTrigger value="authors" className="w-full sm:w-auto">
+            <TabsTrigger
+              value="authors"
+              className="w-full rounded-3xl sm:w-auto"
+            >
               {entitiesT("authors")}
             </TabsTrigger>
-            <TabsTrigger value="genres" className="w-full sm:w-auto">
+            <TabsTrigger
+              value="genres"
+              className="w-full rounded-3xl sm:w-auto"
+            >
               {entitiesT("genres")}
             </TabsTrigger>
           </TabsList>
