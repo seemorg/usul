@@ -9,7 +9,7 @@ import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
-import SearchBarItem from "./item";
+import SearchBarItem, { AdvancedSearchItem } from "./item";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -116,13 +116,16 @@ export default function SearchBarResults({
         {isLoading ? (
           <ResultsSkeleton />
         ) : hits.length > 0 ? (
-          hits.map((hit) => (
-            <SearchBarItem
-              key={hit.id}
-              document={hit}
-              onSelect={onItemSelect}
-            />
-          ))
+          <>
+            <AdvancedSearchItem onSelect={onItemSelect} query={value} />
+            {hits.map((hit) => (
+              <SearchBarItem
+                key={hit.id}
+                document={hit}
+                onSelect={onItemSelect}
+              />
+            ))}
+          </>
         ) : (
           <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>
         )}

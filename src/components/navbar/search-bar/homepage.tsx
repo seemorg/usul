@@ -85,7 +85,6 @@ export default function HomepageSearchBar({
         className={cn(
           "bg-background border-input has-focus-visible:ring-ring relative h-33.75 overflow-visible rounded-3xl border shadow-[0px_16px_32px_0px_#0000000A] transition-colors has-focus-visible:ring-1 has-focus-visible:outline-hidden has-disabled:cursor-not-allowed has-disabled:opacity-50",
         )}
-        loop
         onKeyDown={(e) => {
           // When the user presses the escape key, blur the input
           if (e.key === "Escape") {

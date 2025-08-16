@@ -6,6 +6,7 @@ import {
   getGlobalDocumentLocalizedTypeKey,
 } from "@/lib/global-search";
 import { Link } from "@/navigation";
+import { ArrowUpRightIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 function SearchBarItem({
@@ -73,6 +74,37 @@ function SearchBarItem({
 
         <p className="text-muted-foreground">{localizedType}</p>
       </Comp>
+    </CommandItem>
+  );
+}
+
+export function AdvancedSearchItem({
+  onSelect,
+  query,
+}: {
+  onSelect: (href?: string) => void;
+  query: string;
+}) {
+  const href = `/search?q=${query}`;
+  return (
+    <CommandItem
+      value="advanced-search"
+      onSelect={() => onSelect(href)}
+      className="px-0 py-0"
+    >
+      <Link
+        href={href}
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect();
+        }}
+        className="hover:bg-accent flex h-full w-full items-center justify-between px-4 py-3"
+      >
+        <p className="text-muted-foreground text-base">
+          Search book content for "{query}"
+        </p>
+        <ArrowUpRightIcon className="text-muted-foreground size-4" />
+      </Link>
     </CommandItem>
   );
 }
