@@ -34,6 +34,7 @@ interface SearchResultsProps<T extends object & { id: string }> {
   placeholder?: string;
   itemsContainerClassName?: string;
   view?: View;
+  showInput?: boolean;
   hasViews?: boolean;
 }
 
@@ -49,12 +50,13 @@ export default function SearchResults<T extends object & { id: string }>({
   placeholder,
   itemsContainerClassName,
   view,
+  showInput = true,
   hasViews = true,
 }: SearchResultsProps<T>) {
   const hasResults = (response.hits.length ?? 0) > 0;
 
   return (
-    <div className="grid grid-cols-4 gap-10 sm:gap-6">
+    <div className="grid w-full grid-cols-4 gap-10 sm:gap-6">
       {filters && (
         <div className="hidden w-full sm:block">
           <div className="flex flex-col gap-5">{filters}</div>
@@ -70,10 +72,12 @@ export default function SearchResults<T extends object & { id: string }>({
         <div className="relative w-full">
           <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
-              <SearchBar
-                defaultValue={currentQuery}
-                placeholder={placeholder}
-              />
+              {showInput && (
+                <SearchBar
+                  defaultValue={currentQuery}
+                  placeholder={placeholder}
+                />
+              )}
             </div>
 
             <div className="flex gap-2">

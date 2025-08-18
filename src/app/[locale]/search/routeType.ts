@@ -7,7 +7,14 @@ import { z } from "zod";
 const sorts = yearsSorts.map((s) => s.value);
 const defaultSort: (typeof sorts)[number] = "relevance";
 
-const searchTypes = ["all", "texts", "authors", "genres", "regions"] as const;
+const searchTypes = [
+  "all",
+  "content",
+  "texts",
+  "authors",
+  "genres",
+  "regions",
+] as const;
 export type SearchType = (typeof searchTypes)[number];
 
 export const Route = {

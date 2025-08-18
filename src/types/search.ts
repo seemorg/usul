@@ -1,1 +1,1 @@
-export type SearchType = "all" | "texts" | "authors" | "genres";
+export type SearchType = "all" | "content" | "texts" | "authors" | "genres";

@@ -25,7 +25,7 @@ export default function HomepageSearchBar({
   const t = useTranslations();
   const [value, setValue] = useState("");
   const [searchType, setSearchType] = useState<SearchType>("all");
-  const focusedState = useBoolean(false);
+  const focusedState = useBoolean(true);
   const [debouncedValue] = useDebounceValue(value, 300);
   const router = useRouter();
   const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
@@ -56,8 +56,15 @@ export default function HomepageSearchBar({
       }
     };
 
+    const timeout = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
+
     document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    return () => {
+      document.removeEventListener("keydown", down);
+      clearTimeout(timeout);
+    };
   }, []);
 
   // this function handles keyboard navigation and selection
@@ -75,9 +82,7 @@ export default function HomepageSearchBar({
   return (
     <div
       className="relative flex max-w-3xl flex-col gap-4"
-      onClick={() => {
-        inputRef.current?.focus();
-      }}
+      onClick={() => inputRef.current?.focus()}
       ref={parentRef}
     >
       <Command
@@ -101,7 +106,7 @@ export default function HomepageSearchBar({
           ref={inputRef}
           placeholder={`${t("common.search-bar.placeholder")}... (⌘ + K)`}
           autoFocus
-          onFocus={(e) => focusedState.setTrue()}
+          onFocus={() => focusedState.setTrue()}
         />
 
         <CommandList
