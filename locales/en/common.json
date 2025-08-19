@@ -1,5 +1,6 @@
 {
   "advanced-search": "Advanced Search",
+  "advanced-matching": "Advanced Matching",
   "load-more": "Load More",
   "clear-all": "Clear all",
   "clear-filters": "Clear filters",
@@ -42,6 +43,7 @@
     "year-asc": "Death Year ▲",
     "year-desc": "Death Year ▼"
   },
+  "view-all": "View All",
   "profile": "Profile",
   "login": "Login",
   "logout": "Log Out",
@@ -165,6 +167,28 @@
   "update": "Update",
   "delete": "Delete",
   "cancel": "Cancel",
+  "apply": "Apply",
+  "keyword": "Keyword",
+  "semantic": "Semantic",
+  "search-filters": {
+    "select-operator": "Select operator",
+    "enter-value": "Enter value",
+    "not": "Not",
+    "group": "Group",
+    "combine-with": "Combine with",
+    "add-condition": "Add Condition",
+    "add-group": "Add Group",
+    "operators": {
+      "like": "Like",
+      "exact": "Exact",
+      "starts-with": "Starts with",
+      "ends-with": "Ends with"
+    },
+    "combiners": {
+      "and": "and",
+      "or": "or"
+    }
+  },
   "delete-x": "Delete {entity}",
   "error": "Something went wrong. Please try again later.",
   "delete-confirmation": {

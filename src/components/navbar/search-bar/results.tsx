@@ -9,7 +9,7 @@ import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
-import SearchBarItem from "./item";
+import SearchBarItem, { AdvancedSearchItem } from "./item";
 
 const skeletonWidths = [
   [80, 112, 80],
@@ -57,8 +57,8 @@ export default function SearchBarResults({
 }: {
   results?: SearchResponse<GlobalSearchDocument>["results"];
   onItemSelect: (href?: string) => void;
-  searchType: SearchType;
-  setSearchType: (type: SearchType) => void;
+  searchType: Exclude<SearchType, "content">;
+  setSearchType: (type: Exclude<SearchType, "content">) => void;
   isLoading?: boolean;
   value: string;
 }) {
@@ -74,29 +74,41 @@ export default function SearchBarResults({
         <Tabs
           value={searchType}
           onValueChange={(value) =>
-            setSearchType(value as "all" | "texts" | "authors" | "genres")
+            setSearchType(value as Exclude<SearchType, "content">)
           }
-          className="w-full sm:w-auto"
+          className="w-full gap-2 rounded-full sm:w-auto"
         >
-          <TabsList className="w-full sm:w-auto">
-            <TabsTrigger value="all" className="w-full sm:w-auto">
+          <TabsList className="w-full rounded-3xl sm:w-auto">
+            <TabsTrigger value="all" className="w-full rounded-3xl sm:w-auto">
               {entitiesT("all")}
             </TabsTrigger>
-            <TabsTrigger value="texts" className="w-full sm:w-auto">
+            <TabsTrigger value="texts" className="w-full rounded-3xl sm:w-auto">
               {entitiesT("texts")}
             </TabsTrigger>
-            <TabsTrigger value="authors" className="w-full sm:w-auto">
+            <TabsTrigger
+              value="authors"
+              className="w-full rounded-3xl sm:w-auto"
+            >
               {entitiesT("authors")}
             </TabsTrigger>
-            <TabsTrigger value="genres" className="w-full sm:w-auto">
+            <TabsTrigger
+              value="genres"
+              className="w-full rounded-3xl sm:w-auto"
+            >
               {entitiesT("genres")}
             </TabsTrigger>
+            {/* <TabsTrigger
+              value="regions"
+              className="w-full rounded-3xl sm:w-auto"
+            >
+              {entitiesT("regions")}
+            </TabsTrigger> */}
           </TabsList>
         </Tabs>
 
         {showSeeMore && (
           <Link
-            href={navigation.search.index({ type: searchType, query: value })}
+            href={navigation.search({ type: searchType, query: value })}
             className="text-primary mt-3 hidden underline sm:mt-0 sm:block"
           >
             {t("common.search-bar.all-results", {
@@ -110,13 +122,16 @@ export default function SearchBarResults({
         {isLoading ? (
           <ResultsSkeleton />
         ) : hits.length > 0 ? (
-          hits.map((hit) => (
-            <SearchBarItem
-              key={hit.id}
-              document={hit}
-              onSelect={onItemSelect}
-            />
-          ))
+          <>
+            <AdvancedSearchItem onSelect={onItemSelect} query={value} />
+            {hits.map((hit) => (
+              <SearchBarItem
+                key={hit.id}
+                document={hit}
+                onSelect={onItemSelect}
+              />
+            ))}
+          </>
         ) : (
           <CommandEmpty>{t("common.search-bar.no-results")}</CommandEmpty>
         )}
@@ -128,9 +143,7 @@ export default function SearchBarResults({
           className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
           variant="link"
         >
-          <Link
-            href={navigation.search.index({ type: searchType, query: value })}
-          >
+          <Link href={navigation.search({ type: searchType, query: value })}>
             {t("common.search-bar.all-results", {
               results: results?.found ?? 0,
             })}

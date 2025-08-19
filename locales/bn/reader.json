@@ -61,7 +61,9 @@
     "sources": "উৎস",
     "error": "কিছু ভুল হয়েছে। <retry>আবার চেষ্টা করুন</retry> অথবা যদি এটি অব্যাহত থাকে, <contact>আমাদের সাথে যোগাযোগ করুন</contact>.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "ভলিউম {vol, number, nogroup}, পৃষ্ঠা {page, number, nogroup}"
+    "pg-x-vol": "ভলিউম {vol, number, nogroup}, পৃষ্ঠা {page, number, nogroup}",
+    "translate": "অনুবাদ করুন",
+    "show-original": "মূল দেখান"
   },
   "edition": "সংস্করণ",
   "editions-modal": {

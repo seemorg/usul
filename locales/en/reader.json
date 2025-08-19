@@ -61,7 +61,9 @@
     "sources": "Sources",
     "error": "Something went wrong. <retry>Try again</retry> or <contact>contact us</contact> if it persists.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "Vol {vol, number, nogroup}, Pg {page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Pg {page, number, nogroup}",
+    "translate": "Translate",
+    "show-original": "Show original"
   },
   "edition": "Edition",
   "editions-modal": {

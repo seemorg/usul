@@ -85,17 +85,10 @@ function processConsecutiveRefs(refs: number[]) {
       });
     });
   } else {
-    // Show first reference as individual elements + indicator with hover card
+    // Show a single combined reference that will render as "name +N"
     nodes.push({
       type: "html",
-      value: `<page-reference data-number="${refs[0]}"></page-reference>`,
-    });
-
-    // Create hover card for additional sources
-    const additionalSources = refs.slice(1);
-    nodes.push({
-      type: "html",
-      value: `<additional-sources-hover data-sources='${additionalSources.join(",")}'></additional-sources-hover>`,
+      value: `<page-reference data-numbers='${refs.join(",")}'></page-reference>`,
     });
   }
 

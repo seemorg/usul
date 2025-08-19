@@ -19,6 +19,7 @@ type CarouselProps = {
   plugins?: CarouselPlugin;
   orientation?: "horizontal" | "vertical";
   setApi?: (api: CarouselApi) => void;
+  slidesPerScroll?: number;
 };
 
 type CarouselContextProps = {
@@ -49,6 +50,7 @@ const Carousel = ({
   plugins,
   className,
   children,
+  slidesPerScroll = 3,
   ...props
 }: React.HTMLAttributes<HTMLDivElement> & CarouselProps) => {
   const [carouselRef, api] = useEmblaCarousel(
@@ -72,12 +74,12 @@ const Carousel = ({
   }, []);
 
   const scrollPrev = useCallback(() => {
-    api?.scrollTo(api.selectedScrollSnap() - 3);
-  }, [api]);
+    api?.scrollTo(api.selectedScrollSnap() - slidesPerScroll);
+  }, [api, slidesPerScroll]);
 
   const scrollNext = useCallback(() => {
-    api?.scrollTo(api.selectedScrollSnap() + 3);
-  }, [api]);
+    api?.scrollTo(api.selectedScrollSnap() + slidesPerScroll);
+  }, [api, slidesPerScroll]);
 
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -152,7 +154,9 @@ const CarouselContent = ({
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal"
+            ? "ltr:-ml-4 rtl:-mr-4"
+            : "-mt-4 flex-col",
           className,
         )}
         {...props}
@@ -173,7 +177,7 @@ const CarouselItem = ({
       aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "ltr:pl-4 rtl:pr-4" : "pt-4",
         className,
       )}
       {...props}

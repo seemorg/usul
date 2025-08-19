@@ -1,5 +1,6 @@
 {
   "advanced-search": "بحث متقدم",
+  "advanced-matching": "مطابقة متقدمة",
   "load-more": "تحميل المزيد",
   "clear-all": "مسح الكل",
   "clear-filters": "تنقية الفلاتر",
@@ -42,6 +43,7 @@
     "year-asc": "سنة الوفاة ▲",
     "year-desc": "سنة الوفاة ▼"
   },
+  "view-all": "عرض الكل",
   "profile": "الملف الشخصي",
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
@@ -165,6 +167,28 @@
   "update": "تحديث",
   "delete": "حذف",
   "cancel": "إلغاء",
+  "apply": "تطبيق",
+  "keyword": "كلمة مفتاحية",
+  "semantic": "التحليل الدلالي",
+  "search-filters": {
+    "select-operator": "حدد المشغل",
+    "enter-value": "أدخل القيمة",
+    "not": "ليس",
+    "group": "مجموعة",
+    "combine-with": "اجمع مع",
+    "add-condition": "إضافة شرط",
+    "add-group": "إضافة مجموعة",
+    "operators": {
+      "like": "تشبه",
+      "exact": "تطابق تماماً",
+      "starts-with": "يبدأ بـ",
+      "ends-with": "ينتهي بـ"
+    },
+    "combiners": {
+      "and": "و",
+      "or": "أو"
+    }
+  },
   "delete-x": "حذف {entity}",
   "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
   "delete-confirmation": {

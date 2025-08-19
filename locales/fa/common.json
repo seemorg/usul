@@ -1,5 +1,6 @@
 {
   "advanced-search": "جستجوی پیشرفته",
+  "advanced-matching": "مطابقت پیشرفته",
   "load-more": "بارگذاری بیشتر",
   "clear-all": "پاک کردن همه",
   "clear-filters": "پاک کردن فیلترها",
@@ -42,6 +43,7 @@
     "year-asc": "سال مرگ ▲",
     "year-desc": "سال مرگ ▼"
   },
+  "view-all": "مشاهده همه",
   "profile": "پروفایل",
   "login": "ورود",
   "logout": "خروج",
@@ -165,6 +167,28 @@
   "update": "به روز رسانی",
   "delete": "حذف",
   "cancel": "لغو",
+  "apply": "اعمال",
+  "keyword": "کلمه کلیدی",
+  "semantic": "معنایی",
+  "search-filters": {
+    "select-operator": "انتخاب اپراتور",
+    "enter-value": "وارد کردن مقدار",
+    "not": "نه",
+    "group": "گروه",
+    "combine-with": "ترکیب با",
+    "add-condition": "افزودن شرط",
+    "add-group": "افزودن گروه",
+    "operators": {
+      "like": "مانند",
+      "exact": "دقیق",
+      "starts-with": "شروع با",
+      "ends-with": "پایان با"
+    },
+    "combiners": {
+      "and": "و",
+      "or": "یا"
+    }
+  },
   "delete-x": "حذف {entity}",
   "error": "مشکلی پیش آمد. لطفاً بعداً دوباره تلاش کنید.",
   "delete-confirmation": {

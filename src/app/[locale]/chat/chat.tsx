@@ -42,6 +42,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
 
       <form className="mx-auto flex w-full flex-col px-4 md:max-w-3xl">
         <MultimodalInput
+          className="rounded-b-none border-b-0 md:rounded-b-3xl md:border"
           input={input}
           setInput={setInput}
           handleSubmit={submit}
@@ -52,7 +53,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
           append={append}
         />
 
-        <p className="text-muted-foreground my-3 text-center text-xs">
+        <p className="text-muted-foreground my-3 hidden text-center text-xs md:block">
           {t("chat.messages.ai_disclaimer")}
         </p>
       </form>

@@ -2,11 +2,18 @@ import type { SearchType } from "@/types/search";
 import type { Sort } from "@/types/sort";
 
 export const navigation = {
-  search: {
-    index: (params: { type: SearchType; query: string }) =>
-      `/search?type=${params.type}&q=${params.query}`,
-    normal: () => `/search`,
-    advanced: () => `/advanced-search`,
+  search: (params?: {
+    type?: SearchType;
+    query?: string;
+    searchType?: "keyword" | "semantic";
+  }) => {
+    const query = new URLSearchParams();
+    if (params?.type && params.type !== "all") query.set("type", params.type);
+    if (params?.query) query.set("q", params.query);
+    if (params?.searchType && params.searchType !== "keyword")
+      query.set("searchType", params.searchType);
+
+    return `/search${query.size > 0 ? `?${query.toString()}` : ""}`;
   },
   books: {
     all: () => "/texts",
