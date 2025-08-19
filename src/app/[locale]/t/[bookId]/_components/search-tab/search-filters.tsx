@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { FolderPlusIcon, PlusIcon, XIcon } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type Operator = "like" | "exact" | "starts-with" | "ends-with";
 
@@ -22,7 +23,7 @@ type Condition = {
   not: boolean;
 };
 
-type GroupCondition = {
+export type GroupCondition = {
   type: "group";
   conditions: (Condition | GroupCondition)[];
   combineWith: "AND" | "OR";
@@ -36,54 +37,72 @@ const ConditionComponent: React.FC<{
   condition: Condition;
   onUpdate: (updatedCondition: Condition) => void;
   onRemove: () => void;
-}> = ({ condition, onUpdate, onRemove }) => (
-  <div className="flex items-center gap-2">
-    <div className="bg-background flex flex-1 rounded-3xl">
-      <Select
-        value={condition.operator}
-        onValueChange={(value) =>
-          onUpdate({ ...condition, operator: value as Operator })
-        }
-      >
-        <SelectTrigger className="w-fit gap-2 rounded-3xl bg-transparent shadow-none ltr:rounded-r-none ltr:border-r-0 rtl:rounded-l-none rtl:border-l-0">
-          <SelectValue placeholder="Select operator" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="like">like</SelectItem>
-          <SelectItem value="exact">exact</SelectItem>
-          <SelectItem value="starts-with">starts-with</SelectItem>
-          <SelectItem value="ends-with">ends-with</SelectItem>
-        </SelectContent>
-      </Select>
+}> = ({ condition, onUpdate, onRemove }) => {
+  const t = useTranslations();
 
-      <Input
-        type="text"
-        value={condition.value}
-        onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
-        placeholder="Enter value"
-        className="grow-1 rounded-none bg-transparent shadow-none"
-      />
+  return (
+    <div className="flex items-center gap-2">
+      <div className="bg-background flex flex-1 rounded-3xl">
+        <Select
+          value={condition.operator}
+          onValueChange={(value) =>
+            onUpdate({ ...condition, operator: value as Operator })
+          }
+        >
+          <SelectTrigger className="w-fit gap-2 rounded-3xl bg-transparent shadow-none ltr:rounded-r-none ltr:border-r-0 rtl:rounded-l-none rtl:border-l-0">
+            <SelectValue
+              placeholder={t("common.search-filters.select-operator")}
+            />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="like">
+              {t("common.search-filters.operators.like")}
+            </SelectItem>
+            <SelectItem value="exact">
+              {t("common.search-filters.operators.exact")}
+            </SelectItem>
+            <SelectItem value="starts-with">
+              {t("common.search-filters.operators.starts-with")}
+            </SelectItem>
+            <SelectItem value="ends-with">
+              {t("common.search-filters.operators.ends-with")}
+            </SelectItem>
+          </SelectContent>
+        </Select>
 
-      <Button
-        variant="ghost"
-        size="icon"
-        className="border-border h-9 shrink-0 rounded-3xl border ltr:rounded-l-none ltr:border-l-0 rtl:rounded-r-none rtl:border-r-0"
-        onClick={onRemove}
-      >
-        <XIcon className="size-4" />
-      </Button>
+        <Input
+          type="text"
+          value={condition.value}
+          onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
+          placeholder={t("common.search-filters.enter-value")}
+          className="grow-1 rounded-none bg-transparent shadow-none"
+        />
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="border-border h-9 shrink-0 rounded-3xl border ltr:rounded-l-none ltr:border-l-0 rtl:rounded-r-none rtl:border-r-0"
+          onClick={onRemove}
+        >
+          <XIcon className="size-4" />
+        </Button>
+      </div>
+
+      <div className="flex items-center gap-1">
+        <Switch
+          id={`not-${condition.value}`}
+          checked={condition.not}
+          onCheckedChange={(checked) =>
+            onUpdate({ ...condition, not: checked })
+          }
+        />
+        <Label htmlFor={`not-${condition.value}`}>
+          {t("common.search-filters.not")}
+        </Label>
+      </div>
     </div>
-
-    <div className="flex items-center gap-1">
-      <Switch
-        id={`not-${condition.value}`}
-        checked={condition.not}
-        onCheckedChange={(checked) => onUpdate({ ...condition, not: checked })}
-      />
-      <Label htmlFor={`not-${condition.value}`}>NOT</Label>
-    </div>
-  </div>
-);
+  );
+};
 
 const GroupComponent: React.FC<{
   group: GroupCondition;
@@ -92,6 +111,7 @@ const GroupComponent: React.FC<{
   depth: number;
   index: number;
 }> = ({ group, onUpdate, onRemove, depth, index }) => {
+  const t = useTranslations();
   const addCondition = () => {
     onUpdate({
       ...group,
@@ -139,7 +159,7 @@ const GroupComponent: React.FC<{
       {depth > 0 && (
         <div className="mb-4 flex items-center justify-between">
           <p>
-            Group {index + 1}
+            {t("common.search-filters.group")} {index + 1}
             {depth > 1 && ` (${depth})`}
           </p>
           <Button
@@ -183,13 +203,19 @@ const GroupComponent: React.FC<{
               >
                 <Separator orientation="vertical" className="mx-auto h-2" />
                 <SelectTrigger className="bg-background mx-auto w-fit gap-2 rounded-full lowercase">
-                  <SelectValue placeholder="Combine with" />
+                  <SelectValue
+                    placeholder={t("common.search-filters.combine-with")}
+                  />
                 </SelectTrigger>
                 <Separator orientation="vertical" className="mx-auto h-2" />
 
                 <SelectContent align="center">
-                  <SelectItem value="AND">and</SelectItem>
-                  <SelectItem value="OR">or</SelectItem>
+                  <SelectItem value="AND">
+                    {t("common.search-filters.combiners.and")}
+                  </SelectItem>
+                  <SelectItem value="OR">
+                    {t("common.search-filters.combiners.or")}
+                  </SelectItem>
                 </SelectContent>
               </Select>
             )}
@@ -202,14 +228,16 @@ const GroupComponent: React.FC<{
           className="text-primary hover:bg-primary/10"
           onClick={addCondition}
         >
-          <PlusIcon className="size-4" /> Add Condition
+          <PlusIcon className="size-4" />{" "}
+          {t("common.search-filters.add-condition")}
         </Button>
         <Button
           variant="ghost"
           className="text-primary hover:bg-primary/10"
           onClick={addGroup}
         >
-          <FolderPlusIcon className="size-4" /> Add Group
+          <FolderPlusIcon className="size-4" />{" "}
+          {t("common.search-filters.add-group")}
         </Button>
       </div>
     </div>
@@ -237,10 +265,17 @@ const charsToEscape = [
   "\\",
   "/",
 ];
+
 const escapeValue = (value: string) => {
   // escape all chars in charsToEscape by adding a backslash before them
   return charsToEscape.reduce((acc, char) => {
     return acc.replace(char, `\\${char}`);
+  }, value);
+};
+
+const unescapeValue = (value: string) => {
+  return charsToEscape.reduce((acc, char) => {
+    return acc.replace(`\\${char}`, char);
   }, value);
 };
 
@@ -292,6 +327,70 @@ export const buildQuery = (group: GroupCondition, isRoot = false): string => {
   const result = queryParts.join(` ${group.combineWith} `);
   if (isRoot) return result;
   return `(${result})`;
+};
+
+export const parseQuery = (query: string): GroupCondition => {
+  // Remove outer parentheses if present
+  query = query.trim();
+  if (query.startsWith("(") && query.endsWith(")")) {
+    query = query.slice(1, -1).trim();
+  }
+
+  // Split by AND/OR at top level (respecting parentheses)
+  let combineWith: "AND" | "OR" = "AND";
+  let parts: string[] = [];
+
+  if (query.includes(" AND ")) {
+    parts = query.split(" AND ");
+    combineWith = "AND";
+  } else if (query.includes(" OR ")) {
+    parts = query.split(" OR ");
+    combineWith = "OR";
+  } else {
+    parts = [query];
+  }
+
+  const conditions = parts.map((part) => {
+    part = part.trim();
+
+    // Check if this is a nested group
+    if (part.startsWith("(")) {
+      return parseQuery(part);
+    }
+
+    // Parse single condition
+    let not = false;
+    if (part.startsWith("NOT ")) {
+      not = true;
+      part = part.slice(4).trim();
+    }
+
+    let operator: "like" | "exact" | "starts-with" | "ends-with" = "like";
+    let value = part;
+
+    if (part.startsWith('"') && part.endsWith('"')) {
+      operator = "exact";
+      value = part.slice(1, -1);
+    } else if (part.endsWith("*")) {
+      operator = "starts-with";
+      value = part.slice(0, -1);
+    }
+
+    // Unescape special characters
+    value = unescapeValue(value);
+
+    return {
+      operator,
+      value,
+      not,
+    };
+  });
+
+  return {
+    type: "group",
+    combineWith,
+    conditions,
+  };
 };
 
 export function AzureSearchFilter({ value, setValue }: FilterProps) {

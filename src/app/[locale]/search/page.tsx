@@ -39,8 +39,18 @@ type TextsPageProps = InferPagePropsType<RouteType>;
 
 async function search(params: Awaited<TextsPageProps["searchParams"]>) {
   const pathLocale = await getPathLocale();
-  const { type, q, sort, page, genres, authors, regions, year, searchType } =
-    params;
+  const {
+    type,
+    q,
+    compiledQuery,
+    sort,
+    page,
+    genres,
+    authors,
+    regions,
+    year,
+    searchType,
+  } = params;
 
   const commonOptions = {
     limit: 20,
@@ -50,7 +60,12 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
 
   if (type === "all") return searchCorpus(q, pathLocale);
 
-  if (type === "content") return searchContent(q, searchType, page);
+  if (type === "content") {
+    // For keyword search with compiled query, use the compiled query; otherwise use q
+    const searchQuery =
+      searchType === "keyword" && compiledQuery ? compiledQuery : q;
+    return searchContent(searchQuery, searchType, page);
+  }
 
   if (type === "texts") {
     return searchBooks(q, {
@@ -101,8 +116,18 @@ const SearchResult = ({
 
 async function SearchPage({ searchParams }: TextsPageProps) {
   const resolvedSearchParams = await searchParams;
-  const { type, q, sort, genres, authors, regions, year, view, searchType } =
-    resolvedSearchParams;
+  const {
+    type,
+    q,
+    compiledQuery,
+    sort,
+    genres,
+    authors,
+    regions,
+    year,
+    view,
+    searchType,
+  } = resolvedSearchParams;
 
   const t = await getTranslations();
   const results = await search(resolvedSearchParams);

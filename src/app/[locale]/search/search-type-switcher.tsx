@@ -1,10 +1,14 @@
 "use client";
 
 import { useCallback, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { parseAsStringEnum, useQueryState } from "nuqs";
+import { navigation } from "@/lib/urls";
+import { useRouter } from "@/navigation";
+import { useTranslations } from "next-intl";
 
 import type { SearchType } from "./routeType";
+import { searchTypes } from "./routeType";
 
 const Trigger = ({
   active,
@@ -25,61 +29,61 @@ const Trigger = ({
 
 export default function SearchTypeSwitcher() {
   const [isPending, startTransition] = useTransition();
-  const [type, setType] = useQueryState(
-    "type",
-    parseAsStringEnum([
-      "all",
-      "content",
-      "texts",
-      "authors",
-      "genres",
-      "regions",
-    ])
-      .withDefault("all")
-      .withOptions({ clearOnDefault: true, shallow: false, startTransition }),
-  );
+  const params = useSearchParams();
+  const t = useTranslations();
+  const router = useRouter();
+  const _type = params.get("type");
+  const type = searchTypes.includes(_type as SearchType) ? _type : "all";
 
   const handleTypeChange = useCallback((newType: string) => {
-    setType(newType as SearchType);
+    startTransition(() => {
+      router.push(
+        navigation.search({
+          type: newType as SearchType,
+          query: params.get("q") || "",
+        }),
+      );
+    });
   }, []);
 
   return (
     <div className="border-border mt-5 w-full border-b">
-      <Tabs value={type} onValueChange={handleTypeChange}>
+      <Tabs value={type as string} onValueChange={handleTypeChange}>
         <TabsList className="h-10 border-none bg-transparent! shadow-none">
           <Trigger value="all" active={type === "all"} disabled={isPending}>
-            All
+            {t("entities.all")}
           </Trigger>
+
           <Trigger
             value="content"
             active={type === "content"}
             disabled={isPending}
           >
-            Content
+            {t("entities.content")}
           </Trigger>
           <Trigger value="texts" active={type === "texts"} disabled={isPending}>
-            Texts
+            {t("entities.texts")}
           </Trigger>
           <Trigger
             value="authors"
             active={type === "authors"}
             disabled={isPending}
           >
-            Authors
+            {t("entities.authors")}
           </Trigger>
           <Trigger
             value="genres"
             active={type === "genres"}
             disabled={isPending}
           >
-            Genres
+            {t("entities.genres")}
           </Trigger>
           <Trigger
             value="regions"
             active={type === "regions"}
             disabled={isPending}
           >
-            Regions
+            {t("entities.regions")}
           </Trigger>
         </TabsList>
       </Tabs>

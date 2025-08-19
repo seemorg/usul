@@ -7,7 +7,7 @@ import { z } from "zod";
 const sorts = yearsSorts.map((s) => s.value);
 const defaultSort: (typeof sorts)[number] = "relevance";
 
-const searchTypes = [
+export const searchTypes = [
   "all",
   "content",
   "texts",
@@ -20,6 +20,7 @@ export type SearchType = (typeof searchTypes)[number];
 export const Route = {
   searchParams: z.object({
     q: z.string().default(""),
+    compiledQuery: z.string().default(""),
     page: z.number().min(1).catch(1),
     view: viewSchema,
     year: yearRangeSchema,

@@ -5,6 +5,7 @@ import {
   getGlobalDocumentHref,
   getGlobalDocumentLocalizedTypeKey,
 } from "@/lib/global-search";
+import { navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import { ArrowUpRightIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -85,7 +86,7 @@ export function AdvancedSearchItem({
   onSelect: (href?: string) => void;
   query: string;
 }) {
-  const href = `/search?q=${query}`;
+  const href = navigation.search({ type: "content", query });
   return (
     <CommandItem
       value="advanced-search"

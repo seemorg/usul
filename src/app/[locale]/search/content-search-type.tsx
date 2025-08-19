@@ -1,26 +1,40 @@
 "use client";
 
 import { useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
+import { useRouter } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { parseAsStringEnum, useQueryState } from "nuqs";
 
 export default function ContentSearchType() {
   const t = useTranslations();
   const [isPending, startTransition] = useTransition();
-  const [searchType, setSearchType] = useQueryState(
-    "searchType",
-    parseAsStringEnum(["keyword", "semantic"])
-      .withDefault("keyword")
-      .withOptions({ shallow: false, clearOnDefault: true, startTransition }),
-  );
+  const router = useRouter();
+  const params = useSearchParams();
+  const _searchType = params.get("searchType") || "keyword";
+  const searchType = _searchType === "semantic" ? "semantic" : "keyword";
+
+  const handleSearchTypeChange = (type: "keyword" | "semantic") => {
+    if (type === searchType) return;
+
+    startTransition(() => {
+      router.push(
+        navigation.search({
+          searchType: type,
+          type: "content",
+          query: params.get("q") || "",
+        }),
+      );
+    });
+  };
 
   return (
     <div className="flex gap-2">
       <Button
         variant="outline"
-        onClick={() => setSearchType("keyword")}
+        onClick={() => handleSearchTypeChange("keyword")}
         disabled={isPending}
         className={cn(
           "rounded-3xl border-[1.5px]",
@@ -29,11 +43,11 @@ export default function ContentSearchType() {
             : "border-border text-muted-foreground",
         )}
       >
-        Keyword
+        {t("common.keyword")}
       </Button>
       <Button
         variant="outline"
-        onClick={() => setSearchType("semantic")}
+        onClick={() => handleSearchTypeChange("semantic")}
         disabled={isPending}
         className={cn(
           "rounded-3xl border-[1.5px]",
@@ -42,7 +56,7 @@ export default function ContentSearchType() {
             : "border-border text-muted-foreground",
         )}
       >
-        Semantic
+        {t("common.semantic")}
       </Button>
     </div>
   );

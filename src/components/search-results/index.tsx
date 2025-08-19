@@ -90,10 +90,11 @@ export default function SearchResults<T extends object & { id: string }>({
         style={
           {
             "--results-span": `${gridColumns[1]}`,
+            "--mobile-span": `${gridColumns[0] + gridColumns[1]}`,
           } as any
         }
         className={cn(
-          "col-span-4",
+          "col-span-[var(--mobile-span)]",
           filters
             ? "sm:col-span-[var(--results-span)] sm:ltr:pl-1 sm:rtl:pr-1"
             : "",

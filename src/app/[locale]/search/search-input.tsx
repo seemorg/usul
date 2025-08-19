@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { navigation } from "@/lib/urls";
@@ -16,6 +16,12 @@ export default function SearchInput() {
   const searchParams = useSearchParams();
 
   const [inputValue, setInputValue] = useState(searchParams.get("q") || "");
+
+  // Sync input value with URL changes (for back/forward navigation)
+  useEffect(() => {
+    const urlQuery = searchParams.get("q") || "";
+    setInputValue(urlQuery);
+  }, [searchParams]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

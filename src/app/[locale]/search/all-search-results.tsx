@@ -2,7 +2,9 @@ import BookSearchResult from "@/components/book-search-result";
 import DottedList from "@/components/ui/dotted-list";
 import { Separator } from "@/components/ui/separator";
 import { searchCorpus } from "@/lib/api/search";
+import { formatDeathYear } from "@/lib/date";
 import { removeDiacritics } from "@/lib/diacritics";
+import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -92,6 +94,7 @@ export default function AllSearchResults({
   q: string;
 }) {
   const t = useTranslations();
+  const locale = usePathLocale();
 
   return (
     <div className="flex w-full flex-col gap-10">
@@ -126,9 +129,11 @@ export default function AllSearchResults({
       <div>
         <div className="flex items-center justify-between py-4">
           <p className="text-lg font-semibold">
-            {t("entities.x-authors", {
-              count: results.authors.found,
-            })}
+            {results.authors.found > 0
+              ? t("entities.x-authors", {
+                  count: results.authors.found,
+                })
+              : t("entities.authors")}
           </p>
 
           <Link
@@ -145,38 +150,47 @@ export default function AllSearchResults({
         {results.authors.hits.length === 0 ? (
           <EmptyAlert />
         ) : (
-          results.authors.hits.map((author) => (
-            <Link
-              href={navigation.authors.bySlug(author.slug)}
-              key={author.id}
-              className="hover:bg-muted block w-full py-4 transition-colors"
-            >
-              <div className="flex w-full justify-between">
-                <DottedList
-                  className="flex-1"
-                  items={[
-                    <p className="text-sm font-medium">{author.primaryName}</p>,
-                    <p className="text-muted-foreground text-sm">
-                      {author.year} AH
-                    </p>,
-                  ]}
-                />
+          results.authors.hits.map((author) => {
+            const formattedDeathYear = formatDeathYear(author.year, locale);
+            return (
+              <Link
+                href={navigation.authors.bySlug(author.slug)}
+                key={author.id}
+                className="hover:bg-muted block w-full py-4 transition-colors"
+              >
+                <div className="flex w-full justify-between">
+                  <DottedList
+                    className="flex-1"
+                    items={[
+                      <p className="text-sm font-medium">
+                        {author.primaryName}
+                      </p>,
+                      formattedDeathYear && (
+                        <p className="text-muted-foreground text-sm">
+                          {formattedDeathYear}
+                        </p>
+                      ),
+                    ]}
+                  />
 
-                <bdi className="flex-1 text-sm font-medium">
-                  {author.secondaryName}
-                </bdi>
-              </div>
-            </Link>
-          ))
+                  <bdi className="flex-1 text-sm font-medium">
+                    {author.secondaryName}
+                  </bdi>
+                </div>
+              </Link>
+            );
+          })
         )}
       </div>
 
       <div>
         <div className="flex items-center justify-between py-4">
           <p className="text-lg font-semibold">
-            {t("entities.x-genres", {
-              count: results.genres.found,
-            })}
+            {results.genres.found > 0
+              ? t("entities.x-genres", {
+                  count: results.genres.found,
+                })
+              : t("entities.genres")}
           </p>
 
           <Link

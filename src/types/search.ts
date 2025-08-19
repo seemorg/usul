@@ -1,4 +1,10 @@
-export type SearchType = "all" | "content" | "texts" | "authors" | "genres";
+export type SearchType =
+  | "all"
+  | "content"
+  | "texts"
+  | "authors"
+  | "genres"
+  | "regions";
 
 export type SearchContentResponse = {
   total: number;
