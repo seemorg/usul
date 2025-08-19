@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useTransition } from "react";
+import { useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { navigation } from "@/lib/urls";
@@ -35,7 +35,7 @@ export default function SearchTypeSwitcher() {
   const _type = params.get("type");
   const type = searchTypes.includes(_type as SearchType) ? _type : "all";
 
-  const handleTypeChange = useCallback((newType: string) => {
+  const handleTypeChange = (newType: string) => {
     startTransition(() => {
       router.push(
         navigation.search({
@@ -44,7 +44,7 @@ export default function SearchTypeSwitcher() {
         }),
       );
     });
-  }, []);
+  };
 
   return (
     <div className="border-border mt-5 w-full border-b">
