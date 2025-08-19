@@ -116,18 +116,8 @@ const SearchResult = ({
 
 async function SearchPage({ searchParams }: TextsPageProps) {
   const resolvedSearchParams = await searchParams;
-  const {
-    type,
-    q,
-    compiledQuery,
-    sort,
-    genres,
-    authors,
-    regions,
-    year,
-    view,
-    searchType,
-  } = resolvedSearchParams;
+  const { type, q, sort, genres, authors, regions, year, view, searchType } =
+    resolvedSearchParams;
 
   const t = await getTranslations();
   const results = await search(resolvedSearchParams);

@@ -13,7 +13,9 @@ export default function NotFound() {
 
       <div className="bg-background flex h-screen w-full items-center justify-center">
         <div className="flex flex-col justify-center gap-10">
-          <h1 className="text-foreground text-7xl font-black">{t("lost")}</h1>
+          <h1 className="text-foreground text-center text-7xl font-black">
+            {t("lost")}
+          </h1>
 
           <div className="mx-auto w-auto grow-0">
             <Button asChild size="lg">
