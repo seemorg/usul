@@ -1,5 +1,6 @@
 {
   "advanced-search": "Recherche Avancée",
+  "advanced-matching": "Correspondance avancée",
   "load-more": "Charger plus",
   "clear-all": "Effacer tout",
   "clear-filters": "Effacer les filtres",
@@ -42,6 +43,7 @@
     "year-asc": "Année de décès ▲",
     "year-desc": "Année de décès ▼"
   },
+  "view-all": "Voir tout",
   "profile": "Profil",
   "login": "Connexion",
   "logout": "Déconnexion",
@@ -165,6 +167,28 @@
   "update": "Mettre à jour",
   "delete": "Supprimer",
   "cancel": "Annuler",
+  "apply": "Appliquer",
+  "keyword": "Mot-clé",
+  "semantic": "Sémantique",
+  "search-filters": {
+    "select-operator": "Sélectionner l'opérateur",
+    "enter-value": "Entrer une valeur",
+    "not": "Non",
+    "group": "Groupe",
+    "combine-with": "Combiner avec",
+    "add-condition": "Ajouter une condition",
+    "add-group": "Ajouter un groupe",
+    "operators": {
+      "like": "Aime",
+      "exact": "Exact",
+      "starts-with": "Commence par",
+      "ends-with": "Se termine par"
+    },
+    "combiners": {
+      "and": "et",
+      "or": "ou"
+    }
+  },
   "delete-x": "Supprimer {entity}",
   "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
   "delete-confirmation": {

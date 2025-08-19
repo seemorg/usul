@@ -1,5 +1,6 @@
 {
   "advanced-search": "Bincike Mai Zurfi",
+  "advanced-matching": "Matsakaicin Daidaitawa",
   "load-more": "Daukar Karin",
   "clear-all": "Goge duk",
   "clear-filters": "Goge matattara",
@@ -42,6 +43,7 @@
     "year-asc": "Shekarar Mutuwa ▲",
     "year-desc": "Shekarar Mutuwa ▼"
   },
+  "view-all": "Duba Duk",
   "profile": "Fayil",
   "login": "Shiga",
   "logout": "Fita",
@@ -165,6 +167,28 @@
   "update": "Sabunta",
   "delete": "Goge",
   "cancel": "Soke",
+  "apply": "Aiwatar",
+  "keyword": "Kalmar",
+  "semantic": "Ma'ana",
+  "search-filters": {
+    "select-operator": "Zaɓi mai sarrafa aiki",
+    "enter-value": "Shigar da ƙima",
+    "not": "Ba",
+    "group": "Rukuni",
+    "combine-with": "Haɗawa da",
+    "add-condition": "Ƙara yanayi",
+    "add-group": "Ƙara rukuni",
+    "operators": {
+      "like": "Mai kama",
+      "exact": "Tabbatacce",
+      "starts-with": "Fara da",
+      "ends-with": "Ƙare da"
+    },
+    "combiners": {
+      "and": "da",
+      "or": "ko"
+    }
+  },
   "delete-x": "Goge {entity}",
   "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
   "delete-confirmation": {

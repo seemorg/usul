@@ -61,7 +61,9 @@
     "sources": "Tushen",
     "error": "Wani abu ya faru ba daidai ba. <retry>Sake gwadawa</retry> ko <contact>saduwa damu</contact> idan ya ci gaba.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "Juzu'i {vol, number, nogroup}, Shafi {page, number, nogroup}"
+    "pg-x-vol": "Juzu'i {vol, number, nogroup}, Shafi {page, number, nogroup}",
+    "translate": "Fassara",
+    "show-original": "Nuna na asali"
   },
   "edition": "Juzu'i",
   "editions-modal": {

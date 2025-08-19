@@ -1,5 +1,6 @@
 {
   "advanced-search": "Búsqueda Avanzada",
+  "advanced-matching": "Coincidencia Avanzada",
   "load-more": "Cargar Más",
   "clear-all": "Borrar todo",
   "clear-filters": "Borrar filtros",
@@ -42,6 +43,7 @@
     "year-asc": "Año de Muerte ▲",
     "year-desc": "Año de Muerte ▼"
   },
+  "view-all": "Ver Todo",
   "profile": "Perfil",
   "login": "Iniciar sesión",
   "logout": "Cerrar sesión",
@@ -165,6 +167,28 @@
   "update": "Actualizar",
   "delete": "Eliminar",
   "cancel": "Cancelar",
+  "apply": "Aplicar",
+  "keyword": "Palabra clave",
+  "semantic": "Semántico",
+  "search-filters": {
+    "select-operator": "Seleccionar operador",
+    "enter-value": "Ingresar valor",
+    "not": "No",
+    "group": "Grupo",
+    "combine-with": "Combinar con",
+    "add-condition": "Añadir condición",
+    "add-group": "Añadir grupo",
+    "operators": {
+      "like": "Como",
+      "exact": "Exacto",
+      "starts-with": "Comienza con",
+      "ends-with": "Termina con"
+    },
+    "combiners": {
+      "and": "y",
+      "or": "o"
+    }
+  },
   "delete-x": "Eliminar {entity}",
   "error": "Algo salió mal. Por favor, inténtelo de nuevo más tarde.",
   "delete-confirmation": {

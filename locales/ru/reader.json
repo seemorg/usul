@@ -61,7 +61,9 @@
     "sources": "Источники",
     "error": "Что-то пошло не так. <retry>Попробуйте снова</retry> или <contact>свяжитесь с нами</contact>, если проблема сохраняется.",
     "pg-x": "Страница {page, number, nogroup}",
-    "pg-x-vol": "Том {vol, number, nogroup}, Стр {page, number, nogroup}"
+    "pg-x-vol": "Том {vol, number, nogroup}, Стр {page, number, nogroup}",
+    "translate": "Перевести",
+    "show-original": "Показать оригинал"
   },
   "edition": "Издание",
   "editions-modal": {

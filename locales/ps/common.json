@@ -1,5 +1,6 @@
 {
   "advanced-search": "لټون پرمختللی",
+  "advanced-matching": "پرمختللي میچنګ",
   "load-more": "نور ولولې",
   "clear-all": "ټول پاک کړئ",
   "clear-filters": "فلټرونه پاک کړئ",
@@ -42,6 +43,7 @@
     "year-asc": "د مرګ کال ▲",
     "year-desc": "د مرګ کال ▼"
   },
+  "view-all": "ټول وګورئ",
   "profile": "پروفایل",
   "login": "ننوتل",
   "logout": "وتل",
@@ -165,6 +167,28 @@
   "update": "تازه کول",
   "delete": "ړنګول",
   "cancel": "لغوه",
+  "apply": "غوښتنه وکړئ",
+  "keyword": "کلیدي ټکی",
+  "semantic": "سمانتیک",
+  "search-filters": {
+    "select-operator": "آپریټر غوره کړئ",
+    "enter-value": "ارزښت داخل کړئ",
+    "not": "نه",
+    "group": "ډله",
+    "combine-with": "سره یوځای کړئ",
+    "add-condition": "شرط اضافه کړئ",
+    "add-group": "ډله اضافه کړئ",
+    "operators": {
+      "like": "لکه",
+      "exact": "بشپړ",
+      "starts-with": "له دې سره پیل کیږي",
+      "ends-with": "له دې سره پای ته رسیږي"
+    },
+    "combiners": {
+      "and": "او",
+      "or": "یا"
+    }
+  },
   "delete-x": "ړنګ کړئ {entity}",
   "error": "یوه ستونزه وشوه. مهرباني وکړئ وروسته بیا هڅه وکړئ.",
   "delete-confirmation": {

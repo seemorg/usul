@@ -61,7 +61,9 @@
     "sources": "منابع",
     "error": "مشکلی پیش آمد. <retry>دوباره امتحان کنید</retry> یا <contact>با ما تماس بگیرید</contact> اگر ادامه پیدا کرد.",
     "pg-x": "ص{page, number, nogroup}",
-    "pg-x-vol": "جلد {vol, number, nogroup}، صفحه {page, number, nogroup}"
+    "pg-x-vol": "جلد {vol, number, nogroup}، صفحه {page, number, nogroup}",
+    "translate": "ترجمه",
+    "show-original": "نمایش اصلی"
   },
   "edition": "نسخه",
   "editions-modal": {

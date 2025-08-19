@@ -1,5 +1,6 @@
 {
   "advanced-search": "उन्नत खोज",
+  "advanced-matching": "उन्नत मिलान",
   "load-more": "और लोड करें",
   "clear-all": "सभी साफ़ करें",
   "clear-filters": "फ़िल्टर साफ़ करें",
@@ -42,6 +43,7 @@
     "year-asc": "मृत्यु वर्ष ▲",
     "year-desc": "मृत्यु वर्ष ▼"
   },
+  "view-all": "सभी देखें",
   "profile": "प्रोफ़ाइल",
   "login": "लॉगिन",
   "logout": "लॉग आउट",
@@ -165,6 +167,28 @@
   "update": "अपडेट करें",
   "delete": "हटाएँ",
   "cancel": "रद्द करें",
+  "apply": "लागू करें",
+  "keyword": "कीवर्ड",
+  "semantic": "समानार्थी",
+  "search-filters": {
+    "select-operator": "ऑपरेटर चुनें",
+    "enter-value": "मान दर्ज करें",
+    "not": "नहीं",
+    "group": "समूह",
+    "combine-with": "इसके साथ संयोजित करें",
+    "add-condition": "शर्त जोड़ें",
+    "add-group": "समूह जोड़ें",
+    "operators": {
+      "like": "जैसे",
+      "exact": "सटीक",
+      "starts-with": "से शुरू होता है",
+      "ends-with": "से समाप्त होता है"
+    },
+    "combiners": {
+      "and": "और",
+      "or": "या"
+    }
+  },
   "delete-x": "{entity} हटाएँ",
   "error": "कुछ गलत हो गया। कृपया बाद में पुनः प्रयास करें।",
   "delete-confirmation": {
