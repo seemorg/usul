@@ -24,6 +24,10 @@ export const Route = {
     view: viewSchema,
     year: yearRangeSchema,
     type: z.enum(searchTypes).default("all").catch("all"),
+    searchType: z
+      .enum(["keyword", "semantic"])
+      .default("keyword")
+      .catch("keyword"),
     sort: z
       .enum(sorts as any)
       .default(defaultSort)

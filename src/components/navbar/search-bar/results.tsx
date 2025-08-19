@@ -102,7 +102,7 @@ export default function SearchBarResults({
 
         {showSeeMore && (
           <Link
-            href={navigation.search.index({ type: searchType, query: value })}
+            href={navigation.search({ type: searchType, query: value })}
             className="text-primary mt-3 hidden underline sm:mt-0 sm:block"
           >
             {t("common.search-bar.all-results", {
@@ -137,9 +137,7 @@ export default function SearchBarResults({
           className="-mx-3 -mb-3 flex px-7 py-6 sm:hidden"
           variant="link"
         >
-          <Link
-            href={navigation.search.index({ type: searchType, query: value })}
-          >
+          <Link href={navigation.search({ type: searchType, query: value })}>
             {t("common.search-bar.all-results", {
               results: results?.found ?? 0,
             })}

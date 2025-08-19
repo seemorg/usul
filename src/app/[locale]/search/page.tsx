@@ -1,67 +1,46 @@
 import type { View } from "@/validation/view";
-import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
+import { notFound } from "next/navigation";
 import AuthorSearchResult from "@/components/author-search-result";
 import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
-import Footer from "@/components/footer";
 import GenreSearchResult from "@/components/genre-search-result";
 import GenresFilter from "@/components/genres-filter";
-import GlobalSearchResult from "@/components/global-search-result";
-import Navbar from "@/components/navbar";
 import RegionSearchResult from "@/components/region-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
-import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
-import DottedList from "@/components/ui/dotted-list";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import YearFilterClient from "@/components/year-filter/client";
 import {
-  searchAllCollections,
   searchAuthors,
   searchBooks,
+  searchContent,
   searchCorpus,
   searchGenres,
   searchRegions,
 } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
-import { getMetadata } from "@/lib/seo";
-import { booksSorts, navigation, yearsSorts } from "@/lib/urls";
-import { Link } from "@/navigation";
-import { SearchIcon } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { booksSorts, yearsSorts } from "@/lib/urls";
+import { cn } from "@/lib/utils";
+import { LibraryIcon, TextCursorIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType, SearchType } from "./routeType";
-import AllSearchResults from "./all-search-results";
+import AllSearchResults, { ContentCard } from "./all-search-results";
+import ContentFilters from "./content-filters";
+import ContentSearchType from "./content-search-type";
 import { Route } from "./routeType";
-import SearchCarousel from "./search-carousel";
 import SearchInput from "./search-input";
 import SearchTypeSwitcher from "./search-type-switcher";
 
 type TextsPageProps = InferPagePropsType<RouteType>;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}) {
-  const { locale } = await params;
-
-  return getMetadata({
-    title: (await getTranslations("common"))("search"),
-    pagePath: navigation.search.normal(),
-    locale,
-  });
-}
-
 async function search(params: Awaited<TextsPageProps["searchParams"]>) {
   const pathLocale = await getPathLocale();
-  const { type, q, sort, page, genres, authors, regions, year } = params;
+  const { type, q, sort, page, genres, authors, regions, year, searchType } =
+    params;
 
   const commonOptions = {
     limit: 20,
@@ -69,9 +48,9 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     locale: pathLocale,
   };
 
-  if (type === "all") {
-    return searchCorpus(q, pathLocale);
-  }
+  if (type === "all") return searchCorpus(q, pathLocale);
+
+  if (type === "content") return searchContent(q, searchType, page);
 
   if (type === "texts") {
     return searchBooks(q, {
@@ -99,7 +78,6 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
 
   if (type === "genres") return searchGenres(q, commonOptions);
 
-  // type === "regions"
   return searchRegions(q, commonOptions);
 }
 
@@ -112,31 +90,23 @@ const SearchResult = ({
   view: View;
   result: any;
 }) => {
-  if (type === "texts") {
-    return <BookSearchResult result={result} view={view} />;
-  }
+  if (type === "texts") return <BookSearchResult result={result} view={view} />;
+  if (type === "authors") return <AuthorSearchResult result={result} />;
+  if (type === "genres") return <GenreSearchResult result={result} />;
+  if (type === "content")
+    return <ContentCard result={result} className="w-full" />;
 
-  if (type === "authors") {
-    return <AuthorSearchResult result={result} />;
-  }
-
-  if (type === "genres") {
-    return <GenreSearchResult result={result} />;
-  }
-
-  // type === "regions"
   return <RegionSearchResult result={result} />;
 };
 
 async function SearchPage({ searchParams }: TextsPageProps) {
   const resolvedSearchParams = await searchParams;
-  const { type, q, sort, genres, authors, regions, year, view } =
+  const { type, q, sort, genres, authors, regions, year, view, searchType } =
     resolvedSearchParams;
-  const pathLocale = await getPathLocale();
-  const t = await getTranslations();
 
+  const t = await getTranslations();
   const results = await search(resolvedSearchParams);
-  // const results = await searchCorpus(q, pathLocale);
+  if (!results) notFound();
 
   const entityName = t(
     (
@@ -151,28 +121,89 @@ async function SearchPage({ searchParams }: TextsPageProps) {
     )[type],
   );
 
+  const showEmptyState = q.trim().length === 0;
+
   return (
-    <div>
-      <Navbar />
+    <>
+      <Container>
+        <SearchInput />
+        {!showEmptyState && <SearchTypeSwitcher />}
+        <div className="mt-5" />
+        {showEmptyState && (
+          <div className="flex min-h-[250px] w-full flex-col items-center justify-center text-center">
+            <div className="border-border bg-muted text-muted-foreground flex size-12 items-center justify-center rounded-md border">
+              <TextCursorIcon className="size-6" />
+            </div>
+            <h3 className="text-muted-foreground mt-4 text-2xl font-medium">
+              Type Something to Search
+            </h3>
+            <p className="text-muted-foreground mt-2 text-base font-light">
+              See where it leads.
+            </p>
+          </div>
+        )}
+      </Container>
 
-      <main className="bg-background flex min-h-screen w-full flex-col pt-16 pb-24 sm:pt-24">
-        <Container className="flex flex-col items-center">
-          <SearchInput initialValue={q} />
-
-          <SearchTypeSwitcher />
-
-          <div className="mt-5" />
-
-          {!results && <p>error</p>}
-
+      {!showEmptyState && (
+        <Container
+          className={cn(
+            type === "content" && searchType === "keyword"
+              ? "2xl:max-w-9xl max-w-6xl"
+              : "",
+          )}
+        >
           {results ? (
             "content" in results ? (
               <AllSearchResults results={results} q={q} />
             ) : (
               <SearchResults
                 showInput={false}
-                response={results.results as any}
-                pagination={results.pagination}
+                hasViews={type === "texts"}
+                hasSorts={type !== "content"}
+                label={
+                  type === "content" && (
+                    <div className="flex items-center justify-between">
+                      <p>
+                        {t("entities.x-results", {
+                          count: !("pagination" in results)
+                            ? results.total
+                            : results.pagination.totalRecords,
+                        })}
+                      </p>
+
+                      <ContentSearchType />
+                    </div>
+                  )
+                }
+                itemsContainerClassName={
+                  type === "content" ? "gap-6" : undefined
+                }
+                gridColumns={
+                  type === "content" && searchType === "keyword"
+                    ? [3, 5]
+                    : undefined
+                }
+                response={
+                  "pagination" in results
+                    ? (results.results as any)
+                    : {
+                        page: results.currentPage,
+                        hits: results.results
+                          .map((r) => ({ id: r.node.id, ...r }))
+                          .filter((r) => !!r.book),
+                      }
+                }
+                pagination={
+                  "pagination" in results
+                    ? results.pagination
+                    : {
+                        hasNext: results.hasNextPage,
+                        hasPrev: results.hasPreviousPage,
+                        totalPages: results.totalPages,
+                        currentPage: results.currentPage,
+                        totalRecords: results.total,
+                      }
+                }
                 renderResult={(result) => (
                   <SearchResult type={type} view={view} result={result} />
                 )}
@@ -189,7 +220,11 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                 currentQuery={q}
                 view={view}
                 filters={
-                  type === "genres" || type === "regions" ? null : (
+                  type === "content" ? (
+                    searchType === "keyword" ? (
+                      <ContentFilters />
+                    ) : null
+                  ) : type === "genres" || type === "regions" ? null : (
                     <>
                       {type === "texts" || type === "authors" ? (
                         <YearFilterClient
@@ -239,10 +274,8 @@ async function SearchPage({ searchParams }: TextsPageProps) {
             <p>error</p>
           )}
         </Container>
-      </main>
-
-      <Footer />
-    </div>
+      )}
+    </>
   );
 }
 

@@ -2,7 +2,9 @@ import BookSearchResult from "@/components/book-search-result";
 import DottedList from "@/components/ui/dotted-list";
 import { Separator } from "@/components/ui/separator";
 import { searchCorpus } from "@/lib/api/search";
+import { removeDiacritics } from "@/lib/diacritics";
 import { navigation } from "@/lib/urls";
+import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 
@@ -11,48 +13,74 @@ import SearchCarousel, { EmptyAlert } from "./search-carousel";
 type Results = NonNullable<Awaited<ReturnType<typeof searchCorpus>>>;
 type Content = Results["content"]["results"][number];
 
-const ContentCard = ({ book, node }: Content) => {
-  const page = node.metadata.pages[0];
+export const ContentCard = ({
+  result,
+  className,
+}: {
+  result: Content;
+  className?: string;
+}) => {
+  const page = result.node.metadata.pages[0];
   const t = useTranslations();
+  const versionId = result.versionId;
+  const href =
+    (page
+      ? navigation.books.pageReader(result.book.slug, page.index)
+      : navigation.books.reader(result.book.slug)) + `?versionId=${versionId}`;
+
+  const text = result.node.highlights
+    ? result.node.highlights.join("<br>...<br>")
+    : removeDiacritics(result.node.text).replaceAll("\n", "<br>");
 
   return (
-    <div className="bg-card border-border flex w-lg flex-col gap-4 rounded-xl border px-6 py-5">
+    <Link
+      href={href}
+      className={cn(
+        "bg-card border-border flex w-lg flex-col gap-4 rounded-xl border px-6 py-5",
+        className,
+      )}
+    >
       <bdi
-        className="font-scheherazade [&_em]:text-primary line-clamp-5 block max-h-[150px] overflow-ellipsis"
+        className="font-scheherazade [&>em]:text-primary line-clamp-5 block max-h-[150px] overflow-ellipsis sm:text-xl/relaxed [&>em]:font-bold [&>em]:not-italic"
         dangerouslySetInnerHTML={{
-          __html: node.highlights
-            ? node.highlights.join("<br>...<br>")
-            : node.text,
+          __html: text,
         }}
       />
 
-      {/* {page && (
-        <p dir="rtl" className="text-muted-foreground text-xs">
-          {t("reader.chat.pg-x-vol", {
-            page: page.page,
-            volume: page.volume,
-          })}
-        </p>
-      )} */}
+      {page && (
+        <div className="text-muted-foreground text-xs" dir="rtl">
+          {page?.volume && (
+            <span>
+              {isNaN(Number(page.volume))
+                ? page.volume
+                : t("common.pagination.vol-x", { volume: page.volume })}{" "}
+              /{" "}
+            </span>
+          )}
+          <span>
+            {t("common.pagination.page-x", { page: page ? page.page : -1 })}
+          </span>
+        </div>
+      )}
 
       <Separator />
 
       <div className="flex justify-between text-xs">
         <div className="flex-1">
-          <p className="font-medium">{book.primaryName}</p>
+          <p className="font-medium">{result.book.primaryName}</p>
           <p className="text-muted-foreground mt-1">
-            {book.author.primaryName}
+            {result.book.author.primaryName}
           </p>
         </div>
 
         <div className="flex-1">
-          <bdi className="block font-medium">{book.secondaryName}</bdi>
+          <bdi className="block font-medium">{result.book.secondaryName}</bdi>
           <bdi className="text-muted-foreground mt-1 block">
-            {book.author.secondaryName}
+            {result.book.author.secondaryName}
           </bdi>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
@@ -69,14 +97,14 @@ export default function AllSearchResults({
     <div className="flex w-full flex-col gap-10">
       <SearchCarousel
         title={t("entities.content")}
-        allHref={navigation.search.index({
+        allHref={navigation.search({
           type: "content",
           query: q,
         })}
         slidesPerScroll={1}
       >
         {results.content.results.map((result) => (
-          <ContentCard key={result.book.id} {...result} />
+          <ContentCard key={result.book.id} result={result} />
         ))}
       </SearchCarousel>
 
@@ -84,7 +112,7 @@ export default function AllSearchResults({
         title={t("entities.x-texts", {
           count: results.books.found,
         })}
-        allHref={navigation.search.index({
+        allHref={navigation.search({
           type: "texts",
           query: q,
         })}
@@ -104,7 +132,7 @@ export default function AllSearchResults({
           </p>
 
           <Link
-            href={navigation.search.index({
+            href={navigation.search({
               type: "authors",
               query: q,
             })}
@@ -152,7 +180,7 @@ export default function AllSearchResults({
           </p>
 
           <Link
-            href={navigation.search.index({
+            href={navigation.search({
               type: "genres",
               query: q,
             })}

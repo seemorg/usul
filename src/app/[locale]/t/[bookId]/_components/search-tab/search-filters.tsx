@@ -9,7 +9,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
+import { cn } from "@/lib/utils";
 import { FolderPlusIcon, PlusIcon, XIcon } from "lucide-react";
 
 type Operator = "like" | "exact" | "starts-with" | "ends-with";
@@ -35,33 +37,44 @@ const ConditionComponent: React.FC<{
   onUpdate: (updatedCondition: Condition) => void;
   onRemove: () => void;
 }> = ({ condition, onUpdate, onRemove }) => (
-  <div className="mb-2 flex items-center space-x-2">
-    <Select
-      value={condition.operator}
-      onValueChange={(value) =>
-        onUpdate({ ...condition, operator: value as Operator })
-      }
-    >
-      <SelectTrigger className="w-[180px]">
-        <SelectValue placeholder="Select operator" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectItem value="like">like</SelectItem>
-        <SelectItem value="exact">exact</SelectItem>
-        <SelectItem value="starts-with">starts-with</SelectItem>
-        <SelectItem value="ends-with">ends-with</SelectItem>
-      </SelectContent>
-    </Select>
+  <div className="flex items-center gap-2">
+    <div className="bg-background flex flex-1 rounded-3xl">
+      <Select
+        value={condition.operator}
+        onValueChange={(value) =>
+          onUpdate({ ...condition, operator: value as Operator })
+        }
+      >
+        <SelectTrigger className="w-fit gap-2 rounded-3xl bg-transparent shadow-none ltr:rounded-r-none ltr:border-r-0 rtl:rounded-l-none rtl:border-l-0">
+          <SelectValue placeholder="Select operator" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="like">like</SelectItem>
+          <SelectItem value="exact">exact</SelectItem>
+          <SelectItem value="starts-with">starts-with</SelectItem>
+          <SelectItem value="ends-with">ends-with</SelectItem>
+        </SelectContent>
+      </Select>
 
-    <Input
-      type="text"
-      value={condition.value}
-      onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
-      placeholder="Enter value"
-      className="grow"
-    />
+      <Input
+        type="text"
+        value={condition.value}
+        onChange={(e) => onUpdate({ ...condition, value: e.target.value })}
+        placeholder="Enter value"
+        className="grow-1 rounded-none bg-transparent shadow-none"
+      />
 
-    <div className="flex items-center space-x-2">
+      <Button
+        variant="ghost"
+        size="icon"
+        className="border-border h-9 shrink-0 rounded-3xl border ltr:rounded-l-none ltr:border-l-0 rtl:rounded-r-none rtl:border-r-0"
+        onClick={onRemove}
+      >
+        <XIcon className="size-4" />
+      </Button>
+    </div>
+
+    <div className="flex items-center gap-1">
       <Switch
         id={`not-${condition.value}`}
         checked={condition.not}
@@ -69,10 +82,6 @@ const ConditionComponent: React.FC<{
       />
       <Label htmlFor={`not-${condition.value}`}>NOT</Label>
     </div>
-
-    <Button variant="ghost" size="icon" onClick={onRemove}>
-      <XIcon className="size-4" />
-    </Button>
   </div>
 );
 
@@ -81,7 +90,8 @@ const GroupComponent: React.FC<{
   onUpdate: (updatedGroup: GroupCondition) => void;
   onRemove: () => void;
   depth: number;
-}> = ({ group, onUpdate, onRemove, depth }) => {
+  index: number;
+}> = ({ group, onUpdate, onRemove, depth, index }) => {
   const addCondition = () => {
     onUpdate({
       ...group,
@@ -120,57 +130,88 @@ const GroupComponent: React.FC<{
 
   return (
     <div
-      className={`mb-2 w-full rounded-lg border p-4 ${depth > 0 ? "ml-4" : ""}`}
+      className={cn(
+        "w-full",
+        depth > 0 &&
+          "bg-muted dark:bg-card border-border rounded-xl border px-4 py-2",
+      )}
     >
-      <div className="mb-2 flex items-center space-x-2">
-        {group.conditions.length > 1 && (
-          <Select
-            value={group.combineWith}
-            onValueChange={(value: "AND" | "OR") =>
-              onUpdate({ ...group, combineWith: value })
-            }
+      {depth > 0 && (
+        <div className="mb-4 flex items-center justify-between">
+          <p>
+            Group {index + 1}
+            {depth > 1 && ` (${depth})`}
+          </p>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="shrink-0"
+            onClick={onRemove}
           >
-            <SelectTrigger className="w-[100px]">
-              <SelectValue placeholder="Combine with" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="AND">AND</SelectItem>
-              <SelectItem value="OR">OR</SelectItem>
-            </SelectContent>
-          </Select>
-        )}
-        <Button variant="outline" onClick={addCondition}>
-          <PlusIcon className="mr-2 size-4" /> Add Condition
-        </Button>
-        <Button variant="outline" onClick={addGroup}>
-          <FolderPlusIcon className="mr-2 size-4" /> Add Group
-        </Button>
-        {depth > 0 && (
-          <Button variant="ghost" size="icon" onClick={onRemove}>
             <XIcon className="size-4" />
           </Button>
-        )}
-      </div>
-      {group.conditions.map((condition, index) =>
-        "type" in condition ? (
-          <GroupComponent
-            key={index}
-            group={condition}
-            onUpdate={(updatedGroup) => updateCondition(index, updatedGroup)}
-            onRemove={() => removeCondition(index)}
-            depth={depth + 1}
-          />
-        ) : (
-          <ConditionComponent
-            key={index}
-            condition={condition}
-            onUpdate={(updatedCondition) =>
-              updateCondition(index, updatedCondition)
-            }
-            onRemove={() => removeCondition(index)}
-          />
-        ),
+        </div>
       )}
+
+      {group.conditions.map((condition, index) => (
+        <React.Fragment key={index}>
+          {"type" in condition ? (
+            <GroupComponent
+              group={condition}
+              onUpdate={(updatedGroup) => updateCondition(index, updatedGroup)}
+              onRemove={() => removeCondition(index)}
+              depth={depth + 1}
+              index={index}
+            />
+          ) : (
+            <ConditionComponent
+              condition={condition}
+              onUpdate={(updatedCondition) =>
+                updateCondition(index, updatedCondition)
+              }
+              onRemove={() => removeCondition(index)}
+            />
+          )}
+
+          {group.conditions.length > 1 &&
+            index !== group.conditions.length - 1 && (
+              <Select
+                value={group.combineWith}
+                onValueChange={(value: "AND" | "OR") =>
+                  onUpdate({ ...group, combineWith: value })
+                }
+              >
+                <Separator orientation="vertical" className="mx-auto h-2" />
+                <SelectTrigger className="bg-background mx-auto w-fit gap-2 rounded-full lowercase">
+                  <SelectValue placeholder="Combine with" />
+                </SelectTrigger>
+                <Separator orientation="vertical" className="mx-auto h-2" />
+
+                <SelectContent align="center">
+                  <SelectItem value="AND">and</SelectItem>
+                  <SelectItem value="OR">or</SelectItem>
+                </SelectContent>
+              </Select>
+            )}
+        </React.Fragment>
+      ))}
+
+      <div className="mt-4 flex items-center space-x-2">
+        <Button
+          variant="ghost"
+          className="text-primary hover:bg-primary/10"
+          onClick={addCondition}
+        >
+          <PlusIcon className="size-4" /> Add Condition
+        </Button>
+        <Button
+          variant="ghost"
+          className="text-primary hover:bg-primary/10"
+          onClick={addGroup}
+        >
+          <FolderPlusIcon className="size-4" /> Add Group
+        </Button>
+      </div>
     </div>
   );
 };
@@ -264,6 +305,7 @@ export function AzureSearchFilter({ value, setValue }: FilterProps) {
       onUpdate={applyFilter}
       onRemove={applyFilter}
       depth={0}
+      index={0}
     />
   );
 }

@@ -1,28 +1,34 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
+import { SearchType } from "@/types/search";
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-export default function SearchInput({
-  initialValue,
-}: {
-  initialValue?: string;
-}) {
+export default function SearchInput() {
   const t = useTranslations();
   const [isPending, startTransition] = useTransition();
-  const [query, setQuery] = useState<string>(initialValue ?? "");
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [inputValue, setInputValue] = useState(searchParams.get("q") || "");
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     startTransition(() => {
-      router.push(navigation.search.index({ type: "all", query }), undefined, {
-        showProgressBar: true,
-      });
+      router.push(
+        navigation.search({
+          query: inputValue,
+          searchType:
+            (searchParams.get("searchType") as "keyword" | "semantic") ||
+            "keyword",
+          type: (searchParams.get("type") as SearchType) || "all",
+        }),
+      );
     });
   };
 
@@ -31,9 +37,9 @@ export default function SearchInput({
       <Input
         className="h-12 w-full rounded-3xl border-[0.5px] px-5 font-semibold shadow-none"
         placeholder={t("common.search") + "..."}
-        value={query}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         autoFocus
-        onChange={(e) => setQuery(e.target.value)}
       />
 
       <div className="absolute top-1/2 -translate-y-1/2 ltr:right-0 ltr:-translate-x-2 rtl:left-0 rtl:translate-x-2">

@@ -3,8 +3,9 @@ import { ActionContainer } from "@/app/[locale]/chat/chat-input";
 import { Button } from "@/components/ui/button";
 import { CommandList } from "@/components/ui/command";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import { useRouter } from "@/navigation";
+import { Link, useRouter } from "@/navigation";
 import { useSearchHistoryStore } from "@/stores/search-history";
 import { SearchType } from "@/types/search";
 import { Command, CommandInput } from "cmdk";
@@ -58,7 +59,7 @@ export default function HomepageSearchBar({
 
     const timeout = setTimeout(() => {
       inputRef.current?.focus();
-    }, 0);
+    }, 10);
 
     document.addEventListener("keydown", down);
     return () => {
@@ -155,12 +156,14 @@ export default function HomepageSearchBar({
           <Button
             variant="outline"
             className="text-foreground gap-2 rounded-full"
-            type="button"
+            asChild
           >
-            <GlobeIcon className="size-4" />
-            <span className={cn("hidden sm:block")}>
-              {t("common.advanced-search")}
-            </span>
+            <Link href={navigation.search()}>
+              <GlobeIcon className="size-4" />
+              <span className={cn("hidden sm:block")}>
+                {t("common.advanced-search")}
+              </span>
+            </Link>
           </Button>
 
           <Button

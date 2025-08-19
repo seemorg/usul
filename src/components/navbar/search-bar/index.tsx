@@ -130,9 +130,7 @@ export default function SearchBar({
               className="text-primary hover:text-primary"
               asChild
             >
-              <Link href={navigation.search.normal()}>
-                {t("advanced-search")}
-              </Link>
+              <Link href={navigation.search()}>{t("advanced-search")}</Link>
             </Button>
           </p>
         </div>
