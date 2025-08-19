@@ -97,6 +97,12 @@ export default function SearchBarResults({
             >
               {entitiesT("genres")}
             </TabsTrigger>
+            <TabsTrigger
+              value="regions"
+              className="w-full rounded-3xl sm:w-auto"
+            >
+              {entitiesT("regions")}
+            </TabsTrigger>
           </TabsList>
         </Tabs>
 
