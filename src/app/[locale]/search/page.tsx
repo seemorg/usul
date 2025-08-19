@@ -137,6 +137,12 @@ async function SearchPage({ searchParams }: TextsPageProps) {
   );
 
   const showEmptyState = q.trim().length === 0;
+  const total =
+    "pagination" in results
+      ? results.pagination.totalRecords
+      : "total" in results
+        ? results.total
+        : 0;
 
   return (
     <>
@@ -176,19 +182,10 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                 hasViews={type === "texts"}
                 hasSorts={type !== "content"}
                 label={
-                  type === "content" && (
-                    <div className="flex items-center justify-between">
-                      <p>
-                        {t("entities.x-results", {
-                          count: !("pagination" in results)
-                            ? results.total
-                            : results.pagination.totalRecords,
-                        })}
-                      </p>
-
-                      <ContentSearchType />
-                    </div>
-                  )
+                  <div className="flex items-center justify-between">
+                    <p>{t("entities.x-results", { count: total })}</p>
+                    {type === "content" && <ContentSearchType />}
+                  </div>
                 }
                 itemsContainerClassName={
                   type === "content" ? "gap-6" : undefined
