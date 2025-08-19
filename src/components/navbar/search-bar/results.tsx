@@ -57,8 +57,8 @@ export default function SearchBarResults({
 }: {
   results?: SearchResponse<GlobalSearchDocument>["results"];
   onItemSelect: (href?: string) => void;
-  searchType: SearchType;
-  setSearchType: (type: SearchType) => void;
+  searchType: Exclude<SearchType, "content">;
+  setSearchType: (type: Exclude<SearchType, "content">) => void;
   isLoading?: boolean;
   value: string;
 }) {
@@ -74,7 +74,7 @@ export default function SearchBarResults({
         <Tabs
           value={searchType}
           onValueChange={(value) =>
-            setSearchType(value as "all" | "texts" | "authors" | "genres")
+            setSearchType(value as Exclude<SearchType, "content">)
           }
           className="w-full gap-2 rounded-full sm:w-auto"
         >

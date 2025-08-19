@@ -29,7 +29,8 @@ export default function SearchBar({
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
   const [value, setValue] = useState("");
-  const [searchType, setSearchType] = useState<SearchType>("all");
+  const [searchType, setSearchType] =
+    useState<Exclude<SearchType, "content">>("all");
   const focusedState = useBoolean(false);
 
   const [debouncedValue] = useDebounceValue(value, 300);

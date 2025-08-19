@@ -5,9 +5,10 @@ import {
   searchGenres,
 } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
-import { SearchType } from "@/types/search";
+import { SearchType as _SearchType } from "@/types/search";
 import { useQuery } from "@tanstack/react-query";
 
+type SearchType = Exclude<_SearchType, "content">;
 const typeToMethod = {
   all: searchAllCollections,
   texts: searchBooks,

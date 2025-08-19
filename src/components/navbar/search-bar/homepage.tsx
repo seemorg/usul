@@ -25,7 +25,8 @@ export default function HomepageSearchBar({
 }) {
   const t = useTranslations();
   const [value, setValue] = useState("");
-  const [searchType, setSearchType] = useState<SearchType>("all");
+  const [searchType, setSearchType] =
+    useState<Exclude<SearchType, "content">>("all");
   const focusedState = useBoolean(true);
   const [debouncedValue] = useDebounceValue(value, 300);
   const router = useRouter();
