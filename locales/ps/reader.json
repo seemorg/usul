@@ -61,7 +61,9 @@
     "sources": "سرچینې",
     "error": "یوه ستونزه پېښه شوه. <retry>بیا هڅه وکړئ</retry> یا که دا دوام لري <contact>موږ سره اړیکه ونیسئ</contact>.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "جلد {vol, number, nogroup}، مخ {page, number, nogroup}"
+    "pg-x-vol": "جلد {vol, number, nogroup}، مخ {page, number, nogroup}",
+    "translate": "ژباړه",
+    "show-original": "اصلي ښکاره کړئ"
   },
   "edition": "څپرکی",
   "editions-modal": {

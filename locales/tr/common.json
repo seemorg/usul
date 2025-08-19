@@ -1,5 +1,6 @@
 {
   "advanced-search": "Gelişmiş Arama",
+  "advanced-matching": "Gelişmiş Eşleşme",
   "load-more": "Daha Fazla Yükle",
   "clear-all": "Tümünü Temizle",
   "clear-filters": "Filtreleri temizle",
@@ -42,6 +43,7 @@
     "year-asc": "Ölüm Yılı ▲",
     "year-desc": "Ölüm Yılı ▼"
   },
+  "view-all": "Tümünü Gör",
   "profile": "Profil",
   "login": "Giriş",
   "logout": "Çıkış Yap",
@@ -165,6 +167,28 @@
   "update": "Güncelle",
   "delete": "Sil",
   "cancel": "İptal",
+  "apply": "Uygula",
+  "keyword": "Anahtar Kelime",
+  "semantic": "Semantik",
+  "search-filters": {
+    "select-operator": "Operatör seç",
+    "enter-value": "Değer girin",
+    "not": "Değil",
+    "group": "Grup",
+    "combine-with": "Birlikte kullan",
+    "add-condition": "Koşul Ekle",
+    "add-group": "Grup Ekle",
+    "operators": {
+      "like": "Benzer",
+      "exact": "Tam",
+      "starts-with": "İle başlayan",
+      "ends-with": "İle biten"
+    },
+    "combiners": {
+      "and": "ve",
+      "or": "veya"
+    }
+  },
   "delete-x": "{entity} Sil",
   "error": "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.",
   "delete-confirmation": {

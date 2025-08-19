@@ -1,5 +1,6 @@
 {
   "advanced-search": "Расширеннный поиск",
+  "advanced-matching": "Расширенное сопоставление",
   "load-more": "Загрузить больше",
   "clear-all": "Очистить все",
   "clear-filters": "Очистить фильтры",
@@ -42,6 +43,7 @@
     "year-asc": "Год смерти ▲",
     "year-desc": "Год смерти ▼"
   },
+  "view-all": "Просмотреть все",
   "profile": "Профиль",
   "login": "Войти",
   "logout": "Выйти",
@@ -165,6 +167,28 @@
   "update": "Обновить",
   "delete": "Удалить",
   "cancel": "Отмена",
+  "apply": "Применить",
+  "keyword": "Ключевое слово",
+  "semantic": "Семантический",
+  "search-filters": {
+    "select-operator": "Выберите оператор",
+    "enter-value": "Введите значение",
+    "not": "Не",
+    "group": "Группа",
+    "combine-with": "Объединить с",
+    "add-condition": "Добавить условие",
+    "add-group": "Добавить группу",
+    "operators": {
+      "like": "Похоже",
+      "exact": "Точно",
+      "starts-with": "Начинается с",
+      "ends-with": "Заканчивается на"
+    },
+    "combiners": {
+      "and": "и",
+      "or": "или"
+    }
+  },
   "delete-x": "Удалить {entity}",
   "error": "Что-то пошло не так. Пожалуйста, попробуйте позже.",
   "delete-confirmation": {

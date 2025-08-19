@@ -61,7 +61,9 @@
     "sources": "ماخذ",
     "error": "کچھ غلط ہو گیا ہے۔ <retry>دوبارہ کوشش کریں</retry> یا اگر یہ مسئلہ برقرار رہے تو <contact>ہم سے رابطہ کریں</contact>۔",
     "pg-x": "ص{page, number, nogroup}",
-    "pg-x-vol": "حجم {vol, number, nogroup}, صفحہ {page, number, nogroup}"
+    "pg-x-vol": "حجم {vol, number, nogroup}, صفحہ {page, number, nogroup}",
+    "translate": "ترجمہ",
+    "show-original": "اصل دکھائیں"
   },
   "edition": "ایڈیشن",
   "editions-modal": {

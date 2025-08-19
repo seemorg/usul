@@ -1,5 +1,6 @@
 {
   "advanced-search": "Carian Lanjutan",
+  "advanced-matching": "Padanan Lanjutan",
   "load-more": "Muat Lebih",
   "clear-all": "Kosongkan semua",
   "clear-filters": "Kosongkan penapis",
@@ -42,6 +43,7 @@
     "year-asc": "Tahun Kematian ▲",
     "year-desc": "Tahun Kematian ▼"
   },
+  "view-all": "Lihat Semua",
   "profile": "Profil",
   "login": "Log Masuk",
   "logout": "Log Keluar",
@@ -165,6 +167,28 @@
   "update": "Kemaskini",
   "delete": "Padam",
   "cancel": "Batal",
+  "apply": "Guna",
+  "keyword": "Kata Kunci",
+  "semantic": "Semantik",
+  "search-filters": {
+    "select-operator": "Pilih operator",
+    "enter-value": "Masukkan nilai",
+    "not": "Tidak",
+    "group": "Kumpulan",
+    "combine-with": "Gabungkan dengan",
+    "add-condition": "Tambahkan Syarat",
+    "add-group": "Tambahkan Kumpulan",
+    "operators": {
+      "like": "Seperti",
+      "exact": "Tepat",
+      "starts-with": "Bermula dengan",
+      "ends-with": "Berakhir dengan"
+    },
+    "combiners": {
+      "and": "dan",
+      "or": "atau"
+    }
+  },
   "delete-x": "Padam {entity}",
   "error": "Sesuatu yang tidak kena. Sila cuba lagi kemudian.",
   "delete-confirmation": {

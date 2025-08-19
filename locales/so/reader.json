@@ -61,7 +61,9 @@
     "sources": "Ilo",
     "error": "Waxbaa qaldamay. <retry>Mar kale isku day</retry> ama <contact>nala soo xidhiidh</contact> haddii ay sii socoto.",
     "pg-x": "B{page, number, nogroup}",
-    "pg-x-vol": "Vol {vol, number, nogroup}, Bog {page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Bog {page, number, nogroup}",
+    "translate": "Tarjuma",
+    "show-original": "Muuji asalka"
   },
   "edition": "Daabacad",
   "editions-modal": {

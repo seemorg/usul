@@ -1,5 +1,6 @@
 {
   "advanced-search": "উন্নত অনুসন্ধান",
+  "advanced-matching": "উন্নত মিলান",
   "load-more": "আরও লোড করুন",
   "clear-all": "সব মুছে দিন",
   "clear-filters": "ফিল্টার মুছে ফেলুন",
@@ -42,6 +43,7 @@
     "year-asc": "মৃত্যুর বছর ▲",
     "year-desc": "মৃত্যুর বছর ▼"
   },
+  "view-all": "সব দেখুন",
   "profile": "প্রোফাইল",
   "login": "লগইন",
   "logout": "লগ আউট",
@@ -165,6 +167,28 @@
   "update": "আপডেট করুন",
   "delete": "মুছে দিন",
   "cancel": "বাতিল করুন",
+  "apply": "প্রয়োগ করুন",
+  "keyword": "কীওয়ার্ড",
+  "semantic": "সেমান্টিক",
+  "search-filters": {
+    "select-operator": "অপারেটর নির্বাচন করুন",
+    "enter-value": "মান লিখুন",
+    "not": "না",
+    "group": "গ্রুপ",
+    "combine-with": "যার সাথে মিশ্রিত হবে",
+    "add-condition": "শর্ত যোগ করুন",
+    "add-group": "গ্রুপ যোগ করুন",
+    "operators": {
+      "like": "পছন্দ",
+      "exact": "নির্দিষ্ট",
+      "starts-with": "শুরু হয়",
+      "ends-with": "শেষ হয়"
+    },
+    "combiners": {
+      "and": "এবং",
+      "or": "অথবা"
+    }
+  },
   "delete-x": "{entity} মুছে দিন",
   "error": "কিছু ভুল হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।",
   "delete-confirmation": {

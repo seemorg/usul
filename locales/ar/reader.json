@@ -61,7 +61,9 @@
     "sources": "مصادر",
     "error": "حدث خطأ ما. <retry>حاول مرة أخرى</retry> أو <contact>اتصل بنا</contact> إذا استمرت المشكلة.",
     "pg-x": "صفحة {page, number, nogroup}",
-    "pg-x-vol": "المجلد {vol, number, nogroup}, الصفحة {page, number, nogroup}"
+    "pg-x-vol": "المجلد {vol, number, nogroup}, الصفحة {page, number, nogroup}",
+    "translate": "ترجمة",
+    "show-original": "عرض الأصل"
   },
   "edition": "الإصدار",
   "editions-modal": {
