@@ -329,61 +329,283 @@ export const buildQuery = (group: GroupCondition, isRoot = false): string => {
   return `(${result})`;
 };
 
+// Helper function to split query by operators while respecting parentheses
+const splitQueryByOperators = (
+  query: string,
+): { parts: string[]; operators: ("AND" | "OR")[]; hasMixed: boolean } => {
+  const parts: string[] = [];
+  const operators: ("AND" | "OR")[] = [];
+  let currentPart = "";
+  let parenthesesDepth = 0;
+  let i = 0;
+
+  while (i < query.length) {
+    const char = query[i];
+
+    if (char === "(") {
+      parenthesesDepth++;
+      currentPart += char;
+    } else if (char === ")") {
+      parenthesesDepth--;
+      currentPart += char;
+    } else if (parenthesesDepth === 0) {
+      // Only look for operators at the top level (outside parentheses)
+      if (query.slice(i, i + 5) === " AND ") {
+        parts.push(currentPart.trim());
+        operators.push("AND");
+        currentPart = "";
+        i += 4; // Skip " AND"
+      } else if (query.slice(i, i + 4) === " OR ") {
+        parts.push(currentPart.trim());
+        operators.push("OR");
+        currentPart = "";
+        i += 3; // Skip " OR"
+      } else {
+        currentPart += char;
+      }
+    } else {
+      currentPart += char;
+    }
+    i++;
+  }
+
+  if (currentPart.trim()) {
+    parts.push(currentPart.trim());
+  }
+
+  // Check if we have mixed operators
+  const uniqueOperators = [...new Set(operators)];
+  const hasMixed = uniqueOperators.length > 1;
+
+  return {
+    parts: parts.filter((part) => part.length > 0),
+    operators,
+    hasMixed,
+  };
+};
+
+// Helper function to handle mixed operators by creating proper groupings
+const handleMixedOperators = (
+  parts: string[],
+  operators: ("AND" | "OR")[],
+): GroupCondition => {
+  if (operators.length === 0 || parts.length === 0) {
+    // Single part, parse it directly
+    const firstPart = parts[0] || "";
+    return parseQuery(firstPart);
+  }
+
+  // For mixed operators, we need to respect operator precedence
+  // AND has higher precedence than OR, so we group AND operations first
+
+  // Find OR operators and split the query into OR groups
+  const orGroups: { parts: string[]; operators: ("AND" | "OR")[] }[] = [];
+  let currentOrGroup: { parts: string[]; operators: ("AND" | "OR")[] } = {
+    parts: [],
+    operators: [],
+  };
+
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (part) {
+      currentOrGroup.parts.push(part);
+    }
+
+    if (i < operators.length) {
+      const operator = operators[i];
+      if (operator === "OR") {
+        // End current OR group and start a new one
+        orGroups.push(currentOrGroup);
+        currentOrGroup = { parts: [], operators: [] };
+      } else if (operator) {
+        // AND operator, add to current group
+        currentOrGroup.operators.push(operator);
+      }
+    }
+  }
+
+  // Add the last group
+  if (currentOrGroup.parts.length > 0) {
+    orGroups.push(currentOrGroup);
+  }
+
+  // If we only have one OR group, handle it as an AND group
+  if (orGroups.length === 1) {
+    const group = orGroups[0];
+    if (!group) {
+      return {
+        type: "group",
+        combineWith: "AND",
+        conditions: [],
+      };
+    }
+
+    const conditions = group.parts.map((part) => {
+      if (part.startsWith("(") && part.endsWith(")")) {
+        return parseQuery(part);
+      }
+      return parseSingleCondition(part);
+    });
+
+    return {
+      type: "group",
+      combineWith: "AND",
+      conditions,
+    };
+  }
+
+  // Multiple OR groups - create nested structure
+  const orConditions = orGroups.map((group) => {
+    if (group.parts.length === 1) {
+      const part = group.parts[0];
+      if (!part) {
+        return {
+          type: "group" as const,
+          combineWith: "AND" as const,
+          conditions: [],
+        };
+      }
+
+      if (part.startsWith("(") && part.endsWith(")")) {
+        return parseQuery(part);
+      }
+      return {
+        type: "group" as const,
+        combineWith: "AND" as const,
+        conditions: [parseSingleCondition(part)],
+      };
+    } else {
+      // Multiple parts in this OR group, combine with AND
+      const conditions = group.parts.map((part) => {
+        if (part.startsWith("(") && part.endsWith(")")) {
+          return parseQuery(part);
+        }
+        return parseSingleCondition(part);
+      });
+
+      return {
+        type: "group" as const,
+        combineWith: "AND" as const,
+        conditions,
+      };
+    }
+  });
+
+  return {
+    type: "group",
+    combineWith: "OR",
+    conditions: orConditions,
+  };
+};
+
+// Helper function to parse a single condition
+const parseSingleCondition = (part: string): Condition => {
+  part = part.trim();
+
+  let not = false;
+  if (part.startsWith("NOT ")) {
+    not = true;
+    part = part.slice(4).trim();
+  }
+
+  let operator: "like" | "exact" | "starts-with" | "ends-with" = "like";
+  let value = part;
+
+  if (part.startsWith('"') && part.endsWith('"')) {
+    operator = "exact";
+    value = part.slice(1, -1);
+  } else if (part.startsWith("*") && part.endsWith("*")) {
+    // Handle *value* case (contains)
+    operator = "like";
+    value = part.slice(1, -1);
+  } else if (part.startsWith("*")) {
+    operator = "ends-with";
+    value = part.slice(1);
+  } else if (part.endsWith("*")) {
+    operator = "starts-with";
+    value = part.slice(0, -1);
+  }
+
+  // Unescape special characters
+  value = unescapeValue(value);
+
+  return {
+    operator,
+    value,
+    not,
+  };
+};
+
 export const parseQuery = (query: string): GroupCondition => {
-  // Remove outer parentheses if present
+  // Remove outer parentheses if present and balanced
   query = query.trim();
   if (query.startsWith("(") && query.endsWith(")")) {
-    query = query.slice(1, -1).trim();
+    // Check if these are the outermost parentheses
+    let depth = 0;
+    let canRemove = true;
+    for (let i = 0; i < query.length; i++) {
+      if (query[i] === "(") depth++;
+      else if (query[i] === ")") depth--;
+
+      // If depth becomes 0 before the last character, these aren't outermost parentheses
+      if (depth === 0 && i < query.length - 1) {
+        canRemove = false;
+        break;
+      }
+    }
+    if (canRemove) {
+      query = query.slice(1, -1).trim();
+    }
+  }
+
+  // Handle empty query
+  if (!query) {
+    return {
+      type: "group",
+      conditions: [],
+      combineWith: "AND",
+    };
   }
 
   // Split by AND/OR at top level (respecting parentheses)
-  let combineWith: "AND" | "OR" = "AND";
-  let parts: string[] = [];
+  const { parts, operators, hasMixed } = splitQueryByOperators(query);
 
-  if (query.includes(" AND ")) {
-    parts = query.split(" AND ");
-    combineWith = "AND";
-  } else if (query.includes(" OR ")) {
-    parts = query.split(" OR ");
-    combineWith = "OR";
-  } else {
-    parts = [query];
+  // If no operators found, treat as single condition
+  if (parts.length <= 1) {
+    const singleQuery = parts[0] || query;
+
+    // Check if this is a nested group
+    if (singleQuery.startsWith("(") && singleQuery.endsWith(")")) {
+      return parseQuery(singleQuery);
+    }
+
+    // Parse single condition
+    const condition = parseSingleCondition(singleQuery);
+
+    return {
+      type: "group",
+      combineWith: "AND",
+      conditions: [condition],
+    };
   }
 
+  // Handle mixed operators with proper precedence
+  if (hasMixed) {
+    return handleMixedOperators(parts, operators);
+  }
+
+  // All operators are the same, simple case
+  const combineWith = operators[0] || "AND";
   const conditions = parts.map((part) => {
     part = part.trim();
 
     // Check if this is a nested group
-    if (part.startsWith("(")) {
+    if (part.startsWith("(") && part.endsWith(")")) {
       return parseQuery(part);
     }
 
     // Parse single condition
-    let not = false;
-    if (part.startsWith("NOT ")) {
-      not = true;
-      part = part.slice(4).trim();
-    }
-
-    let operator: "like" | "exact" | "starts-with" | "ends-with" = "like";
-    let value = part;
-
-    if (part.startsWith('"') && part.endsWith('"')) {
-      operator = "exact";
-      value = part.slice(1, -1);
-    } else if (part.endsWith("*")) {
-      operator = "starts-with";
-      value = part.slice(0, -1);
-    }
-
-    // Unescape special characters
-    value = unescapeValue(value);
-
-    return {
-      operator,
-      value,
-      not,
-    };
+    return parseSingleCondition(part);
   });
 
   return {
