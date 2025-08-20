@@ -21,7 +21,7 @@ export default function ChatFilters() {
     >
       <div
         className={cn(
-          "border-border mx-auto flex w-full items-center justify-between gap-4 border-b px-4 py-4 md:max-w-3xl ltr:pl-12 sm:ltr:pl-4 rtl:pr-12 sm:rtl:pr-4",
+          "border-border mx-auto flex w-full max-w-full items-center justify-between gap-4 overflow-x-auto border-b px-4 py-4 md:w-3xl ltr:pl-12 sm:ltr:pl-4 rtl:pr-12 sm:rtl:pr-4",
         )}
       >
         <div className="flex gap-2">

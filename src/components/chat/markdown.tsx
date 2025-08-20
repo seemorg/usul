@@ -142,6 +142,20 @@ const components: Partial<Components> = {
       </td>
     );
   },
+  quran: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        ﴾{children}﴿
+      </span>
+    );
+  },
+  hadith: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        «{children}»
+      </span>
+    );
+  },
 };
 
 const makeComponents = (sourceNodes: SemanticSearchBookNode[]): Components => ({
