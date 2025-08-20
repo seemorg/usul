@@ -195,5 +195,29 @@
     "title": "Êtes-vous absolument sûr?",
     "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs.",
     "type-to-confirm": "Veuillez taper <strong>{text}</strong> pour confirmer"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Recherche Globale",
+      "subtitle": "Recherchez parmi plus de 15 000 textes pour trouver exactement ce que vous cherchez",
+      "examples": {
+        "book-content": {
+          "title": "Contenu du Livre",
+          "description": "Recherchez dans les textes des passages et concepts spécifiques"
+        },
+        "book-titles": {
+          "title": "Titres de Livres",
+          "description": "Trouvez des livres par leurs noms arabes ou translittérés"
+        },
+        "author-names": {
+          "title": "Noms d'Auteurs",
+          "description": "Découvrez les œuvres des érudits islamiques classiques"
+        },
+        "genres": {
+          "title": "Genres",
+          "description": "Explorez des sujets comme le Hadith, le Fiqh, le Tafsir, et plus encore"
+        }
+      }
+    }
   }
 }

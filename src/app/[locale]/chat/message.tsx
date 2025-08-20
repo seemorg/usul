@@ -59,15 +59,18 @@ const PurePreviewMessage = ({
     <AnimatePresence>
       <motion.div
         data-testid={`message-${message.role}`}
-        className="group/message mx-auto w-full max-w-3xl px-4"
+        className="group/message mx-auto w-full max-w-3xl px-5"
         initial={{ y: 5, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         data-role={message.role}
       >
         <div
           className={cn(
-            "flex w-full gap-4 group-data-[role=user]/message:max-w-2xl ltr:group-data-[role=user]/message:ml-auto rtl:group-data-[role=user]/message:mr-auto",
+            "flex w-full group-data-[role=user]/message:max-w-2xl ltr:group-data-[role=user]/message:ml-auto rtl:group-data-[role=user]/message:mr-auto",
             mode === "edit" ? "w-full" : "group-data-[role=user]/message:w-fit",
+            message.role === "assistant"
+              ? "flex-col gap-2 sm:flex-row sm:gap-4"
+              : "gap-4",
           )}
         >
           {message.role === "assistant" && <Avatar />}
@@ -152,73 +155,6 @@ const PurePreviewMessage = ({
                   );
                 }
               }
-
-              // if (type === "tool-invocation") {
-              //   const { toolInvocation } = part;
-              //   const { toolName, toolCallId, state } = toolInvocation;
-
-              // if (state === "call") {
-              //   const { args } = toolInvocation;
-
-              //   return (
-              //     <div
-              //       key={toolCallId}
-              //       className={cn({
-              //         skeleton: ["getWeather"].includes(toolName),
-              //       })}
-              //     >
-              //       {toolName === "getWeather" ? (
-              //         <Weather />
-              //       ) : toolName === "createDocument" ? (
-              //         <DocumentPreview isReadonly={isReadonly} args={args} />
-              //       ) : toolName === "updateDocument" ? (
-              //         <DocumentToolCall
-              //           type="update"
-              //           args={args}
-              //           isReadonly={isReadonly}
-              //         />
-              //       ) : toolName === "requestSuggestions" ? (
-              //         <DocumentToolCall
-              //           type="request-suggestions"
-              //           args={args}
-              //           isReadonly={isReadonly}
-              //         />
-              //       ) : null}
-              //     </div>
-              //   );
-              // }
-
-              // if (state === "result") {
-              //   const { result } = toolInvocation;
-
-              //   return (
-              //     <div key={toolCallId}>
-              //       {toolName === "getWeather" ? (
-              //         <Weather weatherAtLocation={result} />
-              //       ) : toolName === "createDocument" ? (
-              //         <DocumentPreview
-              //           isReadonly={isReadonly}
-              //           result={result}
-              //         />
-              //       ) : toolName === "updateDocument" ? (
-              //         <DocumentToolResult
-              //           type="update"
-              //           result={result}
-              //           isReadonly={isReadonly}
-              //         />
-              //       ) : toolName === "requestSuggestions" ? (
-              //         <DocumentToolResult
-              //           type="request-suggestions"
-              //           result={result}
-              //           isReadonly={isReadonly}
-              //         />
-              //       ) : (
-              //         <pre>{JSON.stringify(result, null, 2)}</pre>
-              //       )}
-              //     </div>
-              //   );
-              // }
-              // }
             })}
 
             {!isReadonly && !isLoading && chatIdFromAnnotation && (

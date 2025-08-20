@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "short": "Who's al-ghazali?",
-      "long": "What was Al-Ghazali known for?"
+      "short": "Explain Verse",
+      "long": "What does the ayah يمحق الله الربا mean?"
     },
     "two": {
-      "short": "How to pray witr?",
-      "long": "How did the prophet pray witr?"
+      "short": "Find Hadith",
+      "long": "What hadith mentions wudu and a river?"
     },
     "three": {
-      "short": "When's laylatul Qadr?",
-      "long": "What hadiths mention Laylatul Qadr?"
+      "short": "Meaning Elaboration",
+      "long": "Elaborate on the meaning of 'tawakkul' beyond simple reliance."
     },
     "four": {
-      "short": "What's Zakat?",
-      "long": "What does Ramadan mean in Arabic?"
+      "short": "Explore Books",
+      "long": "What are the main seerah books before Ibn Hisham?"
     }
   },
   "status": {

@@ -18,7 +18,7 @@ const components: Partial<Components> = {
   pre: ({ children }) => <>{children}</>,
   ol: ({ node: _, children, ...props }) => {
     return (
-      <ol className="ml-4 list-inside list-decimal" {...props}>
+      <ol className="ml-4 list-outside list-decimal" {...props}>
         {children}
       </ol>
     );
@@ -32,7 +32,7 @@ const components: Partial<Components> = {
   },
   ul: ({ node: _, children, ...props }) => {
     return (
-      <ul className="ml-4 list-inside list-disc" {...props}>
+      <ul className="ml-4 list-outside list-disc" {...props}>
         {children}
       </ul>
     );
@@ -140,6 +140,20 @@ const components: Partial<Components> = {
       >
         {children}
       </td>
+    );
+  },
+  quran: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        ﴾{children}﴿
+      </span>
+    );
+  },
+  hadith: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        «{children}»
+      </span>
     );
   },
 };
