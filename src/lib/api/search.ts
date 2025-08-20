@@ -5,10 +5,8 @@ import type { GenreDocument } from "@/types/genre";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { Pagination } from "@/types/pagination";
 import type { RegionDocument } from "@/types/region";
-import type {
-  BookContentSearchResult,
-  SearchContentResponse,
-} from "@/types/search";
+import { SearchContentResponse } from "@/types/search";
+import { SemanticSearchBookNode } from "@/types/SemanticSearchBookNode";
 
 import { apiFetch } from "./utils";
 
@@ -104,7 +102,22 @@ export const searchCorpus = async (query: string, locale: PathLocale) => {
   const results = await apiFetch<{
     content: {
       total: number;
-      results: BookContentSearchResult[];
+      results: {
+        node: SemanticSearchBookNode;
+        versionId: string;
+        book: {
+          id: string;
+          slug: string;
+          primaryName: string;
+          secondaryName?: string;
+          author: {
+            id: string;
+            primaryName: string;
+            secondaryName?: string;
+            year?: number;
+          };
+        };
+      }[];
     };
     books: {
       found: number;

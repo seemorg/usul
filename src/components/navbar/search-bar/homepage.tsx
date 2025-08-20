@@ -20,14 +20,11 @@ import { useSearch } from "./use-search";
 
 export default function HomepageSearchBar({
   setTab,
-  value,
-  setValue,
 }: {
   setTab: (tab: "ai" | "search") => void;
-  value: string;
-  setValue: (value: string) => void;
 }) {
   const t = useTranslations();
+  const [value, setValue] = useState("");
   const [searchType, setSearchType] =
     useState<Exclude<SearchType, "content">>("all");
   const focusedState = useBoolean(true);

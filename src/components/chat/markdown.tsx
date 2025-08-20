@@ -18,7 +18,7 @@ const components: Partial<Components> = {
   pre: ({ children }) => <>{children}</>,
   ol: ({ node: _, children, ...props }) => {
     return (
-      <ol className="ml-4 list-outside list-decimal" {...props}>
+      <ol className="ml-4 list-inside list-decimal" {...props}>
         {children}
       </ol>
     );

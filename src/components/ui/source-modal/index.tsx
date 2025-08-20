@@ -30,16 +30,13 @@ export function SourceModal({
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  const t = useTranslations();
   return (
     <Dialog open={isOpen} onOpenChange={onOpenChange}>
       <DialogPortal>
         <DialogOverlay>
           <RawDialogContent className="bg-background data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-top-[5%] data-[state=open]:slide-in-from-top-[5%] relative z-50 flex w-full max-w-2xl flex-col py-4 shadow-lg duration-200 sm:rounded-lg">
             <div className="flex items-center justify-between px-6">
-              <DialogTitle>
-                {t("entities.x-results", { count: sources.length })}
-              </DialogTitle>
+              <DialogTitle>{sources.length} Sources</DialogTitle>
               <DialogDescription className="sr-only">Source</DialogDescription>
 
               <RawDialogClose
