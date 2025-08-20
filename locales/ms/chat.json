@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "short": "Siapa al-ghazali?",
-      "long": "Untuk apa Al-Ghazali dikenali?"
+      "short": "Terangkan Ayat",
+      "long": "Apa maksud ayat يمحق الله الربا?"
     },
     "two": {
-      "short": "Bagaimana solat witr?",
-      "long": "Bagaimana nabi solat witr?"
+      "short": "Cari Hadis",
+      "long": "Hadis mana yang menyebutkan wudu dan sungai?"
     },
     "three": {
-      "short": "Bila laylatul Qadr?",
-      "long": "Hadith mana yang menyebut Laylatul Qadr?"
+      "short": "Penjelasan Makna",
+      "long": "Terangkan makna 'tawakkul' di luar kebergantungan mudah."
     },
     "four": {
-      "short": "Apa itu Zakat?",
-      "long": "Apa maksud Ramadan dalam bahasa Arab?"
+      "short": "Terokai Buku",
+      "long": "Apakah buku seerah utama sebelum Ibn Hisham?"
     }
   },
   "status": {

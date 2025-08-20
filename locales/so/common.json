@@ -195,5 +195,29 @@
     "title": "Ma hubtaa gabi ahaanba?",
     "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada.",
     "type-to-confirm": "Fadlan ku qor <strong>{text}</strong> si aad u xaqiijiso"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Raadi Guud",
+      "subtitle": "Raadi in ka badan 15,000 qoraal si aad u hesho saxda waxa aad raadinayso",
+      "examples": {
+        "book-content": {
+          "title": "Waxyaabaha buuga",
+          "description": "Ka raadi qoraallada dhexdeeda si aad u hesho tuducyo iyo fikrado khaas ah"
+        },
+        "book-titles": {
+          "title": "Cinwaanada Buuga",
+          "description": "Ku hel buugaagta magacyadooda Carabi ama magacyo la turjuman"
+        },
+        "author-names": {
+          "title": "Magacyada Qorayaasha",
+          "description": "Soo hel qoraallada culimada Islaamka ee hore"
+        },
+        "genres": {
+          "title": "Noocyada",
+          "description": "Baro maadooyinka sida Axaadiista, Fiqiga, Tafsiirka, iyo kuwa kale"
+        }
+      }
+    }
   }
 }

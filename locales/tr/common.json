@@ -195,5 +195,29 @@
     "title": "Kesinlikle emin misiniz?",
     "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır.",
     "type-to-confirm": "<strong>{text}</strong> yazın onaylamak için"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Genel Arama",
+      "subtitle": "Aradığınız şeyi tam olarak bulmak için 15.000'den fazla metinde arama yapın",
+      "examples": {
+        "book-content": {
+          "title": "Kitap İçeriği",
+          "description": "Belirli bölümler ve kavramlar için metinlerin içinde arama yapın"
+        },
+        "book-titles": {
+          "title": "Kitap Başlıkları",
+          "description": "Kitapları Arapça veya çevrilmiş isimleriyle bulun"
+        },
+        "author-names": {
+          "title": "Yazar İsimleri",
+          "description": "Klasik İslam alimlerinin çalışmalarını keşfedin"
+        },
+        "genres": {
+          "title": "Türler",
+          "description": "Hadis, Fıkıh, Tefsir ve daha fazlası gibi konuları keşfedin"
+        }
+      }
+    }
   }
 }

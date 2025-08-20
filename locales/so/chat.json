@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "short": "Waa kuma Al-Ghazali?",
-      "long": "Muxuu Al-Ghazali ku caan baxay?"
+      "short": "Sharaxaa aayadda",
+      "long": "Aayadda يمحق الله الربا macnaheedu waa maxay?"
     },
     "two": {
-      "short": "Sidee loo tukadaa witr?",
-      "long": "Nebigu sidee u tukaday witr?"
+      "short": "Raadi Xadiis",
+      "long": "Xadiiska kee xusay wudu iyo webi?"
     },
     "three": {
-      "short": "Goorma ayuu Laylatul Qadr yahay?",
-      "long": "Axdida yaa Laylatul Qadr ku xusaya?"
+      "short": "Faahfaahinta Macnaha",
+      "long": "Faahfaahi macnaha 'tawakkul' ka baxsan kalsooni fudud."
     },
     "four": {
-      "short": "Waa maxay Zakat?",
-      "long": "Maxaa Ramadan micno ugu yahay Carabi?"
+      "short": "Baadh Buugaag",
+      "long": "Maxay yihiin buugaagta seerah ee ugu weyn kahor Ibn Hisham?"
     }
   },
   "status": {
