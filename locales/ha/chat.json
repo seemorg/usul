@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "short": "Waye al-ghazali?",
-      "long": "Me yasa aka san Al-Ghazali?"
+      "short": "Fassara Aya",
+      "long": "Menene ayah يمحق الله الربا yake nufi?"
     },
     "two": {
-      "short": "Yaya ake yin sallar witr?",
-      "long": "Yaya Annabi ya yi sallar witr?"
+      "short": "Nemo Hadisi",
+      "long": "Wane hadisi ne yake ambata wudu da kogin?"
     },
     "three": {
-      "short": "Yaushe laylatul Qadr?",
-      "long": "Wadanne hadisi ke ambato Laylatul Qadr?"
+      "short": "Karin Bayani",
+      "long": "Yi bayani akan ma'anar 'tawakkul' fiye da dogaro mai sauki."
     },
     "four": {
-      "short": "Menene Zakat?",
-      "long": "Menene ma'anar Ramadan a Larabci?"
+      "short": "Bincika Littattafai",
+      "long": "Menene manyan littattafan seerah kafin Ibn Hisham?"
     }
   },
   "status": {

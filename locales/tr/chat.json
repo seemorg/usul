@@ -14,20 +14,20 @@
   },
   "suggested_actions": {
     "one": {
-      "short": "İmam Gazali kimdir?",
-      "long": "İmam Gazali neyle tanınırdı?"
+      "short": "Ana Cümleyi Açıkla",
+      "long": "Allah, faizi yok eder anlamına gelen ayet ne anlatıyor?"
     },
     "two": {
-      "short": "Vitir namazı nasıl kılınır?",
-      "long": "Peygamber vitir namazını nasıl kılardı?"
+      "short": "Hadis Bul",
+      "long": "Hangi hadis abdest ve nehirden bahseder?"
     },
     "three": {
-      "short": "Kadir Gecesi ne zaman?",
-      "long": "Kadir Gecesini anlatan hangi hadisler var?"
+      "short": "Anlam Detayı",
+      "long": "Basit güvenin ötesinde 'tevekkül'ün anlamını detaylandırın."
     },
     "four": {
-      "short": "Zekat nedir?",
-      "long": "Arapça'da Ramazan ne anlama gelir?"
+      "short": "Kitapları Keşfet",
+      "long": "İbn Hişam'dan önceki başlıca siyer kitapları nelerdir?"
     }
   },
   "status": {

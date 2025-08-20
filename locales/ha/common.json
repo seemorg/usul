@@ -195,5 +195,29 @@
     "title": "Ka tabbata sosai?",
     "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu.",
     "type-to-confirm": "Da fatan shigar da <strong>{text}</strong> don tabbatarwa"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Neman Duniya",
+      "subtitle": "Yi bincike a tsakanin sama da rubutu 15,000 don gano abin da kake nema dai dai",
+      "examples": {
+        "book-content": {
+          "title": "Abun ciki na littafi",
+          "description": "Bincika cikin rubutu don shafuka da tunani na musamman"
+        },
+        "book-titles": {
+          "title": "Sunan littafi",
+          "description": "Nemo littattafai ta sunansu na Larabci ko ta fassarar suna"
+        },
+        "author-names": {
+          "title": "Sunan marubuci",
+          "description": "Gano ayyuka na malaman Musulunci na gargajiya"
+        },
+        "genres": {
+          "title": "Nau'o'in",
+          "description": "Bincika abubuwan kamar Hadith, Fiqh, Tafsir, da dai sauransu"
+        }
+      }
+    }
   }
 }

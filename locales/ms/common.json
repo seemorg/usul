@@ -195,5 +195,29 @@
     "title": "Adakah anda benar-benar pasti?",
     "description": "Tindakan ini tidak boleh dibatalkan. Ini akan memadamkan {entity} secara kekal dan menghapuskan semua datanya dari pelayan kami.",
     "type-to-confirm": "Sila taip <strong>{text}</strong> untuk mengesahkan"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Carian Global",
+      "subtitle": "Cari dalam lebih daripada 15,000 teks untuk mencari tepat apa yang anda cari",
+      "examples": {
+        "book-content": {
+          "title": "Kandungan Buku",
+          "description": "Cari dalam teks untuk petikan dan konsep spesifik"
+        },
+        "book-titles": {
+          "title": "Tajuk Buku",
+          "description": "Cari buku mengikut nama Arab atau nama transliterasi"
+        },
+        "author-names": {
+          "title": "Nama Pengarang",
+          "description": "Temui karya oleh ulama Islam klasik"
+        },
+        "genres": {
+          "title": "Genre",
+          "description": "Terokai subjek seperti Hadis, Fiqh, Tafsir, dan banyak lagi"
+        }
+      }
+    }
   }
 }

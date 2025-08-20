@@ -1,5 +1,5 @@
 {
-  "title": "Rencontrez l'équipe",
+  "title": "Rencontrer l'équipe",
   "subtitle": "L'équipe de la Seemore Foundation est composée d'ingénieurs, de chercheurs et de designers passionnés par la création de recherches islamiques à la pointe de la technologie. Notre mission est de combler le fossé entre la connaissance classique et la technologie moderne, en veillant à ce que le riche patrimoine de la littérature islamique soit facilement accessible au monde entier.",
   "become-a-volunteer": "Devenez bénévole",
   "contact-us": "Contactez-nous",
@@ -32,7 +32,7 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed est titulaire d'un doctorat de l'université d'Al-Azhar. Il dirige l'équipe de numérisation et les efforts."
+      "description": "Ahmed est titulaire d'un doctorat de l'Université Al-Azhar. Il dirige l'équipe et les efforts de numérisation."
     }
   },
   "board-members": {
