@@ -18,11 +18,6 @@ export const BookContentResult = ({
   const [isOpen, setIsOpen] = useState(false);
   const t = useTranslations();
   const page = result.node.metadata.pages[0];
-  // const versionId = result.versionId;
-  // const href =
-  //   (page
-  //     ? navigation.books.pageReader(result.book.slug, page.index)
-  //     : navigation.books.reader(result.book.slug)) + `?versionId=${versionId}`;
 
   const text = result.node.highlights
     ? result.node.highlights.join("<br>...<br>")
@@ -32,7 +27,7 @@ export const BookContentResult = ({
     <>
       <div
         className={cn(
-          "bg-card border-border flex w-lg cursor-pointer flex-col gap-4 rounded-xl border px-6 py-5",
+          "bg-card border-border flex w-sm cursor-pointer flex-col gap-4 rounded-xl border px-6 py-5 md:w-md lg:w-lg",
           className,
         )}
         role="button"

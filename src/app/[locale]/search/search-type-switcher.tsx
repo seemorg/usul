@@ -47,7 +47,7 @@ export default function SearchTypeSwitcher() {
   };
 
   return (
-    <div className="border-border mt-5 w-full border-b">
+    <div className="border-border mt-5 w-full overflow-x-auto border-b">
       <Tabs value={type as string} onValueChange={handleTypeChange}>
         <TabsList className="h-10 border-none bg-transparent! shadow-none">
           <Trigger value="all" active={type === "all"} disabled={isPending}>
