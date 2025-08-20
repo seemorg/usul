@@ -25,12 +25,9 @@ function PureSuggestedActions({ append }: SuggestedActionsProps) {
 
   if (hasFilters) return null;
 
-  const actions = [
-    t("chat.suggested_actions.one.long"),
-    t("chat.suggested_actions.two.long"),
-    t("chat.suggested_actions.three.long"),
-    t("chat.suggested_actions.four.long"),
-  ];
+  const actions = (["one", "two", "three", "four"] as const).map((item) =>
+    t(`chat.suggested_actions.${item}.long`),
+  );
 
   return (
     <div
