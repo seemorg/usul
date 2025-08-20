@@ -1,5 +1,5 @@
 {
-  "title": "Meet the team",
+  "title": "Meet the Team",
   "subtitle": "The Seemore Foundation team is made up of engineers, researchers, and designers passionate about building state-of-the-art Islamic research. Our mission is to bridge the gap between classical knowledge and modern technology, ensuring that the rich heritage of Islamic literature is readily available to the whole world.",
   "become-a-volunteer": "Become a volunteer",
   "contact-us": "Contact Us",
@@ -32,7 +32,7 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed holds a PhD. from Al-Azhar university. He leads the digitization team and efforts."
+      "description": "Ahmed holds a PhD from Al-Azhar University. He leads the digitization team and efforts."
     }
   },
   "board-members": {
