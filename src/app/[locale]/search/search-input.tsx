@@ -25,25 +25,15 @@ export default function SearchInput() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputValue === (searchParams.get("q") ?? "")) return;
-    if (isPending) return;
-
-    const isEmpty = inputValue.trim() === "";
     startTransition(() => {
       router.push(
         navigation.search({
           query: inputValue,
-          ...(!isEmpty
-            ? {
-                searchType:
-                  (searchParams.get("searchType") as "keyword" | "semantic") ||
-                  "keyword",
-                type: (searchParams.get("type") as SearchType) || "all",
-              }
-            : {}),
+          searchType:
+            (searchParams.get("searchType") as "keyword" | "semantic") ||
+            "keyword",
+          type: (searchParams.get("type") as SearchType) || "all",
         }),
-        undefined,
-        { showProgressBar: true },
       );
     });
   };

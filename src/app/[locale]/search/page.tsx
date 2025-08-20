@@ -23,15 +23,14 @@ import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { booksSorts, yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
+import { LibraryIcon, TextCursorIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType, SearchType } from "./routeType";
-import AllSearchResults from "./all-search-results";
-import { BookContentResult } from "./book-content-result";
+import AllSearchResults, { ContentCard } from "./all-search-results";
 import ContentFilters from "./content-filters";
 import ContentSearchType from "./content-search-type";
-import EmptyState from "./empty-state";
 import { Route } from "./routeType";
 import SearchInput from "./search-input";
 import SearchTypeSwitcher from "./search-type-switcher";
@@ -110,7 +109,7 @@ const SearchResult = ({
   if (type === "authors") return <AuthorSearchResult result={result} />;
   if (type === "genres") return <GenreSearchResult result={result} />;
   if (type === "content")
-    return <BookContentResult result={result} className="w-full" />;
+    return <ContentCard result={result} className="w-full" />;
 
   return <RegionSearchResult result={result} />;
 };
@@ -150,7 +149,20 @@ async function SearchPage({ searchParams }: TextsPageProps) {
       <Container>
         <SearchInput />
         {!showEmptyState && <SearchTypeSwitcher />}
-        {showEmptyState && <EmptyState />}
+        <div className="mt-5" />
+        {showEmptyState && (
+          <div className="flex min-h-[250px] w-full flex-col items-center justify-center text-center">
+            <div className="border-border bg-muted text-muted-foreground flex size-12 items-center justify-center rounded-md border">
+              <TextCursorIcon className="size-6" />
+            </div>
+            <h3 className="text-muted-foreground mt-4 text-2xl font-medium">
+              Type Something to Search
+            </h3>
+            <p className="text-muted-foreground mt-2 text-base font-light">
+              See where it leads.
+            </p>
+          </div>
+        )}
       </Container>
 
       {!showEmptyState && (

@@ -195,29 +195,5 @@
     "title": "Are you absolutely sure?",
     "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers.",
     "type-to-confirm": "Please type <strong>{text}</strong> to confirm"
-  },
-  "empty-state": {
-    "search": {
-      "title": "Global Search",
-      "subtitle": "Search through over 15,000 texts to find exactly what you're looking for",
-      "examples": {
-        "book-content": {
-          "title": "Book Content",
-          "description": "Search inside texts for specific passages and concepts"
-        },
-        "book-titles": {
-          "title": "Book Titles",
-          "description": "Find books by their Arabic or transliterated names"
-        },
-        "author-names": {
-          "title": "Author Names",
-          "description": "Discover works by classical Islamic scholars"
-        },
-        "genres": {
-          "title": "Genres",
-          "description": "Explore subjects like Hadith, Fiqh, Tafsir, and more"
-        }
-      }
-    }
   }
 }

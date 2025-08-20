@@ -1,5 +1,3 @@
-import { SemanticSearchBookNode } from "./SemanticSearchBookNode";
-
 export type SearchType =
   | "all"
   | "content"
@@ -8,26 +6,6 @@ export type SearchType =
   | "genres"
   | "regions";
 
-export type BookContentSearchResult = {
-  node: SemanticSearchBookNode;
-  versionId: string;
-  book: {
-    id: string;
-    slug: string;
-    primaryName: string;
-    secondaryName?: string;
-    transliteration?: string;
-    author: {
-      id: string;
-      slug: string;
-      primaryName: string;
-      secondaryName?: string;
-      transliteration?: string;
-      year?: number;
-    };
-  };
-};
-
 export type SearchContentResponse = {
   total: number;
   totalPages: number;
@@ -35,5 +13,32 @@ export type SearchContentResponse = {
   currentPage: number;
   hasNextPage: boolean;
   hasPreviousPage: boolean;
-  results: BookContentSearchResult[];
+  results: {
+    score: number;
+    node: {
+      id: string;
+      metadata: {
+        bookId: string;
+        pages: {
+          index: number;
+          volume: string;
+          page: number;
+        }[];
+        versionId: string;
+      };
+    } & ({ text: string } | { highlights: string[] });
+    book: {
+      slug: string;
+      primaryName: string;
+      secondaryName?: string;
+      transliteration?: string;
+      author: {
+        slug: string;
+        primaryName: string;
+        secondaryName?: string;
+        transliteration?: string;
+        year?: number;
+      };
+    };
+  }[];
 };
