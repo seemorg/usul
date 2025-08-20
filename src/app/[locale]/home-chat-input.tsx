@@ -55,12 +55,13 @@ export const HomepageChatInput = () => {
     <div className="mt-10 flex flex-wrap justify-center gap-3">
       {(["one", "two", "three", "four"] as const).map((item) => {
         const text = t(`chat.suggested_actions.${item}.short`);
+        const longText = t(`chat.suggested_actions.${item}.long`);
         return (
           <Badge
             key={item}
             className="cursor-pointer rounded-3xl px-3 py-1.5 text-sm font-normal"
             variant="muted"
-            onClick={() => effectiveSetInput(text)}
+            onClick={() => effectiveSetInput(longText)}
           >
             {text}
           </Badge>
