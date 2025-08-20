@@ -14,7 +14,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: 0.2 }}
       >
         <LogoIcon className="text-primary size-10 dark:text-white" />
       </motion.div>
@@ -23,7 +23,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
-        transition={{ delay: 0.6 }}
+        transition={{ delay: 0.25 }}
         className="mt-5 text-2xl font-semibold"
       >
         {t("chat.greeting.hello")}
@@ -32,7 +32,7 @@ export const Greeting = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
-        transition={{ delay: 0.7 }}
+        transition={{ delay: 0.3 }}
         className="text-2xl text-zinc-500"
       >
         {t("chat.greeting.welcome")}

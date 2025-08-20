@@ -129,7 +129,11 @@ const SourceItem = ({
   const content = (
     <bdi
       className={cn(
-        "flex flex-col gap-3",
+        "flex flex-col gap-4",
+        "[&>em]:text-primary [&>em]:font-bold [&>em]:not-italic",
+        displayedText === translatedText
+          ? "sm:text-lg"
+          : "font-scheherazade sm:text-xl/relaxed",
         isTranslating
           ? "[&_.footnotes]:text-muted-foreground/70"
           : "[&_.footnotes]:text-muted-foreground",
