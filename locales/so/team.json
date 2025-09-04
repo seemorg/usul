@@ -1,10 +1,10 @@
 {
   "title": "La kulan Kooxda",
-  "subtitle": "Kooxda Seemore Foundation waxay ka kooban tahay injineero, cilmi-baarayaal, iyo naqshadeeyayaal oo u heellan dhisidda cilmi-baaris Islaami ah oo heer sare ah. Ujeeddadeennu waa inaan buuxinno farqiga u dhexeeya aqoonta caadiga ah iyo tignoolajiyada casriga ah, si loo xaqiijiyo in dhaxalka qani ah ee suugaanta Islaamka si fudud loo heli karo dhammaan aduunka.",
+  "subtitle": "Kooxda Usul waxa ay ka kooban tahay injineero, naqshadeeyayaal iyo cilmi-baarayaal si aad ah ugu go'an samaynta aalado dijitaal ah oo wax ka beddelaya cilmi-baarista Islaamka.",
   "become-a-volunteer": "Noqo mutadawiciin",
   "contact-us": "Nagala soo xiriir",
   "board-title": "La kulan guddiga",
-  "board-subtitle": "Golaha maamul ee Seemore Foundation waxaa ka mid ah khubaro cilmi-baaris iyo tignoolaji oo qiime leh, mid kastaa uu leeyahay khibrad tobanaan sano ah oo ku takhasusay beerahooda. Waxa ay si wadajir ah u kormeeraan ururka oo ay hubiyaan in uu ku sii socdo ujeedadiisa horumarinta aqoonta Islaamka.",
+  "board-subtitle": "Usul waa mashruuc ka tirsan Seemore Foundation, guddigiisana waxa ku jira khubaro waaweyn oo ku takhasusay cilmi-baarista iyo tiknoolajiyada, kuwaas oo mid kasta leh tobanaan sano oo waayo-aragnimo ah meelaha ay ku shaqeeyaan. Si wadajir ah ayay u maamulaan ururka iyaga oo hubiya in uu gaadho yoolkiisa.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed wuxuu leeyahay PhD jaamacadda Al-Azhar. Waxuu hogaamiyaa kooxaha dijitalka iyo dadaalka."
+      "description": "Ahmed wuxuu haystaa PhD oo kasoo qaatay Jaamacadda Al-Azhar. Wuxuu hogaamiyaa kooxda dijitaynta iyo dadaalladooda."
+    },
+    "ismail-safadi": {
+      "name": "Ismaaciil Safadi",
+      "description": "Ismaaciil wuxuu ku takhasusay fiqiga xanafiga. Wuxuu wax ku bartay Jaamacadda Urdun iyo Turkiga."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar waa bare sharci oo jaamacadda Harvard ah. Waxay hoggaamisaa SHARIAsource iyo Barnaamijka Qaanuunka Islaamka."
+      "description": "Intisar waa borofisar sharci oo ka dhiga jaamacadda Harvard. Waxay hoggaamisaa SHARIAsource iyo Barnaamijka Xeerka Islaamka."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",

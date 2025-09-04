@@ -83,11 +83,11 @@
       "title": "Game da",
       "about": {
         "title": "Game da",
-        "description": "Menene Usul"
+        "description": "Abinda muke yi."
       },
       "team": {
         "title": "Ƙungiya",
-        "description": "Waye ke bayan Usul"
+        "description": "Su waye mu."
       },
       "demo": {
         "title": "Demo",
@@ -106,18 +106,18 @@
       },
       "add-text": {
         "title": "Ƙara Rubutu",
-        "description": "Loda Littafi ko PDF"
+        "description": "Ƙara adireshi ko PDF"
       },
       "report-mistake": {
-        "title": "Ruwaito Kuskure",
+        "title": "Bayar da rahoton kuskure",
         "description": "Kimanta wani kuskure"
       },
       "feedback": {
-        "title": "Martani",
+        "title": "Bayar da ra'ayi",
         "description": "Raba shawarwari"
       },
       "volunteer": {
-        "title": "Yin aikin sa kai",
+        "title": "Zama Mai Sa kai",
         "description": "Yi aiki tare da tawagarmu"
       }
     }
@@ -125,7 +125,7 @@
   "email-address": "Adireshin Imel",
   "footer": {
     "headline": "Usul - Kayan Bincike don Rubutun Musulunci",
-    "description": "Usul.ai tana da ɗakin karatu na sama da 15,000 na rubuce-rubuce na Musulunci. Manufarmu ita ce sauƙaƙa karatu, bincike da nazari game da rubuce-rubuce na gargajiya. Yi rajista a ƙasa don karɓar sabuntawa na wata-wata game da ayyukanmu.",
+    "description": "Usul wata dandalin AI ce da aka gina domin inganta hanyoyin binciken ilimin addinin Musulunci. Manufarmu ita ce saukaka, neman da kuma nazarin tushen ilimin addini cikin sauki da yawa. Yi rijista a ƙasa domin samun sabunta muhimman abubuwa kowane wata.",
     "subscribe": "Yi rajista",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Duk haƙƙoƙi an tanada."
   },

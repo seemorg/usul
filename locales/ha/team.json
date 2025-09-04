@@ -1,10 +1,10 @@
 {
   "title": "Don Tattaunawa da Tawagar",
-  "subtitle": "Ƙungiyar Seemore Foundation ta ƙunshi injiniyoyi, masu bincike, da masu zane waɗanda ke da sha'awa wajen gina binciken Musulunci na zamani. Manufarmu ita ce haɗa daura tsakanin ilimin gargajiya da fasahar zamani, wanda ke tabbatar da cewa al'adun adabi na Musulunci suna samuwa ga duniya baki ɗaya.",
+  "subtitle": "Ƙungiyar Usul tana ƙunshe da injiniyoyi, masu zane, da masu bincike waɗanda ke da sha'awar gina kayan aikin dijital don sauya binciken Musulunci.",
   "become-a-volunteer": "Kasance mai sa kai",
   "contact-us": "Tuntuɓe Mu",
   "board-title": "Sadu da hukumar",
-  "board-subtitle": "Kwamitin gudanarwa na Seemore Foundation ya ƙunshi ƙwararrun masana bincike da fasaha, kowane ɗayansu yana da gogewar shekaru a fannoninsu. A tare, suna kula da ƙungiyar kuma suna tabbatar da cewa tana ci gaba zuwa ga manufarta na ci gaba da ilimin Musulunci.",
+  "board-subtitle": "Usul aikin Seemore Foundation ne, wanda kwamitinsa ya ƙunshi kwararrun masana bincike da fasaha, kowanne yana da shekaru masu yawa na ƙwarewa a fannin su. Tare, suna sa ido kan ƙungiyar kuma suna tabbatar da cewa tana cimma manufarta.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed yana da digiri na PhD daga Jami'ar Al-Azhar. Shi ne jagorar tawagar digitization da kokarin."
+      "description": "Ahmed yana da digirin digirgir daga Jami'ar Al-Azhar. Shi ne ke jagorantar ƙungiyar da kuma ƙoƙarin canza bayanai zuwa dijital."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail ƙwararre ne a fannin fiqhun Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar malama ce a fannin Shari'a a Harvard. Ita ce shugabar SHARIAsource da Tsarin Shari'ar Musulunci."
+      "description": "Intisar farfesa ce ta doka a Jami'ar Harvard. Ita ce shugabar SHARIAsource da Shirin Dokar Musulunci."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",

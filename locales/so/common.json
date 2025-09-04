@@ -83,11 +83,11 @@
       "title": "Ku saabsan",
       "about": {
         "title": "Ku Saabsan",
-        "description": "Waa maxay Usul"
+        "description": "Waxaannu qabanno."
       },
       "team": {
         "title": "Kooxda",
-        "description": "Yaa ka dambeeya Usul"
+        "description": "Yaa nahay "
       },
       "demo": {
         "title": "Demo",
@@ -105,19 +105,19 @@
         "description": "Nagu taageer"
       },
       "add-text": {
-        "title": "Ku Dar Qoraal",
-        "description": "Soo geli Buug ama PDF"
+        "title": "Ku dar Qoraal",
+        "description": "Ku dar URL ama PDF"
       },
       "report-mistake": {
-        "title": "Sheeg Khaladaad",
+        "title": "Soo sheeg khalad",
         "description": "Wax khaldan baa laga helay"
       },
       "feedback": {
-        "title": "Jawaabcelin",
+        "title": "Bixi Fikrad",
         "description": "La wadaag talo soo jeedin"
       },
       "volunteer": {
-        "title": "Tabaruc",
+        "title": "Noqo Tabaruce",
         "description": "Ka shaqee kooxda nala joogo"
       }
     }
@@ -125,7 +125,7 @@
   "email-address": "Cinwaanka Iimaylka",
   "footer": {
     "headline": "Usul - Qalabka Cilmi-baarista ee Qoraalada Islaamka",
-    "description": "Usul.ai waxay leedahay maktabad ka badan 15,000 qoraallo Islaami ah. Hadafkayagu waa inaan si sahlan u akhrino, raadino, oo aan barano qoraallo caadi ah. Saxiix hoos si aad u hesho warbixin bille ah ee shaqadayada.",
+    "description": "Usul waa madal ay xoojiso AI oo loogu talagalay in lagu haggaajiyo sida cilmi-baarista Islaamiga ah loo sameeyo. Ujeedadeennu waa inaan sahalno, la raadin karo, lana falanqeeyo barashada ilo-Islaami ah si baaxad weyn. Subscribe-hoos si aad u hesho warbixinno bille ah oo ku saabsan shaqadayada.",
     "subscribe": "Isdiiwaangeli",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Dhammaan xuquuqaha way dhawranyihiin."
   },
