@@ -65,7 +65,8 @@ export default function SearchTab() {
 
   const bookContent = bookResponse.content;
   const isExternal =
-    bookContent.source === "external" || bookContent.source === "pdf";
+    bookContent.source === "external" ||
+    (bookContent.source === "pdf" && !("ocrBookId" in bookContent));
   const headings = !isExternal ? bookContent.headings : [];
   const inputRef = useRef<HTMLInputElement | null>(null);
 

@@ -7,12 +7,12 @@ import { z } from "zod";
 export const sorts = [
   ...yearsSorts,
   {
-    label: "sorts.no-of-texts-desc",
-    value: "texts-desc",
-  },
-  {
     label: "sorts.no-of-texts-asc",
     value: "texts-asc",
+  },
+  {
+    label: "sorts.no-of-texts-desc",
+    value: "texts-desc",
   },
 ] as const satisfies Sort[];
 

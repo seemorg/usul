@@ -87,7 +87,11 @@ export default function BookSearchResult({
       hasPdf = true;
     }
 
-    if (version.source === "openiti" || version.source === "turath") {
+    if (
+      version.source === "openiti" ||
+      version.source === "turath" ||
+      "ocrBookId" in version
+    ) {
       hasEbook = true;
     }
 

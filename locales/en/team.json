@@ -1,10 +1,10 @@
 {
   "title": "Meet the Team",
-  "subtitle": "The Seemore Foundation team is made up of engineers, researchers, and designers passionate about building state-of-the-art Islamic research. Our mission is to bridge the gap between classical knowledge and modern technology, ensuring that the rich heritage of Islamic literature is readily available to the whole world.",
+  "subtitle": "The Usul team is made up of engineers, designers, and researchers passionate about building digital tools to transform Islamic research.",
   "become-a-volunteer": "Become a volunteer",
   "contact-us": "Contact Us",
   "board-title": "Meet the board",
-  "board-subtitle": "The Seemore Foundation’s board is made up of distinguished research and technology experts, each with decades of experience in their respective fields. Together, they oversee the organization and are ensure that it advances towards its mission of advancing Islamic scholarship.",
+  "board-subtitle": "Usul is a project of the Seemore Foundation, whose board comprises distinguished experts in research and technology, each with decades of experience in their respective fields. Together, they oversee the organization and ensure that it advances its mission.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed holds a PhD from Al-Azhar University. He leads the digitization team and efforts."
+      "description": "Ahmed holds a PhD. from Al-Azhar University. He leads the digitization team and efforts."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar is a Law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law."
+      "description": "Intisar is a law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
