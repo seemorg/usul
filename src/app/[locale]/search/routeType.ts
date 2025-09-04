@@ -7,16 +7,28 @@ import { z } from "zod";
 const sorts = yearsSorts.map((s) => s.value);
 const defaultSort: (typeof sorts)[number] = "relevance";
 
-const searchTypes = ["all", "texts", "authors", "genres", "regions"] as const;
+export const searchTypes = [
+  "all",
+  "content",
+  "texts",
+  "authors",
+  "genres",
+  "regions",
+] as const;
 export type SearchType = (typeof searchTypes)[number];
 
 export const Route = {
   searchParams: z.object({
     q: z.string().default(""),
+    compiledQuery: z.string().default(""),
     page: z.number().min(1).catch(1),
     view: viewSchema,
     year: yearRangeSchema,
     type: z.enum(searchTypes).default("all").catch("all"),
+    searchType: z
+      .enum(["keyword", "semantic"])
+      .default("keyword")
+      .catch("keyword"),
     sort: z
       .enum(sorts as any)
       .default(defaultSort)

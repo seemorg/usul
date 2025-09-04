@@ -61,7 +61,9 @@
     "sources": "स्रोत",
     "error": "कुछ गलत हो गया। <retry>फिर से प्रयास करें</retry> या अगर यह समस्या बनी रहती है तो <contact>हमसे संपर्क करें</contact>.",
     "pg-x": "पृष्ठ {page, number, nogroup}",
-    "pg-x-vol": "खंड {vol, number, nogroup}, पृष्ठ {page, number, nogroup}"
+    "pg-x-vol": "खंड {vol, number, nogroup}, पृष्ठ {page, number, nogroup}",
+    "translate": "अनुवाद करें",
+    "show-original": "मूल दिखाएं"
   },
   "edition": "संस्करण",
   "editions-modal": {
@@ -81,7 +83,7 @@
   "download-pdf": "PDF डाउनलोड करें",
   "publication-details": {
     "title": "प्रकाशन विवरण",
-    "investigator": "अन्वेषक",
+    "investigator": "संपादक",
     "publisher": "प्रकाशक",
     "publication-year": "प्रकाशन वर्ष",
     "publisher-location": "प्रकाशक स्थान",

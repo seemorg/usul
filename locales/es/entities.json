@@ -18,6 +18,7 @@
   "genre": "Género",
   "genres": "Géneros",
   "x-genres": "{count, plural, =0 {No hay géneros} one {# Género} other {# Géneros}}",
+  "x-results": "{count, plural, =0 {No hay resultados} one {# Resultado} other {# Resultados}}",
   "century": "Siglo",
   "centuries": "Siglos",
   "collection": "Colección",
@@ -30,8 +31,9 @@
   "x-years": "{count, plural, one {Un año} other {# Años}}",
   "chat": "Chat",
   "chats": "Chats",
+  "content": "Contenido",
   "search-for": "Buscar un {entity}",
-  "search-within": "Buscar dentro de {entity}...",
+  "search-within": "Buscar en {entity}...",
   "search-x": "Buscar {count, number} {entity}",
   "no-entity": "No se encontraron {entity}"
 }

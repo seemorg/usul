@@ -1,5 +1,6 @@
 {
   "advanced-search": "جستجوی پیشرفته",
+  "advanced-matching": "مطابقت پیشرفته",
   "load-more": "بارگذاری بیشتر",
   "clear-all": "پاک کردن همه",
   "clear-filters": "پاک کردن فیلترها",
@@ -35,13 +36,14 @@
     "placeholder": "مرتب سازی بر اساس",
     "relevance": "مرتبط",
     "chronological": "ترتیب زمانی",
-    "no-of-texts-desc": "تعداد متون (نزولی)",
-    "no-of-texts-asc": "تعداد متون (صعودی)",
-    "no-of-authors-desc": "تعداد نویسندگان (نزولی)",
-    "no-of-authors-asc": "تعداد نویسندگان (صعودی)",
-    "year-asc": "سال مرگ (صعودی)",
-    "year-desc": "سال مرگ (نزولی)"
+    "no-of-texts-desc": "تعداد متون ▼",
+    "no-of-texts-asc": "تعداد متون ▲",
+    "no-of-authors-desc": "تعداد نویسندگان ▼",
+    "no-of-authors-asc": "تعداد نویسندگان ▲",
+    "year-asc": "سال مرگ ▲",
+    "year-desc": "سال مرگ ▼"
   },
+  "view-all": "مشاهده همه",
   "profile": "پروفایل",
   "login": "ورود",
   "logout": "خروج",
@@ -165,11 +167,57 @@
   "update": "به روز رسانی",
   "delete": "حذف",
   "cancel": "لغو",
+  "apply": "اعمال",
+  "keyword": "کلمه کلیدی",
+  "semantic": "معنایی",
+  "search-filters": {
+    "select-operator": "انتخاب اپراتور",
+    "enter-value": "وارد کردن مقدار",
+    "not": "نه",
+    "group": "گروه",
+    "combine-with": "ترکیب با",
+    "add-condition": "افزودن شرط",
+    "add-group": "افزودن گروه",
+    "operators": {
+      "like": "مانند",
+      "exact": "دقیق",
+      "starts-with": "شروع با",
+      "ends-with": "پایان با"
+    },
+    "combiners": {
+      "and": "و",
+      "or": "یا"
+    }
+  },
   "delete-x": "حذف {entity}",
   "error": "مشکلی پیش آمد. لطفاً بعداً دوباره تلاش کنید.",
   "delete-confirmation": {
     "title": "آیا کاملاً مطمئن هستید؟",
     "description": "این عمل قابل بازگشت نیست. این {entity} را به طور دائمی حذف خواهد کرد و تمام اطلاعات آن را از سرورهای ما حذف خواهد کرد.",
     "type-to-confirm": "لطفاً <strong>{text}</strong> را برای تأیید تایپ کنید"
+  },
+  "empty-state": {
+    "search": {
+      "title": "جستجوی جهانی",
+      "subtitle": "در بیش از ۱۵٬۰۰۰ متن جستجو کنید تا دقیقاً چیزی را که به دنبال آن هستید پیدا کنید",
+      "examples": {
+        "book-content": {
+          "title": "محتوای کتاب",
+          "description": "برای یافتن قطعات و مفاهیم خاص درون متون جستجو کنید"
+        },
+        "book-titles": {
+          "title": "عنوان‌های کتاب",
+          "description": "کتاب‌ها را با نام‌های عربی یا لاتین یافته کنید"
+        },
+        "author-names": {
+          "title": "نام‌های نویسندگان",
+          "description": "آثار متفکران اسلامی کلاسیک را کشف کنید"
+        },
+        "genres": {
+          "title": "گونه‌ها",
+          "description": "موضعاتی همچون حدیث، فقه، تفسیر و موارد دیگر را بررسی کنید"
+        }
+      }
+    }
   }
 }

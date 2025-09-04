@@ -6,7 +6,6 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
-import AdditionalSourcesHover from "./additional-sources-hover";
 import PageReference from "./page-reference";
 import makeSourcesPlugin from "./sources-plugin";
 
@@ -33,7 +32,7 @@ const components: Partial<Components> = {
   },
   ul: ({ node: _, children, ...props }) => {
     return (
-      <ul className="ml-4 list-outside list-decimal" {...props}>
+      <ul className="ml-4 list-outside list-disc" {...props}>
         {children}
       </ul>
     );
@@ -99,29 +98,70 @@ const components: Partial<Components> = {
       </h6>
     );
   },
+  table: ({ node: _, children, ...props }) => {
+    return (
+      <table
+        className="border-border my-4 w-full table-auto border text-start text-sm"
+        {...props}
+      >
+        {children}
+      </table>
+    );
+  },
+  thead: ({ node: _, children, ...props }) => {
+    return (
+      <thead className="bg-muted border-border border-b" {...props}>
+        {children}
+      </thead>
+    );
+  },
+  th: ({ node: _, children, ...props }) => {
+    return (
+      <th
+        className="border-border border p-2 text-start align-top break-normal"
+        {...props}
+      >
+        {children}
+      </th>
+    );
+  },
+  tr: ({ node: _, children, ...props }) => {
+    return (
+      <tr className="border-border border-b" {...props}>
+        {children}
+      </tr>
+    );
+  },
+  td: ({ node: _, children, ...props }) => {
+    return (
+      <td
+        className="border-border min-w-[48px] border p-2 break-normal"
+        {...props}
+      >
+        {children}
+      </td>
+    );
+  },
+  quran: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        ﴾{children}﴿
+      </span>
+    );
+  },
+  hadith: ({ node: _, children, ...props }) => {
+    return (
+      <span dir="ltr" {...props}>
+        «{children}»
+      </span>
+    );
+  },
 };
 
 const makeComponents = (sourceNodes: SemanticSearchBookNode[]): Components => ({
   "page-reference": (props) => (
     <PageReference sourceNodes={sourceNodes} {...props} />
   ),
-  "additional-sources-hover": (props) => {
-    const sourcesData = (props as { "data-sources": string })["data-sources"];
-    if (sourcesData) {
-      try {
-        const additionalSources = sourcesData.split(",").map(Number);
-        return (
-          <AdditionalSourcesHover
-            additionalSources={additionalSources}
-            sourceNodes={sourceNodes}
-          />
-        );
-      } catch (error) {
-        return null;
-      }
-    }
-    return null;
-  },
   ...components,
 });
 

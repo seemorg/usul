@@ -4,6 +4,7 @@ import type { TurathContent } from "@/types/api/content/turath";
 import type { PropsWithChildren } from "react";
 import RenderBlock from "@/components/render-markdown";
 import { Skeleton } from "@/components/ui/skeleton";
+import { convertPageToHtml } from "@/lib/reader";
 import { useTranslations } from "next-intl";
 
 import type { DefaultPages } from "./use-fetch-page";
@@ -15,8 +16,6 @@ const PageLabel = (props: PropsWithChildren) => (
     {...props}
   />
 );
-
-const footnotesChar = "_________";
 
 export default function ReaderPage({
   index,
@@ -46,30 +45,13 @@ export default function ReaderPage({
 
   if (source === "turath") {
     const typedPage = page as TurathContent["pages"][number];
-    const text = typedPage.text
-      .replaceAll("</span>.", "</span>")
-      .replaceAll("\n", "<br>")
-      .split("<br>")
-      .map((block) => {
-        let final = block;
-
-        const footnotesIndex = block.indexOf(footnotesChar);
-        if (footnotesIndex > -1) {
-          const txt = block.slice(0, footnotesIndex);
-          const footnotes = block.slice(footnotesIndex + footnotesChar.length);
-
-          final = txt + `<p class="footnotes">${footnotes}</p>`;
-        }
-
-        return `<div class="block">${final}</div>`;
-      });
-
+    const text = typedPage.text;
     return (
       <>
         <div
           className="reader-page"
           dangerouslySetInnerHTML={{
-            __html: text.join(""),
+            __html: convertPageToHtml(text),
           }}
         />
 

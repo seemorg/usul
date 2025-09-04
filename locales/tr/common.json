@@ -1,5 +1,6 @@
 {
   "advanced-search": "Gelişmiş Arama",
+  "advanced-matching": "Gelişmiş Eşleşme",
   "load-more": "Daha Fazla Yükle",
   "clear-all": "Tümünü Temizle",
   "clear-filters": "Filtreleri temizle",
@@ -35,13 +36,14 @@
     "placeholder": "Sırala",
     "relevance": "İlgi Derecesine Göre",
     "chronological": "Kronolojik",
-    "no-of-texts-desc": "Metin Sayısı (Azalan)",
-    "no-of-texts-asc": "Metin Sayısı (Artan)",
-    "no-of-authors-desc": "Yazar Sayısı (Azalan)",
-    "no-of-authors-asc": "Yazar Sayısı (Artan)",
-    "year-asc": "Ölüm Yılı (Artan)",
-    "year-desc": "Ölüm Yılı (Azalan)"
+    "no-of-texts-desc": "Metin Sayısı ▼",
+    "no-of-texts-asc": "Metin Sayısı ▲",
+    "no-of-authors-desc": "Yazar Sayısı ▼",
+    "no-of-authors-asc": "Yazar Sayısı ▲",
+    "year-asc": "Ölüm Yılı ▲",
+    "year-desc": "Ölüm Yılı ▼"
   },
+  "view-all": "Tümünü Gör",
   "profile": "Profil",
   "login": "Giriş",
   "logout": "Çıkış Yap",
@@ -165,11 +167,57 @@
   "update": "Güncelle",
   "delete": "Sil",
   "cancel": "İptal",
+  "apply": "Uygula",
+  "keyword": "Anahtar Kelime",
+  "semantic": "Semantik",
+  "search-filters": {
+    "select-operator": "Operatör seç",
+    "enter-value": "Değer girin",
+    "not": "Değil",
+    "group": "Grup",
+    "combine-with": "Birlikte kullan",
+    "add-condition": "Koşul Ekle",
+    "add-group": "Grup Ekle",
+    "operators": {
+      "like": "Benzer",
+      "exact": "Tam",
+      "starts-with": "İle başlayan",
+      "ends-with": "İle biten"
+    },
+    "combiners": {
+      "and": "ve",
+      "or": "veya"
+    }
+  },
   "delete-x": "{entity} Sil",
   "error": "Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.",
   "delete-confirmation": {
     "title": "Kesinlikle emin misiniz?",
     "description": "Bu işlem geri alınamaz. Bu, {entity} kalıcı olarak silecek ve tüm verilerini sunucularımızdan kaldıracaktır.",
     "type-to-confirm": "<strong>{text}</strong> yazın onaylamak için"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Genel Arama",
+      "subtitle": "Aradığınız şeyi tam olarak bulmak için 15.000'den fazla metinde arama yapın",
+      "examples": {
+        "book-content": {
+          "title": "Kitap İçeriği",
+          "description": "Belirli bölümler ve kavramlar için metinlerin içinde arama yapın"
+        },
+        "book-titles": {
+          "title": "Kitap Başlıkları",
+          "description": "Kitapları Arapça veya çevrilmiş isimleriyle bulun"
+        },
+        "author-names": {
+          "title": "Yazar İsimleri",
+          "description": "Klasik İslam alimlerinin çalışmalarını keşfedin"
+        },
+        "genres": {
+          "title": "Türler",
+          "description": "Hadis, Fıkıh, Tefsir ve daha fazlası gibi konuları keşfedin"
+        }
+      }
+    }
   }
 }

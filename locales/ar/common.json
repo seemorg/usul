@@ -1,5 +1,6 @@
 {
   "advanced-search": "بحث متقدم",
+  "advanced-matching": "مطابقة متقدمة",
   "load-more": "تحميل المزيد",
   "clear-all": "مسح الكل",
   "clear-filters": "تنقية الفلاتر",
@@ -35,13 +36,14 @@
     "placeholder": "رتب حسب",
     "relevance": "الصلة",
     "chronological": "الترتيب الزمني",
-    "no-of-texts-desc": "عدد النصوص (تنازلي)",
-    "no-of-texts-asc": "عدد النصوص (تصاعدي)",
-    "no-of-authors-desc": "عدد المؤلفين (تنازلي)",
-    "no-of-authors-asc": "عدد المؤلفين (تصاعدي)",
-    "year-asc": "عام الوفاة (تصاعدي)",
-    "year-desc": "عام الوفاة (تنازلي)"
+    "no-of-texts-desc": "عدد النصوص ▼",
+    "no-of-texts-asc": "عدد النصوص ▲",
+    "no-of-authors-desc": "عدد المؤلفين ▼",
+    "no-of-authors-asc": "عدد المؤلفين ▲",
+    "year-asc": "سنة الوفاة ▲",
+    "year-desc": "سنة الوفاة ▼"
   },
+  "view-all": "عرض الكل",
   "profile": "الملف الشخصي",
   "login": "تسجيل الدخول",
   "logout": "تسجيل الخروج",
@@ -165,11 +167,57 @@
   "update": "تحديث",
   "delete": "حذف",
   "cancel": "إلغاء",
+  "apply": "تطبيق",
+  "keyword": "كلمة مفتاحية",
+  "semantic": "التحليل الدلالي",
+  "search-filters": {
+    "select-operator": "حدد المشغل",
+    "enter-value": "أدخل القيمة",
+    "not": "ليس",
+    "group": "مجموعة",
+    "combine-with": "اجمع مع",
+    "add-condition": "إضافة شرط",
+    "add-group": "إضافة مجموعة",
+    "operators": {
+      "like": "تشبه",
+      "exact": "تطابق تماماً",
+      "starts-with": "يبدأ بـ",
+      "ends-with": "ينتهي بـ"
+    },
+    "combiners": {
+      "and": "و",
+      "or": "أو"
+    }
+  },
   "delete-x": "حذف {entity}",
   "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى لاحقًا.",
   "delete-confirmation": {
     "title": "هل أنت متأكد تمامًا؟",
     "description": "لا يمكن التراجع عن هذا الإجراء. سيؤدي ذلك إلى حذف {entity} بشكل دائم وإزالة جميع بياناته من خوادمنا.",
     "type-to-confirm": "يرجى كتابة <strong>{text}</strong> للتأكيد"
+  },
+  "empty-state": {
+    "search": {
+      "title": "البحث العالمي",
+      "subtitle": "ابحث في أكثر من 15,000 نص للعثور على ما تبحث عنه بالضبط",
+      "examples": {
+        "book-content": {
+          "title": "محتوى الكتاب",
+          "description": "ابحث داخل النصوص عن مقاطع ومفاهيم محددة"
+        },
+        "book-titles": {
+          "title": "عناوين الكتب",
+          "description": "ابحث عن الكتب بأسمائها العربية أو المنقولة صوتيًا"
+        },
+        "author-names": {
+          "title": "أسماء المؤلفين",
+          "description": "اكتشف أعمال العلماء الإسلاميين الكلاسيكيين"
+        },
+        "genres": {
+          "title": "تصانيف",
+          "description": "استكشف مواضيع مثل الحديث، الفقه، التفسير، والمزيد"
+        }
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 {
   "advanced-search": "Advanced Search",
+  "advanced-matching": "Advanced Matching",
   "load-more": "Load More",
   "clear-all": "Clear all",
   "clear-filters": "Clear filters",
@@ -42,6 +43,7 @@
     "year-asc": "Death Year ▲",
     "year-desc": "Death Year ▼"
   },
+  "view-all": "View All",
   "profile": "Profile",
   "login": "Login",
   "logout": "Log Out",
@@ -165,11 +167,57 @@
   "update": "Update",
   "delete": "Delete",
   "cancel": "Cancel",
+  "apply": "Apply",
+  "keyword": "Keyword",
+  "semantic": "Semantic",
+  "search-filters": {
+    "select-operator": "Select operator",
+    "enter-value": "Enter value",
+    "not": "Not",
+    "group": "Group",
+    "combine-with": "Combine with",
+    "add-condition": "Add Condition",
+    "add-group": "Add Group",
+    "operators": {
+      "like": "Like",
+      "exact": "Exact",
+      "starts-with": "Starts with",
+      "ends-with": "Ends with"
+    },
+    "combiners": {
+      "and": "and",
+      "or": "or"
+    }
+  },
   "delete-x": "Delete {entity}",
   "error": "Something went wrong. Please try again later.",
   "delete-confirmation": {
     "title": "Are you absolutely sure?",
     "description": "This action cannot be undone. This will permanently delete the {entity} and remove all its data from our servers.",
     "type-to-confirm": "Please type <strong>{text}</strong> to confirm"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Global Search",
+      "subtitle": "Search through over 15,000 texts to find exactly what you're looking for",
+      "examples": {
+        "book-content": {
+          "title": "Book Content",
+          "description": "Search inside texts for specific passages and concepts"
+        },
+        "book-titles": {
+          "title": "Book Titles",
+          "description": "Find books by their Arabic or transliterated names"
+        },
+        "author-names": {
+          "title": "Author Names",
+          "description": "Discover works by classical Islamic scholars"
+        },
+        "genres": {
+          "title": "Genres",
+          "description": "Explore subjects like Hadith, Fiqh, Tafsir, and more"
+        }
+      }
+    }
   }
 }

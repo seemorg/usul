@@ -1,5 +1,6 @@
 {
   "advanced-search": "Raadin Horumarsan",
+  "advanced-matching": "Isbarbardhigga Sare",
   "load-more": "Ku Shub wax dheeraad ah",
   "clear-all": "Nadiifi dhammaan",
   "clear-filters": "Tirtir shaandheeyayaasha",
@@ -35,13 +36,14 @@
     "placeholder": "Kala saar",
     "relevance": "Ku habboon",
     "chronological": "Taariikheed",
-    "no-of-texts-desc": "Tirada Qoraallada (Hoos u Dhacaya)",
-    "no-of-texts-asc": "Tirada Qoraallada (Kor u Kacaya)",
-    "no-of-authors-desc": "Tirada Qorayaasha (Hoos u Dhacaya)",
-    "no-of-authors-asc": "Tirada Qorayaasha (Kor u Kacaya)",
-    "year-asc": "Sannadka Geerida (Kor u Kacaya)",
-    "year-desc": "Sannadka Geerida (Hoos u Dhacaya)"
+    "no-of-texts-desc": "Tirada Qoraallada ▼",
+    "no-of-texts-asc": "Tirada Qoraallada ▲",
+    "no-of-authors-desc": "Tirada Qorayaasha ▼",
+    "no-of-authors-asc": "Tirada Qorayaasha ▲",
+    "year-asc": "Sanadka Geerida ▲",
+    "year-desc": "Sanadka Geerida ▼"
   },
+  "view-all": "Eeg Dhammaan",
   "profile": "Profile",
   "login": "Gal",
   "logout": "Ka Bax",
@@ -165,11 +167,57 @@
   "update": "Cusbooneysiin",
   "delete": "Tirtir",
   "cancel": "Ka noqo",
+  "apply": "Codso",
+  "keyword": "Erayga muhiimka ah",
+  "semantic": "Macno",
+  "search-filters": {
+    "select-operator": "Dooro operator",
+    "enter-value": "Geli qiimaha",
+    "not": "Maya",
+    "group": "Koox",
+    "combine-with": "Kula darso",
+    "add-condition": "Ku dar Xaalad",
+    "add-group": "Ku dar Koox",
+    "operators": {
+      "like": "Siduu",
+      "exact": "Sida saxda ah",
+      "starts-with": "Ku bilow",
+      "ends-with": "Ku dhammee"
+    },
+    "combiners": {
+      "and": "iyo",
+      "or": "ama"
+    }
+  },
   "delete-x": "Tirtir {entity}",
   "error": "Wax baa khaldamay. Fadlan isku day mar kale.",
   "delete-confirmation": {
     "title": "Ma hubtaa gabi ahaanba?",
     "description": "Falkaan dib looma celin karo. Tani waxay si joogto ah u tirtiri doontaa {entity} oo waxay ka saari doontaa dhammaan xogtiisa server-yadayada.",
     "type-to-confirm": "Fadlan ku qor <strong>{text}</strong> si aad u xaqiijiso"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Raadi Guud",
+      "subtitle": "Raadi in ka badan 15,000 qoraal si aad u hesho saxda waxa aad raadinayso",
+      "examples": {
+        "book-content": {
+          "title": "Waxyaabaha buuga",
+          "description": "Ka raadi qoraallada dhexdeeda si aad u hesho tuducyo iyo fikrado khaas ah"
+        },
+        "book-titles": {
+          "title": "Cinwaanada Buuga",
+          "description": "Ku hel buugaagta magacyadooda Carabi ama magacyo la turjuman"
+        },
+        "author-names": {
+          "title": "Magacyada Qorayaasha",
+          "description": "Soo hel qoraallada culimada Islaamka ee hore"
+        },
+        "genres": {
+          "title": "Noocyada",
+          "description": "Baro maadooyinka sida Axaadiista, Fiqiga, Tafsiirka, iyo kuwa kale"
+        }
+      }
+    }
   }
 }

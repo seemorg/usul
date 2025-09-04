@@ -1,5 +1,6 @@
 {
   "advanced-search": "Recherche Avancée",
+  "advanced-matching": "Correspondance avancée",
   "load-more": "Charger plus",
   "clear-all": "Effacer tout",
   "clear-filters": "Effacer les filtres",
@@ -35,13 +36,14 @@
     "placeholder": "Trier par",
     "relevance": "Pertinence",
     "chronological": "Chronologique",
-    "no-of-texts-desc": "Nb. de textes (décroissant)",
-    "no-of-texts-asc": "Nb. de textes (croissant)",
-    "no-of-authors-desc": "Nb. d'auteurs (décroissant)",
-    "no-of-authors-asc": "Nb. d'auteurs (croissant)",
-    "year-asc": "Année de décès (croissant)",
-    "year-desc": "Année de décès (décroissant)"
+    "no-of-texts-desc": "Nº de textes ▼",
+    "no-of-texts-asc": "Nº de textes ▲",
+    "no-of-authors-desc": "Nº d'auteurs ▼",
+    "no-of-authors-asc": "Nº d'auteurs ▲",
+    "year-asc": "Année de décès ▲",
+    "year-desc": "Année de décès ▼"
   },
+  "view-all": "Voir tout",
   "profile": "Profil",
   "login": "Connexion",
   "logout": "Déconnexion",
@@ -165,11 +167,57 @@
   "update": "Mettre à jour",
   "delete": "Supprimer",
   "cancel": "Annuler",
+  "apply": "Appliquer",
+  "keyword": "Mot-clé",
+  "semantic": "Sémantique",
+  "search-filters": {
+    "select-operator": "Sélectionner l'opérateur",
+    "enter-value": "Entrer une valeur",
+    "not": "Non",
+    "group": "Groupe",
+    "combine-with": "Combiner avec",
+    "add-condition": "Ajouter une condition",
+    "add-group": "Ajouter un groupe",
+    "operators": {
+      "like": "Aime",
+      "exact": "Exact",
+      "starts-with": "Commence par",
+      "ends-with": "Se termine par"
+    },
+    "combiners": {
+      "and": "et",
+      "or": "ou"
+    }
+  },
   "delete-x": "Supprimer {entity}",
   "error": "Une erreur s'est produite. Veuillez réessayer plus tard.",
   "delete-confirmation": {
     "title": "Êtes-vous absolument sûr?",
     "description": "Cette action est irréversible. Cela supprimera définitivement le {entity} et tous ses données de nos serveurs.",
     "type-to-confirm": "Veuillez taper <strong>{text}</strong> pour confirmer"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Recherche Globale",
+      "subtitle": "Recherchez parmi plus de 15 000 textes pour trouver exactement ce que vous cherchez",
+      "examples": {
+        "book-content": {
+          "title": "Contenu du Livre",
+          "description": "Recherchez dans les textes des passages et concepts spécifiques"
+        },
+        "book-titles": {
+          "title": "Titres de Livres",
+          "description": "Trouvez des livres par leurs noms arabes ou translittérés"
+        },
+        "author-names": {
+          "title": "Noms d'Auteurs",
+          "description": "Découvrez les œuvres des érudits islamiques classiques"
+        },
+        "genres": {
+          "title": "Genres",
+          "description": "Explorez des sujets comme le Hadith, le Fiqh, le Tafsir, et plus encore"
+        }
+      }
+    }
   }
 }

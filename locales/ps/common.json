@@ -1,5 +1,6 @@
 {
   "advanced-search": "لټون پرمختللی",
+  "advanced-matching": "پرمختللي میچنګ",
   "load-more": "نور ولولې",
   "clear-all": "ټول پاک کړئ",
   "clear-filters": "فلټرونه پاک کړئ",
@@ -35,13 +36,14 @@
     "placeholder": "د مرتبولو په جنسیت کې",
     "relevance": "اړوند",
     "chronological": "کره وخت",
-    "no-of-texts-desc": "د متنونو شمېر (کموالی سره)",
-    "no-of-texts-asc": "د متنونو شمېر (لوړوالی سره)",
-    "no-of-authors-desc": "د لیکوالانو شمېر (کموالی سره)",
-    "no-of-authors-asc": "د لیکوالانو شمېر (لوړوالی سره)",
-    "year-asc": "د مرګ کال (لوړوالی سره)",
-    "year-desc": "د مرګ کال (کموالی سره)"
+    "no-of-texts-desc": "د متن شمېر ▼",
+    "no-of-texts-asc": "د متن شمېر ▲",
+    "no-of-authors-desc": "د لیکوالانو شمېر ▼",
+    "no-of-authors-asc": "د لیکوالانو شمېر ▲",
+    "year-asc": "د مرګ کال ▲",
+    "year-desc": "د مرګ کال ▼"
   },
+  "view-all": "ټول وګورئ",
   "profile": "پروفایل",
   "login": "ننوتل",
   "logout": "وتل",
@@ -165,11 +167,57 @@
   "update": "تازه کول",
   "delete": "ړنګول",
   "cancel": "لغوه",
+  "apply": "غوښتنه وکړئ",
+  "keyword": "کلیدي ټکی",
+  "semantic": "سمانتیک",
+  "search-filters": {
+    "select-operator": "آپریټر غوره کړئ",
+    "enter-value": "ارزښت داخل کړئ",
+    "not": "نه",
+    "group": "ډله",
+    "combine-with": "سره یوځای کړئ",
+    "add-condition": "شرط اضافه کړئ",
+    "add-group": "ډله اضافه کړئ",
+    "operators": {
+      "like": "لکه",
+      "exact": "بشپړ",
+      "starts-with": "له دې سره پیل کیږي",
+      "ends-with": "له دې سره پای ته رسیږي"
+    },
+    "combiners": {
+      "and": "او",
+      "or": "یا"
+    }
+  },
   "delete-x": "ړنګ کړئ {entity}",
   "error": "یوه ستونزه وشوه. مهرباني وکړئ وروسته بیا هڅه وکړئ.",
   "delete-confirmation": {
     "title": "ایا تاسو په بشپړ ډول ډاډه یاست؟",
     "description": "دا عمل نشي لغوه کیدی. دا به د {entity} په دایمي ډول ړنګ کړي او ټول معلومات به يې زموږ له سرورونو څخه لرې کړي.",
     "type-to-confirm": "مهرباني وکړئ د تایید لپاره <strong>{text}</strong> ولیکئ"
+  },
+  "empty-state": {
+    "search": {
+      "title": "نړیوال لټون",
+      "subtitle": "له ۱۵,۰۰۰ څخه په زیاتو متنونو کې ولټوئ ترڅو هغه څه چې تاسو یې په لټه کې یاست په دقیق ډول ومومئ",
+      "examples": {
+        "book-content": {
+          "title": "د کتاب منځپانګه",
+          "description": "په متنونو کې خاصې فقرې او مفاهیم ولټوئ"
+        },
+        "book-titles": {
+          "title": "د کتاب سرلیکونه",
+          "description": "کتابونه د دوی عربي یا د ترجمې شوي نومونو په واسطه ومومئ"
+        },
+        "author-names": {
+          "title": "د لیکوال نومونه",
+          "description": "د اسلامي کلاسیک اسکالرانو آثار ومومئ"
+        },
+        "genres": {
+          "title": "ژانرونه",
+          "description": "موضوعات لکه حدیث، فقه، تفسیر، او نور ولټوئ"
+        }
+      }
+    }
   }
 }

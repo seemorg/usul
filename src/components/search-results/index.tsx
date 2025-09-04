@@ -34,7 +34,11 @@ interface SearchResultsProps<T extends object & { id: string }> {
   placeholder?: string;
   itemsContainerClassName?: string;
   view?: View;
+  showInput?: boolean;
   hasViews?: boolean;
+  hasSorts?: boolean;
+  label?: React.ReactNode;
+  gridColumns?: [number, number];
 }
 
 export default function SearchResults<T extends object & { id: string }>({
@@ -49,37 +53,71 @@ export default function SearchResults<T extends object & { id: string }>({
   placeholder,
   itemsContainerClassName,
   view,
+  showInput = true,
   hasViews = true,
+  hasSorts = true,
+  label,
+  gridColumns = [1, 3],
 }: SearchResultsProps<T>) {
   const hasResults = (response.hits.length ?? 0) > 0;
 
   return (
-    <div className="grid grid-cols-4 gap-10 sm:gap-6">
+    <div
+      className="grid w-full grid-cols-[var(--total-columns)] gap-10 sm:gap-6"
+      style={
+        {
+          "--total-columns": `repeat(${gridColumns[0] + gridColumns[1]}, minmax(0, 1fr))`,
+        } as any
+      }
+    >
       {filters && (
-        <div className="hidden w-full sm:block">
+        <div
+          style={
+            {
+              "--filter-span": `${gridColumns[0]}`,
+            } as any
+          }
+          className={cn(
+            "hidden w-full sm:block",
+            "sm:col-span-[var(--filter-span)]",
+          )}
+        >
           <div className="flex flex-col gap-5">{filters}</div>
         </div>
       )}
 
       <div
+        style={
+          {
+            "--results-span": `${gridColumns[1]}`,
+            "--mobile-span": `${gridColumns[0] + gridColumns[1]}`,
+          } as any
+        }
         className={cn(
-          "col-span-4",
-          filters ? "sm:col-span-3 sm:ltr:pl-1 sm:rtl:pr-1" : "",
+          "col-span-[var(--mobile-span)]",
+          filters
+            ? "sm:col-span-[var(--results-span)] sm:ltr:pl-1 sm:rtl:pr-1"
+            : "",
         )}
       >
         <div className="relative w-full">
           <div className="flex items-center justify-between gap-4">
             <div className="w-full flex-1">
-              <SearchBar
-                defaultValue={currentQuery}
-                placeholder={placeholder}
-              />
+              {showInput && (
+                <SearchBar
+                  defaultValue={currentQuery}
+                  placeholder={placeholder}
+                />
+              )}
+              {label}
             </div>
 
             <div className="flex gap-2">
-              <div>
-                <SearchSort sorts={sorts} currentSort={currentSort} />
-              </div>
+              {hasSorts && (
+                <div>
+                  <SearchSort sorts={sorts} currentSort={currentSort} />
+                </div>
+              )}
 
               {hasViews && (
                 <div>
@@ -143,7 +181,9 @@ export default function SearchResults<T extends object & { id: string }>({
               ))}
             </div>
           ) : (
-            <p className="text-muted-foreground text-lg">{emptyMessage}</p>
+            <div className="border-border flex w-full items-center justify-center rounded-md border py-4">
+              <p className="text-muted-foreground text-sm">{emptyMessage}</p>
+            </div>
           )}
         </div>
 

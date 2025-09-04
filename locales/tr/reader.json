@@ -61,7 +61,9 @@
     "sources": "Kaynaklar",
     "error": "Bir şeyler ters gitti. <retry>Tekrar deneyin</retry> veya devam ederse <contact>bize ulaşın</contact>.",
     "pg-x": "S{page, number, nogroup}",
-    "pg-x-vol": "Cilt {vol, number, nogroup}, Sf {page, number, nogroup}"
+    "pg-x-vol": "Cilt {vol, number, nogroup}, Sf {page, number, nogroup}",
+    "translate": "Çevir",
+    "show-original": "Orijinali Göster"
   },
   "edition": "Sürüm",
   "editions-modal": {
@@ -81,7 +83,7 @@
   "download-pdf": "PDF İndir",
   "publication-details": {
     "title": "Yayın Ayrıntıları",
-    "investigator": "Araştırmacı",
+    "investigator": "Soruşturmacı",
     "publisher": "Yayıncı",
     "publication-year": "Yayın Yılı",
     "publisher-location": "Yayın Yeri",

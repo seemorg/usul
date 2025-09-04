@@ -1,4 +1,6 @@
 export interface SemanticSearchBookNode {
+  id?: string;
+  text: string;
   metadata: {
     chapters: number[];
     pages: {
@@ -7,7 +9,6 @@ export interface SemanticSearchBookNode {
       page: number;
     }[];
   };
-  text: string;
   highlights?: string[];
   score?: number;
 }

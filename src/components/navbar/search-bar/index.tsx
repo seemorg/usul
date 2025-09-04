@@ -4,51 +4,33 @@ import type { SearchType } from "@/types/search";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Command, CommandInput, CommandList } from "@/components/ui/command";
-import {
-  searchAllCollections,
-  searchAuthors,
-  searchBooks,
-  searchGenres,
-} from "@/lib/api/search";
-import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { Link, useRouter } from "@/navigation";
 import { useNavbarStore } from "@/stores/navbar";
 import { useSearchHistoryStore } from "@/stores/search-history";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useDetectClickOutside } from "react-detect-click-outside";
 import { useBoolean, useDebounceValue, useMediaQuery } from "usehooks-ts";
 
 import SearchBarEmptyState from "./empty-state";
 import SearchBarResults from "./results";
-
-const typeToMethod = {
-  all: searchAllCollections,
-  texts: searchBooks,
-  authors: searchAuthors,
-  genres: searchGenres,
-} satisfies Record<SearchType, any>;
-
-type SearchResults = Awaited<ReturnType<typeof searchAllCollections>>;
+import { useSearch } from "./use-search";
 
 export default function SearchBar({
   autoFocus,
-  size = "sm",
   isMenu,
 }: {
   autoFocus?: boolean;
-  size?: "sm" | "lg";
   isMenu?: boolean;
 }) {
   const t = useTranslations("common");
-  const pathLocale = usePathLocale();
   const setShowSearch = useNavbarStore((s) => s.setShowSearch);
   const isMobile = useMediaQuery("(max-width: 1024px)");
 
   const [value, setValue] = useState("");
-  const [searchType, setSearchType] = useState<SearchType>("all");
+  const [searchType, setSearchType] =
+    useState<Exclude<SearchType, "content">>("all");
   const focusedState = useBoolean(false);
 
   const [debouncedValue] = useDebounceValue(value, 300);
@@ -62,17 +44,9 @@ export default function SearchBar({
   const { push } = useRouter();
   const addRecentSearch = useSearchHistoryStore((s) => s.addRecentSearch);
 
-  const { isLoading, data } = useQuery<SearchResults>({
-    queryKey: ["search", searchType, debouncedValue],
-    queryFn: ({ queryKey }) => {
-      const [, type, query = ""] = queryKey as [string, SearchType, string];
-      const method = typeToMethod[type];
-      return method(query, {
-        limit: 5,
-        locale: pathLocale,
-      }) as Promise<SearchResults>;
-    },
-    enabled: !!debouncedValue,
+  const { isLoading, data } = useSearch({
+    searchType,
+    value: debouncedValue,
   });
 
   useEffect(() => {
@@ -117,7 +91,7 @@ export default function SearchBar({
         shouldFilter={false}
         className={cn(
           "relative overflow-visible",
-          size === "lg" && "rounded-[10px]",
+
           showList && "rounded-b-none",
           // focusedState.value &&
           //   "outline-hidden ring-2 ring-white ring-offset-2 ring-offset-primary",
@@ -147,11 +121,7 @@ export default function SearchBar({
               focusedState.setTrue();
             }
           }}
-          className={cn(size === "lg" && "h-12 py-4 text-base sm:h-14")}
-          wrapperClassName={cn(
-            size === "lg" && "[&_svg]:size-6!",
-            isMenu && "px-4",
-          )}
+          wrapperClassName={cn(isMenu && "px-4")}
         />
 
         <div className="absolute inset-y-0 flex items-center ltr:right-2 rtl:left-2">
@@ -161,9 +131,7 @@ export default function SearchBar({
               className="text-primary hover:text-primary"
               asChild
             >
-              <Link href={navigation.search.normal()}>
-                {t("advanced-search")}
-              </Link>
+              <Link href={navigation.search()}>{t("advanced-search")}</Link>
             </Button>
           </p>
         </div>
@@ -174,7 +142,6 @@ export default function SearchBar({
             "bg-popover text-foreground absolute inset-x-0 bottom-1 z-10 flex max-h-[auto] w-full translate-y-full flex-col overflow-hidden rounded-md rounded-t-none text-sm",
             !isMenu && "border-border border shadow-sm",
             showList ? "opacity-100" : "pointer-events-none opacity-0",
-            size === "lg" && "rounded-[10px] rounded-t-none",
           )}
         >
           {debouncedValue ? (

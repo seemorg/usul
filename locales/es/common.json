@@ -1,5 +1,6 @@
 {
   "advanced-search": "Búsqueda Avanzada",
+  "advanced-matching": "Coincidencia Avanzada",
   "load-more": "Cargar Más",
   "clear-all": "Borrar todo",
   "clear-filters": "Borrar filtros",
@@ -35,13 +36,14 @@
     "placeholder": "Ordenar por",
     "relevance": "Relevancia",
     "chronological": "Cronológico",
-    "no-of-texts-desc": "Núm. de textos (Descendente)",
-    "no-of-texts-asc": "Núm. de textos (Ascendente)",
-    "no-of-authors-desc": "Núm. de autores (Descendente)",
-    "no-of-authors-asc": "Núm. de autores (Ascendente)",
-    "year-asc": "Año de defunción (Ascendente)",
-    "year-desc": "Año de defunción (Descendente)"
+    "no-of-texts-desc": "N.º de Textos ▼",
+    "no-of-texts-asc": "N.º de Textos ▲",
+    "no-of-authors-desc": "N.º de Autores ▼",
+    "no-of-authors-asc": "N.º de Autores ▲",
+    "year-asc": "Año de Muerte ▲",
+    "year-desc": "Año de Muerte ▼"
   },
+  "view-all": "Ver Todo",
   "profile": "Perfil",
   "login": "Iniciar sesión",
   "logout": "Cerrar sesión",
@@ -165,11 +167,57 @@
   "update": "Actualizar",
   "delete": "Eliminar",
   "cancel": "Cancelar",
+  "apply": "Aplicar",
+  "keyword": "Palabra clave",
+  "semantic": "Semántico",
+  "search-filters": {
+    "select-operator": "Seleccionar operador",
+    "enter-value": "Ingresar valor",
+    "not": "No",
+    "group": "Grupo",
+    "combine-with": "Combinar con",
+    "add-condition": "Añadir condición",
+    "add-group": "Añadir grupo",
+    "operators": {
+      "like": "Como",
+      "exact": "Exacto",
+      "starts-with": "Comienza con",
+      "ends-with": "Termina con"
+    },
+    "combiners": {
+      "and": "y",
+      "or": "o"
+    }
+  },
   "delete-x": "Eliminar {entity}",
   "error": "Algo salió mal. Por favor, inténtelo de nuevo más tarde.",
   "delete-confirmation": {
     "title": "¿Está absolutamente seguro?",
     "description": "Esta acción no se puede deshacer. Esto eliminará permanentemente el {entity} y eliminará todos sus datos de nuestros servidores.",
     "type-to-confirm": "Por favor escriba <strong>{text}</strong> para confirmar"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Búsqueda Global",
+      "subtitle": "Busca entre más de 15,000 textos para encontrar exactamente lo que buscas",
+      "examples": {
+        "book-content": {
+          "title": "Contenido del Libro",
+          "description": "Busca dentro de los textos pasajes y conceptos específicos"
+        },
+        "book-titles": {
+          "title": "Títulos de Libros",
+          "description": "Encuentra libros por sus nombres en árabe o transliterados"
+        },
+        "author-names": {
+          "title": "Nombres de Autores",
+          "description": "Descubre obras de los eruditos islámicos clásicos"
+        },
+        "genres": {
+          "title": "Géneros",
+          "description": "Explora temas como Hadith, Fiqh, Tafsir y más"
+        }
+      }
+    }
   }
 }

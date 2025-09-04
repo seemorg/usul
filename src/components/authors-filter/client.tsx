@@ -149,7 +149,6 @@ export default function AuthorsFilterClient({
   const data = useMemo(() => {
     const allResponses = Object.values(pageToResponse);
     const hasMore = allResponses[allResponses.length - 1]?.pagination.hasNext;
-    console.log(pageToResponse);
 
     const items = allResponses.flatMap((r) => r.results.hits);
 

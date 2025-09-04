@@ -61,7 +61,9 @@
     "sources": "Fuentes",
     "error": "Algo salió mal. <retry>Inténtalo de nuevo</retry> o <contact>contáctanos</contact> si persiste.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "Vol {vol, number, nogroup}, Pág {page, number, nogroup}"
+    "pg-x-vol": "Vol {vol, number, nogroup}, Pág {page, number, nogroup}",
+    "translate": "Traducir",
+    "show-original": "Mostrar original"
   },
   "edition": "Edición",
   "editions-modal": {
@@ -81,7 +83,7 @@
   "download-pdf": "Descargar PDF",
   "publication-details": {
     "title": "Detalles de la publicación",
-    "investigator": "Investigador",
+    "investigator": "Editor",
     "publisher": "Editorial",
     "publication-year": "Año de publicación",
     "publisher-location": "Ubicación del editor",

@@ -61,7 +61,9 @@
     "sources": "Sumber",
     "error": "Sesuatu telah berlaku. <retry>Cuba lagi</retry> atau <contact>hubungi kami</contact> jika ia berterusan.",
     "pg-x": "P{page, number, nogroup}",
-    "pg-x-vol": "Jilid {vol, number, nogroup}, Hal {page, number, nogroup}"
+    "pg-x-vol": "Jilid {vol, number, nogroup}, Hal {page, number, nogroup}",
+    "translate": "Menterjemah",
+    "show-original": "Tunjukkan asal"
   },
   "edition": "Edisi",
   "editions-modal": {
@@ -81,7 +83,7 @@
   "download-pdf": "Muat Turun PDF",
   "publication-details": {
     "title": "Butiran Penerbitan",
-    "investigator": "Penyiasat",
+    "investigator": "Editor",
     "publisher": "Penerbit",
     "publication-year": "Tahun Penerbitan",
     "publisher-location": "Lokasi Penerbit",

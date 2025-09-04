@@ -1,5 +1,6 @@
 {
   "advanced-search": "Bincike Mai Zurfi",
+  "advanced-matching": "Matsakaicin Daidaitawa",
   "load-more": "Daukar Karin",
   "clear-all": "Goge duk",
   "clear-filters": "Goge matattara",
@@ -35,13 +36,14 @@
     "placeholder": "Zaɓi Ta",
     "relevance": "Dangantaka",
     "chronological": "Chronological",
-    "no-of-texts-desc": "No. na Rubuce-rubuce (Matsakaici)",
-    "no-of-texts-asc": "No. na Rubuce-rubuce (Tashi)",
-    "no-of-authors-desc": "No. na Mawallafa (Matsakaici)",
-    "no-of-authors-asc": "No. na Mawallafa (Tashi)",
-    "year-asc": "Shekarar Mutuwa (Tashi)",
-    "year-desc": "Shekarar Mutuwa (Matsakaici)"
+    "no-of-texts-desc": "Adadin Rubuce-rubuce ▼",
+    "no-of-texts-asc": "Adadin Rubuce-rubuce ▲",
+    "no-of-authors-desc": "Adadin Marubuta ▼",
+    "no-of-authors-asc": "Adadin Marubuta ▲",
+    "year-asc": "Shekarar Mutuwa ▲",
+    "year-desc": "Shekarar Mutuwa ▼"
   },
+  "view-all": "Duba Duk",
   "profile": "Fayil",
   "login": "Shiga",
   "logout": "Fita",
@@ -165,11 +167,57 @@
   "update": "Sabunta",
   "delete": "Goge",
   "cancel": "Soke",
+  "apply": "Aiwatar",
+  "keyword": "Kalmar",
+  "semantic": "Ma'ana",
+  "search-filters": {
+    "select-operator": "Zaɓi mai sarrafa aiki",
+    "enter-value": "Shigar da ƙima",
+    "not": "Ba",
+    "group": "Rukuni",
+    "combine-with": "Haɗawa da",
+    "add-condition": "Ƙara yanayi",
+    "add-group": "Ƙara rukuni",
+    "operators": {
+      "like": "Mai kama",
+      "exact": "Tabbatacce",
+      "starts-with": "Fara da",
+      "ends-with": "Ƙare da"
+    },
+    "combiners": {
+      "and": "da",
+      "or": "ko"
+    }
+  },
   "delete-x": "Goge {entity}",
   "error": "Wani abu ya faru ba daidai ba. Don Allah a sake gwadawa daga baya.",
   "delete-confirmation": {
     "title": "Ka tabbata sosai?",
     "description": "Wannan aiki ba za a iya dawo da shi ba. Wannan zai goge {entity} dindindin kuma ya cire duk bayanansa daga sabar mu.",
     "type-to-confirm": "Da fatan shigar da <strong>{text}</strong> don tabbatarwa"
+  },
+  "empty-state": {
+    "search": {
+      "title": "Neman Duniya",
+      "subtitle": "Yi bincike a tsakanin sama da rubutu 15,000 don gano abin da kake nema dai dai",
+      "examples": {
+        "book-content": {
+          "title": "Abun ciki na littafi",
+          "description": "Bincika cikin rubutu don shafuka da tunani na musamman"
+        },
+        "book-titles": {
+          "title": "Sunan littafi",
+          "description": "Nemo littattafai ta sunansu na Larabci ko ta fassarar suna"
+        },
+        "author-names": {
+          "title": "Sunan marubuci",
+          "description": "Gano ayyuka na malaman Musulunci na gargajiya"
+        },
+        "genres": {
+          "title": "Nau'o'in",
+          "description": "Bincika abubuwan kamar Hadith, Fiqh, Tafsir, da dai sauransu"
+        }
+      }
+    }
   }
 }

@@ -1,5 +1,6 @@
 {
   "advanced-search": "اعلیٰ تلاش",
+  "advanced-matching": "اعلیٰ ملاپ",
   "load-more": "مزید لوڈ کریں",
   "clear-all": "سب صاف کریں",
   "clear-filters": "فلٹر صاف کریں",
@@ -35,13 +36,14 @@
     "placeholder": "ترتیب دے",
     "relevance": "متعلقہ",
     "chronological": "تاریخی ترتیب",
-    "no-of-texts-desc": "پیغامات کی تعداد (نزولی ترتیب)",
-    "no-of-texts-asc": "پیغامات کی تعداد (صعودی ترتیب)",
-    "no-of-authors-desc": "مصنفین کی تعداد (نزولی ترتیب)",
-    "no-of-authors-asc": "مصنفین کی تعداد (صعودی ترتیب)",
-    "year-asc": "وفات کا سال (صعودی ترتیب)",
-    "year-desc": "وفات کا سال (نزولی ترتیب)"
+    "no-of-texts-desc": "تحریروں کی تعداد ▼",
+    "no-of-texts-asc": "تحریروں کی تعداد ▲",
+    "no-of-authors-desc": "مصنفین کی تعداد ▼",
+    "no-of-authors-asc": "مصنفین کی تعداد ▲",
+    "year-asc": "وفات کا سال ▲",
+    "year-desc": "وفات کا سال ▼"
   },
+  "view-all": "تمام دیکھیں",
   "profile": "پروفائل",
   "login": "لاگ ان",
   "logout": "لاگ آؤٹ",
@@ -165,11 +167,57 @@
   "update": "اپ ڈیٹ کریں",
   "delete": "حذف کریں",
   "cancel": "منسوخ کریں",
+  "apply": "اطلاق کریں",
+  "keyword": "کلیدی لفظ",
+  "semantic": "معنوی",
+  "search-filters": {
+    "select-operator": "آپریٹر منتخب کریں",
+    "enter-value": "قدر درج کریں",
+    "not": "نہیں",
+    "group": "گروپ",
+    "combine-with": "کے ساتھ ملا کر",
+    "add-condition": "شرط شامل کریں",
+    "add-group": "گروپ شامل کریں",
+    "operators": {
+      "like": "پسند کریں",
+      "exact": "عین مطابق",
+      "starts-with": "سے شروع",
+      "ends-with": "پر ختم"
+    },
+    "combiners": {
+      "and": "اور",
+      "or": "یا"
+    }
+  },
   "delete-x": "{entity} حذف کریں",
   "error": "کچھ غلط ہو گیا۔ براہ کرم بعد میں دوبارہ کوشش کریں۔",
   "delete-confirmation": {
     "title": "کیا آپ بالکل یقین رکھتے ہیں؟",
     "description": "یہ عمل واپس نہیں کیا جا سکتا۔ یہ {entity} کو مستقل طور پر حذف کر دے گا اور اس کے تمام ڈیٹا کو ہمارے سرورز سے ہٹا دے گا۔",
     "type-to-confirm": "براہ کرم اس کی تصدیق کے لئے <strong>{text}</strong> ٹائپ کریں"
+  },
+  "empty-state": {
+    "search": {
+      "title": "گلوبل تلاش",
+      "subtitle": "15,000 سے زائد متون کے ذریعے تلاش کریں تاکہ وہی ملے جو آپ تلاش کر رہے ہیں",
+      "examples": {
+        "book-content": {
+          "title": "کتاب کا مواد",
+          "description": "متون کے اندر مخصوص اقتباسات اور تصورات کے لئے تلاش کریں"
+        },
+        "book-titles": {
+          "title": "کتاب کے عنوانات",
+          "description": "عربی یا ترجمہ شدہ ناموں کے ذریعے کتابیں تلاش کریں"
+        },
+        "author-names": {
+          "title": "مصنفین کے نام",
+          "description": "کلاسیکل اسلامی علماء کے کام دریافت کریں"
+        },
+        "genres": {
+          "title": "اصناف",
+          "description": "احادیث، فقہ، تفسیر اور مزید جیسے موضوعات کی تلاش کریں"
+        }
+      }
+    }
   }
 }
