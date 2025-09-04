@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "L'avenir du savoir islamique, propulsé par l'IA",
-    "subtitle": "Aidez-nous à rendre le savoir islamique plus accessible et sa récupération beaucoup plus facile.",
-    "description": "🎉 Alhamdoulillah, avec votre soutien, Usul a touché des milliers de chercheurs de savoir, comblant le fossé entre tradition et modernité.",
+    "subtitle": "Aidez-nous à construire la plus grande bibliothèque, à garantir le plus large accès et à faciliter la recherche la plus audacieuse dans le domaine du savoir islamique pour le XXIᵉ siècle.",
+    "description": "Grâce à votre soutien, Usul a rendu des milliers de textes historiques plus accessibles, touchant des dizaines de milliers d'utilisateurs à travers le monde.",
     "donate-widget": {
       "month-raised": "Collecté",
       "goal": "Objectif ${goal, number} par mois",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Réalisations",
     "one": {
-      "title": "Accès inégalé aux textes islamiques.",
+      "title": "Élargir l'accès aux textes islamiques",
       "features": {
-        "0": "Plus de <strong>10 000 textes islamiques classiques et modernes</strong> disponibles gratuitement.",
-        "1": "<strong>Outils de recherche avancés</strong> pour aider les chercheurs et les apprenants à découvrir facilement des informations."
+        "0": "Rassembler et rendre accessibles en un seul endroit plus de <strong>15 000</strong> sources islamiques numérisées aux formats PDF et eBook, dans une présentation claire et lisible.",
+        "1": "Transformer des PDF statiques en formats structurés et lisibles par machine pour faciliter la recherche et l'analyse."
       }
     },
     "two": {
-      "title": "Autonomiser les érudits et les apprenants",
+      "title": "Améliorer la recherche avec des outils alimentés par l'IA",
       "features": {
-        "0": "Outils <strong>d'IA à la pointe de la technologie</strong> qui permettent aux utilisateurs de trouver et d'extraire rapidement des informations à partir de textes classiques.",
-        "1": "<strong>Pièce jointe PDF</strong> téléchargée sur de nombreux livres pour permettre aux utilisateurs de valider la source."
+        "0": "Des fonctions de recherche avancées permettant aux utilisateurs de trouver rapidement des informations précises.",
+        "1": "Des assistants alimentés par l'IA qui permettent aux chercheurs de naviguer aisément dans de grands volumes de texte."
       }
     },
     "three": {
-      "title": "Belle expérience utilisateur",
-      "description": "Nous nous efforçons de rendre notre travail <strong>beau et apprécié</strong> tant par les étudiants débutants en connaissance que par les érudits avancés. De l'expérience de lecture, à l'interface de recherche, à l'expérience mobile."
+      "title": "Permettre l'analyse à grande échelle",
+      "description": "Soutenir l'analyse trans-textuelle à grande échelle qui ouvre de nouvelles possibilités pour la recherche en islamologie. En rendant des milliers d'œuvres crédibles consultables simultanément, Usul permet aux chercheurs de naviguer efficacement à travers d'immenses sources textuelles islamiques, pour retracer concepts et motifs à travers différents genres avec rapidité et précision."
     }
   },
   "roadmap": {
-    "title": "<strong>Notre Feuille de Route</strong>, Vision d'Usul pour l'avenir",
-    "description": "Vos dons nous aideront à atteindre les objectifs suivants, inshaAllah :",
+    "title": "<strong>Feuille de route d’Usul</strong> : Notre vision pour l’avenir",
+    "description": "Vos dons nous aideront à atteindre les objectifs suivants :",
     "items": {
       "0": {
-        "title": "Étendre la bibliothèque de textes",
+        "title": "Recherche alimentée par l'IA pour les sources islamiques",
         "features": {
-          "0": "Numériser et ajouter des milliers d'autres livres supplémentaires à la plateforme.",
-          "1": "Assurer une représentation complète des diverses disciplines islamiques et des écoles de pensée."
+          "0": "Intégrer des outils de recherche de pointe et les derniers modèles d’IA pour permettre aux chercheurs de trouver rapidement des informations précises.",
+          "1": "Permettre une navigation efficace à travers d’immenses sources textuelles islamiques."
         }
       },
       "1": {
-        "title": "Affiner les outils de recherche",
+        "title": "Collections islamiques sélectionnées",
         "features": {
-          "0": "Introduire des capacités avancées alimentées par l'IA pour permettre aux utilisateurs de trouver des insights dans les textes ou un corpus entier.",
-          "1": "Développer des fonctionnalités telles que la comparaison de textes côte à côte et la recherche de sources de citations."
+          "0": "Collaborer avec des chercheurs de premier plan pour développer un « corpus central » représentatif couvrant tous les grands domaines islamiques.",
+          "1": "Créer des collections sélectionnées adaptées à divers genres."
         }
       },
       "2": {
-        "title": "Accessibilité mondiale",
+        "title": "Corpus universel",
         "features": {
-          "0": "Traduire les textes en utilisant l'IA en anglais et dans de nombreuses autres langues pour ouvrir l'accès au savoir islamique.",
-          "1": "Améliorer la performance du site pour les utilisateurs dans les zones avec une connectivité limitée, afin de garantir qu'aucun apprenant ne soit laissé pour compte."
+          "0": "Développer l’infrastructure et des partenariats avec des bibliothèques et autres dépôts en ligne afin d’héberger un corpus universel et exhaustif de textes sous formats numériques structurés.",
+          "1": "Veiller à ce que, à mesure que le monde du savoir en ligne se développe, toutes les œuvres soient accessibles, consultables et analysables."
         }
       }
     }
   },
   "be-part": {
-    "title": "Faites partie du voyage d'Usul",
-    "description": " Votre soutien mensuel stimule l'innovation, soutient notre croissance, et garantit qu'Usul reste une ressource vitale pour les générations futures.",
+    "title": "Soutenez la mission d’Usul",
+    "description": "Votre contribution permet de développer des recherches à court terme et soutient le développement à long terme d’outils innovants pour la recherche islamique.",
     "why-support": {
       "title": "Pourquoi soutenir Usul ?",
       "features": {
-        "0": "Mises à jour trimestrielles transparentes sur la manière dont votre don fait la différence",
-        "1": "Flexibilité pour annuler ou ajuster votre contribution à tout moment",
-        "2": "Une occasion de faire partie d'une mission innovante pour préserver et partager le savoir islamique"
+        "0": "Accélérer la recherche islamique sur les défis actuels nécessitant une analyse rapide parmi d’importantes ressources : de l’éthique de l’IA islamique et de la gouvernance à la question de savoir comment et si l’IA peut être utilisée pour produire des avis juridiques, des diagnostics médicaux ou pour des questions financières",
+        "1": "Accélérer l’éducation islamique et la diffusion du savoir islamique au sens large, en développant l’infrastructure à utiliser dans les écoles, universités et tribunaux du monde entier nécessitant des outils de recherche islamique fiables, internes ou comparatifs",
+        "2": "Jouez un rôle clé dans la préservation et l'étude de l’Islam de demain"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Mensuel",
         "yearly": "Annuel"
       },
-      "note": "Les dons sont collectés par Usul Foundation, une organisation à but non lucratif 501(c)(3). Tous les dons sont déductibles des impôts aux États-Unis. Pour toute question, veuillez nous contacter à donors@usul.ai.",
+      "note": "Les dons sont collectés par la Seemore Foundation, une organisation à but non lucratif 501(c)(3) (statut en attente). Tous les dons sont déductibles des impôts aux États-Unis. Pour tout renseignement, veuillez nous contacter à donors@usul.ai.",
       "continue": "Continuer"
     }
   },

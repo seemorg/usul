@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Mustaqbalka aqoonta Islaamka, oo ay taageerayaan AI",
-    "subtitle": "Naga caawi inaan ka dhigno aqoonta Islaamka mid si fudud loo heli karo oo fudud in dib loo soo celiyo.",
-    "description": "🎉 Alxamdulillah, taageeradaada awgeed, Usul waxay gaadhay kumanaan raadinaya aqoon, iyagoo buuxinaya farqiga udhaxeeya dhaqanka iyo casriyeynta.",
+    "subtitle": "Ka caawi dhisitaanka maktabadda ugu weyn, suurtagal u noqo in la helo fursad aad u ballaaran, oo fududee cilmi-baarista ugu dhiirrada badan oo ku saabsan cilmiga Islaamka qarniga 21aad.",
+    "description": "Iyada oo aad taageertayayo, Usul waxay ka dhigtay kumanaan buugag taariikhi ah mid si fudud loo heli karo, iyagoo gaaray tobanaan kun oo dadka isticmaala ah dunida oo dhan.",
     "donate-widget": {
       "month-raised": "La ururiyey",
       "goal": "Hadafka ${goal, number} Bil kasta",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Guulaha",
     "one": {
-      "title": "Helitaan aan caadi ahayn oo loo maro qoraallo Islaami ah.",
+      "title": "Ballaadhinta Helitaanka Buugaagta Islaamka",
       "features": {
-        "0": "In ka badan <strong>10,000 qoraallo Islaami caadi iyo casri ah</strong> ayaa si bilaash ah lagu heli karaa.",
-        "1": "<strong>Qalabaynta cilmi baaris casri ah</strong> si ay ugu sahlayso cilmi-baarayaasha iyo kuwa wax baranaya inay si fudud u soo bandhigaan aragtiyo."
+        "0": "Ururinta iyo keenista in hal meel lagu arko in ka badan <strong>15,000</strong> ilo Islaami ah oo la digitiyay, PDF iyo eBook ahaan, iyadoo leh muuqaal nadiif ah oo fiican in la akhriyo.",
+        "1": "Wax-ka-beddelidda PDFs-da go'an ee loo rogay qaabab la dhisi karo oo ay mashiinnadu akhrin karaan si loo fududeeyo raadinta iyo falanqaynta."
       }
     },
     "two": {
-      "title": "Xoojinta Culimada iyo Ardayda",
+      "title": "Kordhinta Cilmi-baarista iyadoo la adeegsanayo Aaladaha AI-ku-shaqeeya",
       "features": {
-        "0": "Qalab casri ah oo <strong>AI</strong> oo u suurtagelisa isticmaalayaasha inay si dhaqso leh u helaan oo uga soo saaraan macluumaadka qoraallada caadiga ah.",
-        "1": "<strong>Ku lifaaqyada PDF</strong> oo loo soo geliyay buugaag badan si ay isticmaalehu u xaqiijiyaan isha."
+        "0": "Awood raadin heer sare ah oo u oggolaanaysa isticmaalayaasha inay si deg deg ah u helaan xog sax ah.",
+        "1": "Kaaliyeyaal AI-ku shaqeeya oo u fududeynaya cilmi-baarayaasha inay si sahlan ugu dhex socdaan xog badan oo qoraal ah."
       }
     },
     "three": {
-      "title": "Khibrad isticmaale oo qurux badan",
-      "description": "Waxaan ku dadaalaynaa in shaqadeena ay ahaato <strong>qurux iyo jacayl</strong> oo ay jeclaadaan ardayda bilowga ah kuwa aqoonta iyo culimada sare Si lamid ah Khibrada akhriska, interface-ka raadinta, iyo khibrada mobilada."
+      "title": "Suurtagalinta Falanqayn Baaxad Leh",
+      "description": "Taageeridda falanqayn baaxad weyn leh oo xog ururinyo isdhaafsi ah oo fure u ah fursado cusub oo cilmi-baaris Islaami ah. U saamaxaya marin hufan oo buugaag badan oo la isku halleyn karo ah, cilmi-baarayaashu waxay Usul ugu adeegsan karaan inay si Xawli iyo sax ah ugu raadiyaan fikrado iyo qaabab kala duwan oo la xidhiidha mowduucyo kala duwan."
     }
   },
   "roadmap": {
-    "title": "<strong>Khariidadda Wadadeena</strong>, Himilada Usul ee Mustaqbalka",
-    "description": "Ku deeq bixintaadu waxay naga caawin doontaa inaan gaarno yoolalka soo socda, inshaAllah:",
+    "title": "<strong>Khariidda Usul</strong>: Aragtiyadayada Mustaqbalka",
+    "description": "Tabarucaadkaagu wuxuu naga caawinayaa inaan gaarno yoolalkan socda:",
     "items": {
       "0": {
-        "title": "Kordhi Maktabadda Qoraalka",
+        "title": "Raadinta AI-ku-shaqaysa ee Ilo Islaami ah",
         "features": {
-          "0": "Dijitaan gareynta iyo kumanaan buugaagda kale ee dheeraadka ah ku dar madasha.",
-          "1": "Hubi matalaad dhameystiran oo loo dhigo culuumta kala duwan ee Islaamka iyo fikirka thoughtschools."
+          "0": "Isticmaal aalado raadin casri ah iyo moodallo AI ah oo la hubo si cilmi-baarayaashu si deg deg ah u heli karaan macluumaad sax ah.",
+          "1": "Samee marin hufan oo lagu dhex socdao qoraallo badan oo Islaami ah."
         }
       },
       "1": {
-        "title": "Soo Qurxin Qalabada Cilmi-baarista",
+        "title": "Ururo Islaami ah oo si gaar ah loo diyaariyay",
         "features": {
-          "0": "Soo bandhig awoodaha AI ee horumarsan si ay u oggolaadaan isticmaalayaasha inay helaan aragtiyo qoraallada ama guud ahaan qoraalka.",
-          "1": "Horumarinta astaamo sida isbarbardhigga qoraallada dhinac-dhinac iyo helida ilaha sheegashada."
+          "0": "La shaqee culimada hormuudka ah si loo sameeyo \"urur core\" musharraf ah dhammaan culuumta waaweyn ee Islaamka.",
+          "1": "Abuur ururro si gaar ah loogu talagalay noocyo kala duwan."
         }
       },
       "2": {
-        "title": "Helitaanka Caalamka",
+        "title": "Urur Guud oo Baaxad Leh",
         "features": {
-          "0": "Tarjumaadda qoraallada adoo adeegsanaya AI luuqadaha Ingiriisiga iyo kuwo badan oo kale si aad uga faa'iidaysato aqoonta Islaamka.",
-          "1": "Sii deynta website gaar ahaan isticmaalayaasha meelo xitaa leh xariir xadidan, hubi inaan la hilmaanin."
+          "0": "Dhiso kaabayaasha iyo iskaashiga maktabadaha iyo kaydka internetka kale si loogu helo urur guud oo dhammaystiran oo qoraallo ah oo qaab dhismeed dijitaal ah lagu hayo.",
+          "1": "Hubi in, iyadoo cilmiga internetka kobcayo, dhamaan shaqooyinka la heli karo, la baari karo, lana falanqayn karo."
         }
       }
     }
   },
   "be-part": {
-    "title": "Ka qayb ka noqo Safarka Usul",
-    "description": " Taageeradaada bil kasta waxay kordhisaa hal-abuurka, waxay sii wadaa koritaankayaga, waxayna hubisaa in Usul uu yahay il muhiim ah oo jiilalka soo socda.",
+    "title": "Taageer Ujeedada Usul",
+    "description": "Waxaad ku biirisay horumarinta cilmi-baarista waqti-gaaban iyo sii wadista horumarinta aaladaha cusub ee cilmi-baarista Islaamka ee waqti-dheer.",
     "why-support": {
       "title": "Maxaad u taageeraysaa Usul?",
       "features": {
-        "0": "Warbixinno furan oo saddex-biloodle ah oo ku saabsan sida tabarucaaddaadu u beddeshay",
-        "1": "Fudud u jignow inaad joojiso ama habbooniso tabarucaaddaada wakhti kasta",
-        "2": "Fursad inaad ka mid noqoto misiyaan cusub oo lagu ilaaliyo oo lagu wadaago aqoonta Islamka"
+        "0": "Dedeji cilmi-baarista Islaamka ee dhibaatooyinka casriga ah ee u baahan falanqayn degdeg ah oo laga dhex raadinayo ilo aad u badan—laga bilaabo AI akhlaaqda Islaamka iyo maamulkeeda ilaa go’aaminta in AI lagu isticmaalo fatwooyinka, ogaanshaha cudurrada, iyo arrimaha maaliyadda.",
+        "1": "Dedeji waxbarashada Islaamka iyo cilmiga Islaamka guud ahaan, adiga oo dhisaya kaabayaasha loogu talagalay dugsiyada caalamiga ah, jaamacadaha, iyo maxkamadaha u baahan aaladaha cilmi-baarista Islaamiga ah ee la isku halleyn karo ama kuwa isbarbardhiga ah.",
+        "2": "Ka qayb qaado door muhiim ah qaabaynta mustaqbalka sida loo ilaaliyo oo loo barto Islaamka"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Bil kasta",
         "yearly": "Sannad kasta"
       },
-      "note": "Deeqaha waxaa uruuriya Usul Foundation, oo ah hay'ad aan faa'iido doon ahayn oo 501(c)(3). Dhammaan deeqaha waxaa laga jarayaa cashuurta gudaha Maraykanka. Wixii su'aalo ah, fadlan nala soo xiriir donors@usul.ai.",
+      "note": "Lacagaha tabarucaadka ah waxaa lagu ururiyaa Seemore Foundation, oo ah urur aan faa'iido doon ahayn oo 501(c)(3) ah (xaalad sugitaan ah). Dhamaan tabarucaadka waa laga jari karaa canshuurta gudaha Mareykanka. Wixii su'aalo ah, fadlan nala soo xiriir donors@usul.ai.",
       "continue": "Sii Soco"
     }
   },

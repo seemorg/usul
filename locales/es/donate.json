@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "El futuro del conocimiento islámico, impulsado por IA",
-    "subtitle": "Ayúdanos a hacer el conocimiento islámico más accesible y su recuperación mucho más fácil.",
-    "description": "🎉 Alhamdulillah, con su apoyo, Usul ha llegado a miles de buscadores de conocimiento, cerrando la brecha entre la tradición y la modernidad.",
+    "subtitle": "Ayúdanos a construir la biblioteca más grande, garantizar el acceso más amplio y facilitar la investigación más audaz en el conocimiento islámico para el siglo XXI.",
+    "description": "Con tu apoyo, Usul ha hecho que miles de textos históricos sean más accesibles, llegando a decenas de miles de usuarios en todo el mundo.",
     "donate-widget": {
       "month-raised": "Recaudado",
       "goal": "Meta ${goal, number} Mensual",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Logros",
     "one": {
-      "title": "Acceso Inigualable a Textos Islámicos.",
+      "title": "Ampliando el acceso a los textos islámicos",
       "features": {
-        "0": "Más de <strong>10.000 textos islámicos clásicos y modernos</strong> disponibles gratuitamente.",
-        "1": "<strong>Herramientas avanzadas de búsqueda</strong> para ayudar a los investigadores y alumnos a descubrir fácilmente conocimientos."
+        "0": "Recopilando y haciendo accesibles en un solo lugar más de <strong>15,000</strong> fuentes islámicas digitalizadas en formato PDF y libro electrónico, con un formato limpio y legible.",
+        "1": "Transformando archivos PDF estáticos en formatos estructurados y legibles por máquina para facilitar la búsqueda y el análisis."
       }
     },
     "two": {
-      "title": "Empoderando a Académicos y Estudiantes",
+      "title": "Mejorando la investigación con herramientas impulsadas por IA",
       "features": {
-        "0": "Herramientas de <strong>IA de última generación</strong> que permiten a los usuarios encontrar y extraer rápidamente información de textos clásicos.",
-        "1": "<strong>Adjunto PDF</strong> cargado en muchos libros para que los usuarios puedan validar la fuente."
+        "0": "Capacidades de búsqueda avanzada que permiten a los usuarios localizar rápidamente información precisa.",
+        "1": "Asistentes impulsados por IA que permiten a los investigadores navegar grandes volúmenes de texto con facilidad."
       }
     },
     "three": {
-      "title": "Hermosa Experiencia de Usuario",
-      "description": "Nos esforzamos por hacer que nuestro trabajo sea <strong>hermoso y apreciado</strong> tanto por estudiantes principiantes del conocimiento como por académicos avanzados. Desde la experiencia de lectura, hasta la interfaz de búsqueda, hasta la experiencia móvil."
+      "title": "Permitir el análisis a gran escala",
+      "description": "Apoyando el análisis a gran escala y entre textos que abre nuevas posibilidades para la investigación islámica. Al hacer que miles de obras de confianza sean consultables a la vez, Usul permite navegar eficientemente vastas fuentes textuales islámicas, y los investigadores pueden rastrear conceptos y patrones a través de géneros con rapidez y precisión."
     }
   },
   "roadmap": {
-    "title": "<strong>Nuestra Hoja de Ruta</strong>, la Visión de Usul para el Futuro",
-    "description": "Sus donaciones nos ayudarán a alcanzar los siguientes objetivos, inshaAllah:",
+    "title": "<strong>Hoja de ruta de Usul</strong>: Nuestra visión para el futuro",
+    "description": "Tus donaciones nos ayudarán a alcanzar los siguientes objetivos:",
     "items": {
       "0": {
-        "title": "Expandir la Biblioteca de Textos",
+        "title": "Búsqueda impulsada por IA para fuentes islámicas",
         "features": {
-          "0": "Digitalizar y agregar miles de libros adicionales a la plataforma.",
-          "1": "Asegurar una representación integral de diversas disciplinas islámicas y escuelas de pensamiento."
+          "0": "Incorporar herramientas de búsqueda de última generación y los modelos de IA más recientes para permitir a los investigadores localizar rápidamente información precisa.",
+          "1": "Permitir una navegación eficiente de las vastas fuentes textuales islámicas."
         }
       },
       "1": {
-        "title": "Refinar Herramientas de Investigación",
+        "title": "Colecciones islámicas seleccionadas",
         "features": {
-          "0": "Introducir capacidades más avanzadas impulsadas por IA para permitir a los usuarios encontrar conocimientos en textos o en un corpus completo.",
-          "1": "Desarrollar funciones como comparaciones de textos lado a lado y encontrar fuentes de citas."
+          "0": "Colaborar con destacados especialistas para desarrollar un \"corpus central\" representativo de todos los principales campos islámicos.",
+          "1": "Crear colecciones seleccionadas adaptadas a diversos géneros."
         }
       },
       "2": {
-        "title": "Accesibilidad Global",
+        "title": "Corpus universal",
         "features": {
-          "0": "Traducir textos usando IA al inglés y a muchos otros idiomas para abrir el acceso al conocimiento islámico.",
-          "1": "Mejorar el rendimiento del sitio web para usuarios en áreas con conectividad limitada, asegurando que ningún estudiante se quede atrás."
+          "0": "Construir la infraestructura y las alianzas con bibliotecas y otros repositorios en línea para albergar un corpus universal y completo de textos en formatos digitales estructurados.",
+          "1": "Asegurar que, a medida que crece el mundo del conocimiento en línea, todas las obras sean accesibles, consultables y analizables."
         }
       }
     }
   },
   "be-part": {
-    "title": "Sé parte del Viaje de Usul",
-    "description": " Tu apoyo mensual impulsa la innovación, sostiene nuestro crecimiento y garantiza que Usul siga siendo un recurso vital para las generaciones venideras.",
+    "title": "Apoya la misión de Usul",
+    "description": "Tu contribución permite el desarrollo de investigaciones a corto plazo y sostiene el desarrollo a largo plazo de herramientas innovadoras para la investigación islámica.",
     "why-support": {
       "title": "¿Por qué apoyar a Usul?",
       "features": {
-        "0": "Actualizaciones trimestrales transparentes sobre cómo tu donación está haciendo la diferencia",
-        "1": "Flexibilidad para cancelar o ajustar tu contribución en cualquier momento",
-        "2": "Una oportunidad para ser parte de una misión innovadora para preservar y compartir el conocimiento islámico"
+        "0": "Acelera la investigación islámica en problemas de vanguardia actuales que requieren un análisis rápido de vastos recursos: desde la ética de la IA islámica y la gobernanza, hasta cómo y si se debe usar la IA para emitir dictámenes legales, diagnósticos médicos y asuntos financieros",
+        "1": "Acelera la educación islámica y el conocimiento islámico en general, construyendo la infraestructura para su uso en escuelas, universidades y tribunales globales que necesiten herramientas de investigación islámica internas o comparativas confiables",
+        "2": "Juega un papel fundamental en dar forma al futuro de cómo se preserva y estudia el Islam"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Mensual",
         "yearly": "Anual"
       },
-      "note": "Las donaciones son recaudadas por Usul Foundation, una organización sin fines de lucro 501(c)(3). Todas las donaciones son deducibles de impuestos en los EE.UU. Para cualquier consulta, por favor contáctenos en donors@usul.ai.",
+      "note": "Las donaciones son recaudadas por la Seemore Foundation, una organización sin fines de lucro 501(c)(3) (estado pendiente). Todas las donaciones son deducibles de impuestos en EE.UU. Para cualquier consulta, por favor contáctanos en donors@usul.ai.",
       "continue": "Continuar"
     }
   },

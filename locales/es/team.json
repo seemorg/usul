@@ -1,10 +1,10 @@
 {
   "title": "Conoce al equipo",
-  "subtitle": "El equipo de la Fundación Seemore está compuesto por ingenieros, investigadores y diseñadores apasionados por construir investigación islámica de vanguardia. Nuestra misión es cerrar la brecha entre el conocimiento clásico y la tecnología moderna, asegurando que la rica herencia de la literatura islámica esté disponible para todo el mundo.",
+  "subtitle": "El equipo de Usul está formado por ingenieros, diseñadores e investigadores apasionados por crear herramientas digitales para transformar la investigación islámica.",
   "become-a-volunteer": "Conviértete en voluntario",
   "contact-us": "Contáctanos",
   "board-title": "Conoce a la junta",
-  "board-subtitle": "El consejo de la Fundación Seemore está compuesto por distinguidos expertos en investigación y tecnología, cada uno con décadas de experiencia en sus respectivos campos. Juntos, supervisan la organización y aseguran que avance hacia su misión de promover la erudición islámica.",
+  "board-subtitle": "Usul es un proyecto de la Fundación Seemore, cuyo consejo está compuesto por distinguidos expertos en investigación y tecnología, cada uno con décadas de experiencia en sus respectivos campos. Juntos, supervisan la organización y se aseguran de que avance en su misión.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed tiene un doctorado de la Universidad de Al-Azhar. Lidera el equipo de digitalización y los esfuerzos."
+      "description": "Ahmed tiene un doctorado de la Universidad de Al-Azhar. Lidera el equipo y los esfuerzos de digitalización."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail se especializa en fiqh hanafí. Estudió en la Universidad de Jordania y en Turquía."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar es profesora de Derecho en Harvard. Dirige SHARIAsource y el Programa de Derecho Islámico."
+      "description": "Intisar es profesora de derecho en Harvard. Lidera SHARIAsource y el Programa de Derecho Islámico."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",

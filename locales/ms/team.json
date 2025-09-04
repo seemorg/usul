@@ -1,10 +1,10 @@
 {
   "title": "Kenali Pasukan",
-  "subtitle": "Pasukan Yayasan Seemore terdiri daripada jurutera, penyelidik, dan pereka bentuk yang bersemangat membina penyelidikan Islam tercanggih. Misi kami adalah untuk merapatkan jurang antara pengetahuan klasik dan teknologi moden, memastikan bahawa warisan kaya sastera Islam boleh didapati oleh seluruh dunia.",
+  "subtitle": "Pasukan Usul terdiri daripada jurutera, pereka bentuk, dan penyelidik yang bersemangat dalam membina alat digital untuk mengubah penyelidikan Islam.",
   "become-a-volunteer": "Jadi sukarelawan",
   "contact-us": "Hubungi Kami",
   "board-title": "Bertemu lembaga",
-  "board-subtitle": "Lembaga Yayasan Seemore terdiri daripada pakar penyelidikan dan teknologi yang dihormati, masing-masing dengan pengalaman bertahun-tahun dalam bidang mereka. Bersama-sama, mereka mengawasi organisasi dan memastikan bahawa ia berkembang ke arah misinya untuk memajukan ilmu pengetahuan Islam.",
+  "board-subtitle": "Usul ialah projek di bawah Seemore Foundation, yang lembaga pengarahnya terdiri daripada pakar terkemuka dalam bidang penyelidikan dan teknologi, masing-masing dengan pengalaman berdekad-dekad dalam bidang mereka. Bersama-sama, mereka memantau organisasi dan memastikan misinya terus maju.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed memegang PhD dari Universiti Al-Azhar. Beliau mengetuai pasukan dan usaha pendigitalan."
+      "description": "Ahmed memiliki PhD dari Universiti Al-Azhar. Beliau mengetuai pasukan dan usaha pendigitalan."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail pakar dalam fiqh Hanafi. Beliau belajar di Universiti Jordan dan di Turki."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar ialah profesor Undang-Undang di Harvard. Dia mengetuai SHARIAsource dan Program dalam Undang-Undang Islam."
+      "description": "Intisar ialah profesor undang-undang di Harvard. Beliau mengetuai SHARIAsource dan Program dalam Undang-undang Islam."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
