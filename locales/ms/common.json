@@ -83,11 +83,11 @@
       "title": "Mengenai",
       "about": {
         "title": "Mengenai",
-        "description": "Apa Itu Usul"
+        "description": "Apa yang kami lakukan"
       },
       "team": {
         "title": "Pasukan",
-        "description": "Siapa Di Sebalik Usul"
+        "description": "Siapa kami"
       },
       "demo": {
         "title": "Demo",
@@ -106,18 +106,18 @@
       },
       "add-text": {
         "title": "Tambah Teks",
-        "description": "Muat Naik Buku atau PDF"
+        "description": "Tambah URL atau PDF"
       },
       "report-mistake": {
-        "title": "Laporkan Kesalahan",
+        "title": "Laporkan ralat",
         "description": "Jumpa Ada Kesalahan"
       },
       "feedback": {
-        "title": "Maklum Balas",
+        "title": "Berikan Maklum Balas",
         "description": "Kongsi cadangan"
       },
       "volunteer": {
-        "title": "Sukarelawan",
+        "title": "Jadi Sukarelawan",
         "description": "Bekerjasama dengan pasukan kami"
       }
     }
@@ -125,7 +125,7 @@
   "email-address": "Alamat E-mel",
   "footer": {
     "headline": "Usul - Alat Penyelidikan untuk Teks Islam",
-    "description": "Usul.ai mempunyai perpustakaan lebih daripada 15,000 teks Islam. Matlamat kami adalah untuk memudahkan pembacaan, carian, dan penyelidikan teks klasik. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
+    "description": "Usul ialah platform berkuasa AI yang direka untuk mengembangkan cara penyelidikan Islam dijalankan. Matlamat kami ialah untuk menjadikan kajian sumber Islam mudah diakses, dicari, dan dianalisis pada skala besar. Langgan di bawah untuk menerima kemas kini bulanan tentang kerja kami.",
     "subscribe": "Langgan",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Hak cipta terpelihara."
   },

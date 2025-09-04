@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Masa depan pengetahuan Islam, dipacu oleh AI",
-    "subtitle": "Bantu kami menjadikan pengetahuan Islam lebih mudah diakses dan lebih mudah untuk diperoleh.",
-    "description": "🎉 Alhamdulillah, dengan sokongan anda, Usul telah mencapai ribuan pencari ilmu, merapatkan jurang antara tradisi dan kemodenan.",
+    "subtitle": "Bantu kami membina perpustakaan terbesar, memastikan akses terluas, dan memudahkan penyelidikan paling berani dalam ilmu pengetahuan Islam untuk abad ke-21.",
+    "description": "Dengan sokongan anda, Usul telah menjadikan ribuan teks sejarah lebih mudah diakses, mencapai puluhan ribu pengguna di seluruh dunia.",
     "donate-widget": {
       "month-raised": "Dikumpulkan",
       "goal": "Matlamat ${goal, number} Bulanan",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Pencapaian",
     "one": {
-      "title": "Akses Tidak Tertandingi kepada Teks Islam.",
+      "title": "Meluaskan Akses kepada Teks Islamik",
       "features": {
-        "0": "Lebih dari <strong>10,000 teks Islam klasik dan moden</strong> tersedia secara percuma.",
-        "1": "<strong>Alat pencarian lanjutan</strong> untuk membantu penyelidik dan pelajar mendapatkan insight dengan mudah."
+        "0": "Mengumpul dan menyediakan lebih <strong>15,000</strong> sumber Islamik digital dalam format PDF dan eBook di satu tempat, dengan format yang bersih dan mudah dibaca.",
+        "1": "Menukar PDF statik kepada format berstruktur dan mudah dibaca mesin untuk carian dan analisis yang lebih mudah."
       }
     },
     "two": {
-      "title": "Memperkasa Cendekiawan dan Pelajar",
+      "title": "Memperkasa Penyelidikan dengan Alat Berkuasa AI",
       "features": {
-        "0": "Alat <strong>AI tercanggih</strong> yang membolehkan pengguna mencari dan mengekstrak maklumat dari teks klasik dengan cepat.",
-        "1": "<strong>PDF Lampiran</strong> dimuat naik ke banyak buku untuk membolehkan pengguna mengesahkan sumber."
+        "0": "Keupayaan carian lanjutan yang membolehkan pengguna mencari maklumat tepat dengan cepat.",
+        "1": "Pembantu dikuasakan AI yang membolehkan penyelidik menelusuri jumlah teks yang besar dengan mudah."
       }
     },
     "three": {
-      "title": "Pengalaman Pengguna yang Menarik",
-      "description": "Kami berusaha untuk menjadikan kerja kami <strong>indah dan disukai</strong> oleh pelajar pengetahuan pemula dan cendekiawan mahir. Dari pengalaman membaca hingga antaramuka pencarian, hingga pengalaman mudah alih."
+      "title": "Membolehkan Analisis Berskala Besar",
+      "description": "Menyokong analisis silang-teks berskala besar yang membuka kemungkinan baharu dalam penyelidikan Islam. Dengan memudahkan navigasi pantas sumber teks Islamik yang banyak dan boleh dicari, penyelidik boleh menggunakan Usul untuk mengesan konsep dan corak merentasi genre dengan kepantasan dan ketepatan."
     }
   },
   "roadmap": {
-    "title": "<strong>Pelan Kami</strong>, Visi Usul untuk Masa Depan",
-    "description": "Derma anda akan membantu kami mencapai matlamat berikut, inshaAllah:",
+    "title": "<strong>Peta Jalan Usul</strong>: Visi Kami untuk Masa Depan",
+    "description": "Sumbangan anda akan membantu kami mencapai matlamat berikut:",
     "items": {
       "0": {
-        "title": "Memperluas Perpustakaan Teks",
+        "title": "Carian Dikuasakan AI untuk Sumber Islamik",
         "features": {
-          "0": "Digitalisasi dan tambahan ribuan buku tambahan ke platform.",
-          "1": "Memastikan representasi komprehensif dari pelbagai disiplin dan aliran pemikiran Islam."
+          "0": "Mengintegrasikan alat carian terkini dan model AI untuk membolehkan penyelidik mencari maklumat tepat dengan cepat.",
+          "1": "Membolehkan navigasi efisien sumber teks Islamik yang luas."
         }
       },
       "1": {
-        "title": "Perhalusi Alat Penyelidikan",
+        "title": "Koleksi Islamik Kurasi",
         "features": {
-          "0": "Memperkenalkan lebih banyak keupayaan dikuasakan AI lanjutan untuk membolehkan pengguna mencari insight seluruh teks atau keseluruhan korpus.",
-          "1": "Membangunkan ciri seperti perbandingan teks sebelah menyebelah dan mencari sumber petikan."
+          "0": "Bekerjasama dengan sarjana terkemuka untuk membangunkan “korpus teras” yang mewakili pelbagai bidang utama Islam.",
+          "1": "Mewujudkan koleksi terpilih mengikut pelbagai genre."
         }
       },
       "2": {
-        "title": "Keteraksesan Global",
+        "title": "Korpus Universal",
         "features": {
-          "0": "Menterjemah teks menggunakan AI ke dalam Bahasa Inggeris dan banyak bahasa lain untuk membuka akses kepada pengetahuan Islam.",
-          "1": "Meningkatkan prestasi laman web untuk pengguna di kawasan dengan sambungan terhad, memastikan tiada pelajar tertinggal."
+          "0": "Membangunkan infrastruktur serta kerjasama dengan perpustakaan dan repositori dalam talian lain untuk membina korpus teks universal dan komprehensif dalam format digital berstruktur.",
+          "1": "Memastikan apabila dunia ilmu pengetahuan dalam talian berkembang, semua karya mudah diakses, boleh dicari, dan boleh dianalisis."
         }
       }
     }
   },
   "be-part": {
-    "title": "Jadi Sebahagian daripada Perjalanan Usul",
-    "description": " Sokongan bulanan anda mendorong inovasi, mengekalkan pertumbuhan kami, dan memastikan Usul kekal sebagai sumber penting untuk generasi akan datang.",
+    "title": "Sokong Misi Usul",
+    "description": "Sumbangan anda membolehkan pembangunan penyelidikan jangka pendek dan menyokong pembangunan jangka panjang alatan inovatif untuk penyelidikan Islam.",
     "why-support": {
       "title": "Mengapa menyokong Usul?",
       "features": {
-        "0": "Kemaskini suku tahunan yang telus mengenai bagaimana sumbangan anda memberikan perbezaan",
-        "1": "Fleksibiliti untuk membatalkan atau menyesuaikan sumbangan anda pada bila-bila masa",
-        "2": "Peluang untuk menjadi sebahagian daripada misi terobosan untuk memelihara dan berkongsi ilmu Islam"
+        "0": "Mempercepatkan penyelidikan Islam dalam isu-isu terkini yang memerlukan analisis pantas melibatkan pelbagai sumber–daripada AI dan tadbir urus Islamik yang beretika sehingga bagaimana dan sama ada untuk menggunakan AI dalam menghasilkan fatwa, diagnosis perubatan, dan hal kewangan",
+        "1": "Mempercepatkan pendidikan Islam dan ilmu pengetahuan Islam secara umumnya, dengan membina infrastruktur untuk kegunaan sekolah global, universiti, dan mahkamah yang memerlukan alat penyelidikan Islam dalaman atau komparatif yang boleh dipercayai",
+        "2": "Berperanan penting dalam membentuk masa depan bagaimana Islam dipelihara dan dikaji"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Bulanan",
         "yearly": "Tahunan"
       },
-      "note": "Derma dikumpul oleh Usul Foundation, sebuah organisasi nirlaba 501(c)(3). Semua derma boleh ditolak cukai di AS. Untuk sebarang pertanyaan, sila hubungi kami di donors@usul.ai.",
+      "note": "Derma dikutip oleh Seemore Foundation, sebuah organisasi bukan untung 501(c)(3) (status sedang diproses). Semua derma boleh ditolak cukai di AS. Untuk pertanyaan lanjut, sila hubungi kami di donors@usul.ai.",
       "continue": "Teruskan"
     }
   },

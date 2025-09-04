@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "Makomar ilmin Musulunci, ƙarƙashin taimakon AI",
-    "subtitle": "Ka taimaka mana don sanya ilmin Musulunci ya fi samun sauƙi kuma a samu da sauƙi.",
-    "description": "🎉 Alhamdulillah, da goyon bayan ku, Usul ya kai dubbai na masu neman ilmi, yana haɗa tazara tsakanin al'ada da zamani.",
+    "subtitle": "Taimaka mana gina mafi girman ɗakin karatu, tabbatar da mafi yawan damar shiga, da kuma sauƙaƙa bincike mai ƙarfi a ilimin Musulunci na ƙarni na 21.",
+    "description": "Tare da goyon bayanka, Usul ta sanya daruruwan littattafan tarihi su zama masu sauƙin samu, suna kaiwa dubunnan masu amfani a duniya baki ɗaya.",
     "donate-widget": {
       "month-raised": "An tara",
       "goal": "Manufa ${goal, number} Kowane wata",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Nasarori",
     "one": {
-      "title": "Samun damar karanta littattafan Musulunci marasa tamka.",
+      "title": "Faɗaɗa Damar Shiga Zuwa Rubuce-Rubucen Musulunci",
       "features": {
-        "0": "Sama da <strong>littattafan Musulunci 10,000 na gargajiya da zamani</strong> ana samun su kyauta.",
-        "1": "<strong>Kayayyakin neman bayanai na ci gaba</strong> don taimakawa masu bincike da masu koyo su gano ilimi cikin sauƙi."
+        "0": "Tarakta da samar da sauƙin shiga sama da <strong>15,000</strong> majiyoyin ilimin Musulunci da aka loda su cikin tsarin PDF da eBook, tare da tsari mai tsabta da sauƙin karantawa.",
+        "1": "Mayar da PDFs da ba su motsi zuwa tsarin da aka tsara kuma injin na’ura zai iya karantawa, domin sauƙaƙa bincike da nazari."
       }
     },
     "two": {
-      "title": "Karfafawa Malamai da Masu Koyo",
+      "title": "Inganta Bincike da Kayan aikin Hankali Masu Amfani da AI",
       "features": {
-        "0": "Kayayyakin <strong>AI na zamani</strong> da suke baiwa masu amfani damar samun da fitar da bayanai daga abubuwan karatu tare da sauri.",
-        "1": "<strong>Mana'ikan PDF</strong> da aka ɗora wa littattafai da yawa don masu amfani su tabbatar da tushen."
+        "0": "Fasahar bincike mai zurfi wadda ke ba masu amfani damar gano bayanai a sauƙaƙe.",
+        "1": "Kayan taimako na AI da ke ba masu bincike damar bin manyan tarin rubuce-rubucen Musulunci cikin sauki."
       }
     },
     "three": {
-      "title": "Kwarewar Mai amfani Mai Kyau",
-      "description": "Muna ƙoƙari don sanya aikin mu <strong>mai kyau da kuma soyuwa</strong> ga ɗaliban ilmi na farko da ƙwararrun malamai ma. Daga kwarewar karatu, zuwa ga yanayin neman bayanai, zuwa kwarewar wayar hannu."
+      "title": "Bada Damar Nazari Mai Fadi",
+      "description": "Taimakawa nazari mai faɗi, daidai a fadin rubuce-rubucen Musulunci daban-daban wanda ke bude sabbin damammaki ga binciken Musulunci. Samar da damar lilo cikin manyan tarin ayyuka na ilimin Musulunci da sauri don a iya magance al'amura da kuma gano abin da ke ciki cikin hanzari da daidaito, masu bincike za su iya amfani da Usul don bin maudu'ai da tsari cikin sauri da daidaito."
     }
   },
   "roadmap": {
-    "title": "<strong>Taswirar Hanyar mu</strong>, Vision na Usul domin Makomar",
-    "description": "Gudummawarku za ta taimaka mana wajen cimma waɗannan manufofin, inshaAllah:",
+    "title": "<strong>Shirin Usul</strong>: Mafarkinmu na Gaba",
+    "description": "Gudummuwarka za ta taimaka mana cimma wadannan buruka:",
     "items": {
       "0": {
-        "title": "Faɗaɗa Makarantar Rubutu",
+        "title": "Bincike Mai Amfani da AI don Majiyoyin Musulunci",
         "features": {
-          "0": "Dijitaliza da ƙarin dubban littattafai zuwa dandalin.",
-          "1": "Tabbatar da cikakken wakilcin fannoni daban-daban na Musulunci da makaranto na tunani."
+          "0": "Saka kayan bincike na zamani da sabbin fasahar AI don masu bincike su gano bayanai daidai cikin gaggawa.",
+          "1": "Samar da damar lilo cikin manyan majiyoyin rubuce-rubucen Musulunci cikin sauki."
         }
       },
       "1": {
-        "title": "Inganta Kayan Bincike",
+        "title": "Tarin Daban-daban na Musulunci da Aka Tantance",
         "features": {
-          "0": "Gabatar da karin fasali na AI da zai baiwa masu amfani damar samun bayanai tsakanin rubuce-rubucen ko dukkan corpus.",
-          "1": "Ƙirƙiri fasali irin su kwatancen rubutu bisa fuska da fuska da nemo tushe mai faɗar magana."
+          "0": "Aiki tare da manyan masana don tsara \"ma'ajiyar yabo\" ta kowanne ɓangaren ilimin Musulunci.",
+          "1": "Kirkira da tarin majiyoyi na musamman don kowane irin rubutu."
         }
       },
       "2": {
-        "title": "Samun Damar Duk Duniya",
+        "title": "Majiyar Gaba ɗaya",
         "features": {
-          "0": "Fassara rubuce-rubucen da ke amfani da AI zuwa Ingilishi da yawancin ɗaiɗaikun harsuna don buɗe damar samun ilimin Musulunci.",
-          "1": "Inganta aiki na gidan yanar for masu amfani a wuraren da aka iyakance, yana tabbatar da babu wani mai koyo da aka bar a baya."
+          "0": "Gina tsari da haɗin gwiwa da dakunan karatu da sauran majiyoyin yanar gizo don adana babban damin rubutattun bayanai cikin tsarin dijital na zamani.",
+          "1": "Tabbatar da cewa yayin da duniyar ilimi ta yanar gizo ke habbaka, dukkan ayyukan suna kasancewa masu sauƙin samu, bincika, da nazari."
         }
       }
     }
   },
   "be-part": {
-    "title": "Kasance Sashin Tafiyar Usul",
-    "description": " Tallafin ku na kowane wata yana tsugar da kirkira, yana tallafawa ci gaban mu, kuma yana tabbatar da cewa Usul zai ci gaba da kasancewa muhimmiyar tushe ga tsararrakki masu zuwa.",
+    "title": "Tallafa wa Manufar Usul",
+    "description": "Gudummawarka tana ƙarfafa ci gaban binciken lokaci-ƙan-ƙani kuma tana dorewar ci gaban kayan aikin bincike na zamani don ilimin Musulunci.",
     "why-support": {
       "title": "Me ya sa za a tallafi Usul?",
       "features": {
-        "0": "Bayani na kowane kwata akan yadda gudummawar ku ke kawo canji",
-        "1": "Yancin bayar da gudummawa tare da damar soke ko gyara duk lokacin da kake so",
-        "2": "Damar zama wani bangare na babban aiki na kiyaye da raba ilimin Musulunci"
+        "0": "Hanzarta binciken ilimin Musulunci a kan matsalolin zamani da ke bukatar zurfin nazari a tsakanin tarin bayanai masu yawa – tun daga AI mai kima da shugabanci na Musulunci zuwa yadda za a yi ko a bar amfani da AI don fitar da fatawoyi, tantance lafiyar likita, da harkokin kuɗi.",
+        "1": "Hanzarta ilimi da ilimin Musulunci gaba ɗaya ta hanyar gina tsari don amfani a makarantun duniya, jami’o’i, da kotuna da ke bukatar ingantattun kayan bincike na cikin gida ko na kwatanta ilimin Musulunci.",
+        "2": "Zama wani muhimmin ɓangare a tsara yadda za a adana da kuma nazarin addinin Musulunci a nan gaba"
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Kowanne wata",
         "yearly": "Kowanne shekara"
       },
-      "note": "Gudummawa ana tara su ne ta Usul Foundation, wata kungiya mara riba 501(c)(3). Duk gudummawar tana iya samun rangwamen haraji a Amurka. Don kowanne tambaya, da fatan za a tuntube mu a donors@usul.ai.",
+      "note": "Seemore Foundation, ƙungiya mai zaman kanta ta faɗaɗa (501(c)(3)), ce ke tattara gudummawa (ana jiran amincewa). Dukkan gudummawa za su sami ragin haraji a Amurka. Idan akwai tambaya, tuntube mu a donors@usul.ai.",
       "continue": "Ci gaba"
     }
   },

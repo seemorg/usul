@@ -83,11 +83,11 @@
       "title": "Acerca de",
       "about": {
         "title": "Acerca de",
-        "description": "Qué es Usul"
+        "description": "Qué hacemos"
       },
       "team": {
         "title": "Equipo",
-        "description": "Quién está detrás de Usul"
+        "description": "Quiénes somos"
       },
       "demo": {
         "title": "Demostración",
@@ -105,19 +105,19 @@
         "description": "Apoya a Usul"
       },
       "add-text": {
-        "title": "Añadir Texto",
-        "description": "Subir libro o PDF"
+        "title": "Añadir un texto",
+        "description": "Añadir una URL o PDF"
       },
       "report-mistake": {
-        "title": "Reportar Error",
+        "title": "Reportar un error",
         "description": "Encontré un error"
       },
       "feedback": {
-        "title": "Retroalimentación",
+        "title": "Enviar comentarios",
         "description": "Compartir una sugerencia"
       },
       "volunteer": {
-        "title": "Voluntario",
+        "title": "Hazte voluntario",
         "description": "Trabajar con nuestro equipo"
       }
     }
@@ -125,7 +125,7 @@
   "email-address": "Dirección de correo electrónico",
   "footer": {
     "headline": "Usuales - Herramienta de investigación de textos islámicos",
-    "description": "Usul.ai tiene una biblioteca de más de 15,000 textos islámicos. Nuestro objetivo es facilitar la lectura, búsqueda e investigación de textos clásicos. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
+    "description": "Usul es una plataforma impulsada por IA diseñada para evolucionar la manera en que se realiza la investigación islámica. Nuestro objetivo es hacer que el estudio de las fuentes islámicas sea accesible, se pueda buscar y analizar a gran escala. Suscríbete abajo para recibir actualizaciones mensuales sobre nuestro trabajo.",
     "subscribe": "Suscribirse",
     "copyright": "{year, number, nogroup} La Fundación Seemore. Todos los derechos reservados."
   },

@@ -1,10 +1,10 @@
 {
   "title": "Rencontrer l'équipe",
-  "subtitle": "L'équipe de la Seemore Foundation est composée d'ingénieurs, de chercheurs et de designers passionnés par la création de recherches islamiques à la pointe de la technologie. Notre mission est de combler le fossé entre la connaissance classique et la technologie moderne, en veillant à ce que le riche patrimoine de la littérature islamique soit facilement accessible au monde entier.",
+  "subtitle": "L'équipe d'Usul se compose d'ingénieurs, de designers et de chercheurs passionnés par la création d'outils numériques pour transformer la recherche islamique.",
   "become-a-volunteer": "Devenez bénévole",
   "contact-us": "Contactez-nous",
   "board-title": "Rencontrez le conseil d'administration",
-  "board-subtitle": "Le conseil de la Seemore Foundation se compose d'experts renommés en recherche et technologie, chacun ayant des décennies d'expérience dans leurs domaines respectifs. Ensemble, ils supervisent l'organisation et s'assurent qu'elle progresse vers sa mission de faire avancer les études islamiques.",
+  "board-subtitle": "Usul est un projet de la Fondation Seemore, dont le conseil d'administration est composé d'experts éminents dans les domaines de la recherche et de la technologie, chacun ayant des décennies d'expérience dans son domaine respectif. Ensemble, ils supervisent l'organisation et veillent à ce qu'elle poursuive sa mission.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed est titulaire d'un doctorat de l'Université Al-Azhar. Il dirige l'équipe et les efforts de numérisation."
+      "description": "Ahmed est titulaire d'un doctorat de l'Université Al-Azhar. Il dirige l'équipe de numérisation et les efforts associés."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail est spécialisé dans le fiqh hanafite. Il a étudié à l'Université de Jordanie et en Turquie."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar est professeur de droit à Harvard. Elle dirige SHARIAsource et le Program in Islamic Law."
+      "description": "Intisar est professeure de droit à Harvard. Elle dirige SHARIAsource et le Programme en droit islamique."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",

@@ -1,8 +1,8 @@
 {
   "hero": {
     "title": "İslam bilgisi geleceği, yapay zekâ ile destekleniyor",
-    "subtitle": "İslam bilgisini daha erişilebilir hale getirmemize ve daha kolay geri alınmasını sağlamamıza yardım edin.",
-    "description": "🎉 Elhamdülillah, desteğinizle Usul, binlerce bilgi arayışında olan kişiye ulaştı ve gelenek ile modernite arasında köprü kurdu.",
+    "subtitle": "En büyük kütüphaneyi inşa etmemize, en geniş erişimi sağlamamıza ve 21. yüzyılda İslami bilgi alanında en cesur araştırmaları kolaylaştırmamıza yardımcı olun.",
+    "description": "Sizlerin desteğiyle Usul, binlerce tarihi metni daha erişilebilir hale getirdi ve dünyanın dört bir yanındaki on binlerce kullanıcıya ulaştı.",
     "donate-widget": {
       "month-raised": "Toplam",
       "goal": "Hedef ${goal, number} Aylık",
@@ -13,60 +13,60 @@
   "achievements": {
     "title": "Başarılar",
     "one": {
-      "title": "İslam Metinlerine Benzersiz Erişim.",
+      "title": "İslami Metinlere Erişimi Genişletmek",
       "features": {
-        "0": "'den fazla <strong>10.000 klasik ve modern İslam metni</strong> ücretsiz olarak sunulmuştur.",
-        "1": "Araştırmacılar ve öğrenenlerin kolaylıkla içgörüler elde etmesine yardımcı olacak <strong>gelişmiş arama araçları</strong>."
+        "0": "<strong>15.000</strong>'den fazla dijitalleştirilmiş İslami kaynağı PDF ve eKitap formatında, temiz ve okunabilir bir şekilde tek bir yerde topluyor ve erişime açıyoruz.",
+        "1": "Statik PDF'leri daha kolay arama ve analiz için yapılandırılmış, makine tarafından okunabilir formatlara dönüştürüyoruz."
       }
     },
     "two": {
-      "title": "Akademisyenleri ve Öğrenenleri Güçlendirme",
+      "title": "Yapay Zeka Destekli Araçlarla Araştırmayı Geliştirmek",
       "features": {
-        "0": "Kullanıcıların klasik metinlerden hızlıca bilgi bulmalarını ve çıkarmalarını sağlayan en son <strong>yapay zekâ araçları</strong>.",
-        "1": "Birçok kitaba yüklenen kullanıcıların kaynağı doğrulaması için <strong>PDF Ekleri</strong>."
+        "0": "Kullanıcıların doğru bilgiyi hızlıca bulmasına olanak tanıyan gelişmiş arama yetenekleri.",
+        "1": "Araştırmacıların büyük metin hacimlerinde kolayca gezinmesini sağlayan yapay zeka destekli asistanlar."
       }
     },
     "three": {
-      "title": "Güzel Kullanıcı Deneyimi",
-      "description": "Çalışmamızı, başlangıç seviyesindeki bilgi öğrenicilerinden ileri düzey akademisyenlere kadar <strong>güzel ve sevilen</strong> hale getirmeye çalışıyoruz. Okuma deneyiminden, arama arayüzüne, mobil deneyime kadar."
+      "title": "Büyük Ölçekli Analizi Mümkün Kılmak",
+      "description": "İslami araştırmalara yeni ufuklar açan, büyük ölçekli ve metinler arası analizleri destekliyoruz. Binlerce güvenilir eseri aynı anda aranabilir hale getirerek, geniş İslami metin kaynaklarında verimli dolaşım sağlıyor, araştırmacıların türler arasında kavram ve kalıpları hız ve hassasiyetle takip etmesini mümkün kılıyoruz."
     }
   },
   "roadmap": {
-    "title": "<strong>Yol Haritamız</strong>, Usul'un Gelecek Vizyonu",
-    "description": "Bağışlarınız, inşaAllah aşağıdaki hedeflere ulaşmamıza yardımcı olacaktır:",
+    "title": "<strong>Usul’ün Yol Haritası</strong>: Gelecek Vizyonumuz",
+    "description": "Bağışlarınız aşağıdaki hedeflere ulaşmamıza yardımcı olacak:",
     "items": {
       "0": {
-        "title": "Metin Kütüphanesini Genişletin",
+        "title": "İslami Kaynaklar için Yapay Zeka Destekli Arama",
         "features": {
-          "0": "Platforma ek olarak binlerce ek kitabı dijitalleştirin ve ekleyin.",
-          "1": "Çeşitli İslami disiplinlerin ve düşünce okullarının kapsamlı temsiliyetini sağlayın."
+          "0": "Araştırmacıların doğru bilgiyi hızlıca bulabilmesi için en son arama araçlarını ve en yeni yapay zeka modellerini entegre edin.",
+          "1": "Geniş İslami metin kaynakları arasında verimli dolaşımı mümkün kılın."
         }
       },
       "1": {
-        "title": "Araştırma Araçlarını İyileştirin",
+        "title": "Seçkin İslami Koleksiyonlar",
         "features": {
-          "0": "Kullanıcıların metinler veya tüm bir külliyat boyunca içgörü bulmalarını sağlamak için daha gelişmiş yapay zekâ destekli yetenekler ekleyin.",
-          "1": "Yan yana metin karşılaştırmaları ve alıntı kaynaklarını bulma gibi özellikler geliştirin."
+          "0": "Tüm ana İslami alanlar arasında temsili bir “çekirdek külliyat” oluşturmak için önde gelen akademisyenlerle işbirliği yapın.",
+          "1": "Çeşitli türlere özel hazırlanmış seçkin koleksiyonlar oluşturun."
         }
       },
       "2": {
-        "title": "Küresel Erişilebilirlik",
+        "title": "Evrensel Külliyat",
         "features": {
-          "0": "İslam bilgisine erişimi açmak için yapay zekâ kullanarak metinleri İngilizce ve diğer birçok dile çevirin.",
-          "1": "Sınırlı bağlantılı alanlarda kullanıcılar için web sitesi performansını geliştirin, hiçbir öğrenicinin geride kalmamasını sağlayın."
+          "0": "Dijital ortamlarda düzenli metinler için evrensel ve kapsamlı bir külliyat barındıracak altyapı ve kütüphanelerle ile diğer çevrimiçi arşivlerle ortaklıkları oluşturun.",
+          "1": "Çevrimiçi bilgi dünyası büyüdükçe tüm eserlerin erişilebilir, aranabilir ve analiz edilebilir olmasını sağlayın."
         }
       }
     }
   },
   "be-part": {
-    "title": "Usul'un Yolculuğunun Bir Parçası Olun",
-    "description": " Aylık desteğiniz inovasyonu yönlendirir, büyümemizi sürdürülebilir kılar ve Usul'un gelecek nesiller için önemli bir kaynak olarak kalmasını sağlar.",
+    "title": "Usul’ün Misyonunu Destekleyin",
+    "description": "Katkınız, kısa vadeli araştırmaları geliştirmemizi ve İslami araştırmalar için yenilikçi araçların uzun vadeli gelişimini sürdürmemizi sağlar.",
     "why-support": {
       "title": "Usul'a neden destek verilmeli?",
       "features": {
-        "0": "Bağışınızın nasıl bir fark yarattığını gösteren şeffaf üç aylık güncellemeler",
-        "1": "Katkınızı iptal etme veya ayarlama esnekliği",
-        "2": "İslam bilgisini koruma ve paylaşma konusunda öncü bir misyona dahil olma fırsatı"
+        "0": "Günümüzün hızlı analiz gerektiren en güncel sorunlarına - etik İslami yapay zekadan yönetişime, yapay zekanın fıkıh, tıbbi kararlar ve finansal konularda kullanılıp kullanılmayacağına kadar - İslam araştırmalarını hızlandırın.",
+        "1": "Dünya çapındaki okullar, üniversiteler ve güvenilir ‘içsel’ veya karşılaştırmalı İslami araştırma araçlarına ihtiyaç duyan mahkemelerde kullanılmak üzere altyapıyı kurarak, İslam eğitimini ve bilgisini genel anlamda hızlandırın.",
+        "2": "İslam’ın nasıl korunup inceleneceği konusunda geleceği şekillendirmede hayati bir rol oynayın."
       }
     },
     "choose-amount": {
@@ -76,7 +76,7 @@
         "monthly": "Aylık",
         "yearly": "Yıllık"
       },
-      "note": "Bağışlar, 501(c)(3) kâr amacı gütmeyen bir kuruluş olan Usul Vakfı tarafından toplanır. Tüm bağışlar, ABD'de vergiden düşülebilir. Herhangi bir soru için lütfen bizimle donors@usul.ai adresinden iletişime geçin.",
+      "note": "Bağışlar Seemore Foundation tarafından toplanmaktadır; bu kuruluş 501(c)(3) kar amacı gütmeyen bir kuruluştur (statü bekleniyor). Tüm bağışlar ABD'de vergi indirimi kapsamındadır. Her türlü soru için lütfen donors@usul.ai adresinden bize ulaşın.",
       "continue": "Devam Et"
     }
   },
