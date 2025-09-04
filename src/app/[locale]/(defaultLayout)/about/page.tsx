@@ -38,7 +38,7 @@ export default async function AboutPage({
       <Container className="max-w-4xl pt-8 lg:pt-12 2xl:max-w-4xl">
         <h1 className="text-4xl font-bold lg:text-5xl">{t("about")}</h1>
 
-        <article className="prose prose-lg dark:prose-invert prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 prose-ul:list-none mt-10">
+        <article className="prose prose-lg dark:prose-invert prose-headings:mb-2 prose-p:mb-2 prose-ul:mt-0 mt-10">
           <Content />
         </article>
       </Container>

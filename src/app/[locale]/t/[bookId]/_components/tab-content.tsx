@@ -14,19 +14,12 @@ export const TabContent = ({
   const { bookResponse } = useBookDetails();
   const aiSupported = bookResponse.book.aiSupported;
   const keywordSupported = bookResponse.book.keywordSupported;
-  const source = bookResponse.content.source;
 
-  /**
-   * 1. If the tab is ai and the book is not ai supported
-   * 2. If the tab is search and the book is not keyword supported
-   * 3. If the book is not openiti or turath and the tab is ai or search
-   */
+  // If the tab is ai and the book is not ai supported, or
+  // If the tab is search and the book is not keyword supported
   if (
     (tabId === "ai" && !aiSupported) ||
-    (tabId === "search" && !keywordSupported) ||
-    (source !== "openiti" &&
-      source !== "turath" &&
-      (tabId === "ai" || tabId === "search"))
+    (tabId === "search" && !keywordSupported)
   ) {
     return <ComingSoonAlert />;
   }

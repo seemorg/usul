@@ -83,11 +83,11 @@
       "title": "Hakkında",
       "about": {
         "title": "Hakkında",
-        "description": "Usul Nedir"
+        "description": "Ne yapıyoruz?"
       },
       "team": {
         "title": "Takım",
-        "description": "Usul'ün arkasında kim var"
+        "description": "Kim olduğumuz"
       },
       "demo": {
         "title": "Demo",
@@ -106,14 +106,14 @@
       },
       "add-text": {
         "title": "Metin Ekle",
-        "description": "Kitap veya PDF Yükleyin"
+        "description": "Bir URL veya PDF Ekle"
       },
       "report-mistake": {
         "title": "Hata Bildir",
         "description": "Bir hata mı buldunuz"
       },
       "feedback": {
-        "title": "Geri Bildirim",
+        "title": "Geri Bildirimde Bulun",
         "description": "Bir öneri paylaş"
       },
       "volunteer": {
@@ -125,7 +125,7 @@
   "email-address": "E-posta Adresi",
   "footer": {
     "headline": "Usul - İslami Metinler İçin Araştırma Aracı",
-    "description": "Usul.ai, 15.000'den fazla İslami metni içeren bir kütüphaneye sahiptir. Amacımız klasik metinleri okumayı, aramayı ve araştırmayı kolay hale getirmektir. Aşağıdan abonelik yaparak çalışmalarımız hakkında aylık güncellemeler alın.",
+    "description": "Usul, İslami araştırmaların yapılma şeklini geliştirmek için tasarlanmış yapay zekâ destekli bir platformdur. Amacımız, İslami kaynakların incelenmesini erişilebilir, aranabilir ve analiz edilebilir hâle getirmektir. Çalışmalarımızla ilgili aylık güncellemeleri almak için aşağıdan abone olabilirsiniz.",
     "subscribe": "Abone Ol",
     "copyright": "{year, number, nogroup} The Seemore Vakfı. Tüm hakları saklıdır."
   },

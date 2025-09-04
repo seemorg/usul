@@ -4,20 +4,20 @@ import { z } from "zod";
 
 export const sorts = [
   {
-    label: "sorts.no-of-texts-desc",
-    value: "texts-desc",
-  },
-  {
     label: "sorts.no-of-texts-asc",
     value: "texts-asc",
   },
   {
-    label: "sorts.no-of-authors-desc",
-    value: "authors-desc",
+    label: "sorts.no-of-texts-desc",
+    value: "texts-desc",
   },
   {
     label: "sorts.no-of-authors-asc",
     value: "authors-asc",
+  },
+  {
+    label: "sorts.no-of-authors-desc",
+    value: "authors-desc",
   },
 ] as const satisfies Sort[];
 

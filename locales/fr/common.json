@@ -83,11 +83,11 @@
       "title": "À propos",
       "about": {
         "title": "À propos",
-        "description": "Qu'est-ce que Usul"
+        "description": "Ce que nous faisons"
       },
       "team": {
         "title": "Équipe",
-        "description": "Qui est derrière Usul"
+        "description": "Qui nous sommes"
       },
       "demo": {
         "title": "Démo",
@@ -105,19 +105,19 @@
         "description": "Soutenir Usul"
       },
       "add-text": {
-        "title": "Ajouter Texte",
-        "description": "Télécharger un livre ou PDF"
+        "title": "Ajouter un texte",
+        "description": "Ajouter une URL ou un PDF"
       },
       "report-mistake": {
-        "title": "Signaler une Erreur",
+        "title": "Signaler une erreur",
         "description": "Trouvé quelque chose d'erroné"
       },
       "feedback": {
-        "title": "Retours",
+        "title": "Fournir des commentaires",
         "description": "Partager une suggestion"
       },
       "volunteer": {
-        "title": "Bénévole",
+        "title": "Devenir bénévole",
         "description": "Travailler avec notre équipe"
       }
     }
@@ -125,7 +125,7 @@
   "email-address": "Adresse e-mail",
   "footer": {
     "headline": "Usul - L'outil de recherche pour les textes islamiques",
-    "description": "Usul.ai possède une bibliothèque de plus de 15 000 textes islamiques. Notre objectif est de rendre la lecture, la recherche et l'analyse des textes classiques facile. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
+    "description": "Usul est une plateforme alimentée par l’IA conçue pour faire évoluer la façon dont la recherche islamique est menée. Notre objectif est de rendre l’étude des sources islamiques accessible, consultable et analysable à grande échelle. Abonnez-vous ci-dessous pour recevoir des mises à jour mensuelles sur notre travail.",
     "subscribe": "Abonnez-vous",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Tous droits réservés."
   },

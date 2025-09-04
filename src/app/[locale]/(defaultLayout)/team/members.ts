@@ -4,6 +4,7 @@ import ahmedAktan from "~/public/team/ahmed-aktan.png";
 import ahmedKhan from "~/public/team/ahmed-khan.png";
 import ahmedRiad from "~/public/team/ahmed-riad.png";
 import intisar from "~/public/team/intisar.png";
+import ismail from "~/public/team/ismail.png";
 import lamine from "~/public/team/lamine.png";
 import rahma from "~/public/team/rahma.png";
 import ryad from "~/public/team/ryad.png";
@@ -33,6 +34,12 @@ export const members = [
     roleKey: "researcher",
     image: ryad.src,
     blurDataUrl: ryad.blurDataURL,
+  },
+  {
+    key: "ismail-safadi",
+    roleKey: "researcher",
+    image: ismail.src,
+    blurDataUrl: ismail.blurDataURL,
   },
   {
     key: "rahma-fateen",

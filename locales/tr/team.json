@@ -1,10 +1,10 @@
 {
   "title": "Takımımızla Tanışın",
-  "subtitle": "Seemore Vakfı ekibi, mühendisler, araştırmacılar ve günümüzün ileri teknolojisiyle İslam araştırmalarını inşa etmeye tutkuyla bağlı tasarımcılardan oluşmaktadır. Misyonumuz, klasik bilgi ile modern teknoloji arasındaki boşluğu kapatmak ve İslam edebiyatının zengin mirasını bütün dünyaya sunmaktır.",
+  "subtitle": "Usul ekibi, dijital araçlar geliştirerek İslami araştırmaları dönüştürmeye tutkulu mühendisler, tasarımcılar ve araştırmacılardan oluşmaktadır.",
   "become-a-volunteer": "Gönüllü Olun",
   "contact-us": "Bize Ulaşın",
   "board-title": "Yönetim Kuruluyla Tanışın",
-  "board-subtitle": "Seemore Vakfı yönetim kurulu, kendi alanlarında onlarca yıllık deneyime sahip, araştırma ve teknoloji alanında seçkin uzmanlardan oluşmaktadır. Birlikte, organizasyonu denetler ve İslam bilimini ilerletme misyonunun ilerlemesini sağlamaktadırlar.",
+  "board-subtitle": "Usul, yönetim kurulunda her biri kendi alanında onlarca yıllık deneyime sahip araştırma ve teknoloji alanında seçkin uzmanlardan oluşan Seemore Vakfı'nın bir projesidir. Birlikte, organizasyonu denetler ve misyonunun ilerlemesini sağlarlar.",
   "members": {
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
@@ -32,7 +32,11 @@
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed, Al-Azhar Üniversitesi'nden doktora derecesine sahiptir. Dijitalleşme ekibini ve çabalarını yönetmektedir."
+      "description": "Ahmed, El-Ezher Üniversitesi'nden doktora derecesine sahiptir. Dijitalleştirme ekibine ve çalışmalarına liderlik etmektedir."
+    },
+    "ismail-safadi": {
+      "name": "İsmail Safadi",
+      "description": "İsmail, Hanefi fıkhı konusunda uzmandır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim almıştır."
     }
   },
   "board-members": {
@@ -42,7 +46,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar, Harvard'da Hukuk profesörüdür. SHARIAsource ve İslam Hukuku Programı'nı yönetmektedir."
+      "description": "İntisar, Harvard'da hukuk profesörüdür. SHARIAsource ve İslam Hukuku Programı'nı yönetmektedir."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
