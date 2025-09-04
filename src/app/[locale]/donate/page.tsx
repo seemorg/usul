@@ -99,7 +99,9 @@ export default async function HomePage({
 
       <Container className="mt-40 flex flex-col gap-40 pb-12">
         <div>
-          <h2 className="text-5xl font-bold">{t("achievements.title")}</h2>
+          <h2 className="text-3xl font-bold sm:text-4xl">
+            {t("achievements.title")}
+          </h2>
 
           <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
             <BentoCard>
@@ -131,7 +133,8 @@ export default async function HomePage({
             </BentoCard>
 
             <BentoCard className="relative flex min-h-[400px] flex-col overflow-hidden md:col-span-2">
-              <div className="flex h-full flex-col lg:w-1/2 lg:justify-center">
+              {/* lg:w-1/2 lg:justify-center */}
+              <div className="flex h-full flex-col">
                 <MoonStarIcon className="text-primary size-20" />
 
                 <h3 className="mt-8 text-3xl font-semibold">
@@ -143,7 +146,7 @@ export default async function HomePage({
                 </p>
               </div>
 
-              <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
+              {/* <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
 
               <Image
                 src="/images/features-screenshot.png"
@@ -156,14 +159,14 @@ export default async function HomePage({
                   "ltr:translate-x-[15%] lg:ltr:translate-x-[35%] rtl:translate-x-[-15%] lg:rtl:translate-x-[-35%]",
                   "ltr:rotate-1 rtl:-rotate-1",
                 )}
-              />
+              /> */}
             </BentoCard>
           </div>
         </div>
 
         <div>
-          <h2 className="text-5xl">{getMarkup("roadmap.title")}</h2>
-          <p className="mt-2">{t("roadmap.description")}</p>
+          <h2 className="text-3xl sm:text-4xl">{getMarkup("roadmap.title")}</h2>
+          <p className="mt-4">{t("roadmap.description")}</p>
           <div className="mt-8 flex flex-col gap-6">
             {roadmap.map((item, idx) => (
               <BentoCard className="p-10" key={idx}>
@@ -175,8 +178,10 @@ export default async function HomePage({
         </div>
 
         <div>
-          <h2 className="text-5xl font-bold">{t("be-part.title")}</h2>
-          <p className="mt-2">{t("be-part.description")}</p>
+          <h2 className="text-3xl font-bold sm:text-4xl">
+            {t("be-part.title")}
+          </h2>
+          <p className="mt-4">{t("be-part.description")}</p>
           <div className="mt-8 flex flex-col gap-6 lg:flex-row">
             <BentoCard className="flex-1 p-10">
               <h3 className="text-3xl font-semibold">
