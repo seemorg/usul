@@ -8,6 +8,7 @@ import { useBookShareUrl } from "@/lib/share";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import { useMobileReaderStore } from "@/stores/mobile-reader";
+import { PdfContent } from "@/types/api/content/pdf";
 import { ShareIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -21,7 +22,10 @@ const SearchResult = ({
 }: {
   result: SemanticSearchBookNode;
   getVirtuosoScrollProps: UsePageNavigationReturnType["getVirtuosoScrollProps"];
-  headings: OpenitiContent["headings"] | TurathContent["headings"];
+  headings:
+    | OpenitiContent["headings"]
+    | TurathContent["headings"]
+    | PdfContent["headings"];
 }) => {
   const virtuosoRef = useReaderVirtuoso();
   const closeMobileSidebar = useMobileReaderStore((s) => s.closeMobileSidebar);
