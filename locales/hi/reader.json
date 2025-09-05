@@ -80,6 +80,10 @@
     "description": "यह पुस्तक उसूल पर उपलब्ध नहीं है लेकिन हमें कहीं और एक संस्करण मिला है।",
     "navigate": "नेविगेट करें"
   },
+  "no-versions": {
+    "title": "कोई संस्करण उपलब्ध नहीं है",
+    "description": "इस पुस्तक के कोई संस्करण उपलब्ध नहीं हैं।"
+  },
   "download-pdf": "PDF डाउनलोड करें",
   "publication-details": {
     "title": "प्रकाशन विवरण",
@@ -87,7 +91,7 @@
     "publisher": "प्रकाशक",
     "publication-year": "प्रकाशन वर्ष",
     "publisher-location": "प्रकाशक स्थान",
-    "edition-number": "संस्करण संख्या"
+    "edition-number": "संस्करण"
   },
   "feedback-submitted": "प्रतिक्रिया जमा की गई!"
 }
