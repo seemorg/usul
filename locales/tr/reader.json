@@ -80,6 +80,10 @@
     "description": "Bu kitap Usul'de mevcut değil, ancak başka bir yerde bir sürümünü bulduk.",
     "navigate": "Gözat"
   },
+  "no-versions": {
+    "title": "Kullanılabilir hiçbir sürüm yok.",
+    "description": "Bu kitabın kullanılabilir hiçbir sürümü yok."
+  },
   "download-pdf": "PDF İndir",
   "publication-details": {
     "title": "Yayın Ayrıntıları",
@@ -87,7 +91,7 @@
     "publisher": "Yayıncı",
     "publication-year": "Yayın Yılı",
     "publisher-location": "Yayın Yeri",
-    "edition-number": "Baskı Numarası"
+    "edition-number": "Baskı"
   },
   "feedback-submitted": "Geri bildirim gönderildi!"
 }

@@ -80,6 +80,10 @@
     "description": "এই বইটি Usul-এ উপলব্ধ নয়, তবে আমরা একটি সংস্করণ অন্য কোথাও পেয়েছি।",
     "navigate": "নেভিগেট করুন"
   },
+  "no-versions": {
+    "title": "কোনো সংস্করণ উপলব্ধ নেই",
+    "description": "এই বইয়ের কোনো সংস্করণ উপলব্ধ নেই।"
+  },
   "download-pdf": "PDF ডাউনলোড করুন",
   "publication-details": {
     "title": "প্রকাশনার বিবরণ",
@@ -87,7 +91,7 @@
     "publisher": "প্রকাশক",
     "publication-year": "প্রকাশনার বছর",
     "publisher-location": "প্রকাশনার স্থান",
-    "edition-number": "সংস্করণের সংখ্যা"
+    "edition-number": "সংস্করণ"
   },
   "feedback-submitted": "প্রতিক্রিয়া জমা দেওয়া হয়েছে!"
 }

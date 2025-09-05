@@ -80,6 +80,10 @@
     "description": "هذا الكتاب غير متوفر على أصول لكن وجدنا إصدارًا في مكان آخر.",
     "navigate": "انتقل"
   },
+  "no-versions": {
+    "title": "لا توجد إصدارات متاحة",
+    "description": "لا توجد إصدارات متاحة لهذا الكتاب."
+  },
   "download-pdf": "تحميل PDF",
   "publication-details": {
     "title": "تفاصيل النشر",
@@ -87,7 +91,7 @@
     "publisher": "الناشر",
     "publication-year": "سنة النشر",
     "publisher-location": "مكان النشر",
-    "edition-number": "رقم الإصدار"
+    "edition-number": "الإصدار"
   },
   "feedback-submitted": "تم إرسال التعليق!"
 }
