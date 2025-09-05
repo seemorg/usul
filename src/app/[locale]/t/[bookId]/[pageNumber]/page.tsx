@@ -6,12 +6,15 @@ import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { permanentRedirect } from "@/navigation";
+import { ApiBookPageResponse, ApiBookResponse } from "@/types/api/book";
 
 import ReaderContent from "../_components/reader-content";
 import ReaderNavigation from "../_components/reader-navigation";
 import ReaderSidebar from "../_components/sidebar";
 import SidebarResizer from "../_components/sidebar/sidebar-resizer";
 import { BookDetailsProvider } from "../_contexts/book-details.context";
+import ExternalBook from "../external";
+import NoVersions from "../no-versions";
 
 export const generateMetadata = async ({
   params,
@@ -137,9 +140,15 @@ async function SidebarContent({
       >
         <ReaderNavigation isSinglePage />
 
-        <article>
-          <ReaderContent currentPage={parsedNumber} isSinglePage />
-        </article>
+        {response.book.versions.length === 0 ? (
+          <NoVersions />
+        ) : response.content.source === "external" ? (
+          <ExternalBook />
+        ) : (
+          <article>
+            <ReaderContent currentPage={parsedNumber} isSinglePage />
+          </article>
+        )}
       </SidebarResizer>
     </BookDetailsProvider>
   );

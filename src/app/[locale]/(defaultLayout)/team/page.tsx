@@ -1,7 +1,7 @@
 import type { Locale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
-import { VOLUNTEER_EMAIL } from "@/lib/constants";
+import { VOLUNTEER_URL } from "@/lib/constants";
 import { getMetadata, SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { HeartHandshakeIcon, MailIcon } from "lucide-react";
@@ -35,7 +35,7 @@ export default async function TeamPage() {
 
       <div className="mt-10 flex items-center gap-5">
         <Button className="h-9 gap-2" asChild>
-          <a href={`mailto:${VOLUNTEER_EMAIL}`} target="_blank">
+          <a href={VOLUNTEER_URL} target="_blank">
             <HeartHandshakeIcon className="size-4" />
             {t("become-a-volunteer")}
           </a>

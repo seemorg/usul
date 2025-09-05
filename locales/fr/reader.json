@@ -80,6 +80,10 @@
     "description": "Ce livre n'est pas disponible sur Usul mais nous avons trouvé une édition ailleurs.",
     "navigate": "Naviguer"
   },
+  "no-versions": {
+    "title": "Aucune version disponible",
+    "description": "Ce livre n’a aucune version disponible."
+  },
   "download-pdf": "Télécharger le PDF",
   "publication-details": {
     "title": "Détails de la publication",
@@ -87,7 +91,7 @@
     "publisher": "Maison d'édition",
     "publication-year": "Année de publication",
     "publisher-location": "Lieu d'édition",
-    "edition-number": "Numéro d'édition"
+    "edition-number": "Édition"
   },
   "feedback-submitted": "Commentaires soumis !"
 }

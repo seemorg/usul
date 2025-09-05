@@ -26,12 +26,3 @@ export const getBookPage = cache(
     });
   },
 );
-
-export const getBookPageIndex = cache(
-  async (slug: string, params: ApiPageIndexParams) => {
-    return await apiFetch<ApiPageIndexResponse | AlternateSlugResponse>({
-      path: `/book/page_index/${slug}`,
-      params,
-    });
-  },
-);

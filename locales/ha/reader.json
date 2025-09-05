@@ -80,6 +80,10 @@
     "description": "Wannan littafin ba ya samuwa a kan Usul amma mun samo wani juzu'i a wani wuri.",
     "navigate": "Navegate"
   },
+  "no-versions": {
+    "title": "Ba a samun nau'ikan da ake da su",
+    "description": "Wannan littafi ba shi da wani nau'i da ake da shi."
+  },
   "download-pdf": "Zazzage PDF",
   "publication-details": {
     "title": "Cikakkun Bayanai na Bugu",
@@ -87,7 +91,7 @@
     "publisher": "Mai Buga Littafi",
     "publication-year": "Shekarar Bugawa",
     "publisher-location": "Inda aka buga",
-    "edition-number": "Lambar Fassara"
+    "edition-number": "Bugun"
   },
   "feedback-submitted": "An tura ra'ayi!"
 }

@@ -76,7 +76,7 @@ export type ApiBookResponse = {
 
 export type ApiBookPageResponse = {
   book: BookDetails;
-  content: TurathContent | OpenitiContent | PdfContent;
+  content: TurathContent | OpenitiContent | PdfContent | ExternalContent;
   pagination: {
     startIndex: number;
     total: number;

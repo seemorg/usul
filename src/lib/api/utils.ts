@@ -25,6 +25,15 @@ export const prepareSearchParams = (params?: Params) => {
   return queryParams.size > 0 ? `?${queryParams.toString()}` : "";
 };
 
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public status: number,
+  ) {
+    super(message);
+  }
+}
+
 export const apiFetch = async <T>(
   url: string | { path: string; params?: Params },
   {
@@ -47,7 +56,10 @@ export const apiFetch = async <T>(
 
   if (!response.ok || response.status >= 300) {
     if (init.throw) {
-      throw new Error(`API error: ${response.status} ${response.statusText}`);
+      throw new ApiError(
+        `API error: ${response.status} ${response.statusText}`,
+        response.status,
+      );
     }
 
     return null;

@@ -80,6 +80,10 @@
     "description": "دا کتاب په اصول کې موجود نه دی، خو موږ یوه نسخه په بل ځای کې موندلې ده.",
     "navigate": "لارښوونه"
   },
+  "no-versions": {
+    "title": "هیڅ بڼه شتون نه لري.",
+    "description": "دې کتاب ته هیڅ بڼه شتون نه لري."
+  },
   "download-pdf": "پي ډي ایف ډاونلوډ کړئ",
   "publication-details": {
     "title": "د خپرونې جزئيات",
@@ -87,7 +91,7 @@
     "publisher": "خپرندوی",
     "publication-year": "د چاپ کال",
     "publisher-location": "د خپرونکي ځای",
-    "edition-number": "د ایډیشن شمېره"
+    "edition-number": "شمېره چاپونه"
   },
   "feedback-submitted": "نظر مو واستول شو!"
 }
