@@ -14,7 +14,6 @@ export const SITE_CONFIG = {
     alt: "Usul Cover",
   },
   url: "https://usul.ai",
-  feedbackEmail: "feedback@usul.ai",
   contactEmail: "contact@usul.ai",
 };
 

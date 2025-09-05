@@ -80,6 +80,10 @@
     "description": "This book is not available on Usul but we found an edition somewhere else.",
     "navigate": "Navigate"
   },
+  "no-versions": {
+    "title": "No versions available",
+    "description": "This book has no versions available."
+  },
   "download-pdf": "Download PDF",
   "publication-details": {
     "title": "Publication Details",

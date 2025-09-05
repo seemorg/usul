@@ -8,8 +8,9 @@ import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
 import {
   ADD_TEXT_URL,
+  FEEDBACK_URL,
   REPORT_MISTAKE_URL,
-  VOLUNTEER_EMAIL,
+  VOLUNTEER_URL,
 } from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { SITE_CONFIG } from "@/lib/seo";
@@ -62,11 +63,11 @@ const navigation = {
     },
     {
       label: "navigation.contribute.feedback.title",
-      href: `mailto:${SITE_CONFIG.feedbackEmail}`,
+      href: FEEDBACK_URL,
     },
     {
       label: "navigation.contribute.volunteer.title",
-      href: `mailto:${VOLUNTEER_EMAIL}`,
+      href: VOLUNTEER_URL,
     },
   ] satisfies NavItem[],
   social: [

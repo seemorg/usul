@@ -1,8 +1,9 @@
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import {
   ADD_TEXT_URL,
+  FEEDBACK_URL,
   REPORT_MISTAKE_URL,
-  VOLUNTEER_EMAIL,
+  VOLUNTEER_URL,
 } from "@/lib/constants";
 import { SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
@@ -80,7 +81,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.contact.title",
     description: "navigation.about.contact.description",
     icon: MailIcon,
-    href: `mailto:${SITE_CONFIG.feedbackEmail}`,
+    href: FEEDBACK_URL,
   },
 ];
 
@@ -106,13 +107,13 @@ export const contributeItems: NavItem[] = [
   {
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
-    href: `mailto:${SITE_CONFIG.feedbackEmail}`,
+    href: FEEDBACK_URL,
     icon: MessageSquarePlusIcon,
   },
   {
     title: "navigation.contribute.volunteer.title",
     description: "navigation.contribute.volunteer.description",
-    href: `mailto:${VOLUNTEER_EMAIL}`,
+    href: VOLUNTEER_URL,
     icon: HeartHandshakeIcon,
   },
 ];
