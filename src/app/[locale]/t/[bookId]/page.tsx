@@ -91,52 +91,44 @@ export default async function SidebarContent({
   const pathLocale = await getPathLocale();
 
   let readerContent: React.ReactNode;
-  let bookResponse: ApiBookResponse;
 
-  try {
-    const response = (await getBook(bookId, {
-      locale: pathLocale,
-      versionId,
-      includeBook: true,
-      fields: ["pdf", "headings", "indices", "publication_details"],
-      size: READER_PAGINATION_SIZE,
-    }))!;
+  const response = await getBook(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+    size: READER_PAGINATION_SIZE,
+  });
 
-    // if it's an alternate slug, redirect to the primary slug
-    if ("type" in response) {
-      const params = new URLSearchParams(resolvedSearchParams);
-      const paramsString = params.size > 0 ? `?${params.toString()}` : "";
-
-      permanentRedirect({
-        href: `${navigation.books.reader(response.primarySlug)}${paramsString}`,
-        locale,
-      });
-      return;
-    }
-
-    bookResponse = response;
-  } catch (error) {
+  if (!response) {
     notFound();
   }
 
-  if (bookResponse.book.versions.length === 0) {
+  // if it's an alternate slug, redirect to the primary slug
+  if ("type" in response) {
+    const params = new URLSearchParams(resolvedSearchParams);
+    const paramsString = params.size > 0 ? `?${params.toString()}` : "";
+
+    permanentRedirect({
+      href: `${navigation.books.reader(response.primarySlug)}${paramsString}`,
+      locale,
+    });
+    return;
+  }
+
+  if (response.book.versions.length === 0) {
     readerContent = <NoVersions />;
-  } else if (bookResponse.content.source === "external") {
+  } else if (response.content.source === "external") {
     readerContent = <ExternalBook />;
   } else if (
     // if this is a pdf book that's not digitized, or the user is requesting the pdf view
     // we need to show the pdf view
-    (bookResponse.content.source === "pdf" &&
-      !("pages" in bookResponse.content)) ||
+    (response.content.source === "pdf" && !("pages" in response.content)) ||
     view === "pdf"
   ) {
     const pdfUrl =
-      ("pdfUrl" in bookResponse.content
-        ? bookResponse.content.pdfUrl
-        : undefined) ||
-      (bookResponse.content.source === "pdf"
-        ? bookResponse.content.url
-        : undefined);
+      ("pdfUrl" in response.content ? response.content.pdfUrl : undefined) ||
+      (response.content.source === "pdf" ? response.content.url : undefined);
 
     if (!pdfUrl) {
       notFound();
@@ -152,7 +144,7 @@ export default async function SidebarContent({
   }
 
   return (
-    <BookDetailsProvider bookResponse={bookResponse}>
+    <BookDetailsProvider bookResponse={response}>
       <SidebarResizer
         sidebar={<ReaderSidebar bookSlug={bookId} versionId={versionId} />}
       >

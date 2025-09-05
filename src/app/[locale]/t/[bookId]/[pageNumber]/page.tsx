@@ -46,7 +46,7 @@ export const generateMetadata = async ({
     includeBook: true,
     fields: ["pdf", "headings", "indices", "publication_details"],
     index: parsedNumber - 1,
-  }).catch(() => null);
+  });
 
   if (!response || "type" in response) return {};
 
@@ -95,42 +95,36 @@ async function SidebarContent({
     notFound();
   }
 
-  let bookResponse: ApiBookPageResponse;
-  try {
-    const response = (await getBookPage(bookId, {
-      locale: pathLocale,
-      versionId,
-      includeBook: true,
-      fields: ["pdf", "headings", "indices", "publication_details"],
-      index: parsedNumber - 1,
-    }))!;
+  const response = await getBookPage(bookId, {
+    locale: pathLocale,
+    versionId,
+    includeBook: true,
+    fields: ["pdf", "headings", "indices", "publication_details"],
+    index: parsedNumber - 1,
+  });
 
-    if ("type" in response) {
-      const params = new URLSearchParams(resolvedSearchParams);
-      const paramsString = params.size > 0 ? `?${params.toString()}` : "";
-
-      permanentRedirect({
-        href: `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
-        locale,
-      });
-      return;
-    }
-
-    bookResponse = response;
-  } catch {
+  if (!response) {
     notFound();
   }
 
+  if ("type" in response) {
+    const params = new URLSearchParams(resolvedSearchParams);
+    const paramsString = params.size > 0 ? `?${params.toString()}` : "";
+
+    permanentRedirect({
+      href: `${navigation.books.pageReader(response.primarySlug, parsedNumber)}${paramsString}`,
+      locale,
+    });
+    return;
+  }
+
   let page;
-  if (bookResponse.content.source === "turath") {
-    page = bookResponse.content.pages[0];
-  } else if (bookResponse.content.source === "openiti") {
-    page = bookResponse.content.pages[0];
-  } else if (
-    bookResponse.content.source === "pdf" &&
-    bookResponse.content.pages
-  ) {
-    page = bookResponse.content.pages[0];
+  if (response.content.source === "turath") {
+    page = response.content.pages[0];
+  } else if (response.content.source === "openiti") {
+    page = response.content.pages[0];
+  } else if (response.content.source === "pdf" && response.content.pages) {
+    page = response.content.pages[0];
   }
 
   if (!page) {
@@ -138,7 +132,7 @@ async function SidebarContent({
   }
 
   return (
-    <BookDetailsProvider bookResponse={bookResponse}>
+    <BookDetailsProvider bookResponse={response}>
       <SidebarResizer
         sidebar={
           <ReaderSidebar bookSlug={bookId} versionId={versionId} isSinglePage />
@@ -146,9 +140,9 @@ async function SidebarContent({
       >
         <ReaderNavigation isSinglePage />
 
-        {bookResponse.book.versions.length === 0 ? (
+        {response.book.versions.length === 0 ? (
           <NoVersions />
-        ) : bookResponse.content.source === "external" ? (
+        ) : response.content.source === "external" ? (
           <ExternalBook />
         ) : (
           <article>
