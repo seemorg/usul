@@ -80,6 +80,10 @@
     "description": "Buuggan lagama heli karo Usul laakiin waxaan helnay daabacad meel kale.",
     "navigate": "U gudub"
   },
+  "no-versions": {
+    "title": "Noocyo lama heli karo.",
+    "description": "Buuggan noocyo lama heli karo."
+  },
   "download-pdf": "Soo dejiso PDF",
   "publication-details": {
     "title": "Faahfaahinta Daabacaadda",
@@ -87,7 +91,7 @@
     "publisher": "Daabacaha",
     "publication-year": "Sanadka Daabacaadda",
     "publisher-location": "Goobta Daabacaadda",
-    "edition-number": "Lambarka Daabacaadda"
+    "edition-number": "Daabacaad"
   },
   "feedback-submitted": "Jawaab-celin diray!"
 }

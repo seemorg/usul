@@ -80,6 +80,10 @@
     "description": "یہ کتاب اصول پر دستیاب نہیں ہے لیکن ہمیں ایک ایڈیشن کہیں اور ملا ہے۔",
     "navigate": "تشریف لے جائیں"
   },
+  "no-versions": {
+    "title": "کوئی ورژن دستیاب نہیں ہیں۔",
+    "description": "اس کتاب کے لئے کوئی ورژن دستیاب نہیں ہے۔"
+  },
   "download-pdf": "پی ڈی ایف ڈاؤن لوڈ کریں",
   "publication-details": {
     "title": "اشاعت کی تفصیلات",
@@ -87,7 +91,7 @@
     "publisher": "ناشر",
     "publication-year": "اشاعت کا سال",
     "publisher-location": "پبلشر کا مقام",
-    "edition-number": "ایڈیشن نمبر"
+    "edition-number": "ایڈیشن"
   },
   "feedback-submitted": "فیڈبیک جمع کر دیا گیا!"
 }

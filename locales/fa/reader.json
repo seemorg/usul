@@ -80,6 +80,10 @@
     "description": "این کتاب در اصل موجود نیست اما ما نسخه‌ای را در جای دیگری پیدا کرده‌ایم.",
     "navigate": "ناوبری"
   },
+  "no-versions": {
+    "title": "نسخه\u00042\u00054 موجود نیست.",
+    "description": "این کتاب هیچ نسخه\u00042\u00054 ندارد."
+  },
   "download-pdf": "دانلود PDF",
   "publication-details": {
     "title": "جزئیات انتشار",
@@ -87,7 +91,7 @@
     "publisher": "ناشر",
     "publication-year": "سال انتشار",
     "publisher-location": "محل انتشار",
-    "edition-number": "شماره نسخه"
+    "edition-number": "ویراست"
   },
   "feedback-submitted": "بازخورد ارسال شد!"
 }

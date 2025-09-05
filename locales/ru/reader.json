@@ -80,6 +80,10 @@
     "description": "Эта книга недоступна на Usul, но мы нашли издание в другом месте.",
     "navigate": "Перейти"
   },
+  "no-versions": {
+    "title": "Нет доступных версий.",
+    "description": "Для этой книги нет доступных версий."
+  },
   "download-pdf": "Скачать PDF",
   "publication-details": {
     "title": "Детали публикации",
@@ -87,7 +91,7 @@
     "publisher": "Издатель",
     "publication-year": "Год публикации",
     "publisher-location": "Место издания",
-    "edition-number": "Номер издания"
+    "edition-number": "Издание"
   },
   "feedback-submitted": "Отзыв отправлен!"
 }
