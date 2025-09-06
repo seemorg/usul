@@ -40,7 +40,7 @@ export default function PdfView({ pdf: pdfSource }: { pdf: string }) {
 
       const instance: WebViewerInstance = await WebViewer(
         {
-          path: "/pdf-express", // point to where the files you copied are served from
+          path: "/static/pdf-express", // point to where the files you copied are served from
           initialDoc: pdfSource, // path to your document
           enableAnnotations: false,
           disabledElements: [

@@ -14,6 +14,6 @@ export const config: MiddlewareConfig = {
      * 3. /sitemap/ (sitemap files)
      * 4. Metadata files: favicon.ico, sitemap.xml, robots.txt, manifest.webmanifest
      */
-    "/((?!api/|_next/|_vercel/|favicons/|images/|patterns/|pdf-express/|static/|team-images/|cover.png|favicon.ico|sitemap/|sitemap.xml|robots.txt|manifest.webmanifest).*)",
+    "/((?!api/|_next/|_vercel/|static/|favicon.ico|sitemap/|sitemap.xml|robots.txt|manifest.webmanifest).*)",
   ],
 };
