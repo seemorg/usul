@@ -44,7 +44,7 @@ export const CollectionCard = ({
   numberOfBooks,
   pattern,
   color,
-  patternSrcPrefix = "/patterns/",
+  patternSrcPrefix = "/static/patterns/",
 }: CollectionCardProps) => {
   const t = useTranslations("entities");
   const variant = variants[color];

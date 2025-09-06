@@ -8,7 +8,7 @@ import { relativeUrl } from "./sitemap";
 export const SITE_CONFIG = {
   themeColor: "#AA4A44",
   image: {
-    url: "/cover.png",
+    url: "/static/cover.png",
     width: 1200,
     height: 630,
     alt: "Usul Cover",
@@ -21,19 +21,19 @@ const icons = [
   {
     rel: "apple-touch-icon",
     sizes: "32x32",
-    url: "/favicons/apple-touch-icon.png",
+    url: "/static/favicons/apple-touch-icon.png",
   },
   {
     rel: "icon",
     type: "image/png",
     sizes: "32x32",
-    url: "/favicons/favicon-32x32.png",
+    url: "/static/favicons/favicon-32x32.png",
   },
   {
     rel: "icon",
     type: "image/png",
     sizes: "16x16",
-    url: "/favicons/favicon-16x16.png",
+    url: "/static/favicons/favicon-16x16.png",
   },
 ];
 

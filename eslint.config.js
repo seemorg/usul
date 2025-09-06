@@ -5,7 +5,7 @@ import reactConfig from "./tooling/eslint/react.js";
 /** @type {import('typescript-eslint').Config} */
 export default [
   {
-    ignores: [".next/**", "public/pdf-express"],
+    ignores: [".next/**", "public/"],
   },
   ...baseConfig,
   ...reactConfig,

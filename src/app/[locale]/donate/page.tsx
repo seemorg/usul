@@ -149,7 +149,7 @@ export default async function HomePage({
               {/* <div className="xs:h-[250px] h-[200px] md:h-[280px] lg:hidden" />
 
               <Image
-                src="/images/features-screenshot.png"
+                src="/static/images/features-screenshot.png"
                 alt="Features screenshot"
                 width={746}
                 height={466}

@@ -1,14 +1,14 @@
-import abdellatif from "~/public/team/abdellatif.png";
-import adnan from "~/public/team/adnan.png";
-import ahmedAktan from "~/public/team/ahmed-aktan.png";
-import ahmedKhan from "~/public/team/ahmed-khan.png";
-import ahmedRiad from "~/public/team/ahmed-riad.png";
-import intisar from "~/public/team/intisar.png";
-import ismail from "~/public/team/ismail.png";
-import lamine from "~/public/team/lamine.png";
-import rahma from "~/public/team/rahma.png";
-import ryad from "~/public/team/ryad.png";
-import zeki from "~/public/team/zeki.png";
+import abdellatif from "~/public/static/team-images/abdellatif.png";
+import adnan from "~/public/static/team-images/adnan.png";
+import ahmedAktan from "~/public/static/team-images/ahmed-aktan.png";
+import ahmedKhan from "~/public/static/team-images/ahmed-khan.png";
+import ahmedRiad from "~/public/static/team-images/ahmed-riad.png";
+import intisar from "~/public/static/team-images/intisar.png";
+import ismail from "~/public/static/team-images/ismail.png";
+import lamine from "~/public/static/team-images/lamine.png";
+import rahma from "~/public/static/team-images/rahma.png";
+import ryad from "~/public/static/team-images/ryad.png";
+import zeki from "~/public/static/team-images/zeki.png";
 
 export const members = [
   {
