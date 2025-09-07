@@ -41,7 +41,9 @@
     "no-of-authors-desc": "عدد المؤلفين ▼",
     "no-of-authors-asc": "عدد المؤلفين ▲",
     "year-asc": "سنة الوفاة ▲",
-    "year-desc": "سنة الوفاة ▼"
+    "year-desc": "سنة الوفاة ▼",
+    "alphabetical-asc": "أبجدي ▲",
+    "alphabetical-desc": "أبجدي ▼"
   },
   "view-all": "عرض الكل",
   "profile": "الملف الشخصي",

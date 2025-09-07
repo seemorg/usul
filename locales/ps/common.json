@@ -41,7 +41,9 @@
     "no-of-authors-desc": "د لیکوالانو شمېر ▼",
     "no-of-authors-asc": "د لیکوالانو شمېر ▲",
     "year-asc": "د مرګ کال ▲",
-    "year-desc": "د مرګ کال ▼"
+    "year-desc": "د مرګ کال ▼",
+    "alphabetical-asc": "الفبایي ▲",
+    "alphabetical-desc": "الفبایي ▼"
   },
   "view-all": "ټول وګورئ",
   "profile": "پروفایل",

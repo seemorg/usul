@@ -41,7 +41,9 @@
     "no-of-authors-desc": "Кол. авторов ▼",
     "no-of-authors-asc": "Кол. авторов ▲",
     "year-asc": "Год смерти ▲",
-    "year-desc": "Год смерти ▼"
+    "year-desc": "Год смерти ▼",
+    "alphabetical-asc": "По алфавиту ▲",
+    "alphabetical-desc": "По алфавиту ▼"
   },
   "view-all": "Просмотреть все",
   "profile": "Профиль",
