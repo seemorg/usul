@@ -41,7 +41,9 @@
     "no-of-authors-desc": "Tirada Qorayaasha ▼",
     "no-of-authors-asc": "Tirada Qorayaasha ▲",
     "year-asc": "Sanadka Geerida ▲",
-    "year-desc": "Sanadka Geerida ▼"
+    "year-desc": "Sanadka Geerida ▼",
+    "alphabetical-asc": "Xarfaha A ilaa Z ▲",
+    "alphabetical-desc": "Xarfaha Z ilaa A ▼"
   },
   "view-all": "Eeg Dhammaan",
   "profile": "Profile",

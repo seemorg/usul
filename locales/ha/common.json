@@ -41,7 +41,9 @@
     "no-of-authors-desc": "Adadin Marubuta ▼",
     "no-of-authors-asc": "Adadin Marubuta ▲",
     "year-asc": "Shekarar Mutuwa ▲",
-    "year-desc": "Shekarar Mutuwa ▼"
+    "year-desc": "Shekarar Mutuwa ▼",
+    "alphabetical-asc": "A ajiye bisa harafi ▲",
+    "alphabetical-desc": "A ajiye bisa harafi ▼"
   },
   "view-all": "Duba Duk",
   "profile": "Fayil",

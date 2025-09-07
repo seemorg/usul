@@ -41,7 +41,9 @@
     "no-of-authors-desc": "تعداد نویسندگان ▼",
     "no-of-authors-asc": "تعداد نویسندگان ▲",
     "year-asc": "سال مرگ ▲",
-    "year-desc": "سال مرگ ▼"
+    "year-desc": "سال مرگ ▼",
+    "alphabetical-asc": "ترتیب حروف الفبا ▲",
+    "alphabetical-desc": "ترتیب حروف الفبا ▼"
   },
   "view-all": "مشاهده همه",
   "profile": "پروفایل",

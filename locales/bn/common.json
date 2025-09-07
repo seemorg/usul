@@ -41,7 +41,9 @@
     "no-of-authors-desc": "লেখকদের সংখ্যা ▼",
     "no-of-authors-asc": "লেখকদের সংখ্যা ▲",
     "year-asc": "মৃত্যুর বছর ▲",
-    "year-desc": "মৃত্যুর বছর ▼"
+    "year-desc": "মৃত্যুর বছর ▼",
+    "alphabetical-asc": "বর্ণানুক্রমিক ▲",
+    "alphabetical-desc": "বর্ণানুক্রমিক ▼"
   },
   "view-all": "সব দেখুন",
   "profile": "প্রোফাইল",
