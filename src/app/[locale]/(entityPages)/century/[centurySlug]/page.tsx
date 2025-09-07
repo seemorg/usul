@@ -11,7 +11,7 @@ import { findCenturyBySlug } from "@/lib/api/centuries";
 import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { navigation, yearsSorts } from "@/lib/urls";
+import { alphabeticalSorts, navigation, yearsSorts } from "@/lib/urls";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -103,7 +103,11 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
           placeholder={t("entities.search-within", {
             entity: t("entities.century"),
           })}
-          sorts={yearsSorts}
+          sorts={
+            pathLocale === "en"
+              ? [...yearsSorts, ...alphabeticalSorts]
+              : yearsSorts
+          }
           currentSort={sort}
           currentQuery={q}
           view={view}

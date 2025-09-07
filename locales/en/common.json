@@ -41,7 +41,9 @@
     "no-of-authors-desc": "No. of Authors ▼",
     "no-of-authors-asc": "No. of Authors ▲",
     "year-asc": "Death Year ▲",
-    "year-desc": "Death Year ▼"
+    "year-desc": "Death Year ▼",
+    "alphabetical-asc": "Alphabetical ▲",
+    "alphabetical-desc": "Alphabetical ▼"
   },
   "view-all": "View All",
   "profile": "Profile",

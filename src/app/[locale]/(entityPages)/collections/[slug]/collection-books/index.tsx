@@ -1,6 +1,7 @@
 "use client";
 
 import type { BookDocument } from "@/types/book";
+import { useMemo } from "react";
 import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
 import { Button } from "@/components/ui/button";
@@ -16,7 +17,8 @@ import {
 } from "@/components/ui/drawer";
 import { Skeleton } from "@/components/ui/skeleton";
 import TruncatedText from "@/components/ui/truncated-text";
-import { yearsSorts } from "@/lib/urls";
+import { usePathLocale } from "@/lib/locale/utils";
+import { alphabeticalSorts, yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import {
   useAddBookToCollection,
@@ -59,7 +61,13 @@ export default function CollectionBooks({ slug }: { slug: string }) {
   const [search] = useSearch();
   const t = useTranslations();
   const [page] = usePage();
-  const [sort] = useSort(yearsSorts.map((s) => s.value));
+  const pathLocale = usePathLocale();
+  const sorts = useMemo(
+    () =>
+      pathLocale === "en" ? [...yearsSorts, ...alphabeticalSorts] : yearsSorts,
+    [pathLocale],
+  );
+  const [sort] = useSort(sorts.map((s) => s.value));
   const [genres] = useGenresFilter();
 
   const { data, isLoading, isFetching } = useCollectionBySlug(slug, {
@@ -192,7 +200,7 @@ export default function CollectionBooks({ slug }: { slug: string }) {
 
                 <div className="flex gap-2">
                   <div>
-                    <SearchSort sorts={yearsSorts} isLoading={isFetching} />
+                    <SearchSort sorts={sorts} isLoading={isFetching} />
                   </div>
 
                   <div className="col-span-4 sm:hidden">

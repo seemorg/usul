@@ -78,3 +78,14 @@ export const yearsSorts = [
     value: "year-desc",
   },
 ] as const satisfies Sort[];
+
+export const alphabeticalSorts = [
+  {
+    label: "sorts.alphabetical-asc",
+    value: "alphabetical-asc",
+  },
+  {
+    label: "sorts.alphabetical-desc",
+    value: "alphabetical-desc",
+  },
+] as const satisfies Sort[];

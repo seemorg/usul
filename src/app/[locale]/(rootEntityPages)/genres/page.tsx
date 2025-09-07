@@ -6,7 +6,7 @@ import { getTotalEntities } from "@/lib/api";
 import { searchGenres } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { navigation } from "@/lib/urls";
+import { alphabeticalSorts, navigation } from "@/lib/urls";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -63,7 +63,7 @@ async function GenresPage({ searchParams }: PageProps) {
           entity: t("genres"),
         })}
         hasViews={false}
-        sorts={sorts}
+        sorts={pathLocale === "en" ? [...sorts, ...alphabeticalSorts] : sorts}
         currentSort={sort}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentQuery={q}
