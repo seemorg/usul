@@ -41,7 +41,9 @@
     "no-of-authors-desc": "مصنفین کی تعداد ▼",
     "no-of-authors-asc": "مصنفین کی تعداد ▲",
     "year-asc": "وفات کا سال ▲",
-    "year-desc": "وفات کا سال ▼"
+    "year-desc": "وفات کا سال ▼",
+    "alphabetical-asc": "حروفِ تہجی کے لحاظ سے ▲",
+    "alphabetical-desc": "حروفِ تہجی کے لحاظ سے ▼"
   },
   "view-all": "تمام دیکھیں",
   "profile": "پروفائل",

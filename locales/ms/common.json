@@ -41,7 +41,9 @@
     "no-of-authors-desc": "Bil. Pengarang ▼",
     "no-of-authors-asc": "Bil. Pengarang ▲",
     "year-asc": "Tahun Kematian ▲",
-    "year-desc": "Tahun Kematian ▼"
+    "year-desc": "Tahun Kematian ▼",
+    "alphabetical-asc": "Abjad ▲",
+    "alphabetical-desc": "Abjad ▼"
   },
   "view-all": "Lihat Semua",
   "profile": "Profil",

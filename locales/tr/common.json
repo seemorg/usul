@@ -41,7 +41,9 @@
     "no-of-authors-desc": "Yazar Sayısı ▼",
     "no-of-authors-asc": "Yazar Sayısı ▲",
     "year-asc": "Ölüm Yılı ▲",
-    "year-desc": "Ölüm Yılı ▼"
+    "year-desc": "Ölüm Yılı ▼",
+    "alphabetical-asc": "Alfabetik ▲",
+    "alphabetical-desc": "Alfabetik ▼"
   },
   "view-all": "Tümünü Gör",
   "profile": "Profil",
