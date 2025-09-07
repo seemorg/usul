@@ -1,9 +1,9 @@
 import type { DynamicRoute } from "next-typesafe-url";
-import { booksSorts } from "@/lib/urls";
+import { alphabeticalSorts, booksSorts } from "@/lib/urls";
 import { viewSchema } from "@/validation/view";
 import { z } from "zod";
 
-const sorts = booksSorts.map((s) => s.value);
+const sorts = [...booksSorts, ...alphabeticalSorts].map((s) => s.value);
 const defaultSort: (typeof sorts)[number] = "relevance";
 
 export const Route = {

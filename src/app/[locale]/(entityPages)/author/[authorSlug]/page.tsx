@@ -13,7 +13,7 @@ import { searchBooks } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
-import { booksSorts, navigation } from "@/lib/urls";
+import { alphabeticalSorts, booksSorts, navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
 import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
@@ -223,7 +223,11 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
           placeholder={t("entities.search-within", {
             entity: t("entities.author"),
           })}
-          sorts={booksSorts as any}
+          sorts={
+            pathLocale === "en"
+              ? [...booksSorts, ...alphabeticalSorts]
+              : booksSorts
+          }
           currentSort={sort}
           currentQuery={q}
           view={view}

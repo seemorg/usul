@@ -11,7 +11,7 @@ import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { navigation, yearsSorts } from "@/lib/urls";
+import { alphabeticalSorts, navigation, yearsSorts } from "@/lib/urls";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -106,7 +106,9 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
           placeholder={t("search-within", {
             entity: t("collection"),
           })}
-          sorts={yearsSorts}
+          sorts={
+            locale === "en" ? [...yearsSorts, ...alphabeticalSorts] : yearsSorts
+          }
           currentSort={sort}
           view={view}
           currentQuery={q}

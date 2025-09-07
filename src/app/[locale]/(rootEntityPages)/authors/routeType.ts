@@ -1,6 +1,6 @@
 import type { Sort } from "@/types/sort";
 import type { DynamicRoute } from "next-typesafe-url";
-import { yearsSorts } from "@/lib/urls";
+import { alphabeticalSorts, yearsSorts } from "@/lib/urls";
 import { yearRangeSchema } from "@/validation/year-range";
 import { z } from "zod";
 
@@ -16,7 +16,7 @@ export const sorts = [
   },
 ] as const satisfies Sort[];
 
-const sortsValues = sorts.map((s) => s.value);
+const sortsValues = [...sorts, ...alphabeticalSorts].map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts-desc";
 
 export const Route = {

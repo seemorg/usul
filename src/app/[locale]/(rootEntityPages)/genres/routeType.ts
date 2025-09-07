@@ -1,5 +1,6 @@
 import type { Sort } from "@/types/sort";
 import type { DynamicRoute } from "next-typesafe-url";
+import { alphabeticalSorts } from "@/lib/urls";
 import { z } from "zod";
 
 export const sorts = [
@@ -13,7 +14,7 @@ export const sorts = [
   },
 ] as const satisfies Sort[];
 
-const sortsValues = sorts.map((s) => s.value);
+const sortsValues = [...sorts, ...alphabeticalSorts].map((s) => s.value);
 const defaultSort: (typeof sortsValues)[number] = "texts-desc";
 
 export const Route = {

@@ -9,7 +9,7 @@ import { searchAuthors } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { navigation } from "@/lib/urls";
+import { alphabeticalSorts, navigation } from "@/lib/urls";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -68,7 +68,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
         placeholder={t("search-within", {
           entity: t("authors"),
         })}
-        sorts={sorts}
+        sorts={pathLocale === "en" ? [...sorts, ...alphabeticalSorts] : sorts}
         itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
         currentSort={sort}
         currentQuery={q}
