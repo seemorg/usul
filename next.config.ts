@@ -45,6 +45,18 @@ const config: NextConfig = {
   redirects: async () => {
     return [
       {
+        // Redirects from /en to / (for old Google-indexed URLs)
+        source: "/en",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        // Redirects from /en/:path* to /:path* (for old Google-indexed URLs)
+        source: "/en/:path*",
+        destination: "/:path*",
+        permanent: true,
+      },
+      {
         // Redirects from /regions/:region to /region/:region
         source: "/regions/:region",
         destination: "/region/:region",
