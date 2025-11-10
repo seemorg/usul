@@ -6,7 +6,7 @@ import BookSearchResult from "@/components/book-search-result";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
-import { getGenre } from "@/lib/api/genres";
+import { getAdvancedGenre, getGenre } from "@/lib/api/genres";
 import { searchBooks } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";
 import { getPathLocale } from "@/lib/locale/server";
@@ -27,7 +27,8 @@ export const generateMetadata = async ({
   const { genreSlug, locale } = await params;
 
   const pathLocale = await getPathLocale();
-  const genre = await getGenre(genreSlug, { locale: pathLocale });
+  const genre = await getAdvancedGenre(genreSlug, { locale: pathLocale });
+  // const genre = await getGenre(genreSlug, { locale: pathLocale });
   if (!genre) return;
 
   return getMetadata({
@@ -47,7 +48,8 @@ type GenrePageProps = InferPagePropsType<RouteType>;
 async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
   const { genreSlug } = await routeParams;
   const locale = await getPathLocale();
-  const genre = await getGenre(genreSlug, { locale });
+  const genre = await getAdvancedGenre(genreSlug, { locale });
+  // const genre = await getGenre(genreSlug, { locale });
 
   if (!genre) {
     notFound();
@@ -63,7 +65,8 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
     sortBy: sort,
     locale,
     filters: {
-      genres: [genre.id],
+      advancedGenres: [genre.id],
+      // genres: [genre.id],
       regions,
       authors,
       yearRange: year,

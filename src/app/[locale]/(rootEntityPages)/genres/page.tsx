@@ -1,9 +1,11 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import GenreSearchResult from "@/components/genre-search-result";
+import GenreTreeChart from "@/components/genres-tree-chart/client";
 import SearchResults from "@/components/search-results";
 import { getTotalEntities } from "@/lib/api";
-import { searchGenres } from "@/lib/api/search";
+import { getAdvancedGenreHierarchy } from "@/lib/api/advanced-genres";
+import { searchAdvancedGenres } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { alphabeticalSorts, navigation } from "@/lib/urls";
@@ -36,24 +38,26 @@ async function GenresPage({ searchParams }: PageProps) {
   const t = await getTranslations("entities");
   const pathLocale = await getPathLocale();
 
-  const [results, total] = await Promise.all([
-    searchGenres(q, {
+  const [results, total, hierarchy] = await Promise.all([
+    searchAdvancedGenres(q, {
       limit: 20,
       locale: pathLocale,
       page,
       sortBy: sort,
     }),
     getTotalEntities(),
+    getAdvancedGenreHierarchy({ locale: pathLocale }),
   ]);
 
   return (
     <RootEntityPage
       title={t("genres")}
       description={t("search-x", {
-        count: total.genres,
+        count: total.advancedGenres,
         entity: t("genres"),
       })}
     >
+      <GenreTreeChart data={hierarchy as any} />
       <SearchResults
         response={results.results}
         pagination={results.pagination}

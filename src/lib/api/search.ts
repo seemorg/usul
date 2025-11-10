@@ -61,6 +61,19 @@ export const searchBooks = async (
   }))!;
 };
 
+export const searchAdvancedGenres = async (
+  q: string,
+  { filters: _, ...options }: SearchOptions = {},
+) => {
+  return (await apiFetch<SearchResponse<GenreDocument>>({
+    path: "/search/advancedGenres",
+    params: {
+      q,
+      ...options,
+    },
+  }))!;
+};
+
 export const searchGenres = async (
   q: string,
   { filters: _, ...options }: SearchOptions = {},

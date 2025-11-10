@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
-import { getGenre } from "@/lib/api/genres";
+import { getAdvancedGenre, getGenre } from "@/lib/api/genres";
 import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";
@@ -30,7 +30,8 @@ export async function GET(
     notFound();
   }
 
-  const genre = await getGenre(slug, { locale: "en" });
+  const genre = await getAdvancedGenre(slug, { locale: "en" });
+  // const genre = await getGenre(slug, { locale: "en" });
 
   if (!genre) {
     notFound();

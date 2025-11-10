@@ -13,19 +13,10 @@ export const getAdvancedGenre = cache(
   },
 );
 
-export const getGenre = cache(
-  async (slug: string, params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiGenre>({
-      path: `/genre/${slug}`,
-      params,
-    });
-  },
-);
-
-export const getHomepageGenres = cache(
+export const getAdvancedGenreHierarchy = cache(
   async (params: { locale?: PathLocale } = {}) => {
-    return await apiFetch<ApiGenreCollection[]>({
-      path: `/genre/homepage`,
+    return await apiFetch<any[]>({
+      path: `/advancedGenre/hierarchy`,
       params,
     });
   },
@@ -46,7 +37,7 @@ export const findAllGenresWithBooksCount = cache(
     locale?: PathLocale;
   } = {}) => {
     const result = await apiFetch<ApiGenre[]>({
-      path: "/genre",
+      path: "/advancedGenre",
       params: {
         yearRange,
         authorId,
