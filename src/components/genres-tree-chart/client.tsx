@@ -72,7 +72,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     }
 
     const combinedRoot = {
-      name: "Root",
+      name: t("genres"),
       id: "root",
       children: data,
     };
