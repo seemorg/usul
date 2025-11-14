@@ -1,13 +1,18 @@
 import type { ComponentProps } from "react";
-import { findAllGenresWithBooksCount } from "@/lib/api/genres";
+import { getAdvancedGenreHierarchy } from "@/lib/api/advanced-genres";
+import { getPathLocale } from "@/lib/locale/server";
 
 import GenresFilterClient from "./client";
 
-type Props = Omit<ComponentProps<typeof GenresFilterClient>, "genres"> & {
-  filters?: Parameters<typeof findAllGenresWithBooksCount>[0];
+type Props = Omit<ComponentProps<typeof GenresFilterClient>, "hierarchy"> & {
+  filters?: Parameters<typeof getAdvancedGenreHierarchy>[0];
 };
 
 export default async function GenresFilter(props: Props) {
-  const genres = await findAllGenresWithBooksCount(props.filters);
-  return <GenresFilterClient {...props} genres={genres} />;
+  const pathLocale = await getPathLocale();
+  const hierarchy = await getAdvancedGenreHierarchy({
+    ...props.filters,
+    locale: pathLocale,
+  });
+  return <GenresFilterClient {...props} hierarchy={hierarchy as any} />;
 }

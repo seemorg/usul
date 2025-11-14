@@ -47,9 +47,9 @@ async function TextsPage({ searchParams }: TextsPageProps) {
       page,
       sortBy: sort,
       filters: {
-        genres,
-        authors,
-        regions,
+        advancedGenres: genres,
+        authors: authors,
+        regions: regions,
         yearRange: year,
       },
       locale: pathLocale,
@@ -108,9 +108,10 @@ async function TextsPage({ searchParams }: TextsPageProps) {
 
             <GenresFilter
               currentGenres={genres}
-              filters={{
-                yearRange: year,
-              }}
+              // TODO: Fix year range filter
+              // filters={{
+              //   yearRange: year,
+              // }}
             />
           </>
         }

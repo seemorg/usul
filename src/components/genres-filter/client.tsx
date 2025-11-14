@@ -1,20 +1,28 @@
 "use client";
 
-import type { findAllGenresWithBooksCount } from "@/lib/api/genres";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterContainer from "@/components/search-results/filter-container";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/navigation";
 import Fuse from "fuse.js";
 import { useFormatter, useTranslations } from "next-intl";
 
 const DEBOUNCE_DELAY = 300;
 
+interface GenreNode {
+  id: string;
+  slug: string;
+  name: string;
+  numberOfBooks: number;
+  children?: GenreNode[];
+}
+
 interface GenresFilterProps {
   currentGenres: string[];
-  genres: Awaited<ReturnType<typeof findAllGenresWithBooksCount>>;
+  hierarchy: GenreNode[];
 }
 
 const getGenresFilterUrlParams = (
@@ -37,13 +45,40 @@ const getGenresFilterUrlParams = (
   return params;
 };
 
+// Flatten hierarchy for search
+function flattenHierarchy(nodes: GenreNode[]): GenreNode[] {
+  const result: GenreNode[] = [];
+  for (const node of nodes) {
+    result.push(node);
+    if (node.children) {
+      result.push(...flattenHierarchy(node.children));
+    }
+  }
+  return result;
+}
+
+// Get all descendant IDs recursively
+function getAllDescendantIds(node: GenreNode): string[] {
+  const result: string[] = [];
+  if (node.children) {
+    for (const child of node.children) {
+      result.push(child.id);
+      result.push(...getAllDescendantIds(child));
+    }
+  }
+  return result;
+}
+
 export default function GenresFilterClient({
   currentGenres,
-  genres,
+  hierarchy,
 }: GenresFilterProps) {
   const t = useTranslations();
   const formatter = useFormatter();
   const [selectedGenres, setSelectedGenres] = useState<string[]>(currentGenres);
+  const [expandedParents, setExpandedParents] = useState<Set<string>>(
+    new Set(),
+  );
 
   const [isPending, startTransition] = useTransition();
   const timeoutRef = useRef<NodeJS.Timeout>(null);
@@ -52,29 +87,120 @@ export default function GenresFilterClient({
   const searchParams = useSearchParams();
   const [size, setSize] = useState(10);
 
-  const genreIdToGenreName = useMemo(() => {
-    return Object.fromEntries(genres.map((item) => [item.id, item]));
-  }, [genres]);
+  // Flatten hierarchy for search
+  const allGenres = useMemo(() => flattenHierarchy(hierarchy), [hierarchy]);
 
+  // Create maps for quick lookup
+  const genreIdToGenre = useMemo(() => {
+    const map = new Map<string, GenreNode>();
+    const traverse = (nodes: GenreNode[]) => {
+      for (const node of nodes) {
+        map.set(node.id, node);
+        if (node.children) {
+          traverse(node.children);
+        }
+      }
+    };
+    traverse(hierarchy);
+    return map;
+  }, [hierarchy]);
+
+  const parentIdToChildren = useMemo(() => {
+    const map = new Map<string, GenreNode[]>();
+    const traverse = (nodes: GenreNode[]) => {
+      for (const node of nodes) {
+        if (node.children && node.children.length > 0) {
+          map.set(node.id, node.children);
+          traverse(node.children);
+        }
+      }
+    };
+    traverse(hierarchy);
+    return map;
+  }, [hierarchy]);
+
+  const childIdToParentId = useMemo(() => {
+    const map = new Map<string, string>();
+    const traverse = (nodes: GenreNode[], parentId?: string) => {
+      for (const node of nodes) {
+        if (parentId) {
+          map.set(node.id, parentId);
+        }
+        if (node.children) {
+          traverse(node.children, node.id);
+        }
+      }
+    };
+    traverse(hierarchy);
+    return map;
+  }, [hierarchy]);
+
+  // Search index
   const index = useMemo(() => {
-    return new Fuse(genres, {
+    return new Fuse(allGenres, {
       keys: ["id", "name"],
       threshold: 0.3,
     });
-  }, [genres]);
+  }, [allGenres]);
 
   const [value, setValue] = useState("");
 
   useEffect(() => {
     setSelectedGenres(currentGenres);
-  }, [currentGenres]);
-
-  const handleChange = (genre: string) => {
-    let newSelectedGenres = [...selectedGenres];
-    if (newSelectedGenres.includes(genre)) {
-      newSelectedGenres = newSelectedGenres.filter((g) => g !== genre);
+    // If clearing all genres, reset expanded state to default
+    if (currentGenres.length === 0) {
+      setExpandedParents(new Set());
     } else {
-      newSelectedGenres.push(genre);
+      // Auto-expand only direct parents that have selected children
+      // Preserve existing expanded state and only add new parents
+      setExpandedParents((prev) => {
+        const newExpanded = new Set(prev);
+        for (const genreId of currentGenres) {
+          const parentId = childIdToParentId.get(genreId);
+          if (parentId) {
+            newExpanded.add(parentId);
+          }
+        }
+        return newExpanded;
+      });
+    }
+  }, [currentGenres, childIdToParentId]);
+
+  const handleChange = (genreId: string) => {
+    let newSelectedGenres = [...selectedGenres];
+    const genre = genreIdToGenre.get(genreId);
+    const hasChildren = genre?.children && genre.children.length > 0;
+
+    if (newSelectedGenres.includes(genreId)) {
+      // Unchecking: remove this genre and all its descendants
+      newSelectedGenres = newSelectedGenres.filter((g) => g !== genreId);
+
+      // If this is a parent, remove all its children and descendants
+      if (hasChildren && genre) {
+        const descendantIds = getAllDescendantIds(genre);
+        newSelectedGenres = newSelectedGenres.filter(
+          (g) => !descendantIds.includes(g),
+        );
+      }
+
+      // Unexpand the parent
+      setExpandedParents((prev) => {
+        const newExpanded = new Set(prev);
+        newExpanded.delete(genreId);
+        return newExpanded;
+      });
+    } else {
+      // Checking: add this genre
+      newSelectedGenres.push(genreId);
+      // If this is a parent with children, expand it to show direct children
+      if (hasChildren) {
+        setExpandedParents((prev) => new Set(prev).add(genreId));
+      }
+      // Auto-expand only direct parent if this is a child
+      const parentId = childIdToParentId.get(genreId);
+      if (parentId) {
+        setExpandedParents((prev) => new Set(prev).add(parentId));
+      }
     }
     setSelectedGenres(newSelectedGenres);
 
@@ -93,40 +219,76 @@ export default function GenresFilterClient({
     timeoutRef.current = newTimeout;
   };
 
-  const matchedGenres = useMemo(() => {
+  // Build display list with hierarchy
+  const displayItems = useMemo(() => {
     const q = value.trim();
     const selectedGenresSet = new Set(selectedGenres);
-    const selectedGenresArray = selectedGenres
-      .map((g) => genreIdToGenreName[g])
-      .filter(Boolean) as typeof genres;
+    const result: Array<{ genre: GenreNode; level: number; isChild: boolean }> =
+      [];
 
-    if (!q) {
+    if (q) {
+      // Search mode: show flat results
+      const matches = index.search(q, { limit: size }).map((r) => r.item);
+      const selectedGenresArray = selectedGenres
+        .map((g) => genreIdToGenre.get(g))
+        .filter(Boolean) as GenreNode[];
+
       const items = selectedGenresArray.concat(
-        genres.slice(0, size).filter((g) => !selectedGenresSet.has(g.id)),
+        matches.filter((g) => !selectedGenresSet.has(g.id)),
       );
 
-      return {
-        items,
-        hasMore: genres.length > size,
-      };
+      return items.map((genre) => ({ genre, level: 0, isChild: false }));
     }
 
-    const matches = index.search(q, { limit: size }).map((r) => r.item);
-    const items = selectedGenresArray.concat(
-      matches.filter((g) => !selectedGenresSet.has(g.id)),
-    );
+    // Hierarchy mode: show parents and expanded children (only one level at a time)
+    const traverse = (nodes: GenreNode[], level: number = 0) => {
+      for (const node of nodes) {
+        const hasChildren = node.children && node.children.length > 0;
+        const isExpanded = expandedParents.has(node.id);
 
-    return {
-      items,
-      hasMore: matches.length === size,
+        // Always show the current node
+        result.push({ genre: node, level, isChild: level > 0 });
+
+        // Only show direct children if this node is expanded
+        // Don't recursively expand - each parent must be expanded separately
+        if (hasChildren && isExpanded) {
+          traverse(node.children!, level + 1);
+        }
+      }
     };
-  }, [value, index, size, selectedGenres, genreIdToGenreName, genres]);
 
-  // const genreIdToBooksCount = useMemo(() => {
-  //   return Object.fromEntries(
-  //     genres.map((item) => [item.genreId, item.booksCount]),
-  //   );
-  // }, [genres]);
+    traverse(hierarchy);
+
+    // Limit results
+    return result.slice(0, size);
+  }, [
+    value,
+    index,
+    size,
+    selectedGenres,
+    hierarchy,
+    expandedParents,
+    genreIdToGenre,
+  ]);
+
+  const hasMore = useMemo(() => {
+    if (value.trim()) {
+      const matches = index.search(value.trim(), { limit: size + 1 });
+      return matches.length > size;
+    }
+    // Count all items in hierarchy
+    const countAll = (nodes: GenreNode[]): number => {
+      let count = 0;
+      for (const node of nodes) {
+        count++;
+        if (node.children) {
+          count += countAll(node.children);
+        }
+      }
+      return count;
+    };
+    return countAll(hierarchy) > size;
+  }, [value, index, size, hierarchy]);
 
   return (
     <FilterContainer
@@ -148,27 +310,47 @@ export default function GenresFilterClient({
       />
 
       <FilterContainer.List className="mt-5">
-        {matchedGenres.items.map((genre) => {
-          const booksCount = formatter.number(genre.numberOfBooks);
-
+        {displayItems.map(({ genre, level, isChild }) => {
           const primaryText = genre.name;
-          const title = `${primaryText} (${booksCount})`;
+          const hasBooks = genre.numberOfBooks > 0;
+          const booksCount = hasBooks
+            ? formatter.number(genre.numberOfBooks)
+            : "";
+          const title = hasBooks
+            ? `${primaryText} (${booksCount})`
+            : primaryText;
+
+          // Calculate margin based on level: each level gets ml-2
+          // Level 0: no margin, Level 1: ml-2, Level 2: ml-4, Level 3: ml-6, etc.
+          const marginClassMap: Record<number, string> = {
+            1: "ml-2",
+            2: "ml-4",
+            3: "ml-6",
+            4: "ml-8",
+            5: "ml-10",
+          };
+          const marginClass = marginClassMap[level] || "";
 
           return (
-            <FilterContainer.Checkbox
-              key={genre.id}
-              id={genre.id}
-              title={title}
-              count={booksCount}
-              checked={selectedGenres.includes(genre.id)}
-              onCheckedChange={() => handleChange(genre.id)}
-            >
-              {primaryText}
-            </FilterContainer.Checkbox>
+            <div key={genre.id}>
+              <div className={cn("flex items-center gap-2", marginClass)}>
+                <div className="flex-1">
+                  <FilterContainer.Checkbox
+                    id={genre.id}
+                    title={title}
+                    count={hasBooks ? booksCount : undefined}
+                    checked={selectedGenres.includes(genre.id)}
+                    onCheckedChange={() => handleChange(genre.id)}
+                  >
+                    {primaryText}
+                  </FilterContainer.Checkbox>
+                </div>
+              </div>
+            </div>
           );
         })}
 
-        {matchedGenres.hasMore && (
+        {hasMore && (
           <Button onClick={() => setSize((s) => s + 10)} variant="link">
             {t("common.load-more")}
           </Button>
