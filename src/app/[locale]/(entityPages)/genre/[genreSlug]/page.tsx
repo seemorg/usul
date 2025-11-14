@@ -81,8 +81,8 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
       ...(advancedGenre
         ? { advancedGenres: [advancedGenre.id] }
         : { genres: [genre.id] }),
-      regions,
-      authors,
+      regions: regions,
+      authors: authors,
       yearRange: year,
     },
   });

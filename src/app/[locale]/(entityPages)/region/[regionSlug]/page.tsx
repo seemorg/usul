@@ -69,8 +69,8 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
     filters: {
       regions: [region.slug],
       yearRange: year,
-      genres,
-      authors,
+      advancedGenres: genres,
+      authors: authors,
     },
   });
 
@@ -154,9 +154,10 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
 
               <GenresFilter
                 currentGenres={genres}
-                filters={{
-                  regionId: region.id,
-                }}
+                // TODO: Fix region filter
+                // filters={{
+                //   regionId: region.id,
+                // }}
               />
             </>
           }

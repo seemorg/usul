@@ -12,6 +12,7 @@ import SearchResults from "@/components/search-results";
 import Container from "@/components/ui/container";
 import YearFilterClient from "@/components/year-filter/client";
 import {
+  searchAdvancedGenres,
   searchAuthors,
   searchBooks,
   searchContent,
@@ -73,9 +74,9 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
       ...commonOptions,
       sortBy: sort,
       filters: {
-        genres,
-        authors,
-        regions,
+        advancedGenres: genres,
+        authors: authors,
+        regions: regions,
         yearRange: year,
       },
     });
@@ -92,7 +93,7 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
     });
   }
 
-  if (type === "genres") return searchGenres(q, commonOptions);
+  if (type === "genres") return searchAdvancedGenres(q, commonOptions);
 
   return searchRegions(q, commonOptions);
 }
@@ -260,9 +261,10 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                       {type === "texts" ? (
                         <GenresFilter
                           currentGenres={genres}
-                          filters={{
-                            yearRange: year,
-                          }}
+                          // TODO: Fix year range filter
+                          // filters={{
+                          //   yearRange: year,
+                          // }}
                         />
                       ) : null}
                     </>

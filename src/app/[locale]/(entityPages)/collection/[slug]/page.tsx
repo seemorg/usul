@@ -60,7 +60,7 @@ async function CollectionPage({
     sortBy: sort,
     locale: pathLocale,
     filters: {
-      genres,
+      advancedGenres: genres,
       ids: collection.bookIds,
     },
   });
@@ -106,9 +106,10 @@ async function CollectionPage({
           filters={
             <GenresFilter
               currentGenres={genres}
-              filters={{
-                bookIds: collection.bookIds,
-              }}
+              // TODO: fix collection filter
+              // filters={{
+              //   bookIds: collection.bookIds,
+              // }}
             />
           }
         />

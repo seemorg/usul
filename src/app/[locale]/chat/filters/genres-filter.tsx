@@ -10,7 +10,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import Spinner from "@/components/ui/spinner";
-import { searchGenres } from "@/lib/api/search";
+import { searchAdvancedGenres } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
 import { useChatFilters } from "@/stores/chat-filters";
 import { useQuery } from "@tanstack/react-query";
@@ -73,7 +73,7 @@ export function GenresFilterContent({ onBack }: { onBack?: () => void }) {
     queryFn: ({
       queryKey: [, debouncedValue, { page: currentPage, locale }],
     }) =>
-      searchGenres(debouncedValue, {
+      searchAdvancedGenres(debouncedValue, {
         limit: 10,
         page: currentPage,
         locale,

@@ -1,4 +1,5 @@
 import {
+  searchAdvancedGenres,
   searchAllCollections,
   searchAuthors,
   searchBooks,
@@ -14,7 +15,7 @@ const typeToMethod = {
   all: searchAllCollections,
   texts: searchBooks,
   authors: searchAuthors,
-  genres: searchGenres,
+  genres: searchAdvancedGenres,
   regions: searchRegions,
 } satisfies Record<SearchType, any>;
 
