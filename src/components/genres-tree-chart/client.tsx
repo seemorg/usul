@@ -127,7 +127,11 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
 
     // Initialize zoom transform to match the starting position
     // This prevents the snap on first drag
-    const initialTransform = d3.zoomIdentity.translate(width / 2, 50);
+    // Center the root node vertically (subtract a bit to account for tree growing downward)
+    const initialTransform = d3.zoomIdentity.translate(
+      width / 2,
+      height / 2 - 100,
+    );
 
     svg.call(zoom as any);
     // Set the initial transform state directly to avoid snap on first drag
@@ -345,8 +349,8 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
 
       bookCountTag
         .append("rect")
-        .attr("y", boxHeight / 2 - 20)
-        .attr("height", 18)
+        .attr("y", boxHeight / 2 - 17)
+        .attr("height", 14)
         .attr("rx", 4)
         .attr("fill", "var(--color-primary)")
         .attr("opacity", 0.1)
@@ -371,8 +375,8 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
 
       viewTag
         .append("rect")
-        .attr("y", boxHeight / 2 - 20)
-        .attr("height", 18)
+        .attr("y", boxHeight / 2 - 17)
+        .attr("height", 14)
         .attr("rx", 4)
         .attr("fill", "var(--color-primary)")
         .attr("opacity", 0.1)
@@ -429,10 +433,11 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
       nodeUpdate.each(function (this: SVGGElement, d: any) {
         const nodeGroup = d3.select(this);
         const count = d.data.numberOfBooks ?? 0;
+        const hasBooks = count > 0;
         const bookText = t("x-texts", { count });
         const bookTagWidth = Math.max(50, bookText.length * 6 + 12);
 
-        const hasViewTag = d.data.slug && d.data.slug !== "root";
+        const hasViewTag = hasBooks && d.data.slug && d.data.slug !== "root";
         const viewText = tCommon("view");
         const viewTagWidth = hasViewTag
           ? Math.max(40, viewText.length * 6 + 12)
@@ -442,15 +447,22 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
 
         // Update book count
         const bookCountTag = nodeGroup.select(".book-count-tag");
-        bookCountTag
-          .select("rect")
-          .attr("width", bookTagWidth)
-          .attr("x", -totalWidth / 2);
+        if (hasBooks) {
+          bookCountTag
+            .select("rect")
+            .attr("width", bookTagWidth)
+            .attr("x", -totalWidth / 2)
+            .style("display", "block");
 
-        bookCountTag
-          .select("text")
-          .attr("x", -totalWidth / 2 + bookTagWidth / 2)
-          .text(bookText);
+          bookCountTag
+            .select("text")
+            .attr("x", -totalWidth / 2 + bookTagWidth / 2)
+            .text(bookText)
+            .style("display", "block");
+        } else {
+          bookCountTag.select("rect").style("display", "none");
+          bookCountTag.select("text").style("display", "none");
+        }
 
         // Update view tag
         const viewTag = nodeGroup.select(".view-tag");
