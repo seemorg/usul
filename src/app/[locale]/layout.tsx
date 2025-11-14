@@ -18,13 +18,14 @@ import Providers from "./providers";
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const typedLocale = locale as Locale;
 
   return getMetadata({
     all: true,
-    locale,
+    locale: typedLocale,
   });
 }
 
@@ -35,15 +36,16 @@ export default async function LocaleLayout({
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: Locale }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const typedLocale = locale as Locale;
   const total = await getTotalEntities();
 
   return (
     <html
-      lang={locale}
-      dir={getLocaleDirection(locale)}
+      lang={typedLocale}
+      dir={getLocaleDirection(typedLocale)}
       className="bg-muted-primary"
       suppressHydrationWarning
     >
@@ -54,7 +56,7 @@ export default async function LocaleLayout({
         )}
       >
         <NextIntlClientProvider>
-          <Providers locale={locale} total={total}>
+          <Providers locale={typedLocale} total={total}>
             {children}
 
             <Toaster />
