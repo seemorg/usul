@@ -27,8 +27,12 @@ export const generateMetadata = async ({
   const { genreSlug, locale } = await params;
 
   const pathLocale = await getPathLocale();
-  const genre = await getAdvancedGenre(genreSlug, { locale: pathLocale });
-  // const genre = await getGenre(genreSlug, { locale: pathLocale });
+  // Try advancedGenre first, then fall back to genre
+  const advancedGenre = await getAdvancedGenre(genreSlug, {
+    locale: pathLocale,
+  });
+  const genre =
+    advancedGenre || (await getGenre(genreSlug, { locale: pathLocale }));
   if (!genre) return;
 
   return getMetadata({
@@ -48,8 +52,17 @@ type GenrePageProps = InferPagePropsType<RouteType>;
 async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
   const { genreSlug } = await routeParams;
   const locale = await getPathLocale();
-  const genre = await getAdvancedGenre(genreSlug, { locale });
-  // const genre = await getGenre(genreSlug, { locale });
+  const { fromHomepage } = await searchParams;
+
+  let genre;
+  let advancedGenre;
+
+  if (fromHomepage) {
+    genre = await getGenre(genreSlug, { locale });
+  } else {
+    advancedGenre = await getAdvancedGenre(genreSlug, { locale });
+    genre = advancedGenre || (await getGenre(genreSlug, { locale }));
+  }
 
   if (!genre) {
     notFound();
@@ -65,8 +78,9 @@ async function GenrePage({ routeParams, searchParams }: GenrePageProps) {
     sortBy: sort,
     locale,
     filters: {
-      advancedGenres: [genre.id],
-      // genres: [genre.id],
+      ...(advancedGenre
+        ? { advancedGenres: [advancedGenre.id] }
+        : { genres: [genre.id] }),
       regions,
       authors,
       yearRange: year,

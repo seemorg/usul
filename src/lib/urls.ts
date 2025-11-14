@@ -27,7 +27,13 @@ export const navigation = {
   },
   genres: {
     all: () => "/genres",
-    bySlug: (genreSlug: string) => `/genre/${genreSlug}`,
+    bySlug: (genreSlug: string, params?: { fromHomepage?: boolean }) => {
+      const url = `/genre/${genreSlug}`;
+      if (params?.fromHomepage) {
+        return `${url}?fromHomepage=true`;
+      }
+      return url;
+    },
   },
   collections: {
     all: () => "/collections",

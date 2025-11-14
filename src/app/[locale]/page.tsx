@@ -182,7 +182,9 @@ export default async function HomePage({
             items={(genres || []).map((genre) => (
               <Link
                 key={genre.id}
-                href={navigation.genres.bySlug(genre.slug)}
+                href={navigation.genres.bySlug(genre.slug, {
+                  fromHomepage: true,
+                })}
                 prefetch
               >
                 <CollectionCard

@@ -21,7 +21,7 @@ const fonts = {
 
 // Image generation
 export async function GET(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ slug: string }> },
 ) {
   const { slug } = await params;
@@ -30,8 +30,16 @@ export async function GET(
     notFound();
   }
 
-  const genre = await getAdvancedGenre(slug, { locale: "en" });
-  // const genre = await getGenre(slug, { locale: "en" });
+  const fromHomepage =
+    request.nextUrl.searchParams.get("fromHomepage") === "true";
+
+  let genre;
+  if (fromHomepage) {
+    genre = await getGenre(slug, { locale: "en" });
+  } else {
+    const advancedGenre = await getAdvancedGenre(slug, { locale: "en" });
+    genre = advancedGenre || (await getGenre(slug, { locale: "en" }));
+  }
 
   if (!genre) {
     notFound();
