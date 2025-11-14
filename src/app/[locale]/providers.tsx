@@ -33,6 +33,7 @@ function Providers({
     authors: number;
     regions: number;
     genres: number;
+    advancedGenres: number;
   };
 }) {
   const dir = getLocaleDirection(locale);

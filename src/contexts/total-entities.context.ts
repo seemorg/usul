@@ -5,11 +5,13 @@ const TotalEntitiesContext = createContext<{
   authors: number;
   regions: number;
   genres: number;
+  advancedGenres: number;
 }>({
   books: 0,
   authors: 0,
   regions: 0,
   genres: 0,
+  advancedGenres: 0,
 });
 
 export const TotalEntitiesProvider = TotalEntitiesContext.Provider;
