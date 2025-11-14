@@ -151,8 +151,16 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     function wrapText(textSelection: any, width: number) {
       textSelection.each(function (this: SVGTextElement) {
         const text = d3.select(this);
-        const raw = text.attr("data-label") || text.text();
-        const words = raw.split(/\s+/).reverse();
+        const raw = (text.attr("data-label") || text.text() || "").trim();
+        if (!raw) return;
+
+        // Filter out empty strings from split
+        const words = raw
+          .split(/\s+/)
+          .filter((w: string) => w.length > 0)
+          .reverse();
+        if (words.length === 0) return;
+
         let word;
         let line: string[] = [];
         const lineHeight = 1.2;
@@ -193,6 +201,12 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     ) {
       textSelection.each(function (this: SVGTextElement) {
         const text = d3.select(this);
+        const rawText = (text.attr("data-label") || text.text() || "").trim();
+        if (!rawText) {
+          text.text("");
+          return;
+        }
+
         let fontSize = baseFontSize;
         let fits = false;
 
@@ -309,9 +323,10 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
         .attr("font-family", "var(--font-sans)")
         .attr("x", 0)
         .attr("y", -boxHeight / 2 + boxPaddingY)
-        .attr("data-label", (d: any) => d.data.name)
-        .text((d: any) => d.data.name)
+        .attr("data-label", (d: any) => (d.data.name || "").trim())
+        .text((d: any) => (d.data.name || "").trim())
         .style("pointer-events", "none")
+        .style("unicode-bidi", "plaintext")
         .call((selection: any) =>
           wrapAndResizeText(
             selection,
