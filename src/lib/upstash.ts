@@ -72,5 +72,5 @@ export async function storeDonation(
 // }
 
 export const invalidateMonthlyStats = () => {
-  revalidateTag("monthly-stats");
+  revalidateTag("monthly-stats", {});
 };

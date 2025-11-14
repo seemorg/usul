@@ -11,7 +11,6 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const config: NextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  eslint: { ignoreDuringBuilds: true },
   turbopack: {
   },
   headers: async () => {
