@@ -46,7 +46,7 @@ export const findAllGenresWithBooksCount = cache(
     locale?: PathLocale;
   } = {}) => {
     const result = await apiFetch<ApiGenre[]>({
-      path: "/genre",
+      path: "/advancedGenre",
       params: {
         yearRange,
         authorId,
