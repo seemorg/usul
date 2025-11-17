@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "বিষয়সমূহ",
-        "description": "{genres, number} ঘরানা"
+        "description": "{advancedGenres, number} ঘরানা"
       }
     },
     "about": {

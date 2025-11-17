@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "ژانرها",
-        "description": "{genres, number} ژانرها"
+        "description": "{advancedGenres, number} ژانرها"
       }
     },
     "about": {

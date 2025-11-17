@@ -25,11 +25,6 @@ export default function HomepageNavigationMenu() {
   const total = useTotalEntities();
 
   const renderItem = (item: NavItem, idx: number) => {
-    const translationValues =
-      item.description === "navigation.browse.genres.description"
-        ? { ...total, genres: total.advancedGenres }
-        : total;
-
     if (item.href) {
       return (
         <ListItem
@@ -39,7 +34,7 @@ export default function HomepageNavigationMenu() {
           title={t(`common.${item.title}`)}
           target={item.href.startsWith("mailto:") ? "_blank" : undefined}
         >
-          {t(`common.${item.description}`, translationValues)}
+          {t(`common.${item.description}`, total)}
         </ListItem>
       );
     }
@@ -53,7 +48,7 @@ export default function HomepageNavigationMenu() {
           title={t(`common.${item.title}`)}
           className="cursor-pointer"
         >
-          {t(`common.${item.description}`, translationValues)}
+          {t(`common.${item.description}`, total)}
         </ListItem>
       );
     }
@@ -67,7 +62,7 @@ export default function HomepageNavigationMenu() {
         onClick={() => setIsModalOpen(true)}
         className="cursor-pointer"
       >
-        {t(`common.${item.description}`, translationValues)}
+        {t(`common.${item.description}`, total)}
       </ListItem>
     );
   };

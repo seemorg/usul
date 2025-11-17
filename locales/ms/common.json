@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "Genre",
-        "description": "{genres, number} Genre"
+        "description": "{advancedGenres, number} Genre"
       }
     },
     "about": {

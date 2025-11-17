@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "Noocyo",
-        "description": "{genres, number} Noocyada"
+        "description": "{advancedGenres, number} Noocyada"
       }
     },
     "about": {

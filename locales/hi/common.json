@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "शैली",
-        "description": "{genres, number} शैलियों"
+        "description": "{advancedGenres, number} शैलियों"
       }
     },
     "about": {

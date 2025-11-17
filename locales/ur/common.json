@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "اصناف",
-        "description": "{genres, number} اصناف"
+        "description": "{advancedGenres, number} اصناف"
       }
     },
     "about": {

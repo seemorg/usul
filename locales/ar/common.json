@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "تصانيف",
-        "description": "{genres, number} تصنيفات"
+        "description": "{advancedGenres, number} تصنيفات"
       }
     },
     "about": {

@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "Nau'o'i",
-        "description": "{genres, number} Nau'ikan"
+        "description": "{advancedGenres, number} Nau'ikan"
       }
     },
     "about": {
