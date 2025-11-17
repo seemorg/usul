@@ -539,11 +539,8 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
   useEffect(() => {
     const handleFullscreenChange = () => {
       setIsFullscreen(!!document.fullscreenElement);
-      // Force dimension update after fullscreen change
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
-        setDimensions({ width: rect.width, height: rect.height });
-      }
+      // ResizeObserver will automatically detect the size change
+      // No need to manually update dimensions here
     };
 
     document.addEventListener("fullscreenchange", handleFullscreenChange);

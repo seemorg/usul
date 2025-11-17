@@ -130,10 +130,9 @@ async function CenturyPage({ routeParams, searchParams }: CenturyPageProps) {
 
               <GenresFilter
                 currentGenres={genres}
-                // TODO: Fix year range filter
-                // filters={{
-                //   yearRange: [yearRange.yearFrom, yearRange.yearTo],
-                // }}
+                filters={{
+                  yearRange: [yearRange.yearFrom, yearRange.yearTo],
+                }}
               />
             </>
           }

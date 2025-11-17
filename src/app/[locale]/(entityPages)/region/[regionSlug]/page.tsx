@@ -154,10 +154,9 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
 
               <GenresFilter
                 currentGenres={genres}
-                // TODO: Fix region filter
-                // filters={{
-                //   regionId: region.id,
-                // }}
+                filters={{
+                  regionId: region.id,
+                }}
               />
             </>
           }

@@ -106,10 +106,9 @@ async function CollectionPage({
           filters={
             <GenresFilter
               currentGenres={genres}
-              // TODO: fix collection filter
-              // filters={{
-              //   bookIds: collection.bookIds,
-              // }}
+              filters={{
+                bookIds: collection.bookIds,
+              }}
             />
           }
         />

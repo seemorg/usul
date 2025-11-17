@@ -108,10 +108,9 @@ async function TextsPage({ searchParams }: TextsPageProps) {
 
             <GenresFilter
               currentGenres={genres}
-              // TODO: Fix year range filter
-              // filters={{
-              //   yearRange: year,
-              // }}
+              filters={{
+                yearRange: year,
+              }}
             />
           </>
         }

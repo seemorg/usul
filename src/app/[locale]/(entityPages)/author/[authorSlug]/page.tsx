@@ -234,10 +234,9 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
           filters={
             <GenresFilter
               currentGenres={genres}
-              // TODO: fix author filter
-              // filters={{
-              //   authorId: author.id,
-              // }}
+              filters={{
+                authorId: author.id,
+              }}
             />
           }
         />

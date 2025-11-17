@@ -261,10 +261,9 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                       {type === "texts" ? (
                         <GenresFilter
                           currentGenres={genres}
-                          // TODO: Fix year range filter
-                          // filters={{
-                          //   yearRange: year,
-                          // }}
+                          filters={{
+                            yearRange: year,
+                          }}
                         />
                       ) : null}
                     </>
