@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
+import {
+  ArrowsPointingInIcon,
+  ArrowsPointingOutIcon,
+} from "@heroicons/react/24/outline";
 import * as d3 from "d3";
 import { useTranslations } from "next-intl";
 
@@ -12,12 +17,14 @@ interface GenreTreeChartProps {
 
 export default function GenreTreeChart({ data }: GenreTreeChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
   const expandedNodesRef = useRef<Set<string>>(new Set());
   const previousRootRef = useRef<any>(null);
   const t = useTranslations("entities");
   const tCommon = useTranslations("common");
   const router = useRouter();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -529,9 +536,54 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     }, 0);
   }, [data, t, tCommon, router, dimensions.width, dimensions.height]);
 
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+      // Force dimension update after fullscreen change
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setDimensions({ width: rect.width, height: rect.height });
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = async () => {
+    if (!chartContainerRef.current) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        await chartContainerRef.current.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      console.error("Error toggling fullscreen:", error);
+    }
+  };
+
   return (
-    <div className="dark:bg-card mb-16 flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border bg-gray-50">
+    <div
+      ref={chartContainerRef}
+      className="bg-card relative mb-16 flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border"
+    >
       <div ref={containerRef} className="h-full w-full overflow-hidden" />
+      <Button
+        size="icon"
+        variant="outline"
+        className="absolute right-4 bottom-4 z-10 backdrop-blur-sm"
+        onClick={toggleFullscreen}
+      >
+        {isFullscreen ? (
+          <ArrowsPointingInIcon className="h-5 w-5" />
+        ) : (
+          <ArrowsPointingOutIcon className="h-5 w-5" />
+        )}
+      </Button>
     </div>
   );
 }
