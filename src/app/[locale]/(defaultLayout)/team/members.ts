@@ -9,19 +9,21 @@ import lamine from "~/public/static/team-images/lamine.png";
 import rahma from "~/public/static/team-images/rahma.png";
 import ryad from "~/public/static/team-images/ryad.png";
 import zeki from "~/public/static/team-images/zeki.png";
+import anas from "~/public/static/team-images/anas.png";
+import defaultImage from "~/public/static/team-images/default.png";
 
 export const members = [
   {
-    key: "abdellatif-abdelfattah",
-    roleKey: "ceo",
-    image: abdellatif.src,
-    blurDataUrl: abdellatif.blurDataURL,
+    key: "abtsam-saleh",
+    roleKey: "researcher",
+    image: defaultImage.src,
+    blurDataUrl: defaultImage.blurDataURL,
   },
   {
-    key: "ahmed-riad",
-    roleKey: "founding-engineer",
-    image: ahmedRiad.src,
-    blurDataUrl: ahmedRiad.blurDataURL,
+    key: "anas-hassanien",
+    roleKey: "software-engineer",
+    image: anas.src,
+    blurDataUrl: anas.blurDataURL,
   },
   {
     key: "mohamed-lamine",
@@ -42,22 +44,25 @@ export const members = [
     blurDataUrl: ismail.blurDataURL,
   },
   {
-    key: "rahma-fateen",
-    roleKey: "localization-lead",
-    image: rahma.src,
-    blurDataUrl: rahma.blurDataURL,
-  },
-  {
-    key: "ahmed-khan",
-    roleKey: "researcher",
-    image: ahmedKhan.src,
-    blurDataUrl: ahmedKhan.blurDataURL,
-  },
-  {
     key: "ahmed-aktan",
     roleKey: "digitization-lead",
     image: ahmedAktan.src,
     blurDataUrl: ahmedAktan.blurDataURL,
+  },
+];
+
+export const foundingMembers = [
+  {
+    key: "abdellatif-abdelfattah",
+    roleKey: "founding-ceo",
+    image: abdellatif.src,
+    blurDataUrl: abdellatif.blurDataURL,
+  },
+  {
+    key: "ahmed-riad",
+    roleKey: "founding-engineer",
+    image: ahmedRiad.src,
+    blurDataUrl: ahmedRiad.blurDataURL,
   },
 ];
 

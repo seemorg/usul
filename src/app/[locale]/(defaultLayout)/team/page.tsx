@@ -8,7 +8,7 @@ import { HeartHandshakeIcon, MailIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import MemberCard from "./member-card";
-import { boardMembers, members } from "./members";
+import { boardMembers, foundingMembers, members } from "./members";
 
 export const generateMetadata = async ({
   params,
@@ -60,6 +60,26 @@ export default async function TeamPage() {
             blurDataUrl={member.blurDataUrl}
           />
         ))}
+      </div>
+
+      <div className="mt-14">
+        <h1 className="text-2xl font-bold lg:text-3xl">
+          {t("founders-title")}
+        </h1>
+        <p className="mt-4">{t("founders-subtitle")}</p>
+
+        <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+          {foundingMembers.map((member) => (
+            <MemberCard
+              key={member.key}
+              name={t(`founders.${member.key}.name` as any)}
+              role={t(`roles.${member.roleKey}` as any)}
+              description={t(`founders.${member.key}.description` as any)}
+              image={member.image}
+              blurDataUrl={member.blurDataUrl}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="mt-44 mb-20">

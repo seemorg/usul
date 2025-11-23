@@ -3,32 +3,26 @@
   "subtitle": "The Usul team is made up of engineers, designers, and researchers passionate about building digital tools to transform Islamic research.",
   "become-a-volunteer": "Become a volunteer",
   "contact-us": "Contact Us",
+  "founders-title": "Founding team",
+  "founders-subtitle": "The founding team behind Usul.",
   "board-title": "Meet the board",
   "board-subtitle": "Usul is a project of the Seemore Foundation, whose board comprises distinguished experts in research and technology, each with decades of experience in their respective fields. Together, they oversee the organization and ensure that it advances its mission.",
   "members": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif co-founded Tarteel AI, lead engineering at Quran.com, and worked at Twitter."
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam is a PhD candidate in the Study of Religion with a Data Science secondary field."
+    },
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas is a former software engineer at Simli AI."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
       "description": "Mohamed was the design lead at Thmanyah, he consults with startups to build 0 to 1 products."
     },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed co-founded Remail AI, Betterbook, and was an engineer at Quran.com."
-    },
     "ryad-ramo": {
       "name": "Ryad Ramo",
       "description": "Ryad is a researcher specializing in Islamic knowledge and history. He holds a BA in Islamic Studies and is the founder of Gems of Al-Andalus."
-    },
-    "rahma-fateen": {
-      "name": "Rahma Fateen",
-      "description": "Rahma lead Arabic localization at Tarteel AI. She was a translator at Human Rights Watch."
-    },
-    "ahmed-khan": {
-      "name": "Ahmed Khan",
-      "description": "Ahmed is a student at Zaytuna College. He's the creator of The Creative Minority podcast."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
@@ -37,6 +31,16 @@
     "ismail-safadi": {
       "name": "Ismail Safadi",
       "description": "Ismail specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey."
+    }
+  },
+  "founders": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif co-founded Tarteel AI, lead engineering at Quran.com, and worked at Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed co-founded Remail AI, Betterbook, and was an engineer at Quran.com."
     }
   },
   "board-members": {
@@ -55,10 +59,12 @@
   },
   "roles": {
     "ceo": "CEO",
+    "founding-ceo": "Founding CEO",
     "founding-engineer": "Founding Engineer",
     "researcher": "Researcher",
     "localization-lead": "Localization Lead",
     "digitization-lead": "Digitization Lead",
-    "head-of-design": "Head of Design"
+    "head-of-design": "Head of Design",
+    "software-engineer": "Software Engineer"
   }
 }
