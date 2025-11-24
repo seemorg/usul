@@ -1,3 +1,98 @@
 {
-  "about": "About"
+  "about": "About",
+  "hero": {
+    "title": "The Future of Islamic Research",
+    "imageAlt": "About Usul",
+    "paragraph1": "Usul is an AI-powered platform designed to evolve how Islamic research is done in the twenty-first century, at a time when online research and AI technology are fueling tomorrow's world.\n\nBut the public lacks easy access to a single site of online sources for Islamic knowledge, much less sites that combine windows for Islamic research with the latest AI technology. Moreover, advances in AI that make ChatGPT, Gemini, Claude and other sites so useful for general knowledge do not yet give reliable or credible answers for the universe of Islamic knowledge—where credibility and reliability are at a premium. In large part, the divergence between existing AI models and Islamic research has to do with the lack of sources: the general models were trained on the sources available on the internet—good, bad, and ugly.",
+    "paragraph2": "Unfortunately, most Islamic sources are not available online, and those that are available mix the classical/primary sources that a Muslim scholar would recognize as authoritative (such as Qur'an, hadith, fiqh works, historical chronicles, and court cases from recognized figures) with millions of opinions, analysis, and even false narratives about Islam. This is a problem.\n\nUsul solves the problems of credibility, reliability, and AI-powered access to online sources that—prior to now—have impeded researchers' ability to explore complex questions related to Islamic law, history, and more. Researchers and data engineers joined forces to create an online platform that enables advanced searches on a curated, closed, and credible collection of Islamic sources, powered by AI.",
+    "tryUsul": "Try Usul",
+    "seeHowItWorks": "See How It Works"
+  },
+  "problem": {
+    "tag": "The Problem",
+    "title": "Why Islamic Knowledge Needs Better Tools",
+    "description": "Artificial intelligence is transforming global research, but Islamic scholarship faces a unique challenge:",
+    "challenge": "there is no unified, trustworthy digital space for accessing authentic Islamic sources.",
+    "meanwhile": "Meanwhile, the vast majority of authoritative Islamic sources are either:",
+    "notOnline": "Not online",
+    "scannedPdfs": "Available only as scanned PDFs",
+    "mixedContent": "Or Mixed with unreliable online content"
+  },
+  "story": {
+    "tag": "Our Story",
+    "title": "Our Journey to a Credible Digital Corpus",
+    "description": "How Usul evolved from a simple research tool into a trusted, AI-powered platform for Islamic scholarship.",
+    "roadmap": {
+      "2019": {
+        "tag": "Foundation",
+        "title": "We began as a personal research tool.",
+        "description": "Usul started as an early attempt to explore Islamic texts more quickly and systematically, laying the groundwork for a new digital research approach."
+      },
+      "2020-2022": {
+        "tag": "Prototyping",
+        "title": "We built structured corpora for serious research.",
+        "description": "Internal prototypes introduced Custom Corpora, allowing researchers to organize texts by discipline and create domain-specific research collections."
+      },
+      "2023": {
+        "tag": "AI Integration",
+        "title": "We integrated advanced AI to enhance accuracy.",
+        "description": "Semantic search, contextual retrieval, and tailored AI models elevated how researchers navigate complex scholarly questions."
+      },
+      "2024": {
+        "tag": "Institutional Launch",
+        "title": "We opened Usul to scholars and institutions.",
+        "description": "Our platform gained permissions, collaboration tools, and refined Arabic handling, making Usul viable for teams and academic environments."
+      },
+      "2025": {
+        "tag": "Expansion",
+        "title": "We are evolving into a complete research ecosystem.",
+        "description": "Search, chat, annotations, workspaces, corpus analysis, and cross-text insights are coming together to form a unified environment for Islamic scholarship."
+      }
+    }
+  },
+  "values": {
+    "tag": "Our Core Values",
+    "title": "Usul grew from a simple tool into a trusted, AI-powered research platform.",
+    "credibility": {
+      "title": "Credibility",
+      "description": "Guided by expert scholars who verify, authenticate, and curate thousands of authoritative Islamic texts."
+    },
+    "reliability": {
+      "title": "Reliability",
+      "description": "Our AI engine provides fully cited, accurate results, avoiding hallucinations and ensuring every answer is grounded in trusted sources."
+    },
+    "access": {
+      "title": "Access",
+      "description": "With 15,000+ machine-readable texts, Usul makes Islamic heritage accessible, searchable, and analyzable at scale."
+    }
+  },
+  "different": {
+    "title": "What Makes Usul Different?",
+    "description": "A platform built for Islamic scholarship, not general AI use cases.",
+    "curatedCorpus": "A closed, curated corpus engineered specifically for Islamic studies",
+    "fineTuned": "AI models fine-tuned on classical Arabic and scholarly writing",
+    "citations": "Citations attached to every question and answer",
+    "collaboration": "Collaboration between scholars and engineers at every step"
+  },
+  "operations": {
+    "title": "How We Operate",
+    "description": "Usul is a non-profit organization that works with the agility of a startup.",
+    "supported": "Our operations are supported through:",
+    "donations": "Major and individual donations",
+    "contracts": "Service contracts for customized datasets, search portals, or research environments",
+    "contributions": "Contributions of time, expertise, and scholarly guidance"
+  },
+  "nonprofit": {
+    "title": "Nonprofit Committed",
+    "status": "501(c)(3) pending",
+    "imageAlt": "Nonprofit",
+    "location": "Houston",
+    "locationLabel": "State",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Year Founded",
+    "teamMembers": "54",
+    "teamMembersLabel": "Team Members",
+    "totalFunding": "32M",
+    "totalFundingLabel": "Total Founding"
+  }
 }

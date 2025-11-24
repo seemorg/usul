@@ -172,6 +172,27 @@
   "apply": "Apply",
   "keyword": "Keyword",
   "semantic": "Semantic",
+  "support-us": {
+    "title": "Support Us",
+    "description": "If you would like to support our work through donations, partnerships, or scholarly collaboration, please reach out.",
+    "name": "What is your name?",
+    "namePlaceholder": "Name",
+    "email": "Email",
+    "emailPlaceholder": "Email",
+    "support-type": "Type Of Support",
+    "supportTypes": {
+      "expertise": "Expertise",
+      "time": "Time",
+      "financial": "Financial",
+      "other": "Other"
+    },
+    "sending": "Sending...",
+    "send": "Send",
+    "wantToSupport": "Want to support our work?",
+    "donateNow": "Donate Now",
+    "successMessage": "Support request sent successfully",
+    "errorMessage": "Failed to send support request"
+  },
   "search-filters": {
     "select-operator": "Select operator",
     "enter-value": "Enter value",

@@ -14,7 +14,9 @@ interface SelectableListProps {
 }
 
 export function SelectableList({ items, className }: SelectableListProps) {
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(
+    items[0]?.id ?? null,
+  );
 
   return (
     <ul className={cn("space-y-4", className)}>
