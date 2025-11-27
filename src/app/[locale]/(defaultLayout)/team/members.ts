@@ -14,12 +14,6 @@ import defaultImage from "~/public/static/team-images/default.png";
 
 export const members = [
   {
-    key: "abtsam-saleh",
-    roleKey: "researcher",
-    image: defaultImage.src,
-    blurDataUrl: defaultImage.blurDataURL,
-  },
-  {
     key: "anas-hassanien",
     roleKey: "software-engineer",
     image: anas.src,

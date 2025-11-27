@@ -29,14 +29,13 @@ export const getAdvancedGenreHierarchy = cache(
   } = {}) => {
     return await apiFetch<any[]>({
       path: `/advancedGenre/hierarchy`,
-      // TODO: add filters to the API
-      // params: {
-      //   yearRange,
-      //   authorId,
-      //   bookIds,
-      //   regionId,
-      //   locale,
-      // },
+      params: {
+        yearRange,
+        authorId,
+        bookIds,
+        regionId,
+        locale,
+      },
     });
   },
 );
