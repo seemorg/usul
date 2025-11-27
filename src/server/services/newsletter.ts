@@ -12,10 +12,11 @@ export const addEmailToNewsletter = async (email: string) => {
     throw new Error("Invalid email");
   }
 
-  const isValidEmail = await verifyEmail(result.data);
-  if (!isValidEmail) {
-    throw new Error("Invalid email");
-  }
+  // TODO: fix email verification
+  // const isValidEmail = await verifyEmail(result.data);
+  // if (!isValidEmail) {
+  //   throw new Error("Invalid email");
+  // }
 
   await resend.contacts.create({
     email: result.data,

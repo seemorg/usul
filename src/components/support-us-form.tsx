@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
-import { sendSupportUsRequest } from "@/server/services/supportus";
+import { addEmailToNewsletter } from "@/server/services/newsletter";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -26,16 +26,21 @@ export default function SupportUsForm({ className }: Props) {
   const [email, setEmail] = useState<string>("");
   const [supportType, setSupportType] = useState<string>("time");
 
-  const submitSupportRequest = async (data: {
-    name: string;
-    email: string;
-    supportType: string;
-  }) => {
-    return await sendSupportUsRequest(data.name, data.email, data.supportType);
+  const openEmailPopup = () => {
+    const subject = encodeURIComponent(
+      `Support Request - ${name} - ${supportType}`,
+    );
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\nSupport Type: ${supportType}\n\n`,
+    );
+    window.open(
+      `mailto:help@usul.ai?subject=${subject}&body=${body}`,
+      "_blank",
+    );
   };
 
   const { mutateAsync, isPending, isSuccess, isError } = useMutation({
-    mutationFn: submitSupportRequest,
+    mutationFn: addEmailToNewsletter,
     onSuccess: () => {
       toast.success(t("successMessage"));
     },
@@ -46,12 +51,10 @@ export default function SupportUsForm({ className }: Props) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutateAsync({
-      name: name,
-      email: email,
-      supportType: supportType,
-    });
+    mutateAsync(email);
+    openEmailPopup();
   };
+
   return (
     <form
       className={cn("flex max-w-[400px] flex-col items-center", className)}
