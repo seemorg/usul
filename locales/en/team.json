@@ -8,10 +8,6 @@
   "board-title": "Meet the board",
   "board-subtitle": "Usul is a project of the Seemore Foundation, whose board comprises distinguished experts in research and technology, each with decades of experience in their respective fields. Together, they oversee the organization and ensure that it advances its mission.",
   "members": {
-    "abtsam-saleh": {
-      "name": "Abtsam Saleh",
-      "description": "Abtsam is a PhD candidate in the Study of Religion with a Data Science secondary field."
-    },
     "anas-hassanien": {
       "name": "Anas Hassanien",
       "description": "Anas is a former software engineer at Simli AI."
