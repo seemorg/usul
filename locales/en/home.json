@@ -4,6 +4,8 @@
   "try": "Try: ",
   "sections": {
     "collections": "Collections",
+    "special-collections": "Special Collections",
+    "individual-collections": "Individual Collections",
     "popular-texts": "Popular Texts",
     "islamic-law": "Islamic Law",
     "islamic-history": "Islamic History"

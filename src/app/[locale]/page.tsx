@@ -5,6 +5,10 @@ import BookSearchResult from "@/components/book-search-result";
 import { CollectionCard } from "@/components/ui/collection-card";
 import Container from "@/components/ui/container";
 import {
+  fetchIndividualCollections,
+  fetchSpecialCollections,
+} from "@/data/collections";
+import {
   fetchPopularBooks,
   fetchPopularIslamicHistoryBooks,
   fetchPopularIslamicLawBooks,
@@ -131,11 +135,15 @@ export default async function HomePage({
     popularBooks,
     popularIslamicLawBooks,
     popularIslamicHistoryBooks,
+    specialCollections,
+    individualCollections,
   ] = await Promise.all([
     getHomepageGenres({ locale: pathLocale }),
     fetchPopularBooks(pathLocale),
     fetchPopularIslamicLawBooks(pathLocale),
     fetchPopularIslamicHistoryBooks(pathLocale),
+    fetchSpecialCollections(pathLocale),
+    fetchIndividualCollections(pathLocale),
   ]);
 
   const t = await getTranslations({ locale });
@@ -216,6 +224,49 @@ export default async function HomePage({
 
         <div>
           <HomepageSection
+            isBooks={false}
+            title={t("home.sections.special-collections")}
+            href={navigation.collections.all()}
+            items={(specialCollections || []).map((collection) => (
+              <Link
+                key={collection.id}
+                href={navigation.collections.static.bySlug(collection.slug)}
+                prefetch
+              >
+                <CollectionCard
+                  title={collection.name}
+                  pattern={collection.pattern}
+                  color={collection.color}
+                />
+              </Link>
+            ))}
+          />
+        </div>
+
+        <div>
+          <HomepageSection
+            isBooks={false}
+            title={t("home.sections.individual-collections")}
+            href={navigation.collections.all()}
+            items={(individualCollections || []).map((collection) => (
+              <Link
+                key={collection.id}
+                href={navigation.collections.static.bySlug(collection.slug)}
+                prefetch
+              >
+                <CollectionCard
+                  title={collection.name}
+                  pattern={collection.pattern}
+                  color={collection.color}
+                />
+              </Link>
+            ))}
+          />
+        </div>
+
+        {/* 
+        <div>
+          <HomepageSection
             title={t("home.sections.islamic-law")}
             constraintWidth
             items={popularIslamicLawBooks.map((text) => (
@@ -242,7 +293,8 @@ export default async function HomePage({
               />
             ))}
           />
-        </div>
+        </div> 
+        */}
       </Container>
 
       <Footer />

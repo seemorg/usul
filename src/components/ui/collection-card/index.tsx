@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 
 export interface CollectionCardProps {
   title: string;
-  numberOfBooks: number;
+  numberOfBooks?: number;
   pattern: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   color: "gray" | "red" | "green" | "yellow" | "indigo";
   patternSrcPrefix?: string;
@@ -76,9 +76,11 @@ export const CollectionCard = ({
       <h2 className="line-clamp-2 min-w-0 text-xl font-medium break-words text-white">
         {title}
       </h2>
-      <p className="mt-1.5 text-sm text-white/80">
-        {t("x-texts", { count: numberOfBooks })}
-      </p>
+      {numberOfBooks && (
+        <p className="mt-1.5 text-sm text-white/80">
+          {t("x-texts", { count: numberOfBooks })}
+        </p>
+      )}
     </div>
   );
 };

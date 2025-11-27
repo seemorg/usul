@@ -1,3 +1,5 @@
+import { CollectionCardProps } from "@/components/ui/collection-card";
+
 export type Collection = {
   id: string;
   name: string;
@@ -8,4 +10,12 @@ export type Collection = {
   updatedAt: Date;
   isOwner?: boolean;
   books?: string[];
+};
+
+export type CollectionHomepage = {
+  id: string;
+  slug: string;
+  name: string;
+  pattern: CollectionCardProps["pattern"];
+  color: CollectionCardProps["color"];
 };
