@@ -282,61 +282,6 @@ export default async function AboutPage({
             </div>
           </div>
 
-          {/* Nonprofit Certificate */}
-          <div className="bg-muted rounded-3xl p-8">
-            <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-              <div className="flex items-center gap-4">
-                <Image
-                  src={certificateImage.src}
-                  alt={t("nonprofit.imageAlt")}
-                  width={512}
-                  height={512}
-                  className="size-16 dark:invert"
-                />
-                <div className="flex flex-col">
-                  <h2 className="text-3xl font-bold">{t("nonprofit.title")}</h2>
-                  <p className="text-muted-foreground mt-2">
-                    {t("nonprofit.status")}
-                  </p>
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
-                <div className="flex flex-col">
-                  <h4 className="text-xl font-bold">
-                    {t("nonprofit.location")}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">
-                    {t("nonprofit.locationLabel")}
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="text-xl font-bold">
-                    {t("nonprofit.yearFounded")}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">
-                    {t("nonprofit.yearFoundedLabel")}
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="text-xl font-bold">
-                    {t("nonprofit.teamMembers")}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">
-                    {t("nonprofit.teamMembersLabel")}
-                  </p>
-                </div>
-                <div className="flex flex-col">
-                  <h4 className="text-xl font-bold">
-                    {t("nonprofit.totalFunding")}
-                  </h4>
-                  <p className="text-muted-foreground mt-1">
-                    {t("nonprofit.totalFundingLabel")}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="flex justify-center">
             <SupportUsForm />
           </div>
