@@ -7,11 +7,11 @@ import { useParams, useSearchParams } from "next/navigation";
 import { TreeView } from "@/components/tree-view";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
+import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 import type { UsePageNavigationReturnType } from "../usePageNavigation";
 import { useReaderVirtuoso } from "../context";
 import PageNavigator from "./page-navigator";
-import { useMobileReaderStore } from "@/stores/mobile-reader";
 
 type OpenitiChapter = NonNullable<OpenitiContent["headings"]>[number];
 type TurathChapter = NonNullable<TurathContent["headings"]>[number];

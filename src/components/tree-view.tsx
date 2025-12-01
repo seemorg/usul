@@ -1,13 +1,19 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  Direction as DirectionPrimitive,
-  Accordion as AccordionPrimitive,
-} from "radix-ui";
 import { cva } from "class-variance-authority";
-import { ChevronRightIcon } from "lucide-react";
+import {
+  ChevronRightIcon,
+  ChevronsDownIcon,
+  ChevronsUpIcon,
+} from "lucide-react";
+import { useTranslations } from "next-intl";
+import {
+  Accordion as AccordionPrimitive,
+  Direction as DirectionPrimitive,
+} from "radix-ui";
 
 const treeVariants = cva(
   "group before:bg-accent/70 before:absolute before:-z-10 before:h-[2.8rem] before:w-full before:rounded-lg before:opacity-0 hover:before:opacity-100",
@@ -58,6 +64,7 @@ const TreeView = ({
   dir = "ltr",
   ...props
 }: TreeProps) => {
+  const t = useTranslations();
   const [selectedItemId, setSelectedItemId] = useState<string | undefined>(
     initialSelectedItemId,
   );
@@ -72,7 +79,30 @@ const TreeView = ({
     [onSelectChange],
   );
 
-  const expandedItemIds = useMemo(() => {
+  // Collect all node IDs from the tree
+  const allNodeIds = useMemo(() => {
+    const ids: string[] = [];
+
+    function collectNodeIds(items: TreeDataItem[] | TreeDataItem) {
+      if (Array.isArray(items)) {
+        items.forEach((item) => {
+          if (item.children) {
+            ids.push(item.id);
+            collectNodeIds(item.children);
+          }
+        });
+      } else if (items.children) {
+        ids.push(items.id);
+        collectNodeIds(items.children);
+      }
+    }
+
+    collectNodeIds(data);
+    return ids;
+  }, [data]);
+
+  // Initial expanded items based on selected item
+  const initialExpandedItemIds = useMemo(() => {
     if (!initialSelectedItemId) {
       return [] as string[];
     }
@@ -102,18 +132,72 @@ const TreeView = ({
     return ids;
   }, [data, expandAll, initialSelectedItemId]);
 
+  // Manage expanded state
+  const [expandedItemIds, setExpandedItemIds] = useState<string[]>(
+    initialExpandedItemIds,
+  );
+
+  // Update expanded items when initialSelectedItemId changes
+  useEffect(() => {
+    setExpandedItemIds(initialExpandedItemIds);
+  }, [initialExpandedItemIds]);
+
+  const handleExpandAll = useCallback(() => {
+    setExpandedItemIds(allNodeIds);
+  }, [allNodeIds]);
+
+  const handleCollapseAll = useCallback(() => {
+    setExpandedItemIds([]);
+  }, []);
+
+  const handleNodeExpandChange = useCallback(
+    (nodeId: string, isExpanded: boolean) => {
+      setExpandedItemIds((prev) => {
+        if (isExpanded) {
+          return prev.includes(nodeId) ? prev : [...prev, nodeId];
+        } else {
+          return prev.filter((id) => id !== nodeId);
+        }
+      });
+    },
+    [],
+  );
+
   return (
     <DirectionPrimitive.DirectionProvider dir={dir}>
-      <div className={cn("relative overflow-hidden p-2", className)}>
-        <TreeItem
-          data={data}
-          selectedItemId={selectedItemId}
-          handleSelectChange={handleSelectChange}
-          expandedItemIds={expandedItemIds}
-          defaultLeafIcon={defaultLeafIcon}
-          defaultNodeIcon={defaultNodeIcon}
-          {...props}
-        />
+      <div className={cn("relative overflow-hidden", className)}>
+        <div className="flex items-center justify-start gap-2 p-2 pb-1">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleExpandAll}
+            className="h-8 w-8 p-0"
+            title={t("common.expand-all")}
+          >
+            <ChevronsDownIcon className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCollapseAll}
+            className="h-8 w-8 p-0"
+            title={t("common.collapse-all")}
+          >
+            <ChevronsUpIcon className="h-4 w-4" />
+          </Button>
+        </div>
+        <div className="p-2 pt-1">
+          <TreeItem
+            data={data}
+            selectedItemId={selectedItemId}
+            handleSelectChange={handleSelectChange}
+            expandedItemIds={expandedItemIds}
+            onNodeExpandChange={handleNodeExpandChange}
+            defaultLeafIcon={defaultLeafIcon}
+            defaultNodeIcon={defaultNodeIcon}
+            {...props}
+          />
+        </div>
       </div>
     </DirectionPrimitive.DirectionProvider>
   );
@@ -123,6 +207,7 @@ type TreeItemProps = TreeProps & {
   selectedItemId?: string;
   handleSelectChange: (item: TreeDataItem | undefined) => void;
   expandedItemIds: string[];
+  onNodeExpandChange?: (nodeId: string, isExpanded: boolean) => void;
   defaultNodeIcon?: any;
   defaultLeafIcon?: any;
 };
@@ -133,6 +218,7 @@ const TreeItem = ({
   selectedItemId,
   handleSelectChange,
   expandedItemIds,
+  onNodeExpandChange,
   defaultNodeIcon,
   defaultLeafIcon,
   ...props
@@ -151,6 +237,7 @@ const TreeItem = ({
                 item={item}
                 selectedItemId={selectedItemId}
                 expandedItemIds={expandedItemIds}
+                onNodeExpandChange={onNodeExpandChange}
                 handleSelectChange={handleSelectChange}
                 defaultNodeIcon={defaultNodeIcon}
                 defaultLeafIcon={defaultLeafIcon}
@@ -174,6 +261,7 @@ const TreeNode = ({
   item,
   handleSelectChange,
   expandedItemIds,
+  onNodeExpandChange,
   selectedItemId,
   defaultNodeIcon,
   defaultLeafIcon,
@@ -181,20 +269,31 @@ const TreeNode = ({
   item: TreeDataItem;
   handleSelectChange: (item: TreeDataItem | undefined) => void;
   expandedItemIds: string[];
+  onNodeExpandChange?: (nodeId: string, isExpanded: boolean) => void;
   selectedItemId?: string;
   defaultNodeIcon?: any;
   defaultLeafIcon?: any;
 }) => {
   const dir = DirectionPrimitive.useDirection();
 
-  const [value, setValue] = useState(
-    expandedItemIds.includes(item.id) ? [item.id] : [],
+  const isExpanded = expandedItemIds.includes(item.id);
+  const value = isExpanded ? [item.id] : [];
+
+  const handleValueChange = useCallback(
+    (newValue: string[]) => {
+      const newIsExpanded = newValue.includes(item.id);
+      if (onNodeExpandChange) {
+        onNodeExpandChange(item.id, newIsExpanded);
+      }
+    },
+    [item.id, onNodeExpandChange],
   );
+
   return (
     <AccordionPrimitive.Root
       type="multiple"
       value={value}
-      onValueChange={(s) => setValue(s)}
+      onValueChange={handleValueChange}
     >
       <AccordionPrimitive.Item value={item.id}>
         <AccordionTrigger
@@ -210,7 +309,7 @@ const TreeNode = ({
           <TreeIcon
             item={item}
             isSelected={selectedItemId === item.id}
-            isOpen={value.includes(item.id)}
+            isOpen={isExpanded}
             default={defaultNodeIcon}
           />
           <p className="truncate" title={item.name}>
@@ -241,6 +340,7 @@ const TreeNode = ({
             selectedItemId={selectedItemId}
             handleSelectChange={handleSelectChange}
             expandedItemIds={expandedItemIds}
+            onNodeExpandChange={onNodeExpandChange}
             defaultLeafIcon={defaultLeafIcon}
             defaultNodeIcon={defaultNodeIcon}
           />

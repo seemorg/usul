@@ -242,5 +242,7 @@
         }
       }
     }
-  }
+  },
+  "expand-all": "Expand all",
+  "collapse-all": "Collapse all"
 }
