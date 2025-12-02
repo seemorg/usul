@@ -28,6 +28,7 @@ interface GenresFilterProps {
 const getGenresFilterUrlParams = (
   genres: string[],
   searchParams: ReadonlyURLSearchParams,
+  parentToChildren: Map<string, string[]>,
 ) => {
   const params = new URLSearchParams(searchParams);
 
@@ -36,8 +37,26 @@ const getGenresFilterUrlParams = (
     params.delete("page");
   }
 
-  if (genres.length > 0) {
-    params.set("genres", genres.join(","));
+  // Filter out parents when their children are selected
+  const selectedIds = new Set(genres);
+  const filteredGenres = genres.filter((genreId) => {
+    const children = parentToChildren.get(genreId);
+    if (!children || children.length === 0) {
+      // Not a parent, include it
+      return true;
+    }
+
+    // Check if any child is selected
+    const hasSelectedChild = children.some((childId) =>
+      selectedIds.has(childId),
+    );
+
+    // Exclude parent if it has selected children
+    return !hasSelectedChild;
+  });
+
+  if (filteredGenres.length > 0) {
+    params.set("genres", filteredGenres.join(","));
   } else {
     params.delete("genres");
   }
@@ -119,6 +138,18 @@ export default function GenresFilterClient({
     return map;
   }, [hierarchy]);
 
+  // Map parent ID to children IDs (for filtering)
+  const parentIdToChildrenIds = useMemo(() => {
+    const map = new Map<string, string[]>();
+    parentIdToChildren.forEach((children, parentId) => {
+      map.set(
+        parentId,
+        children.map((child) => child.id),
+      );
+    });
+    return map;
+  }, [parentIdToChildren]);
+
   const childIdToParentId = useMemo(() => {
     const map = new Map<string, string>();
     const traverse = (nodes: GenreNode[], parentId?: string) => {
@@ -192,19 +223,39 @@ export default function GenresFilterClient({
     } else {
       // Checking: add this genre
       newSelectedGenres.push(genreId);
+
+      // If this is a child, remove its parent if it exists in selectedGenres
+      // (we want to show parent with gray checkmark, not as selected)
+      const parentId = childIdToParentId.get(genreId);
+      if (parentId && newSelectedGenres.includes(parentId)) {
+        newSelectedGenres = newSelectedGenres.filter((g) => g !== parentId);
+      }
+
+      // If this is a parent, remove all its children from selectedGenres
+      // (when parent is selected, we don't want children selected)
+      if (hasChildren && genre) {
+        const childrenIds = genre.children!.map((c) => c.id);
+        newSelectedGenres = newSelectedGenres.filter(
+          (g) => !childrenIds.includes(g),
+        );
+      }
+
       // If this is a parent with children, expand it to show direct children
       if (hasChildren) {
         setExpandedParents((prev) => new Set(prev).add(genreId));
       }
       // Auto-expand only direct parent if this is a child
-      const parentId = childIdToParentId.get(genreId);
       if (parentId) {
         setExpandedParents((prev) => new Set(prev).add(parentId));
       }
     }
     setSelectedGenres(newSelectedGenres);
 
-    const params = getGenresFilterUrlParams(newSelectedGenres, searchParams);
+    const params = getGenresFilterUrlParams(
+      newSelectedGenres,
+      searchParams,
+      parentIdToChildrenIds,
+    );
 
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
@@ -298,7 +349,11 @@ export default function GenresFilterClient({
         selectedGenres.length > 0
           ? {
               pathname,
-              query: getGenresFilterUrlParams([], searchParams).toString(),
+              query: getGenresFilterUrlParams(
+                [],
+                searchParams,
+                parentIdToChildrenIds,
+              ).toString(),
             }
           : undefined
       }
@@ -331,6 +386,18 @@ export default function GenresFilterClient({
           };
           const marginClass = marginClassMap[level] || "";
 
+          // Check if this is a parent with selected children (for gray checkmark)
+          const children = parentIdToChildren.get(genre.id);
+          const selectedIdsSet = new Set(selectedGenres);
+          const isParentWithSelectedChildren =
+            children &&
+            children.length > 0 &&
+            children.some((child) => selectedIdsSet.has(child.id)) &&
+            !selectedIdsSet.has(genre.id);
+
+          const isSelected = selectedGenres.includes(genre.id);
+          const showGrayCheckmark = isParentWithSelectedChildren;
+
           return (
             <div key={genre.id}>
               <div className={cn("flex items-center gap-2", marginClass)}>
@@ -339,8 +406,13 @@ export default function GenresFilterClient({
                     id={genre.id}
                     title={title}
                     count={hasBooks ? booksCount : undefined}
-                    checked={selectedGenres.includes(genre.id)}
+                    checked={isSelected || showGrayCheckmark}
                     onCheckedChange={() => handleChange(genre.id)}
+                    className={
+                      showGrayCheckmark
+                        ? "h-4 w-4 data-[state=checked]:!bg-gray-400 data-[state=checked]:!text-white"
+                        : "h-4 w-4"
+                    }
                   >
                     {primaryText}
                   </FilterContainer.Checkbox>
