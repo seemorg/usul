@@ -172,6 +172,27 @@
   "apply": "Codso",
   "keyword": "Erayga muhiimka ah",
   "semantic": "Macno",
+  "support-us": {
+    "title": "I Taageer Na",
+    "description": "Haddii aad rabto inaad taageerto shaqadeena iyada oo loo marayo deeqo, iskaashi, ama wadashaqeyn cilmiyeed, fadlan nala soo xiriir.",
+    "name": "Waa maxay magacaaga?",
+    "namePlaceholder": "Magac",
+    "email": "Email",
+    "emailPlaceholder": "Email",
+    "support-type": "Nooca Taageerada",
+    "supportTypes": {
+      "expertise": "Khibrad",
+      "time": "Waqti",
+      "financial": "Maalgelin",
+      "other": "Kale"
+    },
+    "sending": "Diraya...",
+    "send": "Dir",
+    "wantToSupport": "Ma rabtaa inaad taageerto shaqadeena?",
+    "donateNow": "Ku Deeq Hadda",
+    "successMessage": "Codsiga taageerada si guul leh ayaa loo diray",
+    "errorMessage": "Ku guuldareystay in la diro codsiga taageerada"
+  },
   "search-filters": {
     "select-operator": "Dooro operator",
     "enter-value": "Geli qiimaha",

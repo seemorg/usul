@@ -1,3 +1,98 @@
 {
-  "about": "À propos"
+  "about": "À propos de",
+  "hero": {
+    "title": "L’avenir de la recherche islamique",
+    "imageAlt": "À propos d'Usul",
+    "paragraph1": "Usul est une plateforme alimentée par l’IA, conçue pour faire évoluer la manière dont la recherche islamique est menée au vingt-et-unième siècle, à une époque où la recherche en ligne et la technologie de l’IA façonnent le monde de demain.\n\nMais le public n’a pas un accès facile à un site unique regroupant des sources en ligne de connaissances islamiques, encore moins à des sites qui combinent des fenêtres de recherche islamique avec les dernières technologies d’IA. De plus, les avancées en IA qui rendent ChatGPT, Gemini, Claude et d’autres plateformes si utiles pour la connaissance générale ne fournissent pas encore de réponses fiables ou crédibles pour l’univers du savoir islamique—où la crédibilité et la fiabilité sont essentielles. En grande partie, la divergence entre les modèles d’IA existants et la recherche islamique est liée au manque de sources : les modèles généraux ont été entraînés sur les sources disponibles sur Internet—le bon, le mauvais et le pire.",
+    "paragraph2": "Malheureusement, la plupart des sources islamiques ne sont pas disponibles en ligne, et ceux qui sont disponibles mélangent les sources classiques/primaires qu'un érudit musulman reconnaîtrait comme faisant autorité (comme le Coran, Hadith, fiqh travaille, chroniques historiques et procès de personnalités reconnues) avec des millions d'opinions, d'analyses et même de fausses récits sur l'islam. C'est un problème.\n\nUsul résout les problèmes de crédibilité, de fiabilité, et un accès à des sources en ligne qui ont empêché les chercheurs d'explorer des questions complexes liées au droit islamique, à l'histoire et à bien d'autres choses encore. Les chercheurs et les ingénieurs de données ont uni leurs forces pour créer une plateforme en ligne permettant des recherches avancées sur un organisé, fermé, et une collection crédible de sources islamiques, alimentée par l'AI.",
+    "tryUsul": "Essayer Usul",
+    "seeHowItWorks": "Voir comment ça marche"
+  },
+  "problem": {
+    "tag": "Le problème",
+    "title": "Pourquoi la connaissance islamique a besoin de meilleurs outils",
+    "description": "L'intelligence artificielle est en train de transformer la recherche mondiale, mais les bourses islamiques sont confrontées à un défi unique :",
+    "challenge": "il n'y a pas d'espace numérique unifié et digne de confiance pour accéder à des sources islamiques authentiques.",
+    "meanwhile": "Pendant ce temps, la grande majorité des sources islamiques faisant autorité sont soit :",
+    "notOnline": "Non en ligne",
+    "scannedPdfs": "Disponible uniquement en PDF numérisé",
+    "mixedContent": "Ou Mixte avec un contenu en ligne peu fiable"
+  },
+  "story": {
+    "tag": "Notre histoire",
+    "title": "Notre voyage vers un corpus numérique crédible",
+    "description": "La manière dont Usul a évolué d’un simple outil de recherche vers une plateforme de confiance alimentée par l’IA pour l’érudition islamique.",
+    "roadmap": {
+      "2019": {
+        "tag": "Fondation",
+        "title": "Nous avons commencé comme un outil de recherche personnel.",
+        "description": "Usul a commencé comme une première tentative d'explorer les textes islamiques plus rapidement et de manière plus systématique, jetant les bases d'une nouvelle approche de la recherche numérique."
+      },
+      "2020-2022": {
+        "tag": "Prototypage",
+        "title": "Nous avons construit des corps structurés pour des recherches sérieuses.",
+        "description": "Les prototypes internes introduisent Custom Corpora, permettant aux chercheurs d'organiser les textes par discipline et de créer des collections de recherche spécifiques à chaque domaine."
+      },
+      "2023": {
+        "tag": "Intégration IA",
+        "title": "Nous avons intégré une IA avancée pour améliorer la précision.",
+        "description": "La recherche sémantique, la recherche contextuelle et les modèles d’IA sur mesure ont permis aux chercheurs de naviguer dans des questions scientifiques complexes."
+      },
+      "2024": {
+        "tag": "Lancement institutionnel",
+        "title": "Nous avons ouvert Usul aux savants et aux institutions.",
+        "description": "Notre plateforme a obtenu des autorisations, des outils de collaboration et une manipulation arabe raffinée, rendant Usul viable pour les équipes et les environnements académiques."
+      },
+      "2025": {
+        "tag": "Expansion",
+        "title": "Nous évoluons vers un écosystème de recherche complet.",
+        "description": "La recherche, le chat, les annotations, les espaces de travail, l'analyse du corpus et les connaissances en texte croisé se rassemblent pour former un environnement unifié pour la recherche islamique."
+      }
+    }
+  },
+  "values": {
+    "tag": "Nos valeurs de base",
+    "title": "Usul est passé d'un outil simple à une plateforme de recherche basée sur l'IA de confiance.",
+    "credibility": {
+      "title": "La crédibilité",
+      "description": "Guidés par des spécialistes qui vérifient, authentifient et supervisent des milliers de textes islamiques dignes de foi."
+    },
+    "reliability": {
+      "title": "Fiabilité",
+      "description": "Notre moteur IA fournit des résultats complets et précis, en évitant les hallucinations et en veillant à ce que chaque réponse soit basée sur des sources fiables."
+    },
+    "access": {
+      "title": "Accès",
+      "description": "Avec plus de 15 000 textes lisibles par machines, Usul rend le patrimoine islamique accessible, consultable et analysable à grande échelle."
+    }
+  },
+  "different": {
+    "title": "Qu'est-ce qui rend Usul différent ?",
+    "description": "Une plate-forme construite pour des études islamiques, et non des cas d'utilisation généralisée d'Amnesty International.",
+    "curatedCorpus": "Un corpus fermé et supervisé spécialement conçu pour des études islamiques",
+    "fineTuned": "Modèles AI affinés sur l'écriture arabe classique et savante",
+    "citations": "Citations jointes à chaque question et réponse",
+    "collaboration": "Collaboration entre chercheurs et ingénieurs à chaque étape"
+  },
+  "operations": {
+    "title": "Comment nous opérons",
+    "description": "Usul est une organisation à but non lucratif qui travaille avec l'agilité d'une startup.",
+    "supported": "Nos opérations sont prises en charge par :",
+    "donations": "Dons importants et individuels",
+    "contracts": "Contrats de service pour des jeux de données personnalisés, des portails de recherche ou des environnements de recherche",
+    "contributions": "Contributions du temps, de l'expertise et des conseils académiques"
+  },
+  "nonprofit": {
+    "title": "Organisé à but non lucratif",
+    "status": "501(c)(3) en attente",
+    "imageAlt": "Sans but lucratif",
+    "location": "Houston",
+    "locationLabel": "État",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Année Fondée",
+    "teamMembers": "54",
+    "teamMembersLabel": "Membres de l'équipe",
+    "totalFunding": "32 Mo",
+    "totalFundingLabel": "Total des fondations"
+  }
 }

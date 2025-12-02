@@ -172,6 +172,27 @@
   "apply": "Aplicar",
   "keyword": "Palabra clave",
   "semantic": "Semántico",
+  "support-us": {
+    "title": "Apóyanos",
+    "description": "Si desea apoyar nuestro trabajo a través de donaciones, asociaciones o colaboración académica, por favor contáctenos.",
+    "name": "¿Cuál es tu nombre?",
+    "namePlaceholder": "Nombre",
+    "email": "Correo electrónico",
+    "emailPlaceholder": "Correo electrónico",
+    "support-type": "Tipo de Apoyo",
+    "supportTypes": {
+      "expertise": "Peritaje",
+      "time": "Tiempo",
+      "financial": "Financiero",
+      "other": "Otro"
+    },
+    "sending": "Enviando...",
+    "send": "Enviar",
+    "wantToSupport": "¿Quieres apoyar nuestro trabajo?",
+    "donateNow": "Dona Ahora",
+    "successMessage": "Solicitud de apoyo enviada con éxito",
+    "errorMessage": "Error al enviar la solicitud de apoyo"
+  },
   "search-filters": {
     "select-operator": "Seleccionar operador",
     "enter-value": "Ingresar valor",

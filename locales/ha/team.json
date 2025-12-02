@@ -3,32 +3,22 @@
   "subtitle": "Ƙungiyar Usul tana ƙunshe da injiniyoyi, masu zane, da masu bincike waɗanda ke da sha'awar gina kayan aikin dijital don sauya binciken Musulunci.",
   "become-a-volunteer": "Kasance mai sa kai",
   "contact-us": "Tuntuɓe Mu",
+  "founders-title": "Ƙungiyar kafawa",
+  "founders-subtitle": "Ƙungiyar da ta kafa Usul.",
   "board-title": "Sadu da hukumar",
   "board-subtitle": "Usul aikin Seemore Foundation ne, wanda kwamitinsa ya ƙunshi kwararrun masana bincike da fasaha, kowanne yana da shekaru masu yawa na ƙwarewa a fannin su. Tare, suna sa ido kan ƙungiyar kuma suna tabbatar da cewa tana cimma manufarta.",
   "members": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas tsohon injiniya ne a Simli AI."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
       "description": "Mohamed ya kasance jagoran zane a Thmanyah, yana ba da shawara ga farawa don ƙirƙirar samfura daga 0 zuwa 1."
     },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma ya kasance injiniya a Quran.com."
-    },
     "ryad-ramo": {
       "name": "Ryad Ramo",
       "description": "Ryad manazarta ne wanda ya ƙware a fannin ilimin Musulunci da tarihin Musulunci. Yana da digiri na farko a fannin Nazarin Musulunci kuma shi ne wanda ya kafa Gems of Al-Andalus."
-    },
-    "rahma-fateen": {
-      "name": "Rahma Fateen",
-      "description": "Rahma ta jagoranci aikin lokalisar da harshen larabci a Tarteel AI. Ta kasance mai fassara a Human Rights Watch."
-    },
-    "ahmed-khan": {
-      "name": "Ahmed Khan",
-      "description": "Ahmed dalibi ne a Kwalejin Zaytuna. Shi ne mahalicci podcast na The Creative Minority."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
@@ -37,6 +27,16 @@
     "ismail-safadi": {
       "name": "Ismail Safadi",
       "description": "Ismail ƙwararre ne a fannin fiqhun Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya."
+    }
+  },
+  "founders": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma injiniya ne a Quran.com."
     }
   },
   "board-members": {
@@ -55,10 +55,12 @@
   },
   "roles": {
     "ceo": "Shugaba",
+    "founding-ceo": "Shugaban kamfani na kafawa",
     "founding-engineer": "Injiniya Mai Kafa Kamfanin",
     "researcher": "Masu Bincike",
     "localization-lead": "Jagoran Lokaliyasa",
     "digitization-lead": "Jagoran Digitization",
-    "head-of-design": "Shugaban Tsara"
+    "head-of-design": "Shugaban Tsara",
+    "software-engineer": "Injiniyan Software"
   }
 }

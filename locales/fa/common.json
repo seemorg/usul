@@ -172,6 +172,27 @@
   "apply": "اعمال",
   "keyword": "کلمه کلیدی",
   "semantic": "معنایی",
+  "support-us": {
+    "title": "حمایت از ما",
+    "description": "اگر مایل به حمایت از کار ما از طریق کمک مالی، مشارکت یا همکاری علمی هستید، لطفاً با ما تماس بگیرید.",
+    "name": "نام شما چیست؟",
+    "namePlaceholder": "نام",
+    "email": "ایمیل",
+    "emailPlaceholder": "ایمیل",
+    "support-type": "نوع حمایت",
+    "supportTypes": {
+      "expertise": "تخصص",
+      "time": "زمان",
+      "financial": "مالی",
+      "other": "دیگر"
+    },
+    "sending": "در حال ارسال...",
+    "send": "ارسال",
+    "wantToSupport": "می‌خواهید از کار ما حمایت کنید؟",
+    "donateNow": "همین حالا اهدا کنید",
+    "successMessage": "درخواست حمایت با موفقیت ارسال شد",
+    "errorMessage": "ارسال درخواست حمایت شکست خورد"
+  },
   "search-filters": {
     "select-operator": "انتخاب اپراتور",
     "enter-value": "وارد کردن مقدار",

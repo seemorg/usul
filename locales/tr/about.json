@@ -1,3 +1,98 @@
 {
-  "about": "Hakkında"
+  "about": "Hakkında",
+  "hero": {
+    "title": "İslam Araştırmalarının Geleceği",
+    "imageAlt": "Usul Hakkında",
+    "paragraph1": "Usul, yirmi birinci yüzyılda İslam araştırmalarının nasıl yapılacağını geliştirmek için tasarlanmış, yapay zeka destekli bir platformdur. Çevrimiçi araştırmalar ve yapay zeka teknolojisi yarının dünyasına yön verirken, halkın genel olarak İslami bilgiye erişim sağlayacak çevrimiçi kaynak sitelerine erişimi yoktur. Ayrıca, ChatGPT, Gemini, Claude ve diğer siteleri genel bilgi için bu kadar faydalı kılan yapay zekadaki ilerlemeler, İslam bilgisi evreni için henüz güvenilir veya inandırıcı yanıtlar vermemektedir—güvenilirlik ve itibarın ön planda olduğu bir alandır. Büyük ölçüde, mevcut yapay zeka modelleri ile İslam araştırmaları arasındaki farklılık, kaynak eksikliğinden kaynaklanmaktadır: genel modeller, internette bulunan iyi, kötü ve çirkin kaynaklarla eğitilmiştir.",
+    "paragraph2": "Ne yazık ki, çoğu İslami kaynak çevrimiçi olarak mevcut değil ve mevcut olanlar ise bir Müslüman âlim tarafından otoriter olarak tanınacak klasik/birincil kaynakları (Kur'an, hadis, fıkıh eserleri, tarihi kronikler ve tanınmış kişilerin mahkeme davaları gibi) milyonlarca görüş, analiz ve hatta İslam hakkında yanlış anlatımlarla karıştırır. Bu bir sorundur.\n\nUsul, şimdiye kadar araştırmacıların İslam hukuku, tarihi ve daha fazlasıyla ilgili karmaşık soruları keşfetme yeteneğini engelleyen çevrimiçi kaynaklara güvenilirlik, itibar ve yapay zeka destekli erişim sorunlarını çözmektedir. Araştırmacılar ve veri mühendisleri, yapay zeka tarafından desteklenen, seçilmiş, kapalı ve güvenilir bir İslam kaynakları koleksiyonu üzerinde gelişmiş aramalar yapmayı sağlayan çevrimiçi bir platform oluşturmak için güçlerini birleştirdiler.",
+    "tryUsul": "Usul'u Deneyin",
+    "seeHowItWorks": "Nasıl Çalıştığını Görün"
+  },
+  "problem": {
+    "tag": "Problem",
+    "title": "Neden İslami Bilgi Daha İyi Araçlara İhtiyaç Duyuyor?",
+    "description": "Yapay zeka küresel araştırmaları dönüştürüyor, ancak İslam bilimi benzersiz bir zorlukla karşı karşıya:",
+    "challenge": "Ortak, güvenilir bir dijital alanın bulunmaması, otantik İslami kaynaklara erişim sağlamayı zorlaştırmaktadır.",
+    "meanwhile": "Bu arada, yetkili İslami kaynakların büyük çoğunluğu ya:",
+    "notOnline": "Çevrimdışı",
+    "scannedPdfs": "Yalnızca taranmış PDF olarak mevcut",
+    "mixedContent": "Veya güvenilmez çevrimiçi içerikle karıştırılmış"
+  },
+  "story": {
+    "tag": "Hikayemiz",
+    "title": "Güvenilir Dijital Korpus Yolculuğumuz",
+    "description": "Usul'un basit bir araştırma aracından güvenilir, yapay zeka destekli bir İslam bilimi platformuna nasıl evrildiği.",
+    "roadmap": {
+      "2019": {
+        "tag": "Temel",
+        "title": "Kişisel bir araştırma aracı olarak başladık.",
+        "description": "Usul, İslami metinleri daha hızlı ve sistematik olarak keşfetmeye yönelik erken bir girişim olarak başladı ve yeni bir dijital araştırma yaklaşımının temelini attı."
+      },
+      "2020-2022": {
+        "tag": "Prototip Oluşturma",
+        "title": "Ciddi araştırmalar için yapılandırılmış korpuslar oluşturduk.",
+        "description": "İç prototipler, araştırmacıların metinleri disiplinlere göre organize etmelerine ve alan özelindeki araştırma koleksiyonlarını oluşturmalarına olanak tanıyan Özel Korpuslar tanıttı."
+      },
+      "2023": {
+        "tag": "Yapay Zeka Entegrasyonu",
+        "title": "Doğruluğu artırmak için gelişmiş yapay zeka entegre ettik.",
+        "description": "Anlamsal arama, bağlamsal erişim ve özelleştirilmiş yapay zeka modelleri, araştırmacıların karmaşık bilimsel soruları ele alış biçimlerini geliştirdi."
+      },
+      "2024": {
+        "tag": "Kurumsal Başlatma",
+        "title": "Usul'u akademisyenlere ve kurumlara açtık.",
+        "description": "Platformumuz, izinler, işbirliği araçları ve geliştirilmiş Arapça işleme özellikleri kazanarak, Usul'u ekipler ve akademik ortamlar için uygun hale getirdi."
+      },
+      "2025": {
+        "tag": "Genişleme",
+        "title": "Tam bir araştırma ekosistemine dönüşüyoruz.",
+        "description": "Arama, sohbet, açıklamalar, çalışma alanları, korpus analizi ve metinler arası içgörüler, İslam bilimi için birleşik bir ortam oluşturmak üzere bir araya geliyor."
+      }
+    }
+  },
+  "values": {
+    "tag": "Temel Değerlerimiz",
+    "title": "Usul, basit bir araçtan güvenilir, yapay zeka destekli bir araştırma platformuna dönüştü.",
+    "credibility": {
+      "title": "Güvenilirlik",
+      "description": "Binlerce otoriter İslami metni doğrulayan, kimliğini doğrulayan ve düzenleyen uzman akademisyenler tarafından yönetilmektedir."
+    },
+    "reliability": {
+      "title": "Dayanıklılık",
+      "description": "Yapay zeka motorumuz, tam kaynaklar verilmiş, doğru sonuçlar sağlar, hayal ürünü bilgilerden kaçınır ve her cevabın güvenilir kaynaklara dayandığını garanti eder."
+    },
+    "access": {
+      "title": "Erişim",
+      "description": "15.000'den fazla makine okuyabilir metinle, Usul İslam mirasını erişilebilir, aranabilir ve analiz edilebilir hale getiriyor."
+    }
+  },
+  "different": {
+    "title": "Usul'u Farklı Kılan Nedir?",
+    "description": "İslam bilimi için kurulmuş bir platform, genel yapay zeka kullanımı için değil.",
+    "curatedCorpus": "Özellikle İslami çalışmalar için tasarlanmış, kapalı ve düzenlenmiş bir korpus",
+    "fineTuned": "Klasik Arapça ve akademik yazılar üzerine ince ayar yapılmış yapay zeka modelleri",
+    "citations": "Her soru ve cevaba eklenmiş alıntılar",
+    "collaboration": "Her adımda akademisyenler ve mühendisler arasındaki işbirliği"
+  },
+  "operations": {
+    "title": "Nasıl Faaliyet Gösteriyoruz",
+    "description": "Usul, bir startup hızında çalışan, kâr amacı gütmeyen bir kuruluştur.",
+    "supported": "Faaliyetlerimiz şu yollarla desteklenmektedir:",
+    "donations": "Büyük ve bireysel bağışlar",
+    "contracts": "Özelleştirilmiş veri setleri, arama portalları veya araştırma ortamları için hizmet sözleşmeleri",
+    "contributions": "Zaman, uzmanlık ve akademik rehber katkıları"
+  },
+  "nonprofit": {
+    "title": "Kâr Amacı Gütmeyen Taahhüt",
+    "status": "501(c)(3) başvurusu beklemede",
+    "imageAlt": "Kâr Amacı Gütmeyen",
+    "location": "Houston",
+    "locationLabel": "Eyalet",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Kuruluş Yılı",
+    "teamMembers": "54",
+    "teamMembersLabel": "Ekip Üyeleri",
+    "totalFunding": "32M",
+    "totalFundingLabel": "Toplam Fonlama"
+  }
 }

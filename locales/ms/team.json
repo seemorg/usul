@@ -3,32 +3,22 @@
   "subtitle": "Pasukan Usul terdiri daripada jurutera, pereka bentuk, dan penyelidik yang bersemangat dalam membina alat digital untuk mengubah penyelidikan Islam.",
   "become-a-volunteer": "Jadi sukarelawan",
   "contact-us": "Hubungi Kami",
+  "founders-title": "Pasukan pengasas",
+  "founders-subtitle": "Pasukan pengasas di sebalik Usul.",
   "board-title": "Bertemu lembaga",
   "board-subtitle": "Usul ialah projek di bawah Seemore Foundation, yang lembaga pengarahnya terdiri daripada pakar terkemuka dalam bidang penyelidikan dan teknologi, masing-masing dengan pengalaman berdekad-dekad dalam bidang mereka. Bersama-sama, mereka memantau organisasi dan memastikan misinya terus maju.",
   "members": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif mengasaskan bersama Tarteel AI, memimpin kejuruteraan di Quran.com, dan bekerja di Twitter."
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas ialah bekas jurutera perisian di Simli AI."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
       "description": "Mohamed adalah ketua reka bentuk di Thmanyah, dia memberi nasihat kepada syarikat permulaan untuk membina produk dari 0 ke 1."
     },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed mengasaskan bersama Remail AI, Betterbook, dan pernah menjadi jurutera di Quran.com."
-    },
     "ryad-ramo": {
       "name": "Ryad Ramo",
       "description": "Ryad ialah penyelidik yang mengkhususkan diri dalam pengetahuan dan sejarah Islam. Beliau memiliki BA dalam Pengajian Islam dan merupakan pengasas kepada Gems of Al-Andalus."
-    },
-    "rahma-fateen": {
-      "name": "Rahma Fateen",
-      "description": "Rahma memimpin pemperibumian Bahasa Arab di Tarteel AI. Beliau pernah menjadi penterjemah di Human Rights Watch."
-    },
-    "ahmed-khan": {
-      "name": "Ahmed Khan",
-      "description": "Ahmed adalah pelajar di Kolej Zaytuna. Dia adalah pencipta podcast The Creative Minority."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
@@ -37,6 +27,16 @@
     "ismail-safadi": {
       "name": "Ismail Safadi",
       "description": "Ismail pakar dalam fiqh Hanafi. Beliau belajar di Universiti Jordan dan di Turki."
+    }
+  },
+  "founders": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif mengasaskan bersama Tarteel AI, mengetuai kejuruteraan di Quran.com, dan pernah bekerja di Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed mengasaskan bersama Remail AI, Betterbook, dan merupakan seorang jurutera di Quran.com."
     }
   },
   "board-members": {
@@ -55,10 +55,12 @@
   },
   "roles": {
     "ceo": "CEO",
+    "founding-ceo": "CEO Pengasas",
     "founding-engineer": "Jurutera Pengasas",
     "researcher": "Penyelidik",
     "localization-lead": "Ketua Lokaliti",
     "digitization-lead": "Ketua Digitalisasi",
-    "head-of-design": "Ketua Reka Bentuk"
+    "head-of-design": "Ketua Reka Bentuk",
+    "software-engineer": "Jurutera Perisian"
   }
 }

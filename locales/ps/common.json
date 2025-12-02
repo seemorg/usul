@@ -172,6 +172,27 @@
   "apply": "غوښتنه وکړئ",
   "keyword": "کلیدي ټکی",
   "semantic": "سمانتیک",
+  "support-us": {
+    "title": "موږ سره مرسته وکړئ",
+    "description": "که تاسو زموږ له کار سره د مرستې لپاره مرستې، شریکانو، یا علمي ګډکار له لارې ملاتړ کول غواړئ، مهرباني وکړئ اړیکه ونیسئ.",
+    "name": "ستاسو نوم څه دی؟",
+    "namePlaceholder": "نوم",
+    "email": "بریښنالیک",
+    "emailPlaceholder": "بریښنالیک",
+    "support-type": "د ملاتړ ډول",
+    "supportTypes": {
+      "expertise": "تخصص",
+      "time": "وخت",
+      "financial": "مالی",
+      "other": "نور"
+    },
+    "sending": "لیږدول کیږي...",
+    "send": "ولیږئ",
+    "wantToSupport": "غواړئ زموږ کار ملاتړ وکړئ؟",
+    "donateNow": "اوس مرسته وکړئ",
+    "successMessage": "د ملاتړ غوښتنه په بریالیتوب سره ولیږل شوه",
+    "errorMessage": "د ملاتړ غوښتنه لیږل ناکام شوه"
+  },
   "search-filters": {
     "select-operator": "آپریټر غوره کړئ",
     "enter-value": "ارزښت داخل کړئ",

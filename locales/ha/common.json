@@ -172,6 +172,27 @@
   "apply": "Aiwatar",
   "keyword": "Kalmar",
   "semantic": "Ma'ana",
+  "support-us": {
+    "title": "Tallafa Mana",
+    "description": "Idan kuna son tallafawa aikimmu ta hanyar ba da gudummawa, abota, ko haɗin gwiwar kimiyya, da fatan za ku tuntube mu.",
+    "name": "Menene sunanka?",
+    "namePlaceholder": "Suna",
+    "email": "Imel",
+    "emailPlaceholder": "Imel",
+    "support-type": "Iri na Tallafi",
+    "supportTypes": {
+      "expertise": "Gwaninta",
+      "time": "Lokaci",
+      "financial": "Kuɗi",
+      "other": "Sauran"
+    },
+    "sending": "Aika...",
+    "send": "Aika",
+    "wantToSupport": "Kuna son tallafawa aikinmu?",
+    "donateNow": "Ba da Gudummawa Yanzu",
+    "successMessage": "An Samu Nasarar Aika Buƙatar Tallafi",
+    "errorMessage": "Gaza Aika Buƙatar Tallafi"
+  },
   "search-filters": {
     "select-operator": "Zaɓi mai sarrafa aiki",
     "enter-value": "Shigar da ƙima",

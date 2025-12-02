@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "शैली",
-        "description": "{advancedGenres, number} शैलियों"
+        "description": "{advancedGenres, number} शैलियां"
       }
     },
     "about": {
@@ -172,6 +172,27 @@
   "apply": "लागू करें",
   "keyword": "कीवर्ड",
   "semantic": "समानार्थी",
+  "support-us": {
+    "title": "हमारा समर्थन करें",
+    "description": "यदि आप हमारे कार्य का समर्थन करना चाहते हैं, तो कृपया दान, साझेदारी या विद्वतापूर्ण सहयोग के माध्यम से संपर्क करें।",
+    "name": "आपका नाम क्या है?",
+    "namePlaceholder": "नाम",
+    "email": "ईमेल",
+    "emailPlaceholder": "ईमेल",
+    "support-type": "समर्थन का प्रकार",
+    "supportTypes": {
+      "expertise": "विशेषज्ञता",
+      "time": "समय",
+      "financial": "वित्तीय",
+      "other": "अन्य"
+    },
+    "sending": "भेजा जा रहा है...",
+    "send": "भेजें",
+    "wantToSupport": "हमारे कार्य का समर्थन करना चाहते हैं?",
+    "donateNow": "अभी दान करें",
+    "successMessage": "सहायता अनुरोध सफलतापूर्वक भेजा गया",
+    "errorMessage": "सहायता अनुरोध भेजने में विफल"
+  },
   "search-filters": {
     "select-operator": "ऑपरेटर चुनें",
     "enter-value": "मान दर्ज करें",

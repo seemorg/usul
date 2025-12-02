@@ -1,3 +1,98 @@
 {
-  "about": "Tentang"
+  "about": "Tentang",
+  "hero": {
+    "title": "Masa Depan Penyelidikan Islam",
+    "imageAlt": "Tentang Usul",
+    "paragraph1": "Usul adalah platform berkuasa AI yang direka untuk memajukan cara penyelidikan Islam dilakukan pada abad ke dua puluh satu, pada masa apabila penyelidikan dalam talian dan teknologi AI memacu dunia esok.\n\nNamun, orang awam kurang akses mudah ke satu laman sumber dalam talian untuk pengetahuan Islam, apatah lagi laman yang menggabungkan jendela untuk penyelidikan Islam dengan teknologi AI terkini. Lebih-lebih lagi, kemajuan dalam AI yang membuatkan ChatGPT, Gemini, Claude dan laman lain begitu berguna untuk pengetahuan umum masih belum memberikan jawapan yang boleh dipercayai atau kredibel untuk dunia pengetahuan Islam—di mana kredibiliti dan kebolehpercayaan sangat penting. Sebahagian besar, perbezaan antara model AI yang ada dan penyelidikan Islam disebabkan kekurangan sumber: model umum dilatih dengan sumber yang tersedia di internet—baik, buruk, dan hodoh.",
+    "paragraph2": "Malangnya, kebanyakan sumber Islam tidak boleh didapati dalam talian, dan yang boleh didapati mencampurkan sumber klasik/primer yang seorang sarjana Islam anggap sebagai berwibawa (seperti Qur'an, hadis, karya fiqh, kronik sejarah, dan kes mahkamah dari tokoh yang diiktiraf) dengan berjuta-juta pendapat, analisis, dan bahkan naratif palsu tentang Islam. Ini adalah satu masalah.\n\nUsul menyelesaikan masalah kredibiliti, kebolehpercayaan, dan akses berkuasa AI ke sumber dalam talian yang—sebelum ini—telah mengekang keupayaan penyelidik untuk meneroka soalan-soalan kompleks berkaitan undang-undang Islam, sejarah, dan banyak lagi. Penyelidik dan jurutera data bekerjasama untuk mencipta platform dalam talian yang membolehkan carian lanjutan pada koleksi sumber Islam yang dikendalikan, tertutup, dan kredibel, berkuasa AI.",
+    "tryUsul": "Cuba Usul",
+    "seeHowItWorks": "Lihat Bagaimana Ia Berfungsi"
+  },
+  "problem": {
+    "tag": "Masalah",
+    "title": "Mengapa Pengetahuan Islam Memerlukan Alat Yang Lebih Baik",
+    "description": "Kecerdasan buatan mengubah penyelidikan global, tetapi kesarjanaan Islam menghadapi cabaran unik:",
+    "challenge": "tiada ruang digital yang bersatu, boleh dipercayai untuk mengakses sumber Islam yang asli.",
+    "meanwhile": "Sementara itu, sebahagian besar sumber Islam yang berwibawa sama ada:",
+    "notOnline": "Tidak dalam talian",
+    "scannedPdfs": "Hanya tersedia sebagai PDF yang diimbas",
+    "mixedContent": "Atau Dicampur dengan kandungan dalam talian yang tidak boleh dipercayai"
+  },
+  "story": {
+    "tag": "Kisah Kami",
+    "title": "Perjalanan kami ke Kanun Digital yang Berwibawa",
+    "description": "Bagaimana Usul berkembang dari alat penyelidikan yang sederhana menjadi platform berkuasa AI yang dipercayai untuk kesarjanaan Islam.",
+    "roadmap": {
+      "2019": {
+        "tag": "Asas",
+        "title": "Kami bermula sebagai alat penyelidikan peribadi.",
+        "description": "Usul bermula sebagai usaha awal untuk meneroka teks-teks Islam dengan lebih cepat dan sistematik, meletakkan asas untuk pendekatan penyelidikan digital yang baru."
+      },
+      "2020-2022": {
+        "tag": "Prototaip",
+        "title": "Kami membina korpora terstruktur untuk penyelidikan yang serius.",
+        "description": "Prototaip dalaman memperkenalkan Korporatest Custom, membolehkan penyelidik mengatur teks mengikut disiplin dan mencipta koleksi penyelidikan khusus domain."
+      },
+      "2023": {
+        "tag": "Integrasi AI",
+        "title": "Kami mengintegrasikan AI canggih untuk meningkatkan ketepatan.",
+        "description": "Carian semantik, pengambilan konteks, dan model AI yang diperibadikan mempertingkatkan cara penyelidik menavigasi soalan kesarjanaan yang kompleks."
+      },
+      "2024": {
+        "tag": "Pelancaran Institusi",
+        "title": "Kami membuka Usul kepada sarjana dan institusi.",
+        "description": "Platform kami memperoleh kebenaran, alat kerjasama, dan penanganan Arab yang diperhalus, menjadikan Usul berdaya maju untuk pasukan dan persekitaran akademik."
+      },
+      "2025": {
+        "tag": "Pengembangan",
+        "title": "Kami sedang berkembang menjadi ekosistem penyelidikan lengkap.",
+        "description": "Carian, sembang, anotasi, ruang kerja, analisis korpus, dan pandangan silang teks sedang bergabung untuk membentuk persekitaran yang bersatu untuk kesarjanaan Islam."
+      }
+    }
+  },
+  "values": {
+    "tag": "Nilai Teras Kami",
+    "title": "Usul berkembang dari alat yang sederhana menjadi platform penyelidikan berkuasa AI yang dipercayai.",
+    "credibility": {
+      "title": "Kredibiliti",
+      "description": "Dipandu oleh sarjana pakar yang mengesahkan, mengautentikasi, dan mengatur ribuan teks Islam yang berwibawa."
+    },
+    "reliability": {
+      "title": "Kebolehpercayaan",
+      "description": "Enjin AI kami menyediakan hasil yang sepenuhnya disitasi, tepat, menghindari halusinasi dan memastikan setiap jawapan berasaskan sumber yang dipercayai."
+    },
+    "access": {
+      "title": "Akses",
+      "description": "Dengan 15,000+ teks boleh dibaca mesin, Usul menjadikan warisan Islam dapat diakses, dapat dicari, dan dapat dianalisis pada skala."
+    }
+  },
+  "different": {
+    "title": "Apa Yang Membuat Usul Berbeza?",
+    "description": "Sebuah platform yang dibina untuk kesarjanaan Islam, bukan kes penggunaan AI umum.",
+    "curatedCorpus": "Satu korpus tertutup dan terpilih yang direka khusus untuk kajian Islam",
+    "fineTuned": "Model AI dipertingkkan pada Arab klasik dan penulisan kesarjanaan",
+    "citations": "Sitasi yang dilampirkan pada setiap soalan dan jawapan",
+    "collaboration": "Kerjasama antara sarjana dan jurutera di setiap langkah"
+  },
+  "operations": {
+    "title": "Bagaimana Kami Beroperasi",
+    "description": "Usul adalah organisasi bukan untung yang beroperasi dengan ketangkasan startup.",
+    "supported": "Operasi kami disokong melalui:",
+    "donations": "Derma utama dan individu",
+    "contracts": "Kontrak perkhidmatan untuk set data yang disesuaikan, portal carian, atau persekitaran penyelidikan",
+    "contributions": "Sumbangan masa, kepakaran, dan panduan kesarjanaan"
+  },
+  "nonprofit": {
+    "title": "Bukan Untung Komited",
+    "status": "501(c)(3) dalam proses",
+    "imageAlt": "Bukan Untung",
+    "location": "Houston",
+    "locationLabel": "Negeri",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Tahun Diasaskan",
+    "teamMembers": "54",
+    "teamMembersLabel": "Ahli Pasukan",
+    "totalFunding": "32M",
+    "totalFundingLabel": "Pembiayaan Jumlah"
+  }
 }

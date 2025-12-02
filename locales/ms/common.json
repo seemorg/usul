@@ -172,6 +172,27 @@
   "apply": "Guna",
   "keyword": "Kata Kunci",
   "semantic": "Semantik",
+  "support-us": {
+    "title": "Sokong Kami",
+    "description": "Jika anda ingin menyokong kerja kami melalui derma, perkongsian, atau kerjasama ilmiah, sila hubungi kami.",
+    "name": "Apakah nama anda?",
+    "namePlaceholder": "Nama",
+    "email": "E-mel",
+    "emailPlaceholder": "E-mel",
+    "support-type": "Jenis Sokongan",
+    "supportTypes": {
+      "expertise": "Kepakaran",
+      "time": "Masa",
+      "financial": "Kewangan",
+      "other": "Lain-lain"
+    },
+    "sending": "Sedang menghantar...",
+    "send": "Hantar",
+    "wantToSupport": "Mahu menyokong kerja kami?",
+    "donateNow": "Derma Sekarang",
+    "successMessage": "Permintaan sokongan berjaya dihantar",
+    "errorMessage": "Gagal menghantar permintaan sokongan"
+  },
   "search-filters": {
     "select-operator": "Pilih operator",
     "enter-value": "Masukkan nilai",

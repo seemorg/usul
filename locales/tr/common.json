@@ -172,6 +172,27 @@
   "apply": "Uygula",
   "keyword": "Anahtar Kelime",
   "semantic": "Semantik",
+  "support-us": {
+    "title": "Destek Olun",
+    "description": "Çalışmalarımıza bağış, ortaklıklar veya akademik iş birlikleri yoluyla destek olmak isterseniz, lütfen bizimle iletişime geçin.",
+    "name": "Adınız nedir?",
+    "namePlaceholder": "Ad",
+    "email": "E-posta",
+    "emailPlaceholder": "E-posta",
+    "support-type": "Destek Şekli",
+    "supportTypes": {
+      "expertise": "Uzmanlık",
+      "time": "Zaman",
+      "financial": "Maddi",
+      "other": "Diğer"
+    },
+    "sending": "Gönderiliyor...",
+    "send": "Gönder",
+    "wantToSupport": "Çalışmalarımıza destek olmak ister misiniz?",
+    "donateNow": "Şimdi Bağış Yap",
+    "successMessage": "Destek talebi başarıyla gönderildi",
+    "errorMessage": "Destek talebi gönderilemedi"
+  },
   "search-filters": {
     "select-operator": "Operatör seç",
     "enter-value": "Değer girin",
