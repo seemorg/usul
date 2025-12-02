@@ -222,6 +222,8 @@ export default async function HomePage({
           />
         </div>
 
+        {/* TODO: add back when collections populated */}
+        {/* 
         <div>
           <HomepageSection
             isBooks={false}
@@ -262,7 +264,7 @@ export default async function HomePage({
               </Link>
             ))}
           />
-        </div>
+        </div> */}
 
         {/* 
         <div>
