@@ -162,26 +162,32 @@ export default async function AboutPage({
               </h2>
               <p>{t("story.description")}</p>
             </div>
-            <div className="relative flex w-screen overflow-x-auto pr-8 pb-4 pl-8 [-ms-overflow-style:none] [scrollbar-width:none] ltr:left-1/2 ltr:-translate-x-1/2 ltr:md:pl-[18vw] rtl:right-1/2 rtl:translate-x-1/2 rtl:md:pr-[18vw] [&::-webkit-scrollbar]:hidden">
-              {getStoryRoadmap(t).map((item) => (
-                <div key={item.year} className="flex min-w-[430px] gap-4">
-                  <p className="mt-1 text-xs font-medium opacity-60">
-                    {item.year}
-                  </p>
-                  <div className="bg-muted relative h-full w-2">
-                    <div className="bg-collection-green absolute top-2 h-2 w-2 rounded-full ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2" />
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <p className="bg-collection-green w-fit rounded-full px-2 py-1 text-xs font-medium text-white">
-                      {item.tag}
+            <div className="relative w-full">
+              {/* Left fade overlay */}
+              <div className="from-background pointer-events-none absolute top-0 left-0 z-10 h-full w-1 bg-gradient-to-r to-transparent" />
+              {/* Right fade overlay */}
+              <div className="from-background pointer-events-none absolute top-0 right-0 z-10 h-full w-1 bg-gradient-to-l to-transparent" />
+              <div className="flex w-full overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                {getStoryRoadmap(t).map((item) => (
+                  <div key={item.year} className="flex min-w-[430px] gap-4">
+                    <p className="mt-1 text-xs font-medium opacity-60">
+                      {item.year}
                     </p>
-                    <h5 className="text-2xl font-medium">{item.title}</h5>
-                    <p className="text-muted-foreground text-sm">
-                      {item.description}
-                    </p>
+                    <div className="bg-muted relative h-full w-2">
+                      <div className="bg-collection-green absolute top-2 h-2 w-2 rounded-full ltr:left-1/2 ltr:-translate-x-1/2 rtl:right-1/2 rtl:translate-x-1/2" />
+                    </div>
+                    <div className="flex flex-col gap-4">
+                      <p className="bg-collection-green w-fit rounded-full px-2 py-1 text-xs font-medium text-white">
+                        {item.tag}
+                      </p>
+                      <h5 className="text-2xl font-medium">{item.title}</h5>
+                      <p className="text-muted-foreground text-sm">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
