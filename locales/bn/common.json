@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "বিষয়সমূহ",
-        "description": "{advancedGenres, number} ঘরানা"
+        "description": "{advancedGenres, number} শ্রেণীসমূহ"
       }
     },
     "about": {
@@ -172,6 +172,27 @@
   "apply": "প্রয়োগ করুন",
   "keyword": "কীওয়ার্ড",
   "semantic": "সেমান্টিক",
+  "support-us": {
+    "title": "আমাদেরকে সমর্থন করুন",
+    "description": "যদি আপনি অনুদান, অংশীদারিত্ব, অথবা গবেষণামূলক সহযোগিতার মাধ্যমে আমাদের কাজকে সমর্থন করতে চান, তবে দয়া করে আমাদের সাথে যোগাযোগ করুন।",
+    "name": "আপনার নাম কী?",
+    "namePlaceholder": "নাম",
+    "email": "ইমেইল",
+    "emailPlaceholder": "ইমেইল",
+    "support-type": "সমর্থনের ধরন",
+    "supportTypes": {
+      "expertise": "দক্ষতা",
+      "time": "সময়",
+      "financial": "আর্থিক",
+      "other": "অন্যান্য"
+    },
+    "sending": "পাঠানো হচ্ছে...",
+    "send": "পাঠান",
+    "wantToSupport": "আমাদের কাজ সমর্থন করতে চান?",
+    "donateNow": "এখনই দান করুন",
+    "successMessage": "সমর্থনের অনুরোধ সফলভাবে পাঠানো হয়েছে",
+    "errorMessage": "সমর্থনের অনুরোধ পাঠাতে ব্যর্থ হয়েছে"
+  },
   "search-filters": {
     "select-operator": "অপারেটর নির্বাচন করুন",
     "enter-value": "মান লিখুন",

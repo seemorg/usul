@@ -3,32 +3,22 @@
   "subtitle": "Usul ekibi, dijital araçlar geliştirerek İslami araştırmaları dönüştürmeye tutkulu mühendisler, tasarımcılar ve araştırmacılardan oluşmaktadır.",
   "become-a-volunteer": "Gönüllü Olun",
   "contact-us": "Bize Ulaşın",
+  "founders-title": "Kurucu ekip",
+  "founders-subtitle": "Usul'un arkasındaki kurucu ekip.",
   "board-title": "Yönetim Kuruluyla Tanışın",
   "board-subtitle": "Usul, yönetim kurulunda her biri kendi alanında onlarca yıllık deneyime sahip araştırma ve teknoloji alanında seçkin uzmanlardan oluşan Seemore Vakfı'nın bir projesidir. Birlikte, organizasyonu denetler ve misyonunun ilerlemesini sağlarlar.",
   "members": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif, Tarteel AI'yı kurdu, Quran.com'da mühendislik liderliği yaptı ve Twitter'da çalıştı."
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas, Simli AI'da eski bir yazılım mühendisidir."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
       "description": "Mohamed, Thmanyah'da tasarım lideriydi, girişimlerle 0'dan 1'e ürünler geliştirmek için danışmanlık yapıyor."
     },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed, Remail AI ve Betterbook’u kurdu ve Quran.com'da mühendis olarak çalıştı."
-    },
     "ryad-ramo": {
       "name": "Ryad Ramo",
       "description": "Ryad, İslam bilgileri ve tarihi konusunda uzmanlaşmış bir araştırmacıdır. İslam Çalışmaları alanında lisans derecesine sahiptir ve Gems of Al-Andalus'un kurucusudur."
-    },
-    "rahma-fateen": {
-      "name": "Rahma Fateen",
-      "description": "Rahma, Tarteel AI'de Arapça yerelleştirme çalışmalarını yönetti. Human Rights Watch'ta çevirmen olarak çalıştı."
-    },
-    "ahmed-khan": {
-      "name": "Ahmed Khan",
-      "description": "Ahmed, Zaytuna College'de öğrencidir. The Creative Minority podcast'inin yaratıcısıdır."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
@@ -37,6 +27,16 @@
     "ismail-safadi": {
       "name": "İsmail Safadi",
       "description": "İsmail, Hanefi fıkhı konusunda uzmandır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim almıştır."
+    }
+  },
+  "founders": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif, Tarteel AI'nin kurucu ortağı, Quran.com'da mühendislik lideri ve Twitter'da çalıştı."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed, Remail AI ve Betterbook'un kurucu ortağı ve Quran.com'da mühendisti."
     }
   },
   "board-members": {
@@ -55,10 +55,12 @@
   },
   "roles": {
     "ceo": "CEO",
+    "founding-ceo": "Kurucu CEO",
     "founding-engineer": "Kurucu Mühendis",
     "researcher": "Araştırmacı",
     "localization-lead": "Yerelleştirme Lideri",
     "digitization-lead": "Dijitalleştirme Lideri",
-    "head-of-design": "Tasarım Müdürü"
+    "head-of-design": "Tasarım Müdürü",
+    "software-engineer": "Yazılım Mühendisi"
   }
 }

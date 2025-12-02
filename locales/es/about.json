@@ -1,3 +1,98 @@
 {
-  "about": "Acerca de"
+  "about": "Acerca de",
+  "hero": {
+    "title": "El futuro de la investigación islámica",
+    "imageAlt": "Acerca de Usul",
+    "paragraph1": "Generalmente es una plataforma impulsada por la AIE diseñada para evolucionar, como se hace la investigación islámica en el siglo XXI. en un momento en que la investigación en línea y la tecnología de IA están alimentando el mundo de mañana.\n\nPero el público carece de acceso fácil a un solo sitio de fuentes en línea para el conocimiento islámico, mucho menos sitios que combinan ventanas para la investigación islámica con la última tecnología de IA. Además, avances en la IA que hacen ChatGPT, Gemini, Claude y otros sitios tan útiles para el conocimiento general todavía no dan respuestas fiables o creíbles para el universo del conocimiento islámico, donde la credibilidad y la fiabilidad son primordiales. En gran parte la divergencia entre los modelos de IA existentes y la investigación islámica tiene que ver con la falta de fuentes: los modelos generales fueron capacitados sobre las fuentes disponibles en internet—buenos. malo y feo.",
+    "paragraph2": "Desafortunadamente, la mayoría de las fuentes islámicas no están disponibles en línea, y aquellos que están disponibles mezclan las fuentes clásicas/primarias que un estudioso musulmán reconocería como autoritario (como el Corán, hadith, obras de fiqh, crónicos históricos y casos judiciales de figuras reconocidas) con millones de opiniones, análisis e incluso narrativos falsos sobre Islam. Esto es un problema.\n\nUsul resuelve los problemas de credibilidad, fiabilidad, y acceso impulsado por la AIE a fuentes en línea que —antes de ahora— han impedido a los investigadores explorar cuestiones complejas relacionadas con el derecho islámico, la historia y mucho más. Investigadores e ingenieros de datos unieron fuerzas para crear una plataforma en línea que permite búsquedas avanzadas en un supervisado, una colección cerrada y creíble de fuentes islámicas, impulsada por la IA.",
+    "tryUsul": "Probar usualmente",
+    "seeHowItWorks": "Ver cómo funciona"
+  },
+  "problem": {
+    "tag": "El problema",
+    "title": "Por qué el conocimiento islámico necesita mejores herramientas",
+    "description": "La inteligencia artificial está transformando la investigación global, pero la beca islámica se enfrenta a un desafío único:",
+    "challenge": "no existe un espacio digital unificado y fiable para acceder a fuentes islámicas auténticas.",
+    "meanwhile": "Mientras tanto, la gran mayoría de las fuentes islámicas autorizadas tampoco lo son:",
+    "notOnline": "No conectado",
+    "scannedPdfs": "Disponible sólo como PDFs escaneados",
+    "mixedContent": "O mezclado con contenido en línea poco fiable"
+  },
+  "story": {
+    "tag": "Nuestra historia",
+    "title": "Nuestro Diario a un Corpus Digital Crefying",
+    "description": "How Usul evolucionó de una simple herramienta de investigación a una plataforma confiable impulsada por la AI para la beca islámica.",
+    "roadmap": {
+      "2019": {
+        "tag": "Cimiento",
+        "title": "Comenzamos como una herramienta de investigación personal.",
+        "description": "Generalmente comenzó como un intento temprano de explorar los textos islámicos de manera más rápida y sistemática, sentando las bases para un nuevo enfoque de investigación digital."
+      },
+      "2020-2022": {
+        "tag": "Prototificación",
+        "title": "Construimos corpora estructurada para una investigación seria.",
+        "description": "Los prototipos internos introdujeron Custom Corpora, permitiendo a los investigadores organizar textos por disciplina y crear colecciones de investigación específicas para dominios."
+      },
+      "2023": {
+        "tag": "Integración de IA",
+        "title": "Integramos IA avanzada para mejorar la precisión.",
+        "description": "La búsqueda semántica, la recuperación contextual y los modelos de IA a la medida elevaron la manera en que los investigadores navegan cuestiones complejas de investigación."
+      },
+      "2024": {
+        "tag": "Lanzamiento institucional",
+        "title": "Abrimos habitualmente a estudiosos e instituciones.",
+        "description": "Nuestra plataforma obtuvo permisos, herramientas de colaboración y refinado manejo árabe, haciendo habitualmente viable para equipos y entornos académicos."
+      },
+      "2025": {
+        "tag": "Expansión",
+        "title": "Estamos evolucionando hacia un ecosistema de investigación completo.",
+        "description": "La búsqueda, el chat, las anotaciones, los espacios de trabajo, el análisis del corpus y los puntos de vista entre textos se están reuniendo para formar un entorno unificado para la escolaridad islámica."
+      }
+    }
+  },
+  "values": {
+    "tag": "Nuestros Valores Principales",
+    "title": "Generalmente pasó de ser una herramienta simple a ser una plataforma de investigación confiable impulsada por AI.",
+    "credibility": {
+      "title": "Credibilidad",
+      "description": "Guiado por expertos expertos que verifican, autentican y curan miles de textos islámicos autorizados."
+    },
+    "reliability": {
+      "title": "Fiabilidad",
+      "description": "Nuestro motor de IA proporciona resultados completamente citados y precisos, evitando las alucinaciones y asegurando que cada respuesta esté basada en fuentes de confianza."
+    },
+    "access": {
+      "title": "Acceder",
+      "description": "Con más de 15.000 textos legibles en máquina, Usul hace accesible el patrimonio islámico, buscable y analizable a escala."
+    }
+  },
+  "different": {
+    "title": "¿Qué hace a los usuales diferentes?",
+    "description": "Una plataforma construida para becas islámicas, no para casos de IA general.",
+    "curatedCorpus": "Un corpus cerrado y curado diseñado específicamente para estudios islámicos",
+    "fineTuned": "Modelos de IA afinados en árabe clásico y escritura científica",
+    "citations": "Citas adjuntas a cada pregunta y respuesta",
+    "collaboration": "Colaboración entre especialistas e ingenieros en cada paso"
+  },
+  "operations": {
+    "title": "Cómo operamos",
+    "description": "Usualmente es una organización sin fines de lucro que trabaja con la agilidad de una startup.",
+    "supported": "Nuestras operaciones son soportadas a través de:",
+    "donations": "Donaciones principales e individuales",
+    "contracts": "Contratos de servicios para conjuntos de datos personalizados, portales de búsqueda o entornos de investigación",
+    "contributions": "Contribuciones de tiempo, pericia y orientación especializada"
+  },
+  "nonprofit": {
+    "title": "Sin fines de lucro",
+    "status": "501(c)(3) pendiente",
+    "imageAlt": "Sin fines de lucro",
+    "location": "Houston",
+    "locationLabel": "Estado",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Año fundado",
+    "teamMembers": "54",
+    "teamMembersLabel": "Miembros del equipo",
+    "totalFunding": "32 M",
+    "totalFundingLabel": "Total de fundaciones"
+  }
 }

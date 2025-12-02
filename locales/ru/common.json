@@ -78,7 +78,7 @@
       },
       "genres": {
         "title": "Жанры",
-        "description": "{advancedGenres, number} Жанры"
+        "description": "{advancedGenres, number} жанров"
       }
     },
     "about": {
@@ -172,6 +172,27 @@
   "apply": "Применить",
   "keyword": "Ключевое слово",
   "semantic": "Семантический",
+  "support-us": {
+    "title": "Поддержите нас",
+    "description": "Если вы хотите поддержать нашу работу через пожертвования, партнерские отношения или научное сотрудничество, пожалуйста, свяжитесь с нами.",
+    "name": "Как вас зовут?",
+    "namePlaceholder": "Имя",
+    "email": "Электронная почта",
+    "emailPlaceholder": "Электронная почта",
+    "support-type": "Тип поддержки",
+    "supportTypes": {
+      "expertise": "Экспертиза",
+      "time": "Время",
+      "financial": "Финансовая",
+      "other": "Другое"
+    },
+    "sending": "Отправляется...",
+    "send": "Отправить",
+    "wantToSupport": "Хотите поддержать нашу работу?",
+    "donateNow": "Пожертвуйте сейчас",
+    "successMessage": "Запрос на поддержку успешно отправлен",
+    "errorMessage": "Не удалось отправить запрос на поддержку"
+  },
   "search-filters": {
     "select-operator": "Выберите оператор",
     "enter-value": "Введите значение",

@@ -1,3 +1,98 @@
 {
-  "about": "Game da"
+  "about": "Game da",
+  "hero": {
+    "title": "Makomar Binciken Musulunci",
+    "imageAlt": "Game da Usul",
+    "paragraph1": "Usul dandamali ne mai amfani da fasahar AI wanda aka tsara don canza yadda ake yin binciken musulunci a karni na ashirin da daya, a lokacin da binciken intanet da fasahar AI ke inganta duniyar gobe. Amma jama'a ba su da saukin samun damar yanar gizon guda daya na kafofin ilimin musulunci, balle kafofin da suke hada windows don binciken musulunci da na'urar AI ta zamani. Bugu da kari, ci gaba da ake samu a fasahar AI wanda ke sanya ChatGPT, Gemini, Claude da sauran shafuka suna da amfani ga ilimin gama gari, har yanzu ba sa bayar da amsoshi masu inganci ko amintattun ga duniyar ilimin musulunci — inda amfaninsa da aminci su ke da muhimmanci. A cikin babban bangare, rarrabuwar da ke tsakanin samfuran AI na yau da kullun da binciken musulunci yana da alaƙa da rashin kafofi: samfuran gaba daya an horar dasu akan kafofin da aka samu a intanet — masu kyau, maras kyau, da maras kyau sosai.",
+    "paragraph2": "Abin takaici, yawancin tushe-tushen musulunci ba a samunsu akan layi, kuma wadanda ake dasu suna hade tushen gargajiya/na farko wadanda malamin musulunci zai gane a matsayin na hukuma (kamar Qur'ani, hadisi, ayyukan fiƙihu, tarihin tarihi, da shari'o'in kotu daga shahararrun mutane) tare da miliyoyin ra'ayoyi, bayanai, da ƙaryar labarai game da Musulunci. Wannan matsala ce. Usul yana warware matsalolin aminci, amana, da samun damar AI zuwa kafofin kan layi da — kafin yanzu — suka hana bincike-ma su iya binciken tambayoyi masu rikitarwa da suka shafi doka ta Musulunci, tarihi, da ƙari mai yawa. Masu bincike da injiniyoyin bayanai sun haɗa kai don ƙirƙirar dandalin kan layi wanda ke ba da damar bincike mai nisa akan tarin tashe, kwamfuta, da amintattun kafofin musulunci, wanda AI ke gudanarwa.",
+    "tryUsul": "Gwada Usul",
+    "seeHowItWorks": "Duba Yadda Yake Aiki"
+  },
+  "problem": {
+    "tag": "Matsalar",
+    "title": "Dalilin da Yasa Ilimin Musulunci Ke Bukatar Kayayyakin aiki Mafi kyau",
+    "description": "Hankali artificial yana canza binciken duniya baki ɗaya, amma ilimin musulunci na fuskantar babban kalubale na musamman:",
+    "challenge": "babu sarari a kan layi na haɗin kai, mai inganci don samun ingantattun tushe na musulunci.",
+    "meanwhile": "A halin yanzu, mafi yawan tushe-tushen musulunci na hukuma suna ko dai:",
+    "notOnline": "Babu a kan layi",
+    "scannedPdfs": "Ana samun su kawai a matsayin PDFs da aka duba",
+    "mixedContent": "Ko Hade da mara inganci a kan layi abun ciki"
+  },
+  "story": {
+    "tag": "Labarin Mu",
+    "title": "Tafiyar Mu zuwa Cikin Dandalin Dijital Mai Amincewa",
+    "description": "Yadda Usul ta samo asali daga kayan bincike mai sauƙi zuwa dandamali na amintaccen AI ga ilimin musulunci.",
+    "roadmap": {
+      "2019": {
+        "tag": "Gindaya",
+        "title": "Mun fara a matsayin kayan aiki na bincike na kashin kai.",
+        "description": "Usul ya fara a matsayin yunƙuri na farko don yin bincike cikin sauri da ƙa'idojin musulunci, ta yadda zai gabatar da sabuwar hanya ta binciken nazarci ta hanyar dijital."
+      },
+      "2020-2022": {
+        "tag": "Gwaji",
+        "title": "Mun ƙirƙiri dandalin nazari domin bincike mai zurfi.",
+        "description": "Samfurori na cikin gida sun gabatar da corpora na musamman, suna bai wa masu bincike damar tsara rubutun ta hanyar fanni da ƙirƙirar tarin bincike na musamman na fannin musamman."
+      },
+      "2023": {
+        "tag": "Hada AI",
+        "title": "Mun haɗa AI mai ci gaba don ƙara tabbatar da gaskiya.",
+        "description": "Bincike mai ma'ana, samun abun ciki cikin mahallin, da kuma samfurori na AI masu dacewa sun inganta yadda masu bincike ke tafiyar da tambayoyi na ilimi masu rikitarwa."
+      },
+      "2024": {
+        "tag": "Kaddamar da Kungiya",
+        "title": "Mun bude Usul ga masana da kungiyoyi.",
+        "description": "Dandalin mu ya samu izini, kayan aiki na haɗin kai, da huɗuwan Turanci da aka tsara, yana mai da Usul dacewa ga kungiyoyi da yanayin makarantu."
+      },
+      "2025": {
+        "tag": "Faɗaɗa",
+        "title": "Muna canzawa zuwa tsarin bincike mai cike da komai.",
+        "description": "Bincike, tattaunawa, bayanai, wuraren aiki, nazarin daki-daki, da fahimtar ƙarƙashin rubutun suna zuwan tare domin ƙirƙira na yanayi mai haɗin gwiwa don ilimin musulunci."
+      }
+    }
+  },
+  "values": {
+    "tag": "Manufofinmu na Asali",
+    "title": "Usul ta samo asali daga kayan aiki mai sauƙi zuwa dandamali mai amintaccen bincike AI.",
+    "credibility": {
+      "title": "Amana",
+      "description": "Ana jagorantar da masana masu kyau waɗanda ke tabbatarwa, suna tantancewa, da tsara dubban rubutu mai izini na musulunci."
+    },
+    "reliability": {
+      "title": "Aminci",
+      "description": "Injin AI na mu yana bayar da sakamakon da aka tabbatar da cikakkiyar gaskiyar, yana guje wa halayen da ba a so, yana tabbatar da duk wata amsa ta ginu a kan tushe masu amincewa."
+    },
+    "access": {
+      "title": "Shiga",
+      "description": "Tare da fiye da rubutu 15,000 bisa ma'auni da aka karanta ta na'ura, Usul yana yin gadon musulunci shiga saman, bincika, da tantancewa a sikeli."
+    }
+  },
+  "different": {
+    "title": "Menene ke Banbanta Usul?",
+    "description": "Wani dandali da aka gina don nazarin musulunci, ba don amfani na AI na gama gari ba.",
+    "curatedCorpus": "Wani nazarin tashe da aka tsara musamman don nazarin musulunci",
+    "fineTuned": "Ana daidaita samfurorin AI a kan Larabci na gargajiya da rubuce-rubuce ilimi",
+    "citations": "Takardu suna tare da kowace tambaya da amsa",
+    "collaboration": "Haɗin gwiwa tsakanin masana da injiniyoyi a kowane mataki"
+  },
+  "operations": {
+    "title": "Yadda Muke Aiki",
+    "description": "Usul ƙungiya ce mai zaman kanta wacce ke aiki da faɗakarwa kamar farkon farawa.",
+    "supported": "Ayyukanmu suna samun tallafi ta hanyar:",
+    "donations": "Gudunmawar masu girma da na mutum ɗaya",
+    "contracts": "Kwangiloli na sabis don saitunan bayanai, kofofin bincike, ko yanayin binciken da aka keɓance",
+    "contributions": "Gudunmawar lokaci, kwarewa, da jagorancin ilimi"
+  },
+  "nonprofit": {
+    "title": "Kuɗaɗen Zamani Marar Riba",
+    "status": "501(c)(3) yana jiran amincewa",
+    "imageAlt": "Marar Riba",
+    "location": "Houston",
+    "locationLabel": "Jihar",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Shekarar Kafa",
+    "teamMembers": "54",
+    "teamMembersLabel": "Mambobin Kungiya",
+    "totalFunding": "32M",
+    "totalFundingLabel": "Jimlar Samuwa"
+  }
 }

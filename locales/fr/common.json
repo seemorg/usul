@@ -172,6 +172,27 @@
   "apply": "Appliquer",
   "keyword": "Mot-clé",
   "semantic": "Sémantique",
+  "support-us": {
+    "title": "Soutenez-nous",
+    "description": "Si vous souhaitez soutenir notre travail par le biais de dons, de partenariats ou de collaborations universitaires, veuillez nous contacter.",
+    "name": "Quel est votre nom?",
+    "namePlaceholder": "Nom",
+    "email": "Courriel",
+    "emailPlaceholder": "Courriel",
+    "support-type": "Type de support",
+    "supportTypes": {
+      "expertise": "Expertise",
+      "time": "Date et heure",
+      "financial": "Financier",
+      "other": "Autres"
+    },
+    "sending": "Envoi...",
+    "send": "Envoyer",
+    "wantToSupport": "Vous voulez soutenir notre travail?",
+    "donateNow": "Faire un don maintenant",
+    "successMessage": "Demande de support envoyée avec succès",
+    "errorMessage": "Échec de l'envoi de la demande d'assistance"
+  },
   "search-filters": {
     "select-operator": "Sélectionner l'opérateur",
     "enter-value": "Entrer une valeur",

@@ -1,3 +1,98 @@
 {
-  "about": "Ku saabsan"
+  "about": "Ku saabsan",
+  "hero": {
+    "title": "Mustaqbalka Cilmi-baarista Islaamka",
+    "imageAlt": "Ku saabsan Usul",
+    "paragraph1": "Usul waa madal loo adeegsanayo AI oo loogu talagalay in loo hormariyo sida cilmi-baarista Islaamka loogu qabto qarniga labaatanaad, xilli cilmi-baarista internet-ka iyo tignoolajiyada AI ay dhaqaajinayaan dunida berri.\n\nLaakiin dadweynuhu ma heli karaan hal goob oo sahlan oo ilaha internetka ee aqoonta Islaamka loo heli karo, si ka sii yar oo goobaha isku daraya daaqadaha cilmi-baarista Islaamka tiknoolajiyada AI ugu dambeeyay. Intaa waxaa dheer, hormarinta AI ee ka dhigaya ChatGPT, Gemini, Claude iyo goobaha kale kuwo faa'iido u leh aqoonta guud weli ma bixinayaan jawaabo lagu kalsoonaan karo ama lagu kalsoonaan karo wax ka qabashada aqoonta Islaamka—halkaas oo kalsoonida iyo kalsoonida qiime sare yihiin. Kuu guudi badan, kala duwanaanshaha ka dhexeeya moodooyinka AI ee jirta iyo cilmi-baarista Islaamka waxay ku saabsan tahay yaraanta ilaha: moodooyinka guud waxa loo tababaray ilaha ku jira internetka - wanaagsan, xun, iyo fool-xun.",
+    "paragraph2": "Nasiib darro, ilaha Islaamka ee badankoodu online kuma jiraan, kuwa online ahna waxay isku daraan ilaha asalka/ugu waaweyn oo ah kuwa cilmi-baarista Muslimiinta ay garanayaan inay yihiin kuwo la aqbali karo (sida Qur'an, axaadiith, kutubta fiqiga, taariikhda, iyo kiisaska maxkamadaha ee laga aqoonsaday shakhsiyaadka caanka ah) iyada oo lala aqoonsado malaayiin rayi, falanqeyn, iyo xataa sheekooyin been ah oo ku saabsan Islaamka. Tani waa dhibaato.\n\nUsul waxa ay xallisaa dhibaatooyinka la xiriira kalsoonida, lagu kalsoonaan karo, iyo helitaanka ilaha internetka ee AI-wadida oo –kahor ilaa hadda - ay wiiqeen awoodda cilmi-baadhayaasha inay sahamiyaan su'aalaha adag ee la xidhiidha sharciga Islaamka, taariikhda, iyo wax ka badan. Cilmi-baariyaal iyo injineero xogeed ayaa ku midoobay si ay u abuuraan madal online ah oo suurtogal ka dhigaysa raadinta horumarsan ee ururin, xiran, iyo ururinta ilaha Islaamka oo lagu kalsoon yahay, oo ay awood siiyey AI.",
+    "tryUsul": "Isku day Usul",
+    "seeHowItWorks": "Eeg Sida ay u Shaqeyso"
+  },
+  "problem": {
+    "tag": "Dhibaatada",
+    "title": "Maxaa Ilma og Islaamka U Baahan Yahay Qalab Ka Fiican",
+    "description": "Sirdoonka farxoonisku waxa uu bedelayaa cilmi-baaris caalami ah, laakiin cilmi-baadhista Islaamku waxay la kulantaa caqabad gaar ah:",
+    "challenge": "ma jiro meel isku mid ah, oo laysku halayn karo oo jeexan oo lagu heli karo ilaha Islaamka dhabta ah.",
+    "meanwhile": "Dhinaca kale, inta badan ee ilaha lagu aqoonsado ee Islaamka ah waxay yihiin midkood:",
+    "notOnline": "Aan online ahayn",
+    "scannedPdfs": "La heli karo oo kaliya sidii PDF-yada la iskaandareeyey",
+    "mixedContent": "Ama lagu qasi jirey nuxurka lagu kalsoonaan karo ee khadka tooska ah"
+  },
+  "story": {
+    "tag": "Sheekadeena",
+    "title": "Safarkeena Ilaa Korontada La Xaqiijin Karo Ee Digital",
+    "description": "Sida Usul uga kicineyso qalab cilmi-baaris oo fudud oo madalo loogu talo galay, AI-wadidan ee cilmi-baarista Islaamka ah.",
+    "roadmap": {
+      "2019": {
+        "tag": "Aasaaska",
+        "title": "Waxaan bilaabanay sidii qalab cilmi-baaris oo shaqsiyeed.",
+        "description": "Maamulku wuxuu ku bilaabanay sidii isku day horudhac ah oo lagu sahmiyo qoraalada Islaamiga ah si dhaqso iyo nidaamsan, dhigta aasaaska hab-raadin digital oo cusub."
+      },
+      "2020-2022": {
+        "tag": "Sameynta Moodooyinka Hore",
+        "title": "Waxaan dhisnay dhismayaasha habaysan ee cilmi-baarista habsan.",
+        "description": "Isku-dayada gude waxay soo bandhigeen Diiwaanka La Taabto, taasoo oggolaaneysa cilmi-baadhayaashu inay abaabulaan qoraalada iyadoo loo eegayo waaxda oo ay sameeyaan ururinta cilmi-baarista ee gooni u ah."
+      },
+      "2023": {
+        "tag": "Isdhexgalka AI",
+        "title": "Waxaan ku dhex-galnay AI si sare u qaadida saxnimada.",
+        "description": "Raadinta macnaha guud, xogtaynta macnaha guud, iyo moodooyinka AI ee u habeeyay sida cilmi-baarayaashu ay u mariyaan su'aalo cilmiyeedka adag."
+      },
+      "2024": {
+        "tag": "Daahfurka Hay'adaha",
+        "title": "Waxaan u fureyn Usul cilmi-baadhayaal iyo hay'ado.",
+        "description": "Platform-keena wuxuu helay sharciyeyn, qalabka iskaashiga, iyo waxay hagaajiyeen maareynta carabiga, taasoo Usul ka dhigaysa mid ku haboon kooxaha iyo jawiga danbeeyn."
+      },
+      "2025": {
+        "tag": "Ballaarinta",
+        "title": "Waxaan u guureynaa ecosystem cilmi-baaris oo dhamaystiran.",
+        "description": "Raadinta, chat-ka, calaamadda, goobaha shaqada, falanqeynta corpus, iyo mawduucyada iskutalaabsan waxay isugu imaanayaan in ay sameeyaan deegaanka mideysan ee cilmi-baarista Islaamka."
+      }
+    }
+  },
+  "values": {
+    "tag": "Qiyamka Muhiimka ah",
+    "title": "Usul waxay ka timid qalab sahlan oo loo adeegsaday madal cilmi-baaris lagu kalsoonaan karo oo AI-wadista.",
+    "credibility": {
+      "title": "Kalsoonid",
+      "description": "Waxay ku hagantahay culimmo cilmiyeedka ah oo hubiya, xaqiijiya, oo dhiirrigelinaya kumanaan qoraal ah oo islaami ah oo la aqoonsaday."
+    },
+    "reliability": {
+      "title": "Kalsoonid",
+      "description": "Mashiinkenna AI waxa uu bixiya natiijooyin si dhamaystiran loo caddeeyey, sax ah, isagoo ka fogaanaya halucisyo iyo hubinta in jawaab kasta ay ku saleysan tahay ilo la isku halayn karo."
+    },
+    "access": {
+      "title": "Helitaanka",
+      "description": "Iyo 15,000+ qoraal oo maqaal-mashiin dhigista, Usul waxay ka dhigeysaa hiddaha islaamiga ah mid lagu heli karo, la baari karo, lana falanqeyn karo baaxad ahaan."
+    }
+  },
+  "different": {
+    "title": "Maxaa Usul Ka Dhigay Mid Gooni Ah?",
+    "description": "Madal loo dhisay cilmi-baarista Islaamka, maahan isticmaalka guud ee AI.",
+    "curatedCorpus": "Diiwaanka dhan-shaashadeeyay oo si gaar ah loo habeeyay daraasadaha Islaamka",
+    "fineTuned": "Moodaahan AI si fiican loogu hagaajiyay luuqadda Carabiga iyo qoraal cilmi-baarista",
+    "citations": "Citeyo lagu lifaaqay su'aal kasta iyo jawaab",
+    "collaboration": "Iskaashi dhexmara culimada iyo injineerka tallaabo kasta"
+  },
+  "operations": {
+    "title": "Sida Aan U Shaqeyno",
+    "description": "Usul waa hay'ad aan faa'iido doon ahayn oo ku shaqeysa firfircoonaanta bilowga.",
+    "supported": "Hawlaheennu waxay taageero helaan iyada oo loo marayo:",
+    "donations": "Deeqaha weyn iyo shakhsiga ah",
+    "contracts": "Qandaraasyada adeegga ee loogu talagalay xirmooyinka xogta gaarka ah, meheradaha raadinta, ama deegaannada cilmi-baarista",
+    "contributions": "Tabarucaadka waqtiga, aqoonta, iyo hagidda cilmi-baaris"
+  },
+  "nonprofit": {
+    "title": "Hay'ad Aan Faa'iido Doon Ahayn",
+    "status": "501(c)(3) laga sugaayo",
+    "imageAlt": "Aan faa'iido doon ahayn",
+    "location": "Houston",
+    "locationLabel": "Gobolka",
+    "yearFounded": "2021",
+    "yearFoundedLabel": "Sanadkii La Aasaasay",
+    "teamMembers": "54",
+    "teamMembersLabel": "Xubnaha Kooxda",
+    "totalFunding": "32M",
+    "totalFundingLabel": "Dhamaan La Aas-aasay"
+  }
 }

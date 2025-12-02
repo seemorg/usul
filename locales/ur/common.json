@@ -172,6 +172,27 @@
   "apply": "اطلاق کریں",
   "keyword": "کلیدی لفظ",
   "semantic": "معنوی",
+  "support-us": {
+    "title": "ہماری مدد کریں",
+    "description": "اگر آپ عطیات، شراکتوں، یا علمی تعاون کے ذریعے ہمارے کام کی حمایت کرنا چاہتے ہیں، تو براہ کرم ہم سے رابطہ کریں۔",
+    "name": "آپ کا نام کیا ہے؟",
+    "namePlaceholder": "نام",
+    "email": "ایمیل",
+    "emailPlaceholder": "ایمیل",
+    "support-type": "مدد کی قسم",
+    "supportTypes": {
+      "expertise": "مہارت",
+      "time": "وقت",
+      "financial": "مالی",
+      "other": "دیگر"
+    },
+    "sending": "بھجوا رہا ہے...",
+    "send": "بھیجیں",
+    "wantToSupport": "کیا آپ ہمارے کام کی حمایت کرنا چاہتے ہیں؟",
+    "donateNow": "اب عطیہ کریں",
+    "successMessage": "مدد کی درخواست کامیابی سے بھیج دی گئی",
+    "errorMessage": "مدد کی درخواست بھیجنے میں ناکامی"
+  },
   "search-filters": {
     "select-operator": "آپریٹر منتخب کریں",
     "enter-value": "قدر درج کریں",

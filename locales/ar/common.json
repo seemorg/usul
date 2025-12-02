@@ -172,6 +172,27 @@
   "apply": "تطبيق",
   "keyword": "كلمة مفتاحية",
   "semantic": "التحليل الدلالي",
+  "support-us": {
+    "title": "ادعمنا",
+    "description": "وإذا أردتم دعم عملنا من خلال التبرعات، أو الشراكات، أو التعاون العلمي، فيرجى التواصل معنا.",
+    "name": "ما هو إسمك؟",
+    "namePlaceholder": "الاسم",
+    "email": "البريد الإلكتروني ",
+    "emailPlaceholder": "البريد الإلكتروني ",
+    "support-type": "نوع الدعم",
+    "supportTypes": {
+      "expertise": "الخبرة",
+      "time": "الوقت",
+      "financial": "مالي",
+      "other": "اخرى"
+    },
+    "sending": "جاري الإرسال...",
+    "send": "إرسال",
+    "wantToSupport": "هل ترغب في دعم عملنا؟",
+    "donateNow": "تبرع الآن",
+    "successMessage": "تم إرسال طلب الدعم بنجاح",
+    "errorMessage": "فشل في إرسال طلب الدعم"
+  },
   "search-filters": {
     "select-operator": "حدد المشغل",
     "enter-value": "أدخل القيمة",

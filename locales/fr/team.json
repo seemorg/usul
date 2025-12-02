@@ -1,64 +1,66 @@
 {
-  "title": "Rencontrer l'équipe",
-  "subtitle": "L'équipe d'Usul se compose d'ingénieurs, de designers et de chercheurs passionnés par la création d'outils numériques pour transformer la recherche islamique.",
-  "become-a-volunteer": "Devenez bénévole",
+  "title": "Rencontrez l'équipe",
+  "subtitle": "L’équipe Usul est composée d’ingénieurs, de concepteurs et de chercheurs passionnés par le développement d’outils numériques pour transformer la recherche islamique.",
+  "become-a-volunteer": "Devenir bénévole",
   "contact-us": "Contactez-nous",
-  "board-title": "Rencontrez le conseil d'administration",
-  "board-subtitle": "Usul est un projet de la Fondation Seemore, dont le conseil d'administration est composé d'experts éminents dans les domaines de la recherche et de la technologie, chacun ayant des décennies d'expérience dans son domaine respectif. Ensemble, ils supervisent l'organisation et veillent à ce qu'elle poursuive sa mission.",
+  "founders-title": "Équipe fondatrice",
+  "founders-subtitle": "L’équipe fondatrice d’Usul.",
+  "board-title": "Rencontrer le tableau",
+  "board-subtitle": "Usul est un projet de la Fondation Seemore, dont le conseil d'administration comprend des experts distingués en recherche et technologie. avec des décennies d'expérience dans leurs domaines respectifs. Ensemble, ils supervisent l’organisation et veillent à ce qu’elle fasse avancer sa mission.",
   "members": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif a co-fondé Tarteel AI, dirigé l'ingénierie chez Quran.com et travaillé chez Twitter."
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas est un ancien ingénieur de logiciels chez Simli AI."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
-      "description": "Mohamed était le responsable de la conception chez Thmanyah, il conseille les startups pour créer des produits de 0 à 1."
-    },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed a co-fondé Remail AI, Betterbook, et était ingénieur chez Quran.com."
+      "description": "Mohamed a été le chef de la conception à Thmanyah, il consulte avec des startups pour construire 0 à 1 produits."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad est un chercheur spécialisé dans la connaissance et l'histoire islamiques. Il est titulaire d'une licence en études islamiques et est le fondateur de Gems of Al-Andalus."
-    },
-    "rahma-fateen": {
-      "name": "Rahma Fateen",
-      "description": "Rahma a dirigé la localisation arabe chez Tarteel AI. Elle était traductrice pour Human Rights Watch."
-    },
-    "ahmed-khan": {
-      "name": "Ahmed Khan",
-      "description": "Ahmed est étudiant au Zaytuna College. Il est le créateur du podcast The Creative Minority."
+      "description": "Ryad est un chercheur spécialisé dans la connaissance et l'histoire islamiques et possède un baccalauréat en études islamiques et est le fondateur de Gems d'Al-Andalus."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed est titulaire d'un doctorat de l'Université Al-Azhar. Il dirige l'équipe de numérisation et les efforts associés."
+      "description": "Ahmed est titulaire d’un doctorat de l’Université Al-Azhar."
     },
     "ismail-safadi": {
-      "name": "Ismail Safadi",
-      "description": "Ismail est spécialisé dans le fiqh hanafite. Il a étudié à l'Université de Jordanie et en Turquie."
+      "name": "Safadi Ismaïl",
+      "description": "Ismail se spécialise dans le fiqh de Hanafi, il a étudié à l'Université de Jordanie et en Turquie."
+    }
+  },
+  "founders": {
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif a cofondé Tarteel AI, ingénieur principal chez Quran.com, et a travaillé sur Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Riad Ahmed",
+      "description": "Ahmed a cofondé Remail AI, Betterbook, et a été ingénieur à Quran.com."
     }
   },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan est spécialisé en droit islamique et pénal. Il a rédigé des codes pénaux pour les Maldives et la Somalie."
+      "description": "Adnan est spécialisé dans le droit islamique et pénal, et a rédigé des codes criminels pour les Maldives et la Somalie."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar est professeure de droit à Harvard. Elle dirige SHARIAsource et le Programme en droit islamique."
+      "description": "Intisar est professeur de droit à Harvard et dirige SHARIAsource et le Programme de droit islamique."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki est un entrepreneur avec une expertise technique pointue. Il a cofondé Freewebs et Truebill."
+      "description": "Zeki est un entrepreneur possédant une solide expertise technique, il a cofondé Freewebs et Truebill."
     }
   },
   "roles": {
     "ceo": "PDG",
-    "founding-engineer": "Ingénieur Fondateur",
+    "founding-ceo": "PDG fondateur",
+    "founding-engineer": "Ingénieur fondateur",
     "researcher": "Chercheur",
-    "localization-lead": "Responsable de la Localisation",
-    "digitization-lead": "Responsable de la Numérisation",
-    "head-of-design": "Chef de la conception"
+    "localization-lead": "Prospect de traduction",
+    "digitization-lead": "Prospect de numérisation",
+    "head-of-design": "Responsable du design",
+    "software-engineer": "Ingénieur logiciel"
   }
 }
