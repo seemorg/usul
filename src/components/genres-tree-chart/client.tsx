@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
+import { GenreNode } from "@/types/genre";
 import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
@@ -12,7 +13,7 @@ import * as d3 from "d3";
 import { useTranslations } from "next-intl";
 
 interface GenreTreeChartProps {
-  data: any[];
+  data: GenreNode[];
 }
 
 export default function GenreTreeChart({ data }: GenreTreeChartProps) {
@@ -79,7 +80,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     }
 
     const combinedRoot = {
-      name: t("genres"),
+      primaryName: t("genres"),
       id: "root",
       children: data,
     };
@@ -155,9 +156,9 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
     const gNode = g.append("g");
 
     const boxWidth = 150;
-    const boxHeight = 90;
-    const boxPaddingX = 12;
-    const boxPaddingY = 16;
+    const boxHeight = 100;
+    const boxPaddingX = 8;
+    const boxPaddingY = 20;
 
     function wrapText(textSelection: any, width: number) {
       textSelection.each(function (this: SVGTextElement) {
@@ -165,41 +166,56 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
         const raw = (text.attr("data-label") || text.text() || "").trim();
         if (!raw) return;
 
-        // Filter out empty strings from split
-        const words = raw
-          .split(/\s+/)
-          .filter((w: string) => w.length > 0)
-          .reverse();
-        if (words.length === 0) return;
-
-        let word;
-        let line: string[] = [];
         const lineHeight = 1.2;
         const y = parseFloat(text.attr("y") || "0");
         let lineNumber = 0;
-        let tspan = text
-          .text(null)
-          .append("tspan")
-          .attr("x", 0)
-          .attr("y", y)
-          .attr("dy", `${lineNumber}em`);
+        text.text(null);
 
-        while ((word = words.pop())) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node()!.getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
+        // Split by newlines first to preserve intentional line breaks
+        const lines = raw.split(/\n/);
+
+        lines.forEach((lineText: string) => {
+          if (lineText.trim() === "") {
+            // Empty line - add spacing
             lineNumber += 1;
-            tspan = text
-              .append("tspan")
-              .attr("x", 0)
-              .attr("y", y)
-              .attr("dy", `${lineNumber * lineHeight}em`)
-              .text(word);
+            return;
           }
-        }
+
+          // Split line into words and wrap within the line
+          const words = lineText
+            .split(/\s+/)
+            .filter((w: string) => w.length > 0)
+            .reverse();
+
+          if (words.length === 0) return;
+
+          let word;
+          let line: string[] = [];
+          let tspan = text
+            .append("tspan")
+            .attr("x", 0)
+            .attr("y", y)
+            .attr("dy", `${lineNumber * lineHeight}em`);
+
+          while ((word = words.pop())) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node()!.getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              lineNumber += 1;
+              tspan = text
+                .append("tspan")
+                .attr("x", 0)
+                .attr("y", y)
+                .attr("dy", `${lineNumber * lineHeight}em`)
+                .text(word);
+            }
+          }
+
+          lineNumber += 1;
+        });
       });
     }
 
@@ -334,8 +350,22 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
         .attr("font-family", "var(--font-sans)")
         .attr("x", 0)
         .attr("y", -boxHeight / 2 + boxPaddingY)
-        .attr("data-label", (d: any) => (d.data.name || "").trim())
-        .text((d: any) => (d.data.name || "").trim())
+        .attr("data-label", (d: any) => {
+          const primary = (d.data.primaryName || "").trim();
+          const secondary = (d.data.secondaryName || "").trim();
+          if (secondary) {
+            return `${primary}\n\n${secondary}`;
+          }
+          return primary;
+        })
+        .text((d: any) => {
+          const primary = (d.data.primaryName || "").trim();
+          const secondary = (d.data.secondaryName || "").trim();
+          if (secondary) {
+            return `${primary}\n${secondary}`;
+          }
+          return primary;
+        })
         .style("pointer-events", "none")
         .style("unicode-bidi", "plaintext")
         .call((selection: any) =>
@@ -344,7 +374,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
             boxWidth - boxPaddingX * 2,
             boxHeight - boxPaddingY * 2,
             14,
-            10,
+            6,
           ),
         );
 
@@ -432,7 +462,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
             boxWidth - boxPaddingX * 2,
             boxHeight - boxPaddingY * 2,
             14,
-            10,
+            6,
           ),
         );
 
@@ -530,7 +560,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
             boxWidth - boxPaddingX * 2,
             boxHeight - boxPaddingY * 2,
             14,
-            10,
+            6,
           ),
         );
     }, 0);

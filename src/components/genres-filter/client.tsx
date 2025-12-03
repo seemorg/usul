@@ -1,5 +1,6 @@
 "use client";
 
+import type { GenreNode } from "@/types/genre";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useSearchParams } from "next/navigation";
@@ -11,14 +12,6 @@ import Fuse from "fuse.js";
 import { useFormatter, useTranslations } from "next-intl";
 
 const DEBOUNCE_DELAY = 300;
-
-interface GenreNode {
-  id: string;
-  slug: string;
-  name: string;
-  numberOfBooks: number;
-  children?: GenreNode[];
-}
 
 interface GenresFilterProps {
   currentGenres: string[];
@@ -366,7 +359,7 @@ export default function GenresFilterClient({
 
       <FilterContainer.List className="mt-5">
         {displayItems.map(({ genre, level, isChild }) => {
-          const primaryText = genre.name;
+          const primaryText = genre.primaryName;
           const hasBooks = genre.numberOfBooks > 0;
           const booksCount = hasBooks
             ? formatter.number(genre.numberOfBooks)

@@ -9,3 +9,12 @@ export type GenreDocument = {
 
   booksCount: number;
 };
+
+export type GenreNode = {
+  id: string;
+  slug: string;
+  primaryName: string;
+  secondaryName: string;
+  numberOfBooks: number;
+  children?: GenreNode[];
+};
