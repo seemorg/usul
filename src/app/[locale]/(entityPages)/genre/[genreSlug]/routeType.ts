@@ -28,7 +28,6 @@ export const Route = {
       .transform((v) => v.split(","))
       .catch([] as string[]),
     year: yearRangeSchema,
-    fromHomepage: z.boolean().default(false).catch(false),
   }),
 } satisfies DynamicRoute;
 

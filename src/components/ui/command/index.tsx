@@ -17,6 +17,7 @@ const Command = ({
       "bg-popover text-popover-foreground flex h-full w-full flex-col overflow-hidden rounded-md",
       className,
     )}
+    suppressHydrationWarning
     {...props}
   />
 );
@@ -57,6 +58,7 @@ const CommandInput = ({
         "placeholder:text-muted-foreground flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-hidden disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
+      suppressHydrationWarning
       {...props}
     />
   </div>
@@ -68,6 +70,7 @@ const CommandList = ({
 }: React.ComponentProps<typeof CommandPrimitive.List>) => (
   <CommandPrimitive.List
     className={cn("max-h-[300px] overflow-x-hidden overflow-y-auto", className)}
+    suppressHydrationWarning
     {...props}
   />
 );

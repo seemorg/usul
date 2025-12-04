@@ -27,11 +27,8 @@ export const navigation = {
   },
   genres: {
     all: () => "/genres",
-    bySlug: (genreSlug: string, params?: { fromHomepage?: boolean }) => {
+    bySlug: (genreSlug: string) => {
       const url = `/genre/${genreSlug}`;
-      if (params?.fromHomepage) {
-        return `${url}?fromHomepage=true`;
-      }
       return url;
     },
   },

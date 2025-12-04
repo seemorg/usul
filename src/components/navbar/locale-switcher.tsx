@@ -25,7 +25,11 @@ export default function LocaleSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="shrink-0 gap-1">
+        <Button
+          variant="ghost"
+          className="shrink-0 gap-1"
+          suppressHydrationWarning
+        >
           {/* <LanguageIcon className="h-4 w-4" /> */}
           {getLocaleFullName(selectedLocale)}
           <ChevronDownIcon className="size-3" />

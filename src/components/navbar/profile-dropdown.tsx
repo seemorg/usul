@@ -71,7 +71,12 @@ function ProfileDropdownInner() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="shrink-0">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="shrink-0"
+          suppressHydrationWarning
+        >
           <UserIcon className="size-5" />
         </Button>
       </DropdownMenuTrigger>

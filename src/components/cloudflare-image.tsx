@@ -19,5 +19,7 @@ export const cloudflareImageLoader: ImageLoader = ({ src, width, quality }) => {
 
 export function CloudflareImage(props: Omit<ImageProps, "loader">) {
   // eslint-disable-next-line jsx-a11y/alt-text
-  return <Image {...props} loader={cloudflareImageLoader} />;
+  return (
+    <Image {...props} loader={cloudflareImageLoader} suppressHydrationWarning />
+  );
 }

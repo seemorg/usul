@@ -18,6 +18,7 @@ const NavigationMenu = ({
         className,
       )}
       onValueChange={(value) => (value ? setActive(Number(value)) : null)}
+      suppressHydrationWarning
       {...props}
     >
       {children}
@@ -58,6 +59,7 @@ const NavigationMenuTrigger = ({
 }: React.ComponentProps<typeof NavigationMenuPrimitive.Trigger>) => (
   <NavigationMenuPrimitive.Trigger
     className={cn(navigationMenuTriggerStyle(), className)}
+    suppressHydrationWarning
     {...props}
   >
     {children}{" "}
