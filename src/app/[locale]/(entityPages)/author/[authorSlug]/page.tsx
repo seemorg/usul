@@ -91,7 +91,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
     sortBy: sort,
     locale: pathLocale,
     filters: {
-      genres,
+      advancedGenres: genres,
       authors: [author.id], // books for the current author only
     },
   });

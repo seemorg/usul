@@ -14,7 +14,7 @@ import {
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
 import { routing } from "@/i18n/config";
-import { getHomepageGenres } from "@/lib/api/genres";
+import { getHomepageAdvancedGenres, getHomepageGenres } from "@/lib/api/genres";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
@@ -138,7 +138,7 @@ export default async function HomePage({
     specialCollections,
     individualCollections,
   ] = await Promise.all([
-    getHomepageGenres({ locale: pathLocale }),
+    getHomepageAdvancedGenres({ locale: pathLocale }),
     fetchPopularBooks(pathLocale),
     fetchPopularIslamicLawBooks(pathLocale),
     fetchPopularIslamicHistoryBooks(pathLocale),
@@ -190,9 +190,7 @@ export default async function HomePage({
             items={(genres || []).map((genre) => (
               <Link
                 key={genre.id}
-                href={navigation.genres.bySlug(genre.slug, {
-                  fromHomepage: true,
-                })}
+                href={navigation.genres.bySlug(genre.slug)}
                 prefetch
               >
                 <CollectionCard

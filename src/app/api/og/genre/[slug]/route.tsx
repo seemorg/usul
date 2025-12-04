@@ -1,8 +1,7 @@
-import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
-import { getAdvancedGenre, getGenre } from "@/lib/api/genres";
+import { getAdvancedGenre } from "@/lib/api/genres";
 import { loadFileOnEdge } from "@/lib/edge";
 
 export const runtime = "edge";
@@ -20,26 +19,14 @@ const fonts = {
 };
 
 // Image generation
-export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ slug: string }> },
-) {
+export async function GET({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
   if (!slug) {
     notFound();
   }
 
-  const fromHomepage =
-    request.nextUrl.searchParams.get("fromHomepage") === "true";
-
-  let genre;
-  if (fromHomepage) {
-    genre = await getGenre(slug, { locale: "en" });
-  } else {
-    const advancedGenre = await getAdvancedGenre(slug, { locale: "en" });
-    genre = advancedGenre || (await getGenre(slug, { locale: "en" }));
-  }
+  const genre = await getAdvancedGenre(slug, { locale: "en" });
 
   if (!genre) {
     notFound();

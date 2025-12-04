@@ -13,6 +13,15 @@ export const getAdvancedGenre = cache(
   },
 );
 
+export const getHomepageAdvancedGenres = cache(
+  async (params: { locale?: PathLocale } = {}) => {
+    return await apiFetch<ApiGenreCollection[]>({
+      path: `/advancedGenre/homepage`,
+      params,
+    });
+  },
+);
+
 export const getGenre = cache(
   async (slug: string, params: { locale?: PathLocale } = {}) => {
     return await apiFetch<ApiGenre>({
