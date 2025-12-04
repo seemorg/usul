@@ -1,3 +1,4 @@
+import type { NextRequest } from "next/server";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { ArabicLogo, Logo } from "@/components/Icons";
@@ -19,7 +20,10 @@ const fonts = {
 };
 
 // Image generation
-export async function GET({ params }: { params: Promise<{ slug: string }> }) {
+export async function GET(
+  _request: NextRequest,
+  { params }: { params: Promise<{ slug: string }> },
+) {
   const { slug } = await params;
 
   if (!slug) {
