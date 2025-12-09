@@ -185,8 +185,8 @@ export default async function HomePage({
         <div>
           <HomepageSection
             isBooks={false}
-            title={t("home.sections.collections")}
-            href={navigation.collections.all()}
+            title={t("home.sections.genres")}
+            href={navigation.genres.all()}
             items={(genres || []).map((genre) => (
               <Link
                 key={genre.id}

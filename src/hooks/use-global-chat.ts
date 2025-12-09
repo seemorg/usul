@@ -96,16 +96,16 @@ export function useGlobalChat({
   const authorIds = useChatFilters(
     useShallow((s) => s.selectedAuthors.map((a) => a.id)),
   );
-  const genreIds = useChatFilters(
+  const advancedGenreIds = useChatFilters(
     useShallow((s) => s.selectedGenres.map((g) => g.id)),
   );
   const body = useMemo(
     () => ({
       bookIds,
       authorIds,
-      genreIds,
+      advancedGenreIds,
     }),
-    [bookIds, authorIds, genreIds],
+    [bookIds, authorIds, advancedGenreIds],
   );
 
   const {
