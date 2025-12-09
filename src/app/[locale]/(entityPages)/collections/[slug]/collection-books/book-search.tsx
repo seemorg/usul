@@ -70,8 +70,7 @@ export default function BookSearch({
   const handleBookSelect = (book: BookDocument) => {
     if (isAdding) return; // Prevent selection while adding
     onBookSelect(book);
-    setValue("");
-    focusedState.setFalse();
+    // Don't clear value or close - allow selecting multiple books
   };
 
   const handlePageChange = (page: number) => {
@@ -148,11 +147,7 @@ export default function BookSearch({
                 >
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center space-x-2">
-                      {isAdding ? (
-                        <Loader2Icon className="text-muted-foreground h-4 w-4 animate-spin" />
-                      ) : (
-                        <PlusIcon className="text-muted-foreground h-4 w-4" />
-                      )}
+                      <PlusIcon className="text-muted-foreground h-4 w-4" />
                       <div className="min-w-0 flex-1">
                         <p
                           className="truncate text-sm font-medium"

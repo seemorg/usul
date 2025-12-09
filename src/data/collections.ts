@@ -6,17 +6,17 @@ import { CollectionHomepage } from "@/types/api/collection";
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 
 export const collections: {
-  title: NamespaceTranslations<"collections">;
-  description: NamespaceTranslations<"collections">;
+  title: string;
+  description: string;
   color: CollectionCardProps["color"];
   pattern: CollectionCardProps["pattern"];
   slug: string;
   bookIds: string[];
 }[] = [
     {
-      title: "legal-canons.title",
-      description: "legal-canons.description",
-      color: "red",
+      title: "collections.legal-canons.title",
+      description: "collections.legal-canons.description",
+      color: "gray",
       pattern: 2,
       slug: "legal-canons",
       bookIds: [
@@ -59,46 +59,12 @@ export const collections: {
 
 const specialCollections: CollectionHomepage[] = [
   {
-    id: "al-azhar-university",
-    slug: "al-azhar-university",
-    name: "Al-Azhar University",
+    id: "al-azhar-law-collection",
+    slug: "al-azhar-law-collection",
+    title: "collections.al-azhar-law.title",
+    description: "collections.al-azhar-law.description",
     pattern: 1,
     color: "red",
-  },
-  {
-    id: "madinah-university",
-    slug: "madinah-university",
-    name: "Madinah University",
-    pattern: 2,
-    color: "green",
-  },
-  {
-    id: "hikma-center",
-    slug: "hikma-center",
-    name: "Hikma Center",
-    pattern: 3,
-    color: "yellow",
-  },
-  {
-    id: "Baghdad-university",
-    slug: "baghdad-university",
-    name: "Baghdad University",
-    pattern: 4,
-    color: "indigo",
-  },
-  {
-    id: "qatar-university",
-    slug: "qatar-university",
-    name: "Qatar University",
-    pattern: 5,
-    color: "red",
-  },
-  {
-    id: "al-islamiyya-university",
-    slug: "al-islamiyya-university",
-    name: "Al-Islamiyya University",
-    pattern: 6,
-    color: "gray",
   },
 ];
 
@@ -106,7 +72,8 @@ const individualCollections: CollectionHomepage[] = [
   {
     id: "legal-canons",
     slug: "legal-canons",
-    name: "Legal Canons",
+    title: "collections.legal-canons.title",
+    description: "collections.legal-canons.description",
     pattern: 2,
     color: "gray",
   },

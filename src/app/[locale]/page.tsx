@@ -220,8 +220,7 @@ export default async function HomePage({
           />
         </div>
 
-        {/* TODO: add back when collections populated */}
-        {/* 
+        {/*
         <div>
           <HomepageSection
             isBooks={false}
@@ -230,11 +229,11 @@ export default async function HomePage({
             items={(specialCollections || []).map((collection) => (
               <Link
                 key={collection.id}
-                href={navigation.collections.static.bySlug(collection.slug)}
+                href={navigation.collections.bySlug(collection.slug)}
                 prefetch
               >
                 <CollectionCard
-                  title={collection.name}
+                  title={t(collection.title as any)}
                   pattern={collection.pattern}
                   color={collection.color}
                 />
@@ -251,18 +250,19 @@ export default async function HomePage({
             items={(individualCollections || []).map((collection) => (
               <Link
                 key={collection.id}
-                href={navigation.collections.static.bySlug(collection.slug)}
+                href={navigation.collections.bySlug(collection.slug)}
                 prefetch
               >
                 <CollectionCard
-                  title={collection.name}
+                  title={t(collection.title as any)}
                   pattern={collection.pattern}
                   color={collection.color}
                 />
               </Link>
             ))}
           />
-        </div> */}
+        </div>
+        */}
 
         {/* 
         <div>

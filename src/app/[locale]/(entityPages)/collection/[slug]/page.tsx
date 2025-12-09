@@ -1,3 +1,4 @@
+import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import { notFound } from "next/navigation";
@@ -31,11 +32,21 @@ export const generateMetadata = async ({
 
   const t = await getTranslations("collections");
 
+  // Strip "collections." prefix since t is already scoped to "collections"
+  const titleKey = collection.title.replace(
+    "collections.",
+    "",
+  ) as NamespaceTranslations<"collections">;
+  const descriptionKey = collection.description.replace(
+    "collections.",
+    "",
+  ) as NamespaceTranslations<"collections">;
+
   return getMetadata({
     locale,
     pagePath: navigation.collections.bySlug(slug),
-    title: t(collection.title),
-    description: t(collection.description),
+    title: t(titleKey),
+    description: t(descriptionKey),
   });
 };
 
@@ -65,8 +76,8 @@ async function CollectionPage({
     },
   });
 
-  const title = t(`collections.${collection.title}`);
-  const description = t(`collections.${collection.description}`);
+  const title = t(collection.title as any);
+  const description = t(collection.description as any);
 
   return (
     <div>

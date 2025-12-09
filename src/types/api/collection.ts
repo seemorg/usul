@@ -15,7 +15,8 @@ export type Collection = {
 export type CollectionHomepage = {
   id: string;
   slug: string;
-  name: string;
+  title: string;
+  description: string;
   pattern: CollectionCardProps["pattern"];
   color: CollectionCardProps["color"];
 };

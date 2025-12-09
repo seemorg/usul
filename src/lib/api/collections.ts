@@ -72,6 +72,14 @@ export const addBookToCollection = async (id: string, bookId: string) => {
   });
 };
 
+export const addBooksToCollection = async (id: string, bookIds: string[]) => {
+  return await apiFetch<{ data: Collection }>(`/collections/${id}/add-books`, {
+    method: "POST",
+    body: { bookIds },
+    throw: true,
+  });
+};
+
 export const removeBookFromCollection = async (id: string, bookId: string) => {
   return await apiFetch<{ data: Collection }>(
     `/collections/${id}/remove-book`,

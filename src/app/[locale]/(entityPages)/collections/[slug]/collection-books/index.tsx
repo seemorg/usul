@@ -1,9 +1,10 @@
 "use client";
 
 import type { BookDocument } from "@/types/book";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { notFound } from "next/navigation";
 import BookSearchResult from "@/components/book-search-result";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import DottedList from "@/components/ui/dotted-list";
 import {
@@ -17,16 +18,16 @@ import {
 } from "@/components/ui/drawer";
 import { Skeleton } from "@/components/ui/skeleton";
 import TruncatedText from "@/components/ui/truncated-text";
-import { usePathLocale } from "@/lib/locale/utils";
+import { useDirection, usePathLocale } from "@/lib/locale/utils";
 import { alphabeticalSorts, yearsSorts } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import {
-  useAddBookToCollection,
+  useAddBooksToCollection,
   useRemoveBookFromCollection,
 } from "@/react-query/mutations/collections";
 import { useCollectionBySlug } from "@/react-query/queries/collections";
 import { AdjustmentsHorizontalIcon } from "@heroicons/react/24/outline";
-import { TrashIcon } from "lucide-react";
+import { TrashIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import BookSearch from "./book-search";
@@ -62,6 +63,7 @@ export default function CollectionBooks({ slug }: { slug: string }) {
   const t = useTranslations();
   const [page] = usePage();
   const pathLocale = usePathLocale();
+  const dir = useDirection();
   const sorts = useMemo(
     () =>
       pathLocale === "en" ? [...yearsSorts, ...alphabeticalSorts] : yearsSorts,
@@ -79,8 +81,10 @@ export default function CollectionBooks({ slug }: { slug: string }) {
     },
   });
 
-  const { mutate: addBookToCollection, isPending: isAddingBook } =
-    useAddBookToCollection();
+  const { mutate: addBooksToCollection, isPending: isAddingBooks } =
+    useAddBooksToCollection();
+
+  const [selectedBooks, setSelectedBooks] = useState<BookDocument[]>([]);
 
   if (!data && !isLoading) {
     notFound();
@@ -123,15 +127,38 @@ export default function CollectionBooks({ slug }: { slug: string }) {
     </>
   );
 
-  const handleAddBook = (book: BookDocument) => {
-    addBookToCollection({
-      collectionId: collection.id,
-      bookId: book.id,
-    });
+  const handleSelectBook = (book: BookDocument) => {
+    // Check if book is already selected
+    if (!selectedBooks.find((b) => b.id === book.id)) {
+      setSelectedBooks([...selectedBooks, book]);
+    }
+  };
+
+  const handleRemoveSelectedBook = (bookId: string) => {
+    setSelectedBooks(selectedBooks.filter((b) => b.id !== bookId));
+  };
+
+  const handleSubmitBooks = () => {
+    if (selectedBooks.length === 0) return;
+
+    addBooksToCollection(
+      {
+        collectionId: collection.id,
+        bookIds: selectedBooks.map((b) => b.id),
+      },
+      {
+        onSuccess: () => {
+          setSelectedBooks([]);
+        },
+      },
+    );
   };
 
   const books = results.hits;
-  const excludeBookIds = books.map((book) => book.id);
+  const excludeBookIds = [
+    ...books.map((book) => book.id),
+    ...selectedBooks.map((book) => book.id),
+  ];
 
   return (
     <div>
@@ -164,14 +191,57 @@ export default function CollectionBooks({ slug }: { slug: string }) {
             </label>
 
             <BookSearch
-              onBookSelect={handleAddBook}
+              onBookSelect={handleSelectBook}
               excludeBookIds={excludeBookIds}
               placeholder={t("entities.search-for", {
                 entity: t("entities.text"),
               })}
-              isAdding={isAddingBook}
+              isAdding={isAddingBooks}
             />
           </div>
+
+          {/* Selected books list */}
+          {selectedBooks.length > 0 && (
+            <div className="mb-4">
+              <label className="mb-2 block text-sm font-medium">
+                {t("collections.selected-books", {
+                  count: selectedBooks.length,
+                })}
+              </label>
+              <div className="flex flex-wrap gap-2">
+                {selectedBooks.map((book) => (
+                  <Badge
+                    key={book.id}
+                    variant="outline"
+                    className="flex items-center gap-2 pr-1"
+                  >
+                    <span
+                      className="max-w-[200px] truncate"
+                      dir={dir}
+                      dangerouslySetInnerHTML={{ __html: book.primaryName }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveSelectedBook(book.id)}
+                      className="hover:bg-secondary rounded-full p-0.5 transition-colors"
+                    >
+                      <XIcon className="h-3 w-3" />
+                    </button>
+                  </Badge>
+                ))}
+              </div>
+              <Button
+                onClick={handleSubmitBooks}
+                disabled={isAddingBooks}
+                isLoading={isAddingBooks}
+                className="mt-3"
+              >
+                {t("collections.add-books", {
+                  count: selectedBooks.length,
+                })}
+              </Button>
+            </div>
+          )}
         </div>
       )}
 

@@ -1,5 +1,6 @@
 import {
   addBookToCollection,
+  addBooksToCollection,
   addCollection,
   deleteCollection,
   removeBookFromCollection,
@@ -90,9 +91,9 @@ export const useUpdateCollection = ({
           data: old?.data.map((c) =>
             c.id === updatedCollection.id
               ? {
-                  ...c,
-                  ...updatedCollection,
-                }
+                ...c,
+                ...updatedCollection,
+              }
               : c,
           ),
         }),
@@ -181,6 +182,37 @@ export const useAddBookToCollection = () => {
     },
     onSuccess: () => {
       toast.success("Book added to collection successfully");
+    },
+    onSettled: (data) => {
+      if (data) {
+        void queryClient.invalidateQueries({
+          predicate: (query) =>
+            matchCollectionKeyBySlug(query.queryKey, data.data.slug),
+        });
+      }
+    },
+  });
+};
+
+export const useAddBooksToCollection = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: ({
+      collectionId,
+      bookIds,
+    }: {
+      collectionId: string;
+      bookIds: string[];
+    }) => addBooksToCollection(collectionId, bookIds),
+    onError: (err) => {
+      console.error("Error adding books to collection:", err);
+      toast.error("Failed to add books to collection");
+    },
+    onSuccess: (_, variables) => {
+      toast.success(
+        `${variables.bookIds.length} book${variables.bookIds.length > 1 ? "s" : ""} added to collection successfully`,
+      );
     },
     onSettled: (data) => {
       if (data) {
