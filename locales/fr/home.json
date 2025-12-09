@@ -3,7 +3,9 @@
   "subheadline": "Explorez, recherchez et analysez plus de 15 000 textes",
   "try": "Essayez : ",
   "sections": {
-    "collections": "Collections",
+    "genres": "Genres en vedette",
+    "special-collections": "Collections spéciales",
+    "individual-collections": "Collections individuelles",
     "popular-texts": "Textes Populaires",
     "islamic-law": "Droit Islamique",
     "islamic-history": "Histoire Islamique"

@@ -3,7 +3,9 @@
   "subheadline": "Teroka, cari, dan analisis lebih 15,000 teks",
   "try": "Cuba: ",
   "sections": {
-    "collections": "Koleksi",
+    "genres": "Genre Pilihan",
+    "special-collections": "Koleksi Khas",
+    "individual-collections": "Koleksi Individu",
     "popular-texts": "Teks Popular",
     "islamic-law": "Undang-Undang Islam",
     "islamic-history": "Sejarah Islam"

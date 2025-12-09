@@ -3,7 +3,9 @@
   "subheadline": "15,000 से अधिक ग्रंथों को एक्सप्लोर करें, खोजें और विश्लेषण करें",
   "try": "कोशिश करें: ",
   "sections": {
-    "collections": "संग्रह",
+    "genres": "विशेष रूप से चुने हुए विधाएं",
+    "special-collections": "विशेष संग्रह",
+    "individual-collections": "व्यक्तिगत संग्रह",
     "popular-texts": "लोकप्रिय पाठ",
     "islamic-law": "इस्लामी कानून",
     "islamic-history": "इस्लामी इतिहास"

@@ -242,5 +242,7 @@
         }
       }
     }
-  }
+  },
+  "expand-all": "Kembangkan semua",
+  "collapse-all": "Runtuhkan semua"
 }

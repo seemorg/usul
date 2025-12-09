@@ -3,7 +3,9 @@
   "subheadline": "15,000 سے زائد متون کو دریافت کریں، تلاش کریں اور تجزیہ کریں",
   "try": "کوشش کریں: ",
   "sections": {
-    "collections": "مجموعہ",
+    "genres": "نمایاں اصناف",
+    "special-collections": "خصوصی مجموعے",
+    "individual-collections": "انفرادی مجموعے",
     "popular-texts": "مقبول متون",
     "islamic-law": "اسلامی قانون",
     "islamic-history": "اسلامی تاریخ"

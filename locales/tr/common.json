@@ -242,5 +242,7 @@
         }
       }
     }
-  }
+  },
+  "expand-all": "Tümünü genişlet",
+  "collapse-all": "Tümünü daralt"
 }

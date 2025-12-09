@@ -242,5 +242,7 @@
         }
       }
     }
-  }
+  },
+  "expand-all": "Développer tout",
+  "collapse-all": "Replier tout"
 }

@@ -3,7 +3,9 @@
   "subheadline": "له ۱۵٬۰۰۰ څخه زیاتو متونو ته پلټنه، سپړنه او تجزیه وکړئ",
   "try": "هڅه وکړئ: ",
   "sections": {
-    "collections": "ټولګي",
+    "genres": "ځانګړې ژانرونه",
+    "special-collections": "ځانګړې ټولګې",
+    "individual-collections": "انفرادي ټولګې",
     "popular-texts": "مشهور متون",
     "islamic-law": "اسلامي قانون",
     "islamic-history": "اسلامي تاریخ"

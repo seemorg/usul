@@ -3,7 +3,9 @@
   "subheadline": "کاوش، جستجو و تحلیل بیش از ۱۵٬۰۰۰ متن",
   "try": "تلاش: ",
   "sections": {
-    "collections": "مجموعه‌ها",
+    "genres": "ژانرهای ویژه",
+    "special-collections": "مجموعه‌های ویژه",
+    "individual-collections": "مجموعه‌های فردی",
     "popular-texts": "متون محبوب",
     "islamic-law": "فقه اسلامی",
     "islamic-history": "تاریخ اسلام"

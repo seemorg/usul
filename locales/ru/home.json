@@ -3,7 +3,9 @@
   "subheadline": "Изучайте, ищите и анализируйте более 15\u0016000 текстов",
   "try": "Попробуйте: ",
   "sections": {
-    "collections": "Коллекции",
+    "genres": "Рекомендуемые жанры",
+    "special-collections": "Специальные коллекции",
+    "individual-collections": "Индивидуальные подборки",
     "popular-texts": "Популярные тексты",
     "islamic-law": "Исламское право",
     "islamic-history": "Исламская история"

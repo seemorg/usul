@@ -3,7 +3,9 @@
   "subheadline": "১৫,০০০-এরও বেশি টেক্সট অনুসন্ধান, গবেষণা ও বিশ্লেষণ করুন",
   "try": "চেষ্টা করুন: ",
   "sections": {
-    "collections": "সংগ্রহসমূহ",
+    "genres": "বৈশিষ্ট্যযুক্ত ঘরানাসমূহ",
+    "special-collections": "বিশেষ সংগ্রহ",
+    "individual-collections": "স্বতন্ত্র সংগ্রহ",
     "popular-texts": "জনপ্রিয় টেক্সটসমূহ",
     "islamic-law": "ইসলামিক আইন",
     "islamic-history": "ইসলামিক ইতিহাস"

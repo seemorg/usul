@@ -3,7 +3,9 @@
   "subheadline": "15.000'den fazla metni keşfedin, arayın ve analiz edin",
   "try": "Deneyin: ",
   "sections": {
-    "collections": "Koleksiyonlar",
+    "genres": "Öne Çıkan Türler",
+    "special-collections": "Özel Koleksiyonlar",
+    "individual-collections": "Bireysel Koleksiyonlar",
     "popular-texts": "Popüler Metinler",
     "islamic-law": "İslam Hukuku",
     "islamic-history": "İslam Tarihi"
