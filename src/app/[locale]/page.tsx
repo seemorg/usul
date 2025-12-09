@@ -220,7 +220,6 @@ export default async function HomePage({
           />
         </div>
 
-        {/*
         <div>
           <HomepageSection
             isBooks={false}
@@ -262,7 +261,6 @@ export default async function HomePage({
             ))}
           />
         </div>
-        */}
 
         {/* 
         <div>
