@@ -1,4 +1,8 @@
 {
+  "al-azhar-law": {
+    "title": "El-Ezher Hukuku",
+    "description": "El-Ezher Hukuku koleksiyonlarından bir örnek seçimi"
+  },
   "legal-canons": {
     "title": "Yasal Kanunlar",
     "description": "Hukuki kanon koleksiyonlarının örnek seçimi"
@@ -22,5 +26,7 @@
     "unlisted": "Liste Dışı",
     "description": "Genel koleksiyonlar herkese görünür. Liste dışı koleksiyonlara yalnızca doğrudan bağlantı üzerinden erişilebilir."
   },
-  "my-collections": "Koleksiyonlarım"
+  "my-collections": "Koleksiyonlarım",
+  "selected-books": "{count, plural, =0 {Seçilen kitap yok} one {# kitap seçildi} other {# kitap seçildi}}",
+  "add-books": "{count, plural, one {# kitap ekle} other {# kitap ekle}}"
 }

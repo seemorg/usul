@@ -1,4 +1,8 @@
 {
+  "al-azhar-law": {
+    "title": "Sharciga Al-Azhar",
+    "description": "Qaar kamid ah ururinta sharciyada Al-Azhar"
+  },
   "legal-canons": {
     "title": "Xeerarka Sharciga",
     "description": "Xulasho tusaale ah oo ururinta xeerarka sharciga"
@@ -22,5 +26,7 @@
     "unlisted": "Aan la diiwaan gelin",
     "description": "Ururada dadweynuhu waxay u muuqdaan qof walba. Ururinta aan la diiwaan gelin waxay heli karaan oo kaliya iyada oo xiriir toos ah."
   },
-  "my-collections": "Ururintayda"
+  "my-collections": "Ururintayda",
+  "selected-books": "{count, plural, =0 {Kuma jiraan buug la doortay} one {# buug la doortay} other {# buug la doortay}}",
+  "add-books": "{count, plural, one {Kudar # buug} other {Kudar # buugaag}}"
 }

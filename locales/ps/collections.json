@@ -1,4 +1,8 @@
 {
+  "al-azhar-law": {
+    "title": "د الازهر قانون",
+    "description": "د الازهر قانون مجموعو څخه یوه نمونه"
+  },
   "legal-canons": {
     "title": "حقوقي قواعد",
     "description": "س{{am}}ple selection o{{f}} legal {{canons}} ک{{o}}llections"
@@ -22,5 +26,7 @@
     "unlisted": "بې نومه",
     "description": "عام ټولګې ټولو خلکو ته ښکاري. بې نومه ټولګې یوازې په مستقیم لینک لاسرسي وړ وي."
   },
-  "my-collections": "زما ټولګې"
+  "my-collections": "زما ټولګې",
+  "selected-books": "{count, plural, =0 {هیڅ کتاب انتخاب شوی نه دی} one {# کتاب انتخاب شو} other {# کتابونه انتخاب شول}}",
+  "add-books": "{count, plural, one {# کتاب اضافه کړئ} other {# کتابونه اضافه کړئ}}"
 }
