@@ -23,7 +23,7 @@ export const useBookShareUrl = () => {
   }) => {
     let url = window.location.origin;
 
-    if (locale !== routing.defaultLocale) url = pathLocale + url;
+    if (locale !== routing.defaultLocale) url = `${url}${pathLocale}/`;
     url += navigation.books.pageReader(slug, pageIndex + 1);
 
     if (versionId) url += `?versionId=${versionId}`;
