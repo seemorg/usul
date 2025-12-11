@@ -1,4 +1,8 @@
 {
+  "al-azhar-law": {
+    "title": "Dokar Al-Azhar",
+    "description": "Zaɓin samfuri na tattaruwar Dokar Al-Azhar"
+  },
   "legal-canons": {
     "title": "Ƙa'idodin Dokoki",
     "description": "Zaɓin samfur na tarin ka'idojin doka"
@@ -22,5 +26,7 @@
     "unlisted": "Ba a ambaci shi ba",
     "description": "Tarin jama'a suna bayyanawa ga kowa. Tarin da ba a ambaci su ba za a iya samun su ta hanyar haɗin kai tsaye kawai."
   },
-  "my-collections": "Abubuwana"
+  "my-collections": "Abubuwana",
+  "selected-books": "{count, plural, =0 {Babu littafin da aka zaba} one {# littafi da aka zaba} other {# littattafai da aka zaba}}",
+  "add-books": "{count, plural, one {Ƙara # littafi} other {Ƙara # littattafai}}"
 }
