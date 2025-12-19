@@ -2,6 +2,7 @@ import { env } from "@/env";
 import { Pool } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@prisma/client";
+import { any } from "zod";
 
 const prismaClientSingleton = () => {
   if (
@@ -14,7 +15,7 @@ const prismaClientSingleton = () => {
     const pool = new Pool({ connectionString: env.DATABASE_URL });
     const adapter = new PrismaNeon(pool);
 
-    return new PrismaClient({ adapter });
+    return new PrismaClient({ datasources: { db: { url: env.DATABASE_URL } } });
   }
 };
 
