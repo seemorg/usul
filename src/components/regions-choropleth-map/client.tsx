@@ -384,14 +384,14 @@ export default function RegionsChoroplethMap({
       .scaleThreshold<number, string>()
       .domain([15, 50, 100, 500, 750, 900, 1000])
       .range([
-        "#e3f2fd",
-        "#b3e5fc",
-        "#90caf9",
-        "#42a5f5",
-        "#1e88e5",
-        "#1565c0",
-        "#0d47a1",
-        "#0d47a1", // Max color for 1000+
+        "#e0f2f1",
+        "#b2dfdb",
+        "#80cbc4",
+        "#4db6ac",
+        "#26a69a",
+        "#00897b",
+        "#00695c",
+        "#206e6e", // Max color for 1000+
       ]);
 
     // Remove existing tooltip if present
@@ -603,11 +603,11 @@ export default function RegionsChoroplethMap({
   return (
     <div
       ref={containerRef}
-      className="dark:bg-muted-primary relative mb-16 h-[500px] w-full overflow-hidden rounded-lg bg-gray-50"
+      className="bg-card relative mb-16 h-[500px] w-full overflow-hidden rounded-lg border"
     >
       {isLoading && (
         <div className="dark:bg-muted-primary/80 absolute inset-0 z-10 flex items-center justify-center bg-gray-50/80">
-          <div className="text-gray-500">Loading map...</div>
+          <div className="dark:text-muted-primary text-gray-500">...</div>
         </div>
       )}
     </div>
