@@ -1,24 +1,22 @@
-import type { ApiLocation } from "@/types/api/location";
-import type { ApiRegion } from "@/types/api/region";
+import type { ApiEmpire } from "@/types/api/empire";
 import { cache } from "react";
 
 import type { PathLocale } from "../locale/utils";
 import { apiFetch } from "./utils";
 
-export const findRegionBySlug = cache(
+export const findEmpireBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {
-    const result = await apiFetch<ApiRegion & { locations: ApiLocation[] }>({
-      path: `/region/${slug}`,
+    const result = await apiFetch<ApiEmpire>({
+      path: `/empire/${slug}`,
       params: {
         locale,
-        locations: true,
       },
     });
     return result ?? null;
   },
 );
 
-export const findAllRegionsWithBooksCount = cache(
+export const findAllEmpiresWithBooksCount = cache(
   async (
     params?: {
       yearRange?: [number, number];
@@ -26,8 +24,8 @@ export const findAllRegionsWithBooksCount = cache(
     },
     locale: PathLocale = "en",
   ) => {
-    const result = await apiFetch<ApiRegion[]>({
-      path: "/region",
+    const result = await apiFetch<ApiEmpire[]>({
+      path: "/empire",
       params: {
         locale,
         ...params,

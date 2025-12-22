@@ -6,7 +6,8 @@ export type SearchType =
   | "texts"
   | "authors"
   | "genres"
-  | "regions";
+  | "regions"
+  | "empires";
 
 export type BookContentSearchResult = {
   node: SemanticSearchBookNode;

@@ -79,6 +79,10 @@
       "genres": {
         "title": "Genres",
         "description": "{advancedGenres, number} Genres"
+      },
+      "empires": {
+        "title": "Empires",
+        "description": "{empires, number} Empires"
       }
     },
     "about": {

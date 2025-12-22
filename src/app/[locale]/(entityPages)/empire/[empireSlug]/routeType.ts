@@ -1,35 +1,20 @@
 import type { DynamicRoute } from "next-typesafe-url";
-import { yearsSorts } from "@/lib/urls";
+import { alphabeticalSorts, yearsSorts } from "@/lib/urls";
 import { viewSchema } from "@/validation/view";
 import { yearRangeSchema } from "@/validation/year-range";
 import { z } from "zod";
 
-const sorts = yearsSorts.map((s) => s.value);
+const sorts = [...yearsSorts, ...alphabeticalSorts].map((s) => s.value);
 const defaultSort: (typeof sorts)[number] = "relevance";
 
-export const searchTypes = [
-  "all",
-  "content",
-  "texts",
-  "authors",
-  "genres",
-  "regions",
-  "empires",
-] as const;
-export type SearchType = (typeof searchTypes)[number];
-
 export const Route = {
+  routeParams: z.object({
+    empireSlug: z.string().catch(""),
+  }),
   searchParams: z.object({
     q: z.string().default(""),
-    compiledQuery: z.string().default(""),
     page: z.number().min(1).catch(1),
     view: viewSchema,
-    year: yearRangeSchema,
-    type: z.enum(searchTypes).default("all").catch("all"),
-    searchType: z
-      .enum(["keyword", "semantic"])
-      .default("keyword")
-      .catch("keyword"),
     sort: z
       .enum(sorts as any)
       .default(defaultSort)
@@ -46,6 +31,7 @@ export const Route = {
       .string()
       .transform((v) => v.split(","))
       .catch([] as string[]),
+    year: yearRangeSchema,
   }),
 } satisfies DynamicRoute;
 

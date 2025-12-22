@@ -85,6 +85,13 @@ export default function SearchTypeSwitcher() {
           >
             {t("entities.regions")}
           </Trigger>
+          <Trigger
+            value="empires"
+            active={type === "empires"}
+            disabled={isPending}
+          >
+            {t("entities.empires")}
+          </Trigger>
         </TabsList>
       </Tabs>
     </div>

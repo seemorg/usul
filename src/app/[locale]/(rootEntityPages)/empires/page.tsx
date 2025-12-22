@@ -1,11 +1,9 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import RegionSearchResult from "@/components/region-search-result";
-import RegionsChoroplethMap from "@/components/regions-choropleth-map/client";
+import EmpireSearchResult from "@/components/empire-search-result";
 import SearchResults from "@/components/search-results";
 import { getTotalEntities } from "@/lib/api";
-import { findAllRegionsWithBooksCount } from "@/lib/api/regions";
-import { searchRegions } from "@/lib/api/search";
+import { searchEmpires } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { alphabeticalSorts, navigation } from "@/lib/urls";
@@ -27,57 +25,54 @@ export async function generateMetadata({
   const { locale } = await params;
 
   return getMetadata({
-    title: (await getTranslations("entities"))("regions"),
-    pagePath: navigation.regions.all(),
+    title: (await getTranslations("entities"))("empires"),
+    pagePath: navigation.empires.all(),
     locale,
   });
 }
 
-async function RegionsPage({ searchParams }: PageProps) {
+async function EmpiresPage({ searchParams }: PageProps) {
   const { q, page, sort } = await searchParams;
   const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
-  const [results, total, regions] = await Promise.all([
-    searchRegions(q, {
+  const [results, total] = await Promise.all([
+    searchEmpires(q, {
       limit: 20,
       page,
       sortBy: sort,
       locale: pathLocale,
     }),
     getTotalEntities(),
-    findAllRegionsWithBooksCount(undefined, pathLocale),
   ]);
 
   return (
     <RootEntityPage
-      title={t("regions")}
+      title={t("empires")}
       description={t("search-x", {
-        count: total.regions,
-        entity: t("regions"),
+        count: total.empires,
+        entity: t("empires"),
       })}
     >
       {/* <p className="-mt-14 mb-12 flex items-center">
         <InfoIcon className="mr-1 size-4 rtl:ml-1" />
-        Regions on Usul are based on the&nbsp;
+        Empires on Usul are based on the&nbsp;
         <a
-          href="https://althurayya.github.io/"
+          href="https://pil.law.harvard.edu/shariasource-portal/"
           target="_blank"
           className="underline"
         >
-          Turayya project
+          SHARIAsource portal
         </a>
       </p> */}
-
-      <RegionsChoroplethMap data={regions as any} />
 
       <SearchResults
         response={results.results}
         pagination={results.pagination}
-        renderResult={(result) => <RegionSearchResult result={result} />}
-        emptyMessage={t("no-entity", { entity: t("regions") })}
+        renderResult={(result) => <EmpireSearchResult result={result} />}
+        emptyMessage={t("no-entity", { entity: t("empires") })}
         placeholder={t("search-within", {
-          entity: t("regions"),
+          entity: t("empires"),
         })}
         hasViews={false}
         sorts={pathLocale === "en" ? [...sorts, ...alphabeticalSorts] : sorts}
@@ -89,4 +84,4 @@ async function RegionsPage({ searchParams }: PageProps) {
   );
 }
 
-export default withParamValidation(RegionsPage, Route);
+export default withParamValidation(EmpiresPage, Route);

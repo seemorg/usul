@@ -44,6 +44,10 @@ export const navigation = {
     all: () => "/regions",
     bySlug: (slug: string) => `/region/${slug}`,
   },
+  empires: {
+    all: () => "/empires",
+    bySlug: (slug: string) => `/empire/${slug}`,
+  },
   centuries: {
     all: () => "/centuries",
     byNumber: (n: number) => `/century/${n}`,

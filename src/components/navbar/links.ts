@@ -11,6 +11,7 @@ import {
   BookOpenIcon,
   CirclePlusIcon,
   FileTextIcon,
+  GlobeIcon,
   HandCoinsIcon,
   HeartHandshakeIcon,
   ListIcon,
@@ -56,6 +57,12 @@ export const browseItems: NavItem[] = [
     description: "navigation.browse.regions.description",
     icon: MapIcon,
   },
+  {
+    href: navigation.empires.all(),
+    title: "navigation.browse.empires.title",
+    description: "navigation.browse.empires.description",
+    icon: GlobeIcon,
+  }
 ];
 
 export const aboutItems: NavItem[] = [

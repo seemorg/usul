@@ -3,6 +3,7 @@ import {
   searchAllCollections,
   searchAuthors,
   searchBooks,
+  searchEmpires,
   searchGenres,
   searchRegions,
 } from "@/lib/api/search";
@@ -17,6 +18,7 @@ const typeToMethod = {
   authors: searchAuthors,
   genres: searchAdvancedGenres,
   regions: searchRegions,
+  empires: searchEmpires,
 } satisfies Record<SearchType, any>;
 
 type SearchResults = Awaited<ReturnType<typeof searchAllCollections>>;
