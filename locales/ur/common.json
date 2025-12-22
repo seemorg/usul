@@ -79,6 +79,10 @@
       "genres": {
         "title": "اصناف",
         "description": "{advancedGenres, number} اصناف"
+      },
+      "empires": {
+        "title": "سلطنتیں",
+        "description": "{empires, number} سلطنتیں"
       }
     },
     "about": {

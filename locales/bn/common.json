@@ -79,6 +79,10 @@
       "genres": {
         "title": "বিষয়সমূহ",
         "description": "{advancedGenres, number} শ্রেণীসমূহ"
+      },
+      "empires": {
+        "title": "সাম্রাজ্য",
+        "description": "{empires, number} সাম্রাজ্য"
       }
     },
     "about": {

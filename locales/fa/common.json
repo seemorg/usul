@@ -79,6 +79,10 @@
       "genres": {
         "title": "ژانرها",
         "description": "{advancedGenres, number} ژانرها"
+      },
+      "empires": {
+        "title": "امپراتوری‌ها",
+        "description": "{empires, number} امپراتوری‌ها"
       }
     },
     "about": {
