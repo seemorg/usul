@@ -1,4 +1,8 @@
 {
+  "al-azhar-law": {
+    "title": "Loi Al-Azhar",
+    "description": "Un échantillon de sélection des collections de la loi d'Al-Azhar"
+  },
   "legal-canons": {
     "title": "Canons Juridiques",
     "description": "Un échantillon de collections de canons juridiques"
@@ -22,5 +26,7 @@
     "unlisted": "Non répertoriée",
     "description": "Les collections publiques sont visibles par tout le monde. Les collections non répertoriées sont accessibles uniquement via un lien direct."
   },
-  "my-collections": "Mes collections"
+  "my-collections": "Mes collections",
+  "selected-books": "{count, plural, =0 {Aucun livre sélectionné} one {# livre sélectionné} other {# livres sélectionnés}}",
+  "add-books": "{count, plural, one {Ajoutez # livre} other {Ajoutez # livres}}"
 }

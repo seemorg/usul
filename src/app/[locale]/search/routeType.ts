@@ -14,6 +14,7 @@ export const searchTypes = [
   "authors",
   "genres",
   "regions",
+  "empires",
 ] as const;
 export type SearchType = (typeof searchTypes)[number];
 

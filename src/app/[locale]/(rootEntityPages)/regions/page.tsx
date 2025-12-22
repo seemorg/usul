@@ -1,8 +1,10 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import RegionSearchResult from "@/components/region-search-result";
+import RegionsChoroplethMap from "@/components/regions-choropleth-map/client";
 import SearchResults from "@/components/search-results";
 import { getTotalEntities } from "@/lib/api";
+import { findAllRegionsWithBooksCount } from "@/lib/api/regions";
 import { searchRegions } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
@@ -36,7 +38,7 @@ async function RegionsPage({ searchParams }: PageProps) {
   const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
-  const [results, total] = await Promise.all([
+  const [results, total, regions] = await Promise.all([
     searchRegions(q, {
       limit: 20,
       page,
@@ -44,6 +46,7 @@ async function RegionsPage({ searchParams }: PageProps) {
       locale: pathLocale,
     }),
     getTotalEntities(),
+    findAllRegionsWithBooksCount(undefined, pathLocale),
   ]);
 
   return (
@@ -54,7 +57,7 @@ async function RegionsPage({ searchParams }: PageProps) {
         entity: t("regions"),
       })}
     >
-      <p className="-mt-14 mb-12 flex items-center">
+      {/* <p className="-mt-14 mb-12 flex items-center">
         <InfoIcon className="mr-1 size-4 rtl:ml-1" />
         Regions on Usul are based on the&nbsp;
         <a
@@ -64,7 +67,9 @@ async function RegionsPage({ searchParams }: PageProps) {
         >
           Turayya project
         </a>
-      </p>
+      </p> */}
+
+      <RegionsChoroplethMap data={regions as any} />
 
       <SearchResults
         response={results.results}

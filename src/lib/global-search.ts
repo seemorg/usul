@@ -11,6 +11,8 @@ export const getGlobalDocumentHref = (document: GlobalSearchDocument) => {
     return navigation.genres.bySlug(document.slug);
   } else if (document.type === "region") {
     return navigation.regions.bySlug(document.slug);
+  } else if (document.type === "empire") {
+    return navigation.empires.bySlug(document.slug);
   }
 
   return null;
@@ -27,6 +29,8 @@ export const getGlobalDocumentLocalizedTypeKey = (
     return "genre";
   } else if (type === "region") {
     return "region";
+  } else if (type === "empire") {
+    return "empire";
   }
 
   return null;

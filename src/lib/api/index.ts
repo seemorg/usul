@@ -10,6 +10,7 @@ export const getTotalEntities = cache(async () => {
         books: 0,
         authors: 0,
         regions: 0,
+        empires: 0,
         advancedGenres: 0,
         genres: 0,
       };

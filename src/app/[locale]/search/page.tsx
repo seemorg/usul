@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import AuthorSearchResult from "@/components/author-search-result";
 import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
+import EmpireSearchResult from "@/components/empire-search-result";
 import GenreSearchResult from "@/components/genre-search-result";
 import GenresFilter from "@/components/genres-filter";
 import RegionSearchResult from "@/components/region-search-result";
@@ -17,6 +18,7 @@ import {
   searchBooks,
   searchContent,
   searchCorpus,
+  searchEmpires,
   searchGenres,
   searchRegions,
 } from "@/lib/api/search";
@@ -95,6 +97,10 @@ async function search(params: Awaited<TextsPageProps["searchParams"]>) {
 
   if (type === "genres") return searchAdvancedGenres(q, commonOptions);
 
+  if (type === "regions") return searchRegions(q, commonOptions);
+
+  if (type === "empires") return searchEmpires(q, commonOptions);
+
   return searchRegions(q, commonOptions);
 }
 
@@ -110,6 +116,8 @@ const SearchResult = ({
   if (type === "texts") return <BookSearchResult result={result} view={view} />;
   if (type === "authors") return <AuthorSearchResult result={result} />;
   if (type === "genres") return <GenreSearchResult result={result} />;
+  if (type === "regions") return <RegionSearchResult result={result} />;
+  if (type === "empires") return <EmpireSearchResult result={result} />;
   if (type === "content")
     return <BookContentResult result={result} className="w-full" />;
 
@@ -133,6 +141,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
         texts: "entities.texts",
         genres: "entities.genres",
         regions: "entities.regions",
+        empires: "entities.empires",
         all: "entities.texts",
       } as const
     )[type],
@@ -225,7 +234,9 @@ async function SearchPage({ searchParams }: TextsPageProps) {
                     searchType === "keyword" ? (
                       <ContentFilters />
                     ) : null
-                  ) : type === "genres" || type === "regions" ? null : (
+                  ) : type === "genres" ||
+                    type === "regions" ||
+                    type === "empires" ? null : (
                     <>
                       {type === "texts" || type === "authors" ? (
                         <YearFilterClient

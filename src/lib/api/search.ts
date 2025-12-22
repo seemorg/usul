@@ -5,6 +5,7 @@ import type { GenreDocument } from "@/types/genre";
 import type { GlobalSearchDocument } from "@/types/global-search-document";
 import type { Pagination } from "@/types/pagination";
 import type { RegionDocument } from "@/types/region";
+import type { EmpireDocument } from "@/types/empire";
 import type {
   BookContentSearchResult,
   SearchContentResponse,
@@ -93,6 +94,19 @@ export const searchRegions = async (
 ) => {
   return (await apiFetch<SearchResponse<RegionDocument>>({
     path: "/search/regions",
+    params: {
+      q,
+      ...options,
+    },
+  }))!;
+};
+
+export const searchEmpires = async (
+  q: string,
+  { filters: _, ...options }: SearchOptions = {},
+) => {
+  return (await apiFetch<SearchResponse<EmpireDocument>>({
+    path: "/search/empires",
     params: {
       q,
       ...options,
