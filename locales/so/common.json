@@ -79,6 +79,10 @@
       "genres": {
         "title": "Noocyo",
         "description": "{advancedGenres, number} Noocyada"
+      },
+      "empires": {
+        "title": "Boqortooyooyinka",
+        "description": "{empires, number} Boqortooyooyinka"
       }
     },
     "about": {

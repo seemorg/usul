@@ -79,6 +79,10 @@
       "genres": {
         "title": "Genre",
         "description": "{advancedGenres, number} Genre"
+      },
+      "empires": {
+        "title": "Empayar",
+        "description": "{empires, number} Empayar"
       }
     },
     "about": {

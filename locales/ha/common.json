@@ -79,6 +79,10 @@
       "genres": {
         "title": "Nau'o'i",
         "description": "{advancedGenres, number} Nau'ikan"
+      },
+      "empires": {
+        "title": "Dauloli",
+        "description": "{empires, number} Dauloli"
       }
     },
     "about": {

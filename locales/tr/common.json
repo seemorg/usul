@@ -79,6 +79,10 @@
       "genres": {
         "title": "Türler",
         "description": "{advancedGenres, number} Türler"
+      },
+      "empires": {
+        "title": "İmparatorluklar",
+        "description": "{empires, number} İmparatorluk"
       }
     },
     "about": {

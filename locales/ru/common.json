@@ -79,6 +79,10 @@
       "genres": {
         "title": "Жанры",
         "description": "{advancedGenres, number} жанров"
+      },
+      "empires": {
+        "title": "Империя",
+        "description": "{empires, number} Империя"
       }
     },
     "about": {
