@@ -15,5 +15,11 @@ export default async function RegionsFilter(props: Props) {
     await getPathLocale(),
   );
 
-  return <RegionsFilterClient {...props} regions={regions} />;
+  // filter regions with count > 0
+  let filteredRegions = regions.filter((region) => region.numberOfBooks > 0);
+
+  // sort regions by count descending
+  filteredRegions.sort((a, b) => b.numberOfBooks - a.numberOfBooks);
+
+  return <RegionsFilterClient {...props} regions={filteredRegions} />;
 }

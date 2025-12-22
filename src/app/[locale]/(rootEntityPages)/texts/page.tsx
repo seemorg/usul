@@ -92,9 +92,10 @@ async function TextsPage({ searchParams }: TextsPageProps) {
 
             <RegionsFilter
               currentRegions={regions}
-              filters={{
-                yearRange: year,
-              }}
+              // TODO: Add year range filter
+              // filters={{
+              //   yearRange: year,
+              // }}
             />
 
             <AuthorsFilter
