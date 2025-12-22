@@ -79,6 +79,10 @@
       "genres": {
         "title": "تصانيف",
         "description": "{advancedGenres, number} تصنيفات"
+      },
+      "empires": {
+        "title": "الامبراطوريات",
+        "description": "{empires, number} الامبراطوريات"
       }
     },
     "about": {

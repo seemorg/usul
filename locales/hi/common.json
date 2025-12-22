@@ -79,6 +79,10 @@
       "genres": {
         "title": "शैली",
         "description": "{advancedGenres, number} शैलियां"
+      },
+      "empires": {
+        "title": "साम्राज्य",
+        "description": "{empires, number} साम्राज्य"
       }
     },
     "about": {
