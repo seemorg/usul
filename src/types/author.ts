@@ -9,7 +9,7 @@ export type AuthorDocument = {
   otherNames?: string[];
   secondaryOtherNames?: string[];
 
-  regions: string[]; // region slugs
+  regions?: string[]; // region slugs
   geographies: string[];
   booksCount: number;
 };

@@ -3,8 +3,7 @@ export interface ApiRegion {
   slug: string;
   name: string;
   secondaryName: string;
-  currentName: string;
-  overview: string;
+  overview?: string;
   numberOfAuthors: number;
   numberOfBooks: number;
 }

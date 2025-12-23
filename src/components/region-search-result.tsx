@@ -17,7 +17,6 @@ export default function RegionSearchResult({
   const secondaryName = result.secondaryName;
 
   const totalBooks = result.booksCount;
-  const subLocations = result.subLocations ?? [];
 
   return (
     <EntityCard
@@ -25,7 +24,6 @@ export default function RegionSearchResult({
       prefetch={prefetch}
       primaryTitle={primaryName}
       secondaryTitle={secondaryName}
-      primarySubtitle={`${t("common.includes")} ${t("entities.x-locations", { count: subLocations.length })}`}
       tags={[t("entities.x-texts", { count: totalBooks })]}
     />
   );

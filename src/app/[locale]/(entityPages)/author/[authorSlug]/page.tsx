@@ -15,7 +15,6 @@ import { appLocaleToPathLocale } from "@/lib/locale/utils";
 import { getMetadata } from "@/lib/seo";
 import { alphabeticalSorts, booksSorts, navigation } from "@/lib/urls";
 import { Link } from "@/navigation";
-import { LocationType } from "@prisma/client";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
@@ -99,53 +98,10 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   const primaryName = author.primaryName;
   const secondaryName = author.secondaryName;
 
-  const locations = author.locations
-    .filter((l) => !!l.regionId)
-    .sort((a, b) => {
-      // sort should be:
-      // 1. born
-      // 2. resided
-      // 3. visited
-      // 4. died
-
-      const aType = a.type;
-      const bType = b.type;
-
-      if (aType === LocationType.Born) return -1;
-      if (bType === LocationType.Born) return 1;
-
-      if (aType === LocationType.Died) return 1;
-      if (bType === LocationType.Died) return -1;
-
-      if (aType === LocationType.Resided) return -1;
-      if (bType === LocationType.Resided) return 1;
-
-      if (aType === LocationType.Visited) return -1;
-      if (bType === LocationType.Visited) return 1;
-
-      return 0;
-    });
-
-  const localizedLocationItems = locations.map((l) => {
-    const region = l.region;
-    const name = region.name;
-
-    const key = `common.${l.type.toLowerCase()}` as any;
-    const localizedType = t(key);
-
-    return {
-      region: name,
-      text: `${name} (${localizedType === key ? l.type : localizedType})`,
-    };
-  });
-
-  // filter out duplicates
-  const uniqueLocations = localizedLocationItems.filter(
-    (l, index, self) => index === self.findIndex((t) => t.text === l.text),
-  );
-
   const bio = author.bio;
   const otherNames = author.otherNames ?? [];
+
+  const regions = author.regions;
 
   return (
     <div>
@@ -163,9 +119,9 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
         entity={{
           type: "author",
           booksCount: author.numberOfBooks,
-          regions: [],
           geographies: [],
           ...author,
+          regions: author.regions?.map((region) => region.slug),
         }}
       />
 
@@ -179,20 +135,20 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
               </Link>
             </Button>
           ) : null,
-          locations.length > 0 && (
-            <>
-              <p className="capitalize">{t("common.lived")}: &nbsp;</p>
+          // locations.length > 0 && (
+          //   <>
+          //     <p className="capitalize">{t("common.lived")}: &nbsp;</p>
 
-              <ExpandibleList
-                triggerItems={uniqueLocations.map((l) => l.region)}
-                items={uniqueLocations.map((l) => l.text)}
-                noun={{
-                  singular: t("entities.location"),
-                  plural: t("entities.locations"),
-                }}
-              />
-            </>
-          ),
+          //     <ExpandibleList
+          //       triggerItems={uniqueLocations.map((l) => l.region)}
+          //       items={uniqueLocations.map((l) => l.text)}
+          //       noun={{
+          //         singular: t("entities.location"),
+          //         plural: t("entities.locations"),
+          //       }}
+          //     />
+          //   </>
+          // ),
           <p>{t("entities.x-texts", { count: author.numberOfBooks })}</p>,
           <>
             <p>{t("common.aka")} &nbsp;</p>

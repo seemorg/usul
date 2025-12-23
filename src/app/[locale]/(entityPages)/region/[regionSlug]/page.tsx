@@ -79,10 +79,6 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
 
   const overview = region.overview;
 
-  const cities = [
-    ...new Set(region.locations.map((l) => l.name).filter(Boolean)),
-  ];
-
   return (
     <div>
       <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
@@ -94,7 +90,8 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
         </h2>
       )}
 
-      <DottedList
+      {/* Locations */}
+      {/* <DottedList
         className="mt-9 sm:mt-14"
         items={[
           <p>{t("entities.x-texts", { count: results.results.found })}</p>,
@@ -110,7 +107,7 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
             />
           </div>,
         ]}
-      />
+      /> */}
 
       {overview && (
         <TruncatedText className="mt-7 text-lg">{overview}</TruncatedText>
