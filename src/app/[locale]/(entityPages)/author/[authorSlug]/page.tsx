@@ -135,20 +135,18 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
               </Link>
             </Button>
           ) : null,
-          // locations.length > 0 && (
-          //   <>
-          //     <p className="capitalize">{t("common.lived")}: &nbsp;</p>
-
-          //     <ExpandibleList
-          //       triggerItems={uniqueLocations.map((l) => l.region)}
-          //       items={uniqueLocations.map((l) => l.text)}
-          //       noun={{
-          //         singular: t("entities.location"),
-          //         plural: t("entities.locations"),
-          //       }}
-          //     />
-          //   </>
-          // ),
+          regions.length > 0 && (
+            <>
+              <p className="capitalize">{t("common.lived")}: &nbsp;</p>
+              <ExpandibleList
+                items={regions.map((r) => r.name)}
+                noun={{
+                  singular: t("entities.region"),
+                  plural: t("entities.regions"),
+                }}
+              />
+            </>
+          ),
           <p>{t("entities.x-texts", { count: author.numberOfBooks })}</p>,
           <>
             <p>{t("common.aka")} &nbsp;</p>

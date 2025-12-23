@@ -90,24 +90,12 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
         </h2>
       )}
 
-      {/* Locations */}
-      {/* <DottedList
+      <DottedList
         className="mt-9 sm:mt-14"
         items={[
           <p>{t("entities.x-texts", { count: results.results.found })}</p>,
-          <div className="flex items-center">
-            <p className="capitalize">{t("common.includes")} &nbsp;</p>
-
-            <ExpandibleList
-              items={cities}
-              noun={{
-                singular: t("entities.location"),
-                plural: t("entities.locations"),
-              }}
-            />
-          </div>,
         ]}
-      /> */}
+      />
 
       {overview && (
         <TruncatedText className="mt-7 text-lg">{overview}</TruncatedText>
