@@ -1,6 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { navigation } from "@/lib/urls";
+import { useRouter } from "@/navigation";
+import {
+  ArrowsPointingInIcon,
+  ArrowsPointingOutIcon,
+} from "@heroicons/react/24/outline";
 import * as d3 from "d3";
 
 interface RegionData {
@@ -197,12 +204,15 @@ const regionToCountryCode: Record<string, string[]> = {
 export default function RegionsChoroplethMap({
   data,
 }: RegionsChoroplethMapProps) {
+  const chartContainerRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
   const isMountedRef = useRef(true);
+  const router = useRouter();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Set up dimensions observer
   useEffect(() => {
@@ -227,10 +237,24 @@ export default function RegionsChoroplethMap({
     };
   }, []);
 
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+      // ResizeObserver will automatically detect the size change
+      // No need to manually update dimensions here
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
   // Create the map
   useEffect(() => {
     if (
       !containerRef.current ||
+      !chartContainerRef.current ||
       dimensions.width === 0 ||
       !data ||
       data.length === 0
@@ -271,7 +295,10 @@ export default function RegionsChoroplethMap({
       .create("svg")
       .attr("width", width)
       .attr("height", height)
-      .attr("style", "width: 100%; height: 100%; cursor: grab;");
+      .attr(
+        "style",
+        "width: 100%; height: 100%; cursor: grab; touch-action: none;",
+      );
 
     const g = svg.append("g");
 
@@ -290,19 +317,40 @@ export default function RegionsChoroplethMap({
     let currentTranslate: [number, number] = [width / 2, height / 2];
     let previousK = 1;
     let lastPanPoint: [number, number] | null = null;
+    let touchStartPoint: [number, number] | null = null;
+    let hasPanned = false;
 
     // Zoom behavior with zoom-to-cursor
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.5, 8]) // Allow zoom from 0.5x to 8x
+      .filter((event) => {
+        // Allow all events including touch events
+        if (event.type === "wheel") return true;
+        if (event.type === "mousedown" && (event as MouseEvent).button === 0)
+          return true;
+        if (event.type === "touchstart" || event.type === "touchmove")
+          return true;
+        return false;
+      })
       .on("start", (event) => {
         svg.style("cursor", "grabbing");
+        // Prevent default on touch events to avoid scrolling
+        if (event.sourceEvent && "touches" in event.sourceEvent) {
+          event.sourceEvent.preventDefault();
+        }
         const mousePos = d3.pointer(event, svg.node());
         if (mousePos) {
           lastPanPoint = [mousePos[0], mousePos[1]];
+          touchStartPoint = [mousePos[0], mousePos[1]];
+          hasPanned = false;
         }
       })
       .on("zoom", (event) => {
+        // Prevent default on touch events to avoid scrolling
+        if (event.sourceEvent && "touches" in event.sourceEvent) {
+          event.sourceEvent.preventDefault();
+        }
         const { transform } = event;
         const mousePos = d3.pointer(event, svg.node());
         if (!mousePos || !projection.invert) return;
@@ -356,6 +404,11 @@ export default function RegionsChoroplethMap({
             const dx = mouseX - lastPanPoint[0];
             const dy = mouseY - lastPanPoint[1];
 
+            // Mark that we've panned if movement is significant
+            if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+              hasPanned = true;
+            }
+
             currentTranslate = [
               currentTranslate[0] + dx,
               currentTranslate[1] + dy,
@@ -373,6 +426,11 @@ export default function RegionsChoroplethMap({
       .on("end", () => {
         svg.style("cursor", "grab");
         lastPanPoint = null;
+        // Reset after a short delay to allow click handler to check hasPanned
+        setTimeout(() => {
+          touchStartPoint = null;
+          hasPanned = false;
+        }, 100);
       });
 
     // Apply zoom to SVG
@@ -395,7 +453,10 @@ export default function RegionsChoroplethMap({
       ]);
 
     // Remove existing tooltip if present
-    if (tooltipRef.current && document.body.contains(tooltipRef.current)) {
+    if (
+      tooltipRef.current &&
+      chartContainerRef.current?.contains(tooltipRef.current)
+    ) {
       tooltipRef.current.remove();
     }
     tooltipRef.current = null;
@@ -406,11 +467,12 @@ export default function RegionsChoroplethMap({
       "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson",
     )
       .then((topo) => {
-        if (!topo) return;
+        if (!topo || !chartContainerRef.current) return;
 
         // Create tooltip inside the promise to ensure it's accessible
+        // Append to chartContainerRef so it works in fullscreen mode
         const tooltip = d3
-          .select("body")
+          .select(chartContainerRef.current)
           .append("div")
           .attr("class", "tooltip")
           .style("position", "fixed")
@@ -436,9 +498,26 @@ export default function RegionsChoroplethMap({
           console.log("Sample GeoJSON feature:", topo.features[0]);
         }
 
-        // Mouse over handler
-        const mouseOver = function (event: MouseEvent, d: any) {
-          console.log("Mouse over triggered", d);
+        // Helper function to get coordinates from event (works for both mouse and touch)
+        const getEventCoordinates = (
+          event: MouseEvent | TouchEvent,
+        ): { x: number; y: number } => {
+          if (
+            "touches" in event &&
+            event.touches.length > 0 &&
+            event.touches[0]
+          ) {
+            return { x: event.touches[0].clientX, y: event.touches[0].clientY };
+          }
+          return {
+            x: (event as MouseEvent).clientX,
+            y: (event as MouseEvent).clientY,
+          };
+        };
+
+        // Helper function to show tooltip
+        const showTooltip = function (event: MouseEvent | TouchEvent, d: any) {
+          const coords = getEventCoordinates(event);
 
           d3.select(event.currentTarget as SVGPathElement)
             .transition()
@@ -481,8 +560,8 @@ export default function RegionsChoroplethMap({
           }
 
           // Position and show tooltip - use clientX/clientY for fixed positioning
-          const x = event.clientX + 40;
-          const y = event.clientY - 0;
+          const x = coords.x + 40;
+          const y = coords.y - 0;
 
           // Ensure tooltip is visible
           tooltip
@@ -499,6 +578,23 @@ export default function RegionsChoroplethMap({
           tooltip.transition().duration(200).style("opacity", 1);
         };
 
+        // Mouse over handler
+        const mouseOver = function (event: MouseEvent, d: any) {
+          console.log("Mouse over triggered", d);
+          showTooltip(event, d);
+        };
+
+        // Touch start handler (for mobile)
+        const touchStart = function (event: TouchEvent, d: any) {
+          // Prevent default to avoid scrolling
+          event.preventDefault();
+          showTooltip(event, d);
+          // Track touch start point for tap detection
+          const coords = getEventCoordinates(event);
+          touchStartPoint = [coords.x, coords.y];
+          hasPanned = false;
+        };
+
         // Mouse leave handler
         const mouseLeave = function (event: MouseEvent) {
           d3.select(event.currentTarget as SVGPathElement)
@@ -510,12 +606,95 @@ export default function RegionsChoroplethMap({
           tooltip.transition().duration(200).style("opacity", 0);
         };
 
+        // Touch end handler (for mobile)
+        const touchEnd = function (event: TouchEvent, d: any) {
+          d3.select(event.currentTarget as SVGPathElement)
+            .transition()
+            .duration(200)
+            .style("stroke", "transparent")
+            .style("stroke-width", 1);
+
+          // Navigate on tap (if not panned)
+          // Use changedTouches for touchend events
+          const startPoint = touchStartPoint;
+          if (!hasPanned && startPoint) {
+            let endX: number, endY: number;
+            const changedTouch = event.changedTouches?.[0];
+            if (changedTouch) {
+              endX = changedTouch.clientX;
+              endY = changedTouch.clientY;
+            } else {
+              // Fallback if changedTouches is not available
+              endX = startPoint[0];
+              endY = startPoint[1];
+            }
+
+            const dx = Math.abs(endX - startPoint[0]);
+            const dy = Math.abs(endY - startPoint[1]);
+
+            // If movement was small (tap, not drag), navigate
+            if (dx < 5 && dy < 5) {
+              // Try different property names for country code
+              const countryCode =
+                d.properties?.ISO_A3 ||
+                d.properties?.ISO_A2 ||
+                d.properties?.ADM0_A3 ||
+                d.properties?.NAME ||
+                d.id;
+
+              const regionData = countryCode ? dataMap.get(countryCode) : null;
+
+              // Only navigate if we have region data with a slug and books
+              if (regionData?.slug && regionData.numberOfBooks > 0) {
+                router.push(navigation.regions.bySlug(regionData.slug));
+              }
+            }
+          }
+
+          // Hide tooltip after a delay on mobile to allow reading
+          setTimeout(() => {
+            tooltip.transition().duration(200).style("opacity", 0);
+          }, 2000);
+        };
+
         // Mouse move handler for tooltip
         const mouseMove = function (event: MouseEvent) {
           if (tooltipRef.current) {
+            const coords = getEventCoordinates(event);
             tooltip
-              .style("left", `${event.clientX + 40}px`)
-              .style("top", `${event.clientY - 0}px`);
+              .style("left", `${coords.x + 40}px`)
+              .style("top", `${coords.y - 0}px`);
+          }
+        };
+
+        // Touch move handler for tooltip
+        const touchMove = function (event: TouchEvent) {
+          if (tooltipRef.current && event.touches.length > 0) {
+            const coords = getEventCoordinates(event);
+            tooltip
+              .style("left", `${coords.x + 40}px`)
+              .style("top", `${coords.y - 0}px`);
+          }
+        };
+
+        // Click handler for navigation
+        const handleClick = function (event: MouseEvent, d: any) {
+          // Prevent navigation if user was panning/zooming
+          if (event.defaultPrevented || hasPanned) return;
+
+          // Try different property names for country code
+          const countryCode =
+            d.properties?.ISO_A3 ||
+            d.properties?.ISO_A2 ||
+            d.properties?.ADM0_A3 ||
+            d.properties?.NAME ||
+            d.id;
+
+          const regionData = countryCode ? dataMap.get(countryCode) : null;
+
+          // Only navigate if we have region data with a slug and books
+          if (regionData?.slug && regionData.numberOfBooks > 0) {
+            router.push(navigation.regions.bySlug(regionData.slug));
           }
         };
 
@@ -563,7 +742,11 @@ export default function RegionsChoroplethMap({
           .style("cursor", "pointer")
           .on("mouseover", mouseOver)
           .on("mouseleave", mouseLeave)
-          .on("mousemove", mouseMove);
+          .on("mousemove", mouseMove)
+          .on("click", handleClick)
+          .on("touchstart", touchStart)
+          .on("touchend", touchEnd)
+          .on("touchmove", touchMove);
 
         if (!isMountedRef.current || !containerRef.current) return;
 
@@ -587,7 +770,10 @@ export default function RegionsChoroplethMap({
       isMountedRef.current = false;
 
       // Clean up tooltip
-      if (tooltipRef.current && document.body.contains(tooltipRef.current)) {
+      if (
+        tooltipRef.current &&
+        chartContainerRef.current?.contains(tooltipRef.current)
+      ) {
         tooltipRef.current.remove();
       }
       tooltipRef.current = null;
@@ -600,11 +786,39 @@ export default function RegionsChoroplethMap({
     };
   }, [data, dimensions]);
 
+  const toggleFullscreen = async () => {
+    if (!chartContainerRef.current) return;
+
+    try {
+      if (!document.fullscreenElement) {
+        await chartContainerRef.current.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    } catch (error) {
+      console.error("Error toggling fullscreen:", error);
+    }
+  };
+
   return (
     <div
-      ref={containerRef}
-      className="bg-card relative mb-16 h-[500px] w-full overflow-hidden rounded-lg border"
+      ref={chartContainerRef}
+      className="bg-card relative mb-16 flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border"
+      style={{ touchAction: "none" }}
     >
+      <div ref={containerRef} className="h-full w-full overflow-hidden" />
+      <Button
+        size="icon"
+        variant="outline"
+        className="absolute right-4 bottom-4 z-10 backdrop-blur-sm"
+        onClick={toggleFullscreen}
+      >
+        {isFullscreen ? (
+          <ArrowsPointingInIcon className="h-5 w-5" />
+        ) : (
+          <ArrowsPointingOutIcon className="h-5 w-5" />
+        )}
+      </Button>
       {isLoading && (
         <div className="dark:bg-muted-primary/80 absolute inset-0 z-10 flex items-center justify-center bg-gray-50/80">
           <div className="dark:text-muted-primary text-gray-500">...</div>

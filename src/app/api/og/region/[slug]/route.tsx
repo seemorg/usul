@@ -41,9 +41,9 @@ export async function GET(
   }
 
   const trimmedOverview =
-    region.overview.length > 330
+    region.overview && region.overview.length > 330
       ? region.overview.slice(0, 330) + "..."
-      : region.overview;
+      : (region.overview ?? "");
 
   // Font
   const [calSans, family] = await Promise.all([
@@ -62,16 +62,6 @@ export async function GET(
         >
           {region.name}
         </h1>
-        {region.currentName && (
-          <p
-            tw="text-3xl text-gray-200 -mt-1"
-            style={{
-              fontFamily: "Family",
-            }}
-          >
-            Current: {region.currentName}
-          </p>
-        )}
 
         <p
           style={{
