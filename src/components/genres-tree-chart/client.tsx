@@ -59,6 +59,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
 
     const width = dimensions.width;
     const height = dimensions.height;
+    const isMobile = dimensions.width < 640;
 
     // Save expanded state from previous root before clearing
     // This ensures we capture the current state even if clicks happened
@@ -133,13 +134,21 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
         g.attr("transform", event.transform.toString());
       });
 
+    // Run layout once to get root position for initial centering
+    treeLayout(root);
+
     // Initialize zoom transform to match the starting position
     // This prevents the snap on first drag
     // Center the root node vertically (subtract a bit to account for tree growing downward)
-    const initialTransform = d3.zoomIdentity.translate(
-      width / 2,
-      height / 2 - 100,
-    );
+    const initialScale = isMobile ? 0.5 : 1; // Bigger zoom on mobile
+    const centerX = isMobile ? width / 1 : width / 2;
+    const centerY = isMobile ? height / 2 : height / 2 - 100;
+    const initialTransform = d3.zoomIdentity
+      .scale(initialScale)
+      .translate(
+        centerX - initialScale * root.x,
+        centerY - initialScale * root.y,
+      );
 
     svg.call(zoom as any);
     // Set the initial transform state directly to avoid snap on first drag
@@ -596,13 +605,13 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
   return (
     <div
       ref={chartContainerRef}
-      className="bg-card relative mb-16 flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border"
+      className="bg-card relative mb-16 flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border sm:h-[500px]"
     >
       <div ref={containerRef} className="h-full w-full overflow-hidden" />
       <Button
         size="icon"
         variant="outline"
-        className="absolute right-4 bottom-4 z-10 backdrop-blur-sm"
+        className="absolute right-4 bottom-4 z-10 hidden backdrop-blur-sm sm:flex"
         onClick={toggleFullscreen}
       >
         {isFullscreen ? (
