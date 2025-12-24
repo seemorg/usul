@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import Spinner from "@/components/ui/spinner";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
 import {
@@ -36,19 +37,23 @@ export default function RegionsChoroplethMap({
   const containerRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const tooltipRef = useRef<HTMLDivElement | null>(null);
+  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null);
   const isMountedRef = useRef(true);
   const router = useRouter();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
+  // Check if data is available
+  const isDataReady = data && Array.isArray(data) && data.length > 0;
+
   // Set up dimensions observer
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!chartContainerRef.current) return;
 
     const updateDimensions = () => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect();
+      if (chartContainerRef.current) {
+        const rect = chartContainerRef.current.getBoundingClientRect();
         setDimensions({
           width: rect.width,
           height: Math.max(rect.height, 500),
@@ -58,7 +63,7 @@ export default function RegionsChoroplethMap({
 
     updateDimensions();
     const resizeObserver = new ResizeObserver(updateDimensions);
-    resizeObserver.observe(containerRef.current);
+    resizeObserver.observe(chartContainerRef.current);
 
     return () => {
       resizeObserver.disconnect();
@@ -80,14 +85,15 @@ export default function RegionsChoroplethMap({
 
   // Create the map
   useEffect(() => {
-    if (
-      !containerRef.current ||
-      !chartContainerRef.current ||
-      dimensions.width === 0 ||
-      !data ||
-      data.length === 0
-    )
+    // Don't proceed if data is not ready or dimensions are not set
+    if (!isDataReady || dimensions.width === 0 || !chartContainerRef.current) {
       return;
+    }
+
+    // Wait for containerRef to be available (it's conditionally rendered)
+    if (!containerRef.current) {
+      return;
+    }
 
     isMountedRef.current = true;
 
@@ -116,9 +122,6 @@ export default function RegionsChoroplethMap({
         }
       });
     });
-
-    // Debug: log the data map
-    console.log("Region data map:", Array.from(dataMap.entries()));
 
     // Create SVG
     const svg = d3
@@ -154,10 +157,12 @@ export default function RegionsChoroplethMap({
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.5, 8]) // Allow zoom from 0.5x to 8x
       .filter((event) => {
-        // Allow all events including touch events
+        // Allow wheel events for zooming
         if (event.type === "wheel") return false;
+        // Allow left mouse button for panning
         if (event.type === "mousedown" && (event as MouseEvent).button === 0)
           return true;
+        // Allow touch events for mobile
         if (event.type === "touchstart" || event.type === "touchmove")
           return true;
         return false;
@@ -169,21 +174,45 @@ export default function RegionsChoroplethMap({
           event.sourceEvent.preventDefault();
           return;
         }
-        const mousePos = d3.pointer(event, svg.node());
-        if (mousePos) {
-          lastPanPoint = [mousePos[0], mousePos[1]];
-          touchStartPoint = [mousePos[0], mousePos[1]];
-          hasPanned = false;
+        try {
+          const svgNode = svg.node();
+          if (!svgNode) return;
+          const mousePos = d3.pointer(event, svgNode);
+          if (mousePos && isFinite(mousePos[0]) && isFinite(mousePos[1])) {
+            lastPanPoint = [mousePos[0], mousePos[1]];
+            touchStartPoint = [mousePos[0], mousePos[1]];
+            hasPanned = false;
+          }
+        } catch (error) {
+          // Silently handle pointer errors (can happen during programmatic zoom)
+          // console.debug("Error getting pointer position:", error);
         }
       })
       .on("zoom", (event) => {
-        const mousePos = d3.pointer(event, svg.node());
-        if (!mousePos || !projection.invert) return;
+        const { transform } = event;
 
-        const [mouseX, mouseY] = mousePos;
+        // Safely get mouse position
+        let mousePos: [number, number] | null = null;
+        try {
+          const svgNode = svg.node();
+          if (svgNode) {
+            const pos = d3.pointer(event, svgNode);
+            if (pos && isFinite(pos[0]) && isFinite(pos[1])) {
+              mousePos = [pos[0], pos[1]];
+            }
+          }
+        } catch (error) {
+          // Silently handle pointer errors (can happen during programmatic zoom)
+          // console.debug("Error getting pointer position:", error);
+        }
 
-        // Pan operation - track mouse movement
-        if (lastPanPoint) {
+        // Update scale and translation from transform
+        currentScale = initialScale * transform.k;
+        currentTranslate = [width / 2 + transform.x, height / 2 + transform.y];
+
+        // Pan operation - track mouse movement for hasPanned flag (only if mouse position is available)
+        if (mousePos && lastPanPoint) {
+          const [mouseX, mouseY] = mousePos;
           const dx = mouseX - lastPanPoint[0];
           const dy = mouseY - lastPanPoint[1];
 
@@ -192,13 +221,11 @@ export default function RegionsChoroplethMap({
             hasPanned = true;
           }
 
-          currentTranslate = [
-            currentTranslate[0] + dx,
-            currentTranslate[1] + dy,
-          ];
-          projection.scale(currentScale).translate(currentTranslate);
           lastPanPoint = [mouseX, mouseY];
         }
+
+        // Update projection with new scale and translation
+        projection.scale(currentScale).translate(currentTranslate);
 
         // Redraw all paths with new projection
         g.selectAll<SVGPathElement, GeoJSON.Feature>("path").attr("d", (d) =>
@@ -214,6 +241,9 @@ export default function RegionsChoroplethMap({
           hasPanned = false;
         }, 100);
       });
+
+    // Store zoom behavior in ref for button handlers
+    zoomRef.current = zoom;
 
     // Apply zoom to SVG
     (svg as any).call(zoom);
@@ -273,12 +303,6 @@ export default function RegionsChoroplethMap({
           .style("max-width", "300px");
 
         tooltipRef.current = tooltip.node() as HTMLDivElement;
-        console.log("Tooltip created:", tooltipRef.current);
-
-        // Debug: log first feature to see structure
-        if (topo.features.length > 0) {
-          console.log("Sample GeoJSON feature:", topo.features[0]);
-        }
 
         // Helper function to get coordinates from event (works for both mouse and touch)
         const getEventCoordinates = (
@@ -315,19 +339,7 @@ export default function RegionsChoroplethMap({
             d.properties?.NAME ||
             d.id;
 
-          // Debug: log country code matching
-          if (!countryCode) {
-            console.log("No country code found for feature:", d);
-          }
-
           const regionData = countryCode ? dataMap.get(countryCode) : null;
-
-          // Debug: log if we found region data
-          if (countryCode && !regionData) {
-            console.log(
-              `No region data found for country code: ${countryCode}`,
-            );
-          }
 
           // Always show tooltip with book count
           const countryName =
@@ -362,7 +374,6 @@ export default function RegionsChoroplethMap({
 
         // Mouse over handler
         const mouseOver = function (event: MouseEvent, d: any) {
-          console.log("Mouse over triggered", d);
           showTooltip(event, d);
         };
 
@@ -480,9 +491,6 @@ export default function RegionsChoroplethMap({
           }
         };
 
-        // Log total countries rendered for debugging
-        console.log(`Total countries rendered: ${topo.features.length}`);
-
         // Draw the map - render ALL countries from GeoJSON
         g.selectAll("path")
           .data(topo.features)
@@ -565,8 +573,11 @@ export default function RegionsChoroplethMap({
         containerRef.current.removeChild(svgRef.current);
       }
       svgRef.current = null;
+
+      // Clean up zoom ref
+      zoomRef.current = null;
     };
-  }, [data, dimensions]);
+  }, [data, dimensions, isDataReady]);
 
   const toggleFullscreen = async () => {
     if (!chartContainerRef.current) return;
@@ -583,11 +594,23 @@ export default function RegionsChoroplethMap({
   };
 
   const handleZoomIn = () => {
-    console.log("Zoom In");
+    if (!zoomRef.current || !svgRef.current) return;
+    const svgSelection = d3.select(svgRef.current);
+    const center: [number, number] = [
+      dimensions.width / 2,
+      dimensions.height / 2,
+    ];
+    zoomRef.current.scaleBy(svgSelection, 1.5, center);
   };
 
   const handleZoomOut = () => {
-    console.log("Zoom Out");
+    if (!zoomRef.current || !svgRef.current) return;
+    const svgSelection = d3.select(svgRef.current);
+    const center: [number, number] = [
+      dimensions.width / 2,
+      dimensions.height / 2,
+    ];
+    zoomRef.current.scaleBy(svgSelection, 1 / 1.5, center);
   };
 
   return (
@@ -596,8 +619,19 @@ export default function RegionsChoroplethMap({
       className="bg-card relative mb-16 flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border sm:h-[500px]"
       style={{ touchAction: "none" }}
     >
+      {!isDataReady && (
+        <div className="absolute inset-0 z-20 flex items-center justify-center">
+          <Spinner className="size-8" />
+        </div>
+      )}
+      {isLoading && isDataReady && (
+        <div className="bg-card/50 absolute inset-0 z-10 flex items-center justify-center">
+          <Spinner className="size-8" />
+        </div>
+      )}
       <div ref={containerRef} className="h-full w-full overflow-hidden" />
-      <Button
+      {/* TODO: Fix zoom functionality */}
+      {/* <Button
         size="icon"
         variant="outline"
         className="absolute bottom-16 left-4 z-10 backdrop-blur-sm"
@@ -612,11 +646,11 @@ export default function RegionsChoroplethMap({
         onClick={handleZoomOut}
       >
         <MinusIcon className="h-5 w-5" />
-      </Button>
+      </Button> */}
       <Button
         size="icon"
         variant="outline"
-        className="absolute right-4 bottom-4 z-10 backdrop-blur-sm"
+        className="absolute right-4 bottom-4 z-10 hidden backdrop-blur-sm sm:flex"
         onClick={toggleFullscreen}
       >
         {isFullscreen ? (
