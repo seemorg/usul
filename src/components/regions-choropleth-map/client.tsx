@@ -7,8 +7,12 @@ import { useRouter } from "@/navigation";
 import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
+  MinusIcon,
+  PlusIcon,
 } from "@heroicons/react/24/outline";
 import * as d3 from "d3";
+
+import { regionToCountryCode } from "./regions-to-country-codes";
 
 interface RegionData {
   id: string;
@@ -24,182 +28,6 @@ interface RegionData {
 interface RegionsChoroplethMapProps {
   data: RegionData[];
 }
-
-// Mapping from region slugs to ISO country codes (ISO_A3 format)
-// For modern countries, we can derive the ISO code from the slug
-// For historical regions, we map to multiple modern countries
-const regionToCountryCode: Record<string, string[]> = {
-  // Modern countries (direct mapping)
-  egypt: ["EGY"],
-  "saudi-arabia": ["SAU"],
-  iraq: ["IRQ"],
-  syria: ["SYR"],
-  iran: ["IRN"],
-  yemen: ["YEM"],
-  morocco: ["MAR"],
-  spain: ["ESP"],
-  algeria: ["DZA"],
-  turkey: ["TUR"],
-  jordan: ["JOR"],
-  lebanon: ["LBN"],
-  palestine: ["PSE", "ISR"],
-  india: ["IND"],
-  afghanistan: ["AFG"],
-  uzbekistan: ["UZB"],
-  kazakhstan: ["KAZ"],
-  russia: ["RUS"],
-  mauritania: ["MRT"],
-  tunisia: ["TUN"],
-  libya: ["LBY"],
-  pakistan: ["PAK"],
-  sudan: ["SDN"],
-  azerbaijan: ["AZE"],
-  turkmenistan: ["TKM"],
-  oman: ["OMN"],
-  qatar: ["QAT"],
-  kuwait: ["KWT"],
-  bahrain: ["BHR"],
-  "united-arab-emirates": ["ARE"],
-  indonesia: ["IDN"],
-  malaysia: ["MYS"],
-  bangladesh: ["BGD"],
-  ethiopia: ["ETH"],
-  senegal: ["SEN"],
-  guinea: ["GIN"],
-  greece: ["GRC"],
-  italy: ["ITA"],
-  france: ["FRA"],
-  "united-kingdom": ["GBR"],
-  germany: ["DEU"],
-  austria: ["AUT"],
-  switzerland: ["CHE"],
-  poland: ["POL"],
-  hungary: ["HUN"],
-  albania: ["ALB"],
-  "bosnia-and-herzegovina": ["BIH"],
-  serbia: ["SRB"],
-  georgia: ["GEO"],
-  armenia: ["ARM"],
-  china: ["CHN"],
-  japan: ["JPN"],
-  "south-korea": ["KOR"],
-  thailand: ["THA"],
-  vietnam: ["VNM"],
-  philippines: ["PHL"],
-  "sri-lanka": ["LKA"],
-  nigeria: ["NGA"],
-  tanzania: ["TZA"],
-  kenya: ["KEN"],
-  uganda: ["UGA"],
-  rwanda: ["RWA"],
-  "congo-democratic-republic-(kinshasa)": ["COD"],
-  "congo-(brazzaville)": ["COG"],
-  cameroon: ["CMR"],
-  chad: ["TCD"],
-  niger: ["NER"],
-  "burkina-faso": ["BFA"],
-  ghana: ["GHA"],
-  "cote-d'ivoire": ["CIV"],
-  liberia: ["LBR"],
-  "sierra-leone": ["SLE"],
-  gambia: ["GMB"],
-  benin: ["BEN"],
-  togo: ["TGO"],
-  gabon: ["GAB"],
-  "equatorial-guinea": ["GNQ"],
-  "central-african-republic": ["CAF"],
-  somalia: ["SOM"],
-  eritrea: ["ERI"],
-  djibouti: ["DJI"],
-  "south-sudan": ["SSD"],
-  mozambique: ["MOZ"],
-  malawi: ["MWI"],
-  zambia: ["ZMB"],
-  zimbabwe: ["ZWE"],
-  botswana: ["BWA"],
-  namibia: ["NAM"],
-  "south-africa": ["ZAF"],
-  lesotho: ["LSO"],
-  swaziland: ["SWZ"],
-  madagascar: ["MDG"],
-  mauritius: ["MUS"],
-  seychelles: ["SYC"],
-  comoros: ["COM"],
-  "cape-verde": ["CPV"],
-  "sao-tome-and-principe": ["STP"],
-  "guinea-bissau": ["GNB"],
-  burundi: ["BDI"],
-  mali: ["MLI"],
-  angola: ["AGO"],
-  america: ["USA"], // United States of America
-  brazil: ["BRA"], // Brazil
-  argentina: ["ARG"],
-  australia: ["AUS"],
-  belarus: ["BLR"],
-  belgium: ["BEL"],
-  bolivia: ["BOL"],
-  bulgaria: ["BGR"],
-  canada: ["CAN"],
-  chile: ["CHL"],
-  colombia: ["COL"],
-  "costa-rica": ["CRI"],
-  cyprus: ["CYP"],
-  denmark: ["DNK"],
-  "dominican-republic": ["DOM"],
-  ecuador: ["ECU"],
-  "el-salvador": ["SLV"],
-  estonia: ["EST"],
-  fiji: ["FJI"],
-  finland: ["FIN"],
-  guatemala: ["GTM"],
-  iceland: ["ISL"],
-  ireland: ["IRL"],
-  laos: ["LAO"],
-  liechtenstein: ["LIE"],
-  malta: ["MLT"],
-  mexico: ["MEX"],
-  moldova: ["MDA"],
-  monaco: ["MCO"],
-  mongolia: ["MNG"],
-  montenegro: ["MNE"],
-  "myanmar-(burma)": ["MMR"],
-  nepal: ["NPL"],
-  netherlands: ["NLD"],
-  "new-zealand": ["NZL"],
-  norway: ["NOR"],
-  panama: ["PAN"],
-  paraguay: ["PRY"],
-  peru: ["PER"],
-  portugal: ["PRT"],
-  romania: ["ROU"],
-  "san-marino": ["SMR"],
-  sweden: ["SWE"],
-  taiwan: ["TWN"],
-  ukraine: ["UKR"],
-  uruguay: ["URY"],
-  vatican: ["VAT"],
-  venezuela: ["VEN"],
-  wales: ["GBR"], // Part of United Kingdom
-  // Historical regions that may map to multiple countries
-  //   sham: ["SYR", "LBN", "JOR", "PSE", "ISR"],
-  //   "jazirat-al-arab": ["SAU", "YEM", "OMN", "ARE", "KWT", "BHR", "QAT"],
-  //   jibal: ["IRN"], // Central Iran
-  //   khurasan: ["IRN", "AFG", "TKM"], // Northeast Iran, parts of Afghanistan and Turkmenistan
-  //   andalus: ["ESP", "PRT"], // Spain and Portugal
-  //   aqur: [], // Uncertain historical region
-  //   faris: ["IRN"], // Persia/Iran
-  //   daylam: ["IRN"], // Northern Iran
-  //   khuzistan: ["IRN"], // Khuzestan Province, Iran
-  //   kirman: ["IRN"], // Kerman Province, Iran
-  //   sijistan: ["IRN", "AFG"], // Sistan region
-  //   sind: ["PAK"], // Sindh Province, Pakistan
-  //   hind: ["IND", "PAK", "BGD"], // India
-  //   transoxiana: ["UZB", "TJK", "KAZ", "KGZ"], // Central Asia
-  //   maghrib: ["MAR", "DZA", "TUN", "LBY", "MRT"], // Northwest Africa
-  //   barqa: ["LBY"], // Cyrenaica region, Libya
-  //   sicile: ["ITA"], // Sicily
-  //   rum: ["TUR"], // Anatolia/Turkey
-};
 
 export default function RegionsChoroplethMap({
   data,
@@ -262,7 +90,9 @@ export default function RegionsChoroplethMap({
       return;
 
     isMountedRef.current = true;
+
     const width = dimensions.width;
+    const isMobile = width < 768;
     const height = dimensions.height;
 
     // Clear previous content safely
@@ -303,11 +133,11 @@ export default function RegionsChoroplethMap({
     const g = svg.append("g");
 
     // Projection
-    const initialScale = width / 6.5;
+    const initialScale = isMobile ? width / 3 : width / 6.5;
     const projection = d3
       .geoMercator()
       .scale(initialScale)
-      .center([0, 20])
+      .center([0, isMobile ? 10 : 20])
       .translate([width / 2, height / 2]);
 
     const path = d3.geoPath().projection(projection);
@@ -315,7 +145,6 @@ export default function RegionsChoroplethMap({
     // Track current projection state for zoom-to-cursor
     let currentScale = initialScale;
     let currentTranslate: [number, number] = [width / 2, height / 2];
-    let previousK = 1;
     let lastPanPoint: [number, number] | null = null;
     let touchStartPoint: [number, number] | null = null;
     let hasPanned = false;
@@ -326,7 +155,7 @@ export default function RegionsChoroplethMap({
       .scaleExtent([0.5, 8]) // Allow zoom from 0.5x to 8x
       .filter((event) => {
         // Allow all events including touch events
-        if (event.type === "wheel") return true;
+        if (event.type === "wheel") return false;
         if (event.type === "mousedown" && (event as MouseEvent).button === 0)
           return true;
         if (event.type === "touchstart" || event.type === "touchmove")
@@ -338,6 +167,7 @@ export default function RegionsChoroplethMap({
         // Prevent default on touch events to avoid scrolling
         if (event.sourceEvent && "touches" in event.sourceEvent) {
           event.sourceEvent.preventDefault();
+          return;
         }
         const mousePos = d3.pointer(event, svg.node());
         if (mousePos) {
@@ -347,75 +177,27 @@ export default function RegionsChoroplethMap({
         }
       })
       .on("zoom", (event) => {
-        // Prevent default on touch events to avoid scrolling
-        if (event.sourceEvent && "touches" in event.sourceEvent) {
-          event.sourceEvent.preventDefault();
-        }
-        const { transform } = event;
         const mousePos = d3.pointer(event, svg.node());
         if (!mousePos || !projection.invert) return;
 
         const [mouseX, mouseY] = mousePos;
-        const isZooming = transform.k !== previousK;
 
-        if (isZooming) {
-          // Zoom operation - zoom to cursor
-          // Set projection to current state to get accurate inverse
+        // Pan operation - track mouse movement
+        if (lastPanPoint) {
+          const dx = mouseX - lastPanPoint[0];
+          const dy = mouseY - lastPanPoint[1];
+
+          // Mark that we've panned if movement is significant
+          if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+            hasPanned = true;
+          }
+
+          currentTranslate = [
+            currentTranslate[0] + dx,
+            currentTranslate[1] + dy,
+          ];
           projection.scale(currentScale).translate(currentTranslate);
-
-          // Get the geographic coordinates at the mouse position
-          const geoCoords = projection.invert([mouseX, mouseY]);
-          if (geoCoords && Array.isArray(geoCoords) && geoCoords.length === 2) {
-            const [lon0, lat0] = geoCoords as [number, number];
-
-            // Update the projection scale
-            const newScale = initialScale * transform.k;
-            currentScale = newScale;
-            projection.scale(newScale);
-
-            // Calculate where the geographic point would be with new scale but old translate
-            projection.scale(newScale).translate(currentTranslate);
-            const projected = projection([lon0, lat0]);
-            if (
-              projected &&
-              Array.isArray(projected) &&
-              projected.length === 2
-            ) {
-              const [x0, y0] = projected;
-
-              // Adjust translate so the point ends up at mouse position
-              // The difference between where it is (x0, y0) and where we want it (mouseX, mouseY)
-              currentTranslate = [
-                currentTranslate[0] + (mouseX - x0),
-                currentTranslate[1] + (mouseY - y0),
-              ];
-              projection.translate(currentTranslate);
-            }
-          } else {
-            // If invert fails, just update scale
-            currentScale = initialScale * transform.k;
-            projection.scale(currentScale).translate(currentTranslate);
-          }
-          previousK = transform.k;
           lastPanPoint = [mouseX, mouseY];
-        } else {
-          // Pan operation - track mouse movement
-          if (lastPanPoint) {
-            const dx = mouseX - lastPanPoint[0];
-            const dy = mouseY - lastPanPoint[1];
-
-            // Mark that we've panned if movement is significant
-            if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
-              hasPanned = true;
-            }
-
-            currentTranslate = [
-              currentTranslate[0] + dx,
-              currentTranslate[1] + dy,
-            ];
-            projection.scale(currentScale).translate(currentTranslate);
-            lastPanPoint = [mouseX, mouseY];
-          }
         }
 
         // Redraw all paths with new projection
@@ -800,13 +582,37 @@ export default function RegionsChoroplethMap({
     }
   };
 
+  const handleZoomIn = () => {
+    console.log("Zoom In");
+  };
+
+  const handleZoomOut = () => {
+    console.log("Zoom Out");
+  };
+
   return (
     <div
       ref={chartContainerRef}
-      className="bg-card relative mb-16 flex h-[500px] w-full items-center justify-center overflow-hidden rounded-lg border"
+      className="bg-card relative mb-16 flex h-[300px] w-full items-center justify-center overflow-hidden rounded-lg border sm:h-[500px]"
       style={{ touchAction: "none" }}
     >
       <div ref={containerRef} className="h-full w-full overflow-hidden" />
+      <Button
+        size="icon"
+        variant="outline"
+        className="absolute bottom-16 left-4 z-10 backdrop-blur-sm"
+        onClick={handleZoomIn}
+      >
+        <PlusIcon className="h-5 w-5" />
+      </Button>
+      <Button
+        size="icon"
+        variant="outline"
+        className="absolute bottom-4 left-4 z-10 backdrop-blur-sm"
+        onClick={handleZoomOut}
+      >
+        <MinusIcon className="h-5 w-5" />
+      </Button>
       <Button
         size="icon"
         variant="outline"
@@ -819,11 +625,6 @@ export default function RegionsChoroplethMap({
           <ArrowsPointingOutIcon className="h-5 w-5" />
         )}
       </Button>
-      {isLoading && (
-        <div className="dark:bg-muted-primary/80 absolute inset-0 z-10 flex items-center justify-center bg-gray-50/80">
-          <div className="dark:text-muted-primary text-gray-500">...</div>
-        </div>
-      )}
     </div>
   );
 }
