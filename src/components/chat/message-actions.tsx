@@ -92,8 +92,8 @@ export const MessageActions = ({
       className={cn(
         "message-actions text-muted-foreground mt-2 flex gap-1",
 
-        "pointer-events-none opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 sm:opacity-0",
-        "group-hover/message:pointer-events-auto group-hover/message:opacity-100",
+        "opacity-100 sm:pointer-events-none sm:opacity-0 sm:group-hover:pointer-events-auto sm:group-hover:opacity-100",
+        "sm:group-hover/message:pointer-events-auto sm:group-hover/message:opacity-100",
       )}
     >
       <Button
