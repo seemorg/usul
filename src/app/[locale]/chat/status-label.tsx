@@ -1,5 +1,9 @@
 import type { MessageAnnotation } from "@/types/chat";
+import { useState } from "react";
 import { ShinyText } from "@/components/shiny-text";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 function findLast<T>(
@@ -25,6 +29,7 @@ const StatusLabel = ({
   annotations: MessageAnnotation[];
 }) => {
   const t = useTranslations();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   let text = t("chat.status.thinking");
   if (!isLoading) {
@@ -60,12 +65,31 @@ const StatusLabel = ({
   }
 
   return (
-    <ShinyText
-      className="-mb-2 w-fit font-medium"
-      shimmerWidth={40}
-      disabled={!isLoading}
-      dangerouslySetInnerHTML={{ __html: text }}
-    />
+    <div className="flex items-start gap-2">
+      <ShinyText
+        className={cn(
+          "-mb-2 w-fit flex-1 font-medium",
+          "sm:block",
+          !isExpanded && "line-clamp-1 sm:line-clamp-none",
+        )}
+        shimmerWidth={40}
+        disabled={!isLoading}
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
+      <Button
+        variant="ghost"
+        size="icon"
+        className="text-muted-foreground h-auto p-1 sm:hidden"
+        onClick={() => setIsExpanded(!isExpanded)}
+        aria-label={isExpanded ? "Collapse" : "Expand"}
+      >
+        {isExpanded ? (
+          <ChevronUpIcon className="size-4" />
+        ) : (
+          <ChevronDownIcon className="size-4" />
+        )}
+      </Button>
+    </div>
   );
 };
 

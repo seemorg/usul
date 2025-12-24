@@ -9,6 +9,7 @@ import {
   DocumentDuplicateIcon,
   HandThumbDownIcon,
   HandThumbUpIcon,
+  ShareIcon,
 } from "@heroicons/react/24/outline";
 import {
   HandThumbDownIcon as SolidHandThumbDownIcon,
@@ -62,12 +63,36 @@ export const MessageActions = ({
     toast.success(t("reader.chat.copied"));
   };
 
+  const handleShare = async () => {
+    const textFromParts = message.parts
+      .filter((part) => part.type === "text")
+      .map((part) => part.text)
+      .join("\n")
+      .trim();
+
+    if (!textFromParts) {
+      toast.error("There's no text to share!");
+      return;
+    }
+
+    try {
+      await navigator.share({
+        title: "Usul",
+        text: textFromParts + "\n\n\nPowered by Usul.ai: https://usul.ai/",
+        // url: window.location.href,
+      });
+      toast.success("Shared!");
+    } catch (error) {
+      // toast.error("Failed to share!");
+    }
+  };
+
   return (
     <div
       className={cn(
         "message-actions text-muted-foreground mt-2 flex gap-1",
 
-        "pointer-events-none opacity-0 group-hover:pointer-events-auto group-hover:opacity-100",
+        "pointer-events-none opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 sm:opacity-0",
         "group-hover/message:pointer-events-auto group-hover/message:opacity-100",
       )}
     >
@@ -79,6 +104,16 @@ export const MessageActions = ({
         tooltip={t("reader.chat.copy")}
       >
         <DocumentDuplicateIcon className="size-4" />
+      </Button>
+
+      <Button
+        size="icon"
+        variant="ghost"
+        className="hover:bg-secondary size-7"
+        onClick={() => handleShare()}
+        tooltip={t("reader.share")}
+      >
+        <ShareIcon className="size-4" />
       </Button>
 
       <Button
