@@ -2,6 +2,7 @@ import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import AuthorsFilter from "@/components/authors-filter";
 import BookSearchResult from "@/components/book-search-result";
+import EmpiresFilter from "@/components/empires-filter";
 import GenresFilter from "@/components/genres-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
@@ -36,7 +37,7 @@ export async function generateMetadata({
 }
 
 async function TextsPage({ searchParams }: TextsPageProps) {
-  const { q, sort, page, genres, authors, regions, year, view } =
+  const { q, sort, page, genres, authors, regions, empires, year, view } =
     await searchParams;
   const t = await getTranslations("entities");
   const pathLocale = await getPathLocale();
@@ -50,6 +51,7 @@ async function TextsPage({ searchParams }: TextsPageProps) {
         advancedGenres: genres,
         authors: authors,
         regions: regions,
+        empires: empires,
         yearRange: year,
       },
       locale: pathLocale,
@@ -92,6 +94,14 @@ async function TextsPage({ searchParams }: TextsPageProps) {
 
             <RegionsFilter
               currentRegions={regions}
+              // TODO: Add year range filter
+              // filters={{
+              //   yearRange: year,
+              // }}
+            />
+
+            <EmpiresFilter
+              currentEmpires={empires}
               // TODO: Add year range filter
               // filters={{
               //   yearRange: year,

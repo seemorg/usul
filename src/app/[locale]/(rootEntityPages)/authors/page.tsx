@@ -1,6 +1,7 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
 import AuthorSearchResult from "@/components/author-search-result";
+import EmpiresFilter from "@/components/empires-filter";
 import RegionsFilter from "@/components/regions-filter";
 import SearchResults from "@/components/search-results";
 import YearFilterClient from "@/components/year-filter/client";
@@ -34,7 +35,7 @@ export async function generateMetadata({
 }
 
 async function AuthorsPage({ searchParams }: PageProps) {
-  const { q, sort, page, year, regions } = await searchParams;
+  const { q, sort, page, year, regions, empires } = await searchParams;
   const t = await getTranslations("entities");
 
   const pathLocale = await getPathLocale();
@@ -47,6 +48,7 @@ async function AuthorsPage({ searchParams }: PageProps) {
       filters: {
         yearRange: year,
         regions,
+        empires,
       },
     }),
     getTotalEntities(),
@@ -81,6 +83,8 @@ async function AuthorsPage({ searchParams }: PageProps) {
             />
 
             <RegionsFilter currentRegions={regions} countType="authors" />
+
+            <EmpiresFilter currentEmpires={empires} countType="authors" />
           </>
         }
       />
