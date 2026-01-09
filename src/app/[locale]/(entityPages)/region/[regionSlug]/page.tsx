@@ -79,10 +79,6 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
 
   const overview = region.overview;
 
-  const cities = [
-    ...new Set(region.locations.map((l) => l.name).filter(Boolean)),
-  ];
-
   return (
     <div>
       <h1 className="text-3xl font-bold md:text-4xl lg:text-7xl">
@@ -98,17 +94,6 @@ async function RegionPage({ routeParams, searchParams }: RegionPageProps) {
         className="mt-9 sm:mt-14"
         items={[
           <p>{t("entities.x-texts", { count: results.results.found })}</p>,
-          <div className="flex items-center">
-            <p className="capitalize">{t("common.includes")} &nbsp;</p>
-
-            <ExpandibleList
-              items={cities}
-              noun={{
-                singular: t("entities.location"),
-                plural: t("entities.locations"),
-              }}
-            />
-          </div>,
         ]}
       />
 

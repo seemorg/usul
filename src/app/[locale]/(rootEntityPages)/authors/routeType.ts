@@ -32,6 +32,10 @@ export const Route = {
       .string()
       .transform((v) => v.split(","))
       .catch([] as string[]),
+    empires: z
+      .string()
+      .transform((v) => v.split(","))
+      .catch([] as string[]),
   }),
 } satisfies DynamicRoute;
 

@@ -8,7 +8,6 @@ export type RegionDocument = {
 
   primaryName: string;
   secondaryName?: string;
-  currentName?: string;
   // otherNames?: string[];
   // names: LocalizedEntry[];
   // currentNames: LocalizedEntry[];
@@ -16,8 +15,4 @@ export type RegionDocument = {
   booksCount: number;
   authorsCount: number;
   // _popularity: number;
-
-  // subLocations: LocalizedEntry[];
-  subLocations?: string[];
-  subLocationsCount: number;
 };

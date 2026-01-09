@@ -1,7 +1,3 @@
-import type { LocationType } from "@prisma/client";
-
-import type { ApiRegion } from "./region";
-
 export interface ApiAuthor {
   id: string;
   slug: string;
@@ -12,13 +8,16 @@ export interface ApiAuthor {
   secondaryName: string;
   secondaryOtherNames: string[];
   bio: string;
-  locations: {
+  regions: {
     id: string;
     slug: string;
     name: string;
     secondaryName: string;
-    type: LocationType;
-    regionId: string;
-    region: ApiRegion;
+  }[];
+  empires: {
+    id: string;
+    slug: string;
+    name: string;
+    secondaryName: string;
   }[];
 }

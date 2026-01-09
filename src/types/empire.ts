@@ -8,9 +8,9 @@ export type EmpireDocument = {
 
   primaryName: string;
   secondaryName?: string;
-  // otherNames?: string[];
-  // names: LocalizedEntry[];
-  // currentNames: LocalizedEntry[];
+
+  hijriStartYear?: number;
+  hijriEndYear?: number;
 
   booksCount: number;
   authorsCount: number;

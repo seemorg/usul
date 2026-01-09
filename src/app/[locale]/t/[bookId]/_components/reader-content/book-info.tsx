@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import DottedList from "@/components/ui/dotted-list";
 import {
   HoverCard,
   HoverCardContent,
@@ -39,7 +40,9 @@ export default function BookInfo({ className }: { className?: string }) {
   const dir = useDirection();
 
   const book = bookResponse.book;
-  const genres = book.genres;
+  const advancedGenres = book.advancedGenres;
+  const regions = book.regions;
+  const empires = book.empires;
   const primaryName = book.primaryName;
   const secondaryName = book.secondaryName;
   const author = book.author;
@@ -98,17 +101,62 @@ export default function BookInfo({ className }: { className?: string }) {
         publicationDetails={bookResponse.content.publicationDetails}
       />
 
-      <div className="mt-6 flex flex-wrap items-center gap-3 text-xs md:text-sm">
-        <p className="text-muted-foreground">{t("entities.genres")}</p>
-
-        {genres.map((genre) => (
-          <Link key={genre.id} href={navigation.genres.bySlug(genre.slug)}>
-            <Badge variant="outline" className="hover:bg-accent">
-              {genre.name}
-            </Badge>
-          </Link>
-        ))}
-      </div>
+      <DottedList
+        className="mt-6 text-xs md:text-sm"
+        items={[
+          advancedGenres.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-muted-foreground">
+                {t("entities.genres")}
+              </span>
+              {advancedGenres.map((advancedGenre) => (
+                <Link
+                  key={advancedGenre.id}
+                  href={navigation.genres.bySlug(advancedGenre.slug)}
+                >
+                  <Badge variant="outline" className="hover:bg-accent">
+                    {advancedGenre.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          ) : null,
+          regions.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-muted-foreground">
+                {t("entities.regions")}
+              </span>
+              {regions.map((region) => (
+                <Link
+                  key={region.id}
+                  href={navigation.regions.bySlug(region.slug)}
+                >
+                  <Badge variant="outline" className="hover:bg-accent">
+                    {region.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          ) : null,
+          empires.length > 0 ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-muted-foreground">
+                {t("entities.empires")}
+              </span>
+              {empires.map((empire) => (
+                <Link
+                  key={empire.id}
+                  href={navigation.empires.bySlug(empire.slug)}
+                >
+                  <Badge variant="outline" className="hover:bg-accent">
+                    {empire.name}
+                  </Badge>
+                </Link>
+              ))}
+            </div>
+          ) : null,
+        ]}
+      />
     </div>
   );
 }

@@ -15,9 +15,8 @@ model Author {
   otherNameTranslations     AuthorOtherNames[]
   primaryNameTranslations   AuthorPrimaryName[]
   books                     Book[]
-  locations                 Location[]            @relation("AuthorToLocation")
-  regions                   Region[]              @relation("AuthorToRegion")
   empires                   Empire[]              @relation("AuthorToEmpire")
+  regions                   Region[]              @relation("AuthorToRegion")
 }
 
 model AuthorAlternateSlug {
@@ -167,31 +166,6 @@ model AdvancedGenreName {
   @@id([genreId, locale])
 }
 
-model Location {
-  id                   String             @id
-  slug                 String
-  name                 String
-  type                 LocationType
-  regionId             String?
-  transliteration      String?
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime?          @updatedAt
-  region               Region?            @relation(fields: [regionId], references: [id], onDelete: Cascade)
-  cityNameTranslations LocationCityName[]
-  authors              Author[]           @relation("AuthorToLocation")
-
-  @@unique([slug, type])
-}
-
-model LocationCityName {
-  locale     String
-  text       String
-  locationId String
-  location   Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
-
-  @@id([locationId, locale])
-}
-
 model Region {
   id                         String              @id
   slug                       String              @unique
@@ -201,7 +175,6 @@ model Region {
   transliteration            String?
   createdAt                  DateTime            @default(now())
   updatedAt                  DateTime?           @updatedAt
-  locations                  Location[]
   currentNameTranslations    RegionCurrentName[]
   nameTranslations           RegionName[]
   overviewTranslations       RegionOverview[]
@@ -277,11 +250,4 @@ enum BookVersionSource {
   Openiti
   Pdf
   External
-}
-
-enum LocationType {
-  Died
-  Born
-  Visited
-  Resided
 }

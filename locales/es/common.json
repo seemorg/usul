@@ -79,6 +79,10 @@
       "genres": {
         "title": "Géneros",
         "description": "{advancedGenres, number} Géneros"
+      },
+      "empires": {
+        "title": "Imperios y Eras",
+        "description": "{empires, number} Imperios"
       }
     },
     "about": {

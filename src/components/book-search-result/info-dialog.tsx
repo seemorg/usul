@@ -64,38 +64,7 @@ export default function InfoDialog({
   const authorOtherPrimaryNames = author ? author.otherNames : null;
   const authorOtherSecondaryNames = author ? author.secondaryOtherNames : null;
 
-  const parsedRegions = useMemo(() => {
-    if (!author) return [];
-
-    if ("locations" in author) {
-      return (
-        author.locations
-          // filter locations with no regionId or duplicate region and type
-          .filter(
-            (l) =>
-              !!l.regionId &&
-              !author.locations.some(
-                (l2) => l2.regionId === l.regionId && l2.type === l.type,
-              ),
-          )
-          .map((location) => {
-            const region = location.region;
-            const typeKey = `common.${location.type.toLowerCase()}` as any;
-            const localizedType = t(typeKey);
-
-            return {
-              id: location.id,
-              type: localizedType === typeKey ? location.type : localizedType,
-              slug: region.slug,
-              name: region.name,
-            };
-          })
-          .sort((a, b) => order[a.type]! - order[b.type]!)
-      );
-    }
-
-    return [];
-  }, [author, t]);
+  const regions = author?.regions ?? [];
 
   const isLoading = isFetching || !author;
 
@@ -291,9 +260,9 @@ export default function InfoDialog({
                       </div>
                     ) : (
                       <div>
-                        {parsedRegions.length > 0 ? (
+                        {regions.length > 0 ? (
                           <ul>
-                            {parsedRegions.map((region) => (
+                            {regions.map((region) => (
                               <li
                                 key={region.id}
                                 className="flex items-center gap-1 text-lg capitalize"
@@ -307,8 +276,6 @@ export default function InfoDialog({
                                 >
                                   {region.name}
                                 </Link>
-
-                                <span>({region.type})</span>
                               </li>
                             ))}
                           </ul>

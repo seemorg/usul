@@ -1,4 +1,3 @@
-import type { ApiLocation } from "@/types/api/location";
 import type { ApiRegion } from "@/types/api/region";
 import { cache } from "react";
 
@@ -7,11 +6,10 @@ import { apiFetch } from "./utils";
 
 export const findRegionBySlug = cache(
   async (slug: string, locale: PathLocale = "en") => {
-    const result = await apiFetch<ApiRegion & { locations: ApiLocation[] }>({
+    const result = await apiFetch<ApiRegion>({
       path: `/region/${slug}`,
       params: {
         locale,
-        locations: true,
       },
     });
     return result ?? null;

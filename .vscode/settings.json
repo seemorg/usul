@@ -22,5 +22,13 @@
     "next/dist",
     "lucide-react/dist/lucide-react.suffixed"
   ],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#531D00",
+    "titleBar.activeBackground": "#742800",
+    "titleBar.activeForeground": "#FFFAF8"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }

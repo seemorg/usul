@@ -50,6 +50,26 @@ type BookDetails = {
   otherNames: string[];
   secondaryName?: string | null;
   secondaryOtherNames?: string[] | null;
+  regions: {
+    id: string;
+    slug: string;
+    name: string;
+    numberOfBooks: number;
+    numberOfAuthors: number;
+  }[];
+  empires: {
+    id: string;
+    slug: string;
+    name: string;
+    numberOfBooks: number;
+    numberOfAuthors: number;
+  }[];
+  advancedGenres: {
+    id: string;
+    slug: string;
+    name: string;
+    numberOfBooks: number;
+  }[];
   genres: {
     id: string;
     slug: string;
