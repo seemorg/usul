@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} शैलियां"
       },
       "empires": {
-        "title": "साम्राज्य",
+        "title": "साम्राज्य और युग",
         "description": "{empires, number} साम्राज्य"
       }
     },

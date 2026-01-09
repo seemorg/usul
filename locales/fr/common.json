@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} Genres"
       },
       "empires": {
-        "title": "Empires",
+        "title": "Empires & Eras",
         "description": "{empires, number} Empires"
       }
     },

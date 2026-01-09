@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} اصناف"
       },
       "empires": {
-        "title": "سلطنتیں",
+        "title": "سلطنتیں اور ادوار",
         "description": "{empires, number} سلطنتیں"
       }
     },

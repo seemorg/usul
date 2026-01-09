@@ -5,40 +5,11 @@
   "contact-us": "Contáctenos",
   "founders-title": "Equipo fundador",
   "founders-subtitle": "El equipo fundador detrás de Usul.",
+  "engineering-team-title": "Equipo de Ingeniería",
+  "research-annotation-team-title": "Equipo de investigación y anotación",
+  "past-team-members-title": "Últimos miembros del equipo",
   "board-title": "Conoce el tablero",
   "board-subtitle": "Usualmente es un proyecto de la Fundación Seemore, cuyo consejo está formado por distinguidos expertos en investigación y tecnología cada una con décadas de experiencia en sus respectivos campos. Juntos, supervisan la organización y aseguran que avanza su misión.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "Anas es un antiguo ingeniero de software en Simli AI."
-    },
-    "mohamed-lamine": {
-      "name": "Laminado de Mohamed",
-      "description": "Mohamed fue el líder del diseño en Thmanyah, él consulta con las empresas para construir de 0 a 1 productos."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "Ryad es investigador especializado en la historia y el conocimiento islámico."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "Ahmed tiene un doctorado de la Universidad Al-Azhar."
-    },
-    "ismail-safadi": {
-      "name": "Safadi de Ismail",
-      "description": "Ismail se especializa en Hanafi fiqh. Estudió en la Universidad de Jordan y en Turquía."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Tarteel AI, co-fundado por Abdellatif, lidera la ingeniería en Quran.com, y trabajó en Twitter."
-    },
-    "ahmed-riad": {
-      "name": "Riad Ahmed",
-      "description": "Ahmed cofundó Remail AI, Betterbook, y fue ingeniero en Quran.com."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "Zeki es un emprendedor con una profunda experiencia técnica, que cofundó Freewebs y Truebill."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas es un antiguo ingeniero de software en Simli AI."
+    },
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam es un candidato de doctorado en el Estudio de Religión con un campo secundario de Ciencias de la Información."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad es investigador especializado en la historia y el conocimiento islámico."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed tiene un doctorado de la Universidad Al-Azhar."
+    },
+    "ismail-safadi": {
+      "name": "Safadi de Ismail",
+      "description": "Ismail se especializa en Hanafi fiqh. Estudió en la Universidad de Jordan y en Turquía."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Tarteel AI, co-fundado por Abdellatif, lidera la ingeniería en Quran.com, y trabajó en Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Riad Ahmed",
+      "description": "Ahmed cofundó Remail AI, Betterbook, y fue ingeniero en Quran.com."
+    },
+    "mohamed-lamine": {
+      "name": "Laminado de Mohamed",
+      "description": "Mohamed fue el líder del diseño en Thmanyah, él consulta con las empresas para construir de 0 a 1 productos."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma lidera la localización árabe en Tarteel AI. Ella fue traductora en Human Rights Watch."
+    },
+    "ahmed-khan": {
+      "name": "Khan Ahmed",
+      "description": "Ahmed es un alumno de Zaytuna. Él es el creador del podcast The Creative Minority podcast."
+    }
+  },
   "roles": {
     "ceo": "CEO",
     "founding-ceo": "CEO fundador",
@@ -61,6 +74,7 @@
     "localization-lead": "Líder de localización",
     "digitization-lead": "Digitalización de plomo",
     "head-of-design": "Jefe de Diseño",
-    "software-engineer": "Ingeniero de software"
+    "software-engineer": "Ingeniero de software",
+    "director-of-operations": "Director de Operaciones"
   }
 }

@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} ژانرونه"
       },
       "empires": {
-        "title": "امپراتورۍ",
+        "title": "امپراتورۍ او دورې",
         "description": "{empires, number} امپراتورۍ"
       }
     },

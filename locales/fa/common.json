@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} ژانرها"
       },
       "empires": {
-        "title": "امپراتوری‌ها",
+        "title": "امپراتوری‌ها و دوره‌ها",
         "description": "{empires, number} امپراتوری‌ها"
       }
     },

@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} تصنيفات"
       },
       "empires": {
-        "title": "الامبراطوريات",
+        "title": "الإمبراطوريات و العصر",
         "description": "{empires, number} الامبراطوريات"
       }
     },

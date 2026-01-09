@@ -5,40 +5,11 @@
   "contact-us": "اتصل بنا",
   "founders-title": "الفريق المؤسس",
   "founders-subtitle": "الفريق المؤسس وراء أوسوم.",
+  "engineering-team-title": "فريق الهندسة",
+  "research-annotation-team-title": "البحث و فريق الشرح",
+  "past-team-members-title": "أعضاء الفريق السابقين",
   "board-title": "مقابلة اللوحة",
   "board-subtitle": "مشروع Usul هو مشروع لمؤسسة Seemore التي يتألف مجلسها من خبراء مرموقين في مجال البحوث والتكنولوجيا. ولكل منها عقود من الخبرة في مجالات تخصصها. فهما يشرفان معا على المنظمة ويكفلان النهوض بمهمتها.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "أنس مهندس برمجيات سابق في سيملي آي."
-    },
-    "mohamed-lamine": {
-      "name": "محمد الأمين",
-      "description": "كان محمد هو القائد التصميمي في ثمانية، يتشاور مع الشركات الناشئة لبناء منتجات من 0 إلى 1."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "رياض باحث متخصص في المعرفة والتاريخ الإسلاميين ويحمل بكالوريوس في الدراسات الإسلامية وهو مؤسس الأحجار الكريمة في الأندلس."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "أحمد حاصل على درجة الدكتوراه من جامعة الأزهر، ويقود فريق التحويل الرقمي وجهوده."
-    },
-    "ismail-safadi": {
-      "name": "إسماعيل صفادي",
-      "description": "ويتخصص اسماعيل في الحنفي بقيه، ودرس في جامعة الأردن وفي تركيا."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "واشترك عبد اللطيف في تأسيس تارتيل آي ، وقيادة الهندسة في قرن com وعمل في تويتر."
-    },
-    "ahmed-riad": {
-      "name": "أحمد رياض",
-      "description": "شارك أحمد في تأسيس Remail AI و Betterbook و كان مهندسا في Quran.com."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "زكي هو رجل أعمال ذو خبرة فنية عميقة. شارك في تأسيس Freewebs و Truebill."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "أنس مهندس برمجيات سابق في سيملي آي. وهو يقود تطوير منتجاتنا الأساسية."
+    },
+    "abtsam-saleh": {
+      "name": "ابتسام صالح",
+      "description": "عبد السام مرشح لدرجة الدكتوراه في دراسة الدين مع ميدان ثانوي لعلوم البيانات."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "رياض باحث متخصص في المعرفة والتاريخ الإسلاميين ويحمل بكالوريوس في الدراسات الإسلامية وهو مؤسس الأحجار الكريمة في الأندلس."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "أحمد حاصل على درجة الدكتوراه من جامعة الأزهر، ويقود فريق التحويل الرقمي وجهوده."
+    },
+    "ismail-safadi": {
+      "name": "إسماعيل صفادي",
+      "description": "ويتخصص اسماعيل في الحنفي بقيه، ودرس في جامعة الأردن وفي تركيا."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "عبداللطيف عبدالفتاح",
+      "description": "شارك عبداللطيف في تأسيس شركة ترتيل، وقاد الهندسة في مؤسسة Quran.com، وعمل في شركة تويتر."
+    },
+    "ahmed-riad": {
+      "name": "أحمد رياض",
+      "description": "شارك أحمد في تأسيس برنامج Remail AI، وموقع Betterbook، وكان مهندسًا في مؤسسة Quran.com."
+    },
+    "mohamed-lamine": {
+      "name": "محمد الأمين",
+      "description": "كان محمد هو القائد التصميمي في ثمانية، يتشاور مع الشركات الناشئة لبناء منتجات من 0 إلى 1."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "رحمة قادت جهود التعريب في شركة ترتيل للذكاء الاصطناعي. وكانت مترجمة في منظمة هيومن رايتس ووتش."
+    },
+    "ahmed-khan": {
+      "name": "أحمد خان",
+      "description": "أحمد طالب في كلية الزيتونة بكاليفورنيا. وهو صانع بودكاست \"الأقلية المبدعة\"."
+    }
+  },
   "roles": {
     "ceo": "الرئيس التنفيذي",
     "founding-ceo": "الرئيس التنفيذي المؤسس",
@@ -61,6 +74,7 @@
     "localization-lead": "عميل التعريب",
     "digitization-lead": "رصاص رقمي",
     "head-of-design": "رئيس التصميم",
-    "software-engineer": "مهندس البرمجيات"
+    "software-engineer": "مهندس البرمجيات",
+    "director-of-operations": "مدير العمليات"
   }
 }

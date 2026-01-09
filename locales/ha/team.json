@@ -5,40 +5,11 @@
   "contact-us": "Tuntuɓe Mu",
   "founders-title": "Ƙungiyar kafawa",
   "founders-subtitle": "Ƙungiyar da ta kafa Usul.",
+  "engineering-team-title": "Ƙungiyar Injiniya",
+  "research-annotation-team-title": "Ƙungiyar Bincike & Bayyana Ra'ayi",
+  "past-team-members-title": "Tsofaffin Membobin Ƙungiya",
   "board-title": "Sadu da hukumar",
   "board-subtitle": "Usul aikin Seemore Foundation ne, wanda kwamitinsa ya ƙunshi kwararrun masana bincike da fasaha, kowanne yana da shekaru masu yawa na ƙwarewa a fannin su. Tare, suna sa ido kan ƙungiyar kuma suna tabbatar da cewa tana cimma manufarta.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "Anas tsohon injiniya ne a Simli AI."
-    },
-    "mohamed-lamine": {
-      "name": "Mohamed Lamine",
-      "description": "Mohamed ya kasance jagoran zane a Thmanyah, yana ba da shawara ga farawa don ƙirƙirar samfura daga 0 zuwa 1."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "Ryad manazarta ne wanda ya ƙware a fannin ilimin Musulunci da tarihin Musulunci. Yana da digiri na farko a fannin Nazarin Musulunci kuma shi ne wanda ya kafa Gems of Al-Andalus."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "Ahmed yana da digirin digirgir daga Jami'ar Al-Azhar. Shi ne ke jagorantar ƙungiyar da kuma ƙoƙarin canza bayanai zuwa dijital."
-    },
-    "ismail-safadi": {
-      "name": "Ismail Safadi",
-      "description": "Ismail ƙwararre ne a fannin fiqhun Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
-    },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma injiniya ne a Quran.com."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "Zeki ɗan kasuwa ne mai ƙwarewa a fannin fasaha sosai. Ya kafa Freewebs da Truebill tare da wasu."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas tsohon injiniyan software ne a Simli AI. Shi ke jagorantar ci gaban manyan kayayyakin mu."
+    },
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam ɗalibi ne na digiri na uku a Nazarin Addini tare da fannin kimiyyar bayanai."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad manazarta ne wanda ya ƙware a fannin ilimin Musulunci da tarihin Musulunci. Yana da digiri na farko a fannin Nazarin Musulunci kuma shi ne wanda ya kafa Gems of Al-Andalus."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed yana da digirin digirgir daga Jami'ar Al-Azhar. Shi ne ke jagorantar ƙungiyar da kuma ƙoƙarin canza bayanai zuwa dijital."
+    },
+    "ismail-safadi": {
+      "name": "Ismail Safadi",
+      "description": "Ismail ƙwararre ne a fannin fiqhun Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma ya kasance injiniya a Quran.com."
+    },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed ya kasance jagoran zane a Thmanyah, yana ba da shawara ga farawa don ƙirƙirar samfura daga 0 zuwa 1."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma ta jagoranci fassarar Larabci a Tarteel AI. Tsohuwar fassara ce a Human Rights Watch."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed ɗalibi ne a Kwalejin Zaytuna. Shi ne mahaliccin kwasfan fayiloli na The Creative Minority."
+    }
+  },
   "roles": {
     "ceo": "Shugaba",
     "founding-ceo": "Shugaban kamfani na kafawa",
@@ -61,6 +74,7 @@
     "localization-lead": "Jagoran Lokaliyasa",
     "digitization-lead": "Jagoran Digitization",
     "head-of-design": "Shugaban Tsara",
-    "software-engineer": "Injiniyan Software"
+    "software-engineer": "Injiniyan Software",
+    "director-of-operations": "Daraktan Ayyuka"
   }
 }

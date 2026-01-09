@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} Türler"
       },
       "empires": {
-        "title": "İmparatorluklar",
+        "title": "İmparatorluklar & Çağlar",
         "description": "{empires, number} İmparatorluk"
       }
     },

@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} жанров"
       },
       "empires": {
-        "title": "Империя",
+        "title": "Империя и Эрас",
         "description": "{empires, number} Империя"
       }
     },

@@ -5,40 +5,11 @@
   "contact-us": "Bize Ulaşın",
   "founders-title": "Kurucu ekip",
   "founders-subtitle": "Usul'un arkasındaki kurucu ekip.",
+  "engineering-team-title": "Mühendislik Ekibi",
+  "research-annotation-team-title": "Araştırma ve Anotasyon Ekibi",
+  "past-team-members-title": "Geçmiş Ekip Üyeleri",
   "board-title": "Yönetim Kuruluyla Tanışın",
   "board-subtitle": "Usul, yönetim kurulunda her biri kendi alanında onlarca yıllık deneyime sahip araştırma ve teknoloji alanında seçkin uzmanlardan oluşan Seemore Vakfı'nın bir projesidir. Birlikte, organizasyonu denetler ve misyonunun ilerlemesini sağlarlar.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "Anas, Simli AI'da eski bir yazılım mühendisidir."
-    },
-    "mohamed-lamine": {
-      "name": "Mohamed Lamine",
-      "description": "Mohamed, Thmanyah'da tasarım lideriydi, girişimlerle 0'dan 1'e ürünler geliştirmek için danışmanlık yapıyor."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "Ryad, İslam bilgileri ve tarihi konusunda uzmanlaşmış bir araştırmacıdır. İslam Çalışmaları alanında lisans derecesine sahiptir ve Gems of Al-Andalus'un kurucusudur."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "Ahmed, El-Ezher Üniversitesi'nden doktora derecesine sahiptir. Dijitalleştirme ekibine ve çalışmalarına liderlik etmektedir."
-    },
-    "ismail-safadi": {
-      "name": "İsmail Safadi",
-      "description": "İsmail, Hanefi fıkhı konusunda uzmandır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim almıştır."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif, Tarteel AI'nin kurucu ortağı, Quran.com'da mühendislik lideri ve Twitter'da çalıştı."
-    },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed, Remail AI ve Betterbook'un kurucu ortağı ve Quran.com'da mühendisti."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "Zeki, derin teknik uzmanlığa sahip bir girişimcidir. Freewebs ve Truebill'i kurdu."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas, Simli AI'de eski bir yazılım mühendisidir. Ana ürünlerimizin geliştirilmesini yönetmiştir."
+    },
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam, Din Çalışmaları alanında doktora adayı olup, Veri Bilimi yan dalına sahiptir."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad, İslam bilgileri ve tarihi konusunda uzmanlaşmış bir araştırmacıdır. İslam Çalışmaları alanında lisans derecesine sahiptir ve Gems of Al-Andalus'un kurucusudur."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed, El-Ezher Üniversitesi'nden doktora derecesine sahiptir. Dijitalleştirme ekibine ve çalışmalarına liderlik etmektedir."
+    },
+    "ismail-safadi": {
+      "name": "İsmail Safadi",
+      "description": "İsmail, Hanefi fıkhı konusunda uzmandır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim almıştır."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif Tarteel AI'yi kurdu, Quran.com'da mühendisliğe öncülük etti ve Twitter'da çalıştı."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed, Remail AI, Betterbook'u kurdu ve Quran.com'da mühendis olarak çalıştı."
+    },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed, Thmanyah'da tasarım lideriydi, girişimlerle 0'dan 1'e ürünler geliştirmek için danışmanlık yapıyor."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma, Tarteel AI'de Arapça yerelleştirme lideriydi. Human Rights Watch'ta tercüman olarak çalıştı."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed, Zaytuna College'da öğrenci. The Creative Minority podcast'inin yaratıcısıdır."
+    }
+  },
   "roles": {
     "ceo": "CEO",
     "founding-ceo": "Kurucu CEO",
@@ -61,6 +74,7 @@
     "localization-lead": "Yerelleştirme Lideri",
     "digitization-lead": "Dijitalleştirme Lideri",
     "head-of-design": "Tasarım Müdürü",
-    "software-engineer": "Yazılım Mühendisi"
+    "software-engineer": "Yazılım Mühendisi",
+    "director-of-operations": "Operasyon Direktörü"
   }
 }

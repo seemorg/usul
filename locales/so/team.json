@@ -5,40 +5,11 @@
   "contact-us": "Nagala soo xiriir",
   "founders-title": "Kooxda aasaasay",
   "founders-subtitle": "Kooxda aasaasay Usul.",
+  "engineering-team-title": "Kooxda Injineernimada",
+  "research-annotation-team-title": "Kooxda Cilmi-baarista iyo Calaamadaynta",
+  "past-team-members-title": "Xubnihii Hore ee Kooxda",
   "board-title": "La kulan guddiga",
   "board-subtitle": "Usul waa mashruuc ka tirsan Seemore Foundation, guddigiisana waxa ku jira khubaro waaweyn oo ku takhasusay cilmi-baarista iyo tiknoolajiyada, kuwaas oo mid kasta leh tobanaan sano oo waayo-aragnimo ah meelaha ay ku shaqeeyaan. Si wadajir ah ayay u maamulaan ururka iyaga oo hubiya in uu gaadho yoolkiisa.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "Anas waa injineer softiweer oo hore uga soo shaqeeyay Simli AI."
-    },
-    "mohamed-lamine": {
-      "name": "Mohamed Lamine",
-      "description": "Mohamed wuxuu ahaa hormuudka naqshadeynta ee Thmanyah, waxa uu talo siinayaa bilowga ganacsiyada si ay u sameeyaan alaabo cusub laga bilaabo 0 ilaa 1."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "Ryad waa cilmi-baadhe ku takhasusay cilmi iyo taariikh Islaamka. Wuxuu leeyahay shahaadada BA ee Daraasaadka Islaamka wuxuuna aasaasay GEMS of Al-Andalus."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "Ahmed wuxuu haystaa PhD oo kasoo qaatay Jaamacadda Al-Azhar. Wuxuu hogaamiyaa kooxda dijitaynta iyo dadaalladooda."
-    },
-    "ismail-safadi": {
-      "name": "Ismaaciil Safadi",
-      "description": "Ismaaciil wuxuu ku takhasusay fiqiga xanafiga. Wuxuu wax ku bartay Jaamacadda Urdun iyo Turkiga."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif wuxuu asaasay Tarteel AI, wuxuu hoggaaminayay sanadihii la soo dhaafay ee injineerinka Quran.com, horayna wuxuu uga shaqeeyay Twitter."
-    },
-    "ahmed-riad": {
-      "name": "Ahmed Riad",
-      "description": "Ahmed wuxuu asaasay Remail AI, Betterbook, wuxuuna ahaa injineer ka ahaa Quran.com."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "Zeki waa ganacsade leh khibrad farsamo oo qoto dheer. Wuxuu wada aasaasay Freewebs iyo Truebill."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas waa injineer software hore Simli AI. Waxay hoggaaminaysaa horumarinta alaabtayada aasaasiga ah."
+    },
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam waa musharax PhD ah oo ku saabsan Daraasadda Diinta oo leh goob labaad oo Sayniska Xogta."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad waa cilmi-baadhe ku takhasusay cilmi iyo taariikh Islaamka. Wuxuu leeyahay shahaadada BA ee Daraasaadka Islaamka wuxuuna aasaasay GEMS of Al-Andalus."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed wuxuu haystaa PhD oo kasoo qaatay Jaamacadda Al-Azhar. Wuxuu hogaamiyaa kooxda dijitaynta iyo dadaalladooda."
+    },
+    "ismail-safadi": {
+      "name": "Ismaaciil Safadi",
+      "description": "Ismaaciil wuxuu ku takhasusay fiqiga xanafiga. Wuxuu wax ku bartay Jaamacadda Urdun iyo Turkiga."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif wuxuu aasaasay Tarteel AI, hogaamin injineeriyada Quran.com, wuxuuna ka shaqeeyey Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Ahmed Riad",
+      "description": "Ahmed wuxuu aasaasay Remail AI, Betterbook, wuxuu ahaa injineer Quran.com."
+    },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed wuxuu ahaa hormuudka naqshadeynta ee Thmanyah, waxa uu talo siinayaa bilowga ganacsiyada si ay u sameeyaan alaabo cusub laga bilaabo 0 ilaa 1."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma waxay hogaaminaysay saxeexa carabiga ee Tarteel AI. Waxay ahayd tarjumaanka Human Rights Watch."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed waa arday Zaytuna College. Waa abuuraha podcast-ka The Creative Minority."
+    }
+  },
   "roles": {
     "ceo": "CEO",
     "founding-ceo": "Maamulaha Aasaasiga ah",
@@ -61,6 +74,7 @@
     "localization-lead": "Hormuudka Meeleeyaha",
     "digitization-lead": "Hormuudka Dhijitaleynta",
     "head-of-design": "Madaxa Naqshadeynta",
-    "software-engineer": "Injineer Software"
+    "software-engineer": "Injineer Software",
+    "director-of-operations": "Agaasimaha Hawlaha"
   }
 }

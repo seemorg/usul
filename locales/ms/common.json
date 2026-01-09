@@ -81,7 +81,7 @@
         "description": "{advancedGenres, number} Genre"
       },
       "empires": {
-        "title": "Empayar",
+        "title": "Empayar & Zaman",
         "description": "{empires, number} Empayar"
       }
     },

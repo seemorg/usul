@@ -5,40 +5,11 @@
   "contact-us": "Contactez-nous",
   "founders-title": "Équipe fondatrice",
   "founders-subtitle": "L’équipe fondatrice d’Usul.",
+  "engineering-team-title": "Équipe d'Ingénierie",
+  "research-annotation-team-title": "Équipe de recherche et annotation",
+  "past-team-members-title": "Membres de l'ancienne équipe",
   "board-title": "Rencontrer le tableau",
   "board-subtitle": "Usul est un projet de la Fondation Seemore, dont le conseil d'administration comprend des experts distingués en recherche et technologie. avec des décennies d'expérience dans leurs domaines respectifs. Ensemble, ils supervisent l’organisation et veillent à ce qu’elle fasse avancer sa mission.",
-  "members": {
-    "anas-hassanien": {
-      "name": "Anas Hassanien",
-      "description": "Anas est un ancien ingénieur de logiciels chez Simli AI."
-    },
-    "mohamed-lamine": {
-      "name": "Mohamed Lamine",
-      "description": "Mohamed a été le chef de la conception à Thmanyah, il consulte avec des startups pour construire 0 à 1 produits."
-    },
-    "ryad-ramo": {
-      "name": "Ryad Ramo",
-      "description": "Ryad est un chercheur spécialisé dans la connaissance et l'histoire islamiques et possède un baccalauréat en études islamiques et est le fondateur de Gems d'Al-Andalus."
-    },
-    "ahmed-aktan": {
-      "name": "Ahmet Aktan",
-      "description": "Ahmed est titulaire d’un doctorat de l’Université Al-Azhar."
-    },
-    "ismail-safadi": {
-      "name": "Safadi Ismaïl",
-      "description": "Ismail se spécialise dans le fiqh de Hanafi, il a étudié à l'Université de Jordanie et en Turquie."
-    }
-  },
-  "founders": {
-    "abdellatif-abdelfattah": {
-      "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif a cofondé Tarteel AI, ingénieur principal chez Quran.com, et a travaillé sur Twitter."
-    },
-    "ahmed-riad": {
-      "name": "Riad Ahmed",
-      "description": "Ahmed a cofondé Remail AI, Betterbook, et a été ingénieur à Quran.com."
-    }
-  },
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
@@ -53,6 +24,48 @@
       "description": "Zeki est un entrepreneur possédant une solide expertise technique, il a cofondé Freewebs et Truebill."
     }
   },
+  "members": {
+    "anas-hassanien": {
+      "name": "Anas Hassanien",
+      "description": "Anas est un ancien ingénieur logiciel chez Simli AI. Il dirige le développement de nos produits de base."
+    },
+    "abtsam-saleh": {
+      "name": "Abtsam Saleh",
+      "description": "Abtsam est un candidat de doctorat en étude de la religion avec un domaine secondaire de la science des données."
+    },
+    "ryad-ramo": {
+      "name": "Ryad Ramo",
+      "description": "Ryad est un chercheur spécialisé dans la connaissance et l'histoire islamiques et possède un baccalauréat en études islamiques et est le fondateur de Gems d'Al-Andalus."
+    },
+    "ahmed-aktan": {
+      "name": "Ahmet Aktan",
+      "description": "Ahmed est titulaire d’un doctorat de l’Université Al-Azhar."
+    },
+    "ismail-safadi": {
+      "name": "Safadi Ismaïl",
+      "description": "Ismail se spécialise dans le fiqh de Hanafi, il a étudié à l'Université de Jordanie et en Turquie."
+    },
+    "abdellatif-abdelfattah": {
+      "name": "Abdellatif Abdelfattah",
+      "description": "Abdellatif a cofondé Tarteel AI, ingénieur principal chez Quran.com, et a travaillé sur Twitter."
+    },
+    "ahmed-riad": {
+      "name": "Riad Ahmed",
+      "description": "Ahmed a cofondé Remail AI, Betterbook, et a été ingénieur à Quran.com."
+    },
+    "mohamed-lamine": {
+      "name": "Mohamed Lamine",
+      "description": "Mohamed a été le chef de la conception à Thmanyah, il consulte avec des startups pour construire 0 à 1 produits."
+    },
+    "rahma-fateen": {
+      "name": "Rahma Fateen",
+      "description": "Rahma est le chef de la traduction arabe à Tarteel AI. Elle a été traductrice à Human Rights Watch."
+    },
+    "ahmed-khan": {
+      "name": "Ahmed Khan",
+      "description": "Ahmed est un étudiant du Collège Zaytuna. Il est le créateur du podcast Creative Minority."
+    }
+  },
   "roles": {
     "ceo": "PDG",
     "founding-ceo": "PDG fondateur",
@@ -61,6 +74,7 @@
     "localization-lead": "Prospect de traduction",
     "digitization-lead": "Prospect de numérisation",
     "head-of-design": "Responsable du design",
-    "software-engineer": "Ingénieur logiciel"
+    "software-engineer": "Ingénieur logiciel",
+    "director-of-operations": "Directeur des Opérations"
   }
 }
