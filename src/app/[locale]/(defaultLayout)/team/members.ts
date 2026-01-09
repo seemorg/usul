@@ -12,7 +12,25 @@ import zeki from "~/public/static/team-images/zeki.png";
 import anas from "~/public/static/team-images/anas.png";
 import defaultImage from "~/public/static/team-images/default.png";
 
-export const members = [
+export const boardMembers = [
+  {
+    key: "adnan-zulfiqar",
+    image: adnan.src,
+    blurDataUrl: adnan.blurDataURL,
+  },
+  {
+    key: "intisar-rabb",
+    image: intisar.src,
+    blurDataUrl: intisar.blurDataURL,
+  },
+  {
+    key: "zeki-mokhtarzada",
+    image: zeki.src,
+    blurDataUrl: zeki.blurDataURL,
+  },
+];
+
+export const engineeringTeam = [
   {
     key: "anas-hassanien",
     roleKey: "software-engineer",
@@ -20,11 +38,14 @@ export const members = [
     blurDataUrl: anas.blurDataURL,
   },
   {
-    key: "mohamed-lamine",
-    roleKey: "head-of-design",
-    image: lamine.src,
-    blurDataUrl: lamine.blurDataURL,
-  },
+    key: "abtsam-saleh",
+    roleKey: "director-of-operations",
+    image: defaultImage.src,
+    blurDataUrl: defaultImage.blurDataURL,
+  }
+];
+
+export const researchAnnotationTeam = [
   {
     key: "ryad-ramo",
     roleKey: "researcher",
@@ -43,9 +64,15 @@ export const members = [
     image: ahmedAktan.src,
     blurDataUrl: ahmedAktan.blurDataURL,
   },
+  {
+    key: "ahmed-khan",
+    roleKey: "researcher",
+    image: ahmedKhan.src,
+    blurDataUrl: ahmedKhan.blurDataURL,
+  }
 ];
 
-export const foundingMembers = [
+export const pastTeamMembers = [
   {
     key: "abdellatif-abdelfattah",
     roleKey: "founding-ceo",
@@ -58,22 +85,16 @@ export const foundingMembers = [
     image: ahmedRiad.src,
     blurDataUrl: ahmedRiad.blurDataURL,
   },
-];
-
-export const boardMembers = [
   {
-    key: "adnan-zulfiqar",
-    image: adnan.src,
-    blurDataUrl: adnan.blurDataURL,
+    key: "mohamed-lamine",
+    roleKey: "head-of-design",
+    image: lamine.src,
+    blurDataUrl: lamine.blurDataURL,
   },
   {
-    key: "intisar-rabb",
-    image: intisar.src,
-    blurDataUrl: intisar.blurDataURL,
-  },
-  {
-    key: "zeki-mokhtarzada",
-    image: zeki.src,
-    blurDataUrl: zeki.blurDataURL,
-  },
+    key: "rahma-fateen",
+    roleKey: "localization-lead",
+    image: rahma.src,
+    blurDataUrl: rahma.blurDataURL,
+  }
 ];

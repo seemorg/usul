@@ -7,7 +7,6 @@ import { searchEmpires } from "@/lib/api/search";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
 import { alphabeticalSorts, navigation } from "@/lib/urls";
-import { InfoIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
