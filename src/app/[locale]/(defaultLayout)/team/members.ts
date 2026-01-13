@@ -10,14 +10,10 @@ import rahma from "~/public/static/team-images/rahma.png";
 import ryad from "~/public/static/team-images/ryad.png";
 import zeki from "~/public/static/team-images/zeki.png";
 import anas from "~/public/static/team-images/anas.png";
+import abtsam from "~/public/static/team-images/abtsam.png";
 import defaultImage from "~/public/static/team-images/default.png";
 
 export const boardMembers = [
-  {
-    key: "adnan-zulfiqar",
-    image: adnan.src,
-    blurDataUrl: adnan.blurDataURL,
-  },
   {
     key: "intisar-rabb",
     image: intisar.src,
@@ -27,6 +23,11 @@ export const boardMembers = [
     key: "zeki-mokhtarzada",
     image: zeki.src,
     blurDataUrl: zeki.blurDataURL,
+  },
+  {
+    key: "adnan-zulfiqar",
+    image: adnan.src,
+    blurDataUrl: adnan.blurDataURL,
   },
 ];
 
@@ -40,17 +41,17 @@ export const engineeringTeam = [
   {
     key: "abtsam-saleh",
     roleKey: "director-of-operations",
-    image: defaultImage.src,
-    blurDataUrl: defaultImage.blurDataURL,
+    image: abtsam.src,
+    blurDataUrl: abtsam.blurDataURL,
   }
 ];
 
 export const researchAnnotationTeam = [
   {
-    key: "ryad-ramo",
-    roleKey: "researcher",
-    image: ryad.src,
-    blurDataUrl: ryad.blurDataURL,
+    key: "ahmed-aktan",
+    roleKey: "digitization-lead",
+    image: ahmedAktan.src,
+    blurDataUrl: ahmedAktan.blurDataURL,
   },
   {
     key: "ismail-safadi",
@@ -59,10 +60,10 @@ export const researchAnnotationTeam = [
     blurDataUrl: ismail.blurDataURL,
   },
   {
-    key: "ahmed-aktan",
-    roleKey: "digitization-lead",
-    image: ahmedAktan.src,
-    blurDataUrl: ahmedAktan.blurDataURL,
+    key: "ryad-ramo",
+    roleKey: "researcher",
+    image: ryad.src,
+    blurDataUrl: ryad.blurDataURL,
   },
   {
     key: "ahmed-khan",
