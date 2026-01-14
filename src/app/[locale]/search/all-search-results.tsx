@@ -1,6 +1,6 @@
+import type { searchCorpus } from "@/lib/api/search";
 import BookSearchResult from "@/components/book-search-result";
 import DottedList from "@/components/ui/dotted-list";
-import { searchCorpus } from "@/lib/api/search";
 import { formatDeathYear } from "@/lib/date";
 import { usePathLocale } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
