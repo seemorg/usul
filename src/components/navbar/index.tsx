@@ -93,8 +93,13 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
             <HomepageNavigationMenu />
           </div>
         ) : (
-          <div className="hidden min-w-0 flex-1 items-center px-4 py-4 lg:col-span-8 lg:mx-0 lg:flex lg:max-w-none lg:px-0">
-            <SearchBar />
+          <div className="hidden min-w-0 flex-1 items-center gap-4 px-4 py-4 lg:col-span-8 lg:mx-0 lg:flex lg:max-w-none lg:px-0 xl:gap-24">
+            <div className="flex-shrink-0">
+              <HomepageNavigationMenu />
+            </div>
+            <div className="min-w-0 flex-1">
+              <SearchBar />
+            </div>
           </div>
         )}
 
