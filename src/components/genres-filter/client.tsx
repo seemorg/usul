@@ -8,6 +8,7 @@ import FilterContainer from "@/components/search-results/filter-container";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/navigation";
+import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Fuse from "fuse.js";
 import { useFormatter, useTranslations } from "next-intl";
 
@@ -390,10 +391,37 @@ export default function GenresFilterClient({
 
           const isSelected = selectedGenres.includes(genre.id);
           const showGrayCheckmark = isParentWithSelectedChildren;
+          const hasChildren = genre.children && genre.children.length > 0;
+          const isExpanded = expandedParents.has(genre.id);
 
           return (
             <div key={genre.id}>
               <div className={cn("flex items-center gap-2", marginClass)}>
+                {hasChildren ? (
+                  <button
+                    onClick={() => {
+                      setExpandedParents((prev) => {
+                        const newExpanded = new Set(prev);
+                        if (isExpanded) {
+                          newExpanded.delete(genre.id);
+                        } else {
+                          newExpanded.add(genre.id);
+                        }
+                        return newExpanded;
+                      });
+                    }}
+                    className="text-muted-foreground hover:text-foreground flex-shrink-0"
+                    aria-label={isExpanded ? "Collapse" : "Expand"}
+                  >
+                    {isExpanded ? (
+                      <ChevronDownIcon className="h-4 w-4" />
+                    ) : (
+                      <ChevronRightIcon className="h-4 w-4" />
+                    )}
+                  </button>
+                ) : (
+                  <div className="w-4 flex-shrink-0" /> // Spacer for alignment
+                )}
                 <div className="flex-1">
                   <FilterContainer.Checkbox
                     id={genre.id}
