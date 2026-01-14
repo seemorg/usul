@@ -19,7 +19,6 @@ import {
   searchContent,
   searchCorpus,
   searchEmpires,
-  searchGenres,
   searchRegions,
 } from "@/lib/api/search";
 import { gregorianYearToHijriYear } from "@/lib/date";

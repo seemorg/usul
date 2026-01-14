@@ -1,10 +1,11 @@
 "use client";
 
+import type { GenreNode } from "@/types/genre";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { useRouter } from "@/navigation";
-import { GenreNode } from "@/types/genre";
 import {
   ArrowsPointingInIcon,
   ArrowsPointingOutIcon,
@@ -24,6 +25,7 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
   const t = useTranslations("entities");
   const tCommon = useTranslations("common");
   const router = useRouter();
+  const direction = useDirection();
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -193,10 +195,14 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
           // Split line into words and wrap within the line
           const words = lineText
             .split(/\s+/)
-            .filter((w: string) => w.length > 0)
-            .reverse();
+            .filter((w: string) => w.length > 0);
 
           if (words.length === 0) return;
+
+          // For RTL languages, don't reverse words
+          // For LTR languages, reverse to use pop() efficiently
+          const isRTL = direction === "rtl";
+          const wordsToProcess = isRTL ? words : [...words].reverse();
 
           let word;
           let line: string[] = [];
@@ -204,22 +210,49 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
             .append("tspan")
             .attr("x", 0)
             .attr("y", y)
-            .attr("dy", `${lineNumber * lineHeight}em`);
+            .attr("dy", `${lineNumber * lineHeight}em`)
+            .attr("direction", direction)
+            .style("unicode-bidi", isRTL ? "bidi-override" : "plaintext");
 
-          while ((word = words.pop())) {
-            line.push(word);
-            tspan.text(line.join(" "));
-            if (tspan.node()!.getComputedTextLength() > width) {
-              line.pop();
+          if (isRTL) {
+            // For RTL: process words in order
+            for (const w of wordsToProcess) {
+              line.push(w);
               tspan.text(line.join(" "));
-              line = [word];
-              lineNumber += 1;
-              tspan = text
-                .append("tspan")
-                .attr("x", 0)
-                .attr("y", y)
-                .attr("dy", `${lineNumber * lineHeight}em`)
-                .text(word);
+              if (tspan.node()!.getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [w];
+                lineNumber += 1;
+                tspan = text
+                  .append("tspan")
+                  .attr("x", 0)
+                  .attr("y", y)
+                  .attr("dy", `${lineNumber * lineHeight}em`)
+                  .attr("direction", direction)
+                  .style("unicode-bidi", isRTL ? "bidi-override" : "plaintext")
+                  .text(w);
+              }
+            }
+          } else {
+            // For LTR: use pop() with reversed array
+            while ((word = wordsToProcess.pop())) {
+              line.push(word);
+              tspan.text(line.join(" "));
+              if (tspan.node()!.getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                lineNumber += 1;
+                tspan = text
+                  .append("tspan")
+                  .attr("x", 0)
+                  .attr("y", y)
+                  .attr("dy", `${lineNumber * lineHeight}em`)
+                  .attr("direction", direction)
+                  .style("unicode-bidi", isRTL ? "bidi-override" : "plaintext")
+                  .text(word);
+              }
             }
           }
 
@@ -376,7 +409,11 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
           return primary;
         })
         .style("pointer-events", "none")
-        .style("unicode-bidi", "plaintext")
+        .attr("direction", direction)
+        .style(
+          "unicode-bidi",
+          direction === "rtl" ? "bidi-override" : "plaintext",
+        )
         .call((selection: any) =>
           wrapAndResizeText(
             selection,
@@ -573,7 +610,15 @@ export default function GenreTreeChart({ data }: GenreTreeChartProps) {
           ),
         );
     }, 0);
-  }, [data, t, tCommon, router, dimensions.width, dimensions.height]);
+  }, [
+    data,
+    t,
+    tCommon,
+    router,
+    dimensions.width,
+    dimensions.height,
+    direction,
+  ]);
 
   useEffect(() => {
     const handleFullscreenChange = () => {

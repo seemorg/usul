@@ -4,11 +4,10 @@ import {
   searchAuthors,
   searchBooks,
   searchEmpires,
-  searchGenres,
   searchRegions,
 } from "@/lib/api/search";
 import { usePathLocale } from "@/lib/locale/utils";
-import { SearchType as _SearchType } from "@/types/search";
+import type { SearchType as _SearchType } from "@/types/search";
 import { useQuery } from "@tanstack/react-query";
 
 type SearchType = Exclude<_SearchType, "content">;

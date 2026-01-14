@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/components/search-results/search-bar";
 import { Button } from "@/components/ui/button";
+import { useDirection } from "@/lib/locale/utils";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
@@ -45,7 +46,8 @@ function filterGenresByQuery(
   for (const genre of genres) {
     const matchesName =
       genre.primaryName.toLowerCase().includes(lowerQuery) ||
-      genre.secondaryName.toLowerCase().includes(lowerQuery);
+      (genre.secondaryName &&
+        genre.secondaryName.toLowerCase().includes(lowerQuery));
 
     const filteredChildren = genre.children
       ? filterGenresByQuery(genre.children, query)
@@ -73,6 +75,7 @@ function GenreItem({
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const hasChildren = genre.children && genre.children.length > 0;
   const t = useTranslations("entities");
+  const direction = useDirection();
 
   // Sync local state with prop changes when expand/collapse all is clicked
   useEffect(() => {
@@ -84,10 +87,11 @@ function GenreItem({
       <div
         className={cn(
           "border-border hover:bg-muted/50 flex items-start gap-3 rounded-lg border p-4 transition-colors",
-          depth > 0 && "border-l-4",
+          depth > 0 && (direction === "rtl" ? "border-r-4" : "border-l-4"),
         )}
         style={{
-          marginLeft: `${depth * 1.5}rem`,
+          [direction === "rtl" ? "marginRight" : "marginLeft"]:
+            `${depth * 1.5}rem`,
         }}
       >
         {hasChildren && (

@@ -75,19 +75,6 @@ export const searchAdvancedGenres = async (
   }))!;
 };
 
-export const searchGenres = async (
-  q: string,
-  { filters: _, ...options }: SearchOptions = {},
-) => {
-  return (await apiFetch<SearchResponse<GenreDocument>>({
-    path: "/search/genres",
-    params: {
-      q,
-      ...options,
-    },
-  }))!;
-};
-
 export const searchRegions = async (
   q: string,
   { filters: _, ...options }: SearchOptions = {},
