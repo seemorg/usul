@@ -1,4 +1,4 @@
-import { SemanticSearchBookNode } from "./SemanticSearchBookNode";
+import type { SemanticSearchBookNode } from "./SemanticSearchBookNode";
 
 export type SearchType =
   | "all"

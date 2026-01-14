@@ -3,7 +3,7 @@ import type { AuthorDocument } from "./author";
 export type GlobalSearchDocument = {
   id: string;
   slug: string;
-  type: "author" | "book" | "genre" | "region" | "empire";
+  type: "author" | "book" | "advancedGenre" | "region" | "empire";
 
   primaryName: string;
   secondaryName?: string;

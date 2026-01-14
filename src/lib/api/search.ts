@@ -128,7 +128,7 @@ export const searchCorpus = async (query: string, locale: PathLocale) => {
       found: number;
       hits: AuthorDocument[];
     };
-    genres: {
+    advancedGenres?: {
       found: number;
       hits: GenreDocument[];
     };
@@ -137,7 +137,21 @@ export const searchCorpus = async (query: string, locale: PathLocale) => {
     params: { q: query, locale },
   });
 
-  return results;
+  if (!results) {
+    return {
+      content: { total: 0, results: [] },
+      books: { found: 0, hits: [] },
+      authors: { found: 0, hits: [] },
+      genres: { found: 0, hits: [] },
+    };
+  }
+
+  return {
+    content: results.content,
+    books: results.books,
+    authors: results.authors,
+    genres: results.advancedGenres ?? { found: 0, hits: [] },
+  };
 };
 
 export const searchContent = async (

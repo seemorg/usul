@@ -143,7 +143,7 @@ async function SearchPage({ searchParams }: TextsPageProps) {
         empires: "entities.empires",
         all: "entities.texts",
       } as const
-    )[type],
+    )[type] ?? "entities.texts",
   );
 
   const showEmptyState = q.trim().length === 0;

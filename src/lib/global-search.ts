@@ -7,7 +7,7 @@ export const getGlobalDocumentHref = (document: GlobalSearchDocument) => {
     return navigation.books.reader(document.slug);
   } else if (document.type === "author") {
     return navigation.authors.bySlug(document.slug);
-  } else if (document.type === "genre") {
+  } else if (document.type === "genre" || document.type === "advancedGenre") {
     return navigation.genres.bySlug(document.slug);
   } else if (document.type === "region") {
     return navigation.regions.bySlug(document.slug);
@@ -25,7 +25,7 @@ export const getGlobalDocumentLocalizedTypeKey = (
     return "text";
   } else if (type === "author") {
     return "author";
-  } else if (type === "genre") {
+  } else if (type === "genre" || type === "advancedGenre") {
     return "genre";
   } else if (type === "region") {
     return "region";
