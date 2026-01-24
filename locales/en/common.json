@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Add a Text",
-        "description": "Add a URL or PDF"
+        "description": "Provide a URL or PDF"
       },
       "report-mistake": {
         "title": "Report an error",
-        "description": "Found something wrong"
+        "description": "Correct a mistake"
       },
       "feedback": {
         "title": "Provide Feedback",

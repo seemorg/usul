@@ -39,11 +39,49 @@ async function EmpiresPage({ searchParams }: PageProps) {
     searchEmpires(q, {
       limit: 20,
       page,
-      sortBy: sort,
+      sortBy: sort === "chronological" ? undefined : sort,
       locale: pathLocale,
     }),
     getTotalEntities(),
   ]);
+
+  // Sort chronologically by Hijri date if requested
+  let sortedResults = results;
+  if (sort === "chronological") {
+    const sortedHits = [...results.results.hits].sort((a, b) => {
+      // Get the sort year for each empire (prefer start year, fallback to end year)
+      const getSortYear = (empire: (typeof results.results.hits)[0]) => {
+        // Prefer hijriStartYear if it exists and is greater than 0
+        if (empire.hijriStartYear && empire.hijriStartYear > 0) {
+          return empire.hijriStartYear;
+        }
+        // Fallback to hijriEndYear if it exists and is greater than 0
+        if (empire.hijriEndYear && empire.hijriEndYear > 0) {
+          return empire.hijriEndYear;
+        }
+        // Put empires with no dates at the end
+        return Infinity;
+      };
+
+      const yearA = getSortYear(a);
+      const yearB = getSortYear(b);
+
+      // If both have the same year (or both are Infinity), maintain original order
+      if (yearA === yearB) {
+        return 0;
+      }
+
+      return yearA - yearB;
+    });
+
+    sortedResults = {
+      ...results,
+      results: {
+        ...results.results,
+        hits: sortedHits,
+      },
+    };
+  }
 
   return (
     <RootEntityPage
@@ -66,8 +104,8 @@ async function EmpiresPage({ searchParams }: PageProps) {
       </p> */}
 
       <SearchResults
-        response={results.results}
-        pagination={results.pagination}
+        response={sortedResults.results}
+        pagination={sortedResults.pagination}
         renderResult={(result) => <EmpireSearchResult result={result} />}
         emptyMessage={t("no-entity", { entity: t("empires") })}
         placeholder={t("search-within", {

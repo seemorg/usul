@@ -17,6 +17,7 @@ import { withParamValidation } from "next-typesafe-url/app/hoc";
 import type { RouteType } from "./routeType";
 import RootEntityPage from "../root-entity-page";
 import { Route, sorts } from "./routeType";
+import GenresFilter from "@/components/genres-filter";
 
 type PageProps = InferPagePropsType<RouteType>;
 
@@ -35,7 +36,7 @@ export async function generateMetadata({
 }
 
 async function AuthorsPage({ searchParams }: PageProps) {
-  const { q, sort, page, year, regions, empires } = await searchParams;
+  const { q, sort, page, year, genres, regions, empires } = await searchParams;
   const t = await getTranslations("entities");
 
   const pathLocale = await getPathLocale();
@@ -81,6 +82,8 @@ async function AuthorsPage({ searchParams }: PageProps) {
               defaultRange={year}
               maxYear={gregorianYearToHijriYear(new Date().getFullYear())}
             />
+
+            <GenresFilter currentGenres={genres} />
 
             <RegionsFilter currentRegions={regions} countType="authors" />
 

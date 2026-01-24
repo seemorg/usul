@@ -54,43 +54,31 @@ export const researchAnnotationTeam = [
     blurDataUrl: ahmedAktan.blurDataURL,
   },
   {
-    key: "ismail-safadi",
-    roleKey: "researcher",
-    image: ismail.src,
-    blurDataUrl: ismail.blurDataURL,
-  },
-  {
     key: "ryad-ramo",
     roleKey: "researcher",
     image: ryad.src,
     blurDataUrl: ryad.blurDataURL,
   },
   {
-    key: "ahmed-khan",
+    key: "ismail-safadi",
     roleKey: "researcher",
-    image: ahmedKhan.src,
-    blurDataUrl: ahmedKhan.blurDataURL,
+    image: ismail.src,
+    blurDataUrl: ismail.blurDataURL,
   }
 ];
 
 export const pastTeamMembers = [
   {
     key: "abdellatif-abdelfattah",
-    roleKey: "founding-ceo",
+    roleKey: "former-ceo",
     image: abdellatif.src,
     blurDataUrl: abdellatif.blurDataURL,
   },
   {
     key: "ahmed-riad",
-    roleKey: "founding-engineer",
+    roleKey: "former-engineer",
     image: ahmedRiad.src,
     blurDataUrl: ahmedRiad.blurDataURL,
-  },
-  {
-    key: "mohamed-lamine",
-    roleKey: "head-of-design",
-    image: lamine.src,
-    blurDataUrl: lamine.blurDataURL,
   },
   {
     key: "rahma-fateen",

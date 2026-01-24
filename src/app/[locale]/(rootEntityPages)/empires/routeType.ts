@@ -5,6 +5,10 @@ import { z } from "zod";
 
 export const sorts = [
   {
+    label: "sorts.chronological",
+    value: "chronological",
+  },
+  {
     label: "sorts.no-of-texts-asc",
     value: "texts-asc",
   },
@@ -23,7 +27,7 @@ export const sorts = [
 ] as const satisfies Sort[];
 
 const sortsValues = [...sorts, ...alphabeticalSorts].map((s) => s.value);
-const defaultSort: (typeof sortsValues)[number] = "texts-desc";
+const defaultSort: (typeof sortsValues)[number] = "chronological";
 
 export const Route = {
   searchParams: z.object({

@@ -3,55 +3,56 @@
   "subtitle": "The Usul team is made up of engineers, designers, and researchers passionate about building digital tools to transform Islamic research.",
   "become-a-volunteer": "Become a volunteer",
   "contact-us": "Contact Us",
+  "support-usul": "Support Usul.AI",
   "founders-title": "Founding team",
   "founders-subtitle": "The founding team behind Usul.",
-  "engineering-team-title": "Engineering Team",
-  "research-annotation-team-title": "Research & Annotation Team",
-  "past-team-members-title": "Past Team Members",
+  "engineering-team-title": "Engineering & Operations",
+  "research-annotation-team-title": "Research & Digitization",
+  "past-team-members-title": "Usul AI Alumni",
   "board-title": "Meet the board",
-  "board-subtitle": "Usul is a project of the Seemore Foundation, whose board comprises distinguished experts in research and technology, each with decades of experience in their respective fields. Together, they oversee the organization and ensure that it advances its mission.",
+  "board-subtitle": "Usul.AI is a project of the Seemore Foundation, whose board comprises distinguished experts in Islamic research and in new technology. Each are leaders in their respective fields, with decades of experience in pioneering the way we access and engage knowledge. Together, they ensure that the organization advances its mission.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan specializes in Islamic and criminal law. He drafted criminal codes for Maldives and Somalia."
+      "description": "He is a Professor of law at Boston College Law School, where he teaches and writes on criminal law and the laws of war. He helped draft the Islamic criminal codes for the Maldives and Somalia."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar is a law professor at Harvard. She leads SHARIAsource and the Program in Islamic Law."
+      "description": "She is a Professor of law and history at Harvard, specializing in criminal law and interpretation (usul al-fiqh). She leads the Program in Islamic Law and the SHARIAsource Lab , and IslamicLawBlog."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki is an entrepreneur with deep technical expertise. He co-founded Freewebs and Truebill."
+      "description": "He is a serial entrepeneur and technology innovator. He has served as CTO to various start-ups and has co-founded multiple ventures, including webs.com (acquired by Vistaprint) and Truebill (now Rocket Money)."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas is a former software engineer at Simli AI. He leads the development of our core products."
+      "description": "He is a software engineer with full-stack experience, who previously served at Simli AI. He leads the development of core products as Usul.AI."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam is a PhD candidate at Harvard University researching the social dimensions of human-centered technologies."
+      "description": "She is a PhD candidate at Harvard University researching the social dimensions of humancentered technologies, and serves as an administrator and researcher at Usul.AI, where she directs operations and bridges engineering and research."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad is a researcher specializing in Islamic knowledge and history. He holds a BA in Islamic Studies and is the founder of Gems of Al-Andalus."
+      "description": "He is a researcher of Islamic knowledge and history, holds a BA in Islamic Studies, and founded the publication the Gems of Al-Andalus. He works on book-digitization and annotation at Usul AI."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed holds a PhD. from Al-Azhar University. He leads the digitization team and efforts."
+      "description": "He is a researcher who holds a PhD in Islamic Studies from Al-Azhar University. He leads the digitization team and efforts to expand the collections at Usul AI."
     },
     "ismail-safadi": {
       "name": "Ismail Safadi",
-      "description": "Ismail specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey."
+      "description": "He is a researcher who specializes in Hanafi fiqh. He studied at the University of Jordan and in Turkey. He works on book digitization and annotation at Usul AI."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif co-founded Tarteel AI, lead engineering at Quran.com, and worked at Twitter."
+      "description": "He is an engineer who served as a co-founding engineer at Tarteel AI and our own Usul AI. He previously lead engineering at Quran.com and worked at Twitter."
     },
     "ahmed-riad": {
       "name": "Ahmed Riad",
-      "description": "Ahmed co-founded Remail AI, Betterbook, and was an engineer at Quran.com."
+      "description": "He is a software engineer who served as founding-engineer at at several start-ups (including Remail AI, Betterbook, and our own Usul AI). he also served as an engineer at Qur'an.com."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -68,8 +69,8 @@
   },
   "roles": {
     "ceo": "CEO",
-    "founding-ceo": "Founding CEO",
-    "founding-engineer": "Founding Engineer",
+    "former-ceo": "Former CEO",
+    "former-engineer": "Former Lead Engineer",
     "researcher": "Researcher",
     "localization-lead": "Localization Lead",
     "digitization-lead": "Digitization Lead",

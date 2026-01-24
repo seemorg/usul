@@ -4,7 +4,7 @@ import Container from "@/components/ui/container";
 import { VOLUNTEER_URL } from "@/lib/constants";
 import { getMetadata, SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
-import { HeartHandshakeIcon, MailIcon } from "lucide-react";
+import { HandHeartIcon, HeartHandshakeIcon, MailIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import MemberCard from "./member-card";
@@ -35,25 +35,34 @@ export default async function TeamPage() {
 
   return (
     <Container className="max-w-5xl pt-8 lg:pt-12 2xl:max-w-6xl">
+
       <div className="mt-44 mb-20">
-        <h1 className="text-4xl font-bold lg:text-5xl">{t("board-title")}</h1>
-        <p className="mt-8">{t("board-subtitle")}</p>
+        <div className="flex items-center justify-between">
+          <h1 className="text-4xl font-bold lg:text-5xl">{t("board-title")}</h1>
+          <div className="flex items-center justify-end gap-5">
+            <Button className="h-9 gap-2" asChild>
+              <a href={VOLUNTEER_URL} target="_blank">
+                <HeartHandshakeIcon className="size-4" />
+                {t("become-a-volunteer")}
+              </a>
+            </Button>
 
-        <div className="mt-10 flex items-center gap-5">
-          <Button className="h-9 gap-2" asChild>
-            <a href={VOLUNTEER_URL} target="_blank">
-              <HeartHandshakeIcon className="size-4" />
-              {t("become-a-volunteer")}
-            </a>
-          </Button>
+            <Button className="h-9 gap-2" variant="outline" asChild>
+              <a href={navigation.donate()} target="_blank">
+                <HandHeartIcon className="size-4" />
+                {t("support-usul")}
+              </a>
+            </Button>
 
-          <Button className="h-9 gap-2" variant="outline" asChild>
-            <a href={`mailto:${SITE_CONFIG.contactEmail}`} target="_blank">
-              <MailIcon className="size-4" />
-              {t("contact-us")}
-            </a>
-          </Button>
+            <Button className="h-9 gap-2" variant="outline" asChild>
+              <a href={`mailto:${SITE_CONFIG.contactEmail}`} target="_blank">
+                <MailIcon className="size-4" />
+                {t("contact-us")}
+              </a>
+            </Button>
+          </div>
         </div>
+        <p className="mt-8">{t("board-subtitle")}</p>
 
         <div className="mt-14 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
           {boardMembers.map((member) => (

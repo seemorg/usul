@@ -28,6 +28,10 @@ export const Route = {
       .default(defaultSort)
       .catch(defaultSort),
     year: yearRangeSchema,
+    genres: z
+      .string()
+      .transform((v) => v.split(","))
+      .catch([] as string[]),
     regions: z
       .string()
       .transform((v) => v.split(","))
