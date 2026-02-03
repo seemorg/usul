@@ -7,7 +7,7 @@
   "regions": "مناطق",
   "x-regions": "{count, plural, zero {}=0 {لا يوجد مناطق} one {# منطقة} two {# مناطق} few {# مناطق} many {# مناطق} other {# مناطق}}",
   "empire": "الإمبراطورية و العصر",
-  "empires": "الإمبراطوريات و العصر",
+  "empires": "الإمبراطوريات و العصور",
   "x-empires": "{count, plural, =0 {لا امبراطوريات وعصور} one {# امبراطورية وعصر} other {# امبراطورية وعصر}}",
   "location": "موقع",
   "locations": "مواقع",

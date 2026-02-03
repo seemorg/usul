@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "متن زیات کړئ",
-        "description": "URL یا PDF اضافه کړئ"
+        "description": "یوه URL یا PDF وړاندې کړئ"
       },
       "report-mistake": {
         "title": "تیروتنه راپور کړئ",
-        "description": "څه غلط پیدا شول"
+        "description": "یوه تېروتنه سم کړئ"
       },
       "feedback": {
         "title": "خپل نظر مو شریک کړئ",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "ټول پراخ کړئ",
-  "collapse-all": "ټول راټیټ کړئ"
+  "collapse-all": "ټول راټیټ کړئ",
+  "maintenance": {
+    "title": "په ساتنه کې دی",
+    "message": "اسلول په اوس مهال د ساتنې لاندې دی. موږ به ژر بیرته راشو."
+  }
 }

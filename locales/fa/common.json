@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "افزودن متن",
-        "description": "افزودن نشانی اینترنتی یا PDF"
+        "description": "آدرس اینترنتی یا فایل PDF فراهم کنید"
       },
       "report-mistake": {
         "title": "گزارش خطا",
-        "description": "اشکالی پیدا کردید"
+        "description": "اصلاح یک خطا"
       },
       "feedback": {
         "title": "ارسال بازخورد",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "گسترش همه",
-  "collapse-all": "جمع کردن همه"
+  "collapse-all": "جمع کردن همه",
+  "maintenance": {
+    "title": "در حال تعمیر و نگهداری",
+    "message": "لاوحد در حال تعمیر و نگهداری است. ما به زودی برمی‌گردیم."
+  }
 }

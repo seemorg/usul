@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "একটি লেখা যোগ করুন",
-        "description": "একটি URL বা PDF যোগ করুন"
+        "description": "একটি URL বা PDF প্রদান করুন"
       },
       "report-mistake": {
         "title": "একটি ভুল রিপোর্ট করুন",
-        "description": "কিছু ভুল পেলেন"
+        "description": "একটি ভুল সংশোধন করুন"
       },
       "feedback": {
         "title": "মতামত প্রদান করুন",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "সব সম্প্রসারণ করুন",
-  "collapse-all": "সব গুটিয়ে রাখুন"
+  "collapse-all": "সব গুটিয়ে রাখুন",
+  "maintenance": {
+    "title": "রক্ষণাবেক্ষণে রয়েছে",
+    "message": "Usul বর্তমানে রক্ষণাবেক্ষণে রয়েছে। আমরা শীঘ্রই ফিরে আসব।"
+  }
 }

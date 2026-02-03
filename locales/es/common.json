@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Añadir un texto",
-        "description": "Añadir una URL o PDF"
+        "description": "Proporcionar una URL o PDF"
       },
       "report-mistake": {
         "title": "Reportar un error",
-        "description": "Encontré un error"
+        "description": "Corregir un error"
       },
       "feedback": {
         "title": "Enviar comentarios",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Expandir todo",
-  "collapse-all": "Colapsar todos"
+  "collapse-all": "Colapsar todos",
+  "maintenance": {
+    "title": "En Mantenimiento",
+    "message": "La normalidad está actualmente en mantenimiento. Volveremos pronto."
+  }
 }

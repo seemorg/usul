@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Ƙara Rubutu",
-        "description": "Ƙara adireshi ko PDF"
+        "description": "Ka ba da adireshin yanar gizo ko PDF"
       },
       "report-mistake": {
         "title": "Bayar da rahoton kuskure",
-        "description": "Kimanta wani kuskure"
+        "description": "Gyara kuskure"
       },
       "feedback": {
         "title": "Bayar da ra'ayi",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Faɗada duka",
-  "collapse-all": "Rufe duka"
+  "collapse-all": "Rufe duka",
+  "maintenance": {
+    "title": "Ana Gyaran Fuska",
+    "message": "A halin yanzu, Usul na cikin gyaran fuska. Za mu dawo ba da jimawa ba."
+  }
 }

@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "متن شامل کریں",
-        "description": "URL یا PDF شامل کریں"
+        "description": "یو آر ایل یا پی ڈی ایف فراہم کریں"
       },
       "report-mistake": {
         "title": "غلطی رپورٹ کریں",
-        "description": "کچھ غلط ملا"
+        "description": "غلطی کو درست کریں"
       },
       "feedback": {
         "title": "رائے دیں",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "سب کو بڑھائیں",
-  "collapse-all": "سب کو سکیڑیں"
+  "collapse-all": "سب کو سکیڑیں",
+  "maintenance": {
+    "title": "مرمت کے تحت",
+    "message": "اسول فی الحال مرمت کے تحت ہے۔ ہم جلد واپس آئیں گے۔"
+  }
 }
