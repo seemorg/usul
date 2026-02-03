@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Добавить текст",
-        "description": "Добавить URL или PDF"
+        "description": "Укажите URL или PDF"
       },
       "report-mistake": {
         "title": "Сообщить об ошибке",
-        "description": "Нашли ошибку"
+        "description": "Исправить ошибку"
       },
       "feedback": {
         "title": "Оставить отзыв",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Развернуть все",
-  "collapse-all": "Свернуть все"
+  "collapse-all": "Свернуть все",
+  "maintenance": {
+    "title": "При обслуживании",
+    "message": "Usul сейчас находится на обслуживании. Мы скоро вернемся."
+  }
 }

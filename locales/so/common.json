@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Ku dar Qoraal",
-        "description": "Ku dar URL ama PDF"
+        "description": "Bixi URL ama PDF"
       },
       "report-mistake": {
         "title": "Soo sheeg khalad",
-        "description": "Wax khaldan baa laga helay"
+        "description": "Sax qalad"
       },
       "feedback": {
         "title": "Bixi Fikrad",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Ballaar dhammaan",
-  "collapse-all": "Isku soo wada duub dhammaan"
+  "collapse-all": "Isku soo wada duub dhammaan",
+  "maintenance": {
+    "title": "Dayactir ku jiro",
+    "message": "Usul hadda dayactir ku jiro. Waxaan soo noqon doonaa dhawaan."
+  }
 }

@@ -3,55 +3,56 @@
   "subtitle": "Kooxda Usul waxa ay ka kooban tahay injineero, naqshadeeyayaal iyo cilmi-baarayaal si aad ah ugu go'an samaynta aalado dijitaal ah oo wax ka beddelaya cilmi-baarista Islaamka.",
   "become-a-volunteer": "Noqo mutadawiciin",
   "contact-us": "Nagala soo xiriir",
+  "support-usul": "Taageer Usul.AI",
   "founders-title": "Kooxda aasaasay",
   "founders-subtitle": "Kooxda aasaasay Usul.",
-  "engineering-team-title": "Kooxda Injineernimada",
-  "research-annotation-team-title": "Kooxda Cilmi-baarista iyo Calaamadaynta",
-  "past-team-members-title": "Xubnihii Hore ee Kooxda",
+  "engineering-team-title": "Injineernimada & Hawlaha",
+  "research-annotation-team-title": "Cilmi-baaris & Dijitalayn",
+  "past-team-members-title": "Usul AI Alumni",
   "board-title": "La kulan guddiga",
-  "board-subtitle": "Usul waa mashruuc ka tirsan Seemore Foundation, guddigiisana waxa ku jira khubaro waaweyn oo ku takhasusay cilmi-baarista iyo tiknoolajiyada, kuwaas oo mid kasta leh tobanaan sano oo waayo-aragnimo ah meelaha ay ku shaqeeyaan. Si wadajir ah ayay u maamulaan ururka iyaga oo hubiya in uu gaadho yoolkiisa.",
+  "board-subtitle": "Usul.AI waa mashruuc ay leedahay Seemore Foundation, oo guddigeeda ka kooban yihiin khubaro caalami ah oo ku xeel dheer cilmi-baarista Islaamka iyo tignoolajiyada casriga ah. Kuwaasoo dhammaantood ah hormuudyo ku xeel dheer dhinacyadoodi, iyagoo leh tobannaan sano oo waayo-aragnimo ah oo ku saabsan in hannaanka lagu horumariyo sida loo helo loona falanqeeyo aqoonta. Wadajir, waxay xaqiijiyaan in hay'addu ay horey u sii amba-qaado himiladeeda.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan wuxuu ku takhasusay sharciga Islaamka iyo kan dembiyada. Wuxuu qoray xeerarka dembiyada ee Maldives iyo Soomaaliya."
+      "description": "Waa borofisar ka tirsan sharciga oo wax ka dhiga Boston College Law School, halkaas oo uu ka barto isla markaana wax ka qora sharciga ciqaabta iyo shuruucda dagaallada. Wuxuu ka shaqeeyay dejinta shuruucda ciqaabta Islaamka ee Maldives iyo Soomaaliya."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar waa borofisar sharci oo ka dhiga jaamacadda Harvard. Waxay hoggaamisaa SHARIAsource iyo Barnaamijka Xeerka Islaamka."
+      "description": "Waxay borofisar ka tahay sharciga iyo taariikhda Harvard, iyadoo ku takhasustay sharciga ciqaabta iyo fasiraadda (usul al-fiqh). Waxay hoggaamisaa Barnaamijka Sharciga Islaamka iyo SHARIAsource Lab, iyo IslaamkaLawBlog."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki waa ganacsade leh khibrad farsamo oo qoto dheer. Wuxuu wada aasaasay Freewebs iyo Truebill."
+      "description": "Waa ganacsade xidhiidhi ah iyo hal-abuur tignoolajiyadeed. Wuxuu u soo shaqeeyay CTO shirkado kala duwan oo bilow ah wuxuuna wada-aasaasay dhowr ganacsi, oo ay ku jiraan webs.com (oo ay iibsatay Vistaprint) iyo Truebill (hadda Rocket Money)."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas waa injineer software hore Simli AI. Waxay hoggaaminaysaa horumarinta alaabtayada aasaasiga ah."
+      "description": "Waa injineer software leh waayo-aragnimo dhammaystiran, oo horay uga soo shaqeeyay Simli AI. Wuxuu hogaamiyaa horumarinta alaabada ugu muhiimsan ee Usul.AI."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam waa musharax PhD ah oo ku saabsan Daraasadda Diinta oo leh goob labaad oo Sayniska Xogta."
+      "description": "Waxay tahay arday takhasus PhD ee Jaamacadda Harvard oo cilmi-baadhis ku samaysa dhinacyada bulshada ee tignoolajiyada loogu talagalay dadka, waxayna u adeegtaa maamulaha iyo cilmi-baadhe ka tirsan Usul.AI, halkaasoo ay hogaamiso hawlaha isla markaana ay isku xidho injineeriyada iyo cilmi-baarista."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad waa cilmi-baadhe ku takhasusay cilmi iyo taariikh Islaamka. Wuxuu leeyahay shahaadada BA ee Daraasaadka Islaamka wuxuuna aasaasay GEMS of Al-Andalus."
+      "description": "Waa cilmi-baadhaha aqoonta Islaamka iyo taariikhda, wuxuu haystaa BA Cilmiga Islaamka, wuxuuna aasaasay daabacaadda Gems of Al-Andalus. Wuxuu ka shaqeeyaa buug-dijitalayn iyo tilmaamid ee Usul AI."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed wuxuu haystaa PhD oo kasoo qaatay Jaamacadda Al-Azhar. Wuxuu hogaamiyaa kooxda dijitaynta iyo dadaalladooda."
+      "description": "Waa cilmi-baadhaha haysta PhD ee Cilmiga Islaamka ka Yuunifarsitiga Al-Azhar. Wuxuu hogaamiyaa kooxaha dijitalaynta iyo dadaallada ballaadhinta ururinta ee Usul AI."
     },
     "ismail-safadi": {
       "name": "Ismaaciil Safadi",
-      "description": "Ismaaciil wuxuu ku takhasusay fiqiga xanafiga. Wuxuu wax ku bartay Jaamacadda Urdun iyo Turkiga."
+      "description": "Waa cilmi-baadhaha ku takhasustay fiqiga Hanafi. Wuxuu ka bartay Yuunifaradiyada Urdun iyo Turkiga. Wuxuu ka shaqeeyaa buug-dijitalaynta iyo tilmaamid ee Usul AI."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif wuxuu aasaasay Tarteel AI, hogaamin injineeriyada Quran.com, wuxuuna ka shaqeeyey Twitter."
+      "description": "Waa injineer ka soo shaqeeyay injineer-kaasaasaha shirkadda Tarteel AI iyo Usul AI keena. Wuxuu horay u hogaamiyay injineeriyada ee Quran.com wuxuuna ka soo shaqeeyay Twitter."
     },
     "ahmed-riad": {
       "name": "Ahmed Riad",
-      "description": "Ahmed wuxuu aasaasay Remail AI, Betterbook, wuxuu ahaa injineer Quran.com."
+      "description": "Waa injineer-software oo ka soo shaqeeyay injineer-kaasaasaha dhowr shirkadood (oo ay ku jiraan Remail AI, Betterbook, iyo Usul AI keena). Waxaa kale oo uu u soo shaqeeyay injineer ee Qur'an.com."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -68,8 +69,8 @@
   },
   "roles": {
     "ceo": "CEO",
-    "founding-ceo": "Maamulaha Aasaasiga ah",
-    "founding-engineer": "Injineer Aasaasaye",
+    "former-ceo": "Agaasimihii Hore",
+    "former-engineer": "Injineerkii Hore ee Hogaamiyaha ahaa",
     "researcher": "Baarayaasha",
     "localization-lead": "Hormuudka Meeleeyaha",
     "digitization-lead": "Hormuudka Dhijitaleynta",

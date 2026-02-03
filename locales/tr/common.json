@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Metin Ekle",
-        "description": "Bir URL veya PDF Ekle"
+        "description": "Bir URL veya PDF sağlayın"
       },
       "report-mistake": {
         "title": "Hata Bildir",
-        "description": "Bir hata mı buldunuz"
+        "description": "Bir hatayı düzelt"
       },
       "feedback": {
         "title": "Geri Bildirimde Bulun",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Tümünü genişlet",
-  "collapse-all": "Tümünü daralt"
+  "collapse-all": "Tümünü daralt",
+  "maintenance": {
+    "title": "Bakım Aşamasında",
+    "message": "Usul şu anda bakım aşamasında. Yakında geri döneceğiz."
+  }
 }

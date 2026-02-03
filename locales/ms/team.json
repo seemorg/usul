@@ -3,55 +3,56 @@
   "subtitle": "Pasukan Usul terdiri daripada jurutera, pereka bentuk, dan penyelidik yang bersemangat dalam membina alat digital untuk mengubah penyelidikan Islam.",
   "become-a-volunteer": "Jadi sukarelawan",
   "contact-us": "Hubungi Kami",
+  "support-usul": "Sokong Usul.AI",
   "founders-title": "Pasukan pengasas",
   "founders-subtitle": "Pasukan pengasas di sebalik Usul.",
-  "engineering-team-title": "Pasukan Kejuruteraan",
-  "research-annotation-team-title": "Pasukan Penyelidikan & Penjelasan",
-  "past-team-members-title": "Bekas Ahli Pasukan",
+  "engineering-team-title": "Kejuruteraan & Operasi",
+  "research-annotation-team-title": "Penyelidikan & Digitalisasi",
+  "past-team-members-title": "Alumni Usul AI",
   "board-title": "Bertemu lembaga",
-  "board-subtitle": "Usul ialah projek di bawah Seemore Foundation, yang lembaga pengarahnya terdiri daripada pakar terkemuka dalam bidang penyelidikan dan teknologi, masing-masing dengan pengalaman berdekad-dekad dalam bidang mereka. Bersama-sama, mereka memantau organisasi dan memastikan misinya terus maju.",
+  "board-subtitle": "Usul.AI ialah projek Yayasan Seemore, yang lembaganya terdiri daripada pakar terkemuka dalam penyelidikan Islam dan teknologi baharu. Setiap daripada mereka adalah pemimpin dalam bidang masing-masing, dengan pengalaman puluhan tahun dalam merintis cara kita mengakses dan berinteraksi dengan ilmu. Bersama-sama, mereka memastikan organisasi ini memajukan misinya.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan pakar dalam undang-undang Islam dan jenayah. Dia merangka kod jenayah untuk Maldives dan Somalia."
+      "description": "Beliau ialah Profesor undang-undang di Sekolah Undang-Undang Boston College, di mana beliau mengajar dan menulis mengenai undang-undang jenayah dan undang-undang peperangan. Beliau membantu merangka kod jenayah Islam untuk Maldives dan Somalia."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar ialah profesor undang-undang di Harvard. Beliau mengetuai SHARIAsource dan Program dalam Undang-undang Islam."
+      "description": "Beliau ialah Profesor undang-undang dan sejarah di Harvard, pakar dalam undang-undang jenayah dan interpretasi (usul al-fiqh). Beliau mengetuai Program dalam Undang-Undang Islam dan Makmal SHARIAsource, serta IslamicLawBlog."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki ialah seorang usahawan dengan kepakaran teknikal yang mendalam. Dia mengasaskan Freewebs dan Truebill."
+      "description": "Beliau adalah seorang usahawan bersiri dan perintis teknologi. Beliau pernah berkhidmat sebagai Ketua Pegawai Teknologi kepada pelbagai syarikat pemula dan telah mengasaskan beberapa perusahaan, termasuk webs.com (diambil alih oleh Vistaprint) dan Truebill (kini Rocket Money)."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas ialah bekas jurutera perisian di Simli AI. Beliau memimpin pembangunan produk teras kami."
+      "description": "Beliau adalah jurutera perisian dengan pengalaman menyeluruh, yang sebelum ini berkhidmat di Simli AI. Beliau mengetuai pembangunan produk teras di Usul.AI."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam ialah calon PhD dalam Pengajian Agama dengan bidang kedua Sains Data."
+      "description": "Beliau adalah calon PhD di Universiti Harvard yang meneliti dimensi sosial teknologi berpusatkan manusia, dan berkhidmat sebagai pentadbir dan penyelidik di Usul.AI, di mana beliau mengarahkan operasi dan menjambatani kejuruteraan dan penyelidikan."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad ialah penyelidik yang mengkhususkan diri dalam pengetahuan dan sejarah Islam. Beliau memiliki BA dalam Pengajian Islam dan merupakan pengasas kepada Gems of Al-Andalus."
+      "description": "Beliau adalah penyelidik pengetahuan dan sejarah Islam, memiliki ijazah BA dalam Pengajian Islam, dan mengasaskan penerbitan Gems of Al-Andalus. Beliau bekerja dalam digitalisasi dan anotasi buku di Usul AI."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed memiliki PhD dari Universiti Al-Azhar. Beliau mengetuai pasukan dan usaha pendigitalan."
+      "description": "Beliau adalah penyelidik yang memiliki PhD dalam Pengajian Islam dari Universiti Al-Azhar. Beliau mengetuai pasukan digitalisasi dan usaha untuk mengembangkan koleksi di Usul AI."
     },
     "ismail-safadi": {
       "name": "Ismail Safadi",
-      "description": "Ismail pakar dalam fiqh Hanafi. Beliau belajar di Universiti Jordan dan di Turki."
+      "description": "Beliau adalah penyelidik yang pakar dalam fiqh Hanafi. Beliau belajar di Universiti Jordan dan di Turki. Beliau bekerja dalam digitalisasi dan anotasi buku di Usul AI."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif mengasas bersama Tarteel AI, menjadi peneraju kejuruteraan di Quran.com, dan bekerja di Twitter."
+      "description": "Beliau adalah jurutera yang berkhidmat sebagai jurutera pengasas di Tarteel AI dan Usul AI sendiri. Beliau sebelum ini mengetuai kejuruteraan di Quran.com dan bekerja di Twitter."
     },
     "ahmed-riad": {
       "name": "Ahmed Riad",
-      "description": "Ahmed mengasas bersama Remail AI, Betterbook, dan merupakan jurutera di Quran.com."
+      "description": "Beliau adalah jurutera perisian yang berkhidmat sebagai jurutera pengasas di beberapa syarikat pemula (termasuk Remail AI, Betterbook, dan Usul AI sendiri). Beliau juga berkhidmat sebagai jurutera di Qur'an.com."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -68,8 +69,8 @@
   },
   "roles": {
     "ceo": "CEO",
-    "founding-ceo": "CEO Pengasas",
-    "founding-engineer": "Jurutera Pengasas",
+    "former-ceo": "Bekas CEO",
+    "former-engineer": "Bekas Jurutera Utama",
     "researcher": "Penyelidik",
     "localization-lead": "Ketua Lokaliti",
     "digitization-lead": "Ketua Digitalisasi",

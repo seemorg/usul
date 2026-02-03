@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "एक टेक्स्ट जोड़ें",
-        "description": "URL या PDF जोड़ें"
+        "description": "URL या PDF प्रदान करें"
       },
       "report-mistake": {
         "title": "एक त्रुटि की रिपोर्ट करें",
-        "description": "कुछ गलत मिला"
+        "description": "एक गलती को सुधारें"
       },
       "feedback": {
         "title": "प्रतिक्रिया दें",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "सभी विस्तारित करें",
-  "collapse-all": "सभी संक्षिप्त करें"
+  "collapse-all": "सभी संक्षिप्त करें",
+  "maintenance": {
+    "title": "रखरखाव के अधीन",
+    "message": "Usul वर्तमान में रखरखाव के अधीन है। हम जल्द ही वापस आएंगे।"
+  }
 }

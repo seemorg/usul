@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Tambah Teks",
-        "description": "Tambah URL atau PDF"
+        "description": "Berikan URL atau PDF"
       },
       "report-mistake": {
         "title": "Laporkan ralat",
-        "description": "Jumpa Ada Kesalahan"
+        "description": "Betulkan kesalahan"
       },
       "feedback": {
         "title": "Berikan Maklum Balas",
@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Kembangkan semua",
-  "collapse-all": "Runtuhkan semua"
+  "collapse-all": "Runtuhkan semua",
+  "maintenance": {
+    "title": "Dalam Penyelenggaraan",
+    "message": "Usul sedang dalam penyelenggaraan. Kami akan kembali sekejap lagi."
+  }
 }
