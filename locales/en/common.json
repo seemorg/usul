@@ -248,5 +248,9 @@
     }
   },
   "expand-all": "Expand all",
-  "collapse-all": "Collapse all"
+  "collapse-all": "Collapse all",
+  "maintenance": {
+    "title": "Under Maintenance",
+    "message": "Usul is currently under maintenance. We'll be back shortly."
+  }
 }

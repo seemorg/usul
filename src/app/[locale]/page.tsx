@@ -13,6 +13,7 @@ import {
   fetchPopularIslamicHistoryBooks,
   fetchPopularIslamicLawBooks,
 } from "@/data/popular-books";
+import { env } from "@/env";
 import { routing } from "@/i18n/config";
 import { getHomepageAdvancedGenres, getHomepageGenres } from "@/lib/api/genres";
 import { appLocaleToPathLocale } from "@/lib/locale/utils";
@@ -170,7 +171,15 @@ export default async function HomePage({
     <>
       <Navbar layout="home" />
 
-      <div className="relative flex min-h-[470px] w-full pt-24 pb-10 text-white sm:pt-28">
+      <div
+        className="relative flex min-h-[470px] w-full pb-10 text-white sm:pt-28"
+        style={{
+          paddingTop:
+            env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
+              ? `calc(var(--maintenance-banner-height, 0px) + 6rem)`
+              : undefined,
+        }}
+      >
         <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
         {/* [clip-path:ellipse(130%_100%_at_50%_0%)] */}
 

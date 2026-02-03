@@ -25,6 +25,7 @@ export const env = createEnv({
 
     NEXT_PUBLIC_CLARITY_PROJECT_ID: z.string().min(1),
     NEXT_PUBLIC_ENABLE_CLARITY: z.string().optional().default("false"),
+    NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER: z.string().optional().default("false"),
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: z.string().min(1),
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID: z.string().min(1),
     VERCEL_ENV: z
@@ -42,6 +43,8 @@ export const env = createEnv({
 
     NEXT_PUBLIC_CLARITY_PROJECT_ID: process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID,
     NEXT_PUBLIC_ENABLE_CLARITY: process.env.NEXT_PUBLIC_ENABLE_CLARITY,
+    NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER:
+      process.env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER,
     NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:
       process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
     NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID:

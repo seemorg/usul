@@ -12,6 +12,7 @@ import { getMetadata, getViewport } from "@/lib/seo";
 import { NextIntlClientProvider } from "next-intl";
 
 import DemoModalProvider from "../../components/video-modal";
+import MaintenanceBanner from "../../components/maintenance-banner";
 import Analytics from "./analytics";
 import Providers from "./providers";
 
@@ -57,6 +58,9 @@ export default async function LocaleLayout({
       >
         <NextIntlClientProvider>
           <Providers locale={typedLocale} total={total}>
+            {env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true" && (
+              <MaintenanceBanner />
+            )}
             {children}
 
             <Toaster />

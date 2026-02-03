@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { ArabicLogo, Logo } from "@/components/Icons";
 import { Button } from "@/components/ui/button";
+import { env } from "@/env";
 import { useDirection } from "@/lib/locale/utils";
 import { cn } from "@/lib/utils";
 import { Link } from "@/navigation";
@@ -68,7 +69,12 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       <header
         className={cn(
           layout === "reader" ? "relative" : "fixed",
-          "bg-muted-primary top-0 z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:grid lg:h-20 lg:grid-cols-12 lg:px-10",
+          "bg-muted-primary z-41 flex h-16 w-full items-center justify-between gap-4 px-4 text-white transition duration-250 sm:gap-8 lg:grid lg:h-20 lg:grid-cols-12 lg:px-10",
+          layout === "reader"
+            ? "top-0"
+            : env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
+              ? "top-[var(--maintenance-banner-height,0px)]"
+              : "top-0",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -156,7 +162,12 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
       {secondNav && (
         <nav
           className={cn(
-            "fixed inset-x-0 top-16 z-30 w-full transition duration-250",
+            "fixed inset-x-0 z-30 w-full transition duration-250",
+            layout === "reader"
+              ? "top-16"
+              : env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
+                ? "top-[calc(var(--maintenance-banner-height,0px)+4rem)]"
+                : "top-16",
             showNavbar
               ? "pointer-events-auto translate-y-0 opacity-100"
               : "pointer-events-none -translate-y-10 opacity-0",
