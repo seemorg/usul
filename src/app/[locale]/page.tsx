@@ -93,9 +93,9 @@ const bookToTypesenseBook = (
         pathLocale === "en" && book.author.transliteration
           ? book.author.transliteration
           : getPrimaryLocalizedText(
-              book.author.primaryNameTranslations,
-              pathLocale,
-            )!,
+            book.author.primaryNameTranslations,
+            pathLocale,
+          )!,
       secondaryName:
         getSecondaryLocalizedText(
           book.author.primaryNameTranslations,
@@ -130,14 +130,7 @@ export default async function HomePage({
 
   const pathLocale = appLocaleToPathLocale(locale);
 
-  const [
-    genres,
-    popularBooks,
-    popularIslamicLawBooks,
-    popularIslamicHistoryBooks,
-    specialCollections,
-    individualCollections,
-  ] = await Promise.all([
+  const results = await Promise.allSettled([
     getHomepageAdvancedGenres({ locale: pathLocale }),
     fetchPopularBooks(pathLocale),
     fetchPopularIslamicLawBooks(pathLocale),
@@ -145,6 +138,31 @@ export default async function HomePage({
     fetchSpecialCollections(pathLocale),
     fetchIndividualCollections(pathLocale),
   ]);
+
+  // Extract results with fallbacks
+  const genres = results[0].status === "fulfilled" ? results[0].value : null;
+  const popularBooks = results[1].status === "fulfilled" ? results[1].value : [];
+  const popularIslamicLawBooks = results[2].status === "fulfilled" ? results[2].value : [];
+  const popularIslamicHistoryBooks = results[3].status === "fulfilled" ? results[3].value : [];
+  const specialCollections = results[4].status === "fulfilled" ? results[4].value : [];
+  const individualCollections = results[5].status === "fulfilled" ? results[5].value : [];
+
+  // Log errors in development but don't fail the build
+  if (process.env.NODE_ENV === "development") {
+    results.forEach((result, index) => {
+      if (result.status === "rejected") {
+        const names = [
+          "genres",
+          "popularBooks",
+          "popularIslamicLawBooks",
+          "popularIslamicHistoryBooks",
+          "specialCollections",
+          "individualCollections",
+        ];
+        console.error(`Failed to fetch ${names[index]} for locale ${locale}:`, result.reason);
+      }
+    });
+  }
 
   const t = await getTranslations({ locale });
 
