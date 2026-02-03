@@ -1,5 +1,7 @@
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
+import type { SearchResponse } from "@/lib/api/search";
+import type { EmpireDocument } from "@/types/empire";
 import EmpireSearchResult from "@/components/empire-search-result";
 import SearchResults from "@/components/search-results";
 import { getTotalEntities } from "@/lib/api";
@@ -15,6 +17,21 @@ import RootEntityPage from "../root-entity-page";
 import { Route, sorts } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
+
+function emptyEmpiresResponse(page: number): SearchResponse<EmpireDocument> {
+  return {
+    pagination: {
+      totalRecords: 0,
+      totalPages: 0,
+      currentPage: page,
+      hasPrev: false,
+      hasNext: false,
+    },
+    results: { found: 0, page, hits: [] },
+  };
+}
+
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
@@ -35,7 +52,7 @@ async function EmpiresPage({ searchParams }: PageProps) {
   const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
-  const [results, total] = await Promise.all([
+  const [rawResults, total] = await Promise.all([
     searchEmpires(q, {
       limit: 20,
       page,
@@ -45,9 +62,11 @@ async function EmpiresPage({ searchParams }: PageProps) {
     getTotalEntities(),
   ]);
 
+  const results = rawResults ?? emptyEmpiresResponse(page);
+
   // Sort chronologically by Hijri date if requested
   let sortedResults = results;
-  if (sort === "chronological") {
+  if (sort === "chronological" && results.results.hits.length > 0) {
     const sortedHits = [...results.results.hits].sort((a, b) => {
       // Get the sort year for each empire (prefer start year, fallback to end year)
       const getSortYear = (empire: (typeof results.results.hits)[0]) => {

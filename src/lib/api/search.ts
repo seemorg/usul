@@ -91,14 +91,14 @@ export const searchRegions = async (
 export const searchEmpires = async (
   q: string,
   { filters: _, ...options }: SearchOptions = {},
-) => {
-  return (await apiFetch<SearchResponse<EmpireDocument>>({
+): Promise<SearchResponse<EmpireDocument> | null> => {
+  return apiFetch<SearchResponse<EmpireDocument>>({
     path: "/search/empires",
     params: {
       q,
       ...options,
     },
-  }))!;
+  });
 };
 
 export const searchAllCollections = async (
