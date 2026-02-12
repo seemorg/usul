@@ -105,10 +105,11 @@ async function EmpiresPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title={t("empires")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: total.empires,
         entity: t("empires"),
       })}
+      description={t("empires-description")}
     >
       {/* <p className="-mt-14 mb-12 flex items-center">
         <InfoIcon className="mr-1 size-4 rtl:ml-1" />

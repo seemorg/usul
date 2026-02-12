@@ -67,8 +67,8 @@ export const browseItems: NavItem[] = [
 
 export const aboutItems: NavItem[] = [
   {
-    title: "navigation.about.about.title",
-    description: "navigation.about.about.description",
+    title: "navigation.about.vision.title",
+    description: "navigation.about.vision.description",
     icon: FileTextIcon,
     href: navigation.about(),
   },
