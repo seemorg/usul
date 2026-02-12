@@ -30,8 +30,8 @@ type NavItem = {
 const navigation = {
   about: [
     {
-      label: "navigation.about.about.title",
-      href: urls.about(),
+      label: "navigation.about.vision.title",
+      href: urls.vision(),
     },
     {
       label: "navigation.about.team.title",

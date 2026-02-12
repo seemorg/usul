@@ -2,8 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
+import { Markdown } from "@/components/markdown";
 
 export function ExpandableDescription({
   children,
@@ -31,29 +31,7 @@ export function ExpandableDescription({
 
   const content =
     typeof children === "string" ? (
-      <ReactMarkdown
-        components={{
-          p: ({ children }) => <>{children}</>,
-          strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
-          em: ({ children }) => <em className="italic">{children}</em>,
-          a: ({ href, children }) => {
-            const url = typeof href === "string" ? href : "#";
-            const isExternal = url.startsWith("http");
-            return (
-              <a
-                href={url}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noopener noreferrer" : undefined}
-                className="underline underline-offset-2 hover:opacity-80"
-              >
-                {children}
-              </a>
-            );
-          },
-        }}
-      >
-        {children}
-      </ReactMarkdown>
+      <Markdown>{children}</Markdown>
     ) : (
       children
     );

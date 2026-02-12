@@ -70,7 +70,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.vision.title",
     description: "navigation.about.vision.description",
     icon: FileTextIcon,
-    href: navigation.about(),
+    href: navigation.vision(),
   },
   {
     title: "navigation.about.team.title",

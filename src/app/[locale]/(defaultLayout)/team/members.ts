@@ -6,6 +6,8 @@ import ahmedRiad from "~/public/static/team-images/ahmed-riad.png";
 import intisar from "~/public/static/team-images/intisar.png";
 import ismail from "~/public/static/team-images/ismail.png";
 import lamine from "~/public/static/team-images/lamine.png";
+import mohsen from "~/public/static/team-images/mohsen.png";
+import issam from "~/public/static/team-images/issam.png";
 import rahma from "~/public/static/team-images/rahma.png";
 import ryad from "~/public/static/team-images/ryad.png";
 import zeki from "~/public/static/team-images/zeki.png";
@@ -54,6 +56,24 @@ export const researchAnnotationTeam = [
     blurDataUrl: ahmedAktan.blurDataURL,
   },
   {
+    key: "issam-eido",
+    roleKey: "research-advisor",
+    image: issam.src,
+    blurDataUrl: issam.blurDataURL,
+  },
+  {
+    key: "mohsen-kadivar",
+    roleKey: "research-advisor",
+    image: mohsen.src,
+    blurDataUrl: mohsen.blurDataURL,
+  },
+  {
+    key: "intisar-rabb",
+    roleKey: "research-lead-advisor",
+    image: intisar.src,
+    blurDataUrl: intisar.blurDataURL,
+  },
+  {
     key: "ryad-ramo",
     roleKey: "researcher",
     image: ryad.src,
@@ -64,7 +84,7 @@ export const researchAnnotationTeam = [
     roleKey: "researcher",
     image: ismail.src,
     blurDataUrl: ismail.blurDataURL,
-  }
+  },
 ];
 
 export const pastTeamMembers = [

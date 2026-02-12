@@ -135,7 +135,7 @@
     "subscribe": "Subscribe",
     "copyright": "{year, number, nogroup} The Seemore Foundation. All rights reserved."
   },
-  "lost": "Looks like you're lost",
+  "lost": "404 Not Found",
   "go-back-home": "Go back home",
   "author-arabic-names": "Author Arabic names",
   "author-latin-names": "Author Latin names",

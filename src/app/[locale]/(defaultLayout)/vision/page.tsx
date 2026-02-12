@@ -18,43 +18,43 @@ import { PlayIcon } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import aboutImage from "~/public/static/images/about-image.jpg";
-import certificateImage from "~/public/static/images/certificate.png";
 import { DemoButton } from "../../demo-button";
+import { Markdown } from "@/components/markdown";
 
 const getStoryRoadmap = (
   t: Awaited<ReturnType<typeof getTranslations<"about">>>,
 ) => [
-  {
-    year: "2019",
-    tag: t("story.roadmap.2019.tag"),
-    title: t("story.roadmap.2019.title"),
-    description: t("story.roadmap.2019.description"),
-  },
-  {
-    year: "2020-2022",
-    tag: t("story.roadmap.2020-2022.tag"),
-    title: t("story.roadmap.2020-2022.title"),
-    description: t("story.roadmap.2020-2022.description"),
-  },
-  {
-    year: "2023",
-    tag: t("story.roadmap.2023.tag"),
-    title: t("story.roadmap.2023.title"),
-    description: t("story.roadmap.2023.description"),
-  },
-  {
-    year: "2024",
-    tag: t("story.roadmap.2024.tag"),
-    title: t("story.roadmap.2024.title"),
-    description: t("story.roadmap.2024.description"),
-  },
-  {
-    year: "2025",
-    tag: t("story.roadmap.2025.tag"),
-    title: t("story.roadmap.2025.title"),
-    description: t("story.roadmap.2025.description"),
-  },
-];
+    {
+      year: "2019",
+      tag: t("story.roadmap.2019.tag"),
+      title: t("story.roadmap.2019.title"),
+      description: t("story.roadmap.2019.description"),
+    },
+    {
+      year: "2020-2022",
+      tag: t("story.roadmap.2020-2022.tag"),
+      title: t("story.roadmap.2020-2022.title"),
+      description: t("story.roadmap.2020-2022.description"),
+    },
+    {
+      year: "2023",
+      tag: t("story.roadmap.2023.tag"),
+      title: t("story.roadmap.2023.title"),
+      description: t("story.roadmap.2023.description"),
+    },
+    {
+      year: "2024",
+      tag: t("story.roadmap.2024.tag"),
+      title: t("story.roadmap.2024.title"),
+      description: t("story.roadmap.2024.description"),
+    },
+    {
+      year: "2025",
+      tag: t("story.roadmap.2025.tag"),
+      title: t("story.roadmap.2025.title"),
+      description: t("story.roadmap.2025.description"),
+    },
+  ];
 
 export const generateMetadata = async ({
   params,
@@ -66,17 +66,13 @@ export const generateMetadata = async ({
 
   return getMetadata({
     locale,
-    pagePath: navigation.about(),
+    pagePath: navigation.vision(),
     title: t("about-page.title"),
     description: t("about-page.description"),
   });
 };
 
-export default async function AboutPage({
-  params,
-}: {
-  params: Promise<{ locale: Locale }>;
-}) {
+export default async function VisionPage() {
   const t = await getTranslations("about");
   try {
     return (
@@ -102,10 +98,10 @@ export default async function AboutPage({
 
             <div className="mt-5 flex w-full flex-col gap-16 text-left text-xl text-white/80 lg:flex-row">
               <p className="flex-1 whitespace-pre-line">
-                {t("hero.paragraph1")}
+                <Markdown>{t("hero.paragraph1")}</Markdown>
               </p>
               <p className="flex-1 whitespace-pre-line">
-                {t("hero.paragraph2")}
+                <Markdown>{t("hero.paragraph2")}</Markdown>
               </p>
             </div>
 
