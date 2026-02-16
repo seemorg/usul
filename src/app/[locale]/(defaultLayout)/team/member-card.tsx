@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Markdown } from "@/components/markdown";
 
 export default function MemberCard({
   name,
@@ -22,9 +23,9 @@ export default function MemberCard({
             alt={`${name} image`}
             {...(blurDataUrl
               ? {
-                  placeholder: "blur",
-                  blurDataURL: blurDataUrl,
-                }
+                placeholder: "blur",
+                blurDataURL: blurDataUrl,
+              }
               : {})}
             className="h-full w-full"
             fill
@@ -41,9 +42,7 @@ export default function MemberCard({
           </p>
         )}
         <h3 className="text-xl font-medium">{name}</h3>
-        <p className="text-muted-foreground mt-2 text-sm hyphens-auto">
-          {description}
-        </p>
+        <Markdown className="text-muted-foreground mt-2 text-sm hyphens-auto">{description}</Markdown>
       </div>
     </div>
   );

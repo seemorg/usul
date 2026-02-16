@@ -41,10 +41,8 @@ export function Markdown({
   // Turn single newlines into Markdown line breaks (two trailing spaces + \n)
   const withLineBreaks = children.replace(/\n/g, "  \n");
   return (
-    <span className={className}>
-      <ReactMarkdown components={markdownComponents}>
-        {withLineBreaks}
-      </ReactMarkdown>
-    </span>
+    <ReactMarkdown className={className} components={markdownComponents}>
+      {withLineBreaks}
+    </ReactMarkdown>
   );
 }
