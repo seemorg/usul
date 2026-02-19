@@ -112,18 +112,18 @@ export function useGlobalChat({
     [bookIds, authorIds, advancedGenreIds],
   );
 
-  const chatFetch = useCallback(
-    async (url: string, options: RequestInit) => {
-      const res = await fetch(url, options);
+  const chatFetch = useCallback<typeof fetch>(
+    async (input, init) => {
+      const res = await fetch(input, init);
       if (res.status === 403) {
         const data = await res.json().catch(() => ({})) as {
           code?: string;
           message?: string;
         };
-        if (data?.code === CHAT_LIMIT_REACHED_CODE) {
+        if (data.code === CHAT_LIMIT_REACHED_CODE) {
           onLimitReached?.();
         }
-        throw new Error(data?.message ?? "Chat limit reached");
+        throw new Error(data.message ?? "Chat limit reached");
       }
       return res;
     },
@@ -144,10 +144,11 @@ export function useGlobalChat({
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
     initialMessages: initialChat?.messages ?? [],
     body,
+    credentials: "include",
     fetch: chatFetch,
     experimental_throttle: 100,
     onError: (err) => {
-      if (err?.message?.includes("Chat limit reached")) return;
+      if (err.message.includes("Chat limit reached")) return;
       const isOffline = typeof navigator !== "undefined" && !navigator.onLine;
       toast.error(
         isOffline
