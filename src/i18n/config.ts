@@ -21,7 +21,6 @@ export const routing = defineRouting({
   localePrefix: {
     mode: "as-needed" as const,
     prefixes: {
-      "en-US": "/en",
       "ar-SA": "/ar",
       "bn-BD": "/bn",
       "fr-FR": "/fr",
