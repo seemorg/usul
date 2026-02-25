@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Masa depan pengetahuan Islam, dipacu oleh AI",
+    "title": "Mengapa Sokong Usul AI.",
     "subtitle": "Bantu kami membina perpustakaan terbesar, memastikan akses terluas, dan memudahkan penyelidikan paling berani dalam ilmu pengetahuan Islam untuk abad ke-21.",
     "description": "Dengan sokongan anda, Usul telah menjadikan ribuan teks sejarah lebih mudah diakses, mencapai puluhan ribu pengguna di seluruh dunia.",
     "donate-widget": {
@@ -90,6 +90,16 @@
     "sent-code": "Kami telah menghantar kod ke emel anda. Sila masukkan ia di bawah untuk melengkapkan derma.",
     "verify": "Sahkan",
     "send-code": "Hantar Kod"
+  },
+  "guest-email": {
+    "title": "Masukkan emel anda",
+    "description": "Kami akan gunakan ini untuk menghantar resit anda.",
+    "continue": "Teruskan ke pembayaran"
+  },
+  "sign-in-recurring": {
+    "title": "Daftar masuk untuk menetapkan derma berulang",
+    "description": "Cipta akaun atau daftar masuk untuk membuat derma bulanan atau tahunan.",
+    "button": "Daftar masuk"
   },
   "already-donor": {
     "title": "Sudah menjadi penyumbang?",

@@ -1,4 +1,8 @@
 {
+  "signUpToContinue": {
+    "title": "Daftar untuk terus menggunakan Usul AI",
+    "signUp": "Daftar"
+  },
   "greeting": {
     "hello": "Selamat datang ke Usul AI!",
     "welcome": "Taip soalan pertama anda di bawah"

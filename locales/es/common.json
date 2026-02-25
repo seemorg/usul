@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "Acerca de",
-      "about": {
-        "title": "Acerca de",
-        "description": "Qué hacemos"
+      "vision": {
+        "title": "Visión",
+        "description": "Lo que hacemos"
       },
       "team": {
         "title": "Equipo",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Añadir un texto",
-        "description": "Añadir una URL o PDF"
+        "description": "Proporcionar una URL o PDF"
       },
       "report-mistake": {
         "title": "Reportar un error",
-        "description": "Encontré un error"
+        "description": "Corregir un error"
       },
       "feedback": {
         "title": "Enviar comentarios",
@@ -135,7 +135,7 @@
     "subscribe": "Suscribirse",
     "copyright": "{year, number, nogroup} La Fundación Seemore. Todos los derechos reservados."
   },
-  "lost": "Parece que te has perdido",
+  "lost": "404 no encontrado",
   "go-back-home": "Vuelve a casa",
   "author-arabic-names": "Nombres árabes del autor",
   "author-latin-names": "Nombres latinos del autor",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "Expandir todo",
-  "collapse-all": "Colapsar todos"
+  "collapse-all": "Colapsar todos",
+  "show-more": "Mostrar más",
+  "show-less": "Mostrar menos",
+  "maintenance": {
+    "title": "En Mantenimiento",
+    "message": "La normalidad está actualmente en mantenimiento. Volveremos pronto."
+  }
 }

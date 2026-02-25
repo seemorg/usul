@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "کے بارے میں",
-      "about": {
-        "title": "تعرف",
-        "description": "ہم کیا کرتے ہیں؟"
+      "vision": {
+        "title": "ویژن",
+        "description": "ہم کیا کرتے ہیں"
       },
       "team": {
         "title": "ٹیم",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "متن شامل کریں",
-        "description": "URL یا PDF شامل کریں"
+        "description": "یو آر ایل یا پی ڈی ایف فراہم کریں"
       },
       "report-mistake": {
         "title": "غلطی رپورٹ کریں",
-        "description": "کچھ غلط ملا"
+        "description": "غلطی کو درست کریں"
       },
       "feedback": {
         "title": "رائے دیں",
@@ -135,7 +135,7 @@
     "subscribe": "سبسکرائب",
     "copyright": "{year, number, nogroup} The Seemore Foundation۔ تمام حقوق محفوظ ہیں۔"
   },
-  "lost": "لگتا ہے آپ گم ہو گئے ہیں",
+  "lost": "۴۰۴ نہیں ملا",
   "go-back-home": "گھر واپس جائیں",
   "author-arabic-names": "مصنفین کے عربی نام",
   "author-latin-names": "مصنفین کے لاطینی نام",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "سب کو بڑھائیں",
-  "collapse-all": "سب کو سکیڑیں"
+  "collapse-all": "سب کو سکیڑیں",
+  "show-more": "مزید دکھائیں",
+  "show-less": "کم دکھائیں",
+  "maintenance": {
+    "title": "مرمت کے تحت",
+    "message": "اسول فی الحال مرمت کے تحت ہے۔ ہم جلد واپس آئیں گے۔"
+  }
 }

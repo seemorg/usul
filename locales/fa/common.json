@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "درباره",
-      "about": {
-        "title": "درباره",
-        "description": "چه می\u0006کنیم؟"
+      "vision": {
+        "title": "چشم‌انداز",
+        "description": "کاری که ما انجام می‌دهیم"
       },
       "team": {
         "title": "تیم",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "افزودن متن",
-        "description": "افزودن نشانی اینترنتی یا PDF"
+        "description": "آدرس اینترنتی یا فایل PDF فراهم کنید"
       },
       "report-mistake": {
         "title": "گزارش خطا",
-        "description": "اشکالی پیدا کردید"
+        "description": "اصلاح یک خطا"
       },
       "feedback": {
         "title": "ارسال بازخورد",
@@ -135,7 +135,7 @@
     "subscribe": "اشتراک",
     "copyright": "{year, number, nogroup} بنیاد سیمور. کلیه حقوق محفوظ است."
   },
-  "lost": "به نظر می‌رسد که گم شده‌اید",
+  "lost": "۴۰۴ یافت نشد",
   "go-back-home": "بازگشت به خانه",
   "author-arabic-names": "نام‌های عربی نویسندگان",
   "author-latin-names": "نام‌های لاتین نویسندگان",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "گسترش همه",
-  "collapse-all": "جمع کردن همه"
+  "collapse-all": "جمع کردن همه",
+  "show-more": "نمایش بیشتر",
+  "show-less": "نمایش کمتر",
+  "maintenance": {
+    "title": "در حال تعمیر و نگهداری",
+    "message": "لاوحد در حال تعمیر و نگهداری است. ما به زودی برمی‌گردیم."
+  }
 }

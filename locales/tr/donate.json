@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "İslam bilgisi geleceği, yapay zekâ ile destekleniyor",
+    "title": "Neden Usul AI'yi Desteklemelisiniz.",
     "subtitle": "En büyük kütüphaneyi inşa etmemize, en geniş erişimi sağlamamıza ve 21. yüzyılda İslami bilgi alanında en cesur araştırmaları kolaylaştırmamıza yardımcı olun.",
     "description": "Sizlerin desteğiyle Usul, binlerce tarihi metni daha erişilebilir hale getirdi ve dünyanın dört bir yanındaki on binlerce kullanıcıya ulaştı.",
     "donate-widget": {
@@ -90,6 +90,16 @@
     "sent-code": "E-posta adresinize bir kod gönderdik. Bağışı tamamlamak için lütfen aşağıya girin.",
     "verify": "Doğrula",
     "send-code": "Kod Gönder"
+  },
+  "guest-email": {
+    "title": "E-postanızı girin",
+    "description": "Makbuzunuzu göndermek için bunu kullanacağız.",
+    "continue": "Ödemeye devam et"
+  },
+  "sign-in-recurring": {
+    "title": "Düzenli bağış ayarlamak için giriş yapın",
+    "description": "Aylık veya yıllık bağış yapmak için bir hesap oluşturun veya giriş yapın.",
+    "button": "Giriş Yap"
   },
   "already-donor": {
     "title": "Zaten bağışçı mısınız?",

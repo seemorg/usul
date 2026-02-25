@@ -87,8 +87,8 @@
     },
     "about": {
       "title": "Mengenai",
-      "about": {
-        "title": "Mengenai",
+      "vision": {
+        "title": "Visi",
         "description": "Apa yang kami lakukan"
       },
       "team": {
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Tambah Teks",
-        "description": "Tambah URL atau PDF"
+        "description": "Berikan URL atau PDF"
       },
       "report-mistake": {
         "title": "Laporkan ralat",
-        "description": "Jumpa Ada Kesalahan"
+        "description": "Betulkan kesalahan"
       },
       "feedback": {
         "title": "Berikan Maklum Balas",
@@ -135,7 +135,7 @@
     "subscribe": "Langgan",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Hak cipta terpelihara."
   },
-  "lost": "Sepertinya anda tersesat",
+  "lost": "404 Tidak Dijumpai",
   "go-back-home": "Kembali ke halaman utama",
   "author-arabic-names": "Nama-nama Arab Pengarang",
   "author-latin-names": "Nama-nama Latin Pengarang",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "Kembangkan semua",
-  "collapse-all": "Runtuhkan semua"
+  "collapse-all": "Runtuhkan semua",
+  "show-more": "Tunjuk lebih banyak",
+  "show-less": "Tunjuk kurang",
+  "maintenance": {
+    "title": "Dalam Penyelenggaraan",
+    "message": "Usul sedang dalam penyelenggaraan. Kami akan kembali sekejap lagi."
+  }
 }

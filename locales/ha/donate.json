@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Makomar ilmin Musulunci, ƙarƙashin taimakon AI",
+    "title": "Me yasa goyon bayan Usul AI.",
     "subtitle": "Taimaka mana gina mafi girman ɗakin karatu, tabbatar da mafi yawan damar shiga, da kuma sauƙaƙa bincike mai ƙarfi a ilimin Musulunci na ƙarni na 21.",
     "description": "Tare da goyon bayanka, Usul ta sanya daruruwan littattafan tarihi su zama masu sauƙin samu, suna kaiwa dubunnan masu amfani a duniya baki ɗaya.",
     "donate-widget": {
@@ -90,6 +90,16 @@
     "sent-code": "Mun aika da lambar zuwa imel ɗinka. Da fatan za a shigar da shi a ƙasa don kammala gudummawa.",
     "verify": "Tabbatarwa",
     "send-code": "Aika Lambar"
+  },
+  "guest-email": {
+    "title": "Shigar da imel dinka",
+    "description": "Zamu yi amfani da wannan don aiko maka da rasid.",
+    "continue": "Ci gaba zuwa biyan kuɗi"
+  },
+  "sign-in-recurring": {
+    "title": "Shiga don saita gudummawa mai maimaituwa",
+    "description": "Ƙirƙiri asusu ko shiga don yin gudummawa kowane wata ko shekara.",
+    "button": "Shiga"
   },
   "already-donor": {
     "title": "Ka riga ka zama mai bayarwa?",

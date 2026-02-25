@@ -3,55 +3,56 @@
   "subtitle": "Ƙungiyar Usul tana ƙunshe da injiniyoyi, masu zane, da masu bincike waɗanda ke da sha'awar gina kayan aikin dijital don sauya binciken Musulunci.",
   "become-a-volunteer": "Kasance mai sa kai",
   "contact-us": "Tuntuɓe Mu",
+  "support-usul": "Tallafa Usul.AI",
   "founders-title": "Ƙungiyar kafawa",
   "founders-subtitle": "Ƙungiyar da ta kafa Usul.",
-  "engineering-team-title": "Ƙungiyar Injiniya",
-  "research-annotation-team-title": "Ƙungiyar Bincike & Bayyana Ra'ayi",
-  "past-team-members-title": "Tsofaffin Membobin Ƙungiya",
+  "engineering-team-title": "Engineering & Operations",
+  "research-annotation-team-title": "Bincike & Digitization",
+  "past-team-members-title": "Usul AI Alumni",
   "board-title": "Sadu da hukumar",
-  "board-subtitle": "Usul aikin Seemore Foundation ne, wanda kwamitinsa ya ƙunshi kwararrun masana bincike da fasaha, kowanne yana da shekaru masu yawa na ƙwarewa a fannin su. Tare, suna sa ido kan ƙungiyar kuma suna tabbatar da cewa tana cimma manufarta.",
+  "board-subtitle": "Usul.AI wani aikin Seemore Foundation ne, inda shugabanninta suka ƙunshi kwararru masu daraja a binciken addinin Musulunci da kuma sabon fasaha. Kowanne suna jagoranci a fannoni nasu, tare da shekaru na kwarewa a yayin fara dabaru na yadda muke samun da hulɗa da ilimi. Tare, suna tabbatar da cewa ƙungiyar tana ci gaba da aiwatar da manufa.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan ya ƙware a Shari'ar Musulunci da laifuffuka. Ya rubuta dokokin laifi ga Maldives da Somalia."
+      "description": "Shi Farfesa ne na shari'a a Makarantar Koyon Shari'a ta Boston College, inda yake koyarwa da rubuce-rubuce akan shari'ar laifi da dokokin yaki. Ya taimaka wajen tsara dokokin shari'ar addinin Musulunci ga Maldives da Somalia."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar farfesa ce ta doka a Jami'ar Harvard. Ita ce shugabar SHARIAsource da Shirin Dokar Musulunci."
+      "description": "Ita Farfesa ce ta dokoki da tarihi a Harvard, ta ƙware a dokar aikata manyan laifuka da fassara (usul al-fiqh). Ita ke jagorantar [Shirin Nazarin Shari'ar Musulunci](https://pil.law.harvard.edu/) da [Dakin Nazarin SHARIAsource](https://portal.shariasource.com/), da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki ɗan kasuwa ne mai ƙwarewa a fannin fasaha sosai. Ya kafa Freewebs da Truebill tare da wasu."
+      "description": "Shi masani ne mai kirkirar fasaha. Ya yi aiki a matsayin CTO a yawancin kananan kamfanoni da kuma ya hada kai wajen kirkiro dama, ciki har da webs.com (Vistaprint ta siya) da Truebill (yanzu Rocket Money)."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas tsohon injiniyan software ne a Simli AI. Shi ke jagorantar ci gaban manyan kayayyakin mu."
+      "description": "Shi injiniya ne na software tare da ƙwarewa a dukkan bangarori, wanda yayi aiki a Simli AI a baya. Yana jagorantar ci gaban manyan kayayyaki a Usul.AI."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam ɗalibi ne na digiri na uku a Nazarin Addini tare da fannin kimiyyar bayanai."
+      "description": "Ita mai neman PhD ce a Jami'ar Harvard dake bincike akan al'amuran zamantakewar fasahohi wanda ya fi mayar da hankali da jama'a, kuma tana aiki a matsayin mai gudanarwa da mai bincike a Usul.AI, inda take jagoranci ayyuka da haɗa injiniya da bincike."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad manazarta ne wanda ya ƙware a fannin ilimin Musulunci da tarihin Musulunci. Yana da digiri na farko a fannin Nazarin Musulunci kuma shi ne wanda ya kafa Gems of Al-Andalus."
+      "description": "Shi mai bincike ne akan ilimin Musulunci da tarihin, yana da BA a Nazarin addinin Musulunci, kuma ya kafa wallafa Gems of Al-Andalus. Yana aiki kan digitization da annote na littattafai a Usul AI."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed yana da digirin digirgir daga Jami'ar Al-Azhar. Shi ne ke jagorantar ƙungiyar da kuma ƙoƙarin canza bayanai zuwa dijital."
+      "description": "Shi mai bincike ne wanda ya kware a nazarin addinin Musulunci tare da PhD daga Jami'ar Al-Azhar. Yana jagorancin ƙungiyar digitization da ƙoƙarin faɗaɗawar tarin a Usul AI."
     },
     "ismail-safadi": {
       "name": "Ismail Safadi",
-      "description": "Ismail ƙwararre ne a fannin fiqhun Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya."
+      "description": "Shi mai bincike ne akan fiqhorin Hanafi. Ya yi karatu a Jami'ar Jordan da kuma a Turkiyya. Yana aiki kan digitization da annote na littattafai a Usul AI."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif ya kafa Tarteel AI tare, ya jagoranci injiniya a Quran.com, kuma ya yi aiki a Twitter."
+      "description": "Shi injiniya ne wanda ya yi aiki a matsayin injiniyan kirkiro a Tarteel AI da kuma namu Usul AI. Yayi jagoranci a bangaren injiniya a Quran.com da kuma yana aiki a Twitter."
     },
     "ahmed-riad": {
       "name": "Ahmed Riad",
-      "description": "Ahmed ya kafa Remail AI, Betterbook, kuma ya kasance injiniya a Quran.com."
+      "description": "Shi injiniya ne na software wanda ya yi aiki a matsayin injiniyan-farfado a wasu ƙanana kamfanoni (ciki har da Remail AI, Betterbook, da namu Usul AI). Har ila yau ya yi aiki a matsayin injiniya a Qur'an.com."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -64,13 +65,27 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed ɗalibi ne a Kwalejin Zaytuna. Shi ne mahaliccin kwasfan fayiloli na The Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar Farfesa mai bincike ne kan Nazarin Addinin Musulunci a Sashen Nazarin Addinai. Ya kasance a Jami'ar Duke tun 2009. Babban abin da ke sha'awarsa shi ne tunanin Musulunci na gargajiya da zamani. Ayyukansa suna a gefen \"Nazarin Musulunci\" da kuma sabuwar \"Tarihin Tunani\"."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido tsohon Farfesan Ziyara ne na Nazarin Addinin Musulunci da Larabci daga Makarantar Ilimin Addinai ta Jami'ar Chicago (2013-2015). Bincikensa ya mayar da hankali kan Al-Qur'ani a ƙarshen zamanin da, Nazarin Hadīth, da Sufanci."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Ita Farfesa ce ta dokoki da tarihi a Harvard, ta ƙware a dokar aikata manyan laifuka da fassara (usul al-fiqh). Ita ke jagorantar [Shirin Nazarin Shari'ar Musulunci](https://pil.law.harvard.edu/) da [Dakin Nazarin SHARIAsource](https://portal.shariasource.com/), da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
     "ceo": "Shugaba",
-    "founding-ceo": "Shugaban kamfani na kafawa",
-    "founding-engineer": "Injiniya Mai Kafa Kamfanin",
+    "former-ceo": "Tsohon CEO",
+    "former-engineer": "Tsohon Jagoran Injiniya",
     "researcher": "Masu Bincike",
+    "research-advisor": "Mai bayar da shawara kan bincike",
+    "research-lead-advisor": "Jagoran Bincike & Mai bayar da shawara",
     "localization-lead": "Jagoran Lokaliyasa",
     "digitization-lead": "Jagoran Digitization",
     "head-of-design": "Shugaban Tsara",

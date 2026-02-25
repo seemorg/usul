@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "El futuro del conocimiento islámico, impulsado por IA",
+    "title": "¿Por qué soportar Usul AI.",
     "subtitle": "Ayúdanos a construir la biblioteca más grande, garantizar el acceso más amplio y facilitar la investigación más audaz en el conocimiento islámico para el siglo XXI.",
     "description": "Con tu apoyo, Usul ha hecho que miles de textos históricos sean más accesibles, llegando a decenas de miles de usuarios en todo el mundo.",
     "donate-widget": {
@@ -90,6 +90,16 @@
     "sent-code": "Hemos enviado un código a tu correo electrónico. Por favor, ingrésalo abajo para completar la donación.",
     "verify": "Verificar",
     "send-code": "Enviar Código"
+  },
+  "guest-email": {
+    "title": "Introduce tu email",
+    "description": "Usaremos esto para enviar tu recibo.",
+    "continue": "Continuar con la compra"
+  },
+  "sign-in-recurring": {
+    "title": "Inicia sesión para configurar una donación recurrente",
+    "description": "Crea una cuenta o inicia sesión para hacer donaciones mensuales o anuales.",
+    "button": "Iniciar sesión"
   },
   "already-donor": {
     "title": "¿Ya eres donante?",

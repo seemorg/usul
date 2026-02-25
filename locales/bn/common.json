@@ -87,8 +87,8 @@
     },
     "about": {
       "title": "সম্পর্কে",
-      "about": {
-        "title": "সম্পর্কে",
+      "vision": {
+        "title": "দৃষ্টিভঙ্গি",
         "description": "আমরা যা করি"
       },
       "team": {
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "একটি লেখা যোগ করুন",
-        "description": "একটি URL বা PDF যোগ করুন"
+        "description": "একটি URL বা PDF প্রদান করুন"
       },
       "report-mistake": {
         "title": "একটি ভুল রিপোর্ট করুন",
-        "description": "কিছু ভুল পেলেন"
+        "description": "একটি ভুল সংশোধন করুন"
       },
       "feedback": {
         "title": "মতামত প্রদান করুন",
@@ -135,7 +135,7 @@
     "subscribe": "সাবস্ক্রাইব",
     "copyright": "{year, number, nogroup} দ্য সিমোর ফাউন্ডেশন। সমস্ত অধিকার সংরক্ষিত।"
   },
-  "lost": "মনে হচ্ছে আপনি হারিয়ে গেছেন",
+  "lost": "৪০৪ পাওয়া যায়নি",
   "go-back-home": "বাড়ি ফিরে যান",
   "author-arabic-names": "লেখকের আরবি নামসমূহ",
   "author-latin-names": "লেখকের ল্যাটিন নামসমূহ",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "সব সম্প্রসারণ করুন",
-  "collapse-all": "সব গুটিয়ে রাখুন"
+  "collapse-all": "সব গুটিয়ে রাখুন",
+  "show-more": "আরও দেখান",
+  "show-less": "কম দেখান",
+  "maintenance": {
+    "title": "রক্ষণাবেক্ষণে রয়েছে",
+    "message": "Usul বর্তমানে রক্ষণাবেক্ষণে রয়েছে। আমরা শীঘ্রই ফিরে আসব।"
+  }
 }

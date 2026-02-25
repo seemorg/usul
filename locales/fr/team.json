@@ -3,55 +3,56 @@
   "subtitle": "L’équipe Usul est composée d’ingénieurs, de concepteurs et de chercheurs passionnés par le développement d’outils numériques pour transformer la recherche islamique.",
   "become-a-volunteer": "Devenir bénévole",
   "contact-us": "Contactez-nous",
+  "support-usul": "Soutenir Usul.AI",
   "founders-title": "Équipe fondatrice",
   "founders-subtitle": "L’équipe fondatrice d’Usul.",
-  "engineering-team-title": "Équipe d'Ingénierie",
-  "research-annotation-team-title": "Équipe de recherche et annotation",
-  "past-team-members-title": "Membres de l'ancienne équipe",
+  "engineering-team-title": "Ingénierie & Opérations",
+  "research-annotation-team-title": "Recherche et numérisation",
+  "past-team-members-title": "Usul AI Alumni",
   "board-title": "Rencontrer le tableau",
-  "board-subtitle": "Usul est un projet de la Fondation Seemore, dont le conseil d'administration comprend des experts distingués en recherche et technologie. avec des décennies d'expérience dans leurs domaines respectifs. Ensemble, ils supervisent l’organisation et veillent à ce qu’elle fasse avancer sa mission.",
+  "board-subtitle": "Usul.AI est un projet de la Fondation Seemore, dont le conseil d'administration est composé d'experts distingués dans la recherche islamique et dans les nouvelles technologies. Chacun d'entre eux est un chef de file dans ses domaines respectifs, avec des décennies d'expérience en matière d'accès et d'engagement de la connaissance. Ensemble, ils veillent à ce que l'organisation fasse avancer sa mission.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan est spécialisé dans le droit islamique et pénal, et a rédigé des codes criminels pour les Maldives et la Somalie."
+      "description": "Il est professeur de droit à la Boston College Law School où il enseigne et écrit sur le droit pénal et les lois de la guerre. Il a contribué à la rédaction des codes criminels islamiques pour les Maldives et la Somalie."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Intisar est professeur de droit à Harvard et dirige SHARIAsource et le Programme de droit islamique."
+      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki est un entrepreneur possédant une solide expertise technique, il a cofondé Freewebs et Truebill."
+      "description": "Il a occupé le poste de Directeur Technique de diverses start-ups et a cofondé de nombreuses entreprises, dont des sites Web. om (acquis par Vistaprint) et Truebill (maintenant Rocket Money)."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas est un ancien ingénieur logiciel chez Simli AI. Il dirige le développement de nos produits de base."
+      "description": "Il est ingénieur logiciel avec une grande expérience dans le domaine de Simli AI. Il dirige le développement de produits de base comme Usul.AI."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam est un candidat de doctorat en étude de la religion avec un domaine secondaire de la science des données."
+      "description": "Titulaire d'un doctorat à l'université Harvard, elle recherche les dimensions sociales des technologies humaines et est administrateur et chercheur à Usul. Moi, où elle dirige des opérations et met en relation l'ingénierie et la recherche."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad est un chercheur spécialisé dans la connaissance et l'histoire islamiques et possède un baccalauréat en études islamiques et est le fondateur de Gems d'Al-Andalus."
+      "description": "Il est un chercheur en savoir et histoire islamiques, détient un baccalauréat en études islamiques, et a fondé la publication des Gems d’Al-Andalus. Il travaille sur la numérisation de livres et l'annotation à Usul AI."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed est titulaire d’un doctorat de l’Université Al-Azhar."
+      "description": "Il est chercheur titulaire d’un doctorat en études islamiques de l’Université Al-Azhar. Il dirige l’équipe de numérisation et s’efforce d’étendre les collections d’Usul AI."
     },
     "ismail-safadi": {
       "name": "Safadi Ismaïl",
-      "description": "Ismail se spécialise dans le fiqh de Hanafi, il a étudié à l'Université de Jordanie et en Turquie."
+      "description": "Il est chercheur spécialisé en fiqh Hanafi, il a étudié à l'Université de Jordanie et en Turquie. Il travaille sur la numérisation et l'annotation de livres à Usul AI."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif a cofondé Tarteel AI, ingénieur principal chez Quran.com, et a travaillé sur Twitter."
+      "description": "Il est ingénieur et co-fondateur de Tarteel AI et de notre Usul AI. Auparavant, il dirigeait l'ingénierie chez Quran.com et a travaillé sur Twitter."
     },
     "ahmed-riad": {
       "name": "Riad Ahmed",
-      "description": "Ahmed a cofondé Remail AI, Betterbook, et a été ingénieur à Quran.com."
+      "description": "Il est ingénieur logiciel qui a servi de fondateur-ingénieur à plusieurs start-ups (y compris Remail AI, Betterbook et notre propre Usul AI). il a également été ingénieur à Qur'an.com."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -64,13 +65,27 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed est un étudiant du Collège Zaytuna. Il est le créateur du podcast Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar est professeur de recherche en études islamiques au Département d’études religieuses. Ses principaux intérêts s'étendent à la fois à la pensée islamique classique et moderne. Son travail se situe au croisement des « études islamiques» et de la « Histoire de la pensée»."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido est un ancien professeur invité d’études islamiques et d’arabe de la faculté de divinité de l’Université de Chicago (2013-2015). La recherche d'Eido se concentre sur le Coran dans l'antiquité tardive, les études Hadi<unk> th, le soufisme."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
     "ceo": "PDG",
-    "founding-ceo": "PDG fondateur",
-    "founding-engineer": "Ingénieur fondateur",
+    "former-ceo": "Ancien PDG",
+    "former-engineer": "Ancien ingénieur en chef",
     "researcher": "Chercheur",
+    "research-advisor": "Conseiller en recherche",
+    "research-lead-advisor": "Responsable de la recherche & Conseiller",
     "localization-lead": "Prospect de traduction",
     "digitization-lead": "Prospect de numérisation",
     "head-of-design": "Responsable du design",

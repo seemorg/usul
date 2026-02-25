@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "Game da",
-      "about": {
-        "title": "Game da",
-        "description": "Abinda muke yi."
+      "vision": {
+        "title": "Manufa",
+        "description": "Abin da muke yi"
       },
       "team": {
         "title": "Ƙungiya",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Ƙara Rubutu",
-        "description": "Ƙara adireshi ko PDF"
+        "description": "Ka ba da adireshin yanar gizo ko PDF"
       },
       "report-mistake": {
         "title": "Bayar da rahoton kuskure",
-        "description": "Kimanta wani kuskure"
+        "description": "Gyara kuskure"
       },
       "feedback": {
         "title": "Bayar da ra'ayi",
@@ -135,7 +135,7 @@
     "subscribe": "Yi rajista",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Duk haƙƙoƙi an tanada."
   },
-  "lost": "Yana kama da ka bata",
+  "lost": "404 Ba a Samu ba",
   "go-back-home": "Koma gida",
   "author-arabic-names": "Sunayen Marubuta Larabci",
   "author-latin-names": "Sunayen Marubuta Latin",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "Faɗada duka",
-  "collapse-all": "Rufe duka"
+  "collapse-all": "Rufe duka",
+  "show-more": "Nuna ƙari",
+  "show-less": "Nuna kaɗan",
+  "maintenance": {
+    "title": "Ana Gyaran Fuska",
+    "message": "A halin yanzu, Usul na cikin gyaran fuska. Za mu dawo ba da jimawa ba."
+  }
 }

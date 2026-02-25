@@ -87,8 +87,8 @@
     },
     "about": {
       "title": "À propos",
-      "about": {
-        "title": "À propos",
+      "vision": {
+        "title": "Vision",
         "description": "Ce que nous faisons"
       },
       "team": {
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Ajouter un texte",
-        "description": "Ajouter une URL ou un PDF"
+        "description": "Fournir une URL ou un PDF"
       },
       "report-mistake": {
         "title": "Signaler une erreur",
-        "description": "Trouvé quelque chose d'erroné"
+        "description": "Corriger une erreur"
       },
       "feedback": {
         "title": "Fournir des commentaires",
@@ -135,7 +135,7 @@
     "subscribe": "Abonnez-vous",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Tous droits réservés."
   },
-  "lost": "On dirait que vous êtes perdus",
+  "lost": "404 introuvable",
   "go-back-home": "Retour à l'accueil",
   "author-arabic-names": "Noms arabes des auteurs",
   "author-latin-names": "Noms latins des auteurs",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "Développer tout",
-  "collapse-all": "Replier tout"
+  "collapse-all": "Replier tout",
+  "show-more": "Afficher plus",
+  "show-less": "Afficher moins",
+  "maintenance": {
+    "title": "En cours d'entretien",
+    "message": "Usul est actuellement en maintenance. Nous serons de retour sous peu."
+  }
 }

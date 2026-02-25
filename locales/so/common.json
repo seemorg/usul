@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "Ku saabsan",
-      "about": {
-        "title": "Ku Saabsan",
-        "description": "Waxaannu qabanno."
+      "vision": {
+        "title": "Himilooyinka Usul-ka",
+        "description": "Waxaan qabano"
       },
       "team": {
         "title": "Kooxda",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "Ku dar Qoraal",
-        "description": "Ku dar URL ama PDF"
+        "description": "Bixi URL ama PDF"
       },
       "report-mistake": {
         "title": "Soo sheeg khalad",
-        "description": "Wax khaldan baa laga helay"
+        "description": "Sax qalad"
       },
       "feedback": {
         "title": "Bixi Fikrad",
@@ -135,7 +135,7 @@
     "subscribe": "Isdiiwaangeli",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Dhammaan xuquuqaha way dhawranyihiin."
   },
-  "lost": "Waxay u muuqataa inaad lumtay",
+  "lost": "404 Lama Helin",
   "go-back-home": "Ku noqo guriga",
   "author-arabic-names": "Magacyada Qoraaga Carabiga",
   "author-latin-names": "Magacyada Qoraaga Latin-ka",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "Ballaar dhammaan",
-  "collapse-all": "Isku soo wada duub dhammaan"
+  "collapse-all": "Isku soo wada duub dhammaan",
+  "show-more": "Muuji wax badan",
+  "show-less": "Muuji wax yar",
+  "maintenance": {
+    "title": "Dayactir ku jiro",
+    "message": "Usul hadda dayactir ku jiro. Waxaan soo noqon doonaa dhawaan."
+  }
 }

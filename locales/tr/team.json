@@ -3,55 +3,56 @@
   "subtitle": "Usul ekibi, dijital araçlar geliştirerek İslami araştırmaları dönüştürmeye tutkulu mühendisler, tasarımcılar ve araştırmacılardan oluşmaktadır.",
   "become-a-volunteer": "Gönüllü Olun",
   "contact-us": "Bize Ulaşın",
+  "support-usul": "Usul.AI'yi Destekleyin",
   "founders-title": "Kurucu ekip",
   "founders-subtitle": "Usul'un arkasındaki kurucu ekip.",
-  "engineering-team-title": "Mühendislik Ekibi",
-  "research-annotation-team-title": "Araştırma ve Anotasyon Ekibi",
-  "past-team-members-title": "Geçmiş Ekip Üyeleri",
+  "engineering-team-title": "Mühendislik ve Operasyonlar",
+  "research-annotation-team-title": "Araştırma ve Dijitalleştirme",
+  "past-team-members-title": "Usul AI Mezunları",
   "board-title": "Yönetim Kuruluyla Tanışın",
-  "board-subtitle": "Usul, yönetim kurulunda her biri kendi alanında onlarca yıllık deneyime sahip araştırma ve teknoloji alanında seçkin uzmanlardan oluşan Seemore Vakfı'nın bir projesidir. Birlikte, organizasyonu denetler ve misyonunun ilerlemesini sağlarlar.",
+  "board-subtitle": "Usul.AI, İslami araştırmalar ve yeni teknoloji alanında seçkin uzmanlardan oluşan Seemore Vakfı'nın bir projesidir. Her biri kendi alanında öncüdür ve bilgiye erişim ve etkileşim yollarını yenilikçi bir şekilde geliştirme konusunda onlarca yıllık deneyime sahiptirler. Birlikte, kuruluşun misyonunu ilerlettiğinden emin olurlar.",
   "board-members": {
     "adnan-zulfiqar": {
       "name": "Adnan Zulfiqar",
-      "description": "Adnan, İslam ve ceza hukuku konusunda uzmandır. Maldivler ve Somali için ceza kanunları hazırladı."
+      "description": "Boston College Hukuk Fakültesi'nde hukuk profesörüdür; burada ceza hukuku ve savaş yasaları üzerine dersler verir ve yazar. Maldivler ve Somali için İslami ceza kanunlarını taslak haline getirmede yardımcı olmuştur."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "İntisar, Harvard'da hukuk profesörüdür. SHARIAsource ve İslam Hukuku Programı'nı yönetmektedir."
+      "description": "Harvard'da ceza hukuku ve yorum (usul al-fıkıh) alanında uzmanlaşmış hukuk ve tarih profesörüdür. [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerine liderlik etmektedir."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
-      "description": "Zeki, derin teknik uzmanlığa sahip bir girişimcidir. Freewebs ve Truebill'i kurdu."
+      "description": "Dizi girişimci ve teknoloji yenilikçisidir. Çeşitli start-up'larda CTO olarak görev yapmış ve webs.com (Vistaprint tarafından satın alındı) ve Truebill (şimdi Rocket Money) dahil olmak üzere birçok proje kurmuştur."
     }
   },
   "members": {
     "anas-hassanien": {
       "name": "Anas Hassanien",
-      "description": "Anas, Simli AI'de eski bir yazılım mühendisidir. Ana ürünlerimizin geliştirilmesini yönetmiştir."
+      "description": "Daha önce Simli AI'de görev yapmış tam yığın deneyimine sahip bir yazılım mühendisidir. Usul.AI'nin temel ürünlerinin geliştirilmesine liderlik eder."
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Abtsam, Din Çalışmaları alanında doktora adayı olup, Veri Bilimi yan dalına sahiptir."
+      "description": "Harvard Üniversitesi'nde insan odaklı teknolojilerin sosyal boyutlarını araştıran bir doktora adaydır ve Usul.AI'de yönetici ve araştırmacı olarak görev yapar, burada operasyonları yönetir ve mühendislik ile araştırma arasında köprüler kurar."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
-      "description": "Ryad, İslam bilgileri ve tarihi konusunda uzmanlaşmış bir araştırmacıdır. İslam Çalışmaları alanında lisans derecesine sahiptir ve Gems of Al-Andalus'un kurucusudur."
+      "description": "İslami bilgi ve tarih araştırmacısıdır, İslam Araştırmaları alanında lisans mezunu ve Al-Andalus'un Hazineleri adında bir yayını kurmuştur. Usul AI'de kitap dijitalleştirme ve anotasyon üzerine çalışır."
     },
     "ahmed-aktan": {
       "name": "Ahmet Aktan",
-      "description": "Ahmed, El-Ezher Üniversitesi'nden doktora derecesine sahiptir. Dijitalleştirme ekibine ve çalışmalarına liderlik etmektedir."
+      "description": "İslam Araştırmaları alanında Al-Azhar Üniversitesi'nden doktora yapan bir araştırmacıdır. Usul AI'de dijitalleştirme ekibine ve koleksiyonları genişletme çabalarına liderlik eder."
     },
     "ismail-safadi": {
       "name": "İsmail Safadi",
-      "description": "İsmail, Hanefi fıkhı konusunda uzmandır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim almıştır."
+      "description": "Hanefi fıkıh üzerine uzmanlaşmış bir araştırmacıdır. Ürdün Üniversitesi'nde ve Türkiye'de eğitim görmüştür. Usul AI'de kitap dijitalleştirme ve anotasyon üzerine çalışır."
     },
     "abdellatif-abdelfattah": {
       "name": "Abdellatif Abdelfattah",
-      "description": "Abdellatif Tarteel AI'yi kurdu, Quran.com'da mühendisliğe öncülük etti ve Twitter'da çalıştı."
+      "description": "Mühendis olup Tarteel AI ve kendi Usul AI'mizde kurucu mühendis olarak görev yapmıştır. Daha önce Quran.com'da mühendisliğe liderlik etmiş ve Twitter'da çalışmıştır."
     },
     "ahmed-riad": {
       "name": "Ahmed Riad",
-      "description": "Ahmed, Remail AI, Betterbook'u kurdu ve Quran.com'da mühendis olarak çalıştı."
+      "description": "Remail AI, Betterbook ve kendi Usul AI'miz dahil olmak üzere çeşitli start-up'larda kurucu mühendis olarak görev yapmış bir yazılım mühendisidir. Ayrıca Qur'an.com'da mühendis olarak görev yaptı."
     },
     "mohamed-lamine": {
       "name": "Mohamed Lamine",
@@ -64,13 +65,27 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed, Zaytuna College'da öğrenci. The Creative Minority podcast'inin yaratıcısıdır."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar, Din Çalışmaları Bölümü'nde İslam Araştırmaları alanında araştırma profesörüdür. 2009'dan beri Duke Üniversitesi'ndedir. Öncelikli ilgi alanları klasik ve modern İslam düşüncesini kapsamaktadır. Çalışmaları, \"İslam Araştırmaları\" ile çağdaş \"Düşünce Tarihi\" kesişiminde yer almaktadır."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido, Chicago Üniversitesi İlahiyat Fakültesi'nden (2013-2015) eski Misafir İslam Araştırmaları ve Arapça Profesörüdür. Eido'nun araştırmaları, geç antik dönemde Kur'an, Hadis çalışmaları ve Tasavvuf üzerine odaklanmaktadır."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Harvard'da ceza hukuku ve yorum (usul al-fıkıh) alanında uzmanlaşmış hukuk ve tarih profesörüdür. [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerine liderlik etmektedir."
     }
   },
   "roles": {
     "ceo": "CEO",
-    "founding-ceo": "Kurucu CEO",
-    "founding-engineer": "Kurucu Mühendis",
+    "former-ceo": "Eski CEO",
+    "former-engineer": "Eski Baş Mühendis",
     "researcher": "Araştırmacı",
+    "research-advisor": "Araştırma Danışmanı",
+    "research-lead-advisor": "Araştırma Lideri & Danışmanı",
     "localization-lead": "Yerelleştirme Lideri",
     "digitization-lead": "Dijitalleştirme Lideri",
     "head-of-design": "Tasarım Müdürü",

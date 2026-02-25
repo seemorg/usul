@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "په اړه",
-      "about": {
-        "title": "په اړه",
-        "description": "موږ څه کوو؟​ "
+      "vision": {
+        "title": "لیدلوری",
+        "description": "موږ څه کوو"
       },
       "team": {
         "title": "ډله",
@@ -112,11 +112,11 @@
       },
       "add-text": {
         "title": "متن زیات کړئ",
-        "description": "URL یا PDF اضافه کړئ"
+        "description": "یوه URL یا PDF وړاندې کړئ"
       },
       "report-mistake": {
         "title": "تیروتنه راپور کړئ",
-        "description": "څه غلط پیدا شول"
+        "description": "یوه تېروتنه سم کړئ"
       },
       "feedback": {
         "title": "خپل نظر مو شریک کړئ",
@@ -135,7 +135,7 @@
     "subscribe": "اشتراک",
     "copyright": "{year, number, nogroup} د سیموري بنسټونه. ټول حقونه خوندي دي."
   },
-  "lost": "ښکاري لکه تاسو له لارې ورک شوي",
+  "lost": "۴۰۴ ونه موندل شو",
   "go-back-home": "بیرته کور ته ورشئ",
   "author-arabic-names": "لیکوال عربي نومونه",
   "author-latin-names": "لیکوال لاتیني نومونه",
@@ -248,5 +248,11 @@
     }
   },
   "expand-all": "ټول پراخ کړئ",
-  "collapse-all": "ټول راټیټ کړئ"
+  "collapse-all": "ټول راټیټ کړئ",
+  "show-more": "نور وښایاست",
+  "show-less": "کم وښایاست",
+  "maintenance": {
+    "title": "په ساتنه کې دی",
+    "message": "اسلول په اوس مهال د ساتنې لاندې دی. موږ به ژر بیرته راشو."
+  }
 }

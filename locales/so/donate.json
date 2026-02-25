@@ -1,6 +1,6 @@
 {
   "hero": {
-    "title": "Mustaqbalka aqoonta Islaamka, oo ay taageerayaan AI",
+    "title": "Maxaad u taageereysaa Usul AI.",
     "subtitle": "Ka caawi dhisitaanka maktabadda ugu weyn, suurtagal u noqo in la helo fursad aad u ballaaran, oo fududee cilmi-baarista ugu dhiirrada badan oo ku saabsan cilmiga Islaamka qarniga 21aad.",
     "description": "Iyada oo aad taageertayayo, Usul waxay ka dhigtay kumanaan buugag taariikhi ah mid si fudud loo heli karo, iyagoo gaaray tobanaan kun oo dadka isticmaala ah dunida oo dhan.",
     "donate-widget": {
@@ -90,6 +90,16 @@
     "sent-code": "Waxaan kaaga soo dirnay kood email-kaaga. Fadlan geli hoose si aad u dhammaystirto deeqda.",
     "verify": "Hubi",
     "send-code": "Soo Dir Code"
+  },
+  "guest-email": {
+    "title": "Geli iimaylkaaga.",
+    "description": "Waxaan tan u adeegsan doonnaa inaan kuu soo dirno risiibtaada.",
+    "continue": "Sii wad bixinta."
+  },
+  "sign-in-recurring": {
+    "title": "Soo gal si aad u sameysato deeq soo noqnoqota.",
+    "description": "Samee akoon ama soo gal si aad u bixiso deeq bille ah ama mid sanadle ah.",
+    "button": "Soo gal"
   },
   "already-donor": {
     "title": "Hore ma u ahayd dhibbanaha?",
