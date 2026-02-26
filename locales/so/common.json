@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "Dayactir ku jiro",
     "message": "Usul hadda dayactir ku jiro. Waxaan soo noqon doonaa dhawaan."
+  },
+  "donation": {
+    "title": "🌙✨ Ka caawi Usul inuu koro Ramadaan ✨🌙",
+    "message": "Guji halkan si aad ugu deeqdo Usul"
   }
 }

@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "Dalam Penyelenggaraan",
     "message": "Usul sedang dalam penyelenggaraan. Kami akan kembali sekejap lagi."
+  },
+  "donation": {
+    "title": "🌙✨ Bantu Usul Berkembang di Bulan Ramadan ✨🌙",
+    "message": "Klik di sini untuk menderma kepada Usul"
   }
 }

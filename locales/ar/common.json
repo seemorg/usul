@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "تحت الصيانة",
     "message": "Usul حاليا تحت الصيانة. سوف نعود قريبا."
+  },
+  "donation": {
+    "title": ":crescent_القمر:✨ ساعد الفم في رمضان ✨:crescent_mon:",
+    "message": "انقر هنا للتبرع لـ Usul"
   }
 }

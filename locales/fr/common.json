@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "En cours d'entretien",
     "message": "Usul est actuellement en maintenance. Nous serons de retour sous peu."
+  },
+  "donation": {
+    "title": "🌙✨ Aidez Usul Grow dans Ramadan ✨🌙",
+    "message": "Cliquez ici pour faire un don à Usul"
   }
 }
