@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "Bakım Aşamasında",
     "message": "Usul şu anda bakım aşamasında. Yakında geri döneceğiz."
+  },
+  "donation": {
+    "title": "🌙✨ Usul'un Ramazan'da Büyümesine Destek Olun ✨🌙",
+    "message": "Usul'e bağış yapmak için buraya tıklayın"
   }
 }
