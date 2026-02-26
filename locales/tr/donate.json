@@ -91,6 +91,16 @@
     "verify": "Doğrula",
     "send-code": "Kod Gönder"
   },
+  "guest-email": {
+    "title": "E-postanızı girin",
+    "description": "Makbuzunuzu göndermek için bunu kullanacağız.",
+    "continue": "Ödemeye devam et"
+  },
+  "sign-in-recurring": {
+    "title": "Düzenli bağış ayarlamak için giriş yapın",
+    "description": "Aylık veya yıllık bağış yapmak için bir hesap oluşturun veya giriş yapın.",
+    "button": "Giriş Yap"
+  },
   "already-donor": {
     "title": "Zaten bağışçı mısınız?",
     "manage": "Bağışınızı yönetin"

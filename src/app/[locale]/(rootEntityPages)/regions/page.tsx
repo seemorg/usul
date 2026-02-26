@@ -52,10 +52,11 @@ async function RegionsPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title={t("regions")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: total.regions,
         entity: t("regions"),
       })}
+      description={t("regions-description")}
     >
       {/* <p className="-mt-14 mb-12 flex items-center">
         <InfoIcon className="mr-1 size-4 rtl:ml-1" />

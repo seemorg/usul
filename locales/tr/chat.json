@@ -1,4 +1,8 @@
 {
+  "signUpToContinue": {
+    "title": "Usul AI'ı kullanmaya devam etmek için kaydolun",
+    "signUp": "Kaydol"
+  },
   "greeting": {
     "hello": "Usul AI'ye hoş geldiniz!",
     "welcome": "Aşağıya ilk sorunuzu yazın"

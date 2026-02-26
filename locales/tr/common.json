@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "Hakkında",
-      "about": {
-        "title": "Hakkında",
-        "description": "Ne yapıyoruz?"
+      "vision": {
+        "title": "Vizyon",
+        "description": "Ne yapıyoruz"
       },
       "team": {
         "title": "Takım",
@@ -135,7 +135,7 @@
     "subscribe": "Abone Ol",
     "copyright": "{year, number, nogroup} The Seemore Vakfı. Tüm hakları saklıdır."
   },
-  "lost": "Kaybolmuş gibi görünüyorsun",
+  "lost": "404 Bulunamadı",
   "go-back-home": "Ana sayfaya dön",
   "author-arabic-names": "Yazar Arap isimleri",
   "author-latin-names": "Yazar Latin isimleri",
@@ -249,6 +249,8 @@
   },
   "expand-all": "Tümünü genişlet",
   "collapse-all": "Tümünü daralt",
+  "show-more": "Daha fazlasını göster",
+  "show-less": "Daha azını göster",
   "maintenance": {
     "title": "Bakım Aşamasında",
     "message": "Usul şu anda bakım aşamasında. Yakında geri döneceğiz."

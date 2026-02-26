@@ -13,10 +13,13 @@ import { nanoid } from "nanoid";
 import { toast } from "sonner";
 import { useShallow } from "zustand/shallow";
 
+const CHAT_LIMIT_REACHED_CODE = "CHAT_LIMIT_REACHED";
+
 type UseChatCoreProps = {
   initialChat?: Chat;
   initialId?: string;
   shouldRedirect?: boolean;
+  onLimitReached?: () => void;
 };
 
 export type UseGlobalChatReturn = ReturnType<typeof useGlobalChat>;
@@ -25,6 +28,7 @@ export function useGlobalChat({
   initialChat,
   shouldRedirect = false,
   initialId,
+  onLimitReached,
 }: UseChatCoreProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const pathname = usePathname();
@@ -108,6 +112,24 @@ export function useGlobalChat({
     [bookIds, authorIds, advancedGenreIds],
   );
 
+  const chatFetch = useCallback<typeof fetch>(
+    async (input, init) => {
+      const res = await fetch(input, init);
+      if (res.status === 403) {
+        const data = await res.json().catch(() => ({})) as {
+          code?: string;
+          message?: string;
+        };
+        if (data.code === CHAT_LIMIT_REACHED_CODE) {
+          onLimitReached?.();
+        }
+        throw new Error(data.message ?? "Chat limit reached");
+      }
+      return res;
+    },
+    [onLimitReached],
+  );
+
   const {
     messages,
     setMessages,
@@ -122,8 +144,11 @@ export function useGlobalChat({
     api: `${env.NEXT_PUBLIC_API_BASE_URL}/chat/multi`,
     initialMessages: initialChat?.messages ?? [],
     body,
+    credentials: "include",
+    fetch: chatFetch,
     experimental_throttle: 100,
-    onError: () => {
+    onError: (err) => {
+      if (err.message.includes("Chat limit reached")) return;
       const isOffline = typeof navigator !== "undefined" && !navigator.onLine;
       toast.error(
         isOffline

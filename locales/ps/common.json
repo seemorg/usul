@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "په اړه",
-      "about": {
-        "title": "په اړه",
-        "description": "موږ څه کوو؟​ "
+      "vision": {
+        "title": "لیدلوری",
+        "description": "موږ څه کوو"
       },
       "team": {
         "title": "ډله",
@@ -135,7 +135,7 @@
     "subscribe": "اشتراک",
     "copyright": "{year, number, nogroup} د سیموري بنسټونه. ټول حقونه خوندي دي."
   },
-  "lost": "ښکاري لکه تاسو له لارې ورک شوي",
+  "lost": "۴۰۴ ونه موندل شو",
   "go-back-home": "بیرته کور ته ورشئ",
   "author-arabic-names": "لیکوال عربي نومونه",
   "author-latin-names": "لیکوال لاتیني نومونه",
@@ -249,6 +249,8 @@
   },
   "expand-all": "ټول پراخ کړئ",
   "collapse-all": "ټول راټیټ کړئ",
+  "show-more": "نور وښایاست",
+  "show-less": "کم وښایاست",
   "maintenance": {
     "title": "په ساتنه کې دی",
     "message": "اسلول په اوس مهال د ساتنې لاندې دی. موږ به ژر بیرته راشو."

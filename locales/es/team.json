@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Es profesora de derecho e historia en Harvard, especializada en derecho penal e interpretación (usul al-fiqh). Dirige el Programa de Ley Islámica y el Laboratorio SHARIAsource , e IslamicLawBlog."
+      "description": "Es profesora de derecho e historia en Harvard, especializada en derecho penal e interpretación (usul al-fiqh). Ella lidera el [Programa en la Leida Islámica](https://pil.law.harvard.edu/) y el [Laboratorio de Fuentes SHARIA](https://portal.shariasource.com/) y [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Khan Ahmed",
       "description": "Ahmed es un alumno de Zaytuna. Él es el creador del podcast The Creative Minority podcast."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar es profesor de investigación de Estudios Islámicos en el Departamento de Estudios Religiosos. Sus principales intereses abarcan tanto el pensamiento islámico clásico como el moderno."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido es un ex Profesor Visitante de Estudios Islámicos y Árabe de la Escuela de Divinidad de la Universidad de Chicago (2013-2015). La investigación de Eido se enfoca en el Corán en la antigüedad tardía, Hadi th Studies, Sufismo."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Es profesora de derecho e historia en Harvard, especializada en derecho penal e interpretación (usul al-fiqh). Ella lidera el [Programa en la Leida Islámica](https://pil.law.harvard.edu/) y el [Laboratorio de Fuentes SHARIA](https://portal.shariasource.com/) y [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Ex CEO",
     "former-engineer": "Antiguo ingeniero jefe",
     "researcher": "Investigador",
+    "research-advisor": "Asesor de investigación",
+    "research-lead-advisor": "Líder de Investigación y Asesor",
     "localization-lead": "Líder de localización",
     "digitization-lead": "Digitalización de plomo",
     "head-of-design": "Jefe de Diseño",

@@ -1,4 +1,8 @@
 {
+  "signUpToContinue": {
+    "title": "Regístrate para seguir usando Usul AI",
+    "signUp": "Regístrate"
+  },
   "greeting": {
     "hello": "Bienvenido a Usul AI!",
     "welcome": "Escribe tu primera pregunta abajo"

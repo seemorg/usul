@@ -1,4 +1,8 @@
 {
+  "signUpToContinue": {
+    "title": "Usul AI ব্যবহার চালিয়ে যেতে সাইন আপ করুন",
+    "signUp": "সাইন আপ করুন"
+  },
   "greeting": {
     "hello": "Usul AI-এ আপনাকে স্বাগতম!",
     "welcome": "নীচে আপনার প্রথম প্রশ্ন লিখুন"

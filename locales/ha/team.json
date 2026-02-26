@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Ita Farfesa ce na shari'a da tarihin a Harvard, musamman a shari'ar laifi da fassara (usul al-fiqh). Tana jagorancin Shirin Shari'ar Musulunci da SHARIAsource Lab, da IslamicLawBlog."
+      "description": "Ita Farfesa ce ta dokoki da tarihi a Harvard, ta ƙware a dokar aikata manyan laifuka da fassara (usul al-fiqh). Ita ke jagorantar [Shirin Nazarin Shari'ar Musulunci](https://pil.law.harvard.edu/) da [Dakin Nazarin SHARIAsource](https://portal.shariasource.com/), da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed ɗalibi ne a Kwalejin Zaytuna. Shi ne mahaliccin kwasfan fayiloli na The Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar Farfesa mai bincike ne kan Nazarin Addinin Musulunci a Sashen Nazarin Addinai. Ya kasance a Jami'ar Duke tun 2009. Babban abin da ke sha'awarsa shi ne tunanin Musulunci na gargajiya da zamani. Ayyukansa suna a gefen \"Nazarin Musulunci\" da kuma sabuwar \"Tarihin Tunani\"."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido tsohon Farfesan Ziyara ne na Nazarin Addinin Musulunci da Larabci daga Makarantar Ilimin Addinai ta Jami'ar Chicago (2013-2015). Bincikensa ya mayar da hankali kan Al-Qur'ani a ƙarshen zamanin da, Nazarin Hadīth, da Sufanci."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Ita Farfesa ce ta dokoki da tarihi a Harvard, ta ƙware a dokar aikata manyan laifuka da fassara (usul al-fiqh). Ita ke jagorantar [Shirin Nazarin Shari'ar Musulunci](https://pil.law.harvard.edu/) da [Dakin Nazarin SHARIAsource](https://portal.shariasource.com/), da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Tsohon CEO",
     "former-engineer": "Tsohon Jagoran Injiniya",
     "researcher": "Masu Bincike",
+    "research-advisor": "Mai bayar da shawara kan bincike",
+    "research-lead-advisor": "Jagoran Bincike & Mai bayar da shawara",
     "localization-lead": "Jagoran Lokaliyasa",
     "digitization-lead": "Jagoran Digitization",
     "head-of-design": "Shugaban Tsara",

@@ -62,10 +62,11 @@ async function TextsPage({ searchParams }: TextsPageProps) {
   return (
     <RootEntityPage
       title={t("texts")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: total.books,
         entity: t("texts"),
       })}
+      description={t("texts-description")}
     >
       <SearchResults
         response={results.results}
@@ -92,22 +93,6 @@ async function TextsPage({ searchParams }: TextsPageProps) {
               defaultRange={year}
             />
 
-            <RegionsFilter
-              currentRegions={regions}
-              // TODO: Add year range filter
-              // filters={{
-              //   yearRange: year,
-              // }}
-            />
-
-            <EmpiresFilter
-              currentEmpires={empires}
-              // TODO: Add year range filter
-              // filters={{
-              //   yearRange: year,
-              // }}
-            />
-
             <AuthorsFilter
               currentAuthors={authors}
               selectedAuthorsResponse={results.selectedAuthors}
@@ -122,6 +107,22 @@ async function TextsPage({ searchParams }: TextsPageProps) {
               filters={{
                 yearRange: year,
               }}
+            />
+
+            <RegionsFilter
+              currentRegions={regions}
+            // TODO: Add year range filter
+            // filters={{
+            //   yearRange: year,
+            // }}
+            />
+
+            <EmpiresFilter
+              currentEmpires={empires}
+            // TODO: Add year range filter
+            // filters={{
+            //   yearRange: year,
+            // }}
             />
           </>
         }

@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Beliau ialah Profesor undang-undang dan sejarah di Harvard, pakar dalam undang-undang jenayah dan interpretasi (usul al-fiqh). Beliau mengetuai Program dalam Undang-Undang Islam dan Makmal SHARIAsource, serta IslamicLawBlog."
+      "description": "Beliau ialah Profesor undang-undang dan sejarah di Harvard, pakar dalam undang-undang jenayah dan tafsiran (usul al-fiqh). Beliau mengetuai [Program dalam Undang-Undang Islam](https://pil.law.harvard.edu/) dan [Makmal SHARIAsource](https://portal.shariasource.com/), serta [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed ialah pelajar di Kolej Zaytuna. Dia ialah pencipta podcast The Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar ialah profesor penyelidikan Pengajian Islam di Jabatan Pengajian Agama. Beliau telah berada di Duke sejak 2009. Minat utamanya merangkumi pemikiran Islam klasik dan moden. Kajiannya berada di persimpangan \"Pengajian Islam\" dan \"Sejarah Pemikiran\" kontemporari."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido ialah bekas Profesor Pelawat Pengajian Islam dan Bahasa Arab dari University of Chicago Divinity School (2013-2015). Penyelidikan Eido memberi tumpuan kepada al-Qur'an pada zaman akhir kuno, Pengajian Hadis, dan Sufisme."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Beliau ialah Profesor undang-undang dan sejarah di Harvard, pakar dalam undang-undang jenayah dan tafsiran (usul al-fiqh). Beliau mengetuai [Program dalam Undang-Undang Islam](https://pil.law.harvard.edu/) dan [Makmal SHARIAsource](https://portal.shariasource.com/), serta [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Bekas CEO",
     "former-engineer": "Bekas Jurutera Utama",
     "researcher": "Penyelidik",
+    "research-advisor": "Penasihat Penyelidikan",
+    "research-lead-advisor": "Ketua & Penasihat Penyelidikan",
     "localization-lead": "Ketua Lokaliti",
     "digitization-lead": "Ketua Digitalisasi",
     "head-of-design": "Ketua Reka Bentuk",

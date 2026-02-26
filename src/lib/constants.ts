@@ -5,7 +5,7 @@ export const READER_OVERSCAN_SIZE = 10;
 export const ADD_TEXT_URL =
   "https://airtable.com/appGgKaF9kTWqtppC/pagi9THQdTGji03uB/form";
 export const REPORT_MISTAKE_URL =
-  "https://airtable.com/appGgKaF9kTWqtppC/pagHi650b79JSTscx/form?share=show";
+  "https://airtable.com/appGgKaF9kTWqtppC/pagHi650b79JSTscx/form";
 export const VOLUNTEER_URL =
   "https://airtable.com/appGgKaF9kTWqtppC/pag6pBefylZUs0bF2/form";
 

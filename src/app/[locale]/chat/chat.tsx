@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useCallback } from "react";
 import { useGlobalChat } from "@/hooks/use-global-chat";
 import { useTranslations } from "next-intl";
 
@@ -10,6 +11,7 @@ import { Messages } from "./messages";
 
 export default function Chat({ chat }: { chat?: Chat }) {
   const t = useTranslations();
+  const [showSignUpPromptInChat, setShowSignUpPromptInChat] = useState(false);
   const {
     messages,
     setMessages,
@@ -22,11 +24,15 @@ export default function Chat({ chat }: { chat?: Chat }) {
     append,
     isSubmitting,
     updateMessage,
-  } = useGlobalChat({ initialChat: chat });
+  } = useGlobalChat({
+    initialChat: chat,
+    onLimitReached: useCallback(() => setShowSignUpPromptInChat(true), []),
+  });
 
   return (
-    <main className="flex h-[calc(100dvh-var(--navbar-height))] w-full min-w-0 flex-col">
-      <ChatFilters />
+    <>
+      <main className="flex h-[calc(100dvh-var(--navbar-height))] w-full min-w-0 flex-col">
+        <ChatFilters />
 
       <Messages
         chatId={chat?.id}
@@ -38,6 +44,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
         isReadonly={false}
         isArtifactVisible={false}
         updateMessage={updateMessage}
+        showSignUpPromptInChat={showSignUpPromptInChat}
       />
 
       <form className="mx-auto flex w-full flex-col px-4 md:max-w-3xl">
@@ -58,5 +65,6 @@ export default function Chat({ chat }: { chat?: Chat }) {
         </p>
       </form>
     </main>
+    </>
   );
 }

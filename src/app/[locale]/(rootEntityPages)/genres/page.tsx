@@ -48,10 +48,11 @@ async function GenresPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title={t("genres")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: total.advancedGenres,
         entity: t("genres"),
       })}
+      description={t("genres-description")}
     >
       <GenreTreeChart data={genreHierarchy} />
       <div className="mt-8">

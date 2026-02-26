@@ -91,6 +91,16 @@
     "verify": "Verify",
     "send-code": "Send Code"
   },
+  "guest-email": {
+    "title": "Enter your email",
+    "description": "We'll use this to send your receipt.",
+    "continue": "Continue to checkout"
+  },
+  "sign-in-recurring": {
+    "title": "Sign in to set up a recurring donation",
+    "description": "Create an account or sign in to make monthly or yearly donations.",
+    "button": "Sign in"
+  },
   "already-donor": {
     "title": "Already a donor?",
     "manage": "Manage your donation"

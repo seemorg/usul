@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Harvard'da hukuk ve tarih profesörüdür, ceza hukuku ve yorumlama (usul al-fıkh) konusunda uzmanlaşmıştır. İslam Hukuku Programı ve SHARIAsource Lab'i ve IslamicLawBlog'u yürütmektedir."
+      "description": "Harvard'da ceza hukuku ve yorum (usul al-fıkıh) alanında uzmanlaşmış hukuk ve tarih profesörüdür. [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerine liderlik etmektedir."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed, Zaytuna College'da öğrenci. The Creative Minority podcast'inin yaratıcısıdır."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar, Din Çalışmaları Bölümü'nde İslam Araştırmaları alanında araştırma profesörüdür. 2009'dan beri Duke Üniversitesi'ndedir. Öncelikli ilgi alanları klasik ve modern İslam düşüncesini kapsamaktadır. Çalışmaları, \"İslam Araştırmaları\" ile çağdaş \"Düşünce Tarihi\" kesişiminde yer almaktadır."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido, Chicago Üniversitesi İlahiyat Fakültesi'nden (2013-2015) eski Misafir İslam Araştırmaları ve Arapça Profesörüdür. Eido'nun araştırmaları, geç antik dönemde Kur'an, Hadis çalışmaları ve Tasavvuf üzerine odaklanmaktadır."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Harvard'da ceza hukuku ve yorum (usul al-fıkıh) alanında uzmanlaşmış hukuk ve tarih profesörüdür. [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerine liderlik etmektedir."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Eski CEO",
     "former-engineer": "Eski Baş Mühendis",
     "researcher": "Araştırmacı",
+    "research-advisor": "Araştırma Danışmanı",
+    "research-lead-advisor": "Araştırma Lideri & Danışmanı",
     "localization-lead": "Yerelleştirme Lideri",
     "digitization-lead": "Dijitalleştirme Lideri",
     "head-of-design": "Tasarım Müdürü",

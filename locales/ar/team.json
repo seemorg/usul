@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "وهي أستاذة قانون وتاريخ في جامعة هارفارد، متخصصة في القانون الجنائي والتفسير (المعتاد الفقي). وهي تقود البرنامج في القانون الإسلامي ومختبر المصدر الشريف والمدوّنة الإسلامية."
+      "description": "وهي أستاذة قانون وتاريخ في جامعة هارفارد، متخصصة في القانون الجنائي والتفسير (المعتاد الفقي). تقود [برنامج في الشريعة الإسلامية](https://pil.law.harvard.edu/) و [SHARIAsource Lab](https://portal.shariasource.com/) , و [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "أحمد خان",
       "description": "أحمد طالب في كلية الزيتونة بكاليفورنيا. وهو صانع بودكاست \"الأقلية المبدعة\"."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "محسن قديفار أستاذ أبحاث في الدراسات الإسلامية في قسم الدراسات الدينية، وظل في دوك منذ عام 2009. إن مصالحه الأساسية تمتد إلى كل من الفكر الإسلامي الكلاسيكي والحديث. والواقع أن عمله يأتي في تقاطع \"الدراسات الإسلامية\" و\"تاريخ الفكر\" المعاصر."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "عصام عيدو أستاذ سابق زائر للدراسات الإسلامية وباللغة العربية من كلية الديفينيتي بجامعة شيكاغو (2013-2015). وتركز أبحاث إيدو على القرآن الكريم في وقت متأخر من الدراسات الهادية والصوفالية."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "وهي أستاذة قانون وتاريخ في جامعة هارفارد، متخصصة في القانون الجنائي والتفسير (المعتاد الفقي). تقود [برنامج في الشريعة الإسلامية](https://pil.law.harvard.edu/) و [SHARIAsource Lab](https://portal.shariasource.com/) , و [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "الرئيس التنفيذي السابق",
     "former-engineer": "مهندس كبير سابق",
     "researcher": "باحث",
+    "research-advisor": "مستشار بحوث",
+    "research-lead-advisor": "كبير الباحثين والمستشارين",
     "localization-lead": "عميل التعريب",
     "digitization-lead": "رصاص رقمي",
     "head-of-design": "رئيس التصميم",

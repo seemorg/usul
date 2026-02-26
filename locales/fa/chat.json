@@ -1,4 +1,8 @@
 {
+  "signUpToContinue": {
+    "title": "برای ادامه استفاده از Usul AI ثبت‌نام کنید.",
+    "signUp": "ثبت\fنام"
+  },
   "greeting": {
     "hello": "به Usul AI خوش آمدید!",
     "welcome": "اولین سوال خود را در زیر وارد کنید"

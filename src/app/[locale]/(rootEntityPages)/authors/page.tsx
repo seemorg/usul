@@ -58,10 +58,11 @@ async function AuthorsPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title={t("authors")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: total.authors,
         entity: t("authors"),
       })}
+      description={t("authors-description")}
     >
       <SearchResults
         response={results.results}

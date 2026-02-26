@@ -91,6 +91,16 @@
     "verify": "Hubi",
     "send-code": "Soo Dir Code"
   },
+  "guest-email": {
+    "title": "Geli iimaylkaaga.",
+    "description": "Waxaan tan u adeegsan doonnaa inaan kuu soo dirno risiibtaada.",
+    "continue": "Sii wad bixinta."
+  },
+  "sign-in-recurring": {
+    "title": "Soo gal si aad u sameysato deeq soo noqnoqota.",
+    "description": "Samee akoon ama soo gal si aad u bixiso deeq bille ah ama mid sanadle ah.",
+    "button": "Soo gal"
+  },
   "already-donor": {
     "title": "Hore ma u ahayd dhibbanaha?",
     "manage": "Maamul Deeqdaada"

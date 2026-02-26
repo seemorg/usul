@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 import { Greeting } from "./greeting";
 import { PreviewMessage, ThinkingMessage } from "./message";
+import { SignUpToContinueMessage } from "./sign-up-to-continue-modal";
 
 interface MessagesProps {
   chatId?: string;
@@ -18,6 +19,7 @@ interface MessagesProps {
   isReadonly: boolean;
   isArtifactVisible: boolean;
   updateMessage: UseGlobalChatReturn["updateMessage"];
+  showSignUpPromptInChat?: boolean;
 }
 
 function PureMessages({
@@ -29,6 +31,7 @@ function PureMessages({
   reload,
   isReadonly,
   updateMessage,
+  showSignUpPromptInChat,
 }: MessagesProps) {
   const {
     containerRef: messagesContainerRef,
@@ -67,6 +70,8 @@ function PureMessages({
         messages.length > 0 &&
         messages[messages.length - 1]!.role === "user" && <ThinkingMessage />}
 
+      {showSignUpPromptInChat && <SignUpToContinueMessage />}
+
       <motion.div
         ref={messagesEndRef}
         className="min-h-[24px] min-w-[24px] shrink-0"
@@ -83,6 +88,8 @@ export const Messages = memo(PureMessages, (prevProps, nextProps) => {
   if (prevProps.status !== nextProps.status) return false;
   if (prevProps.messages.length !== nextProps.messages.length) return false;
   if (!equal(prevProps.messages, nextProps.messages)) return false;
+  if (prevProps.showSignUpPromptInChat !== nextProps.showSignUpPromptInChat)
+    return false;
 
   return true;
 });

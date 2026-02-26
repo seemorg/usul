@@ -91,6 +91,16 @@
     "verify": "Tabbatarwa",
     "send-code": "Aika Lambar"
   },
+  "guest-email": {
+    "title": "Shigar da imel dinka",
+    "description": "Zamu yi amfani da wannan don aiko maka da rasid.",
+    "continue": "Ci gaba zuwa biyan kuɗi"
+  },
+  "sign-in-recurring": {
+    "title": "Shiga don saita gudummawa mai maimaituwa",
+    "description": "Ƙirƙiri asusu ko shiga don yin gudummawa kowane wata ko shekara.",
+    "button": "Shiga"
+  },
   "already-donor": {
     "title": "Ka riga ka zama mai bayarwa?",
     "manage": "Sarrafa gudummawarku"

@@ -4,14 +4,12 @@ import type Stripe from "stripe";
 import { unstable_cache } from "next/cache";
 import { env } from "@/env";
 import { getCurrentMonth } from "@/lib/date";
-import { verifyEmail } from "@/lib/email-verifier";
-import { resend } from "@/lib/resend";
+import { getSession } from "@/lib/get-session";
 import {
   makeCurrentMonthDonorsKey,
   makeCurrentMonthTotalKey,
   redis,
 } from "@/lib/upstash";
-import { nanoid } from "nanoid";
 import { z } from "zod";
 
 import stripe from "../stripe";
@@ -65,160 +63,172 @@ const presetDonations = [
 
 const productEnv = env.VERCEL_ENV === "production" ? "production" : "test";
 
-export const generateAndSendDonationCode = async (email: string) => {
-  const isValidEmail = await verifyEmail(email);
+const baseUrl =
+  env.VERCEL_ENV === "production"
+    ? "https://usul.ai"
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
 
-  if (!isValidEmail) {
-    throw new Error("Failed to verify email");
+async function getOrCreateCustomer(email: string): Promise<string> {
+  const normalizedEmail = email.toLowerCase().trim();
+  const customerInRedis = await redis.get<string>(
+    `customer:${normalizedEmail}`,
+  );
+  if (customerInRedis) return customerInRedis;
+
+  const customer = await stripe.customers.create({
+    email: normalizedEmail,
+  });
+  await redis.set(`customer:${normalizedEmail}`, customer.id);
+  return customer.id;
+}
+
+async function createStripeCheckoutSession(params: {
+  email: string;
+  amountInCents: number;
+  frequency: "monthly" | "yearly" | "one-time";
+  customerId: string;
+}): Promise<string> {
+  const { email, amountInCents, frequency, customerId } = params;
+  let session: Stripe.Checkout.Session;
+
+  if (frequency === "one-time") {
+    session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "Donation",
+            },
+            unit_amount: amountInCents,
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: `${baseUrl}/donate?status=success`,
+      cancel_url: `${baseUrl}/donate`,
+      customer: customerId,
+    });
+  } else {
+    let priceId: string;
+    const presetDonation = presetDonations.find(
+      (d) => d.amount === amountInCents / 100,
+    );
+
+    if (presetDonation) {
+      priceId =
+        frequency === "monthly"
+          ? presetDonation.monthlyPriceId[productEnv]
+          : presetDonation.yearlyPriceId[productEnv];
+    } else {
+      const price = await stripe.prices.create({
+        currency: "usd",
+        unit_amount: amountInCents,
+        recurring: {
+          interval: frequency === "monthly" ? "month" : "year",
+        },
+        product_data: {
+          name: "Recurring Donation",
+        },
+      });
+      priceId = price.id;
+    }
+
+    session = await stripe.checkout.sessions.create({
+      mode: "subscription",
+      line_items: [{ price: priceId, quantity: 1 }],
+      success_url: `${baseUrl}/donate?status=success`,
+      cancel_url: `${baseUrl}/donate`,
+      customer: customerId,
+    });
   }
 
-  const code = nanoid(12);
+  if (!session.url) throw new Error("No checkout URL found");
+  return session.url;
+}
 
-  await resend.emails.send({
-    from: "usul-donations@digitalseem.org",
-    to: email,
-    subject: "Usul - Verify your email",
-    html: `
-    <p>Your verification code is <strong>${code}</strong></p>
-    <br>
-    <p>This code is valid for 10 minutes.</p>
-    <br><br>
-    
-    <p>If you didn't request this, you can safely ignore this email.</p>`,
-  });
-
-  await redis.set(`code:${email}`, code, { ex: 60 * 10 }); // 10 minutes
-
-  return code;
-};
-
-const schema = z.object({
-  email: z.string().email().toLowerCase().trim(),
-  code: z.string(),
-  amountInUsd: z.number().min(1),
-  frequency: z.enum(["monthly", "yearly", "one-time"]),
-});
-
-export const createCheckoutSession = async (
-  email: string,
-  code: string,
+/** For logged-in users: create checkout directly (no email verification). */
+export const createCheckoutSessionForAuthenticatedUser = async (
   amountInUsd: number,
   frequency: "monthly" | "yearly" | "one-time",
+  clientEmail?: string,
 ) => {
-  const data = schema.safeParse({ email, code, amountInUsd, frequency });
+  let email: string | null = null;
+
+  const session = await getSession();
+  if (session?.user?.email) {
+    email = session.user.email.toLowerCase().trim();
+  }
+  // Fallback: when server can't read session (e.g. cross-origin cookies in dev),
+  // accept email from client when they report being logged in
+  if (!email && clientEmail) {
+    const validated = z
+      .string()
+      .email()
+      .transform((s) => s.toLowerCase().trim())
+      .safeParse(clientEmail);
+    if (validated.success) email = validated.data;
+  }
+
+  if (!email) {
+    throw new Error("You must be signed in to donate");
+  }
+  const amountInCents = amountInUsd * 100;
+
+  if (amountInCents < 100) {
+    throw new Error("Invalid amount");
+  }
+
+  const customerId = await getOrCreateCustomer(email);
+  return createStripeCheckoutSession({
+    email,
+    amountInCents,
+    frequency,
+    customerId,
+  });
+};
+
+const guestOneTimeSchema = z.object({
+  email: z.string().email().toLowerCase().trim(),
+  amountInUsd: z.number().min(1),
+});
+
+/** For guests: one-time donation only. Uses customer_email (no account needed). */
+export const createCheckoutSessionForGuest = async (
+  email: string,
+  amountInUsd: number,
+) => {
+  const data = guestOneTimeSchema.safeParse({ email, amountInUsd });
   if (!data.success) {
     throw new Error("Invalid input");
   }
 
-  const validatedData = data.data;
+  const { email: validatedEmail, amountInUsd: amount } = data.data;
+  const amountInCents = amount * 100;
 
-  // check code
-  const codeInRedis = await redis.get<string>(`code:${validatedData.email}`);
-  if (!codeInRedis || codeInRedis !== validatedData.code) {
-    throw new Error("Invalid code");
-  }
-
-  // delete code
-  await redis.del(`code:${validatedData.email}`);
-
-  let customerId: string;
-  const customerInRedis = await redis.get<string>(
-    `customer:${validatedData.email}`,
-  );
-  if (customerInRedis) {
-    customerId = customerInRedis;
-  } else {
-    const customer = await stripe.customers.create({
-      email: validatedData.email,
-    });
-    customerId = customer.id;
-    await redis.set(`customer:${validatedData.email}`, customerId);
-  }
-
-  // Convert amount (in USD) to cents
-  const amountInCents = validatedData.amountInUsd * 100;
-
-  const baseUrl =
-    env.VERCEL_ENV === "production"
-      ? "https://usul.ai"
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : "http://localhost:3000";
-
-  let session: Stripe.Checkout.Session;
-
-  try {
-    if (validatedData.frequency === "one-time") {
-      // One-time payment
-      session = await stripe.checkout.sessions.create({
-        mode: "payment",
-        line_items: [
-          {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: "Donation",
-              },
-              unit_amount: amountInCents,
-            },
-            quantity: 1,
-          },
-        ],
-        success_url: `${baseUrl}/donate?status=success`,
-        cancel_url: `${baseUrl}/donate`,
-        customer: customerId,
-      });
-    } else {
-      let priceId: string;
-
-      const presetDonation = presetDonations.find(
-        (d) => d.amount === validatedData.amountInUsd,
-      );
-
-      if (presetDonation) {
-        priceId =
-          frequency === "monthly"
-            ? presetDonation.monthlyPriceId[productEnv]
-            : presetDonation.yearlyPriceId[productEnv];
-      } else {
-        // Recurring donation (monthly or yearly)
-        // You may want to create a Price in Stripe based on `amount` and `frequency`.
-        // For example, create a price on the fly:
-        const price = await stripe.prices.create({
+  const session = await stripe.checkout.sessions.create({
+    mode: "payment",
+    line_items: [
+      {
+        price_data: {
           currency: "usd",
-          unit_amount: amountInCents,
-          recurring: {
-            interval: validatedData.frequency === "monthly" ? "month" : "year",
-          },
           product_data: {
-            name: "Recurring Donation",
+            name: "Donation",
           },
-        });
-        priceId = price.id;
-      }
+          unit_amount: amountInCents,
+        },
+        quantity: 1,
+      },
+    ],
+    success_url: `${baseUrl}/donate?status=success`,
+    cancel_url: `${baseUrl}/donate`,
+    customer_email: validatedEmail,
+  });
 
-      session = await stripe.checkout.sessions.create({
-        mode: "subscription",
-        line_items: [
-          {
-            price: priceId,
-            quantity: 1,
-          },
-        ],
-        success_url: `${baseUrl}/donate?status=success`,
-        cancel_url: `${baseUrl}/donate`,
-        customer: customerId,
-      });
-    }
-  } catch (error) {
-    console.error("Error creating checkout session", error);
-    throw error;
-  }
-
-  if (!session.url) {
-    throw new Error("No checkout URL found");
-  }
-
+  if (!session.url) throw new Error("No checkout URL found");
   return session.url;
 };
 

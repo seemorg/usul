@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "О нас",
-      "about": {
-        "title": "О нас",
-        "description": "Чем мы занимаемся"
+      "vision": {
+        "title": "Видение",
+        "description": "Что мы делаем"
       },
       "team": {
         "title": "Команда",
@@ -135,7 +135,7 @@
     "subscribe": "Подписаться",
     "copyright": "{year, number, nogroup} Фонд Симур. Все права защищены."
   },
-  "lost": "Похоже, вы заблудились",
+  "lost": "404 Не найдено",
   "go-back-home": "Вернитесь на главную",
   "author-arabic-names": "Арабские имена авторов",
   "author-latin-names": "Латинские имена авторов",
@@ -249,6 +249,8 @@
   },
   "expand-all": "Развернуть все",
   "collapse-all": "Свернуть все",
+  "show-more": "Показать еще",
+  "show-less": "Меньше",
   "maintenance": {
     "title": "При обслуживании",
     "message": "Usul сейчас находится на обслуживании. Мы скоро вернемся."

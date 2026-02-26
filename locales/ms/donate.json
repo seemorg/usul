@@ -91,6 +91,16 @@
     "verify": "Sahkan",
     "send-code": "Hantar Kod"
   },
+  "guest-email": {
+    "title": "Masukkan emel anda",
+    "description": "Kami akan gunakan ini untuk menghantar resit anda.",
+    "continue": "Teruskan ke pembayaran"
+  },
+  "sign-in-recurring": {
+    "title": "Daftar masuk untuk menetapkan derma berulang",
+    "description": "Cipta akaun atau daftar masuk untuk membuat derma bulanan atau tahunan.",
+    "button": "Daftar masuk"
+  },
   "already-donor": {
     "title": "Sudah menjadi penyumbang?",
     "manage": "Uruskan derma anda"

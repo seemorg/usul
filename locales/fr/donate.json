@@ -91,6 +91,16 @@
     "verify": "Vérifier",
     "send-code": "Envoyer le code"
   },
+  "guest-email": {
+    "title": "Entrez votre adresse e-mail",
+    "description": "Nous l'utiliserons pour envoyer votre reçu.",
+    "continue": "Continuer à passer à la commande"
+  },
+  "sign-in-recurring": {
+    "title": "Connectez-vous pour configurer un don récurrent",
+    "description": "Créez un compte ou connectez-vous pour faire des dons mensuels ou annuels.",
+    "button": "Se connecter"
+  },
   "already-donor": {
     "title": "Déjà donateur ?",
     "manage": "Gérer votre don"

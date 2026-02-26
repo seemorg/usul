@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le Programme de droit islamique et le SHARIAsource Lab , et IslamicLawBlog."
+      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed est un étudiant du Collège Zaytuna. Il est le créateur du podcast Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar est professeur de recherche en études islamiques au Département d’études religieuses. Ses principaux intérêts s'étendent à la fois à la pensée islamique classique et moderne. Son travail se situe au croisement des « études islamiques» et de la « Histoire de la pensée»."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido est un ancien professeur invité d’études islamiques et d’arabe de la faculté de divinité de l’Université de Chicago (2013-2015). La recherche d'Eido se concentre sur le Coran dans l'antiquité tardive, les études Hadi<unk> th, le soufisme."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Ancien PDG",
     "former-engineer": "Ancien ingénieur en chef",
     "researcher": "Chercheur",
+    "research-advisor": "Conseiller en recherche",
+    "research-lead-advisor": "Responsable de la recherche & Conseiller",
     "localization-lead": "Prospect de traduction",
     "digitization-lead": "Prospect de numérisation",
     "head-of-design": "Responsable du design",

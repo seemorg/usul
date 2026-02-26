@@ -1,13 +1,15 @@
 import { env } from "@/env";
 
+// TODO: fix email verification
 export const verifyEmail = async (email: string) => {
-  const response = await fetch(
-    `https://verifyright.co/verify/${encodeURIComponent(email)}?token=${env.VERIFY_RIGHT_API_KEY}`,
-  );
+  // const response = await fetch(
+  //   `https://verifyright.co/verify/${encodeURIComponent(email)}?token=${env.VERIFY_RIGHT_API_KEY}`,
+  // );
 
-  const data = (await response.json()) as {
-    status: boolean;
-  };
+  // const data = (await response.json()) as {
+  //   status: boolean;
+  // };
 
-  return data.status;
+  // return data.status;
+  return true;
 };

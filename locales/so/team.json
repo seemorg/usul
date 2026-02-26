@@ -18,7 +18,7 @@
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Waxay borofisar ka tahay sharciga iyo taariikhda Harvard, iyadoo ku takhasustay sharciga ciqaabta iyo fasiraadda (usul al-fiqh). Waxay hoggaamisaa Barnaamijka Sharciga Islaamka iyo SHARIAsource Lab, iyo IslaamkaLawBlog."
+      "description": "Waxay tahay borofisar sharci iyo taariikh ka dhigta Jaamacadda Harvard, waxayna ku takhasustay sharciga ciqaabta iyo tafsiirka (usul al-fiqh). Waxay hogaamisaa [Barnaamijka Sharciga Islaamka](https://pil.law.harvard.edu/) iyo [SHARIAsource Lab](https://portal.shariasource.com/), iyo sidoo kale [IslamicLawBlog](https://islamiclaw.blog/)."
     },
     "zeki-mokhtarzada": {
       "name": "Zeki Mokhtarzada",
@@ -65,6 +65,18 @@
     "ahmed-khan": {
       "name": "Ahmed Khan",
       "description": "Ahmed waa arday Zaytuna College. Waa abuuraha podcast-ka The Creative Minority."
+    },
+    "mohsen-kadivar": {
+      "name": "Mohsen Kadivar",
+      "description": "Mohsen Kadivar waa borofisar cilmibaaris oo ku takhasusay Daraasaadka Islaamka ee Waaxda Daraasaadka Diimaha. Wuxuu joogay Jaamacadda Duke tan iyo 2009. Xiisihiisa ugu weyn wuxuu ku fidsan yahay fikradaha Islaamka ee hore iyo kuwa casriga ahba. Shaqadiisa waxaa lagu falanqeeyaa isgoysyada \"Daraasaadka Islaamka\", iyo \"Taariikhda Fikradda\" ee casriga ah."
+    },
+    "issam-eido": {
+      "name": "Issam Eido",
+      "description": "Issam Eido waa borofisar hore oo booqasho ku ahaa Daraasaadka Islaamka iyo Carabiga ee Jaamacadda Chicago Divinity School (2013-2015). Cilmibaaristiisa waxay diiradda saartaa Qur'aanka xilligii danbe ee aaska, Daraasaadka Xadiiska, iyo Sufiyada."
+    },
+    "intisar-rabb": {
+      "name": "Intisar Rabb",
+      "description": "Waxay tahay borofisar sharci iyo taariikh ka dhigta Jaamacadda Harvard, waxayna ku takhasustay sharciga ciqaabta iyo tafsiirka (usul al-fiqh). Waxay hogaamisaa [Barnaamijka Sharciga Islaamka](https://pil.law.harvard.edu/) iyo [SHARIAsource Lab](https://portal.shariasource.com/), iyo sidoo kale [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -72,6 +84,8 @@
     "former-ceo": "Agaasimihii Hore",
     "former-engineer": "Injineerkii Hore ee Hogaamiyaha ahaa",
     "researcher": "Baarayaasha",
+    "research-advisor": "La-taliye Cilmi-baaris",
+    "research-lead-advisor": "Hoggaamiyaha & La-taliyaha Cilmi-baarista",
     "localization-lead": "Hormuudka Meeleeyaha",
     "digitization-lead": "Hormuudka Dhijitaleynta",
     "head-of-design": "Madaxa Naqshadeynta",

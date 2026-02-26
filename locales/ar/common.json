@@ -87,9 +87,9 @@
     },
     "about": {
       "title": "من نحن",
-      "about": {
-        "title": "من نحن",
-        "description": "ما نقوم به"
+      "vision": {
+        "title": "رؤية",
+        "description": "ماذا نفعل"
       },
       "team": {
         "title": "الفريق",
@@ -135,7 +135,7 @@
     "subscribe": "اشترِك",
     "copyright": "{year, number, nogroup} مؤسسة سيمورج. جميع الحقوق محفوظة."
   },
-  "lost": "يبدو أنك تائه",
+  "lost": "404 غير موجود",
   "go-back-home": "العودة إلى الرئيسية",
   "author-arabic-names": "اسم المؤلف بالعربية",
   "author-latin-names": "اسم المؤلف باللاتينية",
@@ -249,6 +249,8 @@
   },
   "expand-all": "توسيع الكل",
   "collapse-all": "طي الكل",
+  "show-more": "إظهار المزيد",
+  "show-less": "إظهار أقل",
   "maintenance": {
     "title": "تحت الصيانة",
     "message": "Usul حاليا تحت الصيانة. سوف نعود قريبا."

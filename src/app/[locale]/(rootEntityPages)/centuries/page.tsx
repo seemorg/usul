@@ -39,17 +39,17 @@ async function CenturiesPage({ searchParams }: PageProps) {
   const matches =
     qString.length > 0
       ? new Fuse(
-          centuries.map((c) => ({
-            ...c,
-            _name: t("ordinal-century", { count: c.centuryNumber }),
-          })),
-          {
-            keys: ["_name"],
-            threshold: 0.3,
-          },
-        )
-          .search(qString)
-          .map((r) => r.item)
+        centuries.map((c) => ({
+          ...c,
+          _name: t("ordinal-century", { count: c.centuryNumber }),
+        })),
+        {
+          keys: ["_name"],
+          threshold: 0.3,
+        },
+      )
+        .search(qString)
+        .map((r) => r.item)
       : centuries;
 
   const sorted = matches.sort((a, b) => {
@@ -70,7 +70,7 @@ async function CenturiesPage({ searchParams }: PageProps) {
   return (
     <RootEntityPage
       title={t("centuries")}
-      description={t("search-x", {
+      subtitle={t("search-x", {
         count: centuries.length,
         entity: t("centuries"),
       })}

@@ -12,12 +12,15 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
+import { useSession } from "@/lib/auth";
+import { navigation } from "@/lib/urls";
 import {
-  createCheckoutSession,
-  generateAndSendDonationCode,
+  createCheckoutSessionForAuthenticatedUser,
+  createCheckoutSessionForGuest,
 } from "@/server/services/donations";
 import { useMutation } from "@tanstack/react-query";
 import { useFormatter, useTranslations } from "next-intl";
+import Link from "next/link";
 import { toast } from "sonner";
 
 import BentoCard from "./bento-card";
@@ -28,29 +31,41 @@ const presetAmounts = [25, 50, 100, 500];
 function DonateForm({ layout }: { layout?: "hero" }) {
   const t = useTranslations("donate");
   const formatter = useFormatter();
+  const { data: session } = useSession();
   const [frequency, setFrequency] = useState<Frequency>("one-time");
   const [amount, setAmount] = useState<number>(100);
-  const [showEmailVerification, setShowEmailVerification] = useState(false);
+  const [showGuestEmail, setShowGuestEmail] = useState(false);
+  const [showSignInRecurring, setShowSignInRecurring] = useState(false);
 
-  const { mutateAsync: createCheckoutUrl, isPending } = useMutation({
-    mutationFn: (data: {
-      email: string;
-      code: string;
-      amount: number;
-      frequency: Frequency;
-    }) => {
-      return createCheckoutSession(
-        data.email,
-        data.code,
-        data.amount,
-        data.frequency,
-      );
-    },
-    onError: (error) => {
-      console.error(error);
-      toast.error("Failed to verify!");
-    },
-  });
+  const isLoggedIn = Boolean(session?.user.email);
+
+  const { mutateAsync: createAuthenticatedCheckout, isPending: isAuthPending } =
+    useMutation({
+      mutationFn: (data: {
+        amount: number;
+        frequency: Frequency;
+        clientEmail?: string;
+      }) =>
+        createCheckoutSessionForAuthenticatedUser(
+          data.amount,
+          data.frequency,
+          data.clientEmail,
+        ),
+      onError: () => {
+        toast.error("Failed to create checkout");
+      },
+    });
+
+  const { mutateAsync: createGuestCheckout, isPending: isGuestPending } =
+    useMutation({
+      mutationFn: (data: { email: string; amount: number }) =>
+        createCheckoutSessionForGuest(data.email, data.amount),
+      onError: () => {
+        toast.error("Failed to create checkout");
+      },
+    });
+
+  const isPending = isAuthPending || isGuestPending;
 
   const formatCurrency = (amount: number) =>
     formatter.number(amount, {
@@ -59,16 +74,28 @@ function DonateForm({ layout }: { layout?: "hero" }) {
       maximumFractionDigits: 0,
     });
 
-  const handleSubmit = () => {
-    setShowEmailVerification(true);
+  const handleContinue = async () => {
+    if (isLoggedIn) {
+      const url = await createAuthenticatedCheckout({
+        amount,
+        frequency,
+        clientEmail: session?.user?.email,
+      });
+      if (url) window.location.href = url;
+      return;
+    }
+
+    if (frequency === "one-time") {
+      setShowGuestEmail(true);
+      return;
+    }
+
+    setShowSignInRecurring(true);
   };
 
-  const handleVerify = async (email: string, code: string) => {
-    const url = await createCheckoutUrl({ email, code, amount, frequency });
-
-    if (url) {
-      window.location.href = url;
-    }
+  const handleGuestCheckout = async (email: string) => {
+    const url = await createGuestCheckout({ email, amount });
+    if (url) window.location.href = url;
   };
 
   return (
@@ -153,57 +180,45 @@ function DonateForm({ layout }: { layout?: "hero" }) {
       <Button
         className="mt-8 h-12 w-full text-base font-bold"
         size="lg"
-        onClick={handleSubmit}
+        onClick={handleContinue}
         disabled={isPending}
       >
         {isPending ? "Loading..." : t("be-part.choose-amount.continue")}
       </Button>
 
-      <EmailVerification
-        open={showEmailVerification}
-        onClose={() => setShowEmailVerification(false)}
-        onVerify={handleVerify}
+      <GuestEmailModal
+        open={showGuestEmail}
+        onClose={() => setShowGuestEmail(false)}
+        onSubmit={handleGuestCheckout}
+        isPending={isGuestPending}
+      />
+
+      <SignInRecurringModal
+        open={showSignInRecurring}
+        onClose={() => setShowSignInRecurring(false)}
       />
     </BentoCard>
   );
 }
 
-const EmailVerification = ({
+const GuestEmailModal = ({
   open,
   onClose,
-  onVerify,
+  onSubmit,
+  isPending,
 }: {
   open: boolean;
   onClose: () => void;
-  onVerify: (email: string, code: string) => void;
+  onSubmit: (email: string) => void;
+  isPending: boolean;
 }) => {
-  const [step, setStep] = useState<"email" | "code">("email");
-  const t = useTranslations("donate.verification");
-
-  const { mutateAsync: sendCode, isPending: isSendingCode } = useMutation({
-    mutationFn: (email: string) => generateAndSendDonationCode(email),
-    onError: (error) => {
-      console.log(error);
-      toast.error("Failed to send code!");
-    },
-  });
-
+  const t = useTranslations("donate.guest-email");
   const [email, setEmail] = useState("");
-  const [code, setCode] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    if (step === "email") {
-      if (!email) return;
-
-      await sendCode(email);
-      setStep("code");
-
-      return;
-    }
-
-    onVerify(email, code.trim());
+    if (!email.trim()) return;
+    onSubmit(email.trim());
   };
 
   return (
@@ -215,33 +230,43 @@ const EmailVerification = ({
         <DialogDescription>{t("description")}</DialogDescription>
 
         <form onSubmit={handleSubmit}>
-          {step === "email" ? (
-            <Input
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          ) : (
-            <>
-              <p>{t("sent-code")}</p>
-
-              <Input
-                placeholder="Code"
-                className="mt-2"
-                value={code}
-                onChange={(e) => setCode(e.target.value)}
-              />
-            </>
-          )}
-
-          <Button type="submit" className="mt-5" disabled={isSendingCode}>
-            {isSendingCode
-              ? "Loading..."
-              : step === "email"
-                ? t("send-code")
-                : t("verify")}
+          <Input
+            placeholder="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <Button type="submit" className="mt-5" disabled={isPending}>
+            {isPending ? "Loading..." : t("continue")}
           </Button>
         </form>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+const SignInRecurringModal = ({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) => {
+  const t = useTranslations("donate.sign-in-recurring");
+  const loginUrl = navigation.login() + "?r=/donate";
+
+  return (
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>{t("title")}</DialogTitle>
+        </DialogHeader>
+        <DialogDescription>{t("description")}</DialogDescription>
+
+        <Button asChild className="mt-5">
+          <Link href={loginUrl}>{t("button")}</Link>
+        </Button>
       </DialogContent>
     </Dialog>
   );

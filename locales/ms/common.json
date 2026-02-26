@@ -87,8 +87,8 @@
     },
     "about": {
       "title": "Mengenai",
-      "about": {
-        "title": "Mengenai",
+      "vision": {
+        "title": "Visi",
         "description": "Apa yang kami lakukan"
       },
       "team": {
@@ -135,7 +135,7 @@
     "subscribe": "Langgan",
     "copyright": "{year, number, nogroup} The Seemore Foundation. Hak cipta terpelihara."
   },
-  "lost": "Sepertinya anda tersesat",
+  "lost": "404 Tidak Dijumpai",
   "go-back-home": "Kembali ke halaman utama",
   "author-arabic-names": "Nama-nama Arab Pengarang",
   "author-latin-names": "Nama-nama Latin Pengarang",
@@ -249,6 +249,8 @@
   },
   "expand-all": "Kembangkan semua",
   "collapse-all": "Runtuhkan semua",
+  "show-more": "Tunjuk lebih banyak",
+  "show-less": "Tunjuk kurang",
   "maintenance": {
     "title": "Dalam Penyelenggaraan",
     "message": "Usul sedang dalam penyelenggaraan. Kami akan kembali sekejap lagi."
