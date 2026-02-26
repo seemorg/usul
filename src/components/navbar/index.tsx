@@ -74,7 +74,9 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
             ? "top-0"
             : env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
               ? "top-[var(--maintenance-banner-height,0px)]"
-              : "top-0",
+              : layout === "home" && env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true"
+                ? "top-[var(--donation-banner-height,0px)]"
+                : "top-0",
           showNavbar
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none -translate-y-10 opacity-0",
@@ -167,7 +169,9 @@ export default function Navbar({ layout, secondNav }: NavbarProps) {
               ? "top-16"
               : env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
                 ? "top-[calc(var(--maintenance-banner-height,0px)+4rem)]"
-                : "top-16",
+                : layout === "home" && env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true"
+                  ? "top-[calc(var(--donation-banner-height,0px)+4rem)]"
+                  : "top-16",
             showNavbar
               ? "pointer-events-auto translate-y-0 opacity-100"
               : "pointer-events-none -translate-y-10 opacity-0",

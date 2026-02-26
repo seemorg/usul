@@ -254,5 +254,9 @@
   "maintenance": {
     "title": "Under Maintenance",
     "message": "Usul is currently under maintenance. We'll be back shortly."
+  },
+  "donation": {
+    "title": "🌙✨ Help Usul Grow in Ramadan ✨🌙",
+    "message": "Click here to donate to Usul"
   }
 }
