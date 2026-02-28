@@ -8,7 +8,7 @@ export default function DonateLayout({
 }) {
   return (
     <div className="dark:bg-background bg-[#F8F6F6]">
-      <Navbar layout="home" />
+      <Navbar />
 
       {children}
 
