@@ -50,12 +50,6 @@ export const engineeringTeam = [
 
 export const researchAnnotationTeam = [
   {
-    key: "ahmed-aktan",
-    roleKey: "digitization-lead",
-    image: ahmedAktan.src,
-    blurDataUrl: ahmedAktan.blurDataURL,
-  },
-  {
     key: "issam-eido",
     roleKey: "research-advisor",
     image: issam.src,
@@ -72,6 +66,12 @@ export const researchAnnotationTeam = [
     roleKey: "research-lead-advisor",
     image: intisar.src,
     blurDataUrl: intisar.blurDataURL,
+  },
+  {
+    key: "ahmed-aktan",
+    roleKey: "digitization-lead",
+    image: ahmedAktan.src,
+    blurDataUrl: ahmedAktan.blurDataURL,
   },
   {
     key: "ryad-ramo",
@@ -95,15 +95,15 @@ export const pastTeamMembers = [
     blurDataUrl: abdellatif.blurDataURL,
   },
   {
-    key: "ahmed-riad",
-    roleKey: "former-engineer",
-    image: ahmedRiad.src,
-    blurDataUrl: ahmedRiad.blurDataURL,
-  },
-  {
     key: "rahma-fateen",
     roleKey: "localization-lead",
     image: rahma.src,
     blurDataUrl: rahma.blurDataURL,
+  },
+  {
+    key: "ahmed-riad",
+    roleKey: "former-engineer",
+    image: ahmedRiad.src,
+    blurDataUrl: ahmedRiad.blurDataURL,
   }
 ];

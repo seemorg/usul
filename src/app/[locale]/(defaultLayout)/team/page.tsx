@@ -103,7 +103,18 @@ export default async function TeamPage() {
         </h1>
 
         <div className="mt-7 grid grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-          {researchAnnotationTeam.map((member) => (
+          {researchAnnotationTeam.slice(0, 3).map((member) => (
+            <MemberCard
+              key={member.key}
+              name={t(`members.${member.key}.name` as any)}
+              role={t(`roles.${member.roleKey}` as any)}
+              description={t(`members.${member.key}.description` as any)}
+              image={member.image}
+              blurDataUrl={member.blurDataUrl}
+            />
+          ))}
+          <div className="flex flex-col gap-4 xl:flex hidden" />
+          {researchAnnotationTeam.slice(3, 6).map((member) => (
             <MemberCard
               key={member.key}
               name={t(`members.${member.key}.name` as any)}

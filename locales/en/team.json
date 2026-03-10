@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "She is a PhD candidate at Harvard University researching the social dimensions of humancentered technologies, and serves as an administrator and researcher at Usul.AI, where she directs operations and bridges engineering and research."
+      "description": "She is a PhD candidate at Harvard University researching the social dimensions of human-centered technologies. She directs operations and bridges engineering with research at Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar is a research professor of Islamic Studies at the Department of Religious Studies. He has been at Duke since 2009. His primary interests span both classical and modern Islamic thought. His work is at the intersections of “Islamic Studies”, and the contemporary “History of Thought.”"
+      "description": "He is a scholar of Islamic law, theology, philosophy as well as a reformist thinker and writer of modern Islamic thought. He formerly taught taught at the Qom Seminary (Madrase-ye Razavieh and Madrase-ye Ayatollah al-Uzma Golpayegani). He is currently a research professor of Islamic Studies at Duke University."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido is a former Visiting Professor of Islamic Studies and Arabic from the University of Chicago Divinity School (2013-2015). Eido's research focuses on the Qur'an in late antiquity, Hadīth Studies, Sufism."
+      "description": "He is a scholar of Qurʾān, Ḥadīth Studies, and Sufism who formerly served on the faculty of Islamic Studies at the University of Damascus and established the Dalalah Institue for teaching Islamic studies in Syria. He is now an Assistant Professor of the Practice on the faculty of Religious Studies at Vanderbilt University."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "She is a Professor of law and history at Harvard, specializing in criminal law and interpretation (usul al-fiqh). She leads the [Program in Islamic Law](https://pil.law.harvard.edu/) and the [SHARIAsource Lab](https://portal.shariasource.com/) , and [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "She is a scholar of Islamic and comparative law, history, and Qurʾānic manuscripts--with emphasis on interpretive methods in legislation and adjudication, using legal canons (Qawāʿid fiqhiyya). She previously lived and studies in Iran, Syria, Egypt, Morocco, Senegal, and elsewhere. She is now a Professor of law and history at Harvard, where she leads the [Program in Islamic Law](https://pil.law.harvard.edu/) and the [SHARIAsource Lab](https://portal.shariasource.com/) , and [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Former Lead Engineer",
     "researcher": "Researcher",
     "research-advisor": "Research Advisor",
-    "research-lead-advisor": "Research Lead & Advisor",
+    "research-lead-advisor": "Research Lead, Research Advisor",
     "localization-lead": "Localization Lead",
     "digitization-lead": "Digitization Lead",
     "head-of-design": "Head of Design",
