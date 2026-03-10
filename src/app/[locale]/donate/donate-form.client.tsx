@@ -51,8 +51,8 @@ function DonateForm({ layout }: { layout?: "hero" }) {
           data.frequency,
           data.clientEmail,
         ),
-      onError: () => {
-        toast.error("Failed to create checkout");
+      onError: (error) => {
+        toast.error(error.message || "Failed to create checkout");
       },
     });
 
@@ -60,8 +60,8 @@ function DonateForm({ layout }: { layout?: "hero" }) {
     useMutation({
       mutationFn: (data: { email: string; amount: number }) =>
         createCheckoutSessionForGuest(data.email, data.amount),
-      onError: () => {
-        toast.error("Failed to create checkout");
+      onError: (error) => {
+        toast.error(error.message || "Failed to create checkout");
       },
     });
 
@@ -79,7 +79,7 @@ function DonateForm({ layout }: { layout?: "hero" }) {
       const url = await createAuthenticatedCheckout({
         amount,
         frequency,
-        clientEmail: session?.user?.email,
+        clientEmail: session?.user.email,
       });
       if (url) window.location.href = url;
       return;
@@ -103,7 +103,7 @@ function DonateForm({ layout }: { layout?: "hero" }) {
       className={cn(
         "flex-1 p-8",
         layout === "hero" &&
-          "text-foreground translate-y-[30%] shadow-xl shadow-black/5 lg:translate-y-0",
+        "text-foreground translate-y-[30%] shadow-xl shadow-black/5 lg:translate-y-0",
       )}
       id={layout === "hero" ? "donate-form-hero" : "donate-form"}
     >
