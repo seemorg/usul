@@ -20,7 +20,7 @@ export function ExpandableDescription({
   useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
-    // When collapsed, check if content overflows the 5-line clamp
+    // When collapsed, check if content overflows the 3-line clamp
     if (!expanded) {
       const overflow = el.scrollHeight > el.clientHeight;
       setHasOverflow(overflow);
@@ -43,7 +43,7 @@ export function ExpandableDescription({
         className={
           expanded
             ? "text-secondary text text-justify dark:text-gray-300"
-            : "text-secondary text line-clamp-5 text-justify dark:text-gray-300"
+            : "text-secondary text line-clamp-3 text-justify dark:text-gray-300"
         }
       >
         {content}
@@ -55,7 +55,7 @@ export function ExpandableDescription({
           className="text-secondary mt-1 h-auto p-0 font-normal underline-offset-2 dark:text-gray-300"
           onClick={() => setExpanded((e) => !e)}
         >
-          {expanded ? t("show-less") : t("show-more")}
+          {expanded ? t("see-less") : t("see-more")}
         </Button>
       )}
     </div>
