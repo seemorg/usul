@@ -63,6 +63,31 @@ function filterGenresByQuery(genres: GenreNode[], query: string): GenreNode[] {
   return filtered;
 }
 
+function sortSelectedToTop(
+  genres: GenreNode[],
+  selectedIds: Set<string>,
+): GenreNode[] {
+  const isOrHasSelected = (genre: GenreNode): boolean => {
+    if (selectedIds.has(genre.id)) return true;
+    return genre.children?.some(isOrHasSelected) ?? false;
+  };
+
+  const sorted = [...genres].sort((a, b) => {
+    const aSelected = isOrHasSelected(a);
+    const bSelected = isOrHasSelected(b);
+    if (aSelected && !bSelected) return -1;
+    if (!aSelected && bSelected) return 1;
+    return 0;
+  });
+
+  return sorted.map((genre) => ({
+    ...genre,
+    children: genre.children
+      ? sortSelectedToTop(genre.children, selectedIds)
+      : genre.children,
+  }));
+}
+
 interface HierarchicalItemProps {
   genre: GenreNode;
   depth: number;
@@ -85,6 +110,17 @@ const HierarchicalItem = ({
   const isSelected = selectedIds.has(genre.id);
   const t = useTranslations();
   const direction = useDirection();
+
+  const hasSelectedDescendant = useMemo(() => {
+    if (!hasChildren || isSelected) return false;
+    const checkDescendants = (children: GenreNode[]): boolean =>
+      children.some(
+        (c) =>
+          selectedIds.has(c.id) ||
+          (c.children ? checkDescendants(c.children) : false),
+      );
+    return checkDescendants(genre.children!);
+  }, [genre.children, hasChildren, isSelected, selectedIds]);
 
   // Sync local state with prop changes when expand/collapse all is clicked
   useEffect(() => {
@@ -121,7 +157,7 @@ const HierarchicalItem = ({
           <Checkbox
             className="size-6 flex-shrink-0"
             id={`${genre.id}-genre-filter`}
-            checked={isSelected}
+            checked={isSelected ? true : hasSelectedDescendant ? "indeterminate" : false}
             onCheckedChange={() => handleSelect(genre)}
           />
 
@@ -189,6 +225,11 @@ export function GenresFilterContent({ onBack }: { onBack?: () => void }) {
     [hierarchy, debouncedValue],
   );
 
+  const sortedHierarchy = useMemo(
+    () => sortSelectedToTop(filteredHierarchy, selectedIds),
+    [filteredHierarchy, selectedIds],
+  );
+
   const shouldDefaultExpand =
     expandAll || Boolean(debouncedValue && debouncedValue.length > 0);
 
@@ -252,8 +293,8 @@ export function GenresFilterContent({ onBack }: { onBack?: () => void }) {
           <div className="flex items-center justify-center py-8">
             <Spinner className="size-6" />
           </div>
-        ) : filteredHierarchy.length > 0 ? (
-          filteredHierarchy.map((genre) => (
+        ) : sortedHierarchy.length > 0 ? (
+          sortedHierarchy.map((genre) => (
             <HierarchicalItem
               key={genre.id}
               genre={genre}

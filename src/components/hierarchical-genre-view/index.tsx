@@ -88,6 +88,7 @@ function GenreItem({
         className={cn(
           "border-border hover:bg-muted/50 flex items-start gap-3 rounded-lg border p-4 transition-colors",
           depth > 0 && (direction === "rtl" ? "border-r-4" : "border-l-4"),
+          hasChildren && isExpanded && "bg-muted/40",
         )}
         style={{
           [direction === "rtl" ? "marginRight" : "marginLeft"]:
