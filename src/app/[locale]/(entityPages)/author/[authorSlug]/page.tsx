@@ -101,6 +101,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
   const bio = author.bio;
   const otherNames = author.otherNames ?? [];
 
+  const empires = author.empires;
   const regions = author.regions;
 
   return (
@@ -121,7 +122,7 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
           booksCount: author.numberOfBooks,
           geographies: [],
           ...author,
-          regions: author.regions?.map((region) => region.slug),
+          regions: author.regions.map((region) => region.slug),
         }}
       />
 
@@ -148,8 +149,19 @@ async function AuthorPage({ routeParams, searchParams }: AuthorPageProps) {
             </>
           ),
           <p>{t("entities.x-texts", { count: author.numberOfBooks })}</p>,
+          empires.length > 0 && (
+            <>
+              <ExpandibleList
+                items={empires.map((e) => e.name)}
+                noun={{
+                  singular: t("entities.empire"),
+                  plural: t("entities.empires"),
+                }}
+              />
+            </>
+          ),
           <>
-            <p>{t("common.aka")} &nbsp;</p>
+            <p className="text-nowrap">{t("common.aka")} &nbsp;</p>
 
             <ExpandibleList
               items={otherNames}

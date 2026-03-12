@@ -99,7 +99,7 @@ export function ExpandibleList({
 
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Other {noun.plural}</DrawerTitle>
+          <DrawerTitle >Other {noun.plural}</DrawerTitle>
         </DrawerHeader>
 
         <div className="max-h-[400px] overflow-y-auto px-4">{namesList}</div>
