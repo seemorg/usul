@@ -49,6 +49,7 @@ export async function getSession(): Promise<Session | null> {
 
   if (!response.ok) return null;
 
-  const data = (await response.json()) as { data?: Session } | null;
-  return data?.data ?? null;
+  const data = (await response.json()) as Session | null;
+  if (!data?.user?.email) return null;
+  return data;
 }
