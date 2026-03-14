@@ -15,6 +15,7 @@ import DemoModalProvider from "../../components/video-modal";
 import MaintenanceBanner from "../../components/maintenance-banner";
 import Analytics from "./analytics";
 import Providers from "./providers";
+import DonationBanner from "@/components/donation-banner";
 
 export async function generateMetadata({
   params,
@@ -50,6 +51,7 @@ export default async function LocaleLayout({
       className="bg-muted-primary"
       suppressHydrationWarning
     >
+      {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && <DonationBanner />}
       <body
         className={cn(
           "bg-background relative min-h-svh w-full font-sans antialiased",

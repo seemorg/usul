@@ -5,6 +5,8 @@ import { useTranslations } from "next-intl";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 
+const DONATION_URL = "https://www.launchgood.com/v4/campaign/ramadan_campaign_45";
+
 export default function DonationBanner() {
   const t = useTranslations();
   const bannerRef = useRef<HTMLDivElement>(null);
@@ -37,7 +39,7 @@ export default function DonationBanner() {
         <AlertTitle className="mb-0 text font-bold leading-tight">
           {t("common.donation.title")}
         </AlertTitle>
-        <Link href="/donate">
+        <Link href={DONATION_URL}>
           <AlertDescription className="mb-0 text underline leading-tight">
             {t("common.donation.message")}
           </AlertDescription>
