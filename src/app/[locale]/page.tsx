@@ -170,7 +170,7 @@ export default async function HomePage({
 
   return (
     <>
-
+      {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && <DonationBanner />}
       <Navbar layout="home" />
 
       <div
