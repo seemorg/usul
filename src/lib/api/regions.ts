@@ -1,5 +1,4 @@
 import type { ApiRegion } from "@/types/api/region";
-import type { HierarchicalItem } from "@/components/hierarchical-list-view";
 import { cache } from "react";
 
 import type { PathLocale } from "../locale/utils";
@@ -31,19 +30,6 @@ export const findAllRegionsWithBooksCount = cache(
         locale,
         ...params,
       },
-    });
-
-    return result ?? [];
-  },
-);
-
-export const getRegionHierarchy = cache(
-  async (locale: PathLocale = "en") => {
-    const result = await apiFetch<
-      (HierarchicalItem & { numberOfAuthors: number; numberOfBooks: number })[]
-    >({
-      path: "/region/hierarchy",
-      params: { locale },
     });
 
     return result ?? [];
