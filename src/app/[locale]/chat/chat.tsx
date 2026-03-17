@@ -47,7 +47,7 @@ export default function Chat({ chat }: { chat?: Chat }) {
         showSignUpPromptInChat={showSignUpPromptInChat}
       />
 
-      <form className="mx-auto flex w-full flex-col px-4 md:max-w-3xl">
+      <form className="mx-auto flex w-full min-h-0 flex-col px-4 md:max-w-3xl">
         <MultimodalInput
           className="rounded-b-none border-b-0 md:rounded-b-3xl md:border"
           input={input}

@@ -122,7 +122,7 @@ export function FiltersButton({
       className={cn(
         "text-foreground gap-2 rounded-full",
         open &&
-          "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
+        "bg-primary-foreground dark:bg-primary/20 dark:text-primary-foreground hover:bg-primary/30 dark:hover:bg-primary/40 border-primary-foreground! dark:border-primary/20! text-primary hover:text-primary shadow-none",
       )}
       type="button"
       {...(setOpen && { onClick: () => setOpen(!open) })}
@@ -174,7 +174,7 @@ export function ChatTextarea({
       data-testid="multimodal-input"
       placeholder={t("chat.input.placeholder")}
       className={cn(
-        "bg-background max-h-[75dvh] min-h-24 resize-none overflow-hidden rounded-3xl px-5 pt-5 pb-15 text-base shadow-[0px_16px_32px_0px_#0000000A]",
+        "bg-background max-h-[65dvh] min-h-24 resize-none overflow-y-auto rounded-3xl px-5 pt-5 pb-16 text-base shadow-[0px_16px_32px_0px_#0000000A]",
         className,
       )}
       rows={2}
@@ -233,7 +233,7 @@ function PureMultimodalInput({
   }, [status, scrollToBottom]);
 
   return (
-    <div className="relative flex w-full flex-col gap-4">
+    <div className="relative flex w-full max-h-[80dvh] min-h-0 flex-col gap-4">
       <AnimatePresence>
         {!isAtBottom && (
           <motion.div
@@ -241,7 +241,7 @@ function PureMultimodalInput({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute bottom-34 left-1/2 z-50 -translate-x-1/2"
+            className="absolute -top-12 left-1/2 z-50 -translate-x-1/2"
           >
             <Button
               data-testid="scroll-to-bottom-button"
@@ -259,24 +259,30 @@ function PureMultimodalInput({
         )}
       </AnimatePresence>
 
-      {messages.length === 0 && <SuggestedActions append={append} />}
+      {messages.length === 0 && (
+        <div className="min-h-0 shrink overflow-y-auto">
+          <SuggestedActions append={append} />
+        </div>
+      )}
 
-      <ChatTextarea
-        ref={textareaRef}
-        value={input}
-        onChange={handleInput}
-        className={cn(className)}
-        handleSubmit={submitForm}
-      />
+      <div className="relative shrink-0">
+        <ChatTextarea
+          ref={textareaRef}
+          value={input}
+          onChange={handleInput}
+          className={cn(className)}
+          handleSubmit={submitForm}
+        />
 
-      <ActionContainer>
-        <FiltersButton open={filtersOpen} setOpen={setFiltersOpen} />
-        {status === "submitted" ? (
-          <StopButton stop={stop} setMessages={setMessages} />
-        ) : (
-          <SendButton input={input} submitForm={submitForm} />
-        )}
-      </ActionContainer>
+        <ActionContainer>
+          <FiltersButton open={filtersOpen} setOpen={setFiltersOpen} />
+          {status === "submitted" ? (
+            <StopButton stop={stop} setMessages={setMessages} />
+          ) : (
+            <SendButton input={input} submitForm={submitForm} />
+          )}
+        </ActionContainer>
+      </div>
     </div>
   );
 }
