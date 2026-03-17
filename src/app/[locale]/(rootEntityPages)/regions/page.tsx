@@ -1,21 +1,19 @@
+import type { HierarchicalItem } from "@/components/hierarchical-list-view";
 import type { Locale } from "next-intl";
 import type { InferPagePropsType } from "next-typesafe-url";
-import RegionSearchResult from "@/components/region-search-result";
 import RegionsChoroplethMap from "@/components/regions-choropleth-map/client";
-import SearchResults from "@/components/search-results";
+import RegionsHierarchyView from "./hierarchy-view";
 import { getTotalEntities } from "@/lib/api";
-import { findAllRegionsWithBooksCount } from "@/lib/api/regions";
-import { searchRegions } from "@/lib/api/search";
+import { findAllRegionsWithBooksCount, getRegionHierarchy } from "@/lib/api/regions";
 import { getPathLocale } from "@/lib/locale/server";
 import { getMetadata } from "@/lib/seo";
-import { alphabeticalSorts, navigation } from "@/lib/urls";
-import { InfoIcon } from "lucide-react";
+import { navigation } from "@/lib/urls";
 import { getTranslations } from "next-intl/server";
 import { withParamValidation } from "next-typesafe-url/app/hoc";
 
 import type { RouteType } from "./routeType";
 import RootEntityPage from "../root-entity-page";
-import { Route, sorts } from "./routeType";
+import { Route } from "./routeType";
 
 type PageProps = InferPagePropsType<RouteType>;
 
@@ -34,18 +32,13 @@ export async function generateMetadata({
 }
 
 async function RegionsPage({ searchParams }: PageProps) {
-  const { q, page, sort } = await searchParams;
+  const { q } = await searchParams;
   const pathLocale = await getPathLocale();
   const t = await getTranslations("entities");
 
-  const [results, total, regions] = await Promise.all([
-    searchRegions(q, {
-      limit: 20,
-      page,
-      sortBy: sort,
-      locale: pathLocale,
-    }),
+  const [total, hierarchy, regions] = await Promise.all([
     getTotalEntities(),
+    getRegionHierarchy(pathLocale),
     findAllRegionsWithBooksCount(undefined, pathLocale),
   ]);
 
@@ -58,34 +51,17 @@ async function RegionsPage({ searchParams }: PageProps) {
       })}
       description={t("regions-description")}
     >
-      {/* <p className="-mt-14 mb-12 flex items-center">
-        <InfoIcon className="mr-1 size-4 rtl:ml-1" />
-        Regions on Usul are based on the&nbsp;
-        <a
-          href="https://althurayya.github.io/"
-          target="_blank"
-          className="underline"
-        >
-          Turayya project
-        </a>
-      </p> */}
-
       <RegionsChoroplethMap data={regions as any} />
 
-      <SearchResults
-        response={results.results}
-        pagination={results.pagination}
-        renderResult={(result) => <RegionSearchResult result={result} />}
-        emptyMessage={t("no-entity", { entity: t("regions") })}
-        placeholder={t("search-within", {
-          entity: t("regions"),
-        })}
-        hasViews={false}
-        sorts={pathLocale === "en" ? [...sorts, ...alphabeticalSorts] : sorts}
-        currentSort={sort}
-        itemsContainerClassName="flex flex-col gap-0 sm:gap-0 md:gap-0"
-        currentQuery={q}
-      />
+      <div className="mt-8">
+        <RegionsHierarchyView
+          hierarchy={hierarchy as (HierarchicalItem & { numberOfAuthors: number; numberOfBooks: number })[]}
+          searchQuery={q}
+          placeholder={t("search-within", {
+            entity: t("regions"),
+          })}
+        />
+      </div>
     </RootEntityPage>
   );
 }
