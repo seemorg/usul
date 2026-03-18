@@ -28,7 +28,6 @@ import {
 import { PlayIcon } from "@heroicons/react/24/solid";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import DonationBanner from "../../components/donation-banner";
 import Footer from "../../components/footer";
 import HomepageSection from "../../components/homepage-section";
 import Navbar from "../../components/navbar";
@@ -170,7 +169,6 @@ export default async function HomePage({
 
   return (
     <>
-      {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && <DonationBanner />}
       <Navbar layout="home" />
 
       <div

@@ -62,6 +62,9 @@ export default async function LocaleLayout({
             {env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true" && (
               <MaintenanceBanner />
             )}
+            {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && (
+              <DonationBanner />
+            )}
             {children}
 
             <Toaster />
