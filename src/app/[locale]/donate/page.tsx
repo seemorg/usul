@@ -1,6 +1,7 @@
 import type { Locale } from "next-intl";
 import Image from "next/image";
 import Container from "@/components/ui/container";
+import { env } from "@/env";
 import { getMetadata } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { cn } from "@/lib/utils";
@@ -76,7 +77,25 @@ export default async function HomePage({
     <>
       <SuccessModal />
 
-      <div className="relative flex min-h-[550px] w-full pt-24 pb-10 text-white sm:pt-32 lg:max-h-[550px]">
+      <div
+        className={cn(
+          "relative flex min-h-[550px] w-full pb-10 text-white lg:max-h-[550px]",
+          env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER !== "true" &&
+            env.NEXT_PUBLIC_ENABLE_DONATION_BANNER !== "true" &&
+            "pt-24 sm:pt-32",
+        )}
+        style={
+          env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true"
+            ? {
+                paddingTop: `calc(var(--maintenance-banner-height, 0px) + 6rem)`,
+              }
+            : env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true"
+              ? {
+                  paddingTop: `calc(var(--donation-banner-height, 0px) + 6rem)`,
+                }
+              : undefined
+        }
+      >
         <div className="bg-muted-primary absolute inset-0 z-0 h-full w-full" />
 
         <Container className="z-1 flex flex-col lg:flex-row lg:gap-12">

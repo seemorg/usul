@@ -2,6 +2,7 @@ import type { PathLocale } from "@/lib/locale/utils";
 import type { BookDocument } from "@/types/book";
 import type { Locale } from "next-intl";
 import BookSearchResult from "@/components/book-search-result";
+import DonationBanner from "@/components/donation-banner";
 import { CollectionCard } from "@/components/ui/collection-card";
 import Container from "@/components/ui/container";
 import {
@@ -169,6 +170,9 @@ export default async function HomePage({
 
   return (
     <>
+      {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && (
+        <DonationBanner />
+      )}
       <Navbar layout="home" />
 
       <div

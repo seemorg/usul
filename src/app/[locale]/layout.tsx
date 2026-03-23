@@ -15,7 +15,6 @@ import DemoModalProvider from "../../components/video-modal";
 import MaintenanceBanner from "../../components/maintenance-banner";
 import Analytics from "./analytics";
 import Providers from "./providers";
-import DonationBanner from "@/components/donation-banner";
 
 export async function generateMetadata({
   params,
@@ -61,9 +60,6 @@ export default async function LocaleLayout({
           <Providers locale={typedLocale} total={total}>
             {env.NEXT_PUBLIC_ENABLE_MAINTENANCE_BANNER === "true" && (
               <MaintenanceBanner />
-            )}
-            {env.NEXT_PUBLIC_ENABLE_DONATION_BANNER === "true" && (
-              <DonationBanner />
             )}
             {children}
 

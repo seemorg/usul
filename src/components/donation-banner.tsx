@@ -27,7 +27,12 @@ export default function DonationBanner() {
     observer.observe(el);
     updateHeight();
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty(
+        "--donation-banner-height",
+      );
+    };
   }, []);
 
   return (
