@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "Ururinta",
     "description": "Ururintaada"
+  },
+  "form-page": {
+    "title": "Foomka",
+    "description": "Foomka"
   }
 }

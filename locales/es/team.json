@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Es una candidata a doctorado en la Universidad de Harvard investigando las dimensiones sociales de las tecnologías humanceras, y es administradora e investigadora en Usul. Yo, donde dirige operaciones y puentes ingeniería e investigación."
+      "description": "Es candidato a doctorado en la Universidad de Harvard investigando las dimensiones sociales de las tecnologías centradas en el hombre. Dirige operaciones e ingeniería de puentes con investigación en Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar es profesor de investigación de Estudios Islámicos en el Departamento de Estudios Religiosos. Sus principales intereses abarcan tanto el pensamiento islámico clásico como el moderno."
+      "description": "Es un experto en derecho islámico, teología, filosofía y un pensador reformista y escritor del pensamiento islámico moderno. Anteriormente impartió clases en el Seminario Qom (vestimenta y vosotros) (vosotros-y-y-ayatolá al-uzma Golpayegani). Actualmente es profesor de investigación de Estudios Islámicos en la Universidad de Duke."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido es un ex Profesor Visitante de Estudios Islámicos y Árabe de la Escuela de Divinidad de la Universidad de Chicago (2013-2015). La investigación de Eido se enfoca en el Corán en la antigüedad tardía, Hadi th Studies, Sufismo."
+      "description": "Es un especialista del Corán de la Universidad de Heidi y de la Universidad de Heidelberg, y Sufismo que anteriormente sirvió en la facultad de Estudios Islámicos de la Universidad de Damasco y estableció el Instituto Dalah para enseñar estudios islámicos en Syria. Actualmente es Profesor Adjunto de la Práctica de la Facultad de Estudios Religiosos en la Universidad de Vanderbilt."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Es profesora de derecho e historia en Harvard, especializada en derecho penal e interpretación (usul al-fiqh). Ella lidera el [Programa en la Leida Islámica](https://pil.law.harvard.edu/) y el [Laboratorio de Fuentes SHARIA](https://portal.shariasource.com/) y [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "Ella es una experta en derecho islámico y comparativo, historia, y los manuscritos del Corán: con énfasis en los métodos de interpretación en la legislación y la adjudicación, utilizando cánones legales (Qawa. id fiqhiyya). Anteriormente vivió y estudió en Irán, Syria, Egipto, Marruecos, Senegal y otros lugares. Ahora es profesora de derecho e historia en Harvard, adonde dirige el [Programa en la Leida Islámica](https://pil.law.harvard.edu/) y el [Laboratorio de Fuentes SHARIA](https://portal.shariasource.com/) y [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Antiguo ingeniero jefe",
     "researcher": "Investigador",
     "research-advisor": "Asesor de investigación",
-    "research-lead-advisor": "Líder de Investigación y Asesor",
+    "research-lead-advisor": "Líder de Investigación, Asesor de Investigación",
     "localization-lead": "Líder de localización",
     "digitization-lead": "Digitalización de plomo",
     "head-of-design": "Jefe de Diseño",

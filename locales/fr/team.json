@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Titulaire d'un doctorat à l'université Harvard, elle recherche les dimensions sociales des technologies humaines et est administrateur et chercheur à Usul. Moi, où elle dirige des opérations et met en relation l'ingénierie et la recherche."
+      "description": "Elle est titulaire d'un doctorat à l'université d'Harvard et étudie les dimensions sociales des technologies centrées sur l'homme. Elle dirige les opérations et ponts d'ingénierie avec la recherche à Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar est professeur de recherche en études islamiques au Département d’études religieuses. Ses principaux intérêts s'étendent à la fois à la pensée islamique classique et moderne. Son travail se situe au croisement des « études islamiques» et de la « Histoire de la pensée»."
+      "description": "Il est un érudit du droit islamique, de la théologie, de la philosophie, ainsi qu’un penseur réformiste et écrivain de la pensée islamique moderne. Il a enseigné au Séminaire de Qom (Madrase-ye Razavieh et Madrase-ye Ayatollah al-Uzma Golpayegani). Il est actuellement professeur de recherche en études islamiques à l'Université Duke."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido est un ancien professeur invité d’études islamiques et d’arabe de la faculté de divinité de l’Université de Chicago (2013-2015). La recherche d'Eido se concentre sur le Coran dans l'antiquité tardive, les études Hadi<unk> th, le soufisme."
+      "description": "Il est un érudit du Qur<unk> a<unk> n, des Études H<unk> adi<unk> , et soufisme qui servait auparavant à la faculté d’études islamiques de l’Université de Damas et qui établissait l’Institut Dalalah pour l’enseignement des études islamiques en Syrie. Il est maintenant professeur adjoint de la pratique de la faculté d’études religieuses de l’Université Vanderbilt."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Elle est professeur de droit et d'histoire à Harvard, spécialisée dans le droit pénal et l'interprétation (usul al-fiqh). Elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "Elle est une éruditaire du droit islamique et comparatif, de l'histoire, et Qur<unk> un manuscrit nique - avec l'accent mis sur les méthodes d'interprétation dans la législation et le jugement, en utilisant des canons légaux (Qawa<unk> id fiqhiyya). Elle a vécu et étudié en Iran, en Syrie, en Egypte, au Maroc, au Sénégal et ailleurs. Elle est maintenant professeur de droit et d'histoire à Harvard, où elle dirige le [Programme en droit islamique](https://pil.law.harvard.edu/) et le [SHARIAsource Lab](https://portal.shariasource.com/) et [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Ancien ingénieur en chef",
     "researcher": "Chercheur",
     "research-advisor": "Conseiller en recherche",
-    "research-lead-advisor": "Responsable de la recherche & Conseiller",
+    "research-lead-advisor": "Responsable de la recherche, Conseiller en Recherche",
     "localization-lead": "Prospect de traduction",
     "digitization-lead": "Prospect de numérisation",
     "head-of-design": "Responsable du design",

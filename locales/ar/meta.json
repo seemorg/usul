@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "التجميعات",
     "description": "تجميعاتك"
+  },
+  "form-page": {
+    "title": "النموذج",
+    "description": "النموذج"
   }
 }

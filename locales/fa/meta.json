@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "مجموعه‌ها",
     "description": "مجموعه‌های شما"
+  },
+  "form-page": {
+    "title": "فرم",
+    "description": "فرم"
   }
 }

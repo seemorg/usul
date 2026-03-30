@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "Tarin",
     "description": "Tarin ku"
+  },
+  "form-page": {
+    "title": "Fom",
+    "description": "Fom"
   }
 }

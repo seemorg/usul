@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "संग्रह",
     "description": "आपके संग्रह"
+  },
+  "form-page": {
+    "title": "फ़ॉर्म",
+    "description": "फ़ॉर्म"
   }
 }

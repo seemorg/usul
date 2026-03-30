@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Waxay tahay arday takhasus PhD ee Jaamacadda Harvard oo cilmi-baadhis ku samaysa dhinacyada bulshada ee tignoolajiyada loogu talagalay dadka, waxayna u adeegtaa maamulaha iyo cilmi-baadhe ka tirsan Usul.AI, halkaasoo ay hogaamiso hawlaha isla markaana ay isku xidho injineeriyada iyo cilmi-baarista."
+      "description": "Waxay tahay musharax PhD ka ah Jaamacadda Harvard, waxayna baareysaa arrimaha bulshadeed ee teknoolojiyadda udub-dhexaadka u ah aadanaha. Waxay madax ka tahay hawlgalada, waxayna isku xirtaa injineerinka iyo cilmi-baarista Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar waa borofisar cilmibaaris oo ku takhasusay Daraasaadka Islaamka ee Waaxda Daraasaadka Diimaha. Wuxuu joogay Jaamacadda Duke tan iyo 2009. Xiisihiisa ugu weyn wuxuu ku fidsan yahay fikradaha Islaamka ee hore iyo kuwa casriga ahba. Shaqadiisa waxaa lagu falanqeeyaa isgoysyada \"Daraasaadka Islaamka\", iyo \"Taariikhda Fikradda\" ee casriga ah."
+      "description": "Waa aqoonyahan ku takhasusay shareecada Islaamka, cilmiga kala duwanaanshaha Islaamka, falsafada, sidoo kale waa qoraa iyo fikiris isbeddel-doon ah oo ku saabsan fikirka Islaamka casriga ah. Wuxuu hore uga dhigi jiray xertii Qom (Madrase-ye Razavieh iyo Madrase-ye Ayatollah al-Uzma Golpayegani). Hadda waa borofisar cilmi-baaris ah oo ka tirsan cilmiga Islaamka ee Jaamacadda Duke."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido waa borofisar hore oo booqasho ku ahaa Daraasaadka Islaamka iyo Carabiga ee Jaamacadda Chicago Divinity School (2013-2015). Cilmibaaristiisa waxay diiradda saartaa Qur'aanka xilligii danbe ee aaska, Daraasaadka Xadiiska, iyo Sufiyada."
+      "description": "Waa aqoonyahan ku xeel dheer cilmiga Qur'aanka, Xadiiska, iyo Suufinnimada, wuxuu hore ugu jiray macallinimada cilmiga Islaamka ee Jaamacadda Dimishiq, wuxuuna ka aasaasay Machadka Dalalah ee lagu barto culuumta Islaamka Suuriya. Hadda waa Kaaliye Borofisar ka ah Cilmiga Diinta ee Jaamacadda Vanderbilt."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Waxay tahay borofisar sharci iyo taariikh ka dhigta Jaamacadda Harvard, waxayna ku takhasustay sharciga ciqaabta iyo tafsiirka (usul al-fiqh). Waxay hogaamisaa [Barnaamijka Sharciga Islaamka](https://pil.law.harvard.edu/) iyo [SHARIAsource Lab](https://portal.shariasource.com/), iyo sidoo kale [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "Waxay tahay aqoonyahanad ku takhasustay sharciga Islaamka iyo isbarbardhiga shuruucda, taariikhda, iyo nuqulada Qur'aanka—iyadoo xoogga saaraysa hababka fasiraadda ee sharci dejinta iyo xukunka, iyadoo adeegsanaysa qawaacidda fiqhiga (Qawāʿid fiqhiyya). Horey waxay u nooleyd oo u baratay waddamada Iran, Suuriya, Masar, Marooko, Senegal, iyo meelo kale. Hadda waa borofisar sharciga iyo taariikhda ka dhiga Harvard, halkaasoo ay hoggaamiso [Barnaamijka Sharciga Islaamka](https://pil.law.harvard.edu/), [SHARIAsource Lab](https://portal.shariasource.com/) iyo [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Injineerkii Hore ee Hogaamiyaha ahaa",
     "researcher": "Baarayaasha",
     "research-advisor": "La-taliye Cilmi-baaris",
-    "research-lead-advisor": "Hoggaamiyaha & La-taliyaha Cilmi-baarista",
+    "research-lead-advisor": "Hogaamiyaha Cilmi-baarista, Lataliyaha Cilmi-baarista",
     "localization-lead": "Hormuudka Meeleeyaha",
     "digitization-lead": "Hormuudka Dhijitaleynta",
     "head-of-design": "Madaxa Naqshadeynta",

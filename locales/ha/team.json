@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Ita mai neman PhD ce a Jami'ar Harvard dake bincike akan al'amuran zamantakewar fasahohi wanda ya fi mayar da hankali da jama'a, kuma tana aiki a matsayin mai gudanarwa da mai bincike a Usul.AI, inda take jagoranci ayyuka da haɗa injiniya da bincike."
+      "description": "Ita dalibar digirin digirgir ce a Jami'ar Harvard tana bincike kan fannoni na zamantakewa na fasahar da ke da mayar da hankali ga bil'adama. Ita ce ke jagorantar ayyukan gudanarwa kuma tana hada injiniyoyi da bincike a Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar Farfesa mai bincike ne kan Nazarin Addinin Musulunci a Sashen Nazarin Addinai. Ya kasance a Jami'ar Duke tun 2009. Babban abin da ke sha'awarsa shi ne tunanin Musulunci na gargajiya da zamani. Ayyukansa suna a gefen \"Nazarin Musulunci\" da kuma sabuwar \"Tarihin Tunani\"."
+      "description": "Shi masani ne kan dokokin Musulunci, ilimin tauhidi, falsafa da kuma tunanin sauyi a tsarin ilimin Musulunci na zamani, kuma marubuci. Ya koyar a Qom Seminary (Madrase-ye Razavieh da Madrase-ye Ayatollah al-Uzma Golpayegani). Yanzu haka shi farfesa ne mai bincike a fannin Nazarin Addinin Musulunci a Jami'ar Duke."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido tsohon Farfesan Ziyara ne na Nazarin Addinin Musulunci da Larabci daga Makarantar Ilimin Addinai ta Jami'ar Chicago (2013-2015). Bincikensa ya mayar da hankali kan Al-Qur'ani a ƙarshen zamanin da, Nazarin Hadīth, da Sufanci."
+      "description": "Shi masani ne kan Alƙur'ani, karatun Hadisi, da Sufanci, wanda ya taba koyarwa a fannin Nazarin Musulunci na Jami'ar Damascus kuma ya kafa Dalalah Institute don koyar da Karatun Musulunci a Syria. Yanzu haka Malami ne Mai Mukamin Mataimaki a Fannin Nazarin Addinai a Jami'ar Vanderbilt."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Ita Farfesa ce ta dokoki da tarihi a Harvard, ta ƙware a dokar aikata manyan laifuka da fassara (usul al-fiqh). Ita ke jagorantar [Shirin Nazarin Shari'ar Musulunci](https://pil.law.harvard.edu/) da [Dakin Nazarin SHARIAsource](https://portal.shariasource.com/), da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "Ita masaniya ce a dokokin Musulunci da na kwatantawa, tarihin Musulunci, da takardun Alƙur'ani — musamman yadda ake tafsiri a cikin dokoki da yanke shari'a, ta amfani da ƙa'idojin shari'a (Qawāʿid fiqhiyya). Tayi zama da karatu a Iran, Syria, Misira, Moroko, Senegal da wasu wurare. Yanzu haka Farfesa ce a fannin dokoki da tarihi a Harvard, inda take shugabantar [Shirin Nazarin Dokokin Musulunci](https://pil.law.harvard.edu/) da [SHARIAsource Lab](https://portal.shariasource.com/) , da kuma [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Tsohon Jagoran Injiniya",
     "researcher": "Masu Bincike",
     "research-advisor": "Mai bayar da shawara kan bincike",
-    "research-lead-advisor": "Jagoran Bincike & Mai bayar da shawara",
+    "research-lead-advisor": "Shugaban Bincike, Mai Ba da Shawara kan Bincike",
     "localization-lead": "Jagoran Lokaliyasa",
     "digitization-lead": "Jagoran Digitization",
     "head-of-design": "Shugaban Tsara",

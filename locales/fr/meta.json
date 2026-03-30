@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "Collections",
     "description": "Vos collections"
+  },
+  "form-page": {
+    "title": "Forme",
+    "description": "Forme"
   }
 }

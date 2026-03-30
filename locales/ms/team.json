@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Beliau adalah calon PhD di Universiti Harvard yang meneliti dimensi sosial teknologi berpusatkan manusia, dan berkhidmat sebagai pentadbir dan penyelidik di Usul.AI, di mana beliau mengarahkan operasi dan menjambatani kejuruteraan dan penyelidikan."
+      "description": "Beliau merupakan calon PhD di Universiti Harvard yang meneliti dimensi sosial teknologi berfokuskan manusia. Beliau mengetuai operasi dan menjadi penghubung antara kejuruteraan dengan penyelidikan di Usul AI."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar ialah profesor penyelidikan Pengajian Islam di Jabatan Pengajian Agama. Beliau telah berada di Duke sejak 2009. Minat utamanya merangkumi pemikiran Islam klasik dan moden. Kajiannya berada di persimpangan \"Pengajian Islam\" dan \"Sejarah Pemikiran\" kontemporari."
+      "description": "Beliau ialah ilmuwan undang-undang Islam, teologi, falsafah serta pemikir reformis dan penulis pemikiran Islam moden. Beliau pernah mengajar di Seminari Qom (Madrase-ye Razavieh dan Madrase-ye Ayatollah al-Uzma Golpayegani). Kini beliau merupakan profesor penyelidikan dalam Pengajian Islam di Universiti Duke."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido ialah bekas Profesor Pelawat Pengajian Islam dan Bahasa Arab dari University of Chicago Divinity School (2013-2015). Penyelidikan Eido memberi tumpuan kepada al-Qur'an pada zaman akhir kuno, Pengajian Hadis, dan Sufisme."
+      "description": "Beliau ialah sarjana kajian Qurʾān, Ḥadīth dan tasawuf yang pernah berkhidmat sebagai tenaga akademik dalam Pengajian Islam di Universiti Damsyik dan menubuhkan Institut Dalalah untuk pengajaran pengajian Islam di Syria. Kini beliau berkhidmat sebagai Penolong Profesor Amali di fakulti Pengajian Agama di Universiti Vanderbilt."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Beliau ialah Profesor undang-undang dan sejarah di Harvard, pakar dalam undang-undang jenayah dan tafsiran (usul al-fiqh). Beliau mengetuai [Program dalam Undang-Undang Islam](https://pil.law.harvard.edu/) dan [Makmal SHARIAsource](https://portal.shariasource.com/), serta [IslamicLawBlog](https://islamiclaw.blog/)."
+      "description": "Beliau ialah sarjana undang-undang Islam dan perbandingan, sejarah, dan manuskrip Qurʾān--dengan penekanan kepada kaedah penafsiran dalam perundangan dan penghakiman, menggunakan kaedah perundangan (Qawāʿid fiqhiyya). Beliau pernah tinggal dan belajar di Iran, Syria, Mesir, Maghribi, Senegal, dan negara lain. Kini beliau merupakan Profesor undang-undang dan sejarah di Harvard, di mana beliau mengetuai [Program dalam Undang-undang Islam](https://pil.law.harvard.edu/) dan [Makmal SHARIAsource](https://portal.shariasource.com/) , serta [IslamicLawBlog](https://islamiclaw.blog/)."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Bekas Jurutera Utama",
     "researcher": "Penyelidik",
     "research-advisor": "Penasihat Penyelidikan",
-    "research-lead-advisor": "Ketua & Penasihat Penyelidikan",
+    "research-lead-advisor": "Ketua Penyelidik, Penasihat Penyelidikan",
     "localization-lead": "Ketua Lokaliti",
     "digitization-lead": "Ketua Digitalisasi",
     "head-of-design": "Ketua Reka Bentuk",

@@ -32,7 +32,7 @@
     },
     "abtsam-saleh": {
       "name": "Abtsam Saleh",
-      "description": "Harvard Üniversitesi'nde insan odaklı teknolojilerin sosyal boyutlarını araştıran bir doktora adaydır ve Usul.AI'de yönetici ve araştırmacı olarak görev yapar, burada operasyonları yönetir ve mühendislik ile araştırma arasında köprüler kurar."
+      "description": "Harvard Üniversitesi'nde insan odaklı teknolojilerin toplumsal boyutlarını araştıran bir doktora adayıdır. Usul AI'da operasyonları yönetir ve mühendislik ile araştırma arasında köprü kurar."
     },
     "ryad-ramo": {
       "name": "Ryad Ramo",
@@ -68,15 +68,15 @@
     },
     "mohsen-kadivar": {
       "name": "Mohsen Kadivar",
-      "description": "Mohsen Kadivar, Din Çalışmaları Bölümü'nde İslam Araştırmaları alanında araştırma profesörüdür. 2009'dan beri Duke Üniversitesi'ndedir. Öncelikli ilgi alanları klasik ve modern İslam düşüncesini kapsamaktadır. Çalışmaları, \"İslam Araştırmaları\" ile çağdaş \"Düşünce Tarihi\" kesişiminde yer almaktadır."
+      "description": "İslam hukuku, ilahiyat, felsefe alanında uzman bir akademisyen ve modern İslam düşüncesinin reformist bir yazarıdır. Daha önce Kum Medresesi'nde (Madrase-ye Razavieh ve Madrase-ye Ayatollah al-Uzma Golpayegani) ders vermiştir. Şu anda Duke Üniversitesi'nde İslam Araştırmaları araştırma profesörüdür."
     },
     "issam-eido": {
       "name": "Issam Eido",
-      "description": "Issam Eido, Chicago Üniversitesi İlahiyat Fakültesi'nden (2013-2015) eski Misafir İslam Araştırmaları ve Arapça Profesörüdür. Eido'nun araştırmaları, geç antik dönemde Kur'an, Hadis çalışmaları ve Tasavvuf üzerine odaklanmaktadır."
+      "description": "Kur'ân, Hadis çalışmaları ve Tasavvuf alanında uzman bir akademisyendir; daha önce Şam Üniversitesi'nde İslam Araştırmaları fakültesinde görev almış, Suriye'de İslam çalışmaları eğitimi için Dalalah Enstitüsünü kurmuştur. Şimdi Vanderbilt Üniversitesi'nde Dini Araştırmalar fakültesinde Uygulama Yardımcı Profesörüdür."
     },
     "intisar-rabb": {
       "name": "Intisar Rabb",
-      "description": "Harvard'da ceza hukuku ve yorum (usul al-fıkıh) alanında uzmanlaşmış hukuk ve tarih profesörüdür. [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerine liderlik etmektedir."
+      "description": "İslam ve mukayeseli hukuk, tarih, Kur'ân yazmaları alanında bilim insanıdır; özellikle yasal kanunlar (Kavâid fıkhiyyə) kullanarak yasama ve karar verme süreçlerinde yorum yöntemlerine odaklanmaktadır. Daha önce İran, Suriye, Mısır, Fas, Senegal ve diğer yerlerde yaşadı ve eğitim aldı. Harvard'da hukuk ve tarih profesörüdür; burada [İslam Hukuku Programı](https://pil.law.harvard.edu/) ve [SHARIAsource Lab](https://portal.shariasource.com/) ile [IslamicLawBlog](https://islamiclaw.blog/) projelerini yönetmektedir."
     }
   },
   "roles": {
@@ -85,7 +85,7 @@
     "former-engineer": "Eski Baş Mühendis",
     "researcher": "Araştırmacı",
     "research-advisor": "Araştırma Danışmanı",
-    "research-lead-advisor": "Araştırma Lideri & Danışmanı",
+    "research-lead-advisor": "Araştırma Lideri, Araştırma Danışmanı",
     "localization-lead": "Yerelleştirme Lideri",
     "digitization-lead": "Dijitalleştirme Lideri",
     "head-of-design": "Tasarım Müdürü",

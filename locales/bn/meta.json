@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "সংগ্রহসমূহ",
     "description": "আপনার সংগ্রহসমূহ"
+  },
+  "form-page": {
+    "title": "ফরম",
+    "description": "ফরম"
   }
 }

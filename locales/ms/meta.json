@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "Koleksi",
     "description": "Koleksi anda"
+  },
+  "form-page": {
+    "title": "Borang",
+    "description": "Borang"
   }
 }

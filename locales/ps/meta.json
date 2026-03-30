@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "مجموعې",
     "description": "ستاسو مجموعې"
+  },
+  "form-page": {
+    "title": "فورمه",
+    "description": "فورمه"
   }
 }

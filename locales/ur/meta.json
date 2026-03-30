@@ -28,5 +28,9 @@
   "collections-page": {
     "title": "کلیکشن",
     "description": "آپ کا کلیکشن"
+  },
+  "form-page": {
+    "title": "فارم",
+    "description": "فارم"
   }
 }
