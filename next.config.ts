@@ -16,6 +16,18 @@ const config: NextConfig = {
   headers: async () => {
     const headers: Awaited<ReturnType<NonNullable<NextConfig["headers"]>>> = [
       {
+        // Large vendor assets under public/static (e.g. PDF viewer); filenames are not
+        // content-hashed, so use SWR instead of immutable.
+        source: "/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value:
+              "public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
         // Cache sitemap
         source: "/sitemap.xml",
         headers: [
