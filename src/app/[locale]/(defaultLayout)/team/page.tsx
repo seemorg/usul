@@ -1,7 +1,7 @@
 import type { Locale } from "next-intl";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/container";
-import { VOLUNTEER_URL } from "@/lib/constants";
+import { AIRTABLE_FORMS } from "@/lib/constants";
 import { getMetadata, SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
 import { HandHeartIcon, HeartHandshakeIcon, MailIcon } from "lucide-react";
@@ -14,6 +14,7 @@ import {
   pastTeamMembers,
   researchAnnotationTeam,
 } from "./members";
+import { navigation as urls } from "@/lib/urls";
 
 export const generateMetadata = async ({
   params,
@@ -41,7 +42,7 @@ export default async function TeamPage() {
           <h1 className="text-4xl font-bold lg:text-5xl">{t("board-title")}</h1>
           <div className="flex items-center justify-end gap-5">
             <Button className="h-9 gap-2" asChild>
-              <a href={VOLUNTEER_URL} target="_blank">
+              <a href={urls.form(AIRTABLE_FORMS.VOLUNTEER.id)} target="_blank">
                 <HeartHandshakeIcon className="size-4" />
                 {t("become-a-volunteer")}
               </a>
