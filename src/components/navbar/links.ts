@@ -1,12 +1,8 @@
 import type { NamespaceTranslations } from "@/types/NamespaceTranslations";
-import {
-  ADD_TEXT_URL,
-  FEEDBACK_URL,
-  REPORT_MISTAKE_URL,
-  VOLUNTEER_URL,
-} from "@/lib/constants";
+import { AIRTABLE_FORMS } from "@/lib/constants";
 import { SITE_CONFIG } from "@/lib/seo";
 import { navigation } from "@/lib/urls";
+import { navigation as urls } from "@/lib/urls";
 import {
   BookOpenIcon,
   CirclePlusIcon,
@@ -88,7 +84,7 @@ export const aboutItems: NavItem[] = [
     title: "navigation.about.contact.title",
     description: "navigation.about.contact.description",
     icon: MailIcon,
-    href: FEEDBACK_URL,
+    href: urls.form(AIRTABLE_FORMS.FEEDBACK.id),
   },
 ];
 
@@ -102,25 +98,25 @@ export const contributeItems: NavItem[] = [
   {
     title: "navigation.contribute.add-text.title",
     description: "navigation.contribute.add-text.description",
-    href: ADD_TEXT_URL,
+    href: urls.form(AIRTABLE_FORMS.ADD_TEXT.id),
     icon: CirclePlusIcon,
   },
   {
     title: "navigation.contribute.report-mistake.title",
     description: "navigation.contribute.report-mistake.description",
-    href: REPORT_MISTAKE_URL,
+    href: urls.form(AIRTABLE_FORMS.REPORT_MISTAKE.id),
     icon: ShieldAlertIcon,
   },
   {
     title: "navigation.contribute.feedback.title",
     description: "navigation.contribute.feedback.description",
-    href: FEEDBACK_URL,
+    href: urls.form(AIRTABLE_FORMS.FEEDBACK.id),
     icon: MessageSquarePlusIcon,
   },
   {
     title: "navigation.contribute.volunteer.title",
     description: "navigation.contribute.volunteer.description",
-    href: VOLUNTEER_URL,
+    href: urls.form(AIRTABLE_FORMS.VOLUNTEER.id),
     icon: HeartHandshakeIcon,
   },
 ];

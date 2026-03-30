@@ -2,12 +2,9 @@ export const READER_SSR_SIZE = 10;
 export const READER_PAGINATION_SIZE = 20;
 export const READER_OVERSCAN_SIZE = 10;
 
-export const ADD_TEXT_URL =
-  "https://airtable.com/appGgKaF9kTWqtppC/pagi9THQdTGji03uB/form";
-export const REPORT_MISTAKE_URL =
-  "https://airtable.com/appGgKaF9kTWqtppC/pagHi650b79JSTscx/form";
-export const VOLUNTEER_URL =
-  "https://airtable.com/appGgKaF9kTWqtppC/pag6pBefylZUs0bF2/form";
-
-export const FEEDBACK_URL =
-  "https://airtable.com/appGgKaF9kTWqtppC/pag0nTFmLJo2zrtkk/form";
+export const AIRTABLE_FORMS = {
+  ADD_TEXT: { id: "pagi9THQdTGji03uB", name: "Add Text", height: 2300 },
+  REPORT_MISTAKE: { id: "pagHi650b79JSTscx", name: "Report Mistake", height: 1200 },
+  FEEDBACK: { id: "pag0nTFmLJo2zrtkk", name: "Feedback", height: 1100 },
+  VOLUNTEER: { id: "pag6pBefylZUs0bF2", name: "Volunteer", height: 1100 },
+};

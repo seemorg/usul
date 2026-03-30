@@ -62,6 +62,7 @@ export const navigation = {
     all: () => "/chat",
     byId: (chatId: string) => `/chat/${chatId}`,
   },
+  form: (formId: string) => `/form/${formId}`,
 };
 
 export const booksSorts = [

@@ -7,10 +7,7 @@ import XformerlyTwitter from "@/components/icons/x";
 import NewsletterForm from "@/components/newsletter-form";
 import Container from "@/components/ui/container";
 import {
-  ADD_TEXT_URL,
-  FEEDBACK_URL,
-  REPORT_MISTAKE_URL,
-  VOLUNTEER_URL,
+  AIRTABLE_FORMS,
 } from "@/lib/constants";
 import { getLocaleDirection } from "@/lib/locale/utils";
 import { SITE_CONFIG } from "@/lib/seo";
@@ -55,19 +52,19 @@ const navigation = {
   contribute: [
     {
       label: "navigation.contribute.add-text.title",
-      href: ADD_TEXT_URL,
+      href: urls.form(AIRTABLE_FORMS.ADD_TEXT.id),
     },
     {
       label: "navigation.contribute.report-mistake.title",
-      href: REPORT_MISTAKE_URL,
+      href: urls.form(AIRTABLE_FORMS.REPORT_MISTAKE.id),
     },
     {
       label: "navigation.contribute.feedback.title",
-      href: FEEDBACK_URL,
+      href: urls.form(AIRTABLE_FORMS.FEEDBACK.id),
     },
     {
       label: "navigation.contribute.volunteer.title",
-      href: VOLUNTEER_URL,
+      href: urls.form(AIRTABLE_FORMS.VOLUNTEER.id),
     },
   ] satisfies NavItem[],
   social: [

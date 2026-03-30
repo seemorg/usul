@@ -1,0 +1,18 @@
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+
+export default function FormLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="dark:bg-background bg-[#F8F6F6]">
+      <Navbar />
+
+      {children}
+
+      <Footer />
+    </div>
+  );
+}
